@@ -3,7 +3,7 @@
 [ext_resource path="res://data/core/images/terrain/terrain.png" type="Texture" id=1]
 [ext_resource path="res://data/core/images/terrain/forest.png" type="Texture" id=2]
 
-[node name="TileSetHills" type="Node2D"]
+[node name="TileSet" type="Node2D"]
 
 [node name="grass" type="Node" parent="." index="0"]
 
