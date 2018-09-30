@@ -1,0 +1,159 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://data/core/images/terrain/terrain.png" type="Texture" id=1]
+[ext_resource path="res://data/core/images/terrain/forest.png" type="Texture" id=2]
+
+[node name="TileSetHills" type="Node2D"]
+
+[node name="grass" type="Node" parent="." index="0"]
+
+[node name="green" type="Sprite" parent="grass" index="0"]
+
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 72, 72 )
+_sections_unfolded = [ "Offset" ]
+
+[node name="semi-dry" type="Sprite" parent="grass" index="1"]
+
+position = Vector2( 72, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 72, 0, 72, 72 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="dry" type="Sprite" parent="grass" index="2"]
+
+position = Vector2( 144, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 144, 0, 72, 72 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="leaf-litter" type="Sprite" parent="grass" index="3"]
+
+position = Vector2( 216, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 216, 0, 72, 72 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="hills" type="Node" parent="." index="1"]
+
+[node name="snow" type="Sprite" parent="hills" index="0"]
+
+position = Vector2( 0, 72 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 72, 72, 72 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="regular" type="Sprite" parent="hills" index="1"]
+
+position = Vector2( 72, 72 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 72, 72, 72, 72 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="dry" type="Sprite" parent="hills" index="2"]
+
+position = Vector2( 144, 72 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 144, 72, 72, 72 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="dessert" type="Sprite" parent="hills" index="3"]
+
+position = Vector2( 216, 72 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 216, 72, 72, 72 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="mountains" type="Node" parent="." index="2"]
+
+[node name="basic-tile" type="Sprite" parent="mountains" index="0"]
+
+position = Vector2( 0, 144 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 144, 72, 72 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="dry-tile" type="Sprite" parent="mountains" index="1"]
+
+position = Vector2( 72, 144 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 72, 144, 72, 72 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="snow-tile" type="Sprite" parent="mountains" index="2"]
+
+position = Vector2( 144, 144 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 144, 144, 72, 72 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="forest" type="Node" parent="." index="3"]
+
+[node name="mixed-fall-sparse" type="Sprite" parent="forest" index="0"]
+
+position = Vector2( 0, 216 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 144, 144 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="deciduous-summer-small" type="Sprite" parent="forest" index="1"]
+
+position = Vector2( 144, 216 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 144, 0, 144, 144 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="pine-sparse" type="Sprite" parent="forest" index="2"]
+
+position = Vector2( 288, 216 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 288, 0, 144, 144 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="deciduous-fall-small" type="Sprite" parent="forest" index="3"]
+
+position = Vector2( 432, 216 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 432, 0, 144, 144 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="mixed-winter-sparse2" type="Sprite" parent="forest" index="4"]
+
+position = Vector2( 576, 216 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 576, 0, 144, 144 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+
