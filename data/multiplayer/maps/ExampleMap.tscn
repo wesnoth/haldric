@@ -1,19 +1,21 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://data/core/images/terrain/tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://data/scrips/map.gd" type="Script" id=2]
-[ext_resource path="res://data/core/images/units/sprite.png" type="Texture" id=3]
-[ext_resource path="res://data/scrips/draw.gd" type="Script" id=4]
-[ext_resource path="res://data/images/brush.png" type="Texture" id=5]
+[ext_resource path="res://data/scrips/grid.gd" type="Script" id=1]
+[ext_resource path="res://data/core/images/terrain/tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://data/scrips/tiles.gd" type="Script" id=3]
+[ext_resource path="res://data/core/images/units/sprite.png" type="Texture" id=4]
+[ext_resource path="res://data/scenes/Selector.tscn" type="PackedScene" id=5]
 
 [node name="Map" type="Node2D" index="0"]
 
+position = Vector2( 18, 0 )
+script = ExtResource( 1 )
 _sections_unfolded = [ "Cell", "Transform" ]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 54, 72 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -29,16 +31,15 @@ collision_mask = 1
 occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( -1, 7, 0, -65535, 7, 0, -65533, 5, 0, -65531, 5, 0, -65529, 0, 0, -65527, 0, 0, -65525, 0, 0, -65523, 0, 0, -65521, 4, 0, -65519, 4, 0, 65535, 7, 0, 0, 7, 0, 1, 7, 0, 2, 7, 0, 3, 2, 0, 4, 5, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 4, 0, 15, 0, 0, 16, 4, 0, 17, 4, 0, 18, 4, 0, 131071, 7, 0, 65536, 7, 0, 65537, 5, 0, 65538, 5, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 3, 0, 65547, 3, 0, 65548, 3, 0, 65549, 3, 0, 65550, 0, 0, 65551, 0, 0, 65552, 4, 0, 65553, 4, 0, 65554, 4, 0, 196607, 7, 0, 131072, 7, 0, 131073, 2, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 1, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 3, 0, 131083, 3, 0, 131084, 3, 0, 131085, 3, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131089, 4, 0, 131090, 4, 0, 262143, 7, 0, 196608, 5, 0, 196609, 5, 0, 196610, 5, 0, 196611, 0, 0, 196612, 0, 0, 196613, 1, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 3, 0, 196621, 3, 0, 196622, 0, 0, 196623, 0, 0, 196624, 4, 0, 196625, 6, 0, 196626, 6, 0, 327679, 7, 0, 262144, 7, 0, 262145, 2, 0, 262146, 5, 0, 262147, 0, 0, 262148, 0, 0, 262149, 1, 0, 262150, 1, 0, 262151, 0, 0, 262152, 0, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 3, 0, 262157, 3, 0, 262158, 0, 0, 262159, 0, 0, 262160, 6, 0, 262161, 2, 0, 262162, 6, 0, 393215, 7, 0, 327680, 7, 0, 327681, 7, 0, 327682, 5, 0, 327683, 0, 0, 327684, 1, 0, 327685, 1, 0, 327686, 0, 0, 327687, 0, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 3, 0, 327692, 3, 0, 327693, 1, 0, 327694, 1, 0, 327695, 0, 0, 327696, 6, 0, 327697, 2, 0, 327698, 6, 0, 458751, 5, 0, 393216, 7, 0, 393217, 2, 0, 393218, 2, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 1, 0, 393225, 1, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 1, 0, 393230, 1, 0, 393231, 6, 0, 393232, 6, 0, 393233, 6, 0, 393234, 6, 0, 524287, 5, 0, 458752, 2, 0, 458753, 5, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 1, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 458767, 6, 0, 458768, 2, 0, 458769, 6, 0, 458770, 6, 0, 589823, 2, 0, 524288, 2, 0, 524289, 2, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 1, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 6, 0, 524305, 6, 0, 524306, 6, 0 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 _sections_unfolded = [ "Cell" ]
 WIDTH = 20
 HEIGHT = 10
 
 [node name="Overlay" type="TileMap" parent="." index="1"]
 
-visible = false
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 54, 72 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -59,7 +60,7 @@ _sections_unfolded = [ "Cell" ]
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
 position = Vector2( 468, 396 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Interface" type="CanvasLayer" parent="." index="3"]
@@ -70,64 +71,6 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Draw" type="Control" parent="Interface" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-script = ExtResource( 4 )
-
-[node name="Selector" type="Sprite" parent="Interface/Draw" index="0"]
-
-texture = ExtResource( 5 )
-centered = false
-_sections_unfolded = [ "Offset" ]
-
-[node name="TileCoords" type="Label" parent="Interface/Draw/Selector" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 36.0
-margin_top = 36.0
-margin_right = 76.0
-margin_bottom = 50.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="TileType" type="Label" parent="Interface/Draw/Selector" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 36.0
-margin_top = 50.0
-margin_right = 76.0
-margin_bottom = 64.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+[node name="Selector" parent="Interface" index="0" instance=ExtResource( 5 )]
 
 

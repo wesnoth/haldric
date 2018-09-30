@@ -16,7 +16,7 @@ func flatten_v(_cell):
 	return int(_cell.y) * WIDTH + int(_cell.x)
 
 func flatten(_x, _y):
-	return _y * WIDTH + _x
+	return int(_y) * WIDTH + int(_x)
 
 func check_boundaries(_point):
 	return (_point.x >= 0 and _point.y >= 0 and _point.x < WIDTH  and _point.y < HEIGHT)
