@@ -1,14 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://data/scripts/grid.gd" type="Script" id=1]
-[ext_resource path="res://data/core/images/terrain/tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://data/core/tilesets/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://data/scripts/tiles.gd" type="Script" id=3]
 [ext_resource path="res://data/core/images/units/sprite.png" type="Texture" id=4]
-[ext_resource path="res://data/scenes/Selector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://data/scripts/camera.gd" type="Script" id=5]
+[ext_resource path="res://data/scenes/Selector.tscn" type="PackedScene" id=6]
 
 [node name="Map" type="Node2D" index="0"]
 
-position = Vector2( 18, 0 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Cell", "Transform" ]
 
@@ -54,16 +54,43 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( -65527, 12, 0, -65525, 14, 0, -65523, 10, 0, -65522, 14, 0, -65521, 14, 0, 8, 12, 0, 9, 14, 0, 10, 14, 0, 11, 10, 0, 12, 14, 0, 14, 14, 0, 15, 14, 0, 16, 14, 0, 17, 14, 0, 65539, 11, 0, 65540, 11, 0, 65545, 14, 0, 65547, 14, 0, 65548, 14, 0, 65550, 14, 0, 65551, 14, 0, 65552, 14, 0, 131075, 11, 0, 131076, 11, 0, 131077, 13, 0, 131080, 14, 0, 131082, 14, 0, 131083, 10, 0, 131086, 14, 0, 131087, 14, 0, 131088, 14, 0, 196611, 11, 0, 196613, 13, 0, 196618, 14, 0, 196619, 12, 0, 196621, 14, 0, 196622, 14, 0, 196623, 10, 0, 196624, 10, 0, 262145, 14, 0, 262146, 14, 0, 262147, 11, 0, 262149, 13, 0, 262150, 11, 0, 262155, 14, 0, 262156, 14, 0, 262157, 14, 0, 262159, 10, 0, 262160, 10, 0, 327681, 14, 0, 327682, 14, 0, 327684, 13, 0, 327688, 10, 0, 327692, 12, 0, 327693, 14, 0, 327694, 10, 0, 458751, 14, 0, 393217, 14, 0, 393218, 14, 0 )
+tile_data = PoolIntArray( -65527, 12, 0, -65525, 14, 0, -65523, 10, 0, -65521, 14, 0, 8, 12, 0, 9, 14, 0, 10, 14, 0, 11, 10, 0, 12, 14, 0, 14, 14, 0, 15, 14, 0, 16, 14, 0, 17, 14, 0, 65539, 11, 0, 65540, 11, 0, 65545, 14, 0, 65547, 14, 0, 65548, 14, 0, 65550, 14, 0, 65551, 14, 0, 65552, 14, 0, 131075, 11, 0, 131076, 11, 0, 131077, 13, 0, 131080, 14, 0, 131082, 14, 0, 131083, 10, 0, 131086, 14, 0, 131087, 14, 0, 131088, 14, 0, 196611, 11, 0, 196613, 13, 0, 196618, 14, 0, 196619, 12, 0, 196621, 14, 0, 196622, 14, 0, 196623, 10, 0, 196624, 10, 0, 262145, 14, 0, 262146, 14, 0, 262147, 11, 0, 262149, 13, 0, 262150, 11, 0, 262155, 14, 0, 262156, 14, 0, 262157, 14, 0, 262159, 10, 0, 262160, 10, 0, 327681, 14, 0, 327682, 14, 0, 327684, 13, 0, 327688, 10, 0, 327692, 12, 0, 327693, 14, 0, 327694, 10, 0, 458751, 14, 0, 393217, 14, 0, 393218, 14, 0 )
 _sections_unfolded = [ "Cell" ]
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
-position = Vector2( 468, 396 )
+position = Vector2( 405, 432 )
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Interface" type="CanvasLayer" parent="." index="3"]
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
+
+position = Vector2( 494.269, 299.964 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+script = ExtResource( 5 )
+
+[node name="Interface" type="CanvasLayer" parent="." index="4"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -71,6 +98,8 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Selector" parent="Interface" index="0" instance=ExtResource( 5 )]
+[node name="Selector" parent="Interface" index="0" instance=ExtResource( 6 )]
+
+_sections_unfolded = [ "Offset", "Transform" ]
 
 

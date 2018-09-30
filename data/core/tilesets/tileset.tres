@@ -97,7 +97,7 @@
 9/shapes = [  ]
 10/name = "mixed-fall-sparse"
 10/texture = ExtResource( 2 )
-10/tex_offset = Vector2( 0, 0 )
+10/tex_offset = Vector2( -36, -36 )
 10/modulate = Color( 1, 1, 1, 1 )
 10/region = Rect2( 0, 0, 144, 144 )
 10/is_autotile = false
@@ -106,7 +106,7 @@
 10/shapes = [  ]
 11/name = "deciduous-summer-small"
 11/texture = ExtResource( 2 )
-11/tex_offset = Vector2( 0, 0 )
+11/tex_offset = Vector2( -36, -36 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 144, 0, 144, 144 )
 11/is_autotile = false
@@ -115,7 +115,7 @@
 11/shapes = [  ]
 12/name = "pine-sparse"
 12/texture = ExtResource( 2 )
-12/tex_offset = Vector2( 0, 0 )
+12/tex_offset = Vector2( -36, -36 )
 12/modulate = Color( 1, 1, 1, 1 )
 12/region = Rect2( 288, 0, 144, 144 )
 12/is_autotile = false
@@ -124,7 +124,7 @@
 12/shapes = [  ]
 13/name = "deciduous-fall-small"
 13/texture = ExtResource( 2 )
-13/tex_offset = Vector2( 0, 0 )
+13/tex_offset = Vector2( -36, -36 )
 13/modulate = Color( 1, 1, 1, 1 )
 13/region = Rect2( 432, 0, 144, 144 )
 13/is_autotile = false
@@ -133,7 +133,7 @@
 13/shapes = [  ]
 14/name = "mixed-winter-sparse2"
 14/texture = ExtResource( 2 )
-14/tex_offset = Vector2( 0, 0 )
+14/tex_offset = Vector2( -36, -36 )
 14/modulate = Color( 1, 1, 1, 1 )
 14/region = Rect2( 576, 0, 144, 144 )
 14/is_autotile = false
