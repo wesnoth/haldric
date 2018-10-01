@@ -2,8 +2,8 @@ extends TileMap
 
 enum DIRECTION {SE, NE, N, NW, SW, S}
 
-export (int) var WIDTH = 19
-export (int) var HEIGHT = 9
+export (int) var WIDTH = 20
+export (int) var HEIGHT = 15
 
 var offset = Vector2(36, 36)
 
@@ -85,16 +85,19 @@ func find_path_by_cell(_start_cell, _end_cell):
 			path2D.remove(0)
 	return path2D
 
-func get_reachable_cells_t(_unit):
-	var reachable = get_reachable_cells(world_to_map(_unit.position), _unit.actions)
+func get_reachable_cells_u(_unit):
+	var reachable = get_reachable_cells(world_to_map(_unit.position), _unit.moves_max)
 	return reachable
 
 func get_reachable_cells(_start_cell, _range):
+	var start_cube = v2_to_v3(_start_cell)
 	var reachable = []
 	for cell in get_used_cells():
-		var diff_x = abs(_start_cell.x - cell.x)
-		var diff_y = abs(_start_cell.y - cell.y)
-		if diff_x + diff_y > _range or tiles[_flatten_v(cell)].is_blocked:
+		var cube = v2_to_v3(cell)
+		var diff_x = abs(start_cube.x - cube.x)
+		var diff_y = abs(start_cube.y - cube.y)
+		var diff_z = abs(start_cube.z - cube.z)
+		if max(max(diff_x, diff_y), diff_z) > _range or tiles[_flatten_v(cell)].is_blocked:
 			continue
 		reachable.append(cell)
 	return reachable
@@ -156,6 +159,17 @@ func _get_neighbors(cell):
 	for n in neighbor_table[parity]:
 		neighbors.append(Vector2(cell.x + n.x, cell.y+n.y))
 	return neighbors
+
+func v3_to_v2(cube):
+    var col = cube.x
+    var row = cube.z + (cube.x - (int(cube.x) & 1)) / 2
+    return Vector2(col, row)
+
+func v2_to_v3(hex):
+    var x = hex.x
+    var z = hex.y - (hex.x - (int(hex.x) & 1)) / 2
+    var y = -x-z
+    return Vector3(x, y, z)
 
 func _flatten_v(_cell):
 	return int(_cell.y) * WIDTH + int(_cell.x)
