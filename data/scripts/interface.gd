@@ -8,14 +8,15 @@ func _process(delta):
 	cursor.position = terrain.world_to_world_centered(get_global_mouse_position())
 	
 func _draw():
-	for n in range(terrain.path.size()):
-		draw_circle(terrain.map_to_world_centered(terrain.path[n]), 5, Color(255, 0, 0))
-	
 	# DRAW REACHABLE CELLS
 	for p in terrain.get_reachable_cells_u(terrain.unit):
 		var pos = terrain.map_to_world_centered(p)
 		draw_circle(pos, 5, Color(255, 255, 255))
-
+	
+	# DRAW PATH
+	for n in range(terrain.path.size()):
+		draw_circle(terrain.map_to_world_centered(terrain.path[n]), 5, Color(255, 0, 0))
+	
 #	# DRAW CONNECTIONS
 #	var points = terrain.grid.get_points()
 #	for p in points:
