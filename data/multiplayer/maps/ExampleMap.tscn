@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://data/core/tilesets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://data/scripts/terrain.gd" type="Script" id=2]
 [ext_resource path="res://data/core/images/units/sprite.png" type="Texture" id=3]
-[ext_resource path="res://data/scripts/camera.gd" type="Script" id=4]
-[ext_resource path="res://data/scripts/interface.gd" type="Script" id=5]
-[ext_resource path="res://data/images/brush.png" type="Texture" id=6]
+[ext_resource path="res://data/scripts/unit.gd" type="Script" id=4]
+[ext_resource path="res://data/scripts/move_handler.gd" type="Script" id=5]
+[ext_resource path="res://data/scripts/interface.gd" type="Script" id=6]
+[ext_resource path="res://data/images/brush.png" type="Texture" id=7]
+[ext_resource path="res://data/scripts/camera.gd" type="Script" id=8]
 
 [node name="Map" type="Node2D" index="0"]
 
@@ -13,6 +15,7 @@ _sections_unfolded = [ "Cell", "Transform" ]
 
 [node name="Terrain" type="TileMap" parent="." index="0"]
 
+editor/display_folded = true
 mode = 0
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 54, 72 )
@@ -58,45 +61,24 @@ _sections_unfolded = [ "Cell" ]
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
-position = Vector2( 405, 432 )
+position = Vector2( 468, 540 )
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Offset", "Transform" ]
-
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
-
-position = Vector2( 540, 324 )
-anchor_mode = 1
-rotating = false
-current = true
-zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
 script = ExtResource( 4 )
+_sections_unfolded = [ "Offset", "Transform" ]
+health_max = 30
+moves_max = 5
 
-[node name="Interface" type="Node2D" parent="." index="3"]
+[node name="MoveHandler" type="Node2D" parent="." index="2"]
 
 script = ExtResource( 5 )
 
+[node name="Interface" type="Node2D" parent="." index="3"]
+
+script = ExtResource( 6 )
+
 [node name="Cursor" type="Sprite" parent="Interface" index="0"]
 
-texture = ExtResource( 6 )
-centered = false
+texture = ExtResource( 7 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Label" type="Label" parent="Interface/Cursor" index="0"]
@@ -198,5 +180,32 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
+
+position = Vector2( 540, 324 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+script = ExtResource( 8 )
 
 
