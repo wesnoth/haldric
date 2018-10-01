@@ -28,19 +28,19 @@ func _process(delta):
 			position.x -= SPEED * delta / 2
 		if right:
 			position.x += SPEED * delta / 2
-	else:
-		width = get_viewport_rect().size.x / 2 - BORDER
-		height = get_viewport_rect().size.y / 2 - BORDER
-		mouse_position = get_local_mouse_position()
-		if mouse_position.x > width:
-			var factor = abs(mouse_position.x - width) / BORDER 
-			position.x += SPEED * delta * factor
-		if mouse_position.x < -width:
-			var factor = abs(mouse_position.x + width) / BORDER 
-			position.x -= SPEED * delta * factor
-		if mouse_position.y > height:
-			var factor = abs(mouse_position.y - height) / BORDER 
-			position.y += SPEED * delta * factor
-		if mouse_position.y < -height:
-			var factor = abs(mouse_position.y + height) / BORDER 
-			position.y -= SPEED * delta * factor
+#	else:
+#		width = get_viewport_rect().size.x / 2 - BORDER
+#		height = get_viewport_rect().size.y / 2 - BORDER
+#		mouse_position = get_local_mouse_position()
+#		if mouse_position.x > width:
+#			var factor = abs(mouse_position.x - width) / BORDER 
+#			position.x += SPEED * delta * factor
+#		if mouse_position.x < -width:
+#			var factor = abs(mouse_position.x + width) / BORDER 
+#			position.x -= SPEED * delta * factor
+#		if mouse_position.y > height:
+#			var factor = abs(mouse_position.y - height) / BORDER 
+#			position.y += SPEED * delta * factor
+#		if mouse_position.y < -height:
+#			var factor = abs(mouse_position.y + height) / BORDER 
+#			position.y -= SPEED * delta * factor
