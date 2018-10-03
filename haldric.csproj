@@ -52,6 +52,7 @@
     <Compile Include="data\scripts\Camera.cs" />
     <Compile Include="data\scripts\Interface.cs" />
     <Compile Include="data\scripts\Terrain.cs" />
+    <Compile Include="data\scripts\Tile.cs" />
     <Compile Include="data\scripts\Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

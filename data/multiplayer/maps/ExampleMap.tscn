@@ -14,7 +14,6 @@ _sections_unfolded = [ "Cell", "Transform" ]
 
 [node name="Terrain" type="TileMap" parent="." index="0"]
 
-editor/display_folded = true
 mode = 0
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 54, 72 )

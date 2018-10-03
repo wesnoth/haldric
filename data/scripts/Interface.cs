@@ -21,11 +21,17 @@ public class Interface : Node2D
    }
 
    public override void _Draw()
-   {
-       // DRAW REACHABLE
+    {
+        // DRAW REACHABLE
+        foreach(Vector2 cell in terrain.GetReachableCellsU(terrain.GetUnit()))
+        {
+            Vector2 position = terrain.MapToWorldCentered(cell);
+            DrawCircle(position, 5, new Color(255, 255, 255));
+        }
 
-       // DRAW PATH
+        // DRAW PATH
 
-       // DRAW CONNECTION GRID
+        // DRAW CONNECTION GRID
+
    }
 }
