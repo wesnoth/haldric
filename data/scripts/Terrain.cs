@@ -34,7 +34,7 @@ public class Terrain : TileMap
 
 	private Godot.AStar grid = new Godot.AStar();
 
-	private List<Vector2> path = new List<Vector2>();
+	private IList<Vector2> path = new List<Vector2>();
 
 	private Unit unit;
 	private MoveHandler moveHandler;
@@ -54,7 +54,7 @@ public class Terrain : TileMap
 		
 		if (Input.IsActionJustPressed("mouse_left"))
 		{
-			path = (List<Vector2>)FindPathByCell(unitCell, mouseCell);
+			path = FindPathByCell(unitCell, mouseCell);
 			GD.Print(unitCell, " ", mouseCell, "Count ", path.Count);
 			moveHandler.MoveUnit(unit, path);
 		}
@@ -69,20 +69,20 @@ public class Terrain : TileMap
 	public IList<Vector2> FindPathByCell(Vector2 startCell, Vector2 endCell)
 	{
 		Vector3[] path3D = grid.GetPointPath(FlattenV(startCell), FlattenV(endCell));
-		List<Vector2> path2D = path3D.Select(p => new Vector2(p.x, p.y)).ToList();
+		IList<Vector2> path2D = path3D.Select(p => new Vector2(p.x, p.y)).ToList();
 		GD.Print(path3D.Length, ", ", path2D.Count);
 		return path2D;
 	}
 
 	public IList<Vector2> GetReachableCellsU(Unit unit)
 	{
-		List<Vector2> reachable = (List<Vector2>) GetReachableCells(WorldToMap(unit.GetPosition()), unit.GetMovesMax());
+		IList<Vector2> reachable = GetReachableCells(WorldToMap(unit.GetPosition()), unit.GetMovesMax());
 		return reachable;
 	}
 
 	public IList<Vector2> GetReachableCells(Vector2 startCell, int range)
 	{
-		List<Vector2> reachable = new List<Vector2>();
+		IList<Vector2> reachable = new List<Vector2>();
 		Vector3 startCube = V2ToV3(startCell);
 
 		foreach (Vector2 cell in GetUsedCells())
@@ -159,7 +159,7 @@ public class Terrain : TileMap
 	private void ConnectWithNeigbors(Vector2 cell)
 	{
 		int id = FlattenV(cell);
-		List<Vector2> neighbors = (List<Vector2>) GetNeighbors(cell);
+		IList<Vector2> neighbors = GetNeighbors(cell);
 		foreach (var n in neighbors) 
 		{
 			int nId = Flatten(n.x, n.y);
@@ -175,7 +175,7 @@ public class Terrain : TileMap
 
 	private IList<Vector2> GetNeighbors(Vector2 cell)
 	{
-		List<Vector2> neighbors = new List<Vector2>();
+		IList<Vector2> neighbors = new List<Vector2>();
 		int parity = (int) cell.x & 1;
 
 		foreach (var n in neighborTable[parity]) 

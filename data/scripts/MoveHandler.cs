@@ -11,7 +11,7 @@ public class MoveHandler : Node
 
 	Terrain terrain;
 
-	List<Vector2> path = new List<Vector2>();
+	IList<Vector2> path = new List<Vector2>();
 	Unit unit = new Unit();
 
 	Vector2 lastPoint;
@@ -26,11 +26,11 @@ public class MoveHandler : Node
 	{
 		if (path.Count > 0)
 		{
-			GD.Print("MOVE!");
 			Vector2 nextCell = terrain.MapToWorldCentered(path[0]);
 			Vector2 direction = GetMoveDirection();
 			Vector2 velocity = direction * speed * delta;
-			unit.SetPosition(unit.GetPosition() + velocity);
+			
+            unit.SetPosition(unit.GetPosition() + velocity);
 
 			if(unit.GetPosition() * direction > terrain.MapToWorldCentered(path[0]) * direction)
 			{
@@ -46,10 +46,11 @@ public class MoveHandler : Node
 		} 
 	}
 
-	public void MoveUnit(Unit unit, List<Vector2> path)
+	public void MoveUnit(Unit unit, IList<Vector2> path)
 	{
 		this.path = path;
-		if (path.Count > 0) 
+		
+        if (path.Count > 0) 
 		{
 			lastPoint = terrain.MapToWorldCentered(unit.GetPosition());
 			this.unit = unit;
