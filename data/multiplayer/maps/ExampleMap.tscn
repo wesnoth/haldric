@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://data/core/tilesets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://data/scripts/Terrain.cs" type="Script" id=2]
 [ext_resource path="res://data/core/images/units/sprite.png" type="Texture" id=3]
 [ext_resource path="res://data/scripts/Unit.cs" type="Script" id=4]
-[ext_resource path="res://data/scripts/Interface.cs" type="Script" id=5]
-[ext_resource path="res://data/images/brush.png" type="Texture" id=6]
-[ext_resource path="res://data/scripts/Camera.cs" type="Script" id=7]
+[ext_resource path="res://data/scripts/MoveHandler.cs" type="Script" id=5]
+[ext_resource path="res://data/scripts/Interface.cs" type="Script" id=6]
+[ext_resource path="res://data/images/brush.png" type="Texture" id=7]
+[ext_resource path="res://data/scripts/Camera.cs" type="Script" id=8]
 
 [node name="Map" type="Node2D" index="0"]
 
@@ -62,15 +63,17 @@ texture = ExtResource( 3 )
 script = ExtResource( 4 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="MoveHandler" type="Node2D" parent="." index="2"]
-
-[node name="Interface" type="Node2D" parent="." index="3"]
+[node name="MoveHandler" type="Node" parent="." index="2"]
 
 script = ExtResource( 5 )
 
+[node name="Interface" type="Node2D" parent="." index="3"]
+
+script = ExtResource( 6 )
+
 [node name="Cursor" type="Sprite" parent="Interface" index="0"]
 
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Label" type="Label" parent="Interface/Cursor" index="0"]
@@ -198,6 +201,6 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 
 

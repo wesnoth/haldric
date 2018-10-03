@@ -37,14 +37,28 @@ public class Terrain : TileMap
 	private List<Vector2> path = new List<Vector2>();
 
 	private Unit unit;
+	private MoveHandler moveHandler;
 	public override void _Ready()
 	{
 		unit = (Unit) GetNode("../Sprite");
+		moveHandler = (MoveHandler) GetNode("../MoveHandler");
 		GenerateTiles();
 		GeneratePoints();
 		GeneratePointConnections(); 
 	}
 
+	public override void _Input(InputEvent @event)
+	{
+		Vector2 mouseCell = WorldToMap(GetGlobalMousePosition());
+		Vector2 unitCell = WorldToMap(unit.GetPosition());
+		
+		if (Input.IsActionJustPressed("mouse_left"))
+		{
+			path = (List<Vector2>)FindPathByCell(unitCell, mouseCell);
+			GD.Print(unitCell, " ", mouseCell, "Count ", path.Count);
+			moveHandler.MoveUnit(unit, path);
+		}
+	}
 	public IList<Vector2> FindPathByPosition(Vector2 startPosition, Vector2 endPosition)
 	{
 		Vector2 startCell = WorldToMap(startPosition);
@@ -55,7 +69,9 @@ public class Terrain : TileMap
 	public IList<Vector2> FindPathByCell(Vector2 startCell, Vector2 endCell)
 	{
 		Vector3[] path3D = grid.GetPointPath(FlattenV(startCell), FlattenV(endCell));
-		return path3D.Select(p => new Vector2(p.x, p.y)).ToList();
+		List<Vector2> path2D = path3D.Select(p => new Vector2(p.x, p.y)).ToList();
+		GD.Print(path3D.Length, ", ", path2D.Count);
+		return path2D;
 	}
 
 	public IList<Vector2> GetReachableCellsU(Unit unit)
@@ -143,7 +159,7 @@ public class Terrain : TileMap
 	private void ConnectWithNeigbors(Vector2 cell)
 	{
 		int id = FlattenV(cell);
-		List<Vector2> neighbors = new List<Vector2>();
+		List<Vector2> neighbors = (List<Vector2>) GetNeighbors(cell);
 		foreach (var n in neighbors) 
 		{
 			int nId = Flatten(n.x, n.y);

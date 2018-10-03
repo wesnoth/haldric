@@ -16,7 +16,7 @@ public class Interface : Node2D
 
    public override void _Process(float delta)
    {
-		// Update();
+		Update();
 		cursor.SetPosition(terrain.WorldToWorldCentered(GetGlobalMousePosition()));
    }
 
@@ -34,8 +34,5 @@ public class Interface : Node2D
 		{
 			DrawCircle(terrain.MapToWorldCentered(terrain.GetUnitPathPoint(i)), 5, new Color(255, 0, 0));
 		}
-
-		// DRAW CONNECTION GRID
-
    }
 }
