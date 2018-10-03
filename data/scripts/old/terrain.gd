@@ -135,8 +135,6 @@ func _generate_point_connections():
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
 			var cell = Vector2(x, y)
-			var id = _flatten(x, y)
-			var point = grid.get_point_position(id)
 			_connect_with_neighbors(cell)
 
 func _connect_with_neighbors(_cell):
