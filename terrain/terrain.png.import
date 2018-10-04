@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/forest.png-98e4c00bfc03716c1acda4f0f9eb2164.stex"
+path="res://.import/terrain.png-8615214c01d386b5a4746b6c48aff166.stex"
 
 [deps]
 
-source_file="res://data/core/images/terrain/forest.png"
-dest_files=[ "res://.import/forest.png-98e4c00bfc03716c1acda4f0f9eb2164.stex" ]
+source_file="res://terrain/terrain.png"
+dest_files=[ "res://.import/terrain.png-8615214c01d386b5a4746b6c48aff166.stex" ]
 
 [params]
 

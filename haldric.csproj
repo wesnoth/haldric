@@ -49,13 +49,14 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="data\scripts\Camera.cs" />
-    <Compile Include="data\scripts\Interface.cs" />
-    <Compile Include="data\scripts\MoveHandler.cs" />
-    <Compile Include="data\scripts\Terrain.cs" />
-    <Compile Include="data\scripts\Tile.cs" />
-    <Compile Include="data\scripts\Unit.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="game\Game.cs" />
+    <Compile Include="game\MoveHandler.cs" />
+    <Compile Include="interface\Camera.cs" />
+    <Compile Include="interface\Interface.cs" />
+    <Compile Include="properties\AssemblyInfo.cs" />
+    <Compile Include="terrain\Terrain.cs" />
+    <Compile Include="terrain\Tile.cs" />
+    <Compile Include="units\Unit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

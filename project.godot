@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="haldric"
-run/main_scene="res://data/multiplayer/maps/ExampleMap.tscn"
+run/main_scene="res://game/Game.tscn"
 config/icon="res://icon.png"
 
 [display]
