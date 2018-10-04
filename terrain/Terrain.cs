@@ -34,30 +34,17 @@ public class Terrain : TileMap
 
 	private Godot.AStar grid = new Godot.AStar();
 
-	private IList<Vector2> path = new List<Vector2>();
+	// private IList<Vector2> path = new List<Vector2>();
 
-	private Unit unit;
-	private MoveHandler moveHandler;
+	// private Unit unit;
+	// private MoveHandler moveHandler;
 	public override void _Ready()
 	{
-		unit = (Unit) GetNode("../Sprite");
-		moveHandler = (MoveHandler) GetNode("../MoveHandler");
+		// unit = (Unit) GetNode("../Sprite");
+		// moveHandler = (MoveHandler) GetNode("../MoveHandler");
 		GenerateTiles();
 		GeneratePoints();
 		GeneratePointConnections(); 
-	}
-
-	public override void _Input(InputEvent @event)
-	{
-		Vector2 mouseCell = WorldToMap(GetGlobalMousePosition());
-		Vector2 unitCell = WorldToMap(unit.GetPosition());
-		
-		if (Input.IsActionJustPressed("mouse_left"))
-		{
-			path = FindPathByCell(unitCell, mouseCell);
-			GD.Print(unitCell, " ", mouseCell, "Count ", path.Count);
-			moveHandler.MoveUnit(unit, path);
-		}
 	}
 	public IList<Vector2> FindPathByPosition(Vector2 startPosition, Vector2 endPosition)
 	{
@@ -76,7 +63,11 @@ public class Terrain : TileMap
 
 	public IList<Vector2> GetReachableCellsU(Unit unit)
 	{
-		IList<Vector2> reachable = GetReachableCells(WorldToMap(unit.GetPosition()), unit.GetMovesMax());
+		IList<Vector2> reachable = new List<Vector2>();
+		if (unit != null)
+		{
+			reachable = GetReachableCells(WorldToMap(unit.GetPosition()), unit.GetMovesMax());
+		}
 		return reachable;
 	}
 
@@ -108,21 +99,6 @@ public class Terrain : TileMap
 	public Vector2 WorldToWorldCentered(Vector2 position)
 	{
 		return MapToWorldCentered(WorldToMap(position));
-	}
-
-	public Unit GetUnit() 
-	{
-		return unit;
-	}
-
-	public IList<Vector2> GetUnitPath()
-	{
-		return path;
-	}
-
-	public Vector2 GetUnitPathPoint(int idx)
-	{
-		return path[idx];
 	}
 
 	private void GenerateTiles()

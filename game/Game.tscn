@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game/Game.cs" type="Script" id=1]
 [ext_resource path="res://terrain/Terrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/MoveHandler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interface/Interface.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interface/Camera.cs" type="Script" id=5]
-[ext_resource path="res://units/Unit.tscn" type="PackedScene" id=6]
 
 [node name="Game" type="Node2D" index="0"]
 
@@ -46,7 +45,5 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 script = ExtResource( 5 )
-
-[node name="Sprite" parent="." index="5" instance=ExtResource( 6 )]
 
 

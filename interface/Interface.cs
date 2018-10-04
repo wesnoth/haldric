@@ -5,12 +5,14 @@ public class Interface : Node2D
 {
 
 	Sprite cursor;
+	Game game;
 	Terrain terrain;
 	bool showGrid = false;
 
 	public override void _Ready()
 	{
 		cursor = (Sprite) GetNode("Cursor");
+		game = (Game) GetNode("..");
 		terrain = (Terrain) GetNode("../Terrain");
 	}
 
@@ -23,16 +25,16 @@ public class Interface : Node2D
    public override void _Draw()
 	{
 		// DRAW REACHABLE
-		foreach(var cell in terrain.GetReachableCellsU(terrain.GetUnit()))
+		foreach(var cell in terrain.GetReachableCellsU(game.GetSelectedUnit()))
 		{
 			Vector2 position = terrain.MapToWorldCentered(cell);
 			DrawCircle(position, 5, new Color(255, 255, 255));
 		}
 
 		// DRAW PATH
-		for (int i = 0; i < terrain.GetUnitPath().Count; i++)
+		for (int i = 0; i < game.GetSelectedUnitPath().Count; i++)
 		{
-			DrawCircle(terrain.MapToWorldCentered(terrain.GetUnitPathPoint(i)), 5, new Color(255, 0, 0));
+			DrawCircle(terrain.MapToWorldCentered(game.GetSelectedUnitPath()[i]), 5, new Color(255, 0, 0));
 		}
    }
 }

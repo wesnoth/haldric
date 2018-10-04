@@ -30,7 +30,7 @@ public class MoveHandler : Node
 			Vector2 direction = GetMoveDirection();
 			Vector2 velocity = direction * speed * delta;
 			
-            unit.SetPosition(unit.GetPosition() + velocity);
+			unit.SetPosition(unit.GetPosition() + velocity);
 
 			if(unit.GetPosition() * direction > terrain.MapToWorldCentered(path[0]) * direction)
 			{
@@ -39,6 +39,7 @@ public class MoveHandler : Node
 				
 				if (path.Count == 0)
 				{
+					unit.SetPosition(terrain.WorldToWorldCentered(unit.GetPosition()));
 					unit = null;
 				}
 				
@@ -50,7 +51,7 @@ public class MoveHandler : Node
 	{
 		this.path = path;
 		
-        if (path.Count > 0) 
+		if (path.Count > 0) 
 		{
 			lastPoint = terrain.MapToWorldCentered(unit.GetPosition());
 			this.unit = unit;
