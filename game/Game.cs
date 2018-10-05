@@ -64,7 +64,7 @@ public class Game : Node2D
 			else if (IsUnitAtCell(mouseCell) && selectedUnit != null)
 			{
 				Unit unit = (Unit) GetUnitAtCell(mouseCell);
-				if (unit.GetSide() != selectedUnit.GetSide())
+				if (unit.GetSide() != selectedUnit.GetSide() && terrain.AreNeighbors(mouseCell, terrain.WorldToMap(selectedUnit.GetPosition())))
 				{
 					selectedUnit.fight(unit);
 					

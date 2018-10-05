@@ -91,6 +91,19 @@ public class Terrain : TileMap
 		return reachable;
 	}
 
+	public bool AreNeighbors(Vector2 cell1, Vector2 cell2)
+	{
+		IList<Vector2> cell1Neighbors = GetNeighbors(cell1);
+		
+		foreach(Vector2 n in cell1Neighbors)
+		{
+			if (cell2 == n)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	public void UnblockCell(Vector2 cell)
 	{
 		tiles[FlattenV(cell)].isBlocked = false;
