@@ -4,7 +4,7 @@
 [ext_resource path="res://terrain/Terrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/MoveHandler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interface/Interface.tscn" type="PackedScene" id=4]
-[ext_resource path="res://interface/Camera.cs" type="Script" id=5]
+[ext_resource path="res://interface/WesnothCamera.cs" type="Script" id=5]
 
 [node name="Game" type="Node2D" index="0"]
 
