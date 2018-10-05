@@ -12,44 +12,18 @@ public class Game : Node2D
 
 	public override void _Ready()
 	{
+		UnitRegistry.LoadDir("units/config/");
+
 		moveHandler = (MoveHandler)GetNode("MoveHandler");
 		terrain = (Terrain)GetNode("Terrain");
 		units = (Node)GetNode("UnitContainer");
 
-		var sprite = (Texture)ResourceLoader.Load("res://units/images/sprite.png");
-		var shaman = (Texture)ResourceLoader.Load("res://units/images/master-of-curses.png");
-		var tree = (Texture)ResourceLoader.Load("res://units/images/vengeance.png");
-		var fighter = (Texture)ResourceLoader.Load("res://units/images/elvish-fighter.png");
-
 		PackedScene unitScene = (PackedScene)ResourceLoader.Load("res://units/Unit.tscn");
-		var unit1 = (Unit) unitScene.Instance();
-		var unit2 = (Unit) unitScene.Instance();
-		var unit3 = (Unit) unitScene.Instance();
-		var unit4 = (Unit) unitScene.Instance();
-
-		unit1.SetTexture(sprite);
-		unit1.SetPosition(terrain.MapToWorldCentered(new Vector2(5, 3)));
-		// terrain.BlockCell(new Vector2(5, 3));
-
-		unit2.SetTexture(fighter);
-		unit2.SetPosition(terrain.MapToWorldCentered(new Vector2(5, 12)));
-		// terrain.BlockCell(new Vector2(5, 12));
-		unit2.SetSide(2);
-
-		unit3.SetTexture(shaman);
-		unit3.SetPosition(terrain.MapToWorldCentered(new Vector2(15, 3)));
-		// terrain.BlockCell(new Vector2(15, 3));
-		unit3.SetSide(3);
-
-		unit4.SetTexture(tree);
-		unit4.SetPosition(terrain.MapToWorldCentered(new Vector2(15, 12)));
-		// terrain.BlockCell(new Vector2(15, 12));
-		unit4.SetSide(4);
-
-		units.AddChild(unit1);
-		units.AddChild(unit2);
-		units.AddChild(unit3);
-		units.AddChild(unit4);
+		units.AddChild(UnitRegistry.Create("Sprite", terrain, 1, 5, 3));
+		units.AddChild(UnitRegistry.Create("Elvish Fighter", terrain, 2, 5, 12));
+		units.AddChild(UnitRegistry.Create("Master Of Curses", terrain, 3, 15, 3));
+		units.AddChild(UnitRegistry.Create("Vengeance", terrain, 4, 15, 12));
+		units.AddChild(UnitRegistry.Create("Elvish Fighter", terrain, 1, 5, 5));
 	}
 
 	public override void _Input(InputEvent @event)
@@ -63,28 +37,28 @@ public class Game : Node2D
 			}
 			else if (IsUnitAtCell(mouseCell) && selectedUnit != null)
 			{
-				Unit unit = (Unit) GetUnitAtCell(mouseCell);
+				Unit unit = (Unit)GetUnitAtCell(mouseCell);
 				if (unit.GetSide() != selectedUnit.GetSide() && terrain.AreNeighbors(mouseCell, terrain.WorldToMap(selectedUnit.GetPosition())))
 				{
-					selectedUnit.fight(unit);
-					
-					if (selectedUnit.GetHealth() < 1)
+					selectedUnit.Fight(unit);
+
+					if (selectedUnit.GetCurrentHealth() < 1)
 					{
 						selectedUnit.QueueFree();
 						selectedUnit = null;
 					}
 					else
 					{
-						GD.Print("Attacker: ", selectedUnit.GetHealth(), "/", selectedUnit.GetHealthMax());
+						GD.Print("Attacker: ", selectedUnit.GetCurrentHealth(), "/", selectedUnit.GetBaseMaxHealth());
 					}
 
-					if (unit.GetHealth() < 1)
+					if (unit.GetCurrentHealth() < 1)
 					{
 						unit.QueueFree();
 					}
 					else
 					{
-						GD.Print("Defender: ", unit.GetHealth(), "/", unit.GetHealthMax());
+						GD.Print("Defender: ", unit.GetCurrentHealth(), "/", unit.GetBaseMaxHealth());
 					}
 				}
 			}
@@ -122,7 +96,7 @@ public class Game : Node2D
 	{
 		return terrain.GetTiles()[terrain.FlattenV(cell)].isBlocked;
 	}
-	
+
 	public Unit GetUnitAtCell(Vector2 cell)
 	{
 		foreach (Unit u in units.GetChildren())

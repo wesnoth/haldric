@@ -66,7 +66,7 @@ public class Terrain : TileMap
 		IList<Vector2> reachable = new List<Vector2>();
 		if (unit != null)
 		{
-			reachable = GetReachableCells(WorldToMap(unit.GetPosition()), unit.GetMovesMax());
+			reachable = GetReachableCells(WorldToMap(unit.GetPosition()), unit.GetBaseMaxMoves());
 		}
 		return reachable;
 	}

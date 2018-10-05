@@ -7,6 +7,7 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 .vs/
+obj/
 
 # Linux-specific ignores (Dolphin)
 .directory
