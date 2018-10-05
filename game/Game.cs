@@ -21,10 +21,11 @@ public class Game : Node2D
 		var tree = (Texture)ResourceLoader.Load("res://units/vengeance.png");
 		var fighter = (Texture)ResourceLoader.Load("res://units/elvish-fighter.png");
 
-		var unit1 = new Unit();
-		var unit2 = new Unit();
-		var unit3 = new Unit();
-		var unit4 = new Unit();
+		PackedScene unitScene = (PackedScene)ResourceLoader.Load("res://units/Unit.tscn");
+		var unit1 = (Unit) unitScene.Instance();
+		var unit2 = (Unit) unitScene.Instance();
+		var unit3 = (Unit) unitScene.Instance();
+		var unit4 = (Unit) unitScene.Instance();
 
 		unit1.SetTexture(sprite);
 		unit1.SetPosition(terrain.MapToWorldCentered(new Vector2(5, 3)));

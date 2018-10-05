@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="game\Game.cs" />
     <Compile Include="game\MoveHandler.cs" />
+    <Compile Include="interface\Lifebar\Lifebar.cs" />
     <Compile Include="interface\WesnothCamera.cs" />
     <Compile Include="interface\Interface.cs" />
     <Compile Include="properties\AssemblyInfo.cs" />
