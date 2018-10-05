@@ -7,7 +7,7 @@ public class MoveHandler : Node
 {
 	// enum DIRECTION {SE, NE, N, NW, SW, S}
 
-	Vector2 speed = new Vector2(200, 200);
+	Vector2 speed = new Vector2(400, 400);
 
 	Terrain terrain;
 
