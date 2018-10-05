@@ -58,6 +58,16 @@
     <Compile Include="terrain\Terrain.cs" />
     <Compile Include="terrain\Tile.cs" />
     <Compile Include="units\Unit.cs" />
+    <Compile Include="units\UnitRegistry.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="units\config\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="units\config\Fighter.xml" />
+    <None Include="units\config\Vengeance.xml" />
+    <None Include="units\config\Sprite.xml" />
+    <None Include="units\config\Master-Of-Curses.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

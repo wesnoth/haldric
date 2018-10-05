@@ -4,24 +4,34 @@ using System;
 public class Unit : Sprite
 {
 	Lifebar lifebar;
+	private System.Collections.Generic.Dictionary<String, String> attributes = new System.Collections.Generic.Dictionary<String, String>();
 
-	private int side = 1;
+	private int side;
 
-	private const int healthMax = 30;
-	private const int movesMax = 5;
+	private int baseMaxHealth;
+	private int baseMaxMoves;
 
-	private int health;
-	private int moves;
-	private int damage = 8;
+	private int currentHealth;
+	private int currentMoves;
+	private int damage;
 
 	public override void _Ready()
 	{
-		health = healthMax;
-		moves = movesMax;
-		
+		damage = int.Parse(attributes["damage"]);
+		currentHealth = int.Parse(attributes["hitpoints"]);
+		currentMoves = int.Parse(attributes["movement"]);
+
+		baseMaxHealth = currentHealth;
+		baseMaxMoves = currentMoves;
+
 		lifebar = (Lifebar)GetNode("Lifebar");
-		lifebar.SetValueMax(healthMax);
-		lifebar.SetValue(healthMax);
+		lifebar.SetValueMax(baseMaxHealth);
+		lifebar.SetValue(baseMaxHealth);
+	}
+
+	public void SetAttributes(System.Collections.Generic.Dictionary<String, String> attributes)
+	{
+		this.attributes = attributes;
 	}
 
 	public int GetSide()
@@ -29,24 +39,24 @@ public class Unit : Sprite
 		return side;
 	}
 
-	public int GetHealthMax()
+	public int GetBaseMaxHealth()
 	{
-		return healthMax;
+		return baseMaxHealth;
 	}
 
-	public int GetMovesMax()
+	public int GetBaseMaxMoves()
 	{
-		return movesMax;
+		return baseMaxMoves;
 	}
 
-	public int GetHealth()
+	public int GetCurrentHealth()
 	{
-		return health;
+		return currentHealth;
 	}
 
-	public int GetMoves()
+	public int GetCurrentMoves()
 	{
-		return moves;
+		return currentMoves;
 	}
 
 	public int GetDamage()
@@ -58,19 +68,18 @@ public class Unit : Sprite
 	{
 		this.side = side;
 	}
-	
+
 	public void SetHealth(int health)
 	{
-		this.health = health;
+		this.currentHealth = health;
 		lifebar.SetValue(health);
 	}
 
-	public void fight(Unit unit)
+	public void Fight(Unit unit)
 	{
-
 		unit.Harm(damage);
 
-		if (unit.GetHealth() > 0)
+		if (unit.GetCurrentHealth() > 0)
 		{
 			Harm(unit.GetDamage());
 		}
@@ -78,12 +87,12 @@ public class Unit : Sprite
 
 	public void Harm(int damage)
 	{
-		SetHealth(health - damage);
+		SetHealth(currentHealth - damage);
 	}
 
 	public void Restore()
 	{
-		health = healthMax;
-		moves = movesMax;
+		currentHealth = baseMaxHealth;
+		currentMoves = baseMaxMoves;
 	}
 }
