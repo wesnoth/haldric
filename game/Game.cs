@@ -16,10 +16,10 @@ public class Game : Node2D
 		terrain = (Terrain)GetNode("Terrain");
 		units = (Node)GetNode("UnitContainer");
 
-		var sprite = (Texture)ResourceLoader.Load("res://units/sprite.png");
-		var shaman = (Texture)ResourceLoader.Load("res://units/master-of-curses.png");
-		var tree = (Texture)ResourceLoader.Load("res://units/vengeance.png");
-		var fighter = (Texture)ResourceLoader.Load("res://units/elvish-fighter.png");
+		var sprite = (Texture)ResourceLoader.Load("res://units/images/sprite.png");
+		var shaman = (Texture)ResourceLoader.Load("res://units/images/master-of-curses.png");
+		var tree = (Texture)ResourceLoader.Load("res://units/images/vengeance.png");
+		var fighter = (Texture)ResourceLoader.Load("res://units/images/elvish-fighter.png");
 
 		PackedScene unitScene = (PackedScene)ResourceLoader.Load("res://units/Unit.tscn");
 		var unit1 = (Unit) unitScene.Instance();

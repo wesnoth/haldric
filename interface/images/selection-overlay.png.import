@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background.png-4b6c77c4f3179884334238b07534c67f.stex"
+path="res://.import/selection-overlay.png-9390bd20da5348c2a2ee32e724f04cc1.stex"
 
 [deps]
 
-source_file="res://interface/Lifebar/background.png"
-dest_files=[ "res://.import/background.png-4b6c77c4f3179884334238b07534c67f.stex" ]
+source_file="res://interface/images/selection-overlay.png"
+dest_files=[ "res://.import/selection-overlay.png-9390bd20da5348c2a2ee32e724f04cc1.stex" ]
 
 [params]
 

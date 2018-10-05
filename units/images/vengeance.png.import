@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/selection-overlay.png-a87dbe56a84d98ea135cfc02840ab543.stex"
+path="res://.import/vengeance.png-6e31181a78d0b997b366c550a2b6e44d.stex"
 
 [deps]
 
-source_file="res://interface/selection-overlay.png"
-dest_files=[ "res://.import/selection-overlay.png-a87dbe56a84d98ea135cfc02840ab543.stex" ]
+source_file="res://units/images/vengeance.png"
+dest_files=[ "res://.import/vengeance.png-6e31181a78d0b997b366c550a2b6e44d.stex" ]
 
 [params]
 

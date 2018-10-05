@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://units/sprite.png" type="Texture" id=1]
+[ext_resource path="res://units/images/sprite.png" type="Texture" id=1]
 [ext_resource path="res://units/Unit.cs" type="Script" id=2]
 [ext_resource path="res://interface/Lifebar/Lifebar.tscn" type="PackedScene" id=3]
+
 
 [node name="Sprite" type="Sprite"]
 

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/elvish-fighter.png-ca9ac393a4b54432fe7dd1ecd0ced6d6.stex"
+path="res://.import/brush.png-b6cad23a50fd3ca50ba139b04686a30d.stex"
 
 [deps]
 
-source_file="res://units/elvish-fighter.png"
-dest_files=[ "res://.import/elvish-fighter.png-ca9ac393a4b54432fe7dd1ecd0ced6d6.stex" ]
+source_file="res://interface/images/brush.png"
+dest_files=[ "res://.import/brush.png-b6cad23a50fd3ca50ba139b04686a30d.stex" ]
 
 [params]
 

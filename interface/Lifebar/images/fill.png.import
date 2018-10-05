@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/master-of-curses.png-531203b9e0d9d3026d800ef253d11824.stex"
+path="res://.import/fill.png-3807f77b29d3918b16ae0b6ba305b112.stex"
 
 [deps]
 
-source_file="res://units/master-of-curses.png"
-dest_files=[ "res://.import/master-of-curses.png-531203b9e0d9d3026d800ef253d11824.stex" ]
+source_file="res://interface/Lifebar/images/fill.png"
+dest_files=[ "res://.import/fill.png-3807f77b29d3918b16ae0b6ba305b112.stex" ]
 
 [params]
 
