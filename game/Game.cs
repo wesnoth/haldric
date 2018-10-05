@@ -1,7 +1,5 @@
-using Godot;
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using Godot;
 
 public class Game : Node2D
 {
@@ -14,15 +12,15 @@ public class Game : Node2D
 
 	public override void _Ready()
 	{
-		moveHandler = (MoveHandler) GetNode("MoveHandler");
-		terrain = (Terrain) GetNode("Terrain");
-		units = (Node) GetNode("UnitContainer");
+		moveHandler = (MoveHandler)GetNode("MoveHandler");
+		terrain = (Terrain)GetNode("Terrain");
+		units = (Node)GetNode("UnitContainer");
 
-		var sprite = (Texture) ResourceLoader.Load("res://units/sprite.png");
-		var shaman = (Texture) ResourceLoader.Load("res://units/master-of-curses.png");
-		var tree = (Texture) ResourceLoader.Load("res://units/vengeance.png");
-		var fighter = (Texture) ResourceLoader.Load("res://units/elvish-fighter.png");
-		
+		var sprite = (Texture)ResourceLoader.Load("res://units/sprite.png");
+		var shaman = (Texture)ResourceLoader.Load("res://units/master-of-curses.png");
+		var tree = (Texture)ResourceLoader.Load("res://units/vengeance.png");
+		var fighter = (Texture)ResourceLoader.Load("res://units/elvish-fighter.png");
+
 		var unit1 = new Unit();
 		var unit2 = new Unit();
 		var unit3 = new Unit();
@@ -30,7 +28,7 @@ public class Game : Node2D
 
 		unit1.SetTexture(sprite);
 		unit1.SetPosition(terrain.MapToWorldCentered(new Vector2(5, 3)));
-		
+
 		unit2.SetTexture(fighter);
 		unit2.SetPosition(terrain.MapToWorldCentered(new Vector2(5, 12)));
 
@@ -39,7 +37,7 @@ public class Game : Node2D
 
 		unit4.SetTexture(tree);
 		unit4.SetPosition(terrain.MapToWorldCentered(new Vector2(15, 12)));
-		
+
 		units.AddChild(unit1);
 		units.AddChild(unit2);
 		units.AddChild(unit3);
@@ -59,9 +57,9 @@ public class Game : Node2D
 			if (!IsUnitAtCell(mouseCell) && selectedUnit != null)
 			{
 				Vector2 unitCell = terrain.WorldToMap(selectedUnit.GetPosition());
-				
+
 				selectedUnitPath = terrain.FindPathByCell(unitCell, mouseCell);
-				
+
 				GD.Print(unitCell, " ", mouseCell, "Count ", selectedUnitPath.Count);
 				moveHandler.MoveUnit(selectedUnit, selectedUnitPath);
 
@@ -98,7 +96,7 @@ public class Game : Node2D
 		return null;
 	}
 
-	public Unit GetSelectedUnit() 
+	public Unit GetSelectedUnit()
 	{
 		return selectedUnit;
 	}
