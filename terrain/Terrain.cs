@@ -32,20 +32,20 @@ public class Terrain : TileMap
 	
 	private Godot.Dictionary<int, Tile> tiles = new Godot.Dictionary<int, Tile>();
 
-	private Godot.AStar grid = new Godot.AStar();
+	private AStar grid = new AStar();
 
-	// private IList<Vector2> path = new List<Vector2>();
-
-	// private Unit unit;
-	// private MoveHandler moveHandler;
 	public override void _Ready()
 	{
-		// unit = (Unit) GetNode("../Sprite");
-		// moveHandler = (MoveHandler) GetNode("../MoveHandler");
 		GenerateTiles();
 		GeneratePoints();
 		GeneratePointConnections(); 
 	}
+
+	public Godot.Dictionary<int, Tile> GetTiles()
+	{
+		return tiles;
+	}
+
 	public IList<Vector2> FindPathByPosition(Vector2 startPosition, Vector2 endPosition)
 	{
 		Vector2 startCell = WorldToMap(startPosition);
@@ -106,7 +106,7 @@ public class Terrain : TileMap
 		ConnectWithNeigbors(cell);
 	}
 
-	public DisconnectCell(Vector2 cell)
+	public void DisconnectCell(Vector2 cell)
 	{
 		DisconnectWithNeighbors(cell);
 	}
@@ -119,6 +119,26 @@ public class Terrain : TileMap
 	public Vector2 WorldToWorldCentered(Vector2 position)
 	{
 		return MapToWorldCentered(WorldToMap(position));
+	}
+
+	public int Flatten(int x, int y)
+	{
+		return y * width + x;
+	}
+
+	public int Flatten(double x, double y)
+	{
+		return (int) (y * width + x);
+	}
+	
+	public int FlattenV(Vector2 cell)
+	{
+		return (int) (cell.y * width + cell.x);
+	}
+
+	public bool CheckBoundaries(Vector2 cell) 
+	{
+		return cell.x >= 0 && cell.y >= 0 && cell.x < width && cell.y < height;
 	}
 
 	private void GenerateTiles()
@@ -207,25 +227,5 @@ public class Terrain : TileMap
 		float z = v2.y - (v2.x - ((int) v2.x & 1)) / 2;
 		float y = -x - z;
 		return new Vector3(x, y, z);
-	}
-
-	private int Flatten(int x, int y)
-	{
-		return y * width + x;
-	}
-
-	private int Flatten(double x, double y)
-	{
-		return (int) (y * width + x);
-	}
-	
-	private int FlattenV(Vector2 cell)
-	{
-		return (int) (cell.y * width + cell.x);
-	}
-
-	private bool CheckBoundaries(Vector2 cell) 
-	{
-		return cell.x >= 0 && cell.y >= 0 && cell.x < width && cell.y < height;
 	}
 }

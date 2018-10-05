@@ -88,7 +88,7 @@ public class Game : Node2D
 					}
 				}
 			}
-			else if (!IsUnitAtCell(mouseCell) && selectedUnit != null)
+			else if (!IsUnitAtCell(mouseCell) && selectedUnit != null && !IsCellBlocked(mouseCell))
 			{
 				Vector2 unitCell = terrain.WorldToMap(selectedUnit.GetPosition());
 
@@ -118,6 +118,11 @@ public class Game : Node2D
 		return false;
 	}
 
+	public bool IsCellBlocked(Vector2 cell)
+	{
+		return terrain.GetTiles()[terrain.FlattenV(cell)].isBlocked;
+	}
+	
 	public Unit GetUnitAtCell(Vector2 cell)
 	{
 		foreach (Unit u in units.GetChildren())
