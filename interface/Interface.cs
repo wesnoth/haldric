@@ -11,9 +11,9 @@ public class Interface : Node2D
 
 	public override void _Ready()
 	{
-		cursor = (Sprite) GetNode("Cursor");
-		game = (Game) GetNode("..");
-		terrain = (Terrain) GetNode("../Terrain");
+		cursor = (Sprite)GetNode("Cursor");
+		game = (Game)GetNode("..");
+		terrain = (Terrain)GetNode("../Terrain");
 	}
 
    public override void _Process(float delta)
@@ -24,11 +24,14 @@ public class Interface : Node2D
 
    public override void _Draw()
 	{
-		// DRAW REACHABLE
-		foreach(var cell in terrain.GetReachableCellsU(game.GetSelectedUnit()))
+		if (game.GetSelectedUnit() != null)
 		{
-			Vector2 position = terrain.MapToWorldCentered(cell);
-			DrawCircle(position, 5, new Color(255, 255, 255));
+			// DRAW REACHABLE
+			foreach(var cell in terrain.GetReachableCellsU(game.GetSelectedUnit()))
+			{
+				Vector2 position = terrain.MapToWorldCentered(cell);
+				DrawCircle(position, 5, new Color(255, 255, 255));
+			}
 		}
 
 		// DRAW PATH
