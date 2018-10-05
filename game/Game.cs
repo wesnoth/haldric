@@ -29,17 +29,21 @@ public class Game : Node2D
 
 		unit1.SetTexture(sprite);
 		unit1.SetPosition(terrain.MapToWorldCentered(new Vector2(5, 3)));
+		// terrain.BlockCell(new Vector2(5, 3));
 
 		unit2.SetTexture(fighter);
 		unit2.SetPosition(terrain.MapToWorldCentered(new Vector2(5, 12)));
+		// terrain.BlockCell(new Vector2(5, 12));
 		unit2.SetSide(2);
 
 		unit3.SetTexture(shaman);
 		unit3.SetPosition(terrain.MapToWorldCentered(new Vector2(15, 3)));
+		// terrain.BlockCell(new Vector2(15, 3));
 		unit3.SetSide(3);
 
 		unit4.SetTexture(tree);
 		unit4.SetPosition(terrain.MapToWorldCentered(new Vector2(15, 12)));
+		// terrain.BlockCell(new Vector2(15, 12));
 		unit4.SetSide(4);
 
 		units.AddChild(unit1);

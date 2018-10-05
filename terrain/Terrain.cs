@@ -91,6 +91,26 @@ public class Terrain : TileMap
 		return reachable;
 	}
 
+	public void UnblockCell(Vector2 cell)
+	{
+		tiles[FlattenV(cell)].isBlocked = false;
+	}
+
+	public void BlockCell(Vector2 cell)
+	{
+		tiles[FlattenV(cell)].isBlocked = true;
+	}
+	
+	public void ConnectCell(Vector2 cell)
+	{
+		ConnectWithNeigbors(cell);
+	}
+
+	public DisconnectCell(Vector2 cell)
+	{
+		DisconnectWithNeighbors(cell);
+	}
+
 	public Vector2 MapToWorldCentered(Vector2 cell)
 	{
 		return MapToWorld(cell) + offset;
@@ -145,6 +165,20 @@ public class Terrain : TileMap
 				{
 					grid.ConnectPoints(id, nId);
 				}
+			}
+		}
+	}
+
+	private void DisconnectWithNeighbors(Vector2 cell)
+	{
+		int id = FlattenV(cell);
+		IList<Vector2> neighbors = GetNeighbors(cell);
+		foreach (var n in neighbors)
+		{
+			int nId = FlattenV(n);
+			if (CheckBoundaries(n) && grid.ArePointsConnected(id, nId))
+			{
+				grid.DisconnectPoints(id, nId);
 			}
 		}
 	}
