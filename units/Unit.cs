@@ -15,6 +15,8 @@ public class Unit : Sprite
 	private int currentMoves;
 	private int damage;
 
+	private bool canAttack = true;
+
 	public override void _Ready()
 	{
 		damage = int.Parse(attributes["damage"]);
@@ -83,6 +85,7 @@ public class Unit : Sprite
 	public void Fight(Unit unit)
 	{
 		unit.Harm(damage);
+		canAttack = false;
 
 		if (unit.GetCurrentHealth() > 0)
 		{
@@ -110,4 +113,16 @@ public class Unit : Sprite
 	{
 		currentMoves = baseMaxMoves;
 	}
+
+	public void RestoreAttack()
+	{
+		canAttack = true;
+	}
+
+	public bool CanAttack()
+	{
+		return canAttack == true;
+	}
+
+
 }

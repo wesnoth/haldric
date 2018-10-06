@@ -56,7 +56,7 @@ public class MoveHandler : Node
 					if (unit.GetCurrentMoves() == 0)
 					{
 						path.Clear();
-						game.DeselectSelectedUnit();
+						game.DeselectActiveUnit();
 					}
 					unit.SetPosition(terrain.WorldToWorldCentered(unit.GetPosition()));
 					unit = null;

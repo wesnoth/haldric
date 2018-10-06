@@ -7,8 +7,8 @@ public class Game : Node2D
 	Terrain terrain;
 	Node units;
 
-	Unit selectedUnit = null;
-	IList<Vector2> selectedUnitPath = new List<Vector2>();
+	Unit activeUnit = null;
+	IList<Vector2> activeUnitPath = new List<Vector2>();
 
 	public override void _Ready()
 	{
@@ -28,36 +28,37 @@ public class Game : Node2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (selectedUnit != null)
+		if (activeUnit != null)
 		{
 			Vector2 mouseCell = terrain.WorldToMap(GetGlobalMousePosition());
-			Vector2 unitCell = terrain.WorldToMap(selectedUnit.GetPosition());
-			selectedUnitPath = terrain.FindPathByCell(unitCell, mouseCell);
+			Vector2 unitCell = terrain.WorldToMap(activeUnit.GetPosition());
+			activeUnitPath = terrain.FindPathByCell(unitCell, mouseCell);
 		}
 
 		if (Input.IsActionJustPressed("mouse_left"))
 		{
 			Vector2 mouseCell = terrain.WorldToMap(GetGlobalMousePosition());
 
-			if (IsUnitAtCell(mouseCell) && selectedUnit == null)
+			if (IsUnitAtCell(mouseCell) && activeUnit == null)
 			{
-				selectedUnit = GetUnitAtCell(mouseCell);
+				activeUnit = GetUnitAtCell(mouseCell);
 			}
-			else if (IsUnitAtCell(mouseCell) && selectedUnit != null)
+			else if (IsUnitAtCell(mouseCell) && activeUnit != null)
 			{
 				Unit unit = (Unit)GetUnitAtCell(mouseCell);
-				if (unit.GetSide() != selectedUnit.GetSide() && terrain.AreNeighbors(mouseCell, terrain.WorldToMap(selectedUnit.GetPosition())))
+				
+				if (unit.GetSide() != activeUnit.GetSide() && terrain.AreNeighbors(mouseCell, terrain.WorldToMap(activeUnit.GetPosition())) && activeUnit.CanAttack())
 				{
-					selectedUnit.Fight(unit);
+					activeUnit.Fight(unit);
 
-					if (selectedUnit.GetCurrentHealth() < 1)
+					if (activeUnit.GetCurrentHealth() < 1)
 					{
-						selectedUnit.QueueFree();
-						DeselectSelectedUnit();
+						activeUnit.QueueFree();
+						DeselectActiveUnit();
 					}
 					else
 					{
-						GD.Print("Attacker: ", selectedUnit.GetCurrentHealth(), "/", selectedUnit.GetBaseMaxHealth());
+						GD.Print("Attacker: ", activeUnit.GetCurrentHealth(), "/", activeUnit.GetBaseMaxHealth());
 					}
 
 					if (unit.GetCurrentHealth() < 1)
@@ -70,15 +71,15 @@ public class Game : Node2D
 					}
 				}
 			}
-			else if (!IsUnitAtCell(mouseCell) && selectedUnit != null && !IsCellBlocked(mouseCell))
+			else if (!IsUnitAtCell(mouseCell) && activeUnit != null && !IsCellBlocked(mouseCell))
 			{
-				moveHandler.MoveUnit(selectedUnit, selectedUnitPath);
+				moveHandler.MoveUnit(activeUnit, activeUnitPath);
 			}
 		}
 
 		if (Input.IsActionJustPressed("mouse_right"))
 		{
-			DeselectSelectedUnit();
+			DeselectActiveUnit();
 		}
 	}
 
@@ -111,20 +112,20 @@ public class Game : Node2D
 		return null;
 	}
 
-	public Unit GetSelectedUnit()
+	public Unit GetActiveUnit()
 	{
-		return selectedUnit;
+		return activeUnit;
 	}
 
-	public void DeselectSelectedUnit()
+	public void DeselectActiveUnit()
 	{
-		selectedUnit = null;
-		selectedUnitPath.Clear();
+		activeUnit = null;
+		activeUnitPath.Clear();
 	}
 
-	public IList<Vector2> GetSelectedUnitPath()
+	public IList<Vector2> GetActiveUnitPath()
 	{
-		return selectedUnitPath;
+		return activeUnitPath;
 	}
 
 	public void EndTurn()
@@ -132,6 +133,7 @@ public class Game : Node2D
 		foreach(Unit u in units.GetChildren())
 		{
 			u.RestoreCurrentMoves();
+			u.RestoreAttack();
 		}
 	}
 }

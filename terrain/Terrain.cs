@@ -57,7 +57,6 @@ public class Terrain : TileMap
 	{
 		Vector3[] path3D = grid.GetPointPath(FlattenV(startCell), FlattenV(endCell));
 		IList<Vector2> path2D = path3D.Select(p => new Vector2(p.x, p.y)).ToList();
-		GD.Print(path3D.Length, ", ", path2D.Count);
 		return path2D;
 	}
 

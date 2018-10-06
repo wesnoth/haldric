@@ -26,10 +26,10 @@ public class Interface : Node2D
 
    public override void _Draw()
 	{
-		if (game.GetSelectedUnit() != null)
+		if (game.GetActiveUnit() != null)
 		{
 			// DRAW REACHABLE
-			foreach(var cell in terrain.GetReachableCellsU(game.GetSelectedUnit()))
+			foreach(var cell in terrain.GetReachableCellsU(game.GetActiveUnit()))
 			{
 				Vector2 position = terrain.MapToWorldCentered(cell);
 				DrawCircle(position, 5, new Color(255, 255, 255));
@@ -37,9 +37,9 @@ public class Interface : Node2D
 		}
 
 		// DRAW PATH
-		for (int i = 0; i < game.GetSelectedUnitPath().Count; i++)
+		for (int i = 0; i < game.GetActiveUnitPath().Count; i++)
 		{
-			DrawCircle(terrain.MapToWorldCentered(game.GetSelectedUnitPath()[i]), 5, new Color(255, 0, 0));
+			DrawCircle(terrain.MapToWorldCentered(game.GetActiveUnitPath()[i]), 5, new Color(255, 0, 0));
 		}
    }
 
