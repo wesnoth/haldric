@@ -3,8 +3,7 @@
 [ext_resource path="res://interface/Interface.cs" type="Script" id=1]
 [ext_resource path="res://interface/images/brush.png" type="Texture" id=2]
 
-
-[node name="Interface" type="Node2D"]
+[node name="Interface" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -112,5 +111,30 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="EndTurn" type="Button" parent="GUI" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1188.0
+margin_top = 756.0
+margin_right = 1255.0
+margin_bottom = 776.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "End Turn"
+flat = false
+align = 1
 
 

@@ -14,6 +14,8 @@ public class Interface : Node2D
 		cursor = (Sprite)GetNode("Cursor");
 		game = (Game)GetNode("..");
 		terrain = (Terrain)GetNode("../Terrain");
+
+		GetNode("GUI/EndTurn").Connect("pressed", this, "OnEndTurnPressed");
 	}
 
    public override void _Process(float delta)
@@ -39,5 +41,10 @@ public class Interface : Node2D
 		{
 			DrawCircle(terrain.MapToWorldCentered(game.GetSelectedUnitPath()[i]), 5, new Color(255, 0, 0));
 		}
+   }
+
+   private void OnEndTurnPressed()
+   {
+	   game.EndTurn();
    }
 }

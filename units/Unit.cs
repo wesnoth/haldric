@@ -69,10 +69,15 @@ public class Unit : Sprite
 		this.side = side;
 	}
 
-	public void SetHealth(int health)
+	public void SetCurrentHealth(int health)
 	{
 		this.currentHealth = health;
 		lifebar.SetValue(health);
+	}
+
+	public void SetCurrentMoves(int moves)
+	{
+		this.currentMoves = moves;
 	}
 
 	public void Fight(Unit unit)
@@ -87,12 +92,22 @@ public class Unit : Sprite
 
 	public void Harm(int damage)
 	{
-		SetHealth(currentHealth - damage);
+		SetCurrentHealth(currentHealth - damage);
 	}
 
 	public void Restore()
 	{
+		RestoreCurrentHealth();
+		RestoreCurrentMoves();
+	}
+
+	public void RestoreCurrentHealth()
+	{
 		currentHealth = baseMaxHealth;
+	}
+
+	public void RestoreCurrentMoves()
+	{
 		currentMoves = baseMaxMoves;
 	}
 }

@@ -7,25 +7,33 @@ public class MoveHandler : Node
 {
 	// enum DIRECTION {SE, NE, N, NW, SW, S}
 
-	Vector2 speed = new Vector2(400, 400);
+	private Vector2 speed = new Vector2(400, 400);
 
-	Terrain terrain;
+	private Game game;
+	private Terrain terrain;
 
-	IList<Vector2> path = new List<Vector2>();
-	Unit unit = new Unit();
+	private IList<Vector2> path = new List<Vector2>();
+	private Unit unit = new Unit();
 
-	Vector2 lastPoint;
+	private Vector2 lastPoint;
+
+	private int initialPathSize = 0;
 
 	public override void _Ready()
 	{
 		SetProcess(true);
-		terrain = (Terrain) GetNode("../Terrain");
+		game = (Game)GetParent();
+		terrain = (Terrain)GetNode("../Terrain");
 	}
 
 	public override void _Process(float delta)
 	{
 		if (path.Count > 0)
 		{
+			if (initialPathSize == 0)
+			{
+				initialPathSize = path.Count;
+			}
 			Vector2 nextCell = terrain.MapToWorldCentered(path[0]);
 			Vector2 direction = GetMoveDirection();
 			Vector2 velocity = direction * speed * delta;
@@ -34,13 +42,25 @@ public class MoveHandler : Node
 
 			if(unit.GetPosition() * direction > terrain.MapToWorldCentered(path[0]) * direction)
 			{
+				unit.SetPosition(terrain.WorldToWorldCentered(unit.GetPosition()));
+				if (path.Count < initialPathSize)
+				{
+					unit.SetCurrentMoves(unit.GetCurrentMoves() - 1);
+				}
 				lastPoint = path[0];
 				path.RemoveAt(0);
+
 				
-				if (path.Count == 0)
+				if (path.Count == 0 || unit.GetCurrentMoves() == 0)
 				{
+					if (unit.GetCurrentMoves() == 0)
+					{
+						path.Clear();
+						game.DeselectSelectedUnit();
+					}
 					unit.SetPosition(terrain.WorldToWorldCentered(unit.GetPosition()));
 					unit = null;
+					initialPathSize = 0;
 				}
 				
 			}

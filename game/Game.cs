@@ -28,9 +28,17 @@ public class Game : Node2D
 
 	public override void _Input(InputEvent @event)
 	{
+		if (selectedUnit != null)
+		{
+			Vector2 mouseCell = terrain.WorldToMap(GetGlobalMousePosition());
+			Vector2 unitCell = terrain.WorldToMap(selectedUnit.GetPosition());
+			selectedUnitPath = terrain.FindPathByCell(unitCell, mouseCell);
+		}
+
 		if (Input.IsActionJustPressed("mouse_left"))
 		{
 			Vector2 mouseCell = terrain.WorldToMap(GetGlobalMousePosition());
+
 			if (IsUnitAtCell(mouseCell) && selectedUnit == null)
 			{
 				selectedUnit = GetUnitAtCell(mouseCell);
@@ -45,7 +53,7 @@ public class Game : Node2D
 					if (selectedUnit.GetCurrentHealth() < 1)
 					{
 						selectedUnit.QueueFree();
-						selectedUnit = null;
+						DeselectSelectedUnit();
 					}
 					else
 					{
@@ -64,19 +72,13 @@ public class Game : Node2D
 			}
 			else if (!IsUnitAtCell(mouseCell) && selectedUnit != null && !IsCellBlocked(mouseCell))
 			{
-				Vector2 unitCell = terrain.WorldToMap(selectedUnit.GetPosition());
-
-				selectedUnitPath = terrain.FindPathByCell(unitCell, mouseCell);
-
-				GD.Print(unitCell, " ", mouseCell, "Count ", selectedUnitPath.Count);
 				moveHandler.MoveUnit(selectedUnit, selectedUnitPath);
-
 			}
 		}
 
 		if (Input.IsActionJustPressed("mouse_right"))
 		{
-			selectedUnit = null;
+			DeselectSelectedUnit();
 		}
 	}
 
@@ -114,8 +116,22 @@ public class Game : Node2D
 		return selectedUnit;
 	}
 
+	public void DeselectSelectedUnit()
+	{
+		selectedUnit = null;
+		selectedUnitPath.Clear();
+	}
+
 	public IList<Vector2> GetSelectedUnitPath()
 	{
 		return selectedUnitPath;
+	}
+
+	public void EndTurn()
+	{
+		foreach(Unit u in units.GetChildren())
+		{
+			u.RestoreCurrentMoves();
+		}
 	}
 }
