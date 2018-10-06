@@ -4,18 +4,22 @@ using System;
 public class Interface : Node2D
 {
 
-	Sprite cursor;
-	Game game;
-	Terrain terrain;
-	bool showGrid = false;
+	private Sprite cursor;
+	private Game game;
+	private Terrain terrain;
+	
+	private Label sideLabel;
+	
+	private bool showGrid = false;
 
 	public override void _Ready()
 	{
 		cursor = (Sprite)GetNode("Cursor");
 		game = (Game)GetNode("..");
 		terrain = (Terrain)GetNode("../Terrain");
-
+		sideLabel = (Label)GetNode("GUI/SideLabel");
 		GetNode("GUI/EndTurn").Connect("pressed", this, "OnEndTurnPressed");
+		
 	}
 
    public override void _Process(float delta)
@@ -26,6 +30,8 @@ public class Interface : Node2D
 
    public override void _Draw()
 	{
+		sideLabel.SetText("Side: " + game.GetActiveSide());
+
 		if (game.GetActiveUnit() != null)
 		{
 			// DRAW REACHABLE

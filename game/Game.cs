@@ -7,6 +7,10 @@ public class Game : Node2D
 	Terrain terrain;
 	Node units;
 
+	private int sides = 2;
+
+	private int activeSide = 1;
+
 	Unit activeUnit = null;
 	IList<Vector2> activeUnitPath = new List<Vector2>();
 
@@ -19,11 +23,13 @@ public class Game : Node2D
 		units = (Node)GetNode("UnitContainer");
 
 		PackedScene unitScene = (PackedScene)ResourceLoader.Load("res://units/Unit.tscn");
-		units.AddChild(UnitRegistry.Create("Sprite", terrain, 1, 5, 3));
-		units.AddChild(UnitRegistry.Create("Elvish Fighter", terrain, 2, 5, 12));
-		units.AddChild(UnitRegistry.Create("Master Of Curses", terrain, 3, 15, 3));
-		units.AddChild(UnitRegistry.Create("Vengeance", terrain, 4, 15, 12));
-		units.AddChild(UnitRegistry.Create("Elvish Fighter", terrain, 1, 5, 5));
+		units.AddChild(UnitRegistry.Create("Sprite", terrain, 1, 10, 1));
+		units.AddChild(UnitRegistry.Create("Elvish Fighter", terrain, 1, 9, 1));
+		units.AddChild(UnitRegistry.Create("Master Of Curses", terrain, 1, 11, 1));
+
+		units.AddChild(UnitRegistry.Create("Vengeance", terrain, 2, 10, 13));
+		units.AddChild(UnitRegistry.Create("Vengeance", terrain, 2, 9, 13));
+		units.AddChild(UnitRegistry.Create("Elvish Fighter", terrain, 2, 11, 13));
 	}
 
 	public override void _Input(InputEvent @event)
@@ -47,7 +53,10 @@ public class Game : Node2D
 			{
 				Unit unit = (Unit)GetUnitAtCell(mouseCell);
 				
-				if (unit.GetSide() != activeUnit.GetSide() && terrain.AreNeighbors(mouseCell, terrain.WorldToMap(activeUnit.GetPosition())) && activeUnit.CanAttack())
+				if (unit.GetSide() != activeUnit.GetSide() 
+					&& terrain.AreNeighbors(mouseCell, terrain.WorldToMap(activeUnit.GetPosition())) 
+					&& activeUnit.CanAttack() 
+					&& activeSide == activeUnit.GetSide())
 				{
 					activeUnit.Fight(unit);
 
@@ -71,7 +80,7 @@ public class Game : Node2D
 					}
 				}
 			}
-			else if (!IsUnitAtCell(mouseCell) && activeUnit != null && !IsCellBlocked(mouseCell))
+			else if (!IsUnitAtCell(mouseCell) && activeUnit != null && !IsCellBlocked(mouseCell) && activeSide == activeUnit.GetSide())
 			{
 				moveHandler.MoveUnit(activeUnit, activeUnitPath);
 			}
@@ -117,6 +126,11 @@ public class Game : Node2D
 		return activeUnit;
 	}
 
+	public int GetActiveSide()
+	{
+		return activeSide;
+	}
+
 	public void DeselectActiveUnit()
 	{
 		activeUnit = null;
@@ -135,5 +149,7 @@ public class Game : Node2D
 			u.RestoreCurrentMoves();
 			u.RestoreAttack();
 		}
+		
+		activeSide = (activeSide % sides) + 1;
 	}
 }

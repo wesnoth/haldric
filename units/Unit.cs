@@ -86,6 +86,7 @@ public class Unit : Sprite
 	{
 		unit.Harm(damage);
 		canAttack = false;
+		currentMoves = 0;
 
 		if (unit.GetCurrentHealth() > 0)
 		{
