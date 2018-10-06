@@ -9,6 +9,10 @@ public class Interface : Node2D
 	private Terrain terrain;
 	
 	private Label sideLabel;
+
+	private Label unitHealthLabel;
+	private Label unitMovesLabel;
+	private Label unitDamageLabel;
 	
 	private bool showGrid = false;
 
@@ -17,20 +21,39 @@ public class Interface : Node2D
 		cursor = (Sprite)GetNode("Cursor");
 		game = (Game)GetNode("..");
 		terrain = (Terrain)GetNode("../Terrain");
-		sideLabel = (Label)GetNode("GUI/SideLabel");
+		
 		GetNode("GUI/EndTurn").Connect("pressed", this, "OnEndTurnPressed");
 		
+		sideLabel = (Label)GetNode("GUI/SideLabel");
+		
+		unitHealthLabel = (Label)GetNode("GUI/UnitInfo/HealthLabel"); 
+		unitMovesLabel = (Label)GetNode("GUI/UnitInfo/MovesLabel"); 
+		unitDamageLabel = (Label)GetNode("GUI/UnitInfo/DamageLabel"); 
 	}
 
    public override void _Process(float delta)
    {
 		Update();
 		cursor.SetPosition(terrain.WorldToWorldCentered(GetGlobalMousePosition()));
+
+		sideLabel.SetText("Side: " + game.GetActiveSide());
+
+		if (game.GetActiveUnit() != null)
+		{
+			unitHealthLabel.SetText("Health: " + game.GetActiveUnit().GetCurrentHealth() + "/" + game.GetActiveUnit().GetBaseMaxHealth());
+			unitMovesLabel.SetText("Moves: " + game.GetActiveUnit().GetCurrentMoves() + "/" + game.GetActiveUnit().GetBaseMaxMoves());
+			unitDamageLabel.SetText("Damage: " + game.GetActiveUnit().GetDamage());
+		}
+		else
+		{
+			unitHealthLabel.SetText("Health: -");
+			unitMovesLabel.SetText("Moves: -");
+			unitDamageLabel.SetText("Damage: -");
+		}
    }
 
    public override void _Draw()
 	{
-		sideLabel.SetText("Side: " + game.GetActiveSide());
 
 		if (game.GetActiveUnit() != null)
 		{

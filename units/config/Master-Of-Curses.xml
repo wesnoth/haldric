@@ -2,8 +2,8 @@
 <unit_type>
     <type>Master Of Curses</type>
     <name>Master Of Curses</name>
-    <hitpoints>30</hitpoints>
+    <hitpoints>28</hitpoints>
     <movement>5</movement>
-    <damage>8</damage>
+    <damage>10</damage>
     <image>res://units/images/master-of-curses.png</image>
 </unit_type>

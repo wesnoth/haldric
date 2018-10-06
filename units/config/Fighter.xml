@@ -2,8 +2,8 @@
 <unit_type>
     <type>Elvish Fighter</type>
     <name>Elvish Fighter</name>
-    <hitpoints>30</hitpoints>
+    <hitpoints>34</hitpoints>
     <movement>5</movement>
-    <damage>8</damage>
+    <damage>9</damage>
     <image>res://units/images/elvish-fighter.png</image>
 </unit_type>
