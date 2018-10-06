@@ -1,10 +1,11 @@
 using Godot;
 using System;
+using System.Xml;
 
 public class Unit : Sprite
 {
 	Lifebar lifebar;
-	private System.Collections.Generic.Dictionary<String, String> attributes = new System.Collections.Generic.Dictionary<String, String>();
+	private XmlDocument attributes;
 
 	private int side;
 
@@ -19,9 +20,9 @@ public class Unit : Sprite
 
 	public override void _Ready()
 	{
-		damage = int.Parse(attributes["damage"]);
-		currentHealth = int.Parse(attributes["hitpoints"]);
-		currentMoves = int.Parse(attributes["movement"]);
+		damage = int.Parse(attributes.SelectSingleNode("/unit_type/damage").InnerText);
+		currentHealth = int.Parse(attributes.SelectSingleNode("/unit_type/hitpoints").InnerText);
+		currentMoves = int.Parse(attributes.SelectSingleNode("/unit_type/movement").InnerText);
 
 		baseMaxHealth = currentHealth;
 		baseMaxMoves = currentMoves;
@@ -31,7 +32,7 @@ public class Unit : Sprite
 		lifebar.SetValue(baseMaxHealth);
 	}
 
-	public void SetAttributes(System.Collections.Generic.Dictionary<String, String> attributes)
+	public void SetAttributes(XmlDocument attributes)
 	{
 		this.attributes = attributes;
 	}
