@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<unit_type>
-    <type>Sprite</type>
-    <name>Sprite</name>
-    <hitpoints>26</hitpoints>
-    <movement>7</movement>
-    <damage>7</damage>
-    <image>res://units/images/sprite.png</image>
-</unit_type>

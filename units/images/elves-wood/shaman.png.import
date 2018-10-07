@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/master-of-curses.png-ae8e614518ef40e29913716f1074927d.stex"
+path="res://.import/shaman.png-ccc3d0c3a889811a11334c4addd58806.stex"
 
 [deps]
 
-source_file="res://units/images/master-of-curses.png"
-dest_files=[ "res://.import/master-of-curses.png-ae8e614518ef40e29913716f1074927d.stex" ]
+source_file="res://units/images/elves-wood/shaman.png"
+dest_files=[ "res://.import/shaman.png-ccc3d0c3a889811a11334c4addd58806.stex" ]
 
 [params]
 

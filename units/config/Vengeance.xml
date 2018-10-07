@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<unit_type>
-    <type>Vengeance</type>
-    <name>Vengeance</name>
-    <hitpoints>40</hitpoints>
-    <movement>4</movement>
-    <damage>8</damage>
-    <image>res://units/images/vengeance.png</image>
-</unit_type>

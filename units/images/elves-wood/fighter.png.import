@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite.png-8dd7d598fba45576bb1e9615d952c3e0.stex"
+path="res://.import/fighter.png-99b8b433e239220b90e49b1266aa3c1a.stex"
 
 [deps]
 
-source_file="res://units/images/sprite.png"
-dest_files=[ "res://.import/sprite.png-8dd7d598fba45576bb1e9615d952c3e0.stex" ]
+source_file="res://units/images/elves-wood/fighter.png"
+dest_files=[ "res://.import/fighter.png-99b8b433e239220b90e49b1266aa3c1a.stex" ]
 
 [params]
 

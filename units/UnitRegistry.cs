@@ -11,6 +11,11 @@ public class UnitRegistry
 
 	public static void LoadDir(String path)
 	{
+		foreach (String dir in System.IO.Directory.EnumerateDirectories(path))
+        {
+            LoadDir(dir);
+        }
+
 		foreach (String file in System.IO.Directory.EnumerateFiles(path))
 		{
 			LoadFile(file);
@@ -19,6 +24,7 @@ public class UnitRegistry
 
 	public static void LoadFile(String file)
 	{
+		
 		XmlDocument xml = new XmlDocument();
 		xml.Load(file);
 		String type = xml.DocumentElement.SelectSingleNode("/unit_type/type").InnerText;
@@ -33,7 +39,7 @@ public class UnitRegistry
 		}
 	}
 
-	public static Unit Create(String type, Terrain map, int side, int x, int y)
+	public static Unit Create(String type, int side, int x, int y)
 	{
 		if (registry.ContainsKey(type))
 		{
@@ -41,7 +47,6 @@ public class UnitRegistry
 			unit.SetAttributes((XmlDocument)registry[type].Clone());
 			unit.SetTexture((Texture)ResourceLoader.Load(registry[type].SelectSingleNode("/unit_type/image").InnerText));
 			unit.SetSide(side);
-			unit.SetPosition(map.MapToWorldCentered(new Vector2(x, y)));
 			return unit;
 		}
 

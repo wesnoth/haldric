@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/vengeance.png-6e31181a78d0b997b366c550a2b6e44d.stex"
+path="res://.import/scout.png-88d7e892562953c93ee6b8934adab333.stex"
 
 [deps]
 
-source_file="res://units/images/vengeance.png"
-dest_files=[ "res://.import/vengeance.png-6e31181a78d0b997b366c550a2b6e44d.stex" ]
+source_file="res://units/images/elves-wood/scout.png"
+dest_files=[ "res://.import/scout.png-88d7e892562953c93ee6b8934adab333.stex" ]
 
 [params]
 

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<unit_type>
+    <type>Troll Whelp</type>
+    <name>Troll Whelp</name>
+    <hitpoints>42</hitpoints>
+    <movement>4</movement>
+    <damage>9</damage>
+    <image>res://units/images/trolls/whelp.png</image>
+</unit_type>

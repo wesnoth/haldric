@@ -23,13 +23,16 @@ public class Game : Node2D
 		units = (Node)GetNode("UnitContainer");
 
 		PackedScene unitScene = (PackedScene)ResourceLoader.Load("res://units/Unit.tscn");
-		units.AddChild(UnitRegistry.Create("Sprite", terrain, 1, 10, 1));
-		units.AddChild(UnitRegistry.Create("Elvish Fighter", terrain, 1, 9, 1));
-		units.AddChild(UnitRegistry.Create("Master Of Curses", terrain, 1, 11, 1));
 
-		units.AddChild(UnitRegistry.Create("Vengeance", terrain, 2, 10, 13));
-		units.AddChild(UnitRegistry.Create("Vengeance", terrain, 2, 9, 13));
-		units.AddChild(UnitRegistry.Create("Elvish Fighter", terrain, 2, 11, 13));
+		CreateUnit("Elvish Fighter", 1, 10, 1);
+		CreateUnit("Elvish Archer", 1, 11, 1);
+		CreateUnit("Elvish Scout", 1, 9, 1);
+		CreateUnit("Elvish Shaman", 1, 8, 1);
+
+		CreateUnit("Orcish Grunt", 2, 10, 13);
+		CreateUnit("Orcish Archer", 2, 9, 13);
+		CreateUnit("Orcish Assassin", 2, 11, 13);
+		CreateUnit("Troll Whelp", 2, 12, 13);
 	}
 
 	public override void _Input(InputEvent @event)
@@ -90,6 +93,14 @@ public class Game : Node2D
 		{
 			DeselectActiveUnit();
 		}
+	}
+
+	public void CreateUnit(string type, int side, int x, int y)
+	{
+		Unit unit = UnitRegistry.Create(type, side, x, y);
+		unit.SetPosition(terrain.MapToWorldCentered(new Vector2(x, y)));
+		units.AddChild(unit);
+
 	}
 
 	public bool IsUnitAtCell(Vector2 cell)
