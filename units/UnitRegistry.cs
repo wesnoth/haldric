@@ -12,9 +12,9 @@ public class UnitRegistry
 	public static void LoadDir(String path)
 	{
 		foreach (String dir in System.IO.Directory.EnumerateDirectories(path))
-        {
-            LoadDir(dir);
-        }
+		{
+			LoadDir(dir);
+		}
 
 		foreach (String file in System.IO.Directory.EnumerateFiles(path))
 		{
