@@ -55,10 +55,10 @@ public class Game : Node2D
 			else if (IsUnitAtCell(mouseCell) && activeUnit != null)
 			{
 				Unit unit = (Unit)GetUnitAtCell(mouseCell);
-				
-				if (unit.GetSide() != activeUnit.GetSide() 
-					&& terrain.AreNeighbors(mouseCell, terrain.WorldToMap(activeUnit.GetPosition())) 
-					&& activeUnit.CanAttack() 
+
+				if (unit.GetSide() != activeUnit.GetSide()
+					&& terrain.AreNeighbors(mouseCell, terrain.WorldToMap(activeUnit.GetPosition()))
+					&& activeUnit.CanAttack()
 					&& activeSide == activeUnit.GetSide())
 				{
 					activeUnit.Fight(unit);
@@ -155,12 +155,12 @@ public class Game : Node2D
 
 	public void EndTurn()
 	{
-		foreach(Unit u in units.GetChildren())
+		foreach (Unit u in units.GetChildren())
 		{
 			u.RestoreCurrentMoves();
 			u.RestoreAttack();
 		}
-		
+
 		activeSide = (activeSide % sides) + 1;
 	}
 }

@@ -65,10 +65,27 @@
     <Folder Include="units\config\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="units\config\Fighter.xml" />
-    <None Include="units\config\Vengeance.xml" />
-    <None Include="units\config\Sprite.xml" />
-    <None Include="units\config\Master-Of-Curses.xml" />
+    <None Include="units\config\elves-wood\Archer.xml" />
+    <None Include="units\config\elves-wood\Fighter.xml" />
+    <None Include="units\config\elves-wood\Scout.xml" />
+    <None Include="units\config\elves-wood\Shaman.xml" />
+    <None Include="units\config\orcs\Archer.xml" />
+    <None Include="units\config\orcs\Assassin.xml" />
+    <None Include="units\config\orcs\Grunt.xml" />
+    <None Include="units\config\trolls\Troll-Whelp.xml" />
+    <None Include="units\Units.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <TextStylePolicy TabWidth="4" TabsToSpaces="False" IndentWidth="4" RemoveTrailingWhitespace="True" NoTabsAfterNonTabs="False" EolMarker="Native" FileWidth="80" scope="application/xml" />
+          <XmlFormattingPolicy scope="application/xml">
+            <DefaultFormat OmitXmlDeclaration="False" IndentContent="True" AttributesInNewLine="False" MaxAttributesPerLine="10" WrapAttributes="False" AlignAttributes="False" AlignAttributeValues="False" QuoteChar="&quot;" SpacesBeforeAssignment="0" SpacesAfterAssignment="0" EmptyLinesBeforeStart="0" EmptyLinesAfterStart="0" EmptyLinesBeforeEnd="0" EmptyLinesAfterEnd="0" />
+          </XmlFormattingPolicy>
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>

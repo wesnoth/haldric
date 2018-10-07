@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<unit_type>
+	<type>Orcish Assassin</type>
+	<name>Orcish Assassin</name>
+	<hitpoints>25</hitpoints>
+	<movement>6</movement>
+	<damage>8</damage>
+	<image>units/images/orcs/assassin.png</image>
+</unit_type>
