@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://game/Game.cs" type="Script" id=1]
+[ext_resource path="res://game/Game.gd" type="Script" id=1]
 [ext_resource path="res://terrain/Terrain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://game/MoveHandler.cs" type="Script" id=3]
+[ext_resource path="res://game/MoveHandler.gd" type="Script" id=3]
 [ext_resource path="res://interface/Interface.tscn" type="PackedScene" id=4]
-[ext_resource path="res://interface/WesnothCamera.cs" type="Script" id=5]
+[ext_resource path="res://interface/WesnothCamera.gd" type="Script" id=5]
 
 [node name="Game" type="Node2D"]
 

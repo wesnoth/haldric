@@ -3,9 +3,6 @@
 [ext_resource path="res://terrain/images/terrain.png" type="Texture" id=1]
 [ext_resource path="res://terrain/images/forest.png" type="Texture" id=2]
 
-
-
-
 [node name="TileSet" type="Node2D"]
 
 [node name="grass" type="Node" parent="." index="0"]

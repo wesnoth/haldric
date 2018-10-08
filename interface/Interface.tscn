@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://interface/Interface.cs" type="Script" id=1]
+[ext_resource path="res://interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://interface/images/brush.png" type="Texture" id=2]
 
 [node name="Interface" type="Node2D" index="0"]
@@ -104,7 +104,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="GUI" type="CanvasLayer" parent="." index="1"]
+[node name="HUD" type="CanvasLayer" parent="." index="1"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -112,7 +112,7 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="UnitInfo" type="Panel" parent="GUI" index="0"]
+[node name="UnitInfo" type="Panel" parent="HUD" index="0"]
 
 self_modulate = Color( 1, 1, 1, 0.470588 )
 anchor_left = 0.0
@@ -131,7 +131,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Anchor", "Rect", "Visibility" ]
 
-[node name="HealthLabel" type="Label" parent="GUI/UnitInfo" index="0"]
+[node name="HealthLabel" type="Label" parent="HUD/UnitInfo" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -153,7 +153,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="MovesLabel" type="Label" parent="GUI/UnitInfo" index="1"]
+[node name="MovesLabel" type="Label" parent="HUD/UnitInfo" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -175,7 +175,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="DamageLabel" type="Label" parent="GUI/UnitInfo" index="2"]
+[node name="DamageLabel" type="Label" parent="HUD/UnitInfo" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -197,7 +197,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="EndTurn" type="Button" parent="GUI" index="1"]
+[node name="EndTurn" type="Button" parent="HUD" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -222,7 +222,7 @@ text = "End Turn"
 flat = false
 align = 1
 
-[node name="SideLabel" type="Label" parent="GUI" index="2"]
+[node name="SideLabel" type="Label" parent="HUD" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0

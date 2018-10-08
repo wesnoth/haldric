@@ -1,10 +1,13 @@
 extends Node
 
+
 var unit = {}
 
-var parser = preload("res://addons/godot-yaml/gdyaml.gdns").new()
+var yaml_parser = preload("res://addons/godot-yaml/gdyaml.gdns").new()
+
 
 func _ready():
+	
 	unit["Elvish Fighter"] = {
 		name = "Fighter",
 		type = "Elvish Fighter",
@@ -13,6 +16,7 @@ func _ready():
 		damage = 8,
 		image = "res://units/images/elves-wood/fighter.png"
 	}
+	
 	unit["Orcish Archer"] = {
 		name = "Archer",
 		type = "Orcish Archer",
@@ -25,18 +29,26 @@ func _ready():
 	save_file()
 	load_file()
 
+
 func save_file():
+	
 	var file = File.new()
+	
 	if file.open("res://yaml/unit.yaml", File.WRITE) != 0:
 		print("could not open file")
 		return
-	var yamlstring = parser.print(unit)
+	
+	var yamlstring = yaml_parser.print(unit)
 	file.store_line(yamlstring)
 
+
 func load_file():
+	
 	var file = File.new()
+	
 	if file.open("res://yaml/unit.yaml", File.READ) != 0:
 		print("could not read file")
 		return
-	var dict = parser.parse(file.get_as_text())
+	
+	var dict = yaml_parser.parse(file.get_as_text())
 	print(dict)

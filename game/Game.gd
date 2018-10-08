@@ -1,0 +1,76 @@
+extends Node2D
+
+var sides = 2
+var active_side = 1
+
+var active_unit = null
+var active_unit_path = []
+
+onready var move_handler = $"MoveHandler"
+onready var terrain = $"Terrain"
+onready var units = $"UnitContainer"
+
+func _ready():
+	# LOAD UNIT DIR
+	# CREATE UNITS
+	pass
+
+func _input(event):
+	if active_unit:
+		var mouse_cell = terrain.world_to_map(get_global_mouse_position())
+		var unit_cell = terrain.world_to_map(active_unit.position)
+		active_unit_path = terrain.find_path_by_cell(unit_cell, mouse_cell)
+	
+	if Input.is_action_just_pressed("mouse_left"):
+		var mouse_cell = terrain.world_to_map(get_global_mouse_position())
+		
+		if is_unit_at_cell(mouse_cell) and active_unit == null:
+			active_unit = get_unit_at_cell(mouse_cell)
+		elif is_unit_at_cell(mouse_cell) and active_unit != null:
+			var unit = get_unit_at_cell(mouse_cell)
+			
+			if can_fight(active_unit, unit):
+				active_unit.fight(unit)
+				
+				if active_unit.current_health < 1:
+					active_unit.queue_free()
+					active_unit = null
+				
+				if unit.current_health < 1:
+					unit.queue_free()
+		elif !is_unit_at_cell(mouse_cell) and active_unit and !is_cell_blocked(mouse_cell) and active_side == active_unit.side:
+			move_handler.move_unit(active_unit, active_unit_path)
+	
+	if Input.is_action_just_pressed("mouse_right"):
+		clear_selected_unit()
+
+
+func is_unit_at_cell(cell):
+	for u in units.get_children():
+		if u.position == terrain.map_to_world_centered(cell):
+			return true
+	return false
+
+func is_cell_blocked(cell):
+	return terrain.tiles[terrain.flatten_v(cell)].is_blocked
+
+func get_unit_at_cell(cell):
+	for u in units.get_children():
+		if u.position == terrain.map_to_world_centered(cell):
+			return u
+	return null
+
+func can_fight(unit1, unit2):
+	if active_side == unit1.side:
+		if unit1.side != unit2.side:
+			if unit1.can_attack():
+				var unit1_cell = terrain.world_to_map(unit1.posirion)
+				var unit2_cell = terrain.world_to_map(unit2.position)
+				if terrain.are_neighbors(unit1_cell, unit2_cell):
+					return true
+	return false
+
+func end_turn():
+	for u in units.get_children():
+		u.restore_current_moves()
+	active_side = (active_side % sides) + 1
