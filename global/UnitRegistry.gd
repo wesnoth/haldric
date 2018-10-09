@@ -21,22 +21,25 @@ func load_dir(path):
 
 
 func get_files_in_directory(path, files):
-#	var dir = Directory.new()
-#	dir.open(path)
-#	dir.list_dir_begin(true, true)
-#	var sub_path
-#	while true:
-#		sub_path = dir.get_next()
-#		if dir.current_is_dir():
-#			print(dir.get_current_dir() + sub_path)
-#			get_files_in_directory(dir.get_current_dir() + sub_path, files)
-#		elif sub_path == "":
-#			break
-#		else:
-#			var file = File.new()
-#			if file.open(dir.get_current_dir() + "/" + sub_path, file.READ) == OK:
-#				files.append(file)
-#	dir.list_dir_end()
+	var dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin(true, true)
+	var sub_path
+	while true:
+		sub_path = dir.get_next()
+		if sub_path == "." or sub_path == "..":
+			continue
+		if sub_path == "":
+			break
+		print(sub_path)
+		if dir.current_is_dir():
+			print(dir.get_current_dir() + "/" + sub_path)
+			get_files_in_directory(dir.get_current_dir() + "/" + sub_path, files)
+		else:
+			var file = File.new()
+			if file.open(dir.get_current_dir() + "/" + sub_path, file.READ) == OK:
+				files.append(file)
+	dir.list_dir_end()
 	return files
 
 func create(type, side):
