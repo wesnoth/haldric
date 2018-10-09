@@ -33,21 +33,22 @@ func initialize(var reg_entry, side):
 	current_health = base_max_health
 
 func fight(unit):
+	print("\n", "Combat starts | Counter: ", attack.range == unit.attack.range)
 	randomize()
 	for i in range(attack.number):
 		if unit.current_health > 0:
 			unit.harm(attack.damage, randf())
-			if unit.current_health > 0 and unit.attack.number > i:
+			if unit.current_health > 0 and unit.attack.number > i and attack.range == unit.attack.range:
 				harm(unit.attack.damage, randf())
 	can_attack = false
 	current_moves = 0
 
 func harm(damage, rand):
 	if rand <= 0.5:
-		print(type, " gets ", damage, " damage")
+		print("\t", type, " gets ", damage, " damage")
 		_set_current_health(current_health - damage)
 	else:
-		print(type, "misses")
+		print("\t", type, " missed")
 
 func restore_current_moves():
 	current_moves = base_max_moves
@@ -55,6 +56,7 @@ func restore_current_moves():
 
 func get_attack_string():
 	return str("Attack: ", attack.name, " ", attack.damage, "x", attack.number, " (", attack.type, ", ", attack.range, ")")
+
 func _set_current_health(health):
 	current_health = health
 	lifebar.set_value(health)

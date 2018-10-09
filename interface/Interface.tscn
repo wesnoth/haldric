@@ -202,10 +202,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1188.0
-margin_top = 756.0
-margin_right = 1255.0
-margin_bottom = 776.0
+margin_left = 1194.0
+margin_top = 745.0
+margin_right = 1274.0
+margin_bottom = 795.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -220,6 +220,7 @@ group = null
 text = "End Turn"
 flat = false
 align = 1
+_sections_unfolded = [ "Rect" ]
 
 [node name="SideLabel" type="Label" parent="HUD" index="2"]
 
