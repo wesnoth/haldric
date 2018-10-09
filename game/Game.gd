@@ -83,6 +83,7 @@ func can_fight(unit1, unit2):
 	return false
 
 func end_turn():
-	for u in units.get_children():
-		u.restore_current_moves()
 	active_side = (active_side % sides) + 1
+	for u in units.get_children():
+		if u.side == active_side:	
+			u.restore_current_moves()
