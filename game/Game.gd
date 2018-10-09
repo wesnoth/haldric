@@ -1,5 +1,7 @@
 extends Node2D
 
+const unit_rest_heal = 2
+
 var sides = 2
 var active_side = 1
 
@@ -85,5 +87,7 @@ func can_fight(unit1, unit2):
 func end_turn():
 	active_side = (active_side % sides) + 1
 	for u in units.get_children():
-		if u.side == active_side:	
+		if u.side == active_side:
+			if u.current_moves == u.base_max_moves and u.current_health < u.base_max_health:
+				u.heal(unit_rest_heal)
 			u.restore_current_moves()

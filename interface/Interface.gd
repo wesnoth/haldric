@@ -18,8 +18,8 @@ func _process(delta):
 	side_label.text = str("Side: ", game.active_side)
 	
 	if game.active_unit:
-		unit_health_label.text = str("Health: ", game.active_unit.current_health)
-		unit_moves_label.text = str("Moves: ", game.active_unit.current_moves)
+		unit_health_label.text = str("Health: ", game.active_unit.current_health, " / ", game.active_unit.base_max_health)
+		unit_moves_label.text = str("Moves: ", game.active_unit.current_moves, " / ", game.active_unit.base_max_moves)
 		unit_damage_label.text = game.active_unit.get_attack_string()
 	else:
 		unit_health_label.text = str("Health: -")

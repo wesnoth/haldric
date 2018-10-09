@@ -46,6 +46,10 @@ func fight(unit):
 	can_attack = false
 	current_moves = 0
 
+func heal(value):
+	_set_current_health(current_health + value)
+	print(type, " healed by ", value)
+
 func harm(attacker_unit_type, damage, attack_type, rand):
 	if rand <= 0.5:
 		var mod = float(resistances[attack_type]) / 100.0
@@ -62,6 +66,9 @@ func restore_current_moves():
 func get_attack_string():
 	return str("Attack: ", attack.name, " ", attack.damage, "x", attack.number, " (", attack.type, ", ", attack.range, ")")
 
-func _set_current_health(health):
-	current_health = health
-	lifebar.set_value(health)
+func _set_current_health(new_health):
+	if new_health <= base_max_health:
+		current_health = new_health
+	else:
+		current_health = base_max_health
+	lifebar.set_value(current_health)
