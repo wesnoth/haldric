@@ -1,7 +1,11 @@
 extends Camera2D
 
-var speed = 1000
+var speed = 2000
 var border = 4
+
+func _ready():
+	smoothing_enabled = true
+	smoothing_speed = 5
 
 func _input(event):
 	
