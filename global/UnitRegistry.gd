@@ -18,8 +18,6 @@ func load_dir(path):
 			attack = unit.attack,
 			resistance = unit.resistance
 		}
-		print(registry[unit.type])
-
 
 func get_files_in_directory(path, files):
 	var dir = Directory.new()
@@ -32,12 +30,11 @@ func get_files_in_directory(path, files):
 			continue
 		if sub_path == "":
 			break
-		print(sub_path)
 		if dir.current_is_dir():
-			print(dir.get_current_dir() + "/" + sub_path)
 			get_files_in_directory(dir.get_current_dir() + "/" + sub_path, files)
 		else:
 			var file = File.new()
+			print("load unit file: ", dir.get_current_dir() + "/" + sub_path)
 			if file.open(dir.get_current_dir() + "/" + sub_path, file.READ) == OK:
 				files.append(file)
 	dir.list_dir_end()
