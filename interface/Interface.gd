@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 onready var game = $".."
 onready var terrain = $"../Terrain"
@@ -8,8 +8,6 @@ onready var side_label = $"HUD/SideLabel"
 onready var unit_health_label = $"HUD/UnitInfo/HealthLabel"
 onready var unit_moves_label = $"HUD/UnitInfo/MovesLabel"
 onready var unit_damage_label = $"HUD/UnitInfo/DamageLabel"
-
-var show_grid = false
 
 func _ready():
 	$"HUD/EndTurn".connect("pressed", self, "_on_end_turn_pressed");

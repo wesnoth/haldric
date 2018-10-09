@@ -82,10 +82,10 @@ func block_cell(cell):
 	tiles[flatten_v(cell)].is_blocked = true
 
 func connect_cell(cell):
-	connect_with_neighbors(cell)
+	_connect_with_neighbors(cell)
 
 func disconnect_cell(cell):
-	disconnect_with_neighbors(cell)
+	_disconnect_with_neighbors(cell)
 
 func map_to_world_centered(_cell):
 	var pos = map_to_world(_cell)
