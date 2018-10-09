@@ -1,8 +1,11 @@
 extends Node2D
 
+var show_grid = false
+
 onready var game = $".."
 onready var terrain = $"../Terrain"
 onready var cursor = $"Cursor"
+onready var grid_container = $"GridContainer"
 
 onready var side_label = $"HUD/SideLabel"
 onready var unit_health_label = $"HUD/UnitInfo/HealthLabel"
@@ -11,6 +14,14 @@ onready var unit_damage_label = $"HUD/UnitInfo/DamageLabel"
 
 func _ready():
 	$"HUD/EndTurn".connect("pressed", self, "_on_end_turn_pressed");
+
+func _input(event):
+	if Input.is_action_just_pressed("toggle_grid"):
+		show_grid = !show_grid
+		if show_grid:
+			show_grid()
+		else:
+			remove_grid()
 
 func _process(delta):
 	update()
@@ -36,6 +47,18 @@ func _draw():
 	# draw path
 	for i in range(game.active_unit_path.size()):
 		draw_circle(terrain.map_to_world_centered(game.active_unit_path[i]), 5, Color(255, 0, 0))
+
+func show_grid():
+	for p in terrain.grid.get_points():
+			var p_cell = terrain.grid.get_point_position(p)
+			var sprite = Sprite.new()
+			sprite.texture = load("res://interface/images/grid.png")
+			sprite.position = terrain.map_to_world_centered(Vector2(p_cell.x, p_cell.y))
+			grid_container.add_child(sprite)
+
+func remove_grid():
+	for child in grid_container.get_children():
+		child.queue_free()
 
 func _on_end_turn_pressed():
 	game.end_turn()
