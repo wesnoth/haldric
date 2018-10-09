@@ -11,9 +11,16 @@ onready var terrain = $"Terrain"
 onready var units = $"UnitContainer"
 
 func _ready():
-	# LOAD UNIT DIR
-	# CREATE UNITS
-	pass
+	UnitRegistry.load_dir("res://units/config/")
+	
+	create_unit("Elvish Fighter", 1, 10, 1);
+	create_unit("Elvish Archer", 1, 11, 1);
+	create_unit("Elvish Scout", 1, 9, 1);
+	create_unit("Elvish Shaman", 1, 8, 1);
+	create_unit("Orcish Grunt", 2, 10, 13);
+	create_unit("Orcish Archer", 2, 9, 13);
+	create_unit("Orcish Assassin", 2, 11, 13);
+	create_unit("Troll Whelp", 2, 12, 13);
 
 func _input(event):
 	if active_unit:
@@ -42,8 +49,13 @@ func _input(event):
 			move_handler.move_unit(active_unit, active_unit_path)
 	
 	if Input.is_action_just_pressed("mouse_right"):
-		clear_selected_unit()
+		active_unit = null
+		active_unit_path = []
 
+func create_unit(type, side, x, y):
+	var unit = UnitRegistry.create(type, side)
+	unit.position = terrain.map_to_world_centered(Vector2(x, y))
+	units.add_child(unit)
 
 func is_unit_at_cell(cell):
 	for u in units.get_children():
@@ -63,8 +75,8 @@ func get_unit_at_cell(cell):
 func can_fight(unit1, unit2):
 	if active_side == unit1.side:
 		if unit1.side != unit2.side:
-			if unit1.can_attack():
-				var unit1_cell = terrain.world_to_map(unit1.posirion)
+			if unit1.can_attack:
+				var unit1_cell = terrain.world_to_map(unit1.position)
 				var unit2_cell = terrain.world_to_map(unit2.position)
 				if terrain.are_neighbors(unit1_cell, unit2_cell):
 					return true

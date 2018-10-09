@@ -1,0 +1,6 @@
+name: Elvish Fighter
+type: Elvish Fighter
+health: 36
+moves: 5
+damage: 8
+image: res://units/images/elves-wood/fighter.png

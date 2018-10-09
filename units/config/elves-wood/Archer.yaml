@@ -1,0 +1,6 @@
+name: Elvish Archer
+type: Elvish Archer
+health: 36
+moves: 5
+damage: 8
+image: res://units/images/elves-wood/archer.png

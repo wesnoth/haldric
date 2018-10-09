@@ -5,7 +5,7 @@ var speed = 400
 var unit
 var path = []
 
-var init_path_size
+var init_path_size = 0
 var last_point
 
 onready var game = $".."
@@ -24,7 +24,7 @@ func _process(delta):
 		
 		unit.position += velocity
 		
-		if unit.position * direction > terrain.map_to_world_centered(path[0] * direction):
+		if unit.position * direction > terrain.map_to_world_centered(path[0])  * direction:
 			
 			if path.size() < init_path_size:
 				unit.current_moves -= 1
@@ -36,7 +36,8 @@ func _process(delta):
 				
 				if unit.current_moves == 0:
 					path.clear()
-					game.deselect_active_unit()
+					game.active_unit = null
+					game.active_unit_path = []
 				
 				unit.position = terrain.world_to_world_centered(unit.position)
 				unit = null

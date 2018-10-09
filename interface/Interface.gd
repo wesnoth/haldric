@@ -22,7 +22,7 @@ func _process(delta):
 	if game.active_unit:
 		unit_health_label.text = str("Health: ", game.active_unit.current_health)
 		unit_moves_label.text = str("Moves: ", game.active_unit.current_moves)
-		unit_damage_label.text = str("Damage: ", game.active_unit.current_damage)
+		unit_damage_label.text = str("Damage: ", game.active_unit.damage)
 	else:
 		unit_health_label.text = str("Health: -")
 		unit_moves_label.text = str("Moves: -")
@@ -31,7 +31,7 @@ func _process(delta):
 func _draw():
 	# draw reachable cells
 	if game.active_unit:
-		for cell in terrain.get_rachable_cells_u(game.active_unit):
+		for cell in terrain.get_reachable_cells_u(game.active_unit):
 			var pos = terrain.map_to_world_centered(cell)
 			draw_circle(pos, 5, Color(255, 255, 255))
 	

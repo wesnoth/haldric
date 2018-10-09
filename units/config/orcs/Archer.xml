@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<unit_type>
-	<type>Orcish Archer</type>
-	<name>Orcish Archer</name>
-	<hitpoints>30</hitpoints>
-	<movement>5</movement>
-	<damage>10</damage>
-	<image>units/images/orcs/archer.png</image>
-</unit_type>

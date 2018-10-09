@@ -1,0 +1,6 @@
+name: Troll Whelp
+type: Troll Whelp
+health: 36
+moves: 5
+damage: 8
+image: res://units/images/trolls/whelp.png

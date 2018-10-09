@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://interface/lifebar/Lifebar.gd" type="Script" id=1]
-[ext_resource path="res://interface/Lifebar/images/background.png" type="Texture" id=2]
-[ext_resource path="res://interface/Lifebar/images/fill.png" type="Texture" id=3]
+[ext_resource path="res://interface/lifebar/images/background.png" type="Texture" id=2]
+[ext_resource path="res://interface/lifebar/images/fill.png" type="Texture" id=3]
 
-[node name="LifeBar" type="Node2D" index="0"]
+[node name="Lifebar" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 

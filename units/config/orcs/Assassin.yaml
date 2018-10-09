@@ -1,0 +1,6 @@
+name: Orcish Assassin
+type: Orcish Assassin
+health: 36
+moves: 5
+damage: 8
+image: res://units/images/orcs/assassin.png

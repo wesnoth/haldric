@@ -44,16 +44,14 @@ func find_path_by_position(_start_position, _end_position):
 	return find_path_by_cell(start_cell, end_cell)
 
 func find_path_by_cell(_start_cell, _end_cell):
-	var path3D = grid.get_point_path(_flatten_v(_start_cell), _flatten_v(_end_cell))
+	var path3D = grid.get_point_path(flatten_v(_start_cell), flatten_v(_end_cell))
 	var path2D = []
 	for point in path3D:
 		path2D.append(Vector2(point.x, point.y))
-	if !path2D.empty():
-			path2D.remove(0)
 	return path2D
 
-func get_reachable_cells_u(_unit):
-	var reachable = get_reachable_cells(world_to_map(_unit.position), _unit.moves_max)
+func get_reachable_cells_u(unit):
+	var reachable = get_reachable_cells(world_to_map(unit.position), unit.base_max_moves)
 	return reachable
 
 func get_reachable_cells(_start_cell, _range):
@@ -64,13 +62,13 @@ func get_reachable_cells(_start_cell, _range):
 		var diff_x = abs(start_cube.x - cube.x)
 		var diff_y = abs(start_cube.y - cube.y)
 		var diff_z = abs(start_cube.z - cube.z)
-		if max(max(diff_x, diff_y), diff_z) > _range or tiles[_flatten_v(cell)].is_blocked:
+		if max(max(diff_x, diff_y), diff_z) > _range or tiles[flatten_v(cell)].is_blocked:
 			continue
 		reachable.append(cell)
 	return reachable
 
 func are_neighbors(cell1, cell2):
-	var cell1_neighbors = get_neighbors(cell1)
+	var cell1_neighbors = _get_neighbors(cell1)
 	
 	for n in cell1_neighbors:
 		if cell2 == n:

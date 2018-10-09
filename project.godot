@@ -14,6 +14,10 @@ config/name="haldric"
 run/main_scene="res://game/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+UnitRegistry="*res://global/UnitRegistry.gd"
+
 [display]
 
 window/size/width=1280

@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<unit_type>
-	<type>Elvish Archer</type>
-	<name>Elvish Archer</name>
-	<hitpoints>31</hitpoints>
-	<movement>6</movement>
-	<damage>8</damage>
-	<image>units/images/elves-wood/archer.png</image>
-</unit_type>

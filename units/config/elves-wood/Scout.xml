@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<unit_type>
-	<type>Elvish Scout</type>
-	<name>Elvish Scout</name>
-	<hitpoints>38</hitpoints>
-	<movement>8</movement>
-	<damage>7</damage>
-	<image>units/images/elves-wood/scout.png</image>
-</unit_type>

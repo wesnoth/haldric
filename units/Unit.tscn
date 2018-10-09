@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://units/images/elves-wood/fighter.png" type="Texture" id=1]
-[ext_resource path="res://units/Unit.cs" type="Script" id=2]
-[ext_resource path="res://interface/Lifebar/Lifebar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://units/Unit.gd" type="Script" id=2]
+[ext_resource path="res://interface/lifebar/Lifebar.tscn" type="PackedScene" id=3]
 
-[node name="Sprite" type="Sprite" index="0"]
+[node name="Sprite" type="Sprite"]
 
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
