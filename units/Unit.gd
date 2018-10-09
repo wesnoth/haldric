@@ -11,7 +11,7 @@ var current_health setget _set_current_health
 var current_moves
 
 var attack = {}
-var resistances = {}
+var resistance = {}
 
 var can_attack = true
 
@@ -25,7 +25,7 @@ func initialize(var reg_entry, side):
 	base_max_health = reg_entry.health
 	base_max_moves = reg_entry.moves
 	attack = reg_entry.attack
-	resistances = reg_entry.resistances
+	resistance = reg_entry.resistance
 	type = reg_entry.type
 	
 	texture = load(reg_entry.image)
@@ -35,7 +35,7 @@ func initialize(var reg_entry, side):
 	current_health = base_max_health
 
 func fight(unit):
-	print("\n", "Combat starts | Counter: ", attack.range == unit.attack.range, " | Type: ", attack.type, " vs ", unit.resistances[attack.type])
+	print("\n", "Combat starts | Counter: ", attack.range == unit.attack.range, " | Type: ", attack.type, " vs ", unit.resistance[attack.type])
 	randomize()
 	print(max(attack.number, unit.attack.number))
 	for i in range(max(attack.number, unit.attack.number)):
@@ -52,7 +52,7 @@ func heal(value):
 
 func harm(attacker_unit_type, damage, attack_type, rand):
 	if rand <= 0.5:
-		var mod = float(resistances[attack_type]) / 100.0
+		var mod = float(resistance[attack_type]) / 100.0
 		var new_damage = damage * mod
 		print("\t", attacker_unit_type, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
 		_set_current_health(current_health - new_damage)

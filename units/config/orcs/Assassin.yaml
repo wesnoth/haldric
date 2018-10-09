@@ -9,7 +9,7 @@ attack:
   range: ranged
   damage: 3
   number: 3
-resistances:
+resistance:
   blade: 130
   pierce: 120
   impact: 120

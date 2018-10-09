@@ -16,7 +16,7 @@ func load_dir(path):
 			moves = unit.moves,
 			image = unit.image,
 			attack = unit.attack,
-			resistances = unit.resistances
+			resistance = unit.resistance
 		}
 		print(registry[unit.type])
 
