@@ -51,7 +51,7 @@ func find_path_by_cell(_start_cell, _end_cell):
 	return path2D
 
 func get_reachable_cells_u(unit):
-	var reachable = get_reachable_cells(world_to_map(unit.position), unit.base_max_moves)
+	var reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
 	return reachable
 
 func get_reachable_cells(_start_cell, _range):
