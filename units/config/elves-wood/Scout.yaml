@@ -2,5 +2,10 @@ name: Elvish Scout
 type: Elvish Scout
 health: 36
 moves: 5
-damage: 8
+attack:
+  name: sword
+  type: blade
+  range: melee
+  damage: 5
+  number: 3
 image: res://units/images/elves-wood/scout.png

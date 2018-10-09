@@ -2,5 +2,10 @@ name: Orcish Archer
 type: Orcish Archer
 health: 36
 moves: 5
-damage: 8
+attack:
+  name: bow
+  type: pierce
+  range: ranged
+  damage: 6
+  number: 3
 image: res://units/images/orcs/archer.png

@@ -1,8 +1,8 @@
 extends Sprite
 
-var attributes
-
 var side
+
+var type
 
 var base_max_health
 var base_max_moves
@@ -10,7 +10,7 @@ var base_max_moves
 var current_health setget _set_current_health
 var current_moves
 
-var damage
+var attack = {}
 
 var can_attack = true
 
@@ -23,7 +23,8 @@ func _ready():
 func initialize(var reg_entry, side):
 	base_max_health = reg_entry.health
 	base_max_moves = reg_entry.moves
-	damage = reg_entry.damage
+	attack = reg_entry.attack
+	type = reg_entry.type
 	
 	texture = load(reg_entry.image)
 	self.side = side
@@ -32,20 +33,28 @@ func initialize(var reg_entry, side):
 	current_health = base_max_health
 
 func fight(unit):
-	unit.harm(damage)
+	randomize()
+	for i in range(attack.number):
+		if unit.current_health > 0:
+			unit.harm(attack.damage, randf())
+			if unit.current_health > 0 and unit.attack.number > i:
+				harm(unit.attack.damage, randf())
 	can_attack = false
 	current_moves = 0
-	
-	if unit.current_health > 0:
-		harm(unit.damage)
 
-func harm(damage):
-	_set_current_health(current_health - damage)
+func harm(damage, rand):
+	if rand <= 0.5:
+		print(type, " gets ", damage, " damage")
+		_set_current_health(current_health - damage)
+	else:
+		print(type, "misses")
 
 func restore_current_moves():
 	current_moves = base_max_moves
 	can_attack = true
 
+func get_attack_string():
+	return str("Attack: ", attack.name, " ", attack.damage, "x", attack.number, " (", attack.type, ", ", attack.range, ")")
 func _set_current_health(health):
 	current_health = health
 	lifebar.set_value(health)

@@ -11,7 +11,7 @@ onready var terrain = $"Terrain"
 onready var units = $"UnitContainer"
 
 func _ready():
-	UnitRegistry.load_dir("res://units/config/")
+	UnitRegistry.load_dir("res://units/config")
 	
 	create_unit("Elvish Fighter", 1, 10, 1);
 	create_unit("Elvish Archer", 1, 11, 1);

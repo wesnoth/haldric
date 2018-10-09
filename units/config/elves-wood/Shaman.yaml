@@ -2,5 +2,10 @@ name: Elvish Shaman
 type: Elvish Shaman
 health: 36
 moves: 5
-damage: 8
+attack:
+  name: staff
+  type: impact
+  range: melee
+  damage: 3
+  number: 2
 image: res://units/images/elves-wood/shaman.png

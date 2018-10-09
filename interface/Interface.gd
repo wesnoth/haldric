@@ -20,11 +20,11 @@ func _process(delta):
 	if game.active_unit:
 		unit_health_label.text = str("Health: ", game.active_unit.current_health)
 		unit_moves_label.text = str("Moves: ", game.active_unit.current_moves)
-		unit_damage_label.text = str("Damage: ", game.active_unit.damage)
+		unit_damage_label.text = game.active_unit.get_attack_string()
 	else:
 		unit_health_label.text = str("Health: -")
 		unit_moves_label.text = str("Moves: -")
-		unit_damage_label.text = str("Damage: -")
+		unit_damage_label.text = str("Attack: -")
 
 func _draw():
 	# draw reachable cells

@@ -2,5 +2,10 @@ name: Orcish Assassin
 type: Orcish Assassin
 health: 36
 moves: 5
-damage: 8
+attack:
+  name: throwing knives
+  type: blade
+  range: ranged
+  damage: 3
+  number: 3
 image: res://units/images/orcs/assassin.png
