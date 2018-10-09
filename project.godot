@@ -44,4 +44,5 @@ scroll_down=[ Object(InputEventMouseButton,"resource_local_to_scene":false,"reso
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
