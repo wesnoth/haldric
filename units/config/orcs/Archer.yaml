@@ -1,6 +1,6 @@
 name: Orcish Archer
 type: Orcish Archer
-health: 36
+health: 32
 moves: 5
 image: res://units/images/orcs/archer.png
 attack:

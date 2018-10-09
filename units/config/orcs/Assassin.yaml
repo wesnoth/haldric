@@ -1,7 +1,7 @@
 name: Orcish Assassin
 type: Orcish Assassin
-health: 36
-moves: 5
+health: 26
+moves: 6
 image: res://units/images/orcs/assassin.png
 attack:
   name: throwing knives
@@ -10,9 +10,9 @@ attack:
   damage: 3
   number: 3
 resistances:
-  blade: 100
-  pierce: 100
-  impact: 100
+  blade: 130
+  pierce: 120
+  impact: 120
   fire: 100
   cold: 100
   arcane: 100

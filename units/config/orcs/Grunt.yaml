@@ -1,6 +1,6 @@
 name: Orcish Grunt
 type: Orcish Grunt
-health: 36
+health: 38
 moves: 5
 image: res://units/images/orcs/grunt.png
 attack:

@@ -1,13 +1,13 @@
 name: Troll Whelp
 type: Troll Whelp
-health: 36
+health: 42
 moves: 5
 image: res://units/images/trolls/whelp.png
 attack:
   name: fist
   type: impact
   range: melee
-  damage: 8
+  damage: 7
   number: 2
 resistances:
   blade: 80

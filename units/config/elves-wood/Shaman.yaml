@@ -1,6 +1,6 @@
 name: Elvish Shaman
 type: Elvish Shaman
-health: 36
+health: 26
 moves: 5
 image: res://units/images/elves-wood/shaman.png
 attack:
