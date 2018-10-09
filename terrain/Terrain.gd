@@ -112,10 +112,7 @@ func _generate_tiles():
 		for x in range(WIDTH):
 			var id = flatten(x, y)
 			tiles[id] = {
-				cell = Vector2(x, y),
-				type = get_cell(x, y),
-				weight = 1,
-				is_blocked = false,
+				is_blocked = false
 			}
 
 func _generate_points():
