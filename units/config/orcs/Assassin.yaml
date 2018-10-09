@@ -6,7 +6,7 @@ image: res://units/images/orcs/assassin.png
 attack:
   name: throwing knives
   type: blade
-  distance: ranged
+  range: ranged
   damage: 3
   number: 3
 resistances:

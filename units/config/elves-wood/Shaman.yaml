@@ -6,7 +6,7 @@ image: res://units/images/elves-wood/shaman.png
 attack:
   name: staff
   type: impact
-  distance: melee
+  range: melee
   damage: 3
   number: 2
 resistances:

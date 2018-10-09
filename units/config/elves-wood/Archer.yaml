@@ -6,7 +6,7 @@ image: res://units/images/elves-wood/archer.png
 attack:
   name: bow
   type: pierce
-  distance: ranged
+  range: ranged
   damage: 5
   number: 4
 resistances:

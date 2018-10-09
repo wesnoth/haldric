@@ -6,7 +6,7 @@ image: res://units/images/orcs/grunt.png
 attack:
   name: sword
   type: blade
-  distance: melee
+  range: melee
   damage: 9
   number: 2
 resistances:

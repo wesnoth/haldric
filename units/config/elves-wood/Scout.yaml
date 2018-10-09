@@ -6,7 +6,7 @@ image: res://units/images/elves-wood/scout.png
 attack:
   name: sword
   type: blade
-  distance: melee
+  range: melee
   damage: 5
   number: 3
 resistances:

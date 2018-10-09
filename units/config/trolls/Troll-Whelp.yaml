@@ -6,7 +6,7 @@ image: res://units/images/trolls/whelp.png
 attack:
   name: fist
   type: impact
-  distance: melee
+  range: melee
   damage: 8
   number: 2
 resistances:

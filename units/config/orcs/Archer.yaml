@@ -6,7 +6,7 @@ image: res://units/images/orcs/archer.png
 attack:
   name: bow
   type: pierce
-  distance: ranged
+  range: ranged
   damage: 6
   number: 3
 resistances:
