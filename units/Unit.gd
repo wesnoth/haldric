@@ -11,6 +11,7 @@ var current_health setget _set_current_health
 var current_moves
 
 var attack = {}
+var resistances = {}
 
 var can_attack = true
 
@@ -24,6 +25,7 @@ func initialize(var reg_entry, side):
 	base_max_health = reg_entry.health
 	base_max_moves = reg_entry.moves
 	attack = reg_entry.attack
+	resistances = reg_entry.resistances
 	type = reg_entry.type
 	
 	texture = load(reg_entry.image)
@@ -33,29 +35,32 @@ func initialize(var reg_entry, side):
 	current_health = base_max_health
 
 func fight(unit):
-	print("\n", "Combat starts | Counter: ", attack.range == unit.attack.range)
+	print("\n", "Combat starts | Counter: ", attack.distance == unit.attack.distance, " | Type: ", attack.type, " vs ", unit.resistances[attack.type])
 	randomize()
-	for i in range(attack.number):
-		if unit.current_health > 0:
-			unit.harm(attack.damage, randf())
-			if unit.current_health > 0 and unit.attack.number > i and attack.range == unit.attack.range:
-				harm(unit.attack.damage, randf())
+	print(max(attack.number, unit.attack.number))
+	for i in range(max(attack.number, unit.attack.number)):
+		if unit.current_health > 0 and attack.number > i:
+			unit.harm(type, attack.damage, attack.type, randf())
+		if unit.current_health > 0 and unit.attack.number > i and attack.distance == unit.attack.distance:
+			harm(unit.type, unit.attack.damage, unit.attack.type, randf())
 	can_attack = false
 	current_moves = 0
 
-func harm(damage, rand):
+func harm(attacker_unit_type, damage, attack_type, rand):
 	if rand <= 0.5:
-		print("\t", type, " gets ", damage, " damage")
-		_set_current_health(current_health - damage)
+		var mod = float(resistances[attack_type]) / 100.0
+		var new_damage = damage * mod
+		print("\t", attacker_unit_type, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
+		_set_current_health(current_health - new_damage)
 	else:
-		print("\t", type, " missed")
+		print("\t", attacker_unit_type, " missed")
 
 func restore_current_moves():
 	current_moves = base_max_moves
 	can_attack = true
 
 func get_attack_string():
-	return str("Attack: ", attack.name, " ", attack.damage, "x", attack.number, " (", attack.type, ", ", attack.range, ")")
+	return str("Attack: ", attack.name, " ", attack.damage, "x", attack.number, " (", attack.type, ", ", attack.distance, ")")
 
 func _set_current_health(health):
 	current_health = health

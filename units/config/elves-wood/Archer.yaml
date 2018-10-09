@@ -2,10 +2,17 @@ name: Elvish Archer
 type: Elvish Archer
 health: 36
 moves: 5
+image: res://units/images/elves-wood/archer.png
 attack:
   name: bow
   type: pierce
-  range: ranged
+  distance: ranged
   damage: 5
   number: 4
-image: res://units/images/elves-wood/archer.png
+resistances:
+  blade: 100
+  pierce: 100
+  impact: 100
+  fire: 100
+  cold: 100
+  arcane: 110
