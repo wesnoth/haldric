@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://terrain/images/terrain.png" type="Texture" id=1]
-[ext_resource path="res://terrain/images/forest.png" type="Texture" id=2]
+[ext_resource path="res://terrain/images/village.png" type="Texture" id=2]
+[ext_resource path="res://terrain/images/forest.png" type="Texture" id=3]
 
 [node name="TileSet" type="Node2D"]
 
@@ -109,12 +110,21 @@ region_enabled = true
 region_rect = Rect2( 144, 144, 72, 72 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="forest" type="Node" parent="." index="3"]
+[node name="villages" type="Node" parent="." index="3"]
+
+[node name="village" type="Sprite" parent="villages" index="0"]
+
+position = Vector2( 0, 216 )
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset" ]
+
+[node name="forest" type="Node" parent="." index="4"]
 
 [node name="mixed-fall-sparse" type="Sprite" parent="forest" index="0"]
 
-position = Vector2( 36, 252 )
-texture = ExtResource( 2 )
+position = Vector2( 36, 324 )
+texture = ExtResource( 3 )
 centered = false
 offset = Vector2( -36, -36 )
 region_enabled = true
@@ -123,8 +133,8 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="deciduous-summer-small" type="Sprite" parent="forest" index="1"]
 
-position = Vector2( 180, 252 )
-texture = ExtResource( 2 )
+position = Vector2( 180, 324 )
+texture = ExtResource( 3 )
 centered = false
 offset = Vector2( -36, -36 )
 region_enabled = true
@@ -133,8 +143,8 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="pine-sparse" type="Sprite" parent="forest" index="2"]
 
-position = Vector2( 324, 252 )
-texture = ExtResource( 2 )
+position = Vector2( 324, 324 )
+texture = ExtResource( 3 )
 centered = false
 offset = Vector2( -36, -36 )
 region_enabled = true
@@ -143,8 +153,8 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="deciduous-fall-small" type="Sprite" parent="forest" index="3"]
 
-position = Vector2( 468, 252 )
-texture = ExtResource( 2 )
+position = Vector2( 468, 324 )
+texture = ExtResource( 3 )
 centered = false
 offset = Vector2( -36, -36 )
 region_enabled = true
@@ -153,8 +163,8 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="mixed-winter-sparse2" type="Sprite" parent="forest" index="4"]
 
-position = Vector2( 612, 252 )
-texture = ExtResource( 2 )
+position = Vector2( 612, 324 )
+texture = ExtResource( 3 )
 centered = false
 offset = Vector2( -36, -36 )
 region_enabled = true

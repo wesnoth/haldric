@@ -1,5 +1,7 @@
 extends TileMap
 
+const village_id = 10
+
 enum DIRECTION {SE, NE, N, NW, SW, S}
 
 export (int) var WIDTH = 20
@@ -30,6 +32,8 @@ var neighbor_table = [
 var tiles = {}
 var grid = AStar.new()
 
+onready var overlay = $"Overlay"
+
 func _ready():
 	_generate_tiles()
 	_generate_points()
@@ -43,11 +47,12 @@ func find_path_by_position(_start_position, _end_position):
 	var end_cell = world_to_map(_end_position)
 	return find_path_by_cell(start_cell, end_cell)
 
-func find_path_by_cell(_start_cell, _end_cell):
-	var path3D = grid.get_point_path(flatten_v(_start_cell), flatten_v(_end_cell))
+func find_path_by_cell(start_cell, end_cell):
 	var path2D = []
-	for point in path3D:
-		path2D.append(Vector2(point.x, point.y))
+	if check_boundaries(start_cell) and check_boundaries(end_cell):
+		var path3D = grid.get_point_path(flatten_v(start_cell), flatten_v(end_cell))
+		for point in path3D:
+			path2D.append(Vector2(point.x, point.y))
 	return path2D
 
 func get_reachable_cells_u(unit):
@@ -101,8 +106,8 @@ func flatten_v(_cell):
 func flatten(_x, _y):
 	return int(_y) * WIDTH + int(_x)
 
-func check_boundaries(_point):
-	return (_point.x >= 0 and _point.y >= 0 and _point.x < WIDTH  and _point.y < HEIGHT) 
+func check_boundaries(cell):
+	return (cell.x >= 0 and cell.y >= 0 and cell.x < WIDTH  and cell.y < HEIGHT) 
 
 # P R I V A T E   F U N C T I O N S
 
@@ -112,6 +117,7 @@ func _generate_tiles():
 		for x in range(WIDTH):
 			var id = flatten(x, y)
 			tiles[id] = {
+				is_village = overlay.get_cell(x, y) == village_id,
 				is_blocked = false
 			}
 

@@ -1,6 +1,7 @@
 extends Node2D
 
 const unit_rest_heal = 2
+const unit_village_heal = 8
 
 var sides = 2
 var active_side = 1
@@ -32,6 +33,9 @@ func _input(event):
 	
 	if Input.is_action_just_pressed("mouse_left"):
 		var mouse_cell = terrain.world_to_map(get_global_mouse_position())
+		
+		if (terrain.check_boundaries(mouse_cell)):
+			print("Village: ", terrain.tiles[terrain.flatten_v(mouse_cell)].is_village)
 		
 		if is_unit_at_cell(mouse_cell) and active_unit == null:
 			active_unit = get_unit_at_cell(mouse_cell)
@@ -66,7 +70,8 @@ func is_unit_at_cell(cell):
 	return false
 
 func is_cell_blocked(cell):
-	return terrain.tiles[terrain.flatten_v(cell)].is_blocked
+	if terrain.check_boundaries(cell):
+		return terrain.tiles[terrain.flatten_v(cell)].is_blocked
 
 func get_unit_at_cell(cell):
 	for u in units.get_children():
@@ -90,4 +95,6 @@ func end_turn():
 		if u.side == active_side:
 			if u.current_moves == u.base_max_moves and u.current_health < u.base_max_health:
 				u.heal(unit_rest_heal)
+			if terrain.tiles[terrain.flatten_v(terrain.world_to_map(u.position))].is_village:
+				u.heal(unit_village_heal)
 			u.restore_current_moves()
