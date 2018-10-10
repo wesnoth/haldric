@@ -14,7 +14,7 @@ onready var game = $".."
 onready var terrain = $"../Terrain"
 
 func _process(delta):
-	
+
 	if path.size() > 0:
 		var terrain_type = game.get_terrain_type_at_cell(path[0])
 		if unit.current_moves - unit.movement[terrain_type] < 0:
@@ -24,32 +24,32 @@ func _process(delta):
 			init_path_size = 0;
 			path = []
 			# print("path clear")
-	
+
 	if path.size() > 0 and unit:
-		
+
 		var terrain_type = game.get_terrain_type_at_cell(path[0])
-		
+
 		if init_path_size == 0:
 			init_path_size = path.size()
-		
+
 		unit.position += velocity * delta
-		
+
 		if unit.position.distance_to(terrain.map_to_world_centered(path[0])) <= 6:
-			
+
 			if path.size() < init_path_size:
 				unit.current_moves -= unit.movement[terrain_type]
-			
+
 			last_point = path[0]
 			path.remove(0)
-			
+
 			if path.size() == 0 or unit.current_moves == 0:
-				
+
 				if unit.current_moves <= 0:
 					unit.current_moves = 0
 					path = []
 					game.active_unit = null
 					game.active_unit_path = []
-				
+
 				unit.position = terrain.world_to_world_centered(unit.position)
 				velocity = Vector2(0, 0)
 				unit = null
@@ -61,9 +61,9 @@ func _process(delta):
 				# print(velocity)
 
 func move_unit(unit, path):
-	
+
 	self.path = path
-	
+
 	if path:
 		last_point = terrain.map_to_world_centered(unit.position)
 		self.unit = unit

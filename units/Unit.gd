@@ -22,7 +22,7 @@ onready var lifebar = $"Lifebar"
 func _ready():
 	lifebar.set_max_value(current_health)
 	lifebar.set_value(current_health)
-	
+
 func initialize(var reg_entry, side):
 	base_max_health = reg_entry.health
 	base_max_moves = reg_entry.moves
@@ -31,10 +31,10 @@ func initialize(var reg_entry, side):
 	defense = reg_entry.defense
 	movement = reg_entry.movement
 	type = reg_entry.type
-	
+
 	texture = load(reg_entry.image)
 	self.side = side
-	
+
 	current_moves = base_max_moves
 	current_health = base_max_health
 

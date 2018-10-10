@@ -84,11 +84,11 @@ func get_reachable_cells(_start_cell, _range):
 			weight += grid.get_point_weight_scale(id)
 		if weight <= _range:
 			reachable.append(cell)
-	return reachable 
+	return reachable
 
 func are_neighbors(cell1, cell2):
 	var cell1_neighbors = _get_neighbors(cell1)
-	
+
 	for n in cell1_neighbors:
 		if cell2 == n:
 			return true
@@ -121,7 +121,7 @@ func flatten(_x, _y):
 	return int(_y) * WIDTH + int(_x)
 
 func check_boundaries(cell):
-	return (cell.x >= 0 and cell.y >= 0 and cell.x < WIDTH  and cell.y < HEIGHT) 
+	return (cell.x >= 0 and cell.y >= 0 and cell.x < WIDTH  and cell.y < HEIGHT)
 
 # P R I V A T E   F U N C T I O N S
 
@@ -130,17 +130,17 @@ func _generate_tiles():
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
 			var id = flatten(x, y)
-			
-			var code = tile_set.tile_get_name(get_cell(x, y)) 
+
+			var code = tile_set.tile_get_name(get_cell(x, y))
 			var overlay_code = ""
-			
+
 			var overlay_cell = overlay.get_cell(x, y)
-			
+
 			if overlay_cell != TileMap.INVALID_CELL:
 				overlay_code = tile_set.tile_get_name(overlay_cell)
-			
+
 			var type
-			
+
 			if overlay_code == "^Vh":
 				type = "village"
 			elif overlay_code == "^Fp" or overlay_code == "^Fdf" or overlay_code == "^Fmf" or overlay_code == "^Fds" or overlay_code == "^Fmw":
@@ -151,14 +151,14 @@ func _generate_tiles():
 				type = "hills"
 			elif code == "Mm" or code == "Md" or code == "Ms":
 				type = "mountains"
-			
+
 			tiles[id] = {
 				terrain_type = type,
 				terrain_code = code + overlay_code,
 				is_village = overlay.get_cell(x, y) == village_id,
 				is_blocked = false
 			}
-			
+
 			# print(code, overlay_code)
 
 func _generate_points():

@@ -15,7 +15,7 @@ onready var units = $"UnitContainer"
 
 func _ready():
 	UnitRegistry.load_dir("res://units/config")
-	
+
 	create_unit("Elvish Fighter", 1, 10, 1);
 	create_unit("Elvish Archer", 1, 11, 1);
 	create_unit("Elvish Scout", 1, 9, 1);
@@ -30,31 +30,31 @@ func _input(event):
 		var mouse_cell = terrain.world_to_map(get_global_mouse_position())
 		var unit_cell = terrain.world_to_map(active_unit.position)
 		active_unit_path = terrain.find_path_by_cell(unit_cell, mouse_cell)
-	
+
 	if Input.is_action_just_pressed("mouse_left"):
 		var mouse_cell = terrain.world_to_map(get_global_mouse_position())
-		
+
 		if (terrain.check_boundaries(mouse_cell)):
 			print("Village: ", terrain.tiles[terrain.flatten_v(mouse_cell)].is_village)
-		
+
 		if is_unit_at_cell(mouse_cell) and active_unit == null:
 			active_unit = get_unit_at_cell(mouse_cell)
-			
+
 		elif is_unit_at_cell(mouse_cell) and active_unit != null:
 			var unit = get_unit_at_cell(mouse_cell)
-			
+
 			if can_fight(active_unit, unit):
 				active_unit.fight(unit, get_terrain_type_at_cell(terrain.world_to_map(active_unit.position)), get_terrain_type_at_cell(terrain.world_to_map(unit.position)))
-				
+
 				if active_unit.current_health < 1:
 					active_unit.queue_free()
 					active_unit = null
-				
+
 				if unit.current_health < 1:
 					unit.queue_free()
 		elif !is_unit_at_cell(mouse_cell) and active_unit and !is_cell_blocked(mouse_cell) and active_side == active_unit.side:
 			move_handler.move_unit(active_unit, active_unit_path)
-	
+
 	if Input.is_action_just_pressed("mouse_right"):
 		active_unit = null
 		active_unit_path = []
