@@ -115,16 +115,21 @@ func check_boundaries(cell):
 func _generate_tiles():
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
-			var type
-			var code = tile_set.tile_get_name(get_cell(x, y))
-			var over = tile_set.tile_get_name(overlay.get_cell(x, y))
 			var id = flatten(x, y)
 			
-			# print(code, over)
+			var code = tile_set.tile_get_name(get_cell(x, y)) 
+			var overlay_code = ""
 			
-			if over== "^Vh":
+			var overlay_cell = overlay.get_cell(x, y)
+			
+			if overlay_cell != TileMap.INVALID_CELL:
+				overlay_code = tile_set.tile_get_name(overlay_cell)
+			
+			var type
+			
+			if overlay_code == "^Vh":
 				type = "village"
-			elif over == "^Fp" or over == "^Fdf" or over == "^Fmf" or over == "^Fds" or over == "^Fmw":
+			elif overlay_code == "^Fp" or overlay_code == "^Fdf" or overlay_code == "^Fmf" or overlay_code == "^Fds" or overlay_code == "^Fmw":
 				type = "forest"
 			elif code == "Gg" or code == "Gd" or code == "Gs" or code == "Gll":
 				type = "flat"
@@ -132,11 +137,15 @@ func _generate_tiles():
 				type = "hills"
 			elif code == "Mm" or code == "Md" or code == "Ms":
 				type = "mountains"
+			
 			tiles[id] = {
 				terrain_type = type,
+				terrain_code = code + overlay_code,
 				is_village = overlay.get_cell(x, y) == village_id,
 				is_blocked = false
 			}
+			
+			# print(code, overlay_code)
 
 func _generate_points():
 	for y in range(HEIGHT):
