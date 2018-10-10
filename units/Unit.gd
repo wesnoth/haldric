@@ -12,6 +12,7 @@ var current_moves
 
 var attack = {}
 var resistance = {}
+var defense = {}
 
 var can_attack = true
 
@@ -26,6 +27,7 @@ func initialize(var reg_entry, side):
 	base_max_moves = reg_entry.moves
 	attack = reg_entry.attack
 	resistance = reg_entry.resistance
+	defense = reg_entry.defense
 	type = reg_entry.type
 	
 	texture = load(reg_entry.image)
@@ -34,15 +36,15 @@ func initialize(var reg_entry, side):
 	current_moves = base_max_moves
 	current_health = base_max_health
 
-func fight(unit):
+func fight(unit, attacker_terrain, defender_terrain):
 	print("\n", "Combat starts | Counter: ", attack.range == unit.attack.range, " | Type: ", attack.type, " vs ", unit.resistance[attack.type])
 	randomize()
 	print(max(attack.number, unit.attack.number))
 	for i in range(max(attack.number, unit.attack.number)):
 		if unit.current_health > 0 and attack.number > i:
-			unit.harm(type, attack.damage, attack.type, randf())
+			unit.harm(type, attack.damage, attack.type, defender_terrain)
 		if unit.current_health > 0 and unit.attack.number > i and attack.range == unit.attack.range:
-			harm(unit.type, unit.attack.damage, unit.attack.type, randf())
+			harm(unit.type, unit.attack.damage, unit.attack.type, attacker_terrain)
 	can_attack = false
 	current_moves = 0
 
@@ -50,8 +52,10 @@ func heal(value):
 	_set_current_health(current_health + value)
 	print(type, " healed by ", value)
 
-func harm(attacker_unit_type, damage, attack_type, rand):
-	if rand <= 0.5:
+func harm(attacker_unit_type, damage, attack_type, terrain):
+	var hit_chance = float(100 - defense[terrain]) / 100.0
+	print("Hit Chance: ", hit_chance)
+	if randf() <= hit_chance:
 		var mod = float(resistance[attack_type]) / 100.0
 		var new_damage = damage * mod
 		print("\t", attacker_unit_type, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")

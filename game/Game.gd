@@ -43,7 +43,7 @@ func _input(event):
 			var unit = get_unit_at_cell(mouse_cell)
 			
 			if can_fight(active_unit, unit):
-				active_unit.fight(unit)
+				active_unit.fight(unit, get_terrain_type_at_cell(terrain.world_to_map(active_unit.position)), get_terrain_type_at_cell(terrain.world_to_map(unit.position)))
 				
 				if active_unit.current_health < 1:
 					active_unit.queue_free()
@@ -79,6 +79,11 @@ func get_unit_at_cell(cell):
 			return u
 	return null
 
+func get_terrain_type_at_cell(cell):
+	if terrain.check_boundaries(cell):
+		return terrain.tiles[terrain.flatten_v(cell)].terrain_type
+	else:
+		return null
 func can_fight(unit1, unit2):
 	if active_side == unit1.side:
 		if unit1.side != unit2.side:

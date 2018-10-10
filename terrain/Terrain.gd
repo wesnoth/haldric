@@ -115,8 +115,25 @@ func check_boundaries(cell):
 func _generate_tiles():
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
+			var type
+			var code = tile_set.tile_get_name(get_cell(x, y))
+			var over = tile_set.tile_get_name(overlay.get_cell(x, y))
 			var id = flatten(x, y)
+			
+			# print(code, over)
+			
+			if over== "^Vh":
+				type = "village"
+			elif over == "^Fp" or over == "^Fdf" or over == "^Fmf" or over == "^Fds" or over == "^Fmw":
+				type = "forest"
+			elif code == "Gg" or code == "Gd" or code == "Gs" or code == "Gll":
+				type = "flat"
+			elif code == "Hh" or code == "Ha" or code == "Hd" or code == "Hhd":
+				type = "hills"
+			elif code == "Mm" or code == "Md" or code == "Ms":
+				type = "mountains"
 			tiles[id] = {
+				terrain_type = type,
 				is_village = overlay.get_cell(x, y) == village_id,
 				is_blocked = false
 			}

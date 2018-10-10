@@ -32,20 +32,28 @@ func _process(delta):
 		unit_health_label.text = str("Health: ", game.active_unit.current_health, " / ", game.active_unit.base_max_health)
 		unit_moves_label.text = str("Moves: ", game.active_unit.current_moves, " / ", game.active_unit.base_max_moves)
 		unit_damage_label.text = game.active_unit.get_attack_string()
+		
+		if game.terrain.check_boundaries(terrain.world_to_map(get_global_mouse_position())):
+			cursor.get_node("DefenseLabel").text = str(game.active_unit.defense[game.get_terrain_type_at_cell(terrain.world_to_map(get_global_mouse_position()))], " %")
+		else:
+			cursor.get_node("DefenseLabel").text = str("")
 	else:
 		unit_health_label.text = str("Health: -")
 		unit_moves_label.text = str("Moves: -")
 		unit_damage_label.text = str("Attack: -")
+		
+		cursor.get_node("DefenseLabel").text = str("")
 
 func _draw():
 	# draw reachable cells
 	if game.active_unit:
 		for cell in terrain.get_reachable_cells_u(game.active_unit):
 			var pos = terrain.map_to_world_centered(cell)
-			draw_circle(pos, 5, Color(255, 255, 255))
+			if not pos == terrain.world_to_world_centered(get_global_mouse_position()):
+				draw_circle(pos, 5, Color(255, 255, 255))
 	
 	# draw path
-	for i in range(game.active_unit_path.size()):
+	for i in range(game.active_unit_path.size()-1):
 		draw_circle(terrain.map_to_world_centered(game.active_unit_path[i]), 5, Color(255, 0, 0))
 
 func show_grid():

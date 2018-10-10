@@ -16,3 +16,9 @@ resistance:
   fire: 100
   cold: 100
   arcane: 110
+defense:
+  flat: 40
+  forest: 70
+  hills: 50
+  mountains: 60
+  village: 60
