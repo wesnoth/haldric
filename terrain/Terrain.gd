@@ -55,19 +55,16 @@ func find_path_by_cell(start_cell, end_cell):
 			path2D.append(Vector2(point.x, point.y))
 	return path2D
 
-func get_reachable_cells_u(unit):
-	var start_cell = world_to_map(unit.position)
-	var reachable = []
-	reachable = get_reachable_cells_rec(start_cell, unit.current_moves, unit.movement, reachable)
-	return reachable
+func update_weight(unit):
+	for y in range(HEIGHT):
+		for x in range(WIDTH):
+			var id = flatten(x, y)
+			var cost =  unit.movement[tiles[id].terrain_type]
+			grid.set_point_weight_scale(id, cost)
 
-func get_reachable_cells_rec(_start_cell, _range, movement, reachable):
-	for cell in get_reachable_cells(_start_cell, 1):
-		var cost = movement[tiles[flatten_v(cell)].terrain_type]
-		if cost > _range or tiles[flatten_v(cell)].is_blocked or contains(reachable, cell):
-			continue
-		reachable.append(cell)
-		get_reachable_cells_rec(cell, _range - cost, movement, reachable)
+func get_reachable_cells_u(unit):
+	update_weight(unit)
+	var reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
 	return reachable
 
 func get_reachable_cells(_start_cell, _range):
@@ -80,14 +77,14 @@ func get_reachable_cells(_start_cell, _range):
 		var diff_z = abs(start_cube.z - cube.z)
 		if max(max(diff_x, diff_y), diff_z) > _range or tiles[flatten_v(cell)].is_blocked:
 			continue
-		reachable.append(cell)
-	return reachable
-
-func contains(reachable, cell):
-	for c in reachable:
-		if c == cell:
-			return true
-	return false
+		var path = grid.get_id_path(flatten_v(_start_cell), flatten_v(cell))
+		path.remove(0)
+		var weight = 0
+		for id in path:
+			weight += grid.get_point_weight_scale(id)
+		if weight <= _range:
+			reachable.append(cell)
+	return reachable 
 
 func are_neighbors(cell1, cell2):
 	var cell1_neighbors = _get_neighbors(cell1)

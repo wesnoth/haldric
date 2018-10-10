@@ -39,6 +39,7 @@ func _input(event):
 		
 		if is_unit_at_cell(mouse_cell) and active_unit == null:
 			active_unit = get_unit_at_cell(mouse_cell)
+			
 		elif is_unit_at_cell(mouse_cell) and active_unit != null:
 			var unit = get_unit_at_cell(mouse_cell)
 			
@@ -84,6 +85,7 @@ func get_terrain_type_at_cell(cell):
 		return terrain.tiles[terrain.flatten_v(cell)].terrain_type
 	else:
 		return null
+
 func can_fight(unit1, unit2):
 	if active_side == unit1.side:
 		if unit1.side != unit2.side:
