@@ -3,12 +3,14 @@ type: Orcish Assassin
 health: 26
 moves: 6
 image: res://units/images/orcs/assassin.png
+
 attack:
   name: throwing knives
   type: blade
   range: ranged
   damage: 3
   number: 3
+
 resistance:
   blade: 130
   pierce: 120
@@ -16,9 +18,17 @@ resistance:
   fire: 100
   cold: 100
   arcane: 100
+
 defense:
   flat: 60
   forest: 70
   hills: 70
   mountains: 70
   village: 70
+
+movement:
+  flat: 1
+  forest: 2
+  hills: 1
+  mountains: 2
+  village: 1

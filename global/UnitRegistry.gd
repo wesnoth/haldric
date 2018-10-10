@@ -17,7 +17,8 @@ func load_dir(path):
 			image = unit.image,
 			attack = unit.attack,
 			resistance = unit.resistance,
-			defense = unit.defense
+			defense = unit.defense,
+			movement = unit.movement
 		}
 
 func get_files_in_directory(path, files):

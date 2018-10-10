@@ -3,12 +3,14 @@ type: Orcish Archer
 health: 32
 moves: 5
 image: res://units/images/orcs/archer.png
+
 attack:
   name: bow
   type: pierce
   range: ranged
   damage: 6
   number: 3
+
 resistance:
   blade: 100
   pierce: 100
@@ -16,9 +18,17 @@ resistance:
   fire: 100
   cold: 100
   arcane: 100
+
 defense:
   flat: 40
   forest: 50
   hills: 50
   mountains: 50
   village: 60
+
+movement:
+  flat: 1
+  forest: 2
+  hills: 1
+  mountains: 2
+  village: 1

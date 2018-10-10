@@ -18,7 +18,8 @@ func _process(delta):
 		if init_path_size == 0:
 			init_path_size = path.size()
 		
-		var next_cell = terrain.map_to_world_centered(path[0])
+		var terrain_type = game.get_terrain_type_at_cell(path[0])
+		
 		var direction = get_move_direction()
 		var velocity = direction * speed * delta
 		

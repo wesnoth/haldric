@@ -13,6 +13,7 @@ var current_moves
 var attack = {}
 var resistance = {}
 var defense = {}
+var movement = {}
 
 var can_attack = true
 
@@ -28,6 +29,7 @@ func initialize(var reg_entry, side):
 	attack = reg_entry.attack
 	resistance = reg_entry.resistance
 	defense = reg_entry.defense
+	movement = reg_entry.movement
 	type = reg_entry.type
 	
 	texture = load(reg_entry.image)

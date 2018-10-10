@@ -3,12 +3,14 @@ type: Elvish Fighter
 health: 33
 moves: 5
 image: res://units/images/elves-wood/fighter.png
+
 attack:
   name: sword
   type: blade
   range: melee
   damage: 5
   number: 4
+
 resistance:
   blade: 100
   pierce: 100
@@ -16,9 +18,17 @@ resistance:
   fire: 100
   cold: 100
   arcane: 110
+
 defense:
   flat: 40
   forest: 60
   hills: 50
   mountains: 60
   village: 60
+
+movement:
+  flat: 1
+  forest: 1
+  hills: 2
+  mountains: 3
+  village: 1
