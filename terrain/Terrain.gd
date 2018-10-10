@@ -56,7 +56,18 @@ func find_path_by_cell(start_cell, end_cell):
 	return path2D
 
 func get_reachable_cells_u(unit):
-	var reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
+	var start_cell = world_to_map(unit.position)
+	var reachable = []
+	reachable = get_reachable_cells_rec(start_cell, unit.current_moves, unit.movement, reachable)
+	return reachable
+
+func get_reachable_cells_rec(_start_cell, _range, movement, reachable):
+	for cell in get_reachable_cells(_start_cell, 1):
+		var cost = movement[tiles[flatten_v(cell)].terrain_type]
+		if cost > _range or tiles[flatten_v(cell)].is_blocked or contains(reachable, cell):
+			continue
+		reachable.append(cell)
+		get_reachable_cells_rec(cell, _range - cost, movement, reachable)
 	return reachable
 
 func get_reachable_cells(_start_cell, _range):
@@ -71,6 +82,12 @@ func get_reachable_cells(_start_cell, _range):
 			continue
 		reachable.append(cell)
 	return reachable
+
+func contains(reachable, cell):
+	for c in reachable:
+		if c == cell:
+			return true
+	return false
 
 func are_neighbors(cell1, cell2):
 	var cell1_neighbors = _get_neighbors(cell1)
