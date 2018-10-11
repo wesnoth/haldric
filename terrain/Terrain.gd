@@ -37,6 +37,7 @@ func _ready():
 	_generate_points()
 	_generate_point_connections()
 
+
 # P U B L I C   F U N C T I O N S
 
 
@@ -126,6 +127,7 @@ func check_boundaries(cell):
 
 func _generate_tiles():
 	for y in range(HEIGHT):
+		var line = ""
 		for x in range(WIDTH):
 			var id = flatten(x, y)
 
@@ -156,8 +158,8 @@ func _generate_tiles():
 				is_village = type == "village",
 				is_blocked = false
 			}
-
-			# print(code, overlay_code)
+			line += code + overlay_code + ","
+		print(line)
 
 func _generate_points():
 	for y in range(HEIGHT):
