@@ -24,9 +24,9 @@ func _input(event):
 	if Input.is_action_just_pressed("mouse_right"):
 		sprite_builder.remove_darken()
 
-
 func _process(delta):
 	update()
+	update_reachable_cells()
 	
 	cursor.position = terrain.world_to_world_centered(get_global_mouse_position())
 	side_label.text = str("Side: ", game.active_side)
@@ -40,15 +40,18 @@ func _process(delta):
 			cursor.get_node("DefenseLabel").text = str("")
 	else:
 		unit_info.clear_unit_info()
-
 		cursor.get_node("DefenseLabel").text = str("")
+
+func _draw():
+	# draw path
+	for i in range(game.active_unit_path.size()-1):
+		draw_circle(terrain.map_to_world_centered(game.active_unit_path[i]), 5, Color(255, 0, 0))
 
 var last_cursor_position = Vector2(0, 0)
 var last_active_unit = null
+var last_active_unit_position = Vector2(0, 0)
 
-
-func _draw():
-	# draw reachable cells
+func update_reachable_cells():
 	var mouse_position = terrain.world_to_world_centered(get_global_mouse_position())
 	var unit = game.get_unit_at_position(mouse_position)
 	
@@ -63,10 +66,6 @@ func _draw():
 		sprite_builder.remove_darken()
 		sprite_builder.show_darken(terrain, terrain.get_reachable_cells_u(game.active_unit))
 		last_active_unit = game.active_unit
-	
-	# draw path
-	for i in range(game.active_unit_path.size()-1):
-		draw_circle(terrain.map_to_world_centered(game.active_unit_path[i]), 5, Color(255, 0, 0))
 
 
 func _on_end_turn_pressed():
