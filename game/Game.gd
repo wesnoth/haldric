@@ -80,6 +80,12 @@ func get_unit_at_cell(cell):
 			return u
 	return null
 
+func get_unit_at_position(unit_position):
+	for u in units.get_children():
+		if u.position == unit_position:
+			return u
+	return null
+
 func get_terrain_type_at_cell(cell):
 	if terrain.check_boundaries(cell):
 		return terrain.tiles[terrain.flatten_v(cell)].terrain_type

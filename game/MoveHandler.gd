@@ -15,8 +15,8 @@ onready var terrain = $"../Terrain"
 
 func _process(delta):
 
-	if path.size() > 0:
-		var terrain_type = game.get_terrain_type_at_cell(path[0])
+	if path.size() > 1:
+		var terrain_type = game.get_terrain_type_at_cell(path[1])
 		if unit.current_moves - unit.movement[terrain_type] < 0:
 			unit.position = terrain.world_to_world_centered(unit.position)
 			velocity = Vector2(0, 0)

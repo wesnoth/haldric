@@ -3,16 +3,19 @@
 [ext_resource path="res://interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://interface/images/brush.png" type="Texture" id=2]
 
-[node name="Interface" type="Node2D"]
+[node name="Interface" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
 [node name="GridContainer" type="Node" parent="." index="0"]
 
-[node name="Cursor" type="Sprite" parent="." index="1"]
+[node name="DarkenContainer" type="Node" parent="." index="1"]
 
+[node name="Cursor" type="Sprite" parent="." index="2"]
+
+z_index = 20
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Offset", "Transform" ]
+_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 
 [node name="DefenseLabel" type="Label" parent="Cursor" index="0"]
 
@@ -37,7 +40,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="HUD" type="CanvasLayer" parent="." index="2"]
+[node name="HUD" type="CanvasLayer" parent="." index="3"]
 
 layer = 1
 offset = Vector2( 0, 0 )
