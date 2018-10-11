@@ -33,6 +33,7 @@ var grid = AStar.new()
 onready var overlay = $"Overlay"
 
 func _ready():
+	_load_map()
 	var rect = get_used_rect()
 	WIDTH = rect.end.x
 	HEIGHT = rect.end.y
@@ -127,6 +128,28 @@ func check_boundaries(cell):
 	return (cell.x >= 0 and cell.y >= 0 and cell.x < WIDTH  and cell.y < HEIGHT)
 
 # P R I V A T E   F U N C T I O N S
+
+func _load_map():
+	var file = File.new()
+	file.open("res://terrain/testMap.map", file.READ)
+	var row = 0
+	var first = true
+	while not file.eof_reached():
+		var line = file.get_csv_line()
+		if (first):
+			WIDTH = line.size()
+			first = false
+		for i in range(line.size()):
+			var item = line[i].strip_edges().split("^")
+			var base = item[0]		
+			var id = tile_set.find_tile_by_name(base)			
+			set_cell(i, row, id)
+			if (item.size() == 2):
+				var overlay_id = tile_set.find_tile_by_name("^" + item[1])
+				overlay.set_cell(i,row, overlay_id)
+		row+=1
+	file.close();
+	HEIGHT = row -1
 
 func _generate_tiles():
 	for y in range(HEIGHT):
