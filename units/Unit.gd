@@ -23,7 +23,7 @@ func _ready():
 	lifebar.set_max_value(current_health)
 	lifebar.set_value(current_health)
 
-func initialize(var reg_entry, side):
+func initialize(reg_entry, side):
 	base_max_health = reg_entry.health
 	base_max_moves = reg_entry.moves
 	attack = reg_entry.attack
@@ -37,18 +37,6 @@ func initialize(var reg_entry, side):
 
 	current_moves = base_max_moves
 	current_health = base_max_health
-
-func fight(unit, attacker_terrain, defender_terrain):
-	print("\n", "Combat starts | Counter: ", attack.range == unit.attack.range, " | Type: ", attack.type, " vs ", unit.resistance[attack.type])
-	randomize()
-	print(max(attack.number, unit.attack.number))
-	for i in range(max(attack.number, unit.attack.number)):
-		if unit.current_health > 0 and attack.number > i:
-			unit.harm(type, attack.damage, attack.type, defender_terrain)
-		if unit.current_health > 0 and unit.attack.number > i and attack.range == unit.attack.range:
-			harm(unit.type, unit.attack.damage, unit.attack.type, attacker_terrain)
-	can_attack = false
-	current_moves = 0
 
 func heal(value):
 	_set_current_health(current_health + value)

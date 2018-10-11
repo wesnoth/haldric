@@ -10,6 +10,8 @@ var active_unit = null
 var active_unit_path = []
 
 onready var move_handler = $"MoveHandler"
+onready var combat_handler = $"CombatHandler"
+
 onready var terrain = $"Terrain"
 onready var units = $"UnitContainer"
 
@@ -44,14 +46,14 @@ func _input(event):
 			var unit = get_unit_at_cell(mouse_cell)
 
 			if can_fight(active_unit, unit):
-				active_unit.fight(unit, get_terrain_type_at_cell(terrain.world_to_map(active_unit.position)), get_terrain_type_at_cell(terrain.world_to_map(unit.position)))
+				var attacker_terrain = get_terrain_type_at_cell(terrain.world_to_map(active_unit.position))
+				var defender_terrain = get_terrain_type_at_cell(terrain.world_to_map(unit.position))
 
-				if active_unit.current_health < 1:
-					active_unit.queue_free()
+				combat_handler.start_fight(active_unit, attacker_terrain , unit, defender_terrain)
+
+				if active_unit:
 					active_unit = null
-
-				if unit.current_health < 1:
-					unit.queue_free()
+					active_unit_path = null
 		elif !is_unit_at_cell(mouse_cell) and active_unit and !is_cell_blocked(mouse_cell) and active_side == active_unit.side:
 			move_handler.move_unit(active_unit, active_unit_path)
 
