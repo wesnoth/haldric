@@ -5,7 +5,7 @@
 [ext_resource path="res://interface/images/cursor.png" type="Texture" id=3]
 [ext_resource path="res://interface/hud/UnitInfo.gd" type="Script" id=4]
 
-[node name="Interface" type="Node2D" index="0"]
+[node name="Interface" type="Node2D"]
 
 script = ExtResource( 1 )
 

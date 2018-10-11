@@ -1,7 +1,5 @@
 extends TileMap
 
-const village_id = 10
-
 enum DIRECTION {SE, NE, N, NW, SW, S}
 
 export (int) var WIDTH = 20
@@ -155,7 +153,7 @@ func _generate_tiles():
 			tiles[id] = {
 				terrain_type = type,
 				terrain_code = code + overlay_code,
-				is_village = overlay.get_cell(x, y) == village_id,
+				is_village = type == "village",
 				is_blocked = false
 			}
 
