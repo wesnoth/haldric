@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/selection-overlay.png-9390bd20da5348c2a2ee32e724f04cc1.stex"
+path="res://.import/cursor.png-459cf6b739208bf4fbaec96ae1af4efc.stex"
 
 [deps]
 
-source_file="res://interface/images/selection-overlay.png"
-dest_files=[ "res://.import/selection-overlay.png-9390bd20da5348c2a2ee32e724f04cc1.stex" ]
+source_file="res://interface/images/cursor.png"
+dest_files=[ "res://.import/cursor.png-459cf6b739208bf4fbaec96ae1af4efc.stex" ]
 
 [params]
 
