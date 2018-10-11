@@ -1,12 +1,12 @@
 extends TileMap
 
-enum DIRECTION {SE, NE, N, NW, SW, S}
-
-export (int) var WIDTH = 20
-export (int) var HEIGHT = 15
+var WIDTH
+var HEIGHT
 
 var offset = Vector2(36, 36)
 
+# enum DIRECTION {SE, NE, N, NW, SW, S}
+# that's the order of the neighbors in the lookup table
 var neighbor_table = [
 	# EVEN col, ALL rows
     [
@@ -33,10 +33,14 @@ var grid = AStar.new()
 onready var overlay = $"Overlay"
 
 func _ready():
+	var rect = get_used_rect()
+	WIDTH = rect.end.x
+	HEIGHT = rect.end.y
+	
 	_generate_tiles()
 	_generate_points()
 	_generate_point_connections()
-
+	
 
 # P U B L I C   F U N C T I O N S
 
