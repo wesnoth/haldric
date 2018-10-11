@@ -5,6 +5,8 @@ var HEIGHT
 
 var offset = Vector2(36, 36)
 
+var map_string = ""
+
 # enum DIRECTION {SE, NE, N, NW, SW, S}
 # that's the order of the neighbors in the lookup table
 var neighbor_table = [
@@ -34,14 +36,15 @@ onready var overlay = $"Overlay"
 
 func _ready():
 	_load_map()
-	var rect = get_used_rect()
-	WIDTH = rect.end.x
-	HEIGHT = rect.end.y
+
+	WIDTH = get_used_rect().end.x
+	HEIGHT = get_used_rect().end.y	
 	
 	_generate_tiles()
 	_generate_points()
 	_generate_point_connections()
 	
+	# _save_map()
 
 # P U B L I C   F U N C T I O N S
 
@@ -141,8 +144,8 @@ func _load_map():
 			first = false
 		for i in range(line.size()):
 			var item = line[i].strip_edges().split("^")
-			var base = item[0]		
-			var id = tile_set.find_tile_by_name(base)			
+			var base = item[0]
+			var id = tile_set.find_tile_by_name(base)
 			set_cell(i, row, id)
 			if (item.size() == 2):
 				var overlay_id = tile_set.find_tile_by_name("^" + item[1])
@@ -151,15 +154,21 @@ func _load_map():
 	file.close();
 	HEIGHT = row -1
 
+func _save_map():
+	var file = File.new()
+	if file.open("res://terrain/newMap.map", File.WRITE) != OK:
+		print("could not save file")
+	file.store_line(map_string)
+	file.close()
+
 func _generate_tiles():
 	for y in range(HEIGHT):
-		var line = ""
 		for x in range(WIDTH):
 			var id = flatten(x, y)
 			
-			if get_cell(x, y) == -1:
+			if get_cell(x, y) == TileMap.INVALID_CELL:
 				set_cell(x, y, tile_set.find_tile_by_name("Xv"))
-				overlay.set_cell(x, y, -1)
+				overlay.set_cell(x, y, TileMap.INVALID_CELL)
 			
 			var code = tile_set.tile_get_name(get_cell(x, y))
 			var overlay_code = ""
@@ -190,8 +199,8 @@ func _generate_tiles():
 				is_village = type == "village",
 				is_blocked = false
 			}
-			line += code + overlay_code + ","
-		print(line)
+			map_string += code + overlay_code + ","
+		map_string += "\n"
 
 func _generate_points():
 	for y in range(HEIGHT):
