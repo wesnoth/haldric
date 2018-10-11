@@ -29,7 +29,9 @@ func initialize(reg_entry, side):
 	attack = reg_entry.attack
 	resistance = reg_entry.resistance
 	defense = reg_entry.defense
+	defense["impassable"] = 0
 	movement = reg_entry.movement
+	movement["impassable"] = 99
 	type = reg_entry.type
 
 	texture = load(reg_entry.image)
