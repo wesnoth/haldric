@@ -72,8 +72,8 @@ func heal(value):
 	_set_current_health(current_health + value)
 	print(id, " healed by ", value)
 
-func harm(attacker_unit_id, damage, attack_type, terrain):
-	var hit_chance = float(100 - defense[terrain]) / 100.0
+func harm(attacker_unit_id, damage, attack_type, defense):
+	var hit_chance = float(100 - defense) / 100.0
 	print("Hit Chance: ", hit_chance)
 	if randf() <= hit_chance:
 		var mod = float(resistance[attack_type]) / 100.0
