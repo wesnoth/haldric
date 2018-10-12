@@ -66,7 +66,7 @@ func update_weight(unit):
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
 			var id = flatten(x, y)
-			var cost =  unit.movement[tiles[id].terrain_type]
+			var cost =  unit.get_move_terrain_type(tiles[id].terrain_type)
 			grid.set_point_weight_scale(id, cost)
 
 func get_reachable_cells_u(unit):
@@ -139,7 +139,7 @@ func _load_map():
 	var first = true
 	while not file.eof_reached():
 		var line = file.get_csv_line()
-		if (first):
+		if first:
 			WIDTH = line.size()
 			first = false
 		for i in range(line.size()):
@@ -147,7 +147,7 @@ func _load_map():
 			var base = item[0]
 			var id = tile_set.find_tile_by_name(base)
 			set_cell(i, row, id)
-			if (item.size() == 2):
+			if item.size() == 2:
 				var overlay_id = tile_set.find_tile_by_name("^" + item[1])
 				overlay.set_cell(i,row, overlay_id)
 		row+=1
@@ -179,22 +179,32 @@ func _generate_tiles():
 				overlay_code = tile_set.tile_get_name(overlay_cell)
 
 			var type
+			var overlayType
+			if not overlay_code.empty():
+				match overlay_code[1]:
+					"V":
+						overlayType = "village"
+					"F":
+						overlayType = "forest"
+					_:
+						overlayType = "Unknown"
+			else: 
+				overlayType = ""
 
-			if overlay_code == "^Vh":
-				type = "village"
-			elif overlay_code[1] == "F":
-				type = "forest"
-			elif code == "Xv":
-				type = "impassable"
-			elif code[0] == "G":
-				type = "flat"
-			elif code[0] == "H":
-				type = "hills"
-			elif code[0] == "M":
-				type = "mountains"
+			match code[0]:					
+				"X":
+					type = "impassable"
+				"G":
+					type = "flat"
+				"H":
+					type = "hills"
+				"M":
+					type = "mountains"
+				_:
+					type = "Unknown"
 
 			tiles[id] = {
-				terrain_type = type,
+				terrain_type = [type,overlayType],
 				terrain_code = code + overlay_code,
 				is_village = type == "village",
 				is_blocked = false

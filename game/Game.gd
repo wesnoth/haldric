@@ -52,8 +52,8 @@ func _input(event):
 			var unit = get_unit_at_cell(mouse_cell)
 
 			if can_fight(active_unit, unit):
-				var attacker_terrain = get_terrain_type_at_cell(terrain.world_to_map(active_unit.position))
-				var defender_terrain = get_terrain_type_at_cell(terrain.world_to_map(unit.position))
+				var attacker_terrain = active_unit.get_defense_terrain_type(get_terrain_type_at_cell(terrain.world_to_map(active_unit.position)))
+				var defender_terrain = unit.get_defense_terrain_type(get_terrain_type_at_cell(terrain.world_to_map(unit.position)))
 
 				combat_handler.start_fight(active_unit, attacker_terrain , unit, defender_terrain)
 

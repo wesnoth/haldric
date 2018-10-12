@@ -17,7 +17,7 @@ func _process(delta):
 
 	if path.size() > 1:
 		var terrain_type = game.get_terrain_type_at_cell(path[1])
-		if unit.current_moves - unit.movement[terrain_type] < 0:
+		if unit.current_moves - unit.get_move_terrain_type(terrain_type) < 0:
 			unit.position = terrain.world_to_world_centered(unit.position)
 			velocity = Vector2(0, 0)
 			unit = null
@@ -37,7 +37,7 @@ func _process(delta):
 		if unit.position.distance_to(terrain.map_to_world_centered(path[0])) <= 6:
 
 			if path.size() < init_path_size:
-				unit.current_moves -= unit.movement[terrain_type]
+				unit.current_moves -= unit.get_move_terrain_type(terrain_type)
 
 			last_point = path[0]
 			path.remove(0)
