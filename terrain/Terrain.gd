@@ -148,11 +148,6 @@ func get_map_string():
 			else:
 				string += code + overlay_code
 		string += "\n"
-<<<<<<< HEAD
-		
-# P R I V A T E   F U N C T I O N S
-=======
->>>>>>> e452d42072a797d837e5f2bfc9fc7f70a71c6573
 
 func _generate_tiles():
 	for y in range(HEIGHT):
@@ -172,10 +167,6 @@ func _generate_tiles():
 				overlay_code = tile_set.tile_get_name(overlay_cell)
 
 			var type
-<<<<<<< HEAD
-=======
-
->>>>>>> e452d42072a797d837e5f2bfc9fc7f70a71c6573
 			var overlayType
 			if not overlay_code.empty():
 				match overlay_code[1]:
