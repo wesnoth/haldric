@@ -32,5 +32,8 @@ func start_fight(attacker, attacker_defense, defender, defender_defense):
 			defender.queue_free()
 			return
 
+	attacker.experience += defender.level
+	defender.experience += attacker.level
+	
 	attacker.can_attack = false
 	attacker.current_moves = 0
