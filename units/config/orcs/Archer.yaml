@@ -4,7 +4,7 @@ level: 1
 health: 32
 moves: 5
 experience: 30
-advances_to: null
+advances_to: Peter Pan
 image: res://units/images/orcs/archer.png
 
 attack:
