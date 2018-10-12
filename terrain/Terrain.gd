@@ -172,15 +172,15 @@ func _generate_tiles():
 
 			if overlay_code == "^Vh":
 				type = "village"
-			elif overlay_code[1] == "F":
+			elif overlay_code == "^Fp" or overlay_code == "^Fdf" or overlay_code == "^Fmf" or overlay_code == "^Fds" or overlay_code == "^Fmw":
 				type = "forest"
 			elif code == "Xv":
 				type = "impassable"
-			elif code[0] == "G":
+			elif code == "Gg" or code == "Gd" or code == "Gs" or code == "Gll":
 				type = "flat"
-			elif code[0] == "H":
+			elif code == "Hh" or code == "Ha" or code == "Hd" or code == "Hhd":
 				type = "hills"
-			elif code[0] == "M":
+			elif code == "Mm" or code == "Md" or code == "Ms":
 				type = "mountains"
 
 			tiles[id] = {
