@@ -5,6 +5,7 @@
 
 [node name="Terrain" type="TileMap"]
 
+position = Vector2( -1, 0 )
 mode = 0
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 54, 72 )
