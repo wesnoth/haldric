@@ -16,6 +16,10 @@ func _process(delta):
 
 	if path.size() > 1:
 		var terrain_type = game.get_terrain_type_at_cell(path[1])
+<<<<<<< HEAD
+=======
+
+>>>>>>> e452d42072a797d837e5f2bfc9fc7f70a71c6573
 		if unit.current_moves - unit.get_movement_cost(terrain_type) < 0:
 			unit.position = game.terrain.world_to_world_centered(unit.position)
 			velocity = Vector2(0, 0)
