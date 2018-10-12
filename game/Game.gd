@@ -11,22 +11,25 @@ var active_side = 1
 var active_unit = null
 var active_unit_path = []
 
+var terrain
+
 onready var move_handler = $"MoveHandler"
 onready var combat_handler = $"CombatHandler"
 
-onready var terrain = $"Terrain"
+onready var map = $"Map"
 onready var units = $"UnitContainer"
 
 func _ready():
 	UnitRegistry.load_dir("res://units/config")
 	UnitRegistry.validate_advancements()
 	
+	map.add_child(MapLoader.load_map("res://maps/testMap.map"))
+	terrain = map.get_child(0)
+	
 	create_unit("Elvish Fighter", 1, 10, 1);
 	create_unit("Elvish Archer", 1, 11, 1);
 	create_unit("Elvish Scout", 1, 9, 1);
 	create_unit("Elvish Shaman", 1, 8, 1);
-	
-	
 	
 	create_unit("Orcish Grunt", 2, 10, 13);
 	create_unit("Orcish Archer", 2, 9, 13);
