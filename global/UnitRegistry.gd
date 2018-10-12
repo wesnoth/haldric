@@ -26,7 +26,7 @@ func load_dir(path):
 
 func validate_advancements():
 	for unit in registry.values():
-		if !registry.has(str(unit.advances_to)) and unit.advances_to != null:
+		if !registry.has(unit.advances_to) and unit.advances_to != null:
 			print(unit.id, ": Invalid Advancement! ", unit.advances_to, " does not exist!")
 
 func get_files_in_directory(path, files):
