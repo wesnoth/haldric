@@ -72,8 +72,8 @@ func heal(value):
 	_set_current_health(current_health + value)
 	print(id, " healed by ", value)
 
-func harm(attacker_unit_id, damage, attack_type, terrain):
-	var hit_chance = float(100 - defense[terrain]) / 100.0
+func harm(attacker_unit_id, damage, attack_type, defense):
+	var hit_chance = float(100 - defense) / 100.0
 	print("Hit Chance: ", hit_chance)
 	if randf() <= hit_chance:
 		var mod = float(resistance[attack_type]) / 100.0
@@ -93,6 +93,22 @@ func get_attack_string():
 func update_lifebar():
 	lifebar.set_max_value(base_max_health)
 	lifebar.set_value(current_health)
+
+func get_movement_cost(terrain_type):
+	if terrain_type[1] == "":
+		return movement[terrain_type[0]]
+	if movement[terrain_type[0]] > movement[terrain_type[1]] :
+		return movement[terrain_type[0]]
+	else:
+		return movement[terrain_type[1]]
+
+func get_defense(terrain_type):
+	if terrain_type[1] == "":
+		return defense[terrain_type[0]]
+	if defense[terrain_type[0]] > defense[terrain_type[1]] :
+		return defense[terrain_type[0]]
+	else:
+		return defense[terrain_type[1]]
 
 func _set_current_health(new_health):
 	if new_health <= base_max_health:

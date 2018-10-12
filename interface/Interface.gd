@@ -36,8 +36,8 @@ func _process(delta):
 	if game.active_unit:
 		unit_info.update_unit_info(game.active_unit)
 
-		if game.terrain.check_boundaries(game.terrain.world_to_map(get_global_mouse_position())):
-			cursor.get_node("DefenseLabel").text = str(game.active_unit.defense[game.get_terrain_type_at_cell(game.terrain.world_to_map(get_global_mouse_position()))], " %")
+		if game.terrain.check_boundaries(terrain.world_to_map(get_global_mouse_position())):
+			cursor.get_node("DefenseLabel").text = str(game.active_unit.get_defense(game.get_terrain_type_at_cell(terrain.world_to_map(get_global_mouse_position()))), " %")
 		else:
 			cursor.get_node("DefenseLabel").text = str("")
 	else:

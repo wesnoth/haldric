@@ -62,7 +62,7 @@ func update_weight(unit):
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
 			var id = flatten(x, y)
-			var cost =  unit.movement[tiles[id].terrain_type]
+			var cost =  unit.get_movement_cost(tiles[id].terrain_type)
 			grid.set_point_weight_scale(id, cost)
 
 func get_reachable_cells_u(unit):
@@ -148,8 +148,6 @@ func get_map_string():
 			else:
 				string += code + overlay_code
 		string += "\n"
-		
-# P R I V A T E   F U N C T I O N S
 
 func _generate_tiles():
 	for y in range(HEIGHT):
@@ -170,21 +168,32 @@ func _generate_tiles():
 
 			var type
 
-			if overlay_code == "^Vh":
-				type = "village"
-			elif overlay_code == "^Fp" or overlay_code == "^Fdf" or overlay_code == "^Fmf" or overlay_code == "^Fds" or overlay_code == "^Fmw":
-				type = "forest"
-			elif code == "Xv":
-				type = "impassable"
-			elif code == "Gg" or code == "Gd" or code == "Gs" or code == "Gll":
-				type = "flat"
-			elif code == "Hh" or code == "Ha" or code == "Hd" or code == "Hhd":
-				type = "hills"
-			elif code == "Mm" or code == "Md" or code == "Ms":
-				type = "mountains"
+			var overlayType
+			if not overlay_code.empty():
+				match overlay_code[1]:
+					"V":
+						overlayType = "village"
+					"F":
+						overlayType = "forest"
+					_:
+						overlayType = "unknown"
+			else: 
+				overlayType = ""
+
+			match code[0]:					
+				"X":
+					type = "impassable"
+				"G":
+					type = "flat"
+				"H":
+					type = "hills"
+				"M":
+					type = "mountains"
+				_:
+					type = "unknown"
 
 			tiles[id] = {
-				terrain_type = type,
+				terrain_type = [type,overlayType],
 				terrain_code = code + overlay_code,
 				is_village = type == "village",
 				is_blocked = false

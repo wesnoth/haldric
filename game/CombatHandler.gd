@@ -2,7 +2,7 @@ extends Node
 
 const xp_per_level = 8
 
-func start_fight(attacker, attacker_terrain, defender, defender_terrain):
+func start_fight(attacker, attacker_defense, defender, defender_defense):
 	
 	randomize()
 	
@@ -12,7 +12,7 @@ func start_fight(attacker, attacker_terrain, defender, defender_terrain):
 
 		if attacker.current_health > 0:
 			if attacker.attack.strikes > i:
-				defender.harm(attacker.id, attacker.attack.damage, attacker.attack.type, defender_terrain)
+				defender.harm(attacker.id, attacker.attack.damage, attacker.attack.type, defender_defense)
 		else:
 			if attacker.level > 0:
 				defender.current_experience += attacker.level * xp_per_level
@@ -23,7 +23,7 @@ func start_fight(attacker, attacker_terrain, defender, defender_terrain):
 
 		if defender.current_health > 0:
 			if defender.attack.strikes > i and attacker.attack.range == defender.attack.range:
-				attacker.harm(defender.id, defender.attack.damage, defender.attack.type, attacker_terrain)
+				attacker.harm(defender.id, defender.attack.damage, defender.attack.type, attacker_defense)
 		else:
 			if defender.level > 0:
 				attacker.current_experience += defender.level * xp_per_level
