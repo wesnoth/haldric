@@ -24,6 +24,9 @@ func _ready():
 	create_unit("Elvish Archer", 1, 11, 1);
 	create_unit("Elvish Scout", 1, 9, 1);
 	create_unit("Elvish Shaman", 1, 8, 1);
+	
+	
+	
 	create_unit("Orcish Grunt", 2, 10, 13);
 	create_unit("Orcish Archer", 2, 9, 13);
 	create_unit("Orcish Assassin", 2, 11, 13);

@@ -4,6 +4,7 @@ level: 1
 health: 38
 moves: 5
 experience: 42
+advances_to: null
 image: res://units/images/orcs/grunt.png
 
 attack:

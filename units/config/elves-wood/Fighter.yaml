@@ -4,6 +4,7 @@ level: 1
 health: 33
 moves: 5
 experience: 40
+advances_to: null
 image: res://units/images/elves-wood/fighter.png
 
 attack:

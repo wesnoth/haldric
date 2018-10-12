@@ -74,8 +74,8 @@ func get_reachable_cells_u(unit):
 	var reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
 	return reachable
 
-func get_reachable_cells(_start_cell, _range):
-	var start_cube = v2_to_v3(_start_cell)
+func get_reachable_cells(start_cell, _range):
+	var start_cube = v2_to_v3(start_cell)
 	var reachable = []
 	for cell in get_used_cells():
 		var cube = v2_to_v3(cell)
@@ -84,7 +84,7 @@ func get_reachable_cells(_start_cell, _range):
 		var diff_z = abs(start_cube.z - cube.z)
 		if max(max(diff_x, diff_y), diff_z) > _range or tiles[flatten_v(cell)].is_blocked:
 			continue
-		var path = grid.get_id_path(flatten_v(_start_cell), flatten_v(cell))
+		var path = grid.get_id_path(flatten_v(start_cell), flatten_v(cell))
 		path.remove(0)
 		var weight = 0
 		for id in path:
