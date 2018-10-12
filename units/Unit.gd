@@ -94,7 +94,7 @@ func update_lifebar():
 	lifebar.set_max_value(base_max_health)
 	lifebar.set_value(current_health)
 
-func get_move_terrain_type(terrain_type):
+func get_movement_cost(terrain_type):
 	if terrain_type[1] == "":
 		return movement[terrain_type[0]]
 	if movement[terrain_type[0]] > movement[terrain_type[1]] :
@@ -102,7 +102,7 @@ func get_move_terrain_type(terrain_type):
 	else:
 		return movement[terrain_type[1]]
 
-func get_defense_terrain_type(terrain_type):
+func get_defense(terrain_type):
 	if terrain_type[1] == "":
 		return defense[terrain_type[0]]
 	if defense[terrain_type[0]] > defense[terrain_type[1]] :

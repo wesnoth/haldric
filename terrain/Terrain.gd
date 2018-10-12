@@ -66,7 +66,7 @@ func update_weight(unit):
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
 			var id = flatten(x, y)
-			var cost =  unit.get_move_terrain_type(tiles[id].terrain_type)
+			var cost =  unit.get_movement_cost(tiles[id].terrain_type)
 			grid.set_point_weight_scale(id, cost)
 
 func get_reachable_cells_u(unit):
@@ -187,7 +187,7 @@ func _generate_tiles():
 					"F":
 						overlayType = "forest"
 					_:
-						overlayType = "Unknown"
+						overlayType = "unknown"
 			else: 
 				overlayType = ""
 
@@ -201,7 +201,7 @@ func _generate_tiles():
 				"M":
 					type = "mountains"
 				_:
-					type = "Unknown"
+					type = "unknown"
 
 			tiles[id] = {
 				terrain_type = [type,overlayType],
