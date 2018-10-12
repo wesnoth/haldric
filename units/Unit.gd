@@ -29,7 +29,7 @@ func _ready():
 	update_lifebar()
 
 func _process(delta):
-	if current_experience >= base_experience:
+	if current_experience >= base_experience and advances_to != null:
 		advance(UnitRegistry.registry[advances_to])
 
 func initialize(reg_entry, side):
