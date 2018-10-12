@@ -53,7 +53,7 @@ func _input(event):
 
 				if active_unit:
 					active_unit = null
-					active_unit_path = null
+					active_unit_path = []
 		elif !is_unit_at_cell(mouse_cell) and active_unit and !is_cell_blocked(mouse_cell) and active_side == active_unit.side:
 			move_handler.move_unit(active_unit, active_unit_path)
 
