@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 UnitRegistry="*res://global/UnitRegistry.gd"
+MapLoader="*res://global/MapLoader.gd"
 
 [display]
 

@@ -1,30 +1,32 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game/Game.gd" type="Script" id=1]
-[ext_resource path="res://terrain/Terrain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://game/MoveHandler.gd" type="Script" id=3]
-[ext_resource path="res://game/CombatHandler.gd" type="Script" id=4]
-[ext_resource path="res://interface/Interface.tscn" type="PackedScene" id=5]
-[ext_resource path="res://interface/WesnothCamera.gd" type="Script" id=6]
+[ext_resource path="res://game/MoveHandler.gd" type="Script" id=2]
+[ext_resource path="res://game/CombatHandler.gd" type="Script" id=3]
+[ext_resource path="res://interface/Interface.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/WesnothCamera.gd" type="Script" id=5]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Cell", "Transform" ]
 
-[node name="Terrain" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Map" type="Node" parent="." index="0"]
 
 [node name="UnitContainer" type="Node" parent="." index="1"]
 
 [node name="MoveHandler" type="Node" parent="." index="2"]
 
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="CombatHandler" type="Node" parent="." index="3"]
 
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 
-[node name="Interface" parent="." index="4" instance=ExtResource( 5 )]
+[node name="Interface" parent="." index="4" instance=ExtResource( 4 )]
+
+z_index = 2
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Camera" type="Camera2D" parent="." index="5"]
 
@@ -51,7 +53,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 _sections_unfolded = [ "Smoothing" ]
 
 

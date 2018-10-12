@@ -32,19 +32,15 @@ var neighbor_table = [
 var tiles = {}
 var grid = AStar.new()
 
-onready var overlay = $"Overlay"
+var overlay = TileMap.new()
 
 func _ready():
-	_load_map()
-
 	WIDTH = get_used_rect().end.x
-	HEIGHT = get_used_rect().end.y	
+	HEIGHT = get_used_rect().end.y
 	
 	_generate_tiles()
 	_generate_points()
 	_generate_point_connections()
-	
-	# _save_map()
 
 # P U B L I C   F U N C T I O N S
 
@@ -130,36 +126,30 @@ func flatten(_x, _y):
 func check_boundaries(cell):
 	return (cell.x >= 0 and cell.y >= 0 and cell.x < WIDTH  and cell.y < HEIGHT)
 
+func get_map_string():
+	var string = ""
+	
+	for y in range(HEIGHT):
+		for x in range(WIDTH):
+			var id = flatten(x, y)
+			if get_cell(x, y) == TileMap.INVALID_CELL:
+				set_cell(x, y, tile_set.find_tile_by_name("Xv"))
+				overlay.set_cell(x, y, TileMap.INVALID_CELL)
+			
+			var code = tile_set.tile_get_name(get_cell(x, y))
+			var overlay_code = ""
+
+			var overlay_cell = overlay.get_cell(x, y)
+
+			if overlay_cell != TileMap.INVALID_CELL:
+				overlay_code = tile_set.tile_get_name(overlay_cell)
+			if x < WIDTH - 1 and y < HEIGHT - 1:
+				string += code + overlay_code + ","
+			else:
+				string += code + overlay_code
+		string += "\n"
+		
 # P R I V A T E   F U N C T I O N S
-
-func _load_map():
-	var file = File.new()
-	file.open("res://terrain/testMap.map", file.READ)
-	var row = 0
-	var first = true
-	while not file.eof_reached():
-		var line = file.get_csv_line()
-		if (first):
-			WIDTH = line.size()
-			first = false
-		for i in range(line.size()):
-			var item = line[i].strip_edges().split("^")
-			var base = item[0]
-			var id = tile_set.find_tile_by_name(base)
-			set_cell(i, row, id)
-			if (item.size() == 2):
-				var overlay_id = tile_set.find_tile_by_name("^" + item[1])
-				overlay.set_cell(i,row, overlay_id)
-		row+=1
-	file.close();
-	HEIGHT = row -1
-
-func _save_map():
-	var file = File.new()
-	if file.open("res://terrain/newMap.map", File.WRITE) != OK:
-		print("could not save file")
-	file.store_line(map_string)
-	file.close()
 
 func _generate_tiles():
 	for y in range(HEIGHT):
