@@ -1,7 +1,10 @@
 name: Orcish Archer
-type: Orcish Archer
+id: Orcish Archer
+level: 1
 health: 32
 moves: 5
+experience: 30
+advances_to: Peter Pan
 image: res://units/images/orcs/archer.png
 
 attack:
@@ -9,7 +12,7 @@ attack:
   type: pierce
   range: ranged
   damage: 6
-  number: 3
+  strikes: 3
 
 resistance:
   blade: 100

@@ -3,6 +3,8 @@ extends Node2D
 const unit_rest_heal = 2
 const unit_village_heal = 8
 
+var turn = 1
+
 var sides = 2
 var active_side = 1
 
@@ -17,11 +19,15 @@ onready var units = $"UnitContainer"
 
 func _ready():
 	UnitRegistry.load_dir("res://units/config")
-
+	UnitRegistry.validate_advancements()
+	
 	create_unit("Elvish Fighter", 1, 10, 1);
 	create_unit("Elvish Archer", 1, 11, 1);
 	create_unit("Elvish Scout", 1, 9, 1);
 	create_unit("Elvish Shaman", 1, 8, 1);
+	
+	
+	
 	create_unit("Orcish Grunt", 2, 10, 13);
 	create_unit("Orcish Archer", 2, 9, 13);
 	create_unit("Orcish Assassin", 2, 11, 13);
@@ -53,7 +59,7 @@ func _input(event):
 
 				if active_unit:
 					active_unit = null
-					active_unit_path = null
+					active_unit_path = []
 		elif !is_unit_at_cell(mouse_cell) and active_unit and !is_cell_blocked(mouse_cell) and active_side == active_unit.side:
 			move_handler.move_unit(active_unit, active_unit_path)
 
@@ -61,8 +67,8 @@ func _input(event):
 		active_unit = null
 		active_unit_path = []
 
-func create_unit(type, side, x, y):
-	var unit = UnitRegistry.create(type, side)
+func create_unit(id, side, x, y):
+	var unit = UnitRegistry.create(id, side)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
 	units.add_child(unit)
 
@@ -106,6 +112,7 @@ func can_fight(unit1, unit2):
 
 func end_turn():
 	active_side = (active_side % sides) + 1
+	
 	for u in units.get_children():
 		if u.side == active_side:
 			if u.current_moves == u.base_max_moves and u.current_health < u.base_max_health:
@@ -113,3 +120,6 @@ func end_turn():
 			if terrain.tiles[terrain.flatten_v(terrain.world_to_map(u.position))].is_village:
 				u.heal(unit_village_heal)
 			u.restore_current_moves()
+	
+	if active_side == 1:
+		turn += 1

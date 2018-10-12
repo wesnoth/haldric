@@ -9,17 +9,25 @@ func load_dir(path):
 	files = get_files_in_directory(path, files)
 	for file in files:
 		var unit = yaml_parser.parse(file.get_as_text())
-		registry[unit.type] = {
-			type = unit.type,
+		registry[unit.id] = {
+			id = unit.id,
 			name = unit.name,
+			level = unit.level,
 			health = unit.health,
 			moves = unit.moves,
+			experience = unit.experience,
+			advances_to = unit.advances_to,
 			image = unit.image,
 			attack = unit.attack,
 			resistance = unit.resistance,
 			defense = unit.defense,
 			movement = unit.movement
 		}
+
+func validate_advancements():
+	for unit in registry.values():
+		if !registry.has(unit.advances_to) and unit.advances_to != null:
+			print(unit.id, ": Invalid Advancement! ", unit.advances_to, " does not exist!")
 
 func get_files_in_directory(path, files):
 	var dir = Directory.new()
@@ -42,7 +50,7 @@ func get_files_in_directory(path, files):
 	dir.list_dir_end()
 	return files
 
-func create(type, side):
+func create(id, side):
 	var unit = load("res://units/Unit.tscn").instance()
-	unit.initialize(registry[type], side)
+	unit.initialize(registry[id], side)
 	return unit

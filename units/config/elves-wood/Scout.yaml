@@ -1,7 +1,10 @@
 name: Elvish Scout
-type: Elvish Scout
+id: Elvish Scout
+level: 1
 health: 32
 moves: 9
+experience: 32
+advances_to: null
 image: res://units/images/elves-wood/scout.png
 
 attack:
@@ -9,7 +12,7 @@ attack:
   type: blade
   range: melee
   damage: 4
-  number: 3
+  strikes: 3
 
 resistance:
   blade: 100

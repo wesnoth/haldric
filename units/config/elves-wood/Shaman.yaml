@@ -1,7 +1,10 @@
 name: Elvish Shaman
-type: Elvish Shaman
+id: Elvish Shaman
+level: 1
 health: 26
 moves: 5
+experience: 32
+advances_to: null
 image: res://units/images/elves-wood/shaman.png
 
 attack:
@@ -9,7 +12,7 @@ attack:
   type: impact
   range: melee
   damage: 3
-  number: 2
+  strikes: 2
 
 resistance:
   blade: 100

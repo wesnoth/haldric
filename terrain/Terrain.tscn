@@ -3,9 +3,8 @@
 [ext_resource path="res://terrain/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://terrain/Terrain.gd" type="Script" id=2]
 
-[node name="Terrain" type="TileMap"]
+[node name="Terrain" type="TileMap" index="0"]
 
-position = Vector2( -1, 0 )
 mode = 0
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 54, 72 )

@@ -1,17 +1,17 @@
-name: Troll Whelp
-id: Troll Whelp
-level: 1
-health: 42
+name: Troll
+id: Troll
+level: 2
+health: 55
 moves: 5
-experience: 36
-advances_to: Troll
-image: res://units/images/trolls/whelp.png
+experience: 66
+advances_to: null
+image: res://units/images/trolls/troll.png
 
 attack:
-  name: fist
+  name: club
   type: impact
   range: melee
-  damage: 7
+  damage: 14
   strikes: 2
 
 resistance:

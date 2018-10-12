@@ -5,7 +5,7 @@
 [ext_resource path="res://interface/images/cursor.png" type="Texture" id=3]
 [ext_resource path="res://interface/hud/UnitInfo.gd" type="Script" id=4]
 
-[node name="Interface" type="Node2D"]
+[node name="Interface" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -54,15 +54,88 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="UnitInfo" type="Panel" parent="HUD" index="0"]
+[node name="GameInfo" type="Panel" parent="HUD" index="0"]
+
+self_modulate = Color( 1, 1, 1, 0.470588 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="HBox" type="HBoxContainer" parent="HUD/GameInfo" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = 2.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="TurnLabel" type="Label" parent="HUD/GameInfo/HBox" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 60.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 60, 20 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Turn: 1"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SideLabel" type="Label" parent="HUD/GameInfo/HBox" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 60, 20 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Side: 1"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="UnitInfo" type="Panel" parent="HUD" index="1"]
 
 self_modulate = Color( 1, 1, 1, 0.470588 )
 anchor_left = 0.0
 anchor_top = 1.0
-anchor_right = 0.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -60.0
-margin_right = 1280.0
+margin_top = -80.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -70,18 +143,30 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 4 )
-_sections_unfolded = [ "Anchor", "Rect", "Visibility" ]
 
-[node name="HealthLabel" type="Label" parent="HUD/UnitInfo" index="0"]
+[node name="VBox" type="VBoxContainer" parent="HUD/UnitInfo" index="0"]
+
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -68.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="HealthLabel" type="Label" parent="HUD/UnitInfo/VBox" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1.0
-margin_top = 7.0
-margin_right = 88.0
-margin_bottom = 21.0
+margin_right = 1280.0
+margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -95,16 +180,38 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="MovesLabel" type="Label" parent="HUD/UnitInfo" index="1"]
+[node name="ExperienceLabel" type="Label" parent="HUD/UnitInfo/VBox" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1.0
-margin_top = 24.0
-margin_right = 72.0
-margin_bottom = 38.0
+margin_top = 18.0
+margin_right = 1280.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "XP: -"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MovesLabel" type="Label" parent="HUD/UnitInfo/VBox" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -1.0
+margin_top = 36.0
+margin_right = 1279.0
+margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -117,16 +224,15 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="AttackLabel" type="Label" parent="HUD/UnitInfo" index="2"]
+[node name="AttackLabel" type="Label" parent="HUD/UnitInfo/VBox" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1.0
-margin_top = 41.0
-margin_right = 69.0
-margin_bottom = 55.0
+margin_top = 54.0
+margin_right = 1280.0
+margin_bottom = 68.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -139,16 +245,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="EndTurn" type="Button" parent="HUD" index="1"]
+[node name="EndTurn" type="Button" parent="HUD" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1194.0
-margin_top = 745.0
-margin_right = 1274.0
-margin_bottom = 795.0
+margin_left = 1189.0
+margin_top = 738.0
+margin_right = 1269.0
+margin_bottom = 788.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -163,25 +269,5 @@ group = null
 text = "End Turn"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect" ]
-
-[node name="SideLabel" type="Label" parent="HUD" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 43.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Side: 1"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 

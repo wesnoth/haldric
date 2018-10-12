@@ -1,26 +1,34 @@
 extends Node
 
+const xp_per_level = 8
+
 func start_fight(attacker, attacker_terrain, defender, defender_terrain):
 	
 	randomize()
 	
 	print("\n", "Combat starts | Counter: ", attacker.attack.range == defender.attack.range, " | Type: ", attacker.attack.type, "(", defender.resistance[attacker.attack.type], ")")
 	
-	for i in range(max(attacker.attack.number, defender.attack.number)):
+	for i in range(max(attacker.attack.strikes, defender.attack.strikes)):
 
 		if attacker.current_health > 0:
-			if attacker.attack.number > i:
-				defender.harm(attacker.type, attacker.attack.damage, attacker.attack.type, defender_terrain)
+			if attacker.attack.strikes > i:
+				defender.harm(attacker.id, attacker.attack.damage, attacker.attack.type, defender_terrain)
 		else:
-			attacker.can_attack = false
-			attacker.current_moves = 0
+			if attacker.level > 0:
+				defender.current_experience += attacker.level * xp_per_level
+			else:
+				defender.current_experience += xp_per_level / 2
 			attacker.queue_free()
 			return
 
 		if defender.current_health > 0:
-			if defender.attack.number > i and attacker.attack.range == defender.attack.range:
-				attacker.harm(defender.type, defender.attack.damage, defender.attack.type, attacker_terrain)
+			if defender.attack.strikes > i and attacker.attack.range == defender.attack.range:
+				attacker.harm(defender.id, defender.attack.damage, defender.attack.type, attacker_terrain)
 		else:
+			if defender.level > 0:
+				attacker.current_experience += defender.level * xp_per_level
+			else:
+				attacker.current_experience += xp_per_level / 2
 			defender.queue_free()
 			return
 

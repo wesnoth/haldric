@@ -1,7 +1,10 @@
 name: Orcish Assassin
-type: Orcish Assassin
+id: Orcish Assassin
+level: 1
 health: 26
 moves: 6
+experience: 34
+advances_to: null
 image: res://units/images/orcs/assassin.png
 
 attack:
@@ -9,7 +12,7 @@ attack:
   type: blade
   range: ranged
   damage: 3
-  number: 3
+  strikes: 3
 
 resistance:
   blade: 130
