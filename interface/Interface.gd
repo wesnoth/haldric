@@ -8,7 +8,9 @@ onready var cursor = $"Cursor"
 
 onready var sprite_builder = $"SpriteBuilder"
 
-onready var side_label = $"HUD/SideLabel"
+onready var side_label = $"HUD/GameInfo/HBox/SideLabel"
+onready var turn_label = $"HUD/GameInfo/HBox/TurnLabel"
+
 onready var unit_info = $"HUD/UnitInfo"
 
 func _ready():
@@ -30,7 +32,8 @@ func _process(delta):
 	
 	cursor.position = terrain.world_to_world_centered(get_global_mouse_position())
 	side_label.text = str("Side: ", game.active_side)
-
+	turn_label.text = str("Turn: ", game.turn)
+	
 	if game.active_unit:
 		unit_info.update_unit_info(game.active_unit)
 

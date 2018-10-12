@@ -1,7 +1,9 @@
 name: Elvish Scout
-type: Elvish Scout
+id: Elvish Scout
+level: 1
 health: 32
 moves: 9
+experience: 32
 image: res://units/images/elves-wood/scout.png
 
 attack:

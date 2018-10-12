@@ -3,6 +3,8 @@ extends Node2D
 const unit_rest_heal = 2
 const unit_village_heal = 8
 
+var turn = 1
+
 var sides = 2
 var active_side = 1
 
@@ -61,8 +63,8 @@ func _input(event):
 		active_unit = null
 		active_unit_path = []
 
-func create_unit(type, side, x, y):
-	var unit = UnitRegistry.create(type, side)
+func create_unit(id, side, x, y):
+	var unit = UnitRegistry.create(id, side)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
 	units.add_child(unit)
 
@@ -106,6 +108,7 @@ func can_fight(unit1, unit2):
 
 func end_turn():
 	active_side = (active_side % sides) + 1
+	
 	for u in units.get_children():
 		if u.side == active_side:
 			if u.current_moves == u.base_max_moves and u.current_health < u.base_max_health:
@@ -113,3 +116,6 @@ func end_turn():
 			if terrain.tiles[terrain.flatten_v(terrain.world_to_map(u.position))].is_village:
 				u.heal(unit_village_heal)
 			u.restore_current_moves()
+	
+	if active_side == 1:
+		turn += 1

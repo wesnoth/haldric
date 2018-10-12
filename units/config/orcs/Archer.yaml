@@ -1,7 +1,9 @@
 name: Orcish Archer
-type: Orcish Archer
+id: Orcish Archer
+level: 1
 health: 32
 moves: 5
+experience: 30
 image: res://units/images/orcs/archer.png
 
 attack:

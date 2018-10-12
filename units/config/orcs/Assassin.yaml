@@ -1,7 +1,9 @@
 name: Orcish Assassin
-type: Orcish Assassin
+id: Orcish Assassin
+level: 1
 health: 26
 moves: 6
+experience: 34
 image: res://units/images/orcs/assassin.png
 
 attack:

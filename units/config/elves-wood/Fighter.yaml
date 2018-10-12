@@ -1,7 +1,9 @@
 name: Elvish Fighter
-type: Elvish Fighter
+id: Elvish Fighter
+level: 1
 health: 33
 moves: 5
+experience: 40
 image: res://units/images/elves-wood/fighter.png
 
 attack:

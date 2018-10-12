@@ -1,7 +1,9 @@
 name: Elvish Shaman
-type: Elvish Shaman
+id: Elvish Shaman
+level: 1
 health: 26
 moves: 5
+experience: 32
 image: res://units/images/elves-wood/shaman.png
 
 attack:

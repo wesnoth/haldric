@@ -1,7 +1,9 @@
 name: Troll Whelp
-type: Troll Whelp
+id: Troll Whelp
+level: 1
 health: 42
 moves: 5
+experience: 36
 image: res://units/images/trolls/whelp.png
 
 attack:

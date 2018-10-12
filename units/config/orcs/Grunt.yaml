@@ -1,7 +1,9 @@
 name: Orcish Grunt
-type: Orcish Grunt
+id: Orcish Grunt
+level: 1
 health: 38
 moves: 5
+experience: 42
 image: res://units/images/orcs/grunt.png
 
 attack:

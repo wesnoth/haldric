@@ -1,7 +1,9 @@
 name: Elvish Archer
-type: Elvish Archer
+id: Elvish Archer
+level: 1
 health: 29
 moves: 6
+experience: 44
 image: res://units/images/elves-wood/archer.png
 
 attack:
