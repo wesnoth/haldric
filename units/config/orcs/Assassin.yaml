@@ -9,7 +9,7 @@ attack:
   type: blade
   range: ranged
   damage: 3
-  number: 3
+  strikes: 3
 
 resistance:
   blade: 130

@@ -60,7 +60,7 @@ func restore_current_moves():
 	can_attack = true
 
 func get_attack_string():
-	return str("Attack: ", attack.name, " ", attack.damage, "x", attack.number, " (", attack.type, ", ", attack.range, ")")
+	return str("Attack: ", attack.name, " ", attack.damage, "x", attack.strikes, " (", attack.type, ", ", attack.range, ")")
 
 func _set_current_health(new_health):
 	if new_health <= base_max_health:

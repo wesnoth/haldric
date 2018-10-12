@@ -9,7 +9,7 @@ attack:
   type: pierce
   range: ranged
   damage: 6
-  number: 3
+  strikes: 3
 
 resistance:
   blade: 100

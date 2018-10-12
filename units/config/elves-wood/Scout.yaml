@@ -9,7 +9,7 @@ attack:
   type: blade
   range: melee
   damage: 4
-  number: 3
+  strikes: 3
 
 resistance:
   blade: 100
