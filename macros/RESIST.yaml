@@ -1,0 +1,8 @@
+# ARCANE BLADE COLD FIRE IMPACT PIERCE
+resistance:
+  arcane: {ARCANE}
+  blade: {BLADE}
+  cold: {COLD}
+  fire: {FIRE}
+  impact: {IMPACT}
+  pierce: {PIERCE}

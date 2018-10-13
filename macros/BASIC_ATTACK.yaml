@@ -1,0 +1,7 @@
+# NAME TYPE RANGE DAMAGE STRIKES
+attack:
+  name: {NAME}
+  type: {TYPE}
+  range: {RANGE}
+  damage: {DAMAGE}
+  strikes: {STRIKES}
