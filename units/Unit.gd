@@ -29,8 +29,11 @@ func _ready():
 	update_lifebar()
 
 func _process(delta):
-	if current_experience >= base_experience and advances_to != null and UnitRegistry.registry.has(advances_to):
+	if advances_to == null:
+		amla()
+	elif current_experience >= base_experience and UnitRegistry.registry.has(advances_to):
 		advance(UnitRegistry.registry[advances_to])
+
 
 func initialize(reg_entry, side):
 	id = reg_entry.id
@@ -66,6 +69,12 @@ func advance(reg_entry):
 	movement = reg_entry.movement
 	movement["impassable"] = 99
 	texture = load(reg_entry.image)
+	update_lifebar()
+
+func amla():
+	base_max_health += 3
+	base_experience *= 1.2
+	_set_current_health(base_max_health)
 	update_lifebar()
 
 func heal(value):
