@@ -20,6 +20,7 @@ onready var map = $"Map"
 onready var units = $"UnitContainer"
 
 func _ready():
+	MacroRegistry.load_dir("res://macros")
 	UnitRegistry.load_dir("res://units/config")
 	UnitRegistry.validate_advancements()
 	

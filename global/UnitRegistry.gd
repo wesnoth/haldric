@@ -8,7 +8,7 @@ func load_dir(path):
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		var unit = yaml_parser.parse(file.get_as_text())
+		var unit = yaml_parser.parse(MacroRegistry.substitute(file.get_as_text()))
 		registry[unit.id] = {
 			id = unit.id,
 			name = unit.name,

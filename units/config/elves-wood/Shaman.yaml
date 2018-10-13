@@ -4,23 +4,12 @@ level: 1
 health: 26
 moves: 5
 experience: 32
-advances_to: null
+advances_to: {NOTHING}
 image: res://units/images/elves-wood/shaman.png
 
-attack:
-  name: staff
-  type: impact
-  range: melee
-  damage: 3
-  strikes: 2
+{BASIC_ATTACK staff impact melee 3 2}
 
-resistance:
-  blade: 100
-  pierce: 100
-  impact: 100
-  fire: 100
-  cold: 100
-  arcane: 110
+{RESIST 110 100 100 100 100 100}
 
 defense:
   flat: 40
