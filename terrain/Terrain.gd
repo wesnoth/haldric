@@ -7,6 +7,7 @@ var offset = Vector2(36, 36)
 
 var map_string = ""
 
+var game
 # enum DIRECTION {SE, NE, N, NW, SW, S}
 # that's the order of the neighbors in the lookup table
 var neighbor_table = [
@@ -64,15 +65,15 @@ func update_weight(unit):
 			var currentCell = Vector2(x, y)
 			var id = flatten(x, y)
 			var cost =  unit.get_movement_cost(tiles[id].terrain_type)
-			var otherUnit = get_node("../..").get_unit_at_cell(currentCell)
-			if otherUnit:
-				if not otherUnit.side == unit.side:
+			var other_unit = get_node("../..").get_unit_at_cell(currentCell)
+			if other_unit:
+				if not other_unit.side == unit.side:
 					cost = 99
 			else:	
 				for cell in _get_neighbors(currentCell):
-					otherUnit = get_node("../..").get_unit_at_cell(cell)
-					if otherUnit:
-						if not otherUnit.side == unit.side:
+					other_unit = get_node("../..").get_unit_at_cell(cell)
+					if other_unit:
+						if not other_unit.side == unit.side:
 							cost += 0.5
 							break
 			grid.set_point_weight_scale(id, cost)

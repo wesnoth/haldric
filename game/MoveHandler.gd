@@ -33,13 +33,12 @@ func _process(delta):
 
 		unit.position += velocity * delta
 
-		if unit.position.distance_to(game.terrain.map_to_world_centered(path[0])) <= 6:
-			
+		if unit.position.distance_to(game.terrain.map_to_world_centered(path[0])) <= 6:	
 			if path.size() < init_path_size:
 				unit.current_moves -= unit.get_movement_cost(terrain_type)
-				for adjacentUnit in unit.get_adjacent_units():
-					if not adjacentUnit.side == unit.side:
-						if unit.has_moved():
+				for adjacent_unit in unit.get_adjacent_units():
+					if not adjacent_unit.side == unit.side:
+						if not unit.has_moved():
 							unit.current_moves = 1
 						else:
 							unit.current_moves = 0

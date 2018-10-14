@@ -23,6 +23,7 @@ var movement = {}
 
 var can_attack = true
 
+var game
 onready var lifebar = $"Lifebar"
 
 func _ready():
@@ -99,7 +100,7 @@ func restore_current_moves():
 	can_attack = true
 
 func has_moved():
-	return current_moves == base_max_moves
+	return current_moves < base_max_moves
 
 func get_attack_string():
 	return str("Attack: ", attack.name, " ", attack.damage, "x", attack.strikes, " (", attack.type, ", ", attack.range, ")")
@@ -125,12 +126,12 @@ func get_defense(terrain_type):
 		return defense[terrain_type[1]]
 
 func get_map_position():
-	return get_node("../..").terrain.world_to_map(position)
+	return game.terrain.world_to_map(position)
 
 func get_adjacent_units():
 	var units = []
-	for cell in get_node("../..").terrain._get_neighbors(get_map_position()):
-		var otherUnit = get_node("../..").get_unit_at_cell(cell)
+	for cell in game.terrain._get_neighbors(get_map_position()):
+		var otherUnit = game.get_unit_at_cell(cell)
 		if otherUnit:
 			units.append(otherUnit)
 	return units
