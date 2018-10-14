@@ -61,8 +61,20 @@ func find_path_by_cell(start_cell, end_cell):
 func update_weight(unit):
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
+			var currentCell = Vector2(x, y)
 			var id = flatten(x, y)
 			var cost =  unit.get_movement_cost(tiles[id].terrain_type)
+			var otherUnit = get_node("../..").get_unit_at_cell(currentCell)
+			if otherUnit:
+				if not otherUnit.side == unit.side:
+					cost = 99
+			else:	
+				for cell in _get_neighbors(currentCell):
+					otherUnit = get_node("../..").get_unit_at_cell(cell)
+					if otherUnit:
+						if not otherUnit.side == unit.side:
+							cost += 0.5
+							break
 			grid.set_point_weight_scale(id, cost)
 
 func get_reachable_cells_u(unit):
@@ -83,8 +95,15 @@ func get_reachable_cells(start_cell, _range):
 		var path = grid.get_id_path(flatten_v(start_cell), flatten_v(cell))
 		path.remove(0)
 		var weight = 0
-		for id in path:
-			weight += grid.get_point_weight_scale(id)
+		for i in range(path.size()):
+			var value = grid.get_point_weight_scale(path[i])
+			if value - int(value) == 0.5:
+				if not i == path.size() - 1:
+					weight = _range + 1
+					break
+				else:
+					value -= 0.5
+			weight += value
 		if weight <= _range:
 			reachable.append(cell)
 	return reachable

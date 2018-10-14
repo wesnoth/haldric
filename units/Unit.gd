@@ -98,6 +98,9 @@ func restore_current_moves():
 	current_moves = base_max_moves
 	can_attack = true
 
+func has_moved():
+	return current_moves == base_max_moves
+
 func get_attack_string():
 	return str("Attack: ", attack.name, " ", attack.damage, "x", attack.strikes, " (", attack.type, ", ", attack.range, ")")
 
@@ -121,6 +124,16 @@ func get_defense(terrain_type):
 	else:
 		return defense[terrain_type[1]]
 
+func get_map_position():
+	return get_node("../..").terrain.world_to_map(position)
+
+func get_adjacent_units():
+	var units = []
+	for cell in get_node("../..").terrain._get_neighbors(get_map_position()):
+		var otherUnit = get_node("../..").get_unit_at_cell(cell)
+		if otherUnit:
+			units.append(otherUnit)
+	return units
 func _set_current_health(new_health):
 	if new_health <= base_max_health:
 		current_health = new_health
