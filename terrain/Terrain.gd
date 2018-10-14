@@ -65,13 +65,13 @@ func update_weight(unit):
 			var currentCell = Vector2(x, y)
 			var id = flatten(x, y)
 			var cost =  unit.get_movement_cost(tiles[id].terrain_type)
-			var other_unit = get_node("../..").get_unit_at_cell(currentCell)
+			var other_unit = game.get_unit_at_cell(currentCell)
 			if other_unit:
 				if not other_unit.side == unit.side:
 					cost = 99
 			else:	
 				for cell in _get_neighbors(currentCell):
-					other_unit = get_node("../..").get_unit_at_cell(cell)
+					other_unit = game.get_unit_at_cell(cell)
 					if other_unit:
 						if not other_unit.side == unit.side:
 							cost += 100
