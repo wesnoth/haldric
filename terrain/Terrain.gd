@@ -74,7 +74,7 @@ func update_weight(unit):
 					other_unit = get_node("../..").get_unit_at_cell(cell)
 					if other_unit:
 						if not other_unit.side == unit.side:
-							cost += 0.5
+							cost += 100
 							break
 			grid.set_point_weight_scale(id, cost)
 
@@ -98,12 +98,12 @@ func get_reachable_cells(start_cell, _range):
 		var weight = 0
 		for i in range(path.size()):
 			var value = grid.get_point_weight_scale(path[i])
-			if value - int(value) == 0.5:
+			if value > 100:
 				if not i == path.size() - 1:
 					weight = _range + 1
 					break
 				else:
-					value -= 0.5
+					value -= 100
 			weight += value
 		if weight <= _range:
 			reachable.append(cell)
