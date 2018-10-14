@@ -25,6 +25,7 @@ func _ready():
 	
 	map.add_child(MapLoader.load_map("res://maps/testMap.map"))
 	terrain = map.get_child(0)
+	terrain.game = self
 	
 	create_unit("Elvish Fighter", 1, 10, 1);
 	create_unit("Elvish Archer", 1, 11, 1);
@@ -47,7 +48,6 @@ func _input(event):
 
 		if (terrain.check_boundaries(mouse_cell)):
 			print("Village: ", terrain.tiles[terrain.flatten_v(mouse_cell)].is_village)
-
 		if is_unit_at_cell(mouse_cell) and active_unit == null:
 			active_unit = get_unit_at_cell(mouse_cell)
 
@@ -73,6 +73,7 @@ func _input(event):
 func create_unit(id, side, x, y):
 	var unit = UnitRegistry.create(id, side)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
+	unit.game = self
 	units.add_child(unit)
 
 func is_unit_at_cell(cell):
