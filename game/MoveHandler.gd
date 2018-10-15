@@ -45,7 +45,7 @@ func _process(delta):
 						break
 
 			last_point = path[0]
-			path.remove(0)				
+			path.remove(0)
 
 			if path.size() == 0 or unit.current_moves == 0:
 
