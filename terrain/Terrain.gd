@@ -82,7 +82,7 @@ func get_reachable_cells_u(unit):
 	if unit.current_moves == 0:
 		for other_unit in get_adjacent_units(world_to_map(unit.position)):
 			if not other_unit.side == unit.side:
-				reachable.append(cell)
+				reachable.append(world_to_map(other_unit.position))
 		return reachable
 	reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
 	return reachable
@@ -276,7 +276,7 @@ func get_adjacent_units(cell):
 	var parity = int(cell.x) & 1
 	for n in neighbor_table[parity]:
 		var new_cell = Vector2(cell.x + n.x, cell.y+n.y)
-		other_unit = game.get_unit_at_cell(cell)
+		var other_unit = game.get_unit_at_cell(cell)
 		if other_unit:
 			neighbors.append(other_unit)
 	return neighbors
