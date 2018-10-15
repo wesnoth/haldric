@@ -5,6 +5,7 @@ var HEIGHT
 
 var offset = Vector2(36, 36)
 
+var game
 # enum DIRECTION {SE, NE, N, NW, SW, S}
 # that's the order of the neighbors in the lookup table
 var neighbor_table = [
@@ -59,13 +60,29 @@ func find_path_by_cell(start_cell, end_cell):
 func update_weight(unit):
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
+			var current_cell = Vector2(x, y)
 			var id = flatten(x, y)
 			var cost =  unit.get_movement_cost(tiles[id].terrain_type)
+			var other_unit = game.get_unit_at_cell(current_cell)
+			if other_unit:
+				if not other_unit.side == unit.side:
+					cost = 99
+			else:	
+				for other_unit in get_adjacent_units(current_cell):
+					if not other_unit.side == unit.side:
+						cost += 100
+						break
 			grid.set_point_weight_scale(id, cost)
 
 func get_reachable_cells_u(unit):
 	update_weight(unit)
-	var reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
+	var reachable = []
+	if unit.current_moves == 0:
+		for other_unit in get_adjacent_units(world_to_map(unit.position)):
+			if not other_unit.side == unit.side:
+				reachable.append(world_to_map(other_unit.position))
+		return reachable
+	reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
 	return reachable
 
 func get_reachable_cells(start_cell, _range):
@@ -81,10 +98,22 @@ func get_reachable_cells(start_cell, _range):
 		var path = grid.get_id_path(flatten_v(start_cell), flatten_v(cell))
 		path.remove(0)
 		var weight = 0
-		for id in path:
-			weight += grid.get_point_weight_scale(id)
+		var in_zoc = false
+		for i in range(path.size()):
+			var value = grid.get_point_weight_scale(path[i])
+			if value > 100:
+				if not i == path.size() - 1:
+					weight = _range + 1
+					break 
+				else:
+					value -= 100
+					in_zoc = true
+			weight += value
 		if weight <= _range:
 			reachable.append(cell)
+			if in_zoc:
+				for other_unit in get_adjacent_units(cell):
+					reachable.append(world_to_map(other_unit.position))			
 	return reachable
 
 func are_neighbors(cell1, cell2):
@@ -167,8 +196,8 @@ func _generate_tiles():
 				overlay_code = tile_set.tile_get_name(overlay_cell)
 
 			var type
-
 			var overlay_type
+      
 			if not overlay_code.empty():
 				match overlay_code[1]:
 					"V":
@@ -241,6 +270,16 @@ func _get_neighbors(cell):
 	var parity = int(cell.x) & 1
 	for n in neighbor_table[parity]:
 		neighbors.append(Vector2(cell.x + n.x, cell.y+n.y))
+	return neighbors
+
+func get_adjacent_units(cell):
+	var neighbors = []
+	var parity = int(cell.x) & 1
+	for n in neighbor_table[parity]:
+		var new_cell = Vector2(cell.x + n.x, cell.y+n.y)
+		var other_unit = game.get_unit_at_cell(new_cell)
+		if other_unit:
+			neighbors.append(other_unit)
 	return neighbors
 
 func v3_to_v2(cube):
