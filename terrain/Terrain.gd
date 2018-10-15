@@ -276,7 +276,7 @@ func get_adjacent_units(cell):
 	var parity = int(cell.x) & 1
 	for n in neighbor_table[parity]:
 		var new_cell = Vector2(cell.x + n.x, cell.y+n.y)
-		var other_unit = game.get_unit_at_cell(cell)
+		var other_unit = game.get_unit_at_cell(new_cell)
 		if other_unit:
 			neighbors.append(other_unit)
 	return neighbors
