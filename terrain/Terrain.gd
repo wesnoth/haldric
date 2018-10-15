@@ -99,9 +99,12 @@ func get_reachable_cells(start_cell, _range):
 		for i in range(path.size()):
 			var value = grid.get_point_weight_scale(path[i])
 			if value > 100:
-				if not i == path.size() - 1:
-					weight = _range + 1
+				if i == path.size() - 2 and grid.get_point_weight_scale(path[i+1]) == 99:
+					weight += value - 100
 					break
+				elif not i == path.size() - 1:
+					weight = _range + 1
+					break 
 				else:
 					value -= 100
 			weight += value
