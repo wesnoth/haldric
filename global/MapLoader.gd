@@ -23,7 +23,6 @@ func load_map(path):
 			terrain.set_cell(x, y, id)
 			if (item.size() == 2):
 				var overlay_id = terrain.tile_set.find_tile_by_name("^" + item[1])
-				print(overlay_id)
 				terrain.overlay.set_cell(x, y, overlay_id)
 		y += 1
 	file.close()

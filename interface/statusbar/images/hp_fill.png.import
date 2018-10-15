@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background.png-5f462f4f9502ada9a8ca14710eebfd61.stex"
+path="res://.import/hp_fill.png-bc546e1154f6d88cfc9b6338355d0403.stex"
 
 [deps]
 
-source_file="res://interface/lifebar/images/background.png"
-dest_files=[ "res://.import/background.png-5f462f4f9502ada9a8ca14710eebfd61.stex" ]
+source_file="res://interface/statusbar/images/hp_fill.png"
+dest_files=[ "res://.import/hp_fill.png-bc546e1154f6d88cfc9b6338355d0403.stex" ]
 
 [params]
 
