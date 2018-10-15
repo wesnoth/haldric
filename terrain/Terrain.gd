@@ -80,7 +80,15 @@ func update_weight(unit):
 
 func get_reachable_cells_u(unit):
 	update_weight(unit)
-	var reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
+	var reachable = []
+	if unit.current_moves == 0:
+		for cell in _get_neighbors(world_to_map(unit.position)):
+			var other_unit = game.get_unit_at_cell(cell)
+			if other_unit:
+				if not other_unit.side == unit.side:
+					reachable.append(cell)
+		return reachable
+	reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
 	return reachable
 
 func get_reachable_cells(start_cell, _range):
