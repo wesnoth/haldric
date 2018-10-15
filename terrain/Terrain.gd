@@ -62,15 +62,15 @@ func find_path_by_cell(start_cell, end_cell):
 func update_weight(unit):
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
-			var currentCell = Vector2(x, y)
+			var current_cell = Vector2(x, y)
 			var id = flatten(x, y)
 			var cost =  unit.get_movement_cost(tiles[id].terrain_type)
-			var other_unit = game.get_unit_at_cell(currentCell)
+			var other_unit = game.get_unit_at_cell(current_cell)
 			if other_unit:
 				if not other_unit.side == unit.side:
 					cost = 99
 			else:	
-				for cell in _get_neighbors(currentCell):
+				for cell in _get_neighbors(current_cell):
 					other_unit = game.get_unit_at_cell(cell)
 					if other_unit:
 						if not other_unit.side == unit.side:
