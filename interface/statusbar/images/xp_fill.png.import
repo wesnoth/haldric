@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fill.png-a9b364cf6355c431cf627532e4454b2a.stex"
+path="res://.import/xp_fill.png-e994977a4d61ffd3be9521025ca64478.stex"
 
 [deps]
 
-source_file="res://interface/lifebar/images/fill.png"
-dest_files=[ "res://.import/fill.png-a9b364cf6355c431cf627532e4454b2a.stex" ]
+source_file="res://interface/statusbar/images/xp_fill.png"
+dest_files=[ "res://.import/xp_fill.png-e994977a4d61ffd3be9521025ca64478.stex" ]
 
 [params]
 

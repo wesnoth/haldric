@@ -177,6 +177,8 @@ func get_map_string():
 			else:
 				string += code + overlay_code
 		string += "\n"
+	return string
+
 
 func _generate_tiles():
 	for y in range(HEIGHT):
@@ -196,17 +198,18 @@ func _generate_tiles():
 				overlay_code = tile_set.tile_get_name(overlay_cell)
 
 			var type
-			var overlayType
+			var overlay_type
+      
 			if not overlay_code.empty():
 				match overlay_code[1]:
 					"V":
-						overlayType = "village"
+						overlay_type = "village"
 					"F":
-						overlayType = "forest"
+						overlay_type = "forest"
 					_:
-						overlayType = "unknown"
+						overlay_type = "unknown"
 			else: 
-				overlayType = ""
+				overlay_type = ""
 
 			match code[0]:					
 				"X":
@@ -221,13 +224,11 @@ func _generate_tiles():
 					type = "unknown"
 
 			tiles[id] = {
-				terrain_type = [type,overlayType],
+				terrain_type = [type,overlay_type],
 				terrain_code = code + overlay_code,
-				is_village = type == "village",
+				is_village = overlay_type == "village",
 				is_blocked = false
 			}
-			map_string += code + overlay_code + ","
-		map_string += "\n"
 
 func _generate_points():
 	for y in range(HEIGHT):
