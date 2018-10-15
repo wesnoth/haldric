@@ -100,20 +100,22 @@ func get_reachable_cells(start_cell, _range):
 		var path = grid.get_id_path(flatten_v(start_cell), flatten_v(cell))
 		path.remove(0)
 		var weight = 0
+		var in_zoc = false
 		for i in range(path.size()):
 			var value = grid.get_point_weight_scale(path[i])
 			if value > 100:
-				if i == path.size() - 2 and grid.get_point_weight_scale(path[i+1]) == 99:
-					weight += value - 100
-					break
-				elif not i == path.size() - 1:
+				if not i == path.size() - 1:
 					weight = _range + 1
 					break 
 				else:
 					value -= 100
+					in_zoc = true
 			weight += value
 		if weight <= _range:
 			reachable.append(cell)
+			if in_zoc:
+				for other_unit in get_adjacent_units(cell):
+					reachable.append(world_to_map(other_unit.position))			
 	return reachable
 
 func are_neighbors(cell1, cell2):
