@@ -5,8 +5,6 @@ var HEIGHT
 
 var offset = Vector2(36, 36)
 
-var map_string = ""
-
 var game
 # enum DIRECTION {SE, NE, N, NW, SW, S}
 # that's the order of the neighbors in the lookup table
