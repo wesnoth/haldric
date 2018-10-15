@@ -70,23 +70,19 @@ func update_weight(unit):
 				if not other_unit.side == unit.side:
 					cost = 99
 			else:	
-				for cell in _get_neighbors(current_cell):
-					other_unit = game.get_unit_at_cell(cell)
-					if other_unit:
-						if not other_unit.side == unit.side:
-							cost += 100
-							break
+				for other_unit in get_adjacent_units(current_cell):
+					if not other_unit.side == unit.side:
+						cost += 100
+						break
 			grid.set_point_weight_scale(id, cost)
 
 func get_reachable_cells_u(unit):
 	update_weight(unit)
 	var reachable = []
 	if unit.current_moves == 0:
-		for cell in _get_neighbors(world_to_map(unit.position)):
-			var other_unit = game.get_unit_at_cell(cell)
-			if other_unit:
-				if not other_unit.side == unit.side:
-					reachable.append(cell)
+		for other_unit in get_adjacent_units(world_to_map(unit.position)):
+			if not other_unit.side == unit.side:
+				reachable.append(cell)
 		return reachable
 	reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
 	return reachable
@@ -273,6 +269,16 @@ func _get_neighbors(cell):
 	var parity = int(cell.x) & 1
 	for n in neighbor_table[parity]:
 		neighbors.append(Vector2(cell.x + n.x, cell.y+n.y))
+	return neighbors
+
+func get_adjacent_units(cell):
+	var neighbors = []
+	var parity = int(cell.x) & 1
+	for n in neighbor_table[parity]:
+		var new_cell = Vector2(cell.x + n.x, cell.y+n.y)
+		other_unit = game.get_unit_at_cell(cell)
+		if other_unit:
+			neighbors.append(other_unit)
 	return neighbors
 
 func v3_to_v2(cube):
