@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://interface/SpriteBuilder.gd" type="Script" id=2]
 [ext_resource path="res://interface/images/cursor.png" type="Texture" id=3]
-[ext_resource path="res://interface/hud/UnitInfo.gd" type="Script" id=4]
+[ext_resource path="res://interface/popup/AttackPopup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/hud/UnitInfo.gd" type="Script" id=5]
 
-[node name="Interface" type="Node2D"]
+[node name="Interface" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -54,7 +55,12 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="GameInfo" type="Panel" parent="HUD" index="0"]
+[node name="AttackPopup" parent="HUD" index="0" instance=ExtResource( 4 )]
+
+margin_top = 20.0
+margin_bottom = 40.0
+
+[node name="GameInfo" type="Panel" parent="HUD" index="1"]
 
 self_modulate = Color( 1, 1, 1, 0.470588 )
 anchor_left = 0.0
@@ -128,7 +134,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="UnitInfo" type="Panel" parent="HUD" index="1"]
+[node name="UnitInfo" type="Panel" parent="HUD" index="2"]
 
 self_modulate = Color( 1, 1, 1, 0.470588 )
 anchor_left = 0.0
@@ -142,7 +148,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="VBox" type="VBoxContainer" parent="HUD/UnitInfo" index="0"]
 
@@ -244,7 +250,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="EndTurn" type="Button" parent="HUD" index="2"]
+[node name="EndTurn" type="Button" parent="HUD" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0

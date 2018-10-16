@@ -7,12 +7,23 @@ experience: 40
 advances_to: null
 image: res://units/images/elves-wood/fighter.png
 
-attack:
-  name: sword
-  type: blade
-  range: melee
-  damage: 5
-  strikes: 4
+attacks:
+  - {
+    name: sword,
+    damage: 5,
+    strikes: 4,
+    range: melee,
+    type: blade,
+    icon: res://interface/images/attacks/sword-elven.png
+  }
+  - {
+    name: bow,
+    damage: 3,
+    strikes: 3,
+    range: ranged,
+    type: pierce,
+    icon: res://interface/images/attacks/bow-elven.png
+  }
 
 resistance:
   blade: 100

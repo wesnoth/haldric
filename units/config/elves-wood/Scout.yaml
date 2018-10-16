@@ -7,12 +7,23 @@ experience: 32
 advances_to: null
 image: res://units/images/elves-wood/scout.png
 
-attack:
-  name: sword
-  type: blade
-  range: melee
-  damage: 4
-  strikes: 3
+attacks:
+  - {
+    name: sword,
+    damage: 4,
+    strikes: 3,
+    range: melee,
+    type: blade,
+    icon: res://interface/images/attacks/sword-elven.png
+  }
+  - {
+    name: bow,
+    damage: 6,
+    strikes: 2,
+    range: ranged,
+    type: pierce,
+    icon: res://interface/images/attacks/bow-elven.png
+  }
 
 resistance:
   blade: 100

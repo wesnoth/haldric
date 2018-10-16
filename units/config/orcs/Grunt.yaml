@@ -7,12 +7,15 @@ experience: 42
 advances_to: null
 image: res://units/images/orcs/grunt.png
 
-attack:
-  name: sword
-  type: blade
-  range: melee
-  damage: 9
-  strikes: 2
+attacks:
+  - {
+    name: sword,
+    damage: 9,
+    strikes: 2,
+    range: melee,
+    type: blade,
+    icon: res://interface/images/attacks/sword-orcish.png
+  }
 
 resistance:
   blade: 100

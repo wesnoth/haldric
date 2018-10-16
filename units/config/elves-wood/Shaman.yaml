@@ -7,12 +7,23 @@ experience: 32
 advances_to: null
 image: res://units/images/elves-wood/shaman.png
 
-attack:
-  name: staff
-  type: impact
-  range: melee
-  damage: 3
-  strikes: 2
+attacks:
+  - {
+    name: staff,
+    damage: 3,
+    strikes: 2,
+    range: melee,
+    type: impact,
+    icon: res://interface/images/attacks/staff-druid.png
+  }
+  - {
+    name: entangle,
+    damage: 3,
+    strikes: 2,
+    range: ranged,
+    type: impact,
+    icon: res://interface/images/attacks/entangle.png
+  }
 
 resistance:
   blade: 100

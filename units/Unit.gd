@@ -16,7 +16,7 @@ var base_max_moves
 var current_health setget _set_current_health
 var current_moves
 
-var attack = {}
+var attacks = {}
 var resistance = {}
 var defense = {}
 var movement = {}
@@ -48,7 +48,7 @@ func initialize(reg_entry, side):
 	base_experience = reg_entry.experience
 	current_experience = 0
 	advances_to = reg_entry.advances_to
-	attack = reg_entry.attack
+	attacks = reg_entry.attacks
 	resistance = reg_entry.resistance
 	defense = reg_entry.defense
 	defense["impassable"] = 0
@@ -65,7 +65,7 @@ func advance(reg_entry):
 	base_max_moves = reg_entry.moves
 	base_experience = reg_entry.experience
 	current_experience = 0
-	attack = reg_entry.attack
+	attacks = reg_entry.attacks
 	resistance = reg_entry.resistance
 	defense = reg_entry.defense
 	defense["impassable"] = 0
@@ -106,8 +106,8 @@ func restore_current_moves():
 func has_moved():
 	return current_moves < base_max_moves
 
-func get_attack_string():
-	return str("Attack: ", attack.name, " ", attack.damage, "x", attack.strikes, " (", attack.type, ", ", attack.range, ")")
+func get_attack_string(id):
+	return str("Attack: ", attacks[id].name, " ", attacks[id].damage, "x", attacks[id].strikes, " (", attacks[id].type, ", ", attacks[id].range, ")")
 
 func update_lifebar():
 	lifebar.set_max_value(base_max_health)

@@ -7,12 +7,23 @@ experience: 34
 advances_to: null
 image: res://units/images/orcs/assassin.png
 
-attack:
-  name: throwing knives
-  type: blade
-  range: ranged
-  damage: 3
-  strikes: 3
+attacks:
+  - {
+    name: dagger,
+    damage: 7,
+    strikes: 1,
+    range: melee,
+    type: blade,
+    icon: res://interface/images/attacks/dagger-orcish.png
+  }
+  - { 
+    name: throwing knives,
+    damage: 3,
+    strikes: 3,
+    range: ranged,
+    type: pierce,
+    icon: res://interface/images/attacks/dagger-thrown-poison-orcish.png
+  }
 
 resistance:
   blade: 130

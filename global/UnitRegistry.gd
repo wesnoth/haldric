@@ -18,7 +18,7 @@ func load_dir(path):
 			experience = unit.experience,
 			advances_to = unit.advances_to,
 			image = unit.image,
-			attack = unit.attack,
+			attacks = unit.attacks,
 			resistance = unit.resistance,
 			defense = unit.defense,
 			movement = unit.movement

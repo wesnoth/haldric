@@ -7,12 +7,23 @@ experience: 44
 advances_to: null
 image: res://units/images/elves-wood/archer.png
 
-attack:
-  name: bow
-  type: pierce
-  range: ranged
-  damage: 5
-  strikes: 4
+attacks:
+  - {
+    name: sword,
+    damage: 4,
+    strikes: 2,
+    range: melee,
+    type: blade,
+    icon: res://interface/images/attacks/sword-elven.png
+  }
+  - {
+    name: bow,
+    damage: 5,
+    strikes: 4,
+    range: ranged,
+    type: pierce,
+    icon: res://interface/images/attacks/bow-elven.png
+  }
 
 resistance:
   blade: 100

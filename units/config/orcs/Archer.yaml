@@ -7,12 +7,31 @@ experience: 30
 advances_to: null
 image: res://units/images/orcs/archer.png
 
-attack:
-  name: bow
-  type: pierce
-  range: ranged
-  damage: 6
-  strikes: 3
+attacks:
+  - {
+    name: dagger,
+    damage: 4,
+    strikes: 2,
+    range: melee,
+    type: blade,
+    icon: res://interface/images/attacks/dagger-orcish.png
+  }
+  - {
+    name: bow,
+    damage: 6,
+    strikes: 3,
+    range: ranged,
+    type: pierce,
+    icon: res://interface/images/attacks/bow-orcish.png
+  }
+  - {
+    name: bow,
+    damage: 7,
+    strikes: 2,
+    range: ranged,
+    type: fire,
+    icon: res://interface/images/attacks/bow-orcish.png
+  }
 
 resistance:
   blade: 100

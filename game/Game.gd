@@ -19,6 +19,8 @@ onready var combat_handler = $"CombatHandler"
 onready var map = $"Map"
 onready var units = $"UnitContainer"
 
+onready var attack_popup = $"Interface/HUD/AttackPopup"
+
 func _ready():
 	UnitRegistry.load_dir("res://units/config")
 	UnitRegistry.validate_advancements()
@@ -26,6 +28,8 @@ func _ready():
 	map.add_child(MapLoader.load_map("res://maps/testMap.map"))
 	terrain = map.get_child(0)
 	terrain.game = self
+	
+	attack_popup.connect("id_pressed", self, "on_attack_popup_id_pressed")
 	
 	create_unit("Elvish Fighter", 1, 10, 1);
 	create_unit("Elvish Archer", 1, 11, 1);
@@ -36,6 +40,8 @@ func _ready():
 	create_unit("Orcish Archer", 2, 9, 13);
 	create_unit("Orcish Assassin", 2, 11, 13);
 	create_unit("Troll Whelp", 2, 12, 13);
+
+var unit
 
 func _input(event):
 	if active_unit:
@@ -52,24 +58,23 @@ func _input(event):
 			active_unit = get_unit_at_cell(mouse_cell)
 
 		elif is_unit_at_cell(mouse_cell) and active_unit != null:
-			var unit = get_unit_at_cell(mouse_cell)
+			unit = get_unit_at_cell(mouse_cell)
 
 			if can_fight(active_unit, unit):
-				var attacker_defense = active_unit.get_defense(get_terrain_type_at_cell(terrain.world_to_map(active_unit.position)))
-				var defender_defense = unit.get_defense(get_terrain_type_at_cell(terrain.world_to_map(unit.position)))
 
-				combat_handler.start_fight(active_unit, attacker_defense , unit, defender_defense)
-
-				if active_unit:
-					active_unit = null
-					active_unit_path = []
+				attack_popup.add_attacks(active_unit.attacks)
+				attack_popup.show()
+				
 		elif !is_unit_at_cell(mouse_cell) and active_unit and !is_cell_blocked(mouse_cell) and active_side == active_unit.side:
 			move_handler.move_unit(active_unit, active_unit_path)
 
 	if Input.is_action_just_pressed("mouse_right"):
+		unit = null
 		active_unit = null
 		active_unit_path = []
-
+		attack_popup.clear()
+		attack_popup.hide()
+		
 func create_unit(id, side, x, y):
 	var unit = UnitRegistry.create(id, side)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
@@ -113,6 +118,24 @@ func can_fight(unit1, unit2):
 				if terrain.are_neighbors(unit1_cell, unit2_cell):
 					return true
 	return false
+
+func on_attack_popup_id_pressed(id):
+	var attacker_defense = active_unit.get_defense(get_terrain_type_at_cell(terrain.world_to_map(active_unit.position)))
+	var defender_defense = unit.get_defense(get_terrain_type_at_cell(terrain.world_to_map(unit.position)))
+	
+	var defend_id = 0
+	var index = 0
+	for attack in unit.attacks:
+		if attack.range == active_unit.attacks[id].range:
+			defend_id = index
+			break
+		index += 1
+	
+	combat_handler.start_fight(active_unit, id, attacker_defense , unit, defend_id, defender_defense)
+	
+	if active_unit:
+		active_unit = null
+		active_unit_path = []
 
 func end_turn():
 	active_side = (active_side % sides) + 1

@@ -7,12 +7,15 @@ experience: 66
 advances_to: null
 image: res://units/images/trolls/troll.png
 
-attack:
-  name: club
-  type: impact
-  range: melee
-  damage: 14
-  strikes: 2
+attacks:
+  - {
+    name: club,
+    damage: 14,
+    strikes: 2,
+    range: ranged,
+    type: impact,
+    icon: res://interface/images/attacks/club.png
+  }
 
 resistance:
   blade: 80
