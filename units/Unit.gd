@@ -90,14 +90,13 @@ func heal(value):
 
 func harm(attacker_unit_id, damage, attack_type, defense):
 	var hit_chance = float(100 - defense) / 100.0
-	print("Hit Chance: ", hit_chance)
 	if randf() <= hit_chance:
 		var mod = float(resistance[attack_type]) / 100.0
 		var new_damage = damage * mod
-		print("\t", attacker_unit_id, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
+		print("(", 100 - defense, "%)\t", attacker_unit_id, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
 		_set_current_health(current_health - new_damage)
 	else:
-		print("\t", attacker_unit_id, " missed")
+		print("(", 100 - defense, "%)\t", attacker_unit_id, " missed")
 
 func restore_current_moves():
 	current_moves = base_max_moves
@@ -106,8 +105,11 @@ func restore_current_moves():
 func has_moved():
 	return current_moves < base_max_moves
 
-func get_attack_string(id):
-	return str("Attack: ", attacks[id].name, " ", attacks[id].damage, "x", attacks[id].strikes, " (", attacks[id].type, ", ", attacks[id].range, ")")
+func get_attack_string():
+	var string = ""
+	for attack in attacks:
+		string += str(attack.name, ":\n", attack.damage, "x", attack.strikes, " (", attack.type, ", ", attack.range, ")\n\n")
+	return string
 
 func update_lifebar():
 	lifebar.set_max_value(base_max_health)

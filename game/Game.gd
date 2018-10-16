@@ -131,7 +131,17 @@ func on_attack_popup_id_pressed(id):
 			break
 		index += 1
 	
-	combat_handler.start_fight(active_unit, id, attacker_defense , unit, defend_id, defender_defense)
+	var attacker_info = {
+		attack = active_unit.attacks[id],
+		defense = active_unit.get_defense(get_terrain_type_at_cell(terrain.world_to_map(active_unit.position)))
+	}
+	
+	var defender_info = {
+		attack = unit.attacks[defend_id],
+		defense = unit.get_defense(get_terrain_type_at_cell(terrain.world_to_map(unit.position)))
+	}
+	
+	combat_handler.start_fight(active_unit, attacker_info, unit, defender_info)
 	
 	if active_unit:
 		active_unit = null

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://interface/SpriteBuilder.gd" type="Script" id=2]
 [ext_resource path="res://interface/images/cursor.png" type="Texture" id=3]
 [ext_resource path="res://interface/popup/AttackPopup.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interface/hud/UnitInfo.gd" type="Script" id=5]
+[ext_resource path="res://units/images/elves-wood/archer.png" type="Texture" id=6]
 
 [node name="Interface" type="Node2D" index="0"]
 
@@ -57,6 +58,7 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="AttackPopup" parent="HUD" index="0" instance=ExtResource( 4 )]
 
+visible = false
 margin_top = 20.0
 margin_bottom = 40.0
 
@@ -137,11 +139,13 @@ max_lines_visible = -1
 [node name="UnitInfo" type="Panel" parent="HUD" index="2"]
 
 self_modulate = Color( 1, 1, 1, 0.470588 )
-anchor_left = 0.0
-anchor_top = 1.0
+anchor_left = 1.0
+anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -80.0
+margin_left = -180.0
+margin_top = 20.0
+rect_min_size = Vector2( 150, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -149,14 +153,25 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 5 )
+_sections_unfolded = [ "Rect" ]
 
-[node name="VBox" type="VBoxContainer" parent="HUD/UnitInfo" index="0"]
+[node name="UnitSprite" type="Sprite" parent="HUD/UnitInfo" index="0"]
 
+position = Vector2( 0, 207 )
+texture = ExtResource( 6 )
+centered = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="VBox" type="VBoxContainer" parent="HUD/UnitInfo" index="1"]
+
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -68.0
+margin_left = 78.0
+margin_top = -563.0
+margin_bottom = -495.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -164,6 +179,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
+_sections_unfolded = [ "Rect" ]
 
 [node name="HealthLabel" type="Label" parent="HUD/UnitInfo/VBox" index="0"]
 
@@ -171,7 +187,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1280.0
+margin_right = 102.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -193,7 +209,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 18.0
-margin_right = 1280.0
+margin_right = 102.0
 margin_bottom = 32.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -215,7 +231,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 36.0
-margin_right = 1280.0
+margin_right = 102.0
 margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -229,26 +245,27 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="AttackLabel" type="Label" parent="HUD/UnitInfo/VBox" index="3"]
+[node name="AttackLabel" type="Label" parent="HUD/UnitInfo" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 54.0
-margin_right = 1280.0
-margin_bottom = 68.0
+margin_left = 7.0
+margin_top = 285.0
+margin_right = 174.0
+margin_bottom = 299.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Damage: 8"
-valign = 1
+text = "Attack"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Rect" ]
 
 [node name="EndTurn" type="Button" parent="HUD" index="3"]
 
@@ -256,10 +273,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1189.0
-margin_top = 738.0
-margin_right = 1269.0
-margin_bottom = 788.0
+margin_left = 1138.0
+margin_top = 753.0
+margin_right = 1241.0
+margin_bottom = 782.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0

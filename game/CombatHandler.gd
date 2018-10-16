@@ -2,17 +2,17 @@ extends Node
 
 const xp_per_level = 8
 
-func start_fight(attacker, attack_id, attacker_defense, defender, defend_id, defender_defense):
+func start_fight(attacker, attacker_info, defender, defender_info):
 	
 	randomize()
 	
-	print("\n", "Combat starts | Counter: ", attacker.attacks[attack_id].range == defender.attacks[defend_id].range, " | Type: ", attacker.attacks[attack_id].type, "(", defender.resistance[attacker.attacks[attack_id].type], ")")
+	print("\n", "Combat starts | Counter: ", attacker_info.attack.range == defender_info.attack.range, " | Type: ", attacker_info.attack.type, "(", defender.resistance[attacker_info.attack.type], ")")
 	
-	for i in range(max(attacker.attacks[attack_id].strikes, defender.attacks[defend_id].strikes)):
+	for i in range(max(attacker_info.attack.strikes, defender_info.attack.strikes)):
 
 		if attacker.current_health > 0:
-			if attacker.attacks[attack_id].strikes > i:
-				defender.harm(attacker.id, attacker.attacks[attack_id].damage, attacker.attacks[attack_id].type, defender_defense)
+			if attacker_info.attack.strikes > i:
+				defender.harm(attacker.id, attacker_info.attack.damage, attacker_info.attack.type, defender_info.defense)
 		else:
 			if attacker.level > 0:
 				defender.current_experience += attacker.level * xp_per_level
@@ -22,8 +22,8 @@ func start_fight(attacker, attack_id, attacker_defense, defender, defend_id, def
 			return
 
 		if defender.current_health > 0:
-			if defender.attacks[defend_id].strikes > i and attacker.attacks[attack_id].range == defender.attacks[defend_id].range:
-				attacker.harm(defender.id, defender.attacks[defend_id].damage, defender.attacks[defend_id].type, attacker_defense)
+			if defender_info.attack.strikes > i and attacker_info.attack.range == defender_info.attack.range:
+				attacker.harm(defender.id, defender_info.attack.damage, defender_info.attack.type, attacker_info.defense)
 		else:
 			if defender.level > 0:
 				attacker.current_experience += defender.level * xp_per_level
