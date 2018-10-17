@@ -8,6 +8,7 @@ var offset = Vector2(36, 36)
 var game
 # enum DIRECTION {SE, NE, N, NW, SW, S}
 # that's the order of the neighbors in the lookup table
+#do not change order they appear in
 var neighbor_table = [
 	# EVEN col, ALL rows
     [
@@ -58,38 +59,37 @@ func find_path_by_cell(start_cell, end_cell):
 			path2D.append(Vector2(point.x, point.y))
 	return path2D
 
-func update_weight(unit):
-	for y in range(HEIGHT):
-		for x in range(WIDTH):
-			var current_cell = Vector2(x, y)
-			var id = flatten(x, y)
-			var cost =  unit.get_movement_cost(tiles[id].terrain_type)
-			var other_unit = game.get_unit_at_cell(current_cell)
-			if other_unit:
+func update_weight(unit, cell_range):
+	for cell in cell_range:
+		var id = flatten_v(cell)
+		var cost =  unit.get_movement_cost(tiles[id].terrain_type)
+		var other_unit = game.get_unit_at_cell(cell)
+		if other_unit:
+			if not other_unit.side == unit.side:
+				cost = 99
+		else:	
+			for other_unit in get_adjacent_units(cell):
 				if not other_unit.side == unit.side:
-					cost = 99
-			else:	
-				for other_unit in get_adjacent_units(current_cell):
-					if not other_unit.side == unit.side:
-						cost += 100
-						break
-			grid.set_point_weight_scale(id, cost)
+					cost += 100
+					break
+		grid.set_point_weight_scale(id, cost)
 
 func get_reachable_cells_u(unit):
-	update_weight(unit)
+	var max_cells = _get_cells_in_range(world_to_map(unit.position),unit.current_moves)
+	update_weight(unit, max_cells)
 	var reachable = []
 	if unit.current_moves == 0:
 		for other_unit in get_adjacent_units(world_to_map(unit.position)):
 			if not other_unit.side == unit.side:
 				reachable.append(world_to_map(other_unit.position))
 		return reachable
-	reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves)
+	reachable = get_reachable_cells(world_to_map(unit.position), unit.current_moves, max_cells)
 	return reachable
 
-func get_reachable_cells(start_cell, _range):
+func get_reachable_cells(start_cell, _range, cell_range):
 	var start_cube = v2_to_v3(start_cell)
 	var reachable = []
-	for cell in get_used_cells():
+	for cell in cell_range:
 		var cube = v2_to_v3(cell)
 		var diff_x = abs(start_cube.x - cube.x)
 		var diff_y = abs(start_cube.y - cube.y)
@@ -275,6 +275,22 @@ func _get_neighbors(cell):
 	for n in neighbor_table[parity]:
 		neighbors.append(Vector2(cell.x + n.x, cell.y+n.y))
 	return neighbors
+
+func _get_cells_in_range(cell, _range):
+	var cells = [cell]
+	for n in range(1,_range+1):
+		var current_cell = Vector2(cell.x, cell.y - n)
+		for j in range(6):
+			for i in range(n):
+				var parity = int(current_cell.x) & 1
+				var temp = neighbor_table[parity][(j+4)%6]
+				current_cell += temp
+				if not cell_invalid(current_cell):
+					cells.append(current_cell)
+	return cells
+
+func cell_invalid(cell):
+	return cell.x < 0 or cell.x >= WIDTH or cell.y < 0 or cell.y >= HEIGHT
 
 func get_adjacent_units(cell):
 	var neighbors = []
