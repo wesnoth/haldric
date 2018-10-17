@@ -58,14 +58,17 @@ func update_reachable_cells():
 	var mouse_position = game.terrain.world_to_world_centered(get_global_mouse_position())
 	var unit = game.get_unit_at_position(mouse_position)
 	
+	
 	if last_cursor_position != mouse_position:
 		if !game.active_unit:
 			sprite_builder.remove_darken()
 		if unit and !game.active_unit:
+			game.terrain.update_weight(unit)
 			sprite_builder.show_darken(game.terrain, game.terrain.get_reachable_cells_u(unit))
 		last_cursor_position = mouse_position
 
 	if game.active_unit and game.active_unit != last_active_unit:
+		game.terrain.update_weight(unit)
 		sprite_builder.remove_darken()
 		sprite_builder.show_darken(game.terrain, game.terrain.get_reachable_cells_u(game.active_unit))
 		last_active_unit = game.active_unit

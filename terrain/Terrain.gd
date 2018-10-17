@@ -65,8 +65,7 @@ func update_weight(unit):
 			var cost =  unit.get_movement_cost(tiles[id].terrain_type)
 			var other_unit = game.get_unit_at_cell(current_cell)
 			if other_unit:
-				if not other_unit.side == unit.side:
-					cost = 99
+				cost = 99
 			else:	
 				for other_unit in get_adjacent_units(current_cell):
 					if not other_unit.side == unit.side:
