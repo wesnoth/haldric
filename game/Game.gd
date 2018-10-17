@@ -13,7 +13,6 @@ var active_unit_path = []
 
 var terrain
 
-onready var move_handler = $"MoveHandler"
 onready var combat_handler = $"CombatHandler"
 
 onready var map = $"Map"
@@ -64,14 +63,14 @@ func _input(event):
 
 				attack_popup.add_attacks(active_unit.attacks)
 				attack_popup.show()
-				
+
 		elif !is_unit_at_cell(mouse_cell) and active_unit and !is_cell_blocked(mouse_cell) and active_side == active_unit.side:
 			var tile_path = []
+
 			for cell in active_unit_path:
 				tile_path.append(terrain.tiles[terrain.flatten_v(cell)])
-				print(terrain.tiles[terrain.flatten_v(cell)])
+
 			active_unit.move(tile_path)
-			#move_handler.move_unit(active_unit, active_unit_path)
 
 	if Input.is_action_just_pressed("mouse_right"):
 		unit = null
@@ -79,7 +78,7 @@ func _input(event):
 		active_unit_path = []
 		attack_popup.clear()
 		attack_popup.hide()
-		
+
 func create_unit(id, side, x, y):
 	var unit = UnitRegistry.create(id, side)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
