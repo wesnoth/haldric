@@ -82,8 +82,9 @@ func create_unit(id, side, x, y):
 	units.add_child(unit)
 
 func is_unit_at_cell(cell):
+	var pos = terrain.map_to_world_centered(cell)
 	for u in units.get_children():
-		if u.position == terrain.map_to_world_centered(cell):
+		if u.position == pos:
 			return true
 	return false
 
@@ -92,8 +93,9 @@ func is_cell_blocked(cell):
 		return terrain.tiles[terrain.flatten_v(cell)].is_blocked
 
 func get_unit_at_cell(cell):
+	var pos = terrain.map_to_world_centered(cell)
 	for u in units.get_children():
-		if u.position == terrain.map_to_world_centered(cell):
+		if u.position == pos:
 			return u
 	return null
 

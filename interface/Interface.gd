@@ -23,7 +23,7 @@ func _input(event):
 		else:
 			sprite_builder.remove_grid()
 	if Input.is_action_just_pressed("mouse_right"):
-		sprite_builder.remove_darken()
+		sprite_builder.remove_darken(game.terrain)
 
 func _process(delta):
 	update()
@@ -60,13 +60,13 @@ func update_reachable_cells():
 	
 	if last_cursor_position != mouse_position:
 		if !game.active_unit:
-			sprite_builder.remove_darken()
+			sprite_builder.remove_darken(game.terrain)
 		if unit and !game.active_unit:
 			sprite_builder.show_darken(game.terrain, game.terrain.get_reachable_cells_u(unit))
 		last_cursor_position = mouse_position
 
 	if game.active_unit and game.active_unit != last_active_unit:
-		sprite_builder.remove_darken()
+		sprite_builder.remove_darken(game.terrain)
 		sprite_builder.show_darken(game.terrain, game.terrain.get_reachable_cells_u(game.active_unit))
 		last_active_unit = game.active_unit
 

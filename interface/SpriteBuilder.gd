@@ -8,10 +8,12 @@ var tex_grid = preload("res://interface/images/grid.png")
 
 
 func show_darken(terrain, reachable):
+	var darken_id = terrain.tile_set.find_tile_by_name("darken")
+	
 	for cell in terrain.get_used_cells():
 		if cell in reachable:
 			continue
-		_add_marker(darken_container, tex_darken, terrain.map_to_world_centered(cell))
+		terrain.cover.set_cellv(cell, darken_id)
 
 func show_grid(terrain):
 	for p in terrain.grid.get_points():
@@ -19,8 +21,8 @@ func show_grid(terrain):
 		_add_marker(grid_container, tex_grid, terrain.map_to_world_centered(Vector2(p_cell.x, p_cell.y)))
 
 
-func remove_darken():
-	_clear_container(darken_container)
+func remove_darken(terrain):
+	terrain.cover.clear()
 
 func remove_grid():
 	_clear_container(grid_container)

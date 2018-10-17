@@ -32,6 +32,7 @@ var tiles = {}
 var grid = AStar.new()
 
 var overlay = TileMap.new()
+var cover = TileMap.new()
 
 func _ready():
 	WIDTH = get_used_rect().end.x
