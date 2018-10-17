@@ -69,8 +69,8 @@ func _input(event):
 
 			for cell in active_unit_path:
 				tile_path.append(terrain.tiles[terrain.flatten_v(cell)])
-
-			active_unit.move(tile_path)
+			if tile_path.size() > 0:
+				active_unit.move(tile_path)
 
 	if Input.is_action_just_pressed("mouse_right"):
 		unit = null
