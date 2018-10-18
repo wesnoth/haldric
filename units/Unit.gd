@@ -1,7 +1,12 @@
 extends Sprite
 
-var side
+# I N T E R N A L   V A R I A B L E S 
 
+var side
+var tile_path = []
+var can_attack = true
+
+# Y A M L   S T A T S
 var id
 var level
 
@@ -21,9 +26,10 @@ var resistance = {}
 var defense = {}
 var movement = {}
 
-var can_attack = true
 
 var game
+onready var anim = $"AnimationPlayer"
+onready var tween = $"Tween"
 onready var lifebar = $"Lifebar"
 onready var xpbar = $"XPbar"
 
@@ -32,6 +38,8 @@ func _ready():
 	update_xpbar()
 
 func _process(delta):
+	_handle_movement()
+	
 	if current_experience >= base_experience and advances_to == null:
 		amla()
 	elif current_experience >= base_experience and UnitRegistry.registry.has(advances_to):
@@ -138,13 +146,19 @@ func get_defense(terrain_type):
 func get_map_position():
 	return game.terrain.world_to_map(position)
 
+func get_current_tile():
+	return game.terrain.tiles[game.terrain.flatten_v(get_map_position())]
+
 func get_adjacent_units():
 	var units = []
 	for cell in game.terrain._get_neighbors(get_map_position()):
-		var otherUnit = game.get_unit_at_cell(cell)
-		if otherUnit:
-			units.append(otherUnit)
+		var other_unit = game.get_unit_at_cell(cell)
+		if other_unit:
+			units.append(other_unit)
 	return units
+
+func get_adjacent_cells():
+	return game.terrain._get_neighbors(get_map_position())
 
 func _set_current_experience(value):
 	current_experience = value
@@ -156,3 +170,37 @@ func _set_current_health(value):
 	else:
 		current_health = base_max_health
 	update_lifebar()
+
+func move(tile_path):
+	self.tile_path = tile_path
+	self.tile_path.remove(0)
+
+func _handle_movement():
+	set_process(false)
+
+	if tile_path.size() > 0 and current_moves - get_movement_cost(tile_path[0].terrain_type) >= 0:
+		get_current_tile().unit = null
+		anim.play("walk")
+		tween.interpolate_property(self, "position", position, tile_path[0].position, anim.current_animation_length, Tween.TRANS_LINEAR, Tween.EASE_OUT_IN)
+		tween.start()
+		yield(anim, "animation_finished")
+		position = tile_path[0].position
+		current_moves -= get_movement_cost(tile_path[0].terrain_type)
+		tile_path.remove(0)
+
+		if _is_in_zoc():
+			get_current_tile().unit = self
+			current_moves = 0
+			tile_path = []
+
+	else:
+		get_current_tile().unit = self
+		tile_path = []
+	set_process(true)
+
+func _is_in_zoc():
+	var adjacent_units = get_adjacent_units()
+	for unit in adjacent_units:
+		if unit.side != side and unit.level > 0:
+			return true
+	return false

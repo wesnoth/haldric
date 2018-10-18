@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://game/Game.gd" type="Script" id=1]
-[ext_resource path="res://game/MoveHandler.gd" type="Script" id=2]
-[ext_resource path="res://game/CombatHandler.gd" type="Script" id=3]
-[ext_resource path="res://interface/Interface.tscn" type="PackedScene" id=4]
-[ext_resource path="res://interface/WesnothCamera.gd" type="Script" id=5]
+[ext_resource path="res://game/CombatHandler.gd" type="Script" id=2]
+[ext_resource path="res://interface/Interface.tscn" type="PackedScene" id=3]
+[ext_resource path="res://interface/WesnothCamera.gd" type="Script" id=4]
 
 [node name="Game" type="Node2D" index="0"]
 
@@ -15,20 +14,16 @@ _sections_unfolded = [ "Cell", "Transform" ]
 
 [node name="UnitContainer" type="Node" parent="." index="1"]
 
-[node name="MoveHandler" type="Node" parent="." index="2"]
+[node name="CombatHandler" type="Node" parent="." index="2"]
 
 script = ExtResource( 2 )
 
-[node name="CombatHandler" type="Node" parent="." index="3"]
-
-script = ExtResource( 3 )
-
-[node name="Interface" parent="." index="4" instance=ExtResource( 4 )]
+[node name="Interface" parent="." index="3" instance=ExtResource( 3 )]
 
 z_index = 2
 _sections_unfolded = [ "Z Index" ]
 
-[node name="Camera" type="Camera2D" parent="." index="5"]
+[node name="Camera" type="Camera2D" parent="." index="4"]
 
 position = Vector2( 540, 324 )
 anchor_mode = 1
@@ -53,7 +48,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 _sections_unfolded = [ "Smoothing" ]
 
 

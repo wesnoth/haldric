@@ -117,6 +117,9 @@ func get_reachable_cells(start_cell, _range, cell_range):
 					reachable.append(world_to_map(other_unit.position))			
 	return reachable
 
+func get_tile_at(cell):
+	return tiles[flatten_v(cell)]
+
 func are_neighbors(cell1, cell2):
 	var cell1_neighbors = _get_neighbors(cell1)
 
@@ -224,12 +227,12 @@ func _generate_tiles():
 
 			tiles[id] = {
 				terrain_type = [type,overlay_type],
-				terrain_code = code + overlay_code,
+                terrain_code = code + overlay_code,
 				position = map_to_world_centered(Vector2(x, y)),
+                unit = null,
 				stack_limit = 1,
 				is_village = overlay_type == "village",
 				is_blocked = false,
-				is_in_zoc = false,
 			}
 
 func _generate_points():
