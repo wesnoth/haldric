@@ -179,6 +179,7 @@ func _handle_movement():
 	set_process(false)
 
 	if tile_path.size() > 0 and current_moves - get_movement_cost(tile_path[0].terrain_type) >= 0:
+		get_current_tile().unit = null
 		anim.play("walk")
 		tween.interpolate_property(self, "position", position, tile_path[0].position, anim.current_animation_length, Tween.TRANS_LINEAR, Tween.EASE_OUT_IN)
 		tween.start()
@@ -188,10 +189,12 @@ func _handle_movement():
 		tile_path.remove(0)
 
 		if _is_in_zoc():
+			get_current_tile().unit = self
 			current_moves = 0
 			tile_path = []
 
 	else:
+		get_current_tile().unit = self
 		tile_path = []
 	set_process(true)
 
