@@ -5,10 +5,16 @@ var Terrain = preload("res://terrain/Terrain.tscn")
 func load_map(path):
 	var terrain = Terrain.instance()
 	terrain.name = "Terrain"
+	
 	terrain.overlay.cell_size = Vector2(54, 72)
 	terrain.overlay.cell_half_offset = TileMap.HALF_OFFSET_Y
 	terrain.overlay.tile_set = terrain.tile_set
 	terrain.add_child(terrain.overlay)
+	
+	terrain.cover.cell_size = Vector2(54, 72)
+	terrain.cover.cell_half_offset = TileMap.HALF_OFFSET_Y
+	terrain.cover.tile_set = terrain.tile_set
+	terrain.add_child(terrain.cover)
 	
 	var file = File.new()
 	file.open(path, file.READ)

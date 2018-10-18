@@ -1,9 +1,10 @@
-[gd_resource type="TileSet" load_steps=5 format=2]
+[gd_resource type="TileSet" load_steps=6 format=2]
 
 [ext_resource path="res://terrain/images/void.png" type="Texture" id=1]
 [ext_resource path="res://terrain/images/terrain.png" type="Texture" id=2]
 [ext_resource path="res://terrain/images/village.png" type="Texture" id=3]
 [ext_resource path="res://terrain/images/forest.png" type="Texture" id=4]
+[ext_resource path="res://interface/images/darken.png" type="Texture" id=5]
 
 [resource]
 
@@ -169,4 +170,13 @@
 17/occluder_offset = Vector2( 0, 0 )
 17/navigation_offset = Vector2( 0, 0 )
 17/shapes = [  ]
+18/name = "darken"
+18/texture = ExtResource( 5 )
+18/tex_offset = Vector2( 0, 0 )
+18/modulate = Color( 1, 1, 1, 1 )
+18/region = Rect2( 0, 0, 72, 72 )
+18/is_autotile = false
+18/occluder_offset = Vector2( 36, 36 )
+18/navigation_offset = Vector2( 36, 36 )
+18/shapes = [  ]
 
