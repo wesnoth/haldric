@@ -2,8 +2,10 @@ extends Camera2D
 
 var speed = 2000
 var border = 4
-onready var InitialMousePosition = Vector2(0,0) + get_viewport().get_mouse_position()
-onready var InitialCameraPosition = Vector2(0,0) + self.position
+
+var initial_camera_position
+var initial_mouse_position
+
 func _input(event):
 
 	if Input.is_action_just_pressed("scroll_up"):
@@ -14,12 +16,11 @@ func _input(event):
 		
 	if !event is InputEventMouseMotion:
 		if Input.is_mouse_button_pressed(BUTTON_MIDDLE):
-			InitialCameraPosition = Vector2(0,0) + self.position
-			InitialMousePosition = Vector2(0,0) + get_viewport().get_mouse_position()
+			initial_camera_position = Vector2(0,0) + self.position
+			initial_mouse_position = Vector2(0,0) + get_viewport().get_mouse_position()
 		
 	if Input.is_mouse_button_pressed(BUTTON_MIDDLE):
-		var fakeposition = self.position + get_viewport().get_mouse_position() - InitialMousePosition
-		self.position = InitialCameraPosition + get_viewport().get_mouse_position() - InitialMousePosition
+		self.position = initial_camera_position + (get_viewport().get_mouse_position() - initial_mouse_position) * -1
 
 func _process(delta):
 
