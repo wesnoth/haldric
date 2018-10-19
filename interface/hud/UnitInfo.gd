@@ -1,4 +1,4 @@
-extends Panel
+extends Node2D
 
 onready var unit_sprite = $"UnitSprite"
 onready var health = $"VBox/HealthLabel"
