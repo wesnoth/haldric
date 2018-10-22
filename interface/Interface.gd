@@ -44,7 +44,7 @@ func _process(delta):
 	villages_label.text = str(game.get_current_side().villages.size())
 	
 	var time = OS.get_time()
-	time_label.text = str(time.hour, ":", "%02d" % time.minute)
+	time_label.text = str("%02d" % time.hour, ":", "%02d" % time.minute)
 	battery_label.text = str(OS.get_power_percent_left(), "%")
 	
 	
