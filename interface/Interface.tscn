@@ -1,11 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://interface/SpriteBuilder.gd" type="Script" id=2]
 [ext_resource path="res://interface/images/cursor.png" type="Texture" id=3]
-[ext_resource path="res://interface/popup/AttackPopup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://interface/hud/UnitInfo.gd" type="Script" id=5]
-[ext_resource path="res://units/images/elves-wood/archer.png" type="Texture" id=6]
+[ext_resource path="res://interface/Gradients.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/popup/AttackPopup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://interface/hud/images/flag-icon.png" type="Texture" id=6]
+[ext_resource path="res://interface/hud/images/gold.png" type="Texture" id=7]
+[ext_resource path="res://interface/hud/images/income.png" type="Texture" id=8]
+[ext_resource path="res://interface/hud/images/villages.png" type="Texture" id=9]
+[ext_resource path="res://interface/hud/images/sand-clock.png" type="Texture" id=10]
+[ext_resource path="res://interface/hud/images/battery.png" type="Texture" id=11]
+[ext_resource path="res://interface/hud/UnitInfo.gd" type="Script" id=12]
+[ext_resource path="res://units/images/elves-wood/archer.png" type="Texture" id=13]
 
 [node name="Interface" type="Node2D" index="0"]
 
@@ -56,26 +63,21 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="AttackPopup" parent="HUD" index="0" instance=ExtResource( 4 )]
+[node name="Panels" parent="HUD" index="0" instance=ExtResource( 4 )]
+
+[node name="AttackPopup" parent="HUD" index="1" instance=ExtResource( 5 )]
 
 visible = false
 margin_top = 20.0
 margin_bottom = 40.0
 
-[node name="GameInfo" type="Panel" parent="HUD" index="1"]
+[node name="GameInfo" type="Node2D" parent="HUD" index="2"]
 
 self_modulate = Color( 1, 1, 1, 0.470588 )
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+position = Vector2( 929.636, 3.36214 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="HBox" type="HBoxContainer" parent="HUD/GameInfo" index="0"]
 
@@ -91,7 +93,9 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_constants/separation = 6
 alignment = 0
+_sections_unfolded = [ "custom_constants" ]
 
 [node name="TurnLabel" type="Label" parent="HUD/GameInfo/HBox" index="0"]
 
@@ -99,87 +103,198 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 60.0
+margin_right = 55.0
 margin_bottom = 20.0
-rect_min_size = Vector2( 60, 20 )
+rect_min_size = Vector2( 55, 20 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Turn: 1"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="SideLabel" type="Label" parent="HUD/GameInfo/HBox" index="1"]
+[node name="TurnSprite" type="Sprite" parent="HUD/GameInfo/HBox/TurnLabel" index="0"]
+
+texture = ExtResource( 6 )
+centered = false
+offset = Vector2( -24, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GoldLabel" type="Label" parent="HUD/GameInfo/HBox" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 64.0
-margin_right = 124.0
+margin_left = 61.0
+margin_right = 126.0
 margin_bottom = 20.0
-rect_min_size = Vector2( 60, 20 )
+rect_min_size = Vector2( 65, 20 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Side: 1"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="UnitInfo" type="Panel" parent="HUD" index="2"]
+[node name="GoldSprite" type="Sprite" parent="HUD/GameInfo/HBox/GoldLabel" index="0"]
 
-self_modulate = Color( 1, 1, 1, 0.470588 )
-anchor_left = 1.0
+texture = ExtResource( 7 )
+centered = false
+offset = Vector2( -16, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="IncomeLabel" type="Label" parent="HUD/GameInfo/HBox" index="2"]
+
+anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -180.0
-margin_top = 20.0
-rect_min_size = Vector2( 150, 0 )
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 132.0
+margin_right = 187.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 55, 20 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 0
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
-size_flags_vertical = 1
-script = ExtResource( 5 )
+size_flags_vertical = 4
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="IncomeSprite" type="Sprite" parent="HUD/GameInfo/HBox/IncomeLabel" index="0"]
+
+texture = ExtResource( 8 )
+centered = false
+offset = Vector2( -26, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="VillagesLabel" type="Label" parent="HUD/GameInfo/HBox" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 193.0
+margin_right = 248.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 55, 20 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="VillagesSprite" type="Sprite" parent="HUD/GameInfo/HBox/VillagesLabel" index="0"]
+
+texture = ExtResource( 9 )
+centered = false
+offset = Vector2( -18, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="TimeLabel" type="Label" parent="HUD/GameInfo/HBox" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 254.0
+margin_right = 309.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 55, 20 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TimeSprite" type="Sprite" parent="HUD/GameInfo/HBox/TimeLabel" index="0"]
+
+texture = ExtResource( 10 )
+centered = false
+offset = Vector2( -16, 0 )
+
+[node name="BatteryLabel" type="Label" parent="HUD/GameInfo/HBox" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 315.0
+margin_right = 370.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 55, 20 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="BatterySprite" type="Sprite" parent="HUD/GameInfo/HBox/BatteryLabel" index="0"]
+
+texture = ExtResource( 11 )
+centered = false
+offset = Vector2( -16, 1 )
+
+[node name="UnitInfo" type="Node2D" parent="HUD" index="3"]
+
+editor/display_folded = true
+self_modulate = Color( 1, 1, 1, 0.470588 )
+position = Vector2( 13, 728 )
+script = ExtResource( 12 )
 _sections_unfolded = [ "Rect" ]
 
 [node name="UnitSprite" type="Sprite" parent="HUD/UnitInfo" index="0"]
 
-position = Vector2( 0, 207 )
-texture = ExtResource( 6 )
+texture = ExtResource( 13 )
 centered = false
 _sections_unfolded = [ "Transform" ]
 
 [node name="VBox" type="VBoxContainer" parent="HUD/UnitInfo" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 78.0
-margin_top = -563.0
-margin_bottom = -495.0
+margin_left = 75.0
+margin_top = -49.0
+margin_right = 44.0
+margin_bottom = 19.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_constants/separation = 2
 alignment = 0
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "custom_constants" ]
 
 [node name="HealthLabel" type="Label" parent="HUD/UnitInfo/VBox" index="0"]
 
@@ -187,7 +302,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 102.0
+margin_right = 33.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -196,7 +311,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Health: 30/30"
+text = "HP: -"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -208,9 +323,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 102.0
-margin_bottom = 32.0
+margin_top = 16.0
+margin_right = 33.0
+margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -230,16 +345,16 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 36.0
-margin_right = 102.0
-margin_bottom = 50.0
+margin_top = 32.0
+margin_right = 33.0
+margin_bottom = 46.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Moves: 5/5"
+text = "MP: -"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -251,10 +366,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 7.0
-margin_top = 285.0
-margin_right = 174.0
-margin_bottom = 299.0
+margin_left = 169.0
+margin_top = 15.0
+margin_right = 373.0
+margin_bottom = 82.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -267,7 +382,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="EndTurn" type="Button" parent="HUD" index="3"]
+[node name="EndTurn" type="Button" parent="HUD" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0

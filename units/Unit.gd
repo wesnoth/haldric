@@ -116,7 +116,7 @@ func has_moved():
 func get_attack_string():
 	var string = ""
 	for attack in attacks:
-		string += str(attack.name, ":\n", attack.damage, "x", attack.strikes, " (", attack.type, ", ", attack.range, ")\n\n")
+		string += str(attack.name, ": ", attack.damage, "x", attack.strikes, " (", attack.type, ", ", attack.range, ")\n")
 	return string
 
 func update_lifebar():

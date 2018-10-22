@@ -7,8 +7,14 @@ onready var cursor = $"Cursor"
 
 onready var sprite_builder = $"SpriteBuilder"
 
-onready var side_label = $"HUD/GameInfo/HBox/SideLabel"
 onready var turn_label = $"HUD/GameInfo/HBox/TurnLabel"
+
+onready var gold_label = $"HUD/GameInfo/HBox/GoldLabel"
+onready var income_label = $"HUD/GameInfo/HBox/IncomeLabel"
+onready var villages_label = $"HUD/GameInfo/HBox/VillagesLabel"
+
+onready var time_label = $"HUD/GameInfo/HBox/TimeLabel"
+onready var battery_label = $"HUD/GameInfo/HBox/BatteryLabel"
 
 onready var unit_info = $"HUD/UnitInfo"
 
@@ -30,8 +36,17 @@ func _process(delta):
 	update_reachable_cells()
 	
 	cursor.position = game.terrain.world_to_world_centered(get_global_mouse_position())
-	side_label.text = str("Side: ", game.active_side)
-	turn_label.text = str("Turn: ", game.turn)
+	
+	turn_label.text = str(game.turn)
+	
+	gold_label.text = str(game.get_current_side().gold)
+	income_label.text = str(game.get_current_side().income)
+	villages_label.text = str(game.get_current_side().villages.size())
+	
+	var time = OS.get_time()
+	time_label.text = str("%02d" % time.hour, ":", "%02d" % time.minute)
+	battery_label.text = str(OS.get_power_percent_left(), "%")
+	
 	
 	if game.active_unit:
 		unit_info.update_unit_info(game.active_unit)
