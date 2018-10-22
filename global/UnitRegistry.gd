@@ -1,14 +1,12 @@
 extends Node
 
-var yaml_parser = preload("res://addons/godot-yaml/gdyaml.gdns").new()
-
 var registry = {}
 
 func load_dir(path):
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		var unit = yaml_parser.parse(file.get_as_text())
+		var unit = parse_json(file.get_as_text())
 		registry[unit.id] = {
 			id = unit.id,
 			name = unit.name,
