@@ -1,11 +1,9 @@
 extends Node2D
 
-const unit_rest_heal = 2
-const unit_village_heal = 8
-
 var turn = 1
 
-var sides = 2
+var sides = []
+
 var active_side = 1
 
 var active_unit = null
@@ -29,6 +27,14 @@ func _ready():
 	terrain.game = self
 	
 	attack_popup.connect("id_pressed", self, "on_attack_popup_id_pressed")
+
+	var Side = preload("res://game/Side.gd")
+	
+	sides.append(Side.new())
+	sides.append(Side.new())
+	
+	sides[0].initialize(1, 100)
+	sides[1].initialize(2, 120)
 	
 	create_unit("Elvish Fighter", 1, 10, 1);
 	create_unit("Elvish Archer", 1, 11, 1);
@@ -115,6 +121,9 @@ func get_terrain_type_at_cell(cell):
 	else:
 		return null
 
+func get_current_side():
+	return sides[active_side-1]
+
 func can_fight(unit1, unit2):
 	if active_side == unit1.side:
 		if unit1.side != unit2.side:
@@ -154,14 +163,14 @@ func on_attack_popup_id_pressed(id):
 		active_unit_path = []
 
 func end_turn():
-	active_side = (active_side % sides) + 1
+	active_side = (active_side % sides.size()) + 1
 	
 	for u in units.get_children():
 		if u.side == active_side:
 			if u.current_moves == u.base_max_moves and u.current_health < u.base_max_health:
-				u.heal(unit_rest_heal)
+				u.heal(get_current_side().heal_on_rest)
 			if terrain.tiles[terrain.flatten_v(terrain.world_to_map(u.position))].is_village:
-				u.heal(unit_village_heal)
+				u.heal(get_current_side().heal_on_village)
 			u.restore_current_moves()
 	
 	if active_side == 1:
