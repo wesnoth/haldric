@@ -14,7 +14,7 @@ attacks:
     strikes: 2,
     range: melee,
     type: impact,
-    icon: res://interface/images/attacks/staff-druid.png
+    icon: res://interface/images/attacks/druidstaff.png
   }
   - {
     name: entangle,
