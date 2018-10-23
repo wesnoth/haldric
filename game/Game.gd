@@ -30,15 +30,14 @@ func initialize(reg_entry):
 		var new_side = Side.new()
 		new_side.initialize(side.side, side.gold, side.income)
 		new_side.team_color = side.team_color
+		
 		for recruit in side.recruit.split(","):
 			recruit = recruit.strip_edges()
 			new_side.recruit.append(recruit)
 		
 		sides.append(new_side)
 		
-		
-		
-		create_unit(side.type, side.side, side.position.x, side.position.z)
+		create_unit(side.type, side.side, side.position.x, side.position.z, true)
 
 func _ready():
 	Wesnoth.connect("unit_moved", self, "on_unit_moved")
@@ -93,10 +92,12 @@ func _input(event):
 		recruit_popup.add_recruits(get_current_side().recruit)
 		recruit_popup.show()
 
-func create_unit(id, side, x, y):
+func create_unit(id, side, x, y, is_leader = false):
 	var unit = Registry.create_unit(id, side)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
 	unit.game = self
+	unit.is_leader = is_leader
+	sides[side-1].leaders.append(unit)
 	units.add_child(unit)
 
 func is_unit_at_cell(cell):

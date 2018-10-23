@@ -19,6 +19,8 @@ var recruit = []
 
 var villages = []
 
+var leaders = []
+
 func initialize(side, gold = 100, base_income = 2, starting_villages = []):
 	self.base_income = base_income
 	self.side = side

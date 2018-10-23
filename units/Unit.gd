@@ -4,7 +4,9 @@ extends Sprite
 
 var side
 var tile_path = []
+
 var can_attack = true
+var is_leader = false
 
 # Y A M L   S T A T S
 var id
