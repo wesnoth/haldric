@@ -5,6 +5,8 @@ var HEIGHT
 
 var offset = Vector2(36, 36)
 
+var villages = []
+
 var game
 # enum DIRECTION {SE, NE, N, NW, SW, S}
 # that's the order of the neighbors in the lookup table
@@ -211,6 +213,7 @@ func _generate_tiles():
 				match overlay_code[1]:
 					"V":
 						overlay_type = "village"
+						villages.append(Vector2(x, y))
 					"F":
 						overlay_type = "forest"
 					_:

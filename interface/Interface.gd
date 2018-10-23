@@ -41,7 +41,7 @@ func _process(delta):
 	
 	gold_label.text = str(game.get_current_side().gold)
 	income_label.text = str(game.get_current_side().income)
-	villages_label.text = str(game.get_current_side().villages.size())
+	villages_label.text = str(game.get_current_side().villages.size(), " / ", game.terrain.villages.size())
 	
 	var time = OS.get_time()
 	time_label.text = str("%02d" % time.hour, ":", "%02d" % time.minute)
