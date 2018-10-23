@@ -9,7 +9,7 @@ var can_attack = true
 # Y A M L   S T A T S
 var id
 var level
-
+var cost
 var advances_to
 
 var base_experience
@@ -49,6 +49,7 @@ func _process(delta):
 func initialize(reg_entry, side):
 	id = reg_entry.id
 	level = reg_entry.level
+	cost = reg_entry.cost
 	base_max_health = reg_entry.health
 	current_health = base_max_health
 	base_max_moves = reg_entry.moves
@@ -68,6 +69,7 @@ func initialize(reg_entry, side):
 func advance(reg_entry):
 	id = reg_entry.id
 	level = reg_entry.level
+	cost = reg_entry.cost
 	base_max_health = reg_entry.health
 	current_health = base_max_health
 	base_max_moves = reg_entry.moves

@@ -1,6 +1,7 @@
 name: Elvish Fighter
 id: Elvish Fighter
 level: 1
+cost: 14
 health: 33
 moves: 5
 experience: 40

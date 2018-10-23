@@ -13,6 +13,7 @@ func load_dir(path):
 			id = unit.id,
 			name = unit.name,
 			level = unit.level,
+			cost = unit.cost,
 			health = unit.health,
 			moves = unit.moves,
 			experience = unit.experience,

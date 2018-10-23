@@ -180,12 +180,19 @@ func on_attack_popup_id_pressed(id):
 		active_unit_path = []
 
 func on_recruit_popup_id_pressed(id):
-	var unit_id = recruit_popup.get_item_text(id)
+	var unit_entry = recruit_popup.get_item_metadata(id)
+	
+	if get_current_side().gold - unit_entry.cost <= 0:
+		return
+	
+	get_current_side().gold -= unit_entry.cost
+	
 	if active_side == 1:
-		create_unit(unit_id, active_side, 10, 0)
+		create_unit(unit_entry.id, active_side, 10, 0)
 	if active_side == 2:
-		create_unit(unit_id, active_side, 10, 15)
-
+		create_unit(unit_entry.id, active_side, 10, 15)
+	
+	
 func _handle_village_capturing(unit):
 	var unit_cell = terrain.world_to_map(unit.position)
 	

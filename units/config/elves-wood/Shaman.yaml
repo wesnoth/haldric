@@ -1,6 +1,7 @@
 name: Elvish Shaman
 id: Elvish Shaman
 level: 1
+cost: 15
 health: 26
 moves: 5
 experience: 32

@@ -1,6 +1,7 @@
 name: Elvish Scout
 id: Elvish Scout
 level: 1
+cost: 18
 health: 32
 moves: 9
 experience: 32
