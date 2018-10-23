@@ -26,6 +26,10 @@ func _ready():
 	terrain = map.get_child(0)
 	terrain.game = self
 	
+	Wesnoth.connect("unit_moved", self, "on_unit_moved")
+	Wesnoth.connect("unit_move_finished", self, "on_unit_move_finished")
+	Wesnoth.connect("end_turn", self, "on_end_turn")
+	
 	attack_popup.connect("id_pressed", self, "on_attack_popup_id_pressed")
 
 	var Side = preload("res://game/Side.gd")
@@ -124,6 +128,9 @@ func get_terrain_type_at_cell(cell):
 func get_current_side():
 	return sides[active_side-1]
 
+func get_side(side):
+	return sides[side-1]
+
 func can_fight(unit1, unit2):
 	if active_side == unit1.side:
 		if unit1.side != unit2.side:
@@ -162,9 +169,19 @@ func on_attack_popup_id_pressed(id):
 		active_unit = null
 		active_unit_path = []
 
-func end_turn():
+func _handle_village_capturing(unit):
+	var unit_cell = terrain.world_to_map(unit.position)
+	if terrain.get_tile_at_cell(unit_cell).is_village == true:
+		for side in sides:
+			if side.has_village(unit_cell):
+				side.remove_village(unit_cell)
+				side.calculate_income()
+		get_current_side().add_village(unit_cell)
+		get_current_side().calculate_income()
+
+func on_end_turn(side):
 	active_side = (active_side % sides.size()) + 1
-	
+	get_current_side().end_turn()
 	for u in units.get_children():
 		if u.side == active_side:
 			if u.current_moves == u.base_max_moves and u.current_health < u.base_max_health:
@@ -175,3 +192,12 @@ func end_turn():
 	
 	if active_side == 1:
 		turn += 1
+
+func on_unit_moved(unit):
+	# print(unit.id, " Moved!")
+	pass
+
+func on_unit_move_finished(unit):
+	if terrain.get_tile_at_position(unit.position).is_village == true:
+		_handle_village_capturing(unit)
+	# print(unit.id, " Move Finished!")

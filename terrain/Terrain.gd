@@ -116,11 +116,14 @@ func get_reachable_cells(start_cell, _range):
 			reachable.append(cell)
 			if in_zoc:
 				for other_unit in get_adjacent_units(cell):
-					reachable.append(world_to_map(other_unit.position))			
+					reachable.append(world_to_map(other_unit.position))
 	return reachable
 
-func get_tile_at(cell):
+func get_tile_at_cell(cell):
 	return tiles[flatten_v(cell)]
+
+func get_tile_at_position(position):
+	return tiles[flatten_v(world_to_map(position))]
 
 func are_neighbors(cell1, cell2):
 	var cell1_neighbors = _get_neighbors(cell1)

@@ -67,6 +67,14 @@ func _draw():
 	for i in range(game.active_unit_path.size()-2):
 		i += 1
 		draw_circle(game.terrain.map_to_world_centered(game.active_unit_path[i]), 5, Color(255, 0, 0))
+	
+	# draw villages
+	for side in game.sides:
+		for v in side.get_villages():
+			if side.side == 1:
+				draw_circle(game.terrain.map_to_world_centered(v), 5, Color(255, 0, 0))
+			if side.side == 2:
+				draw_circle(game.terrain.map_to_world_centered(v), 5, Color(0, 0, 255))
 
 var last_cursor_position = Vector2(0, 0)
 var last_active_unit = null
@@ -93,4 +101,4 @@ func update_reachable_cells():
 
 
 func _on_end_turn_pressed():
-	game.end_turn()
+	Wesnoth.emit_signal("end_turn", game.active_side)
