@@ -181,11 +181,9 @@ func on_recruit_popup_id_pressed(id):
 		return
 	
 	get_current_side().gold -= unit_entry.cost
-	
-	if active_side == 1:
-		create_unit(unit_entry.id, active_side, 10, 0)
-	if active_side == 2:
-		create_unit(unit_entry.id, active_side, 10, 15)
+	var leader_cell = terrain.world_to_map(sides[active_side-1].get_first_leader().position)
+	create_unit(unit_entry.id, active_side, leader_cell.x+1, leader_cell.y)
+
 	
 	
 func _handle_village_capturing(unit):

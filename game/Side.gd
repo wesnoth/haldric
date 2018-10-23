@@ -45,3 +45,8 @@ func calculate_income():
 
 func end_turn():
 	gold += income
+
+func get_first_leader():
+	if leaders.size() > 0:
+		return leaders[0]
+	return null
