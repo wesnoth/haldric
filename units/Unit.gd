@@ -42,8 +42,8 @@ func _process(delta):
 	
 	if current_experience >= base_experience and advances_to == null:
 		amla()
-	elif current_experience >= base_experience and UnitRegistry.registry.has(advances_to):
-		advance(UnitRegistry.registry[advances_to])
+	elif current_experience >= base_experience and Registry.units.has(advances_to):
+		advance(Registry.units[advances_to])
 
 
 func initialize(reg_entry, side):

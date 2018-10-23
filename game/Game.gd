@@ -19,40 +19,34 @@ onready var units = $"UnitContainer"
 onready var recruit_popup = $"Interface/HUD/RecruitPopup"
 onready var attack_popup = $"Interface/HUD/AttackPopup"
 
-func _ready():
-	UnitRegistry.load_dir("res://units/config")
-	UnitRegistry.validate_advancements()
-	
-	map.add_child(MapLoader.load_map("res://maps/testMap.map"))
-	terrain = map.get_child(0)
+func initialize(reg_entry):
+	terrain = reg_entry.map_data
 	terrain.game = self
+	add_child(terrain)
 	
+	var Side = preload("res://game/Side.gd")
+	
+	for side in reg_entry.sides:
+		var new_side = Side.new()
+		new_side.initialize(side.side, side.gold, side.income)
+		
+		for recruit in side.recruit.split(","):
+			recruit = recruit.strip_edges()
+			new_side.recruit.append(recruit)
+		
+		sides.append(new_side)
+		
+		
+		
+		create_unit(side.type, side.side, side.position.x, side.position.z)
+
+func _ready():
 	Wesnoth.connect("unit_moved", self, "on_unit_moved")
 	Wesnoth.connect("unit_move_finished", self, "on_unit_move_finished")
 	Wesnoth.connect("end_turn", self, "on_end_turn")
 	
 	attack_popup.connect("id_pressed", self, "on_attack_popup_id_pressed")
 	recruit_popup.connect("id_pressed", self, "on_recruit_popup_id_pressed")
-	var Side = preload("res://game/Side.gd")
-	
-	sides.append(Side.new())
-	sides.append(Side.new())
-	
-	sides[0].initialize(1, 100)
-	sides[0].recruit = ["Elvish Fighter", "Elvish Archer", "Elvish Scout", "Elvish Shaman"]
-	
-	sides[1].initialize(2, 120)
-	sides[1].recruit = ["Orcish Grunt", "Orcish Archer", "Orcish Assassin", "Troll Whelp"]
-	
-	create_unit("Elvish Fighter", 1, 10, 1);
-	create_unit("Elvish Archer", 1, 11, 1);
-	create_unit("Elvish Scout", 1, 9, 1);
-	create_unit("Elvish Shaman", 1, 8, 1);
-	
-	create_unit("Orcish Grunt", 2, 10, 13);
-	create_unit("Orcish Archer", 2, 9, 13);
-	create_unit("Orcish Assassin", 2, 11, 13);
-	create_unit("Troll Whelp", 2, 12, 13);
 
 var unit
 
@@ -100,7 +94,7 @@ func _input(event):
 		recruit_popup.show()
 
 func create_unit(id, side, x, y):
-	var unit = UnitRegistry.create(id, side)
+	var unit = Registry.create_unit(id, side)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
 	unit.game = self
 	units.add_child(unit)
