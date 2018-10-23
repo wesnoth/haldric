@@ -23,8 +23,7 @@ func initialize(side, gold = 100, base_income = 2, starting_villages = []):
 	calculate_income()
 
 func add_village(cell):
-	if !has_village(cell):
-		villages.append(cell)
+	villages.append(cell)
 	
 func remove_village(cell):
 	villages.erase(cell)

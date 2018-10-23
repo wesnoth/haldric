@@ -171,11 +171,18 @@ func on_attack_popup_id_pressed(id):
 
 func _handle_village_capturing(unit):
 	var unit_cell = terrain.world_to_map(unit.position)
+	
 	if terrain.get_tile_at_cell(unit_cell).is_village == true:
+		
+		if get_current_side().has_village(unit_cell):
+			return
+		
 		for side in sides:
 			if side.has_village(unit_cell):
 				side.remove_village(unit_cell)
 				side.calculate_income()
+			unit.current_moves = 0
+		
 		get_current_side().add_village(unit_cell)
 		get_current_side().calculate_income()
 
