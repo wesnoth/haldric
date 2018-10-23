@@ -8,6 +8,7 @@ var offset = Vector2(36, 36)
 var game
 # enum DIRECTION {SE, NE, N, NW, SW, S}
 # that's the order of the neighbors in the lookup table
+#do not change order they appear in
 var neighbor_table = [
 	# EVEN col, ALL rows
     [
@@ -61,14 +62,15 @@ func find_path_by_cell(start_cell, end_cell):
 func update_weight(unit):
 	for y in range(HEIGHT):
 		for x in range(WIDTH):
-			var current_cell = Vector2(x, y)
-			var id = flatten(x, y)
+			var cell = Vector2(x,y)
+			var id = flatten_v(cell)
 			var cost =  unit.get_movement_cost(tiles[id].terrain_type)
-			var other_unit = game.get_unit_at_cell(current_cell)
+			var other_unit = game.get_unit_at_cell(cell)
 			if other_unit:
-				cost = 99
+				if not other_unit.side == unit.side:
+					cost = 99
 			else:	
-				for other_unit in get_adjacent_units(current_cell):
+				for other_unit in get_adjacent_units(cell):
 					if not other_unit.side == unit.side:
 						cost += 100
 						break
@@ -88,7 +90,8 @@ func get_reachable_cells_u(unit):
 func get_reachable_cells(start_cell, _range):
 	var start_cube = v2_to_v3(start_cell)
 	var reachable = []
-	for cell in get_used_cells():
+	var cell_range = _get_cells_in_range(start_cell,_range)
+	for cell in cell_range:
 		var cube = v2_to_v3(cell)
 		var diff_x = abs(start_cube.x - cube.x)
 		var diff_y = abs(start_cube.y - cube.y)
@@ -277,6 +280,19 @@ func _get_neighbors(cell):
 	for n in neighbor_table[parity]:
 		neighbors.append(Vector2(cell.x + n.x, cell.y+n.y))
 	return neighbors
+
+func _get_cells_in_range(cell, _range):
+	var cells = [cell]
+	for n in range(1,_range+1):
+		var current_cell = Vector2(cell.x, cell.y - n)
+		for j in range(6):
+			for i in range(n):
+				var parity = int(current_cell.x) & 1
+				var temp = neighbor_table[parity][(j+4)%6]
+				current_cell += temp
+				if check_boundaries(current_cell):
+					cells.append(current_cell)
+	return cells
 
 func get_adjacent_units(cell):
 	var neighbors = []
