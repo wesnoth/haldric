@@ -74,19 +74,20 @@ margin_bottom = 40.0
 [node name="GameInfo" type="Node2D" parent="HUD" index="2"]
 
 self_modulate = Color( 1, 1, 1, 0.470588 )
-position = Vector2( 929.636, 3.36214 )
+position = Vector2( 1226.63, -17.9668 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="HBox" type="HBoxContainer" parent="HUD/GameInfo" index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = 2.0
-margin_bottom = 20.0
+anchor_bottom = 0.5
+margin_left = -370.0
+margin_top = -10.0
+margin_bottom = 10.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -94,11 +95,12 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_constants/separation = 6
-alignment = 0
-_sections_unfolded = [ "custom_constants" ]
+alignment = 2
+_sections_unfolded = [ "Anchor", "custom_constants" ]
 
 [node name="TurnLabel" type="Label" parent="HUD/GameInfo/HBox" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -126,6 +128,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="GoldLabel" type="Label" parent="HUD/GameInfo/HBox" index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -154,6 +157,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="IncomeLabel" type="Label" parent="HUD/GameInfo/HBox" index="2"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -182,6 +186,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="VillagesLabel" type="Label" parent="HUD/GameInfo/HBox" index="3"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -210,6 +215,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="TimeLabel" type="Label" parent="HUD/GameInfo/HBox" index="4"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -237,6 +243,7 @@ offset = Vector2( -16, 0 )
 
 [node name="BatteryLabel" type="Label" parent="HUD/GameInfo/HBox" index="5"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

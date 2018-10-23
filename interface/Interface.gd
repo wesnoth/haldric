@@ -46,6 +46,9 @@ func _process(delta):
 	var time = OS.get_time()
 	time_label.text = str("%02d" % time.hour, ":", "%02d" % time.minute)
 	battery_label.text = str(OS.get_power_percent_left(), "%")
+	if OS.get_power_percent_left() == -1:
+		battery_label.hide()
+		
 	
 	
 	if game.active_unit:
