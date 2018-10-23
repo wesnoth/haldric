@@ -8,12 +8,14 @@ const heal_on_rest = 2
 
 var base_income = 2
 
-var side
+var side = 0
 
-var gold
-var income
+var gold = 100
+var income = 2
 
-var villages
+var recruit = []
+
+var villages = []
 
 func initialize(side, gold = 100, base_income = 2, starting_villages = []):
 	self.base_income = base_income

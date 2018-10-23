@@ -16,6 +16,7 @@ onready var combat_handler = $"CombatHandler"
 onready var map = $"Map"
 onready var units = $"UnitContainer"
 
+onready var recruit_popup = $"Interface/HUD/RecruitPopup"
 onready var attack_popup = $"Interface/HUD/AttackPopup"
 
 func _ready():
@@ -31,14 +32,17 @@ func _ready():
 	Wesnoth.connect("end_turn", self, "on_end_turn")
 	
 	attack_popup.connect("id_pressed", self, "on_attack_popup_id_pressed")
-
+	recruit_popup.connect("id_pressed", self, "on_recruit_popup_id_pressed")
 	var Side = preload("res://game/Side.gd")
 	
 	sides.append(Side.new())
 	sides.append(Side.new())
 	
 	sides[0].initialize(1, 100)
+	sides[0].recruit = ["Elvish Fighter", "Elvish Archer", "Elvish Scout", "Elvish Shaman"]
+	
 	sides[1].initialize(2, 120)
+	sides[1].recruit = ["Orcish Grunt", "Orcish Archer", "Orcish Assassin", "Troll Whelp"]
 	
 	create_unit("Elvish Fighter", 1, 10, 1);
 	create_unit("Elvish Archer", 1, 11, 1);
@@ -88,6 +92,12 @@ func _input(event):
 		active_unit_path = []
 		attack_popup.clear()
 		attack_popup.hide()
+		recruit_popup.clear()
+		recruit_popup.hide()
+	
+	if Input.is_action_just_pressed("recruit"):
+		recruit_popup.add_recruits(get_current_side().recruit)
+		recruit_popup.show()
 
 func create_unit(id, side, x, y):
 	var unit = UnitRegistry.create(id, side)
@@ -168,6 +178,13 @@ func on_attack_popup_id_pressed(id):
 	if active_unit:
 		active_unit = null
 		active_unit_path = []
+
+func on_recruit_popup_id_pressed(id):
+	var unit_id = recruit_popup.get_item_text(id)
+	if active_side == 1:
+		create_unit(unit_id, active_side, 10, 0)
+	if active_side == 2:
+		create_unit(unit_id, active_side, 10, 15)
 
 func _handle_village_capturing(unit):
 	var unit_cell = terrain.world_to_map(unit.position)
