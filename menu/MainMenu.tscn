@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menu/MainMenu.gd" type="Script" id=1]
 
-[node name="MainMenu" type="Panel" index="0"]
+[node name="MainMenu" type="Panel"]
 
 anchor_left = 0.0
 anchor_top = 0.0

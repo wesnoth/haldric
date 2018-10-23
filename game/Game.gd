@@ -89,8 +89,11 @@ func _input(event):
 		recruit_popup.hide()
 	
 	if Input.is_action_just_pressed("recruit"):
-		recruit_popup.add_recruits(get_current_side().recruit)
-		recruit_popup.show()
+		if !get_current_side().leaders.size() > 0:
+			print(active_side, " has no leader!")
+		else:
+			recruit_popup.add_recruits(get_current_side().recruit)
+			recruit_popup.show()
 
 func create_unit(id, side, x, y, is_leader = false):
 	var unit = Registry.create_unit(id, side)

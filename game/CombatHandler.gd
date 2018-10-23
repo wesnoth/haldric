@@ -18,6 +18,8 @@ func start_fight(attacker, attacker_info, defender, defender_info):
 				defender.current_experience += attacker.level * xp_per_level
 			else:
 				defender.current_experience += xp_per_level / 2
+			if attacker.is_leader:
+				get_parent().sides[attacker.side-1].leaders.erase(attacker)
 			attacker.queue_free()
 			return
 
@@ -29,6 +31,8 @@ func start_fight(attacker, attacker_info, defender, defender_info):
 				attacker.current_experience += defender.level * xp_per_level
 			else:
 				attacker.current_experience += xp_per_level / 2
+			if defender.is_leader:
+				get_parent().sides[defender.side-1].leaders.erase(defender)
 			defender.queue_free()
 			return
 

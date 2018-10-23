@@ -5,7 +5,7 @@
 [ext_resource path="res://interface/Interface.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interface/WesnothCamera.gd" type="Script" id=4]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Cell", "Transform" ]
