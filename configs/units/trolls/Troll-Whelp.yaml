@@ -1,6 +1,7 @@
 name: Troll Whelp
 id: Troll Whelp
 level: 1
+cost: 13
 health: 42
 moves: 5
 experience: 36

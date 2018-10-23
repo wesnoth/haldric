@@ -1,25 +1,26 @@
-name: Elvish Scout
-id: Elvish Scout
+name: Elvish Fighter
+id: Elvish Fighter
 level: 1
-health: 32
-moves: 9
-experience: 32
+cost: 14
+health: 33
+moves: 5
+experience: 40
 advances_to: null
-image: res://units/images/elves-wood/scout.png
+image: res://units/images/elves-wood/fighter.png
 
 attacks:
   - {
     name: sword,
-    damage: 4,
-    strikes: 3,
+    damage: 5,
+    strikes: 4,
     range: melee,
     type: blade,
     icon: res://interface/images/attacks/sword-elven.png
   }
   - {
     name: bow,
-    damage: 6,
-    strikes: 2,
+    damage: 3,
+    strikes: 3,
     range: ranged,
     type: pierce,
     icon: res://interface/images/attacks/bow-elven.png
@@ -27,7 +28,7 @@ attacks:
 
 resistance:
   blade: 100
-  pierce: 120
+  pierce: 100
   impact: 100
   fire: 100
   cold: 100
@@ -38,7 +39,7 @@ defense:
   forest: 60
   hills: 50
   mountains: 60
-  village: 40
+  village: 60
 
 movement:
   flat: 1

@@ -1,6 +1,7 @@
 name: Orcish Assassin
 id: Orcish Assassin
 level: 1
+cost: 17
 health: 26
 moves: 6
 experience: 34

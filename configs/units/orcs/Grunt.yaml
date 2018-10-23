@@ -1,6 +1,7 @@
 name: Orcish Grunt
 id: Orcish Grunt
 level: 1
+cost: 12
 health: 38
 moves: 5
 experience: 42

@@ -1,25 +1,26 @@
-name: Elvish Fighter
-id: Elvish Fighter
+name: Elvish Archer
+id: Elvish Archer
 level: 1
-health: 33
-moves: 5
-experience: 40
+cost: 17
+health: 29
+moves: 6
+experience: 44
 advances_to: null
-image: res://units/images/elves-wood/fighter.png
+image: res://units/images/elves-wood/archer.png
 
 attacks:
   - {
     name: sword,
-    damage: 5,
-    strikes: 4,
+    damage: 4,
+    strikes: 2,
     range: melee,
     type: blade,
     icon: res://interface/images/attacks/sword-elven.png
   }
   - {
     name: bow,
-    damage: 3,
-    strikes: 3,
+    damage: 5,
+    strikes: 4,
     range: ranged,
     type: pierce,
     icon: res://interface/images/attacks/bow-elven.png
@@ -35,7 +36,7 @@ resistance:
 
 defense:
   flat: 40
-  forest: 60
+  forest: 70
   hills: 50
   mountains: 60
   village: 60

@@ -1,6 +1,7 @@
 name: Troll
 id: Troll
 level: 2
+cost: 29
 health: 55
 moves: 5
 experience: 66

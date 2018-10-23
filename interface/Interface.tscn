@@ -1,18 +1,19 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://interface/SpriteBuilder.gd" type="Script" id=2]
 [ext_resource path="res://interface/images/cursor.png" type="Texture" id=3]
 [ext_resource path="res://interface/Gradients.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interface/popup/AttackPopup.tscn" type="PackedScene" id=5]
-[ext_resource path="res://interface/hud/images/flag-icon.png" type="Texture" id=6]
-[ext_resource path="res://interface/hud/images/gold.png" type="Texture" id=7]
-[ext_resource path="res://interface/hud/images/income.png" type="Texture" id=8]
-[ext_resource path="res://interface/hud/images/villages.png" type="Texture" id=9]
-[ext_resource path="res://interface/hud/images/sand-clock.png" type="Texture" id=10]
-[ext_resource path="res://interface/hud/images/battery.png" type="Texture" id=11]
-[ext_resource path="res://interface/hud/UnitInfo.gd" type="Script" id=12]
-[ext_resource path="res://units/images/elves-wood/archer.png" type="Texture" id=13]
+[ext_resource path="res://interface/popup/RecruitPopup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://interface/hud/images/flag-icon.png" type="Texture" id=7]
+[ext_resource path="res://interface/hud/images/gold.png" type="Texture" id=8]
+[ext_resource path="res://interface/hud/images/income.png" type="Texture" id=9]
+[ext_resource path="res://interface/hud/images/villages.png" type="Texture" id=10]
+[ext_resource path="res://interface/hud/images/sand-clock.png" type="Texture" id=11]
+[ext_resource path="res://interface/hud/images/battery.png" type="Texture" id=12]
+[ext_resource path="res://interface/hud/UnitInfo.gd" type="Script" id=13]
+[ext_resource path="res://units/images/elves-wood/archer.png" type="Texture" id=14]
 
 [node name="Interface" type="Node2D" index="0"]
 
@@ -71,7 +72,15 @@ visible = false
 margin_top = 20.0
 margin_bottom = 40.0
 
-[node name="GameInfo" type="Node2D" parent="HUD" index="2"]
+[node name="RecruitPopup" parent="HUD" index="2" instance=ExtResource( 6 )]
+
+visible = false
+margin_left = 514.0
+margin_top = 306.0
+margin_right = 534.0
+margin_bottom = 326.0
+
+[node name="GameInfo" type="Node2D" parent="HUD" index="3"]
 
 self_modulate = Color( 1, 1, 1, 0.470588 )
 position = Vector2( 1226.63, -17.9668 )
@@ -121,7 +130,7 @@ max_lines_visible = -1
 
 [node name="TurnSprite" type="Sprite" parent="HUD/GameInfo/HBox/TurnLabel" index="0"]
 
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 centered = false
 offset = Vector2( -24, 0 )
 _sections_unfolded = [ "Transform" ]
@@ -150,7 +159,7 @@ max_lines_visible = -1
 
 [node name="GoldSprite" type="Sprite" parent="HUD/GameInfo/HBox/GoldLabel" index="0"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 centered = false
 offset = Vector2( -16, 0 )
 _sections_unfolded = [ "Transform" ]
@@ -179,7 +188,7 @@ max_lines_visible = -1
 
 [node name="IncomeSprite" type="Sprite" parent="HUD/GameInfo/HBox/IncomeLabel" index="0"]
 
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 centered = false
 offset = Vector2( -26, 0 )
 _sections_unfolded = [ "Transform" ]
@@ -208,7 +217,7 @@ max_lines_visible = -1
 
 [node name="VillagesSprite" type="Sprite" parent="HUD/GameInfo/HBox/VillagesLabel" index="0"]
 
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 centered = false
 offset = Vector2( -18, 0 )
 _sections_unfolded = [ "Transform" ]
@@ -237,7 +246,7 @@ max_lines_visible = -1
 
 [node name="TimeSprite" type="Sprite" parent="HUD/GameInfo/HBox/TimeLabel" index="0"]
 
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 centered = false
 offset = Vector2( -16, 0 )
 
@@ -265,21 +274,21 @@ max_lines_visible = -1
 
 [node name="BatterySprite" type="Sprite" parent="HUD/GameInfo/HBox/BatteryLabel" index="0"]
 
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 centered = false
 offset = Vector2( -16, 1 )
 
-[node name="UnitInfo" type="Node2D" parent="HUD" index="3"]
+[node name="UnitInfo" type="Node2D" parent="HUD" index="4"]
 
 editor/display_folded = true
 self_modulate = Color( 1, 1, 1, 0.470588 )
 position = Vector2( 13, 728 )
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 _sections_unfolded = [ "Rect" ]
 
 [node name="UnitSprite" type="Sprite" parent="HUD/UnitInfo" index="0"]
 
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 centered = false
 _sections_unfolded = [ "Transform" ]
 
@@ -389,7 +398,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="EndTurn" type="Button" parent="HUD" index="4"]
+[node name="EndTurn" type="Button" parent="HUD" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0

@@ -16,39 +16,36 @@ onready var combat_handler = $"CombatHandler"
 onready var map = $"Map"
 onready var units = $"UnitContainer"
 
+onready var recruit_popup = $"Interface/HUD/RecruitPopup"
 onready var attack_popup = $"Interface/HUD/AttackPopup"
 
-func _ready():
-	UnitRegistry.load_dir("res://units/config")
-	UnitRegistry.validate_advancements()
-	
-	map.add_child(MapLoader.load_map("res://maps/testMap.map"))
-	terrain = map.get_child(0)
+func initialize(reg_entry):
+	terrain = reg_entry.map_data
 	terrain.game = self
+	add_child(terrain)
 	
+	var Side = preload("res://game/Side.gd")
+	
+	for side in reg_entry.sides:
+		var new_side = Side.new()
+		new_side.initialize(side.side, side.gold, side.income)
+		new_side.team_color = side.team_color
+		
+		for recruit in side.recruit.split(","):
+			recruit = recruit.strip_edges()
+			new_side.recruit.append(recruit)
+		
+		sides.append(new_side)
+		
+		create_unit(side.type, side.side, side.position.x, side.position.z, true)
+
+func _ready():
 	Wesnoth.connect("unit_moved", self, "on_unit_moved")
 	Wesnoth.connect("unit_move_finished", self, "on_unit_move_finished")
 	Wesnoth.connect("end_turn", self, "on_end_turn")
 	
 	attack_popup.connect("id_pressed", self, "on_attack_popup_id_pressed")
-
-	var Side = preload("res://game/Side.gd")
-	
-	sides.append(Side.new())
-	sides.append(Side.new())
-	
-	sides[0].initialize(1, 100)
-	sides[1].initialize(2, 120)
-	
-	create_unit("Elvish Fighter", 1, 10, 1);
-	create_unit("Elvish Archer", 1, 11, 1);
-	create_unit("Elvish Scout", 1, 9, 1);
-	create_unit("Elvish Shaman", 1, 8, 1);
-	
-	create_unit("Orcish Grunt", 2, 10, 13);
-	create_unit("Orcish Archer", 2, 9, 13);
-	create_unit("Orcish Assassin", 2, 11, 13);
-	create_unit("Troll Whelp", 2, 12, 13);
+	recruit_popup.connect("id_pressed", self, "on_recruit_popup_id_pressed")
 
 var unit
 
@@ -88,11 +85,19 @@ func _input(event):
 		active_unit_path = []
 		attack_popup.clear()
 		attack_popup.hide()
+		recruit_popup.clear()
+		recruit_popup.hide()
+	
+	if Input.is_action_just_pressed("recruit"):
+		recruit_popup.add_recruits(get_current_side().recruit)
+		recruit_popup.show()
 
-func create_unit(id, side, x, y):
-	var unit = UnitRegistry.create(id, side)
+func create_unit(id, side, x, y, is_leader = false):
+	var unit = Registry.create_unit(id, side)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
 	unit.game = self
+	unit.is_leader = is_leader
+	sides[side-1].leaders.append(unit)
 	units.add_child(unit)
 
 func is_unit_at_cell(cell):
@@ -169,6 +174,18 @@ func on_attack_popup_id_pressed(id):
 		active_unit = null
 		active_unit_path = []
 
+func on_recruit_popup_id_pressed(id):
+	var unit_entry = recruit_popup.get_item_metadata(id)
+	
+	if get_current_side().gold - unit_entry.cost <= 0:
+		return
+	
+	get_current_side().gold -= unit_entry.cost
+	var leader_cell = terrain.world_to_map(sides[active_side-1].get_first_leader().position)
+	create_unit(unit_entry.id, active_side, leader_cell.x+1, leader_cell.y)
+
+	
+	
 func _handle_village_capturing(unit):
 	var unit_cell = terrain.world_to_map(unit.position)
 	

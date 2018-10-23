@@ -4,12 +4,14 @@ extends Sprite
 
 var side
 var tile_path = []
+
 var can_attack = true
+var is_leader = false
 
 # Y A M L   S T A T S
 var id
 var level
-
+var cost
 var advances_to
 
 var base_experience
@@ -42,13 +44,14 @@ func _process(delta):
 	
 	if current_experience >= base_experience and advances_to == null:
 		amla()
-	elif current_experience >= base_experience and UnitRegistry.registry.has(advances_to):
-		advance(UnitRegistry.registry[advances_to])
+	elif current_experience >= base_experience and Registry.units.has(advances_to):
+		advance(Registry.units[advances_to])
 
 
 func initialize(reg_entry, side):
 	id = reg_entry.id
 	level = reg_entry.level
+	cost = reg_entry.cost
 	base_max_health = reg_entry.health
 	current_health = base_max_health
 	base_max_moves = reg_entry.moves
@@ -68,6 +71,7 @@ func initialize(reg_entry, side):
 func advance(reg_entry):
 	id = reg_entry.id
 	level = reg_entry.level
+	cost = reg_entry.cost
 	base_max_health = reg_entry.health
 	current_health = base_max_health
 	base_max_moves = reg_entry.moves
