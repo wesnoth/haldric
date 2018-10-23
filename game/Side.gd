@@ -8,6 +8,8 @@ const heal_on_rest = 2
 
 var base_income = 2
 
+var team_color
+
 var side = 0
 
 var gold = 100

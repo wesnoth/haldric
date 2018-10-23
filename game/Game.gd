@@ -29,7 +29,7 @@ func initialize(reg_entry):
 	for side in reg_entry.sides:
 		var new_side = Side.new()
 		new_side.initialize(side.side, side.gold, side.income)
-		
+		new_side.team_color = side.team_color
 		for recruit in side.recruit.split(","):
 			recruit = recruit.strip_edges()
 			new_side.recruit.append(recruit)

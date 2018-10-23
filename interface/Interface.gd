@@ -70,11 +70,8 @@ func _draw():
 	
 	# draw villages
 	for side in game.sides:
-		for v in side.get_villages():
-			if side.side == 1:
-				draw_circle(game.terrain.map_to_world_centered(v), 5, Color(255, 0, 0))
-			if side.side == 2:
-				draw_circle(game.terrain.map_to_world_centered(v), 5, Color(0, 0, 255))
+		for village in side.get_villages():
+				draw_circle(game.terrain.map_to_world_centered(village), 5, Color(side.team_color))
 
 var last_cursor_position = Vector2(0, 0)
 var last_active_unit = null
