@@ -1,12 +1,12 @@
 name: "Sample Map"
 id: "sample_map"
-map_data: "res://maps/testMap.map"
+map_data: "res://maps/scenario.map"
 turns: 30
 sides: 
   - {
     side: 1,
     type: "Elvish Fighter",
-    position: {x: 10, z: 1},
+    position: {x: 7, z: 1},
     gold: 100,
     income: 2,
     recruit: "Elvish Fighter, Elvish Archer, Elvish Scout, Elvish Shaman",
@@ -15,7 +15,7 @@ sides:
   - {
     side: 2,
     type: "Orcish Grunt",
-    position: {x: 10, z: 14},
+    position: {x: 12, z: 13},
     gold: 100,
     income: 2,
     recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Troll Whelp",

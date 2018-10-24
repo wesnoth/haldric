@@ -60,6 +60,7 @@ func _input(event):
 
 		if (terrain.check_boundaries(mouse_cell)):
 			print("Village: ", terrain.tiles[terrain.flatten_v(mouse_cell)].is_village)
+
 		if is_unit_at_cell(mouse_cell) and active_unit == null:
 			active_unit = get_unit_at_cell(mouse_cell)
 

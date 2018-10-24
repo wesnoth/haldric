@@ -35,6 +35,7 @@ resistance:
   arcane: 110
 
 defense:
+  castle: 60
   flat: 40
   forest: 70
   hills: 50
@@ -42,6 +43,7 @@ defense:
   village: 60
 
 movement:
+  castle: 1
   flat: 1
   forest: 1
   hills: 2

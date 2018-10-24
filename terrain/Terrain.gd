@@ -208,6 +208,8 @@ func _generate_tiles():
 
 			var type
 			var overlay_type
+			
+			var is_keep = false
       
 			if not overlay_code.empty():
 				match overlay_code[1]:
@@ -230,6 +232,11 @@ func _generate_tiles():
 					type = "hills"
 				"M":
 					type = "mountains"
+				"K":
+					type = "castle"
+					is_keep = true
+				"C":
+					type = "castle"
 				_:
 					type = "unknown"
 
@@ -240,6 +247,7 @@ func _generate_tiles():
                 unit = null,
 				stack_limit = 1,
 				is_village = overlay_type == "village",
+				is_keep = is_keep,
 				is_blocked = false,
 			}
 
