@@ -9,36 +9,16 @@ func load_unit_dir(path):
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		var unit = yaml_parser.parse(file.get_as_text())
-		units[unit.id] = {
-			id = unit.id,
-			name = unit.name,
-			level = unit.level,
-			cost = unit.cost,
-			health = unit.health,
-			moves = unit.moves,
-			experience = unit.experience,
-			advances_to = unit.advances_to,
-			image = unit.image,
-			attacks = unit.attacks,
-			resistance = unit.resistance,
-			defense = unit.defense,
-			movement = unit.movement
-		}
+		var yaml = yaml_parser.parse(file.get_as_text())
+		units[yaml.id] = yaml
 
 func load_scenario_dir(path):
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		var scenario = yaml_parser.parse(file.get_as_text())
-		print(scenario)
-		scenarios[scenario.id] = {
-			name = scenario.name,
-			id = scenario.id,
-			map_data = MapLoader.load_map(scenario.map_data),
-			turns = scenario.turns,
-			sides = scenario.sides
-		}
+		var yaml = yaml_parser.parse(file.get_as_text())
+		scenarios[yaml.id] = yaml
+		scenarios[yaml.id].map_data = MapLoader.load_map(yaml.map_data)
 
 func get_files_in_directory(path, files):
 	var dir = Directory.new()
