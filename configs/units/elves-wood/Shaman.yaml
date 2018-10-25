@@ -8,6 +8,12 @@ experience: 32
 advances_to: null
 image: res://units/images/elves-wood/shaman.png
 
+abilities:
+  - {
+    id: heal,
+    params: { value: 4 }
+  }
+
 attacks:
   - {
     name: staff,

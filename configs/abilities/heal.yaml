@@ -1,0 +1,4 @@
+name: "Heal"
+id: "heal"
+path: "res://scripts/abilities/heal.gd"
+params: { value: 8 }
