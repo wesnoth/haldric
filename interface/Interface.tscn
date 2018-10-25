@@ -15,7 +15,7 @@
 [ext_resource path="res://interface/hud/UnitInfo.gd" type="Script" id=13]
 [ext_resource path="res://units/images/elves-wood/archer.png" type="Texture" id=14]
 
-[node name="Interface" type="Node2D" index="0"]
+[node name="Interface" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -54,7 +54,7 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Mouse", "Rect" ]
 
 [node name="HUD" type="CanvasLayer" parent="." index="2"]
 
@@ -421,5 +421,6 @@ group = null
 text = "End Turn"
 flat = false
 align = 1
+_sections_unfolded = [ "Mouse" ]
 
 

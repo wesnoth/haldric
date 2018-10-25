@@ -8,7 +8,7 @@
 [ext_resource path="res://terrain/images/keep.png" type="Texture" id=6]
 [ext_resource path="res://interface/images/darken.png" type="Texture" id=7]
 
-[node name="TileSet" type="Node2D" index="0"]
+[node name="TileSet" type="Node2D"]
 
 position = Vector2( 0, 1 )
 
