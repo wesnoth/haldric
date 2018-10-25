@@ -4,8 +4,6 @@
 [ext_resource path="res://interface/statusbar/images/xp_background.png" type="Texture" id=2]
 [ext_resource path="res://interface/statusbar/images/xp_fill.png" type="Texture" id=3]
 
-
-
 [node name="XPBar" type="Node2D"]
 
 script = ExtResource( 1 )
@@ -20,12 +18,13 @@ margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 1
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 2 )
 stretch_mode = 0
+_sections_unfolded = [ "Mouse" ]
 
 [node name="TextureProgress" type="TextureProgress" parent="." index="1"]
 
@@ -37,7 +36,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 1
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
@@ -55,6 +54,6 @@ fill_mode = 3
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
-_sections_unfolded = [ "Textures" ]
+_sections_unfolded = [ "Mouse", "Textures" ]
 
 

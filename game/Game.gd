@@ -49,13 +49,13 @@ func _ready():
 
 var unit
 
-func _input(event):
+func _unhandled_input(event):
 	if active_unit:
 		var mouse_cell = terrain.world_to_map(get_global_mouse_position())
 		var unit_cell = terrain.world_to_map(active_unit.position)
 		active_unit_path = terrain.find_path_by_cell(unit_cell, mouse_cell)
 
-	if Input.is_action_just_pressed("mouse_left"):
+	if event is InputEventMouseButton && event.is_action_pressed("mouse_left"):
 		var mouse_cell = terrain.world_to_map(get_global_mouse_position())
 
 		if (terrain.check_boundaries(mouse_cell)):
