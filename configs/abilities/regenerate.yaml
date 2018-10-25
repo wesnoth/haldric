@@ -1,4 +1,0 @@
-name: "Regenerate"
-id: "regenerate"
-path: "res://scripts/abilities/regenerate.gd"
-params: { value: 8 }

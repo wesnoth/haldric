@@ -101,7 +101,7 @@ func amla():
 
 func heal(value):
 	_set_current_health(current_health + value)
-	print(id, " healed by ", value)
+	# print(id, " healed by ", value)
 
 func harm(attacker_unit_id, damage, attack_type, defense):
 	var hit_chance = float(100 - defense) / 100.0

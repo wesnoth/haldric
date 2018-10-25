@@ -10,23 +10,18 @@ func load_ability_dir(path):
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		var yaml = yaml_parser.parse(file.get_as_text())
-		abilities[yaml.id] = yaml
-		
-		var script = load(yaml.path).new()
-		
-		abilities[yaml.id].obj = script
-		abilities[yaml.id].function = funcref(script, yaml.id)
-		
-		if !yaml.has("params"):
-			abilities[yaml.id].params = {}
+		print(file.file.get_path())
+		var script = load(file.file.get_path()).new()
+		abilities[file.id] = {}
+		abilities[file.id].script = script
+		abilities[file.id].function = funcref(script, file.id)
 
 func load_unit_dir(path):
 	
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		var yaml = yaml_parser.parse(file.get_as_text())
+		var yaml = yaml_parser.parse(file.file.get_as_text())
 		units[yaml.id] = yaml
 		if !yaml.has("abilities"):
 			units[yaml.id].abilities = []
@@ -35,7 +30,7 @@ func load_scenario_dir(path):
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		var yaml = yaml_parser.parse(file.get_as_text())
+		var yaml = yaml_parser.parse(file.file.get_as_text())
 		scenarios[yaml.id] = yaml
 		scenarios[yaml.id].map_data = MapLoader.load_map(yaml.map_data)
 
@@ -54,9 +49,10 @@ func get_files_in_directory(path, files):
 			get_files_in_directory(dir.get_current_dir() + "/" + sub_path, files)
 		else:
 			var file = File.new()
+			var file_id = sub_path.split(".")[0]
 			print("load file: ", dir.get_current_dir() + "/" + sub_path)
 			if file.open(dir.get_current_dir() + "/" + sub_path, file.READ) == OK:
-				files.append(file)
+				files.append({ file = file, id = file_id })
 	dir.list_dir_end()
 	return files
 

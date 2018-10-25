@@ -215,7 +215,7 @@ func _handle_abilities(unit):
 		if entry.has("params"):
 			params = entry.params
 		else:
-			params = ability.params
+			params = ability.script.default
 		
 		ability.function.call_func(unit, params)
 

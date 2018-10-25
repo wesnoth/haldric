@@ -6,7 +6,7 @@ onready var start_game_button = $"VBoxContainer/StartGame"
 onready var quit_button = $"VBoxContainer/Quit"
 
 func _ready():
-	Registry.load_ability_dir("res://configs/abilities")
+	Registry.load_ability_dir("res://scripts/abilities")
 	Registry.load_unit_dir("res://configs/units")
 	Registry.validate_advancements()
 	
