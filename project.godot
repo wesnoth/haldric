@@ -11,14 +11,14 @@ config_version=3
 [application]
 
 config/name="haldric"
-run/main_scene="res://menu/MainMenu.tscn"
+run/main_scene="res://source/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-MapLoader="*res://global/MapLoader.gd"
-Wesnoth="*res://global/Wesnoth.gd"
-Registry="*res://global/Registry.gd"
+Wesnoth="*res://source/global/Wesnoth.gd"
+Registry="*res://source/global/Registry.gd"
+MapLoader="*res://source/global/MapLoader.gd"
 
 [display]
 
