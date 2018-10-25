@@ -10,8 +10,7 @@ func load_ability_dir(path):
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		print(file.file.get_path())
-		var script = load(file.file.get_path()).new()
+		var script = load(file.data.get_path()).new()
 		abilities[file.id] = {}
 		abilities[file.id].script = script
 		abilities[file.id].function = funcref(script, file.id)
@@ -21,18 +20,18 @@ func load_unit_dir(path):
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		var yaml = yaml_parser.parse(file.file.get_as_text())
-		units[yaml.id] = yaml
-		if !yaml.has("abilities"):
-			units[yaml.id].abilities = []
+		var config = yaml_parser.parse(file.data.get_as_text())
+		units[config.id] = config
+		if !config.has("abilities"):
+			units[config.id].abilities = []
 
 func load_scenario_dir(path):
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		var yaml = yaml_parser.parse(file.file.get_as_text())
-		scenarios[yaml.id] = yaml
-		scenarios[yaml.id].map_data = MapLoader.load_map(yaml.map_data)
+		var config = yaml_parser.parse(file.data.get_as_text())
+		scenarios[config.id] = config
+		scenarios[config.id].map_data = MapLoader.load_map(config.map_data)
 
 func get_files_in_directory(path, files):
 	var dir = Directory.new()
@@ -52,14 +51,14 @@ func get_files_in_directory(path, files):
 			var file_id = sub_path.split(".")[0]
 			print("load file: ", dir.get_current_dir() + "/" + sub_path)
 			if file.open(dir.get_current_dir() + "/" + sub_path, file.READ) == OK:
-				files.append({ file = file, id = file_id })
+				files.append({ data = file, id = file_id })
 	dir.list_dir_end()
 	return files
 
 func validate_advancements():
-	for unit in units.values():
-		if !units.has(unit.advances_to) and unit.advances_to != null:
-			print(unit.id, ": Invalid Advancement! ", unit.advances_to, " does not exist!")
+	for config in units.values():
+		if !units.has(config.advances_to) and config.advances_to != null:
+			print(config.id, ": Invalid Advancement! ", config.advances_to, " does not exist!")
 
 func create_unit(id, side):
 	var unit = load("res://units/Unit.tscn").instance()
