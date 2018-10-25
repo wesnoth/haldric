@@ -5,15 +5,6 @@
 [ext_resource path="res://source/interface/Lifebar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/XPbar.tscn" type="PackedScene" id=4]
 
-
-
-
-
-
-
-
-
-
 [sub_resource type="Animation" id=1]
 
 resource_name = "walk"
@@ -21,7 +12,7 @@ length = 0.2
 loop = false
 step = 0.1
 
-[node name="Sprite" type="Sprite"]
+[node name="Sprite" type="Sprite" index="0"]
 
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

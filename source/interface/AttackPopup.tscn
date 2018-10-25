@@ -2,10 +2,7 @@
 
 [ext_resource path="res://source/interface/AttackPopup.gd" type="Script" id=1]
 
-
-
-
-[node name="AttackPopup" type="PopupMenu"]
+[node name="AttackPopup" type="PopupMenu" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

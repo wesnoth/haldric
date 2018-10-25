@@ -2,10 +2,7 @@
 
 [ext_resource path="res://source/interface/RecruitPopup.gd" type="Script" id=1]
 
-
-
-
-[node name="RecruitPopup" type="PopupMenu"]
+[node name="RecruitPopup" type="PopupMenu" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

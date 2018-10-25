@@ -45,7 +45,7 @@ flags = 4
 gradient = SubResource( 7 )
 width = 920
 
-[node name="Test" type="Node2D"]
+[node name="Test" type="Node2D" index="0"]
 
 [node name="Bottom" type="Node" parent="." index="0"]
 
