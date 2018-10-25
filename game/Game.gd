@@ -207,6 +207,18 @@ func _handle_village_capturing(unit):
 		get_current_side().add_village(unit_cell)
 		get_current_side().calculate_income()
 
+func _handle_abilities(unit):
+	for entry in unit.abilities:
+		var ability = Registry.abilities[entry.id]
+		var params = {}
+		
+		if entry.has("params"):
+			params = entry.params
+		else:
+			params = ability.params
+		
+		ability.function.call_func(unit, params)
+
 func on_end_turn(side):
 	active_side = (active_side % sides.size()) + 1
 	get_current_side().end_turn()
@@ -216,7 +228,10 @@ func on_end_turn(side):
 				u.heal(get_current_side().heal_on_rest)
 			if terrain.tiles[terrain.flatten_v(terrain.world_to_map(u.position))].is_village:
 				u.heal(get_current_side().heal_on_village)
+			
 			u.restore_current_moves()
+			
+			_handle_abilities(u)
 	
 	if active_side == 1:
 		turn += 1

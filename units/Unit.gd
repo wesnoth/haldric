@@ -23,6 +23,8 @@ var base_max_moves
 var current_health setget _set_current_health
 var current_moves
 
+var abilities = {}
+
 var attacks = {}
 var resistance = {}
 var defense = {}
@@ -59,6 +61,7 @@ func initialize(reg_entry, side):
 	base_experience = reg_entry.experience
 	current_experience = 0
 	advances_to = reg_entry.advances_to
+	abilities = reg_entry.abilities
 	attacks = reg_entry.attacks
 	resistance = reg_entry.resistance
 	defense = reg_entry.defense

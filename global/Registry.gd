@@ -3,14 +3,33 @@ extends Node
 var yaml_parser = preload("res://addons/godot-yaml/gdyaml.gdns").new()
 
 var units = {}
+var abilities = {}
 var scenarios = {}
 
+func load_ability_dir(path):
+	var files = []
+	files = get_files_in_directory(path, files)
+	for file in files:
+		var yaml = yaml_parser.parse(file.get_as_text())
+		abilities[yaml.id] = yaml
+		
+		var script = load(yaml.path).new()
+		
+		abilities[yaml.id].obj = script
+		abilities[yaml.id].function = funcref(script, yaml.id)
+		
+		if !yaml.has("params"):
+			abilities[yaml.id].params = {}
+
 func load_unit_dir(path):
+	
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
 		var yaml = yaml_parser.parse(file.get_as_text())
 		units[yaml.id] = yaml
+		if !yaml.has("abilities"):
+			units[yaml.id].abilities = []
 
 func load_scenario_dir(path):
 	var files = []

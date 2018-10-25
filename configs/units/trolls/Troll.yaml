@@ -8,6 +8,11 @@ experience: 66
 advances_to: null
 image: res://units/images/trolls/troll.png
 
+abilities:
+  - {
+    id: regenerate
+  }
+
 attacks:
   - {
     name: club,

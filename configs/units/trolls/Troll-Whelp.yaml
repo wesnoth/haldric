@@ -8,6 +8,11 @@ experience: 36
 advances_to: Troll
 image: res://units/images/trolls/whelp.png
 
+abilities:
+  - {
+    id: regenerate
+  }
+
 attacks:
   - {
     name: fist,
