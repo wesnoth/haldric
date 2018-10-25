@@ -1,6 +1,7 @@
 extends Node
 
-signal unit_moved(unit)
+signal unit_moved(event, unit)
 signal unit_move_finished(unit)
 
-signal end_turn(side)
+signal turn_refresh(event, side)
+signal turn_end(event, side)

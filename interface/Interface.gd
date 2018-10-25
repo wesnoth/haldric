@@ -98,4 +98,4 @@ func update_reachable_cells():
 
 
 func _on_end_turn_pressed():
-	Wesnoth.emit_signal("end_turn", game.active_side)
+	Wesnoth.emit_signal("turn_end", "turn end", game.active_side)

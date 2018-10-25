@@ -43,7 +43,7 @@ func get_villages():
 func calculate_income():
 	income = income_per_village * villages.size() + base_income
 
-func end_turn():
+func turn_refresh():
 	gold += income
 
 func get_first_leader():

@@ -194,7 +194,7 @@ func _handle_movement():
 		position = tile_path[0].position
 		current_moves -= get_movement_cost(tile_path[0].terrain_type)
 		tile_path.remove(0)
-		Wesnoth.emit_signal("unit_moved", self)
+		Wesnoth.emit_signal("unit_moved", "moveto", self)
 
 		if _is_in_zoc():
 			get_current_tile().unit = self

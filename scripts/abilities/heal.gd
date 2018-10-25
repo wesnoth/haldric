@@ -1,6 +1,7 @@
 extends Resource
 
 var name = "Heal"
+var event = "turn refresh"
 
 var default = {
 	value = 8

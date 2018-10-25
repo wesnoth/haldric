@@ -42,7 +42,8 @@ func initialize(reg_entry):
 func _ready():
 	Wesnoth.connect("unit_moved", self, "on_unit_moved")
 	Wesnoth.connect("unit_move_finished", self, "on_unit_move_finished")
-	Wesnoth.connect("end_turn", self, "on_end_turn")
+	Wesnoth.connect("turn_end", self, "on_turn_end")
+	Wesnoth.connect("turn_refresh", self, "on_turn_refresh")
 	
 	attack_popup.connect("id_pressed", self, "on_attack_popup_id_pressed")
 	recruit_popup.connect("id_pressed", self, "on_recruit_popup_id_pressed")
@@ -207,21 +208,31 @@ func _handle_village_capturing(unit):
 		get_current_side().add_village(unit_cell)
 		get_current_side().calculate_income()
 
-func _handle_abilities(unit):
-	for entry in unit.abilities:
-		var ability = Registry.abilities[entry.id]
-		var params = {}
+func _handle_abilities(event):
+	for unit in units.get_children():
 		
-		if entry.has("params"):
-			params = entry.params
-		else:
-			params = ability.script.default
+		if unit.side != active_side:
+			continue
 		
-		ability.function.call_func(unit, params)
+		for entry in unit.abilities:
+			var ability = Registry.abilities[entry.id]	
+			if ability.script.event != event:
+				continue
+			
+			var params = {}
+			
+			if entry.has("params"):
+				params = entry.params
+			else:
+				params = ability.script.default
+			
+			ability.function.call_func(unit, params)
 
-func on_end_turn(side):
-	active_side = (active_side % sides.size()) + 1
-	get_current_side().end_turn()
+func on_turn_refresh(event, side):
+	_handle_abilities(event)
+	
+	get_current_side().turn_refresh()
+	
 	for u in units.get_children():
 		if u.side == active_side:
 			if u.current_moves == u.base_max_moves and u.current_health < u.base_max_health:
@@ -231,16 +242,17 @@ func on_end_turn(side):
 			
 			u.restore_current_moves()
 			
-			_handle_abilities(u)
-	
 	if active_side == 1:
-		turn += 1
+		turn += 1	
 
-func on_unit_moved(unit):
-	# print(unit.id, " Moved!")
+func on_turn_end(event, side):
+	_handle_abilities(event)
+	active_side = (active_side % sides.size()) + 1
+	Wesnoth.emit_signal("turn_refresh", "turn refresh", active_side)
+
+func on_unit_moved(event, unit):
 	pass
 
 func on_unit_move_finished(unit):
 	if terrain.get_tile_at_position(unit.position).is_village == true:
 		_handle_village_capturing(unit)
-	# print(unit.id, " Move Finished!")
