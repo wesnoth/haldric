@@ -6,9 +6,11 @@ onready var start_game_button = $"VBoxContainer/StartGame"
 onready var quit_button = $"VBoxContainer/Quit"
 
 func _ready():
-	Registry.load_weapon_special_dir("res://data/core/weapon_specials")
-	Registry.load_ability_dir("res://data/core/abilities")
+	Registry.load_weapon_special_dir("res://data/scripts/weapon_specials")
+	Registry.load_ability_dir("res://data/scripts/abilities")
+	
 	Registry.load_unit_dir("res://data/core/units")
+	
 	Registry.validate_advancements()
 	
 	Registry.load_scenario_dir("res://data/multiplayer/scenarios")
