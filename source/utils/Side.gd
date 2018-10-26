@@ -15,6 +15,8 @@ var side = 0
 var gold = 100
 var income = 2
 
+var shader
+
 var recruit = []
 
 var villages = []
