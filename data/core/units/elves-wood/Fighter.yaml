@@ -1,0 +1,51 @@
+name: Elvish Fighter
+id: Elvish Fighter
+level: 1
+cost: 14
+health: 33
+moves: 5
+experience: 40
+advances_to: null
+image: res://data/core/images/units/elves-wood/fighter.png
+
+attacks:
+  - {
+    name: sword,
+    damage: 5,
+    strikes: 4,
+    range: melee,
+    type: blade,
+    icon: res://data/core/images/attacks/sword-elven.png
+  }
+  - {
+    name: bow,
+    damage: 3,
+    strikes: 3,
+    range: ranged,
+    type: pierce,
+    icon: res://data/core/images/attacks/bow-elven.png
+  }
+
+resistance:
+  blade: 100
+  pierce: 100
+  impact: 100
+  fire: 100
+  cold: 100
+  arcane: 110
+
+defense:
+  castle: 60
+  flat: 40
+  forest: 60
+  hills: 50
+  mountains: 60
+  village: 60
+
+movement:
+  castle: 1
+  flat: 1
+  forest: 1
+  hills: 2
+  mountains: 3
+  village: 1
