@@ -2,9 +2,12 @@ extends Node
 
 var yaml_parser = preload("res://addons/godot-yaml/gdyaml.gdns").new()
 
-var units = {}
-var abilities = {}
 var scenarios = {}
+
+var units = {}
+
+var abilities = {}
+var weapon_specials = {}
 
 func load_ability_dir(path):
 	var files = []
@@ -15,8 +18,16 @@ func load_ability_dir(path):
 		abilities[file.id].script = script
 		abilities[file.id].function = funcref(script, file.id)
 
+func load_weapon_special_dir(path):
+	var files = []
+	files = get_files_in_directory(path, files)
+	for file in files:
+		var script = load(file.data.get_path()).new()
+		weapon_specials[file.id] = {}
+		weapon_specials[file.id].script = script
+		weapon_specials[file.id].function = funcref(script, file.id)
+
 func load_unit_dir(path):
-	
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:

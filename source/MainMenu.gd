@@ -6,6 +6,7 @@ onready var start_game_button = $"VBoxContainer/StartGame"
 onready var quit_button = $"VBoxContainer/Quit"
 
 func _ready():
+	Registry.load_weapon_special_dir("res://data/core/weapon_specials")
 	Registry.load_ability_dir("res://data/core/abilities")
 	Registry.load_unit_dir("res://data/core/units")
 	Registry.validate_advancements()
@@ -19,7 +20,7 @@ func _ready():
 func _on_start_game_button_pressed():
 	var game = Game.instance()
 	get_tree().get_root().add_child(game)
-	game.initialize(Registry.scenarios["sample_map"])
+	game.initialize(Registry.scenarios["test"])
 	hide()
 
 func _on_quit_button_pressed():
