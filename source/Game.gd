@@ -60,6 +60,7 @@ func initialize(reg_entry):
 		var new_side = Side.new()
 		new_side.initialize(side.side, side.gold, side.income)
 		new_side.team_color = side.team_color
+		new_side.team_color_info = team_color_data[side.team_color]
 		new_side.shader = generate_team_shader(team_color_data[side.team_color])
 		for recruit in side.recruit.split(","):
 			recruit = recruit.strip_edges()
@@ -270,7 +271,14 @@ func on_recruit_popup_id_pressed(id):
 	
 	if get_current_side().gold - unit_entry.cost <= 0:
 		return
+	
+	if active_side == 1:
+		turn += 1
 
+	get_current_side().gold -= unit_entry.cost
+	var leader_cell = terrain.world_to_map(sides[active_side-1].get_first_leader().position)
+	create_unit(unit_entry.id, active_side, leader_cell.x+1, leader_cell.y)
+	
 func generate_team_shader(team_data):
 	var mat = ShaderMaterial.new()
 	mat.shader = SHADER
@@ -322,9 +330,7 @@ func new_color_map(team_data):
 		new_color = Color(min(r,1),min(g,1),min(b,1))
 		color_map[color] = new_color
 	return color_map
-	get_current_side().gold -= unit_entry.cost
-	var leader_cell = terrain.world_to_map(sides[active_side-1].get_first_leader().position)
-	create_unit(unit_entry.id, active_side, leader_cell.x+1, leader_cell.y)
+
 
 #
 # H A N D L E R   F U N C T I O N S
