@@ -101,17 +101,9 @@ func amla():
 
 func heal(value):
 	_set_current_health(current_health + value)
-	# print(id, " healed by ", value)
 
-func harm(attacker_unit_id, damage, attack_type, defense):
-	var hit_chance = float(100 - defense) / 100.0
-	if randf() <= hit_chance:
-		var mod = float(resistance[attack_type]) / 100.0
-		var new_damage = int(damage * mod)
-		print("(", 100 - defense, "%)\t", attacker_unit_id, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
-		_set_current_health(current_health - new_damage)
-	else:
-		print("(", 100 - defense, "%)\t", attacker_unit_id, " missed")
+func harm(value):
+	_set_current_health(current_health - value)
 
 func restore_current_moves():
 	current_moves = base_max_moves

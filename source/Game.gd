@@ -40,6 +40,10 @@ func initialize(reg_entry):
 		create_unit(side.type, side.side, side.position.x, side.position.z, true)
 
 func _ready():
+	Wesnoth.connect("attacker_hits", self, "on_attacker_hits")
+	Wesnoth.connect("attacker_misses", self, "on_attacker_misses")
+	Wesnoth.connect("defender_hits", self, "on_defender_hits")
+	Wesnoth.connect("defender_misses", self, "on_defender_misses")
 	Wesnoth.connect("unit_moved", self, "on_unit_moved")
 	Wesnoth.connect("unit_move_finished", self, "on_unit_move_finished")
 	Wesnoth.connect("turn_end", self, "on_turn_end")
@@ -151,6 +155,57 @@ func can_fight(unit1, unit2):
 					return true
 	return false
 
+#
+# E V E N T   S I G N A L   F U N C T I O N S
+#
+
+func on_attacker_hits(event, attacker, defender):
+	_handle_weapon_specials(event, attacker, defender)
+	print("Event: ", event)
+
+func on_attacker_misses(event, attacker, defender):
+	print("Event: ", event)
+
+func on_defender_hits(event, attacker, defender):
+	_handle_weapon_specials(event, attacker, defender)
+	print("Event: ", event)
+
+func on_defender_misses(event, attacker, defender):
+	print("Event: ", event)
+
+func on_turn_refresh(event, side):
+	_handle_abilities(event)
+	
+	get_current_side().turn_refresh()
+	
+	for u in units.get_children():
+		if u.side == active_side:
+			if u.current_moves == u.base_max_moves and u.current_health < u.base_max_health:
+				u.heal(get_current_side().heal_on_rest)
+			if terrain.tiles[terrain.flatten_v(terrain.world_to_map(u.position))].is_village:
+				u.heal(get_current_side().heal_on_village)
+			
+			u.restore_current_moves()
+			
+	if active_side == 1:
+		turn += 1	
+
+func on_turn_end(event, side):
+	_handle_abilities(event)
+	active_side = (active_side % sides.size()) + 1
+	Wesnoth.emit_signal("turn_refresh", "turn refresh", active_side)
+
+func on_unit_moved(event, unit):
+	pass
+
+func on_unit_move_finished(unit):
+	if terrain.get_tile_at_position(unit.position).is_village == true:
+		_handle_village_capturing(unit)
+
+#
+# S I G N A L   F U N C T I O N S
+#
+
 func on_attack_popup_id_pressed(id):
 	var attacker_defense = active_unit.get_defense(get_terrain_type_at_cell(terrain.world_to_map(active_unit.position)))
 	var defender_defense = unit.get_defense(get_terrain_type_at_cell(terrain.world_to_map(unit.position)))
@@ -189,8 +244,10 @@ func on_recruit_popup_id_pressed(id):
 	var leader_cell = terrain.world_to_map(sides[active_side-1].get_first_leader().position)
 	create_unit(unit_entry.id, active_side, leader_cell.x+1, leader_cell.y)
 
-	
-	
+#
+# H A N D L E R   F U N C T I O N S
+#
+
 func _handle_village_capturing(unit):
 	var unit_cell = terrain.world_to_map(unit.position)
 	
@@ -207,6 +264,11 @@ func _handle_village_capturing(unit):
 		
 		get_current_side().add_village(unit_cell)
 		get_current_side().calculate_income()
+
+
+func _handle_weapon_specials(event, attacker, defender):
+	pass
+
 
 func _handle_abilities(event):
 	for unit in units.get_children():
@@ -227,32 +289,3 @@ func _handle_abilities(event):
 				params = ability.script.default
 			
 			ability.function.call_func(unit, params)
-
-func on_turn_refresh(event, side):
-	_handle_abilities(event)
-	
-	get_current_side().turn_refresh()
-	
-	for u in units.get_children():
-		if u.side == active_side:
-			if u.current_moves == u.base_max_moves and u.current_health < u.base_max_health:
-				u.heal(get_current_side().heal_on_rest)
-			if terrain.tiles[terrain.flatten_v(terrain.world_to_map(u.position))].is_village:
-				u.heal(get_current_side().heal_on_village)
-			
-			u.restore_current_moves()
-			
-	if active_side == 1:
-		turn += 1	
-
-func on_turn_end(event, side):
-	_handle_abilities(event)
-	active_side = (active_side % sides.size()) + 1
-	Wesnoth.emit_signal("turn_refresh", "turn refresh", active_side)
-
-func on_unit_moved(event, unit):
-	pass
-
-func on_unit_move_finished(unit):
-	if terrain.get_tile_at_position(unit.position).is_village == true:
-		_handle_village_capturing(unit)

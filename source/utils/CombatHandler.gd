@@ -12,7 +12,7 @@ func start_fight(attacker, attacker_info, defender, defender_info):
 
 		if attacker.current_health > 0:
 			if attacker_info.attack.strikes > i:
-				defender.harm(attacker.id, attacker_info.attack.damage, attacker_info.attack.type, defender_info.defense)
+				attacker_attacks(attacker, defender, attacker_info.attack.damage, attacker_info.attack.type, defender_info.defense)
 		else:
 			if attacker.level > 0:
 				defender.current_experience += attacker.level * xp_per_level
@@ -25,7 +25,7 @@ func start_fight(attacker, attacker_info, defender, defender_info):
 
 		if defender.current_health > 0:
 			if defender_info.attack.strikes > i and attacker_info.attack.range == defender_info.attack.range:
-				attacker.harm(defender.id, defender_info.attack.damage, defender_info.attack.type, attacker_info.defense)
+				defender_attacks(defender, attacker, defender_info.attack.damage, defender_info.attack.type, attacker_info.defense)
 		else:
 			if defender.level > 0:
 				attacker.current_experience += defender.level * xp_per_level
@@ -41,3 +41,27 @@ func start_fight(attacker, attacker_info, defender, defender_info):
 	
 	attacker.can_attack = false
 	attacker.current_moves = 0
+
+func attacker_attacks(attacker, defender, damage, attack_type, defense):
+	var hit_chance = float(100 - defense) / 100.0
+	if randf() <= hit_chance:
+		var mod = float(defender.resistance[attack_type]) / 100.0
+		var new_damage = int(damage * mod)
+		print("(", 100 - defense, "%)\t", attacker.id, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
+		defender.harm(new_damage)
+		Wesnoth.emit_signal("attacker_hits", "attacker hits", attacker, defender)
+	else:
+		print("(", 100 - defense, "%)\t", attacker.id, " missed")
+		Wesnoth.emit_signal("attacker_misses", "attacker misses", attacker, defender)
+
+func defender_attacks(attacker, defender, damage, attack_type, defense):
+	var hit_chance = float(100 - defense) / 100.0
+	if randf() <= hit_chance:
+		var mod = float(defender.resistance[attack_type]) / 100.0
+		var new_damage = int(damage * mod)
+		print("(", 100 - defense, "%)\t", attacker.id, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
+		defender.harm(new_damage)
+		Wesnoth.emit_signal("defender_hits", "defender hits", attacker, defender)
+	else:
+		print("(", 100 - defense, "%)\t", attacker.id, " missed")
+		Wesnoth.emit_signal("defender_misses", "defender misses", attacker, defender)
