@@ -39,7 +39,7 @@ var team_color_data = {
 }
 
 
-const SHADER = preload("res://TeamColors.shader")
+const SHADER = preload("res://data/shaders/TeamColors.shader")
 
 onready var combat_handler = $"CombatHandler"
 
