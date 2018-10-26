@@ -11,6 +11,36 @@ var active_unit_path = []
 
 var terrain
 
+var base_color_map = [
+	Color("F49AC1"),
+	Color("3F0016"),
+	Color("55002A"),
+	Color("690039"),
+	Color("7B0045"),
+	Color("8C0051"),
+	Color("9E005D"),
+	Color("B10069"),
+	Color("C30074"),
+	Color("D6007F"),
+	Color("EC008C"),
+	Color("EE3D96"),
+	Color("EF5BA1"),
+	Color("F172AC"),
+	Color("F287B6"),
+	Color("F6ADCD"),
+	Color("F8C1D9"),
+	Color("FAD5E5"),
+	Color("FDE9F1")
+]
+
+var team_color_data = {
+	"red":[Color("FF0000"),Color("FFFFFF"),Color("000000"),Color("FF0000")],
+	"blue":[Color("2E419B"),Color("FFFFFF"),Color("0F0F0F"),Color("0000FF")]
+}
+
+
+const SHADER = preload("res://TeamColors.shader")
+
 onready var combat_handler = $"CombatHandler"
 
 onready var map = $"Map"
@@ -33,9 +63,11 @@ func _ready():
 	sides.append(Side.new())
 	sides.append(Side.new())
 	
-	sides[0].initialize(1, 100)
-	sides[1].initialize(2, 120)
-	
+	sides[0].initialize(1, "red", 100)
+	sides[1].initialize(2, "blue", 120)
+	sides[0].shader = generate_team_shader(team_color_data[sides[0].color])
+	sides[1].shader = generate_team_shader(team_color_data[sides[1].color])
+	#pallete(team_color_data[sides[0].color])
 	create_unit("Elvish Fighter", 1, 10, 1);
 	create_unit("Elvish Archer", 1, 11, 1);
 	create_unit("Elvish Scout", 1, 9, 1);
@@ -89,6 +121,7 @@ func create_unit(id, side, x, y):
 	var unit = UnitRegistry.create(id, side)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
 	unit.game = self
+	unit.set_material(sides[side-1].shader)
 	units.add_child(unit)
 
 func is_unit_at_cell(cell):
@@ -175,3 +208,55 @@ func end_turn():
 	
 	if active_side == 1:
 		turn += 1
+
+func generate_team_shader(team_data):
+	var mat = ShaderMaterial.new()
+	mat.shader = SHADER
+	var color_map = new_color_map(team_data)
+	var i = 1
+	for key in color_map:
+		mat.set_shader_param("base" + str(i),key)
+		mat.set_shader_param("color" + str(i),color_map[key])
+		i += 1
+	return mat
+
+func new_color_map(team_data):
+	var color_map = {}
+
+	var new_red_avg = team_data[0].r
+	var new_green_avg = team_data[0].g
+	var new_blue_avg = team_data[0].b
+	
+	var new_red_max = team_data[1].r
+	var new_green_max = team_data[1].g
+	var new_blue_max = team_data[1].b
+
+	var new_red_min = team_data[2].r
+	var new_green_min = team_data[2].g
+	var new_blue_min = team_data[2].b
+
+	var temp_color = base_color_map[0]
+
+	var temp_avg = (temp_color.r + temp_color.g + temp_color.b)/3.0
+	for color in base_color_map:
+		var color_avg = (color.r + color.g + color.b)/3.0
+		var new_color
+		var r = 0
+		var g = 0
+		var b = 0
+		if color_avg <= temp_avg:
+			var ratio = color_avg/temp_avg
+			r = ratio * new_red_avg + (1-ratio) * new_red_min
+			g = ratio * new_green_avg + (1-ratio) * new_green_min
+			b = ratio * new_blue_avg + (1-ratio) * new_blue_min
+
+		else:
+			var ratio = (1.0 - color_avg)/(1.0 - temp_avg)
+
+			r = ratio * new_red_avg + (1-ratio) * new_red_max
+			g = ratio * new_green_avg + (1-ratio) * new_green_max
+			b = ratio * new_blue_avg + (1-ratio) * new_blue_max
+
+		new_color = Color(min(r,1),min(g,1),min(b,1))
+		color_map[color] = new_color
+	return color_map
