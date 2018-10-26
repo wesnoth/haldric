@@ -9,11 +9,13 @@ const heal_on_rest = 2
 var base_income = 2
 
 var team_color
-
+var team_color_info
 var side = 0
 
 var gold = 100
 var income = 2
+
+var shader
 
 var recruit = []
 

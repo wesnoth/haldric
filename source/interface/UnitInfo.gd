@@ -8,6 +8,7 @@ onready var attack = $"AttackLabel"
 
 func update_unit_info(unit):
 	unit_sprite.texture = unit.texture
+	unit_sprite.set_material(unit.get_material())
 	health.text = str("HP: ", unit.current_health, " / ", unit.base_max_health)
 	experience.text = str("XP: ", unit.current_experience, " / ", unit.base_experience)
 	moves.text = str("MP: ", unit.current_moves, " / ", unit.base_max_moves)

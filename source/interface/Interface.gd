@@ -71,7 +71,7 @@ func _draw():
 	# draw villages
 	for side in game.sides:
 		for village in side.get_villages():
-				draw_circle(game.terrain.map_to_world_centered(village), 5, Color(side.team_color))
+				draw_circle(game.terrain.map_to_world_centered(village), 5, Color(side.team_color_info[3]))
 
 var last_cursor_position = Vector2(0, 0)
 var last_active_unit = null
