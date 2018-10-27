@@ -1,5 +1,7 @@
 extends Node2D
 
+export (Texture) var path_texture setget _set_path_texture
+
 var show_grid = false
 
 onready var game = $".."
@@ -20,6 +22,10 @@ onready var unit_info = $"HUD/UnitInfo"
 
 func _ready():
 	$"HUD/EndTurn".connect("pressed", self, "_on_end_turn_pressed");
+	
+func _set_path_texture(value):
+	path_texture = value
+	update()
 
 func _input(event):
 	if Input.is_action_just_pressed("toggle_grid"):
@@ -66,7 +72,8 @@ func _draw():
 	# draw path
 	for i in range(game.active_unit_path.size()-2):
 		i += 1
-		draw_circle(game.terrain.map_to_world_centered(game.active_unit_path[i]), 5, Color(255, 0, 0))
+		draw_texture(path_texture, game.terrain.map_to_world_centered(game.active_unit_path[i]) - Vector2(36,36) ) 
+		#draw_circle(game.terrain.map_to_world_centered(game.active_unit_path[i]), 5, Color(255, 0, 0))
 	
 	# draw villages
 	for side in game.sides:
