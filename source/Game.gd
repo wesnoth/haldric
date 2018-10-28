@@ -94,7 +94,6 @@ func _ready():
 		if (hex_number == "C8"):
 			continue
 		if hex_number.length() < 2:
-			print(hex_number)
 			hex_number = "0" + hex_number
 		base_flag_color.push_front(Color("00" + hex_number + "00"))
 	base_flag_color.push_front(Color("00C800"))
