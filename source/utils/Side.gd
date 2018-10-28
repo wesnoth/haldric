@@ -16,6 +16,7 @@ var gold = 100
 var income = 2
 
 var shader
+var flag_shader
 
 var recruit = []
 
