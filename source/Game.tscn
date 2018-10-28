@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://source/Game.gd" type="Script" id=1]
 [ext_resource path="res://source/utils/CombatHandler.gd" type="Script" id=2]
 [ext_resource path="res://source/interface/Interface.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/interface/WesnothCamera.gd" type="Script" id=4]
+[ext_resource path="res://data/core/images/terrain/path.png" type="Texture" id=4]
+[ext_resource path="res://source/interface/WesnothCamera.gd" type="Script" id=5]
 
 [node name="Game" type="Node2D" index="0"]
 
@@ -22,6 +23,7 @@ script = ExtResource( 2 )
 
 z_index = 2
 _sections_unfolded = [ "Z Index" ]
+path_texture = ExtResource( 4 )
 
 [node name="Camera" type="Camera2D" parent="." index="4"]
 
@@ -48,7 +50,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
 
