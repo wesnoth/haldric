@@ -33,14 +33,16 @@ var base_color_map = [
 	Color("FDE9F1")
 ]
 
+var base_flag_color = []
+
 var team_color_data = {
 	"red":[Color("FF0000"),Color("FFFFFF"),Color("000000"),Color("FF0000")],
 	"blue":[Color("2E419B"),Color("FFFFFF"),Color("0F0F0F"),Color("0000FF")]
 }
 
 
-const SHADER = preload("res://TeamColors.shader")
-
+const SHADER = preload("res://images/shader/TeamColors.shader")
+const FLAGSHADER = preload("res://images/shader/TeamFlag.shader")
 onready var combat_handler = $"CombatHandler"
 
 onready var map = $"Map"
@@ -48,7 +50,7 @@ onready var units = $"UnitContainer"
 
 onready var recruit_popup = $"Interface/HUD/RecruitPopup"
 onready var attack_popup = $"Interface/HUD/AttackPopup"
-
+onready var flag_sprite = $"Interface/HUD/GameInfo/HBox/TurnLabel/TurnSprite"
 func initialize(reg_entry):
 	terrain = reg_entry.map_data
 	terrain.game = self
@@ -62,6 +64,8 @@ func initialize(reg_entry):
 		new_side.team_color = side.team_color
 		new_side.team_color_info = team_color_data[side.team_color]
 		new_side.shader = generate_team_shader(team_color_data[side.team_color])
+		new_side.flag_shader = generate_flag_shader(team_color_data[side.team_color])
+
 		for recruit in side.recruit.split(","):
 			recruit = recruit.strip_edges()
 			new_side.recruit.append(recruit)
@@ -69,7 +73,7 @@ func initialize(reg_entry):
 		sides.append(new_side)
 		
 		create_unit(side.type, side.side, side.position.x, side.position.z, true)
-
+	flag_sprite.set_material(sides[0].flag_shader)
 func _ready():
 	Wesnoth.connect("attacker_hits", self, "on_attacker_hits")
 	Wesnoth.connect("attacker_misses", self, "on_attacker_misses")
@@ -82,6 +86,19 @@ func _ready():
 	
 	attack_popup.connect("id_pressed", self, "on_attack_popup_id_pressed")
 	recruit_popup.connect("id_pressed", self, "on_recruit_popup_id_pressed")
+
+	var hex_format = "%X"
+	for i in range(255):
+		var hex_number = hex_format % [(i+1)]
+		#why C8 you may ask? who knows... i hope who ever made this pallete does
+		if (hex_number == "C8"):
+			continue
+		if hex_number.length() < 2:
+			print(hex_number)
+			hex_number = "0" + hex_number
+		base_flag_color.push_front(Color("00" + hex_number + "00"))
+	base_flag_color.push_front(Color("00C800"))
+
 
 var unit
 
@@ -278,11 +295,11 @@ func on_recruit_popup_id_pressed(id):
 	get_current_side().gold -= unit_entry.cost
 	var leader_cell = terrain.world_to_map(sides[active_side-1].get_first_leader().position)
 	create_unit(unit_entry.id, active_side, leader_cell.x+1, leader_cell.y)
-	
+
 func generate_team_shader(team_data):
 	var mat = ShaderMaterial.new()
 	mat.shader = SHADER
-	var color_map = new_color_map(team_data)
+	var color_map = new_color_map(team_data, base_color_map)
 	var i = 1
 	for key in color_map:
 		mat.set_shader_param("base" + str(i),key)
@@ -290,7 +307,18 @@ func generate_team_shader(team_data):
 		i += 1
 	return mat
 
-func new_color_map(team_data):
+func generate_flag_shader(team_data):
+	var mat = ShaderMaterial.new()
+	mat.shader = FLAGSHADER
+	var color_map = new_color_map(team_data, base_flag_color)
+	var i = 1
+	for key in color_map:
+		mat.set_shader_param("base" + str(i),key)
+		mat.set_shader_param("color" + str(i),color_map[key])
+		i += 1
+	return mat
+
+func new_color_map(team_data, base_color):
 	var color_map = {}
 
 	var new_red_avg = team_data[0].r
@@ -305,10 +333,10 @@ func new_color_map(team_data):
 	var new_green_min = team_data[2].g
 	var new_blue_min = team_data[2].b
 
-	var temp_color = base_color_map[0]
+	var temp_color = base_color[0]
 
 	var temp_avg = (temp_color.r + temp_color.g + temp_color.b)/3.0
-	for color in base_color_map:
+	for color in base_color:
 		var color_avg = (color.r + color.g + color.b)/3.0
 		var new_color
 		var r = 0

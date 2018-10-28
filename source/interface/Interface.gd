@@ -8,6 +8,7 @@ onready var cursor = $"Cursor"
 onready var sprite_builder = $"SpriteBuilder"
 
 onready var turn_label = $"HUD/GameInfo/HBox/TurnLabel"
+onready var flag_sprite = $"HUD/GameInfo/HBox/TurnLabel/TurnSprite"
 
 onready var gold_label = $"HUD/GameInfo/HBox/GoldLabel"
 onready var income_label = $"HUD/GameInfo/HBox/IncomeLabel"
@@ -20,7 +21,7 @@ onready var unit_info = $"HUD/UnitInfo"
 
 func _ready():
 	$"HUD/EndTurn".connect("pressed", self, "_on_end_turn_pressed");
-
+	
 func _input(event):
 	if Input.is_action_just_pressed("toggle_grid"):
 		show_grid = !show_grid
@@ -99,3 +100,4 @@ func update_reachable_cells():
 
 func _on_end_turn_pressed():
 	Wesnoth.emit_signal("turn_end", "turn end", game.active_side)
+	flag_sprite.set_material(game.sides[game.active_side-1].flag_shader)
