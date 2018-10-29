@@ -37,7 +37,14 @@ var base_flag_color = []
 
 var team_color_data = {
 	"red":[Color("FF0000"),Color("FFFFFF"),Color("000000"),Color("FF0000")],
-	"blue":[Color("2E419B"),Color("FFFFFF"),Color("0F0F0F"),Color("0000FF")]
+	"blue":[Color("2E419B"),Color("FFFFFF"),Color("0F0F0F"),Color("0000FF")],
+	"green":[Color("62B664"),Color("FFFFFF"),Color("000000"),Color("00FF00")],
+	"purple":[Color("93009D"),Color("FFFFFF"),Color("000000"),Color("FF00FF")],
+	"black":[Color("5A5A5A"),Color("FFFFFF"),Color("000000"),Color("000000")],
+	"white":[Color("E1E1E1"),Color("FFFFFF"),Color("1E1E1E"),Color("FFFFFF")],
+	"brown":[Color("945027"),Color("FFFFFF"),Color("000000"),Color("AA4600")],
+	"orange":[Color("FF7E00"),Color("FFFFFF"),Color("0F0F0F"),Color("FFAA00")],
+	"teal":[Color("30CBC0"),Color("FFFFFF"),Color("000000"),Color("00F0C8")]
 }
 
 
