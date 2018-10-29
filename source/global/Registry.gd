@@ -41,8 +41,8 @@ func load_scenario_dir(path):
 	files = get_files_in_directory(path, files)
 	for file in files:
 		var config = yaml_parser.parse(file.data.get_as_text())
-		scenarios[config.id] = config
-		scenarios[config.id].map_data = MapLoader.load_map(config.map_data)
+		scenarios[file.id] = config
+		scenarios[file.id].map_data = MapLoader.load_map(config.map_data)
 
 func get_files_in_directory(path, files):
 	var dir = Directory.new()

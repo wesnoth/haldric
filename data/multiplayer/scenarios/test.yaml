@@ -1,5 +1,4 @@
 name: "Test"
-id: "test"
 map_data: "res://data/multiplayer/maps/test.map"
 turns: 30
 sides: 

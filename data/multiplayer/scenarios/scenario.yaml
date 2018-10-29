@@ -1,5 +1,4 @@
-name: "Sample Map"
-id: "sample_map"
+name: "Scenario"
 map_data: "res://data/multiplayer/maps/scenario.map"
 turns: 30
 sides: 
@@ -10,7 +9,7 @@ sides:
     gold: 100,
     income: 2,
     recruit: "Elvish Fighter, Elvish Archer, Elvish Scout, Elvish Shaman",
-    team_color: "ff0000"
+    team_color: "purple"
   }
   - {
     side: 2,
@@ -19,7 +18,7 @@ sides:
     gold: 100,
     income: 2,
     recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Troll Whelp",
-    team_color: "00ff00"
+    team_color: "teal"
   }
   - {
     side: 3,
@@ -28,5 +27,5 @@ sides:
     gold: 100,
     income: 2,
     recruit: "Orcish Archer, Orcish Assassin, Elvish Archer, Elvish Shaman",
-    team_color: "0000FF"
+    team_color: "orange"
   }
