@@ -58,6 +58,7 @@ onready var units = $"UnitContainer"
 onready var recruit_popup = $"Interface/HUD/RecruitPopup"
 onready var attack_popup = $"Interface/HUD/AttackPopup"
 onready var flag_sprite = $"Interface/HUD/GameInfo/HBox/TurnLabel/TurnSprite"
+
 func initialize(reg_entry):
 	terrain = reg_entry.map_data
 	terrain.game = self
@@ -79,7 +80,7 @@ func initialize(reg_entry):
 		
 		sides.append(new_side)
 		
-		create_unit(side.type, side.side, side.position.x, side.position.z, true)
+		create_unit(side.type, side.side, side.position.x, side.position.z, side.id, true)
 	flag_sprite.set_material(sides[0].flag_shader)
 func _ready():
 	Wesnoth.connect("attacker_hits", self, "on_attacker_hits")
@@ -155,14 +156,14 @@ func _unhandled_input(event):
 			recruit_popup.add_recruits(get_current_side().recruit)
 			recruit_popup.show()
 
-func create_unit(id, side, x, y, is_leader = false):
-	var unit = Registry.create_unit(id, side)
+func create_unit(type, side, x, y, id = "", is_leader = false):
+	var unit = Registry.create_unit(type, side, id)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
 	unit.game = self
 	unit.set_material(sides[side-1].shader)
 	unit.is_leader = is_leader
 	sides[side-1].leaders.append(unit)
-	units.add_child(unit)
+	units.add(unit)
 
 func is_unit_at_cell(cell):
 	var pos = terrain.map_to_world_centered(cell)

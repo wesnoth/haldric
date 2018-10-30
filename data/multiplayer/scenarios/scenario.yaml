@@ -4,7 +4,8 @@ turns: 30
 sides: 
   - {
     side: 1,
-    type: "Elvish Fighter",
+    type: "Elvish Archer",
+    id: "Lagoles",
     position: {x: 7, z: 1},
     gold: 100,
     income: 2,
@@ -14,6 +15,7 @@ sides:
   - {
     side: 2,
     type: "Orcish Grunt",
+    id: "Kapou'e", 
     position: {x: 12, z: 13},
     gold: 100,
     income: 2,
@@ -23,6 +25,7 @@ sides:
   - {
     side: 3,
     type: "Orcish Assassin",
+    id: "Gerrat",
     position: {x: 14, z: 8},
     gold: 100,
     income: 2,

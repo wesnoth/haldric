@@ -9,8 +9,13 @@ var can_attack = true
 var is_leader = false
 
 # Y A M L   S T A T S
-var id
+
+var numerical_id
+var string_id
+var type
+
 var level
+
 var cost
 var advances_to
 
@@ -50,8 +55,16 @@ func _process(delta):
 		advance(Registry.units[advances_to])
 
 
-func initialize(reg_entry, side):
-	id = reg_entry.id
+func initialize(reg_entry, side, id = ""):
+	if id == "":
+		string_id = str(reg_entry.id , Wesnoth.UNIT_ID)
+	else:
+		string_id = id
+	name = string_id
+	numerical_id = Wesnoth.UNIT_ID
+	Wesnoth.UNIT_ID += 1
+	
+	type = reg_entry.id
 	level = reg_entry.level
 	cost = reg_entry.cost
 	base_max_health = reg_entry.health
@@ -72,7 +85,7 @@ func initialize(reg_entry, side):
 	self.side = side
 
 func advance(reg_entry):
-	id = reg_entry.id
+	type = reg_entry.id
 	level = reg_entry.level
 	cost = reg_entry.cost
 	base_max_health = reg_entry.health

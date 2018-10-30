@@ -71,7 +71,7 @@ func validate_advancements():
 		if !units.has(config.advances_to) and config.advances_to != null:
 			print(config.id, ": Invalid Advancement! ", config.advances_to, " does not exist!")
 
-func create_unit(id, side):
+func create_unit(type, side, id):
 	var unit = load("res://source/Unit.tscn").instance()
-	unit.initialize(units[id], side)
+	unit.initialize(units[type], side, id)
 	return unit

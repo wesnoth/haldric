@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/Game.gd" type="Script" id=1]
-[ext_resource path="res://source/utils/CombatHandler.gd" type="Script" id=2]
-[ext_resource path="res://source/interface/Interface.tscn" type="PackedScene" id=3]
-[ext_resource path="res://data/core/images/terrain/path.png" type="Texture" id=4]
-[ext_resource path="res://source/interface/WesnothCamera.gd" type="Script" id=5]
+[ext_resource path="res://source/UnitContainer.gd" type="Script" id=2]
+[ext_resource path="res://source/utils/CombatHandler.gd" type="Script" id=3]
+[ext_resource path="res://source/interface/Interface.tscn" type="PackedScene" id=4]
+[ext_resource path="res://data/core/images/terrain/path.png" type="Texture" id=5]
+[ext_resource path="res://source/interface/WesnothCamera.gd" type="Script" id=6]
 
 [node name="Game" type="Node2D" index="0"]
 
@@ -15,15 +16,17 @@ _sections_unfolded = [ "Cell", "Transform" ]
 
 [node name="UnitContainer" type="Node" parent="." index="1"]
 
-[node name="CombatHandler" type="Node" parent="." index="2"]
-
 script = ExtResource( 2 )
 
-[node name="Interface" parent="." index="3" instance=ExtResource( 3 )]
+[node name="CombatHandler" type="Node" parent="." index="2"]
+
+script = ExtResource( 3 )
+
+[node name="Interface" parent="." index="3" instance=ExtResource( 4 )]
 
 z_index = 2
 _sections_unfolded = [ "Z Index" ]
-path_texture = ExtResource( 4 )
+path_texture = ExtResource( 5 )
 
 [node name="Camera" type="Camera2D" parent="." index="4"]
 
@@ -50,7 +53,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
 

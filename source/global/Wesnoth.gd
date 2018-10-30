@@ -10,3 +10,5 @@ signal unit_move_finished(unit)
 
 signal turn_refresh(event, side)
 signal turn_end(event, side)
+
+var UNIT_ID = 0
