@@ -1,15 +1,14 @@
 extends Resource
 
-var name = "Heal"
-var event = "turn refresh"
-
-var default = {
+var config = {
+	name = "Heal",
+	event = "turn refresh",
 	value = 8
 }
 
-func heal(unit, params):
+func heal(unit, config):
 	var adjacent_units = unit.get_adjacent_units()
 	for u in adjacent_units:
 		if unit.side == u.side:
-			u.heal(params.value)
-			print(unit.id, " healed ", u.id, " by ", params.value, " HP")
+			u.heal(config.value)
+			print(unit.id, " healed ", u.id, " by ", config.value, " HP")

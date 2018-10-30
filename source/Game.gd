@@ -400,15 +400,19 @@ func _handle_abilities(event):
 			continue
 		
 		for entry in unit.abilities:
-			var ability = Registry.abilities[entry.id]	
+			var ability = Registry.abilities[entry.id]
 			if ability.script.event != event:
 				continue
 			
-			var params = {}
+			var config = ability.script.config
 			
-			if entry.has("params"):
-				params = entry.params
-			else:
-				params = ability.script.default
+			if entry.has("config"):
+				config = _overwrite_config(config, entry.config)
 			
-			ability.function.call_func(unit, params)
+			ability.function.call_func(unit, config)
+
+func _overwrite_config(config, o_config):
+	for key in o_config.keys():
+		if config.has(key):
+			config[key] = o_config[key]
+	return config

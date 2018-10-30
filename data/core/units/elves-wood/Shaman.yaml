@@ -11,7 +11,7 @@ image: res://data/core/images/units/elves-wood/shaman.png
 abilities:
   - {
     id: heal,
-    params: { value: 4 }
+    config: { value: 4 }
   }
 
 attacks:
