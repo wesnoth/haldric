@@ -20,6 +20,7 @@ func start_fight(attacker, attacker_info, defender, defender_info):
 				defender.current_experience += xp_per_level / 2
 			if attacker.is_leader:
 				get_parent().sides[attacker.side-1].leaders.erase(attacker)
+			get_parent().units.remove(attacker.numerical_id)
 			attacker.queue_free()
 			return
 
@@ -33,6 +34,7 @@ func start_fight(attacker, attacker_info, defender, defender_info):
 				attacker.current_experience += xp_per_level / 2
 			if defender.is_leader:
 				get_parent().sides[defender.side-1].leaders.erase(defender)
+			get_parent().units.remove(defender.numerical_id)
 			defender.queue_free()
 			return
 
@@ -47,11 +49,11 @@ func attacker_attacks(attacker, defender, damage, attack_type, defense):
 	if randf() <= hit_chance:
 		var mod = float(defender.resistance[attack_type]) / 100.0
 		var new_damage = int(damage * mod)
-		print("(", 100 - defense, "%)\t", attacker.id, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
+		print("(", 100 - defense, "%)\t", attacker.type, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
 		defender.harm(new_damage)
 		Wesnoth.emit_signal("attacker_hits", "attacker hits", attacker, defender)
 	else:
-		print("(", 100 - defense, "%)\t", attacker.id, " missed")
+		print("(", 100 - defense, "%)\t", attacker.type, " missed")
 		Wesnoth.emit_signal("attacker_misses", "attacker misses", attacker, defender)
 
 func defender_attacks(attacker, defender, damage, attack_type, defense):
@@ -59,9 +61,9 @@ func defender_attacks(attacker, defender, damage, attack_type, defense):
 	if randf() <= hit_chance:
 		var mod = float(defender.resistance[attack_type]) / 100.0
 		var new_damage = int(damage * mod)
-		print("(", 100 - defense, "%)\t", attacker.id, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
+		print("(", 100 - defense, "%)\t", attacker.type, " deals ", new_damage, " damage (", damage, " * ", mod, " = ", new_damage, ")")
 		defender.harm(new_damage)
 		Wesnoth.emit_signal("defender_hits", "defender hits", attacker, defender)
 	else:
-		print("(", 100 - defense, "%)\t", attacker.id, " missed")
+		print("(", 100 - defense, "%)\t", attacker.type, " missed")
 		Wesnoth.emit_signal("defender_misses", "defender misses", attacker, defender)
