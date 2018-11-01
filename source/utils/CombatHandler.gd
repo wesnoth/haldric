@@ -21,7 +21,6 @@ func start_fight(attacker, attacker_info, defender, defender_info):
 			if attacker.is_leader:
 				get_parent().sides[attacker.side-1].leaders.erase(attacker)
 			get_parent().units.remove(attacker.numerical_id)
-			attacker.queue_free()
 			return
 
 		if defender.current_health > 0:
@@ -35,7 +34,6 @@ func start_fight(attacker, attacker_info, defender, defender_info):
 			if defender.is_leader:
 				get_parent().sides[defender.side-1].leaders.erase(defender)
 			get_parent().units.remove(defender.numerical_id)
-			defender.queue_free()
 			return
 
 	attacker.current_experience += defender.level
