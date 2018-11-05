@@ -19,11 +19,6 @@
 [ext_resource path="res://images/hud/hud_xp_fill.png" type="Texture" id=17]
 [ext_resource path="res://images/hud/hud_mp_fill.png" type="Texture" id=18]
 
-
-
-
-
-
 [node name="Interface" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
@@ -297,7 +292,7 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="UnitSprite" type="Sprite" parent="HUD/UnitInfo" index="0"]
 
-position = Vector2( 58, 4 )
+position = Vector2( 60, 12 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
 _sections_unfolded = [ "Offset", "Transform" ]
