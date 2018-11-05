@@ -8,4 +8,4 @@ var config = {
 
 func regenerate(unit, config):
 	unit.heal(config.value)
-	print(unit.id, " regenerated ", config.value, " HP")
+	print(unit.type, " regenerated ", config.value, " HP")
