@@ -57,7 +57,7 @@ onready var units = $"UnitContainer"
 
 onready var recruit_popup = $"Interface/HUD/RecruitPopup"
 onready var attack_popup = $"Interface/HUD/AttackPopup"
-onready var flag_sprite = $"Interface/HUD/GameInfo/HBox/TurnLabel/TurnSprite"
+onready var flag_sprite = $"Interface/HUD/TopPanel/Turn/HBox/Icon"
 
 func initialize(reg_entry):
 	terrain = reg_entry.map_data
@@ -407,7 +407,7 @@ func _handle_abilities(event):
 		
 		for entry in unit.abilities:
 			var ability = Registry.abilities[entry.id]
-			if ability.script.event != event:
+			if ability.script.config.event != event:
 				continue
 			
 			var config = ability.script.config

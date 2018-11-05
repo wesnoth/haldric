@@ -9,17 +9,26 @@ onready var cursor = $"Cursor"
 
 onready var sprite_builder = $"SpriteBuilder"
 
-onready var turn_label = $"HUD/GameInfo/HBox/TurnLabel"
-onready var flag_sprite = $"HUD/GameInfo/HBox/TurnLabel/TurnSprite"
+#onready var turn_label = $"HUD/GameInfo/HBox/TurnLabel"
+#onready var flag_sprite = $"HUD/GameInfo/HBox/TurnLabel/TurnSprite"
+#
+#onready var gold_label = $"HUD/GameInfo/HBox/GoldLabel"
+#onready var income_label = $"HUD/GameInfo/HBox/IncomeLabel"
+#onready var villages_label = $"HUD/GameInfo/HBox/VillagesLabel"
+#
+#onready var time_label = $"HUD/GameInfo/HBox/TimeLabel"
+#onready var battery_label = $"HUD/GameInfo/HBox/BatteryLabel"
+#onready var battery_tex = $"HUD/GameInfo/HBox/BatteryTex"
+#onready var unit_info = $"HUD/UnitInfo"
 
-onready var gold_label = $"HUD/GameInfo/HBox/GoldLabel"
-onready var income_label = $"HUD/GameInfo/HBox/IncomeLabel"
-onready var villages_label = $"HUD/GameInfo/HBox/VillagesLabel"
+onready var turn_item = $"HUD/TopPanel/Turn"
+onready var gold_item = $"HUD/TopPanel/Gold"
+onready var income_item = $"HUD/TopPanel/Income"
+onready var village_item = $"HUD/TopPanel/Villages"
+onready var time_item = $"HUD/TopPanel/Time"
+onready var battery_item = $"HUD/TopPanel/Battery"
 
-onready var time_label = $"HUD/GameInfo/HBox/TimeLabel"
-onready var battery_label = $"HUD/GameInfo/HBox/BatteryLabel"
-
-onready var unit_info = $"HUD/UnitInfo"
+onready var unit_info = $"HUD/BottomPanel"
 
 func _ready():
 	$"HUD/EndTurn".connect("pressed", self, "_on_end_turn_pressed");
@@ -45,17 +54,17 @@ func _process(delta):
 	
 	cursor.position = game.terrain.world_to_world_centered(get_global_mouse_position())
 	
-	turn_label.text = str(game.turn)
+	turn_item.label.text = str(game.turn)
 	
-	gold_label.text = str(game.get_current_side().gold)
-	income_label.text = str(game.get_current_side().income)
-	villages_label.text = str(game.get_current_side().villages.size(), " / ", game.terrain.villages.size())
+	gold_item.label.text = str(game.get_current_side().gold)
+	income_item.label.text = str(game.get_current_side().income)
+	village_item.label.text = str(game.get_current_side().villages.size(), "/", game.terrain.villages.size())
 	
 	var time = OS.get_time()
-	time_label.text = str("%02d" % time.hour, ":", "%02d" % time.minute)
-	battery_label.text = str(OS.get_power_percent_left(), "%")
+	time_item.label.text = str("%02d" % time.hour, ":", "%02d" % time.minute)
+	battery_item.label.text = str(OS.get_power_percent_left(), "%")
 	if OS.get_power_percent_left() == -1:
-		battery_label.hide()
+		battery_item.hide()
 	
 	var mouse_position = game.terrain.world_to_world_centered(game.get_mouse_position())
 	var unit = game.get_unit_at_position(mouse_position)
@@ -113,4 +122,4 @@ func update_reachable_cells():
 
 func _on_end_turn_pressed():
 	Wesnoth.emit_signal("turn_end", "turn end", game.active_side)
-	flag_sprite.set_material(game.sides[game.active_side-1].flag_shader)
+	turn_item.icon.set_material(game.sides[game.active_side-1].flag_shader)
