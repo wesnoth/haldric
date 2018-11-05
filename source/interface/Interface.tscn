@@ -9,7 +9,7 @@
 [ext_resource path="res://source/interface/panel/TopPanel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/interface/panel/BottomPanel.tscn" type="PackedScene" id=8]
 
-[node name="Interface" type="Node2D" index="0"]
+[node name="Interface" type="Node2D"]
 
 script = ExtResource( 1 )
 path_texture = null
@@ -83,8 +83,8 @@ margin_right = 1279.0
 
 [node name="BottomPanel" parent="HUD" index="3" instance=ExtResource( 8 )]
 
-margin_top = 727.0
-margin_bottom = 767.0
+margin_top = 698.0
+margin_bottom = 738.0
 
 [node name="EndTurn" type="Button" parent="HUD" index="4"]
 
