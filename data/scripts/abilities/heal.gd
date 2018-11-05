@@ -11,4 +11,4 @@ func heal(unit, config):
 	for u in adjacent_units:
 		if unit.side == u.side:
 			u.heal(config.value)
-			print(unit.id, " healed ", u.id, " by ", config.value, " HP")
+			print(unit.type, " healed ", u.type, " by ", config.value, " HP")
