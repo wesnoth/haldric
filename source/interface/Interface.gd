@@ -56,10 +56,14 @@ func _process(delta):
 	battery_label.text = str(OS.get_power_percent_left(), "%")
 	if OS.get_power_percent_left() == -1:
 		battery_label.hide()
-		
 	
+	var mouse_position = game.terrain.world_to_world_centered(game.get_mouse_position())
+	var unit = game.get_unit_at_position(mouse_position)
 	
-	if game.active_unit:
+	if unit:
+		unit_info.update_unit_info(unit)
+	
+	elif game.active_unit:
 		unit_info.update_unit_info(game.active_unit)
 
 		if game.terrain.check_boundaries(game.terrain.world_to_map(get_global_mouse_position())):
@@ -95,8 +99,9 @@ func update_reachable_cells():
 		if !game.active_unit:
 			sprite_builder.remove_darken(game.terrain)
 		if unit and !game.active_unit:
-			game.terrain.update_weight(unit)
-			sprite_builder.show_darken(game.terrain, game.terrain.get_reachable_cells_u(unit))
+			if unit.current_moves > 0:
+				game.terrain.update_weight(unit)
+				sprite_builder.show_darken(game.terrain, game.terrain.get_reachable_cells_u(unit))
 		last_cursor_position = mouse_position
 
 	if game.active_unit and game.active_unit != last_active_unit:

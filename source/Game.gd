@@ -172,6 +172,9 @@ func is_unit_at_cell(cell):
 			return true
 	return false
 
+func is_unit_at_position(pos):
+	is_unit_at_cell(terrain.world_to_map(pos))
+
 func is_cell_blocked(cell):
 	if terrain.check_boundaries(cell):
 		return terrain.tiles[terrain.flatten_v(cell)].is_blocked
@@ -182,6 +185,9 @@ func get_unit_at_cell(cell):
 		if u.position == pos:
 			return u
 	return null
+
+func get_mouse_position():
+	return get_global_mouse_position()
 
 func get_unit_at_position(unit_position):
 	for u in units.get_children():

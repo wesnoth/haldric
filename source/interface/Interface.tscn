@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://source/interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/SpriteBuilder.gd" type="Script" id=2]
@@ -14,18 +14,20 @@
 [ext_resource path="res://images/icons/battery.png" type="Texture" id=12]
 [ext_resource path="res://source/interface/UnitInfo.gd" type="Script" id=13]
 [ext_resource path="res://data/core/images/units/elves-wood/archer.png" type="Texture" id=14]
+[ext_resource path="res://images/hud/hud_stat_background.png" type="Texture" id=15]
+[ext_resource path="res://images/hud/hud_hp_fill.png" type="Texture" id=16]
+[ext_resource path="res://images/hud/hud_xp_fill.png" type="Texture" id=17]
+[ext_resource path="res://images/hud/hud_mp_fill.png" type="Texture" id=18]
 
 
 
 
 
 
-
-
-
-[node name="Interface" type="Node2D"]
+[node name="Interface" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+path_texture = null
 
 [node name="SpriteBuilder" type="Node2D" parent="." index="0"]
 
@@ -288,7 +290,6 @@ offset = Vector2( -16, 1 )
 
 [node name="UnitInfo" type="Node2D" parent="HUD" index="4"]
 
-editor/display_folded = true
 self_modulate = Color( 1, 1, 1, 0.470588 )
 position = Vector2( 13, 728 )
 script = ExtResource( 13 )
@@ -296,20 +297,185 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="UnitSprite" type="Sprite" parent="HUD/UnitInfo" index="0"]
 
+position = Vector2( 58, 4 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
-centered = false
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="VBox" type="VBoxContainer" parent="HUD/UnitInfo" index="1"]
+[node name="Orbs" type="VBoxContainer" parent="HUD/UnitInfo" index="1"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -12.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 71.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 2
+alignment = 0
+_sections_unfolded = [ "custom_constants" ]
+
+[node name="Health" type="TextureRect" parent="HUD/UnitInfo/Orbs" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 23.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 15 )
+stretch_mode = 3
+
+[node name="TextureProgress" type="TextureProgress" parent="HUD/UnitInfo/Orbs/Health" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 60.0
+exp_edit = false
+rounded = false
+texture_under = null
+texture_over = null
+texture_progress = ExtResource( 16 )
+fill_mode = 3
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Textures" ]
+
+[node name="Experience" type="TextureRect" parent="HUD/UnitInfo/Orbs" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 24.0
+margin_right = 23.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 15 )
+stretch_mode = 3
+
+[node name="TextureProgress" type="TextureProgress" parent="HUD/UnitInfo/Orbs/Experience" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 20.0
+exp_edit = false
+rounded = false
+texture_under = null
+texture_over = null
+texture_progress = ExtResource( 17 )
+fill_mode = 3
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Textures" ]
+
+[node name="Moves" type="TextureRect" parent="HUD/UnitInfo/Orbs" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 48.0
+margin_right = 23.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 15 )
+stretch_mode = 3
+
+[node name="TextureProgress" type="TextureProgress" parent="HUD/UnitInfo/Orbs/Moves" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 100.0
+exp_edit = false
+rounded = false
+texture_under = null
+texture_over = null
+texture_progress = ExtResource( 18 )
+fill_mode = 3
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Textures" ]
+
+[node name="VBox" type="VBoxContainer" parent="HUD/UnitInfo" index="2"]
 
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 75.0
-margin_top = -49.0
-margin_right = 44.0
-margin_bottom = 19.0
+margin_left = 135.0
+margin_top = -59.0
+margin_right = 104.0
+margin_bottom = 9.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -335,11 +501,15 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
 text = "HP: -"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_constants" ]
 
 [node name="ExperienceLabel" type="Label" parent="HUD/UnitInfo/VBox" index="1"]
 
@@ -357,6 +527,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
 text = "XP: -"
 valign = 1
 percent_visible = 1.0
@@ -378,28 +551,36 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
 text = "MP: -"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="AttackLabel" type="Label" parent="HUD/UnitInfo" index="2"]
+[node name="AttackLabel" type="Label" parent="HUD/UnitInfo" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 169.0
-margin_top = 15.0
-margin_right = 373.0
-margin_bottom = 82.0
+margin_left = 238.0
+margin_top = 5.0
+margin_right = 442.0
+margin_bottom = 72.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
 text = "Attack"
 percent_visible = 1.0
 lines_skipped = 0

@@ -9,7 +9,7 @@ sides:
     position: {x: 7, z: 1},
     gold: 100,
     income: 2,
-    recruit: "Elvish Fighter, Elvish Archer, Elvish Scout, Elvish Shaman",
+    recruit: "Elvish Fighter, Elvish Archer, Elvish Scout, Elvish Shaman, Fire Dragon",
     team_color: "purple"
   }
   - {
