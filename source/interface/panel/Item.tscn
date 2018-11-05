@@ -48,7 +48,11 @@ __meta__ = {
 }
 tex = null
 
-[node name="BaseTop" type="TextureRect" parent="." index="0"]
+[node name="Graphics" type="Node2D" parent="." index="0"]
+
+editor/display_folded = true
+
+[node name="BaseTop" type="TextureRect" parent="Graphics" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -69,7 +73,7 @@ expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Material", "Rect", "Visibility" ]
 
-[node name="BaseBottom" type="TextureRect" parent="." index="1"]
+[node name="BaseBottom" type="TextureRect" parent="Graphics" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -91,7 +95,97 @@ expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Material", "Rect", "Visibility" ]
 
-[node name="HBox" type="HBoxContainer" parent="." index="2"]
+[node name="BorderLeft" type="ColorRect" parent="Graphics" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 5.0
+margin_bottom = 25.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.627451, 0.505882, 0.0352941, 1 )
+
+[node name="BorderLeft2" type="ColorRect" parent="Graphics" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 3.0
+margin_right = 5.0
+margin_bottom = 5.0
+rect_rotation = 0.276431
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.627451, 0.505882, 0.0352941, 1 )
+
+[node name="BorderRight" type="ColorRect" parent="Graphics" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 90.0
+margin_top = 5.0
+margin_right = 92.0
+margin_bottom = 25.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.627451, 0.505882, 0.0352941, 1 )
+
+[node name="BorderRight2" type="ColorRect" parent="Graphics" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 90.0
+margin_top = 3.0
+margin_right = 95.0
+margin_bottom = 5.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.627451, 0.505882, 0.0352941, 1 )
+
+[node name="BorderBottom" type="ColorRect" parent="Graphics" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 3.0
+margin_top = 25.0
+margin_right = 92.0
+margin_bottom = 27.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.627451, 0.505882, 0.0352941, 1 )
+
+[node name="Info" type="HBoxContainer" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -111,7 +205,7 @@ custom_constants/separation = 4
 alignment = 1
 _sections_unfolded = [ "custom_constants" ]
 
-[node name="Icon" type="TextureRect" parent="HBox" index="0"]
+[node name="Icon" type="TextureRect" parent="Info" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -129,7 +223,7 @@ size_flags_vertical = 1
 texture = ExtResource( 2 )
 stretch_mode = 0
 
-[node name="BorderCenter" type="ColorRect" parent="HBox" index="1"]
+[node name="BorderCenter" type="ColorRect" parent="Info" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -147,16 +241,16 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0.627451, 0.505882, 0.0352941, 0.588235 )
 
-[node name="Label" type="Label" parent="HBox" index="2"]
+[node name="Label" type="Label" parent="Info" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 35.0
-margin_top = 2.0
+margin_top = 1.0
 margin_right = 83.0
-margin_bottom = 17.0
+margin_bottom = 18.0
 rect_min_size = Vector2( 48, 14 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -172,95 +266,5 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "Theme" ]
-
-[node name="BorderLeft" type="ColorRect" parent="." index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 5.0
-margin_bottom = 25.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.627451, 0.505882, 0.0352941, 1 )
-
-[node name="BorderLeft2" type="ColorRect" parent="." index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 3.0
-margin_right = 5.0
-margin_bottom = 5.0
-rect_rotation = 0.276431
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.627451, 0.505882, 0.0352941, 1 )
-
-[node name="BorderRight" type="ColorRect" parent="." index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 90.0
-margin_top = 5.0
-margin_right = 92.0
-margin_bottom = 25.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.627451, 0.505882, 0.0352941, 1 )
-
-[node name="BorderRight2" type="ColorRect" parent="." index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 90.0
-margin_top = 3.0
-margin_right = 95.0
-margin_bottom = 5.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.627451, 0.505882, 0.0352941, 1 )
-
-[node name="BorderBottom" type="ColorRect" parent="." index="7"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 3.0
-margin_top = 25.0
-margin_right = 92.0
-margin_bottom = 27.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.627451, 0.505882, 0.0352941, 1 )
 
 

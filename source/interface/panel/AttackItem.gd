@@ -17,13 +17,9 @@ onready var label = $"Label"
 
 func initialize(attack_info):
 	attack_icon.texture = load(attack_info.icon)
-	
 	if resistance_icons.has(attack_info.type):
 		type_icon.texture = resistance_icons[attack_info.type]
 	else:
 		type_icon.texture = resistance_icons["blank"]
-	
 	range_icon.texture = resistance_icons["blank"]
-	
 	label.text = str(attack_info.damage, " x ", attack_info.strikes)
-	

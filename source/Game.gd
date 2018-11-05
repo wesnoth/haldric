@@ -57,7 +57,7 @@ onready var units = $"UnitContainer"
 
 onready var recruit_popup = $"Interface/HUD/RecruitPopup"
 onready var attack_popup = $"Interface/HUD/AttackPopup"
-onready var flag_sprite = $"Interface/HUD/TopPanel/Turn/HBox/Icon"
+onready var flag_sprite = $"Interface/HUD/TopPanel/Turn/Info/Icon"
 
 func initialize(reg_entry):
 	terrain = reg_entry.map_data

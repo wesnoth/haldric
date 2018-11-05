@@ -9,18 +9,6 @@ onready var cursor = $"Cursor"
 
 onready var sprite_builder = $"SpriteBuilder"
 
-#onready var turn_label = $"HUD/GameInfo/HBox/TurnLabel"
-#onready var flag_sprite = $"HUD/GameInfo/HBox/TurnLabel/TurnSprite"
-#
-#onready var gold_label = $"HUD/GameInfo/HBox/GoldLabel"
-#onready var income_label = $"HUD/GameInfo/HBox/IncomeLabel"
-#onready var villages_label = $"HUD/GameInfo/HBox/VillagesLabel"
-#
-#onready var time_label = $"HUD/GameInfo/HBox/TimeLabel"
-#onready var battery_label = $"HUD/GameInfo/HBox/BatteryLabel"
-#onready var battery_tex = $"HUD/GameInfo/HBox/BatteryTex"
-#onready var unit_info = $"HUD/UnitInfo"
-
 onready var turn_item = $"HUD/TopPanel/Turn"
 onready var gold_item = $"HUD/TopPanel/Gold"
 onready var income_item = $"HUD/TopPanel/Income"
@@ -28,7 +16,8 @@ onready var village_item = $"HUD/TopPanel/Villages"
 onready var time_item = $"HUD/TopPanel/Time"
 onready var battery_item = $"HUD/TopPanel/Battery"
 
-onready var unit_info = $"HUD/BottomPanel"
+onready var unit_info = $"HUD/BottomPanel/UnitItem"
+onready var attack_info = $"HUD/BottomPanel/AttackInfo"
 
 func _ready():
 	$"HUD/EndTurn".connect("pressed", self, "_on_end_turn_pressed");
@@ -71,9 +60,11 @@ func _process(delta):
 	
 	if unit:
 		unit_info.update_unit_info(unit)
+		attack_info.update_attack_info(unit.attacks)
 	
 	elif game.active_unit:
 		unit_info.update_unit_info(game.active_unit)
+		attack_info.update_attack_info(game.active_unit.attacks)
 
 		if game.terrain.check_boundaries(game.terrain.world_to_map(get_global_mouse_position())):
 			cursor.get_node("DefenseLabel").text = str(game.active_unit.get_defense(game.get_terrain_type_at_cell(game.terrain.world_to_map(get_global_mouse_position()))), " %")
@@ -81,6 +72,7 @@ func _process(delta):
 			cursor.get_node("DefenseLabel").text = str("")
 	else:
 		unit_info.clear_unit_info()
+		attack_info.clear_attack_info()
 		cursor.get_node("DefenseLabel").text = str("")
 
 func _draw():

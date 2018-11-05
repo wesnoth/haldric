@@ -9,5 +9,8 @@ func _ready():
 	stat_label.text = str(stat)
 	value_label.self_modulate = color
 
+func set_stat(value):
+	stat_label.text = str(value)
+
 func set_value(value):
 	value_label.text = str(value)

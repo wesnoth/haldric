@@ -2,8 +2,8 @@ extends Control
 
 export(Texture) var tex
 
-onready var icon = $"HBox/Icon"
-onready var label = $"HBox/Label"
+onready var icon = $"Info/Icon"
+onready var label = $"Info/Label"
 
 func _ready():
 	icon.texture = tex

@@ -83,8 +83,9 @@ margin_right = 1279.0
 
 [node name="BottomPanel" parent="HUD" index="3" instance=ExtResource( 8 )]
 
-margin_top = 698.0
-margin_bottom = 738.0
+margin_top = 705.0
+margin_right = 568.0
+margin_bottom = 800.0
 
 [node name="EndTurn" type="Button" parent="HUD" index="4"]
 
