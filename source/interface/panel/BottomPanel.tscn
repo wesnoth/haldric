@@ -26,7 +26,7 @@ flags = 4
 gradient = SubResource( 3 )
 width = 60
 
-[node name="BottomPanel" type="Control"]
+[node name="BottomPanel" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

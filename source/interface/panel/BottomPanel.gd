@@ -14,7 +14,7 @@ func update_unit_info(unit):
 	
 	var x = 70 + 72 - unit.texture.get_width()
 	unit_sprite.texture = unit.texture
-	unit_sprite.position = Vector2(x, 18)
+	unit_sprite.position = Vector2(x, 45)
 	unit_sprite.set_material(unit.get_material())
 	
 	level.set_value(unit.level)
