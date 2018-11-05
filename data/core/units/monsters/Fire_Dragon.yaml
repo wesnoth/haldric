@@ -1,10 +1,10 @@
 name: Fire Dragon
 id: Fire Dragon
-level: 1
+level: 5
 cost: 17
-health: 29
-moves: 6
-experience: 44
+health: 101
+moves: 8
+experience: 250
 advances_to: null
 image: res://data/core/images/units/monsters/fire-dragon.png
 
