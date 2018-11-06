@@ -1,6 +1,16 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://source/interface/panel/AttackInfo.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/components/Attacks.gd" type="Script" id=1]
+
+
+
+
+
+
+
+
+
+
 
 [node name="AttackInfo" type="HBoxContainer"]
 

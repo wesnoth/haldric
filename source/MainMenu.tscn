@@ -3,7 +3,7 @@
 [ext_resource path="res://source/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://data/core/music/return_to_wesnoth.ogg" type="AudioStream" id=2]
 
-[node name="MainMenu" type="Panel"]
+[node name="MainMenu" type="Panel" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

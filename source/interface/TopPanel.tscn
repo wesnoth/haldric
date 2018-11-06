@@ -1,13 +1,16 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://source/interface/panel/PanelBorderTop.tscn" type="PackedScene" id=1]
-[ext_resource path="res://source/interface/panel/Item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/interface/components/PanelBorderTop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/interface/components/GameStat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://images/icons/flag-icon.png" type="Texture" id=3]
 [ext_resource path="res://images/icons/gold.png" type="Texture" id=4]
 [ext_resource path="res://images/icons/income.png" type="Texture" id=5]
 [ext_resource path="res://images/icons/villages.png" type="Texture" id=6]
 [ext_resource path="res://images/icons/sand-clock.png" type="Texture" id=7]
 [ext_resource path="res://images/icons/battery.png" type="Texture" id=8]
+
+
+
 
 [node name="TopPanel" type="HBoxContainer"]
 

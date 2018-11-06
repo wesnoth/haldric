@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-var Attack = preload("res://source/interface/panel/AttackItem.tscn")
+var Attack = preload("res://source/interface/components/Attack.tscn")
 
 onready var border_left = $"../AttacksBorderLeft"
 onready var border_right = $"../AttacksBorderRight"

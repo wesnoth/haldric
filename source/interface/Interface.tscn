@@ -4,10 +4,13 @@
 [ext_resource path="res://source/interface/SpriteBuilder.gd" type="Script" id=2]
 [ext_resource path="res://data/core/images/terrain/cursor.png" type="Texture" id=3]
 [ext_resource path="res://themes/wesnoth.theme" type="Theme" id=4]
-[ext_resource path="res://source/interface/AttackPopup.tscn" type="PackedScene" id=5]
-[ext_resource path="res://source/interface/RecruitPopup.tscn" type="PackedScene" id=6]
-[ext_resource path="res://source/interface/panel/TopPanel.tscn" type="PackedScene" id=7]
-[ext_resource path="res://source/interface/panel/BottomPanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/popups/AttackPopup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/interface/popups/RecruitPopup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/interface/TopPanel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/interface/BottomPanel.tscn" type="PackedScene" id=8]
+
+
+
 
 [node name="Interface" type="Node2D"]
 
