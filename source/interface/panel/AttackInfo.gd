@@ -14,9 +14,7 @@ func update_attack_info(attacks):
 	if attacks.size() > 0:
 		border_left.show()
 		border_right.show()
-	
-	print(get_child_count())
-	
+
 	show()
 
 func clear_attack_info():
