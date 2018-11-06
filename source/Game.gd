@@ -299,7 +299,7 @@ func on_attack_popup_id_pressed(id):
 func on_recruit_popup_id_pressed(id):
 	var unit_entry = recruit_popup.get_item_metadata(id)
 	
-	if get_current_side().gold - unit_entry.cost <= 0:
+	if get_current_side().gold - unit_entry.cost < 0:
 		return
 	
 	if active_side == 1:

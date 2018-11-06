@@ -1,5 +1,7 @@
 name: Elvish Shaman
 id: Elvish Shaman
+race: elf
+alignment:  neutral
 level: 1
 cost: 15
 health: 26

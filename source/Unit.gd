@@ -13,11 +13,14 @@ var is_leader = false
 var numerical_id
 var string_id
 var type
+var race
 
 var level
 
 var cost
 var advances_to
+
+var alignment
 
 var base_experience
 var current_experience setget _set_current_experience
@@ -58,51 +61,55 @@ func _process(delta):
 		advance(Registry.units[advances_to])
 
 
-func initialize(reg_entry, side, id = ""):
+func initialize(config, side, id = ""):
 	if id == "":
-		string_id = str(reg_entry.id , Wesnoth.UNIT_ID)
+		string_id = str(config.id , Wesnoth.UNIT_ID)
 	else:
 		string_id = id
 	name = string_id
 	numerical_id = Wesnoth.UNIT_ID
 	Wesnoth.UNIT_ID += 1
 	
-	type = reg_entry.id
-	level = reg_entry.level
-	cost = reg_entry.cost
-	base_max_health = reg_entry.health
+	type = config.id
+	level = config.level
+	race = config.race
+	cost = config.cost
+	alignment = config.alignment
+	base_max_health = config.health
 	current_health = base_max_health
-	base_max_moves = reg_entry.moves
+	base_max_moves = config.moves
 	current_moves = base_max_moves
-	base_experience = reg_entry.experience
+	base_experience = config.experience
 	current_experience = 0
-	advances_to = reg_entry.advances_to
-	abilities = reg_entry.abilities
-	attacks = reg_entry.attacks
-	resistance = reg_entry.resistance
-	defense = reg_entry.defense
+	advances_to = config.advances_to
+	abilities = config.abilities
+	attacks = config.attacks
+	resistance = config.resistance
+	defense = config.defense
 	defense["impassable"] = 0
-	movement = reg_entry.movement
+	movement = config.movement
 	movement["impassable"] = 99
-	texture = load(reg_entry.image)
+	texture = load(config.image)
 	self.side = side
 
-func advance(reg_entry):
-	type = reg_entry.id
-	level = reg_entry.level
-	cost = reg_entry.cost
-	base_max_health = reg_entry.health
+func advance(config):
+	type = config.id
+	level = config.level
+	race = config.race
+	cost = config.cost
+	alignment = config.alignment
+	base_max_health = config.health
 	current_health = base_max_health
-	base_max_moves = reg_entry.moves
-	base_experience = reg_entry.experience
+	base_max_moves = config.moves
+	base_experience = config.experience
 	current_experience = 0
-	attacks = reg_entry.attacks
-	resistance = reg_entry.resistance
-	defense = reg_entry.defense
+	attacks = config.attacks
+	resistance = config.resistance
+	defense = config.defense
 	defense["impassable"] = 0
-	movement = reg_entry.movement
+	movement = config.movement
 	movement["impassable"] = 99
-	texture = load(reg_entry.image)
+	texture = load(config.image)
 	update_lifebar()
 	update_xpbar()
 

@@ -1,5 +1,7 @@
 name: Orcish Assassin
 id: Orcish Assassin
+race: orc
+alignment: chaotic
 level: 1
 cost: 17
 health: 26

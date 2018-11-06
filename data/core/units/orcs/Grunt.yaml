@@ -1,5 +1,7 @@
 name: Orcish Grunt
 id: Orcish Grunt
+race: orc
+alignment: chaotic
 level: 1
 cost: 12
 health: 38

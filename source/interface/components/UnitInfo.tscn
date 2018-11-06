@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://source/interface/components/UnitStats.gd" type="Script" id=1]
-[ext_resource path="res://source/interface/components/UnitStat.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/interface/components/UnitInfo.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/components/UnitTextField.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Gradient" id=1]
 
@@ -25,7 +25,7 @@ flags = 4
 gradient = SubResource( 3 )
 width = 60
 
-[node name="UnitStats" type="Control"]
+[node name="UnitInfo" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -178,16 +178,16 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0.627451, 0.501961, 0.0313726, 1 )
 
-[node name="Stats" type="VBoxContainer" parent="." index="1"]
+[node name="Info" type="VBoxContainer" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
-margin_top = 5.0
+margin_top = 4.0
 margin_right = 123.0
-margin_bottom = 93.0
+margin_bottom = 92.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -198,28 +198,26 @@ custom_constants/separation = 0
 alignment = 0
 _sections_unfolded = [ "custom_constants" ]
 
-[node name="Level" parent="Stats" index="0" instance=ExtResource( 2 )]
+[node name="Name" parent="Info" index="0" instance=ExtResource( 2 )]
 
-stat = "LV"
+text = "Legalos"
 
-[node name="HP" parent="Stats" index="1" instance=ExtResource( 2 )]
+[node name="Type" parent="Info" index="1" instance=ExtResource( 2 )]
 
 margin_top = 22.0
 margin_bottom = 44.0
-color = Color( 0.035634, 0.917969, 0.0286865, 1 )
+text = "Elvish Archer"
 
-[node name="XP" parent="Stats" index="2" instance=ExtResource( 2 )]
+[node name="Alignment" parent="Info" index="2" instance=ExtResource( 2 )]
 
 margin_top = 44.0
 margin_bottom = 66.0
-stat = "XP"
-color = Color( 0.132385, 0.922445, 0.941406, 1 )
+text = "neutral"
 
-[node name="MP" parent="Stats" index="3" instance=ExtResource( 2 )]
+[node name="Race" parent="Info" index="3" instance=ExtResource( 2 )]
 
 margin_top = 66.0
 margin_bottom = 88.0
-stat = "MP"
-color = Color( 0.726562, 0.726562, 0.726562, 1 )
+text = "elf"
 
 

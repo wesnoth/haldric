@@ -1,5 +1,7 @@
 name: Elvish Scout
 id: Elvish Scout
+race: elf
+alignment:  neutral
 level: 1
 cost: 18
 health: 32

@@ -16,8 +16,10 @@ onready var village_item = $"HUD/TopPanel/Villages"
 onready var time_item = $"HUD/TopPanel/Time"
 onready var battery_item = $"HUD/TopPanel/Battery"
 
-onready var unit_info = $"HUD/BottomPanel/UnitItem"
+onready var unit_info = $"HUD/BottomPanel/UnitInfo"
+onready var unit_stats = $"HUD/BottomPanel/UnitStats"
 onready var attack_info = $"HUD/BottomPanel/AttackInfo"
+onready var unit_image = $"HUD/BottomPanel/UnitImage"
 
 func _ready():
 	$"HUD/EndTurn".connect("pressed", self, "_on_end_turn_pressed");
@@ -60,19 +62,26 @@ func _process(delta):
 	
 	if unit:
 		unit_info.update_unit_info(unit)
+		unit_stats.update_unit_stats(unit)
 		attack_info.update_attack_info(unit.attacks)
+		unit_image.update_image(unit.texture, unit.get_material())
 	
 	elif game.active_unit:
 		unit_info.update_unit_info(game.active_unit)
+		unit_stats.update_unit_stats(game.active_unit)
 		attack_info.update_attack_info(game.active_unit.attacks)
-
+		unit_image.update_image(game.active_unit.texture, game.active_unit.get_material())
+		
 		if game.terrain.check_boundaries(game.terrain.world_to_map(get_global_mouse_position())):
 			cursor.get_node("DefenseLabel").text = str(game.active_unit.get_defense(game.get_terrain_type_at_cell(game.terrain.world_to_map(get_global_mouse_position()))), " %")
 		else:
 			cursor.get_node("DefenseLabel").text = str("")
 	else:
 		unit_info.clear_unit_info()
+		unit_stats.clear_unit_stats()
 		attack_info.clear_attack_info()
+		unit_image.clear_image()
+		
 		cursor.get_node("DefenseLabel").text = str("")
 
 func _draw():

@@ -1,5 +1,7 @@
 name: Fire Dragon
 id: Fire Dragon
+race: monster
+alignment: chaotic
 level: 5
 cost: 100
 health: 101
