@@ -198,27 +198,21 @@ custom_constants/separation = 0
 alignment = 0
 _sections_unfolded = [ "custom_constants" ]
 
-[node name="Level" parent="Stats" index="0" instance=ExtResource( 2 )]
+[node name="HP" parent="Stats" index="0" instance=ExtResource( 2 )]
 
-stat = "LV"
+color = Color( 0.035634, 0.917969, 0.0286865, 1 )
 
-[node name="HP" parent="Stats" index="1" instance=ExtResource( 2 )]
+[node name="XP" parent="Stats" index="1" instance=ExtResource( 2 )]
 
 margin_top = 22.0
 margin_bottom = 44.0
-color = Color( 0.035634, 0.917969, 0.0286865, 1 )
-
-[node name="XP" parent="Stats" index="2" instance=ExtResource( 2 )]
-
-margin_top = 44.0
-margin_bottom = 66.0
 stat = "XP"
 color = Color( 0.132385, 0.922445, 0.941406, 1 )
 
-[node name="MP" parent="Stats" index="3" instance=ExtResource( 2 )]
+[node name="MP" parent="Stats" index="2" instance=ExtResource( 2 )]
 
-margin_top = 66.0
-margin_bottom = 88.0
+margin_top = 44.0
+margin_bottom = 66.0
 stat = "MP"
 color = Color( 0.726562, 0.726562, 0.726562, 1 )
 
