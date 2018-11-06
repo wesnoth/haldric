@@ -3,7 +3,7 @@
 [ext_resource path="res://source/tileset/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://source/Terrain.gd" type="Script" id=2]
 
-[node name="Terrain" type="TileMap" index="0"]
+[node name="Terrain" type="TileMap"]
 
 mode = 0
 tile_set = ExtResource( 1 )
@@ -23,6 +23,5 @@ occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray(  )
 script = ExtResource( 2 )
-_sections_unfolded = [ "Cell" ]
 
 

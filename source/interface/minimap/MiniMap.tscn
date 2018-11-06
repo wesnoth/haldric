@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://source/interface/minimap/MiniMap.gd" type="Script" id=1]
 
 [sub_resource type="Gradient" id=1]
 
@@ -37,9 +39,12 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Rect", "Visibility" ]
+script = ExtResource( 1 )
+_sections_unfolded = [ "Rect" ]
 
 [node name="Graphics" type="Node2D" parent="." index="0"]
+
+visible = false
 
 [node name="BaseTop" type="TextureRect" parent="Graphics" index="0"]
 

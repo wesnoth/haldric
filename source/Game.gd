@@ -52,6 +52,7 @@ const SHADER = preload("res://images/shader/TeamColors.shader")
 const FLAGSHADER = preload("res://images/shader/TeamFlag.shader")
 onready var combat_handler = $"CombatHandler"
 
+onready var interface = $"Interface"
 onready var map = $"Map"
 onready var units = $"UnitContainer"
 
@@ -63,6 +64,9 @@ func initialize(reg_entry):
 	terrain = reg_entry.map_data
 	terrain.game = self
 	add_child(terrain)
+	
+	interface.minimap.tiles = terrain.tiles
+	interface.minimap.map_size = Vector2(terrain.WIDTH, terrain.HEIGHT)
 	
 	var Side = preload("res://source/utils/Side.gd")
 
@@ -82,6 +86,7 @@ func initialize(reg_entry):
 		
 		create_unit(side.type, side.side, side.position.x, side.position.z, side.id, true)
 	flag_sprite.set_material(sides[0].flag_shader)
+
 func _ready():
 	Wesnoth.connect("attacker_hits", self, "on_attacker_hits")
 	Wesnoth.connect("attacker_misses", self, "on_attacker_misses")

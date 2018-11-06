@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/SpriteBuilder.gd" type="Script" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://source/interface/popups/RecruitPopup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://source/interface/TopPanel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/interface/BottomPanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/minimap/MiniMap.tscn" type="PackedScene" id=9]
 
-[node name="Interface" type="Node2D"]
+[node name="Interface" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 path_texture = null
@@ -54,7 +55,7 @@ _sections_unfolded = [ "Mouse", "Rect" ]
 
 [node name="HUD" type="CanvasLayer" parent="." index="2"]
 
-layer = 1
+layer = 5
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
@@ -112,5 +113,7 @@ text = "Turn End"
 flat = true
 align = 1
 _sections_unfolded = [ "Theme" ]
+
+[node name="MiniMap" parent="HUD" index="5" instance=ExtResource( 9 )]
 
 

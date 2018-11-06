@@ -7,6 +7,7 @@ var show_grid = false
 onready var game = $".."
 onready var cursor = $"Cursor"
 
+onready var minimap = $"HUD/MiniMap"
 onready var sprite_builder = $"SpriteBuilder"
 
 onready var turn_item = $"HUD/TopPanel/Turn"
@@ -23,7 +24,6 @@ onready var unit_image = $"HUD/BottomPanel/UnitImage"
 
 func _ready():
 	$"HUD/EndTurn".connect("pressed", self, "_on_end_turn_pressed");
-	
 
 func _set_path_texture(value):
 	path_texture = value
