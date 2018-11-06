@@ -28,6 +28,8 @@ var base_max_moves
 var current_health setget _set_current_health
 var current_moves
 
+var current_defense = 0
+
 var abilities = {}
 
 var attacks = {}
@@ -43,6 +45,7 @@ onready var lifebar = $"Lifebar"
 onready var xpbar = $"XPbar"
 
 func _ready():
+	current_defense = get_defense(get_current_tile().terrain_type)
 	update_lifebar()
 	update_xpbar()
 
@@ -205,11 +208,13 @@ func _handle_movement():
 			get_current_tile().unit = self
 			current_moves = 0
 			tile_path = []
+			current_defense = get_defense(get_current_tile().terrain_type)
 			Wesnoth.emit_signal("unit_move_finished", self)
 		
 		elif tile_path.size() == 0 or current_moves - get_movement_cost(tile_path[0].terrain_type) < 0:
 			get_current_tile().unit = self
 			tile_path = []
+			current_defense = get_defense(get_current_tile().terrain_type)
 			Wesnoth.emit_signal("unit_move_finished", self)
 	
 	set_process(true)

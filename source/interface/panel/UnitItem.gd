@@ -18,7 +18,7 @@ func update_unit_info(unit):
 	level.set_stat(unit.level)
 	hp.set_value(str(unit.current_health, "/", unit.base_max_health))
 	xp.set_value(str(unit.current_experience, "/", unit.base_experience))
-	mp.set_value(str(unit.current_moves, "/", unit.base_max_moves))
+	mp.set_value(str(unit.current_moves, "/", unit.base_max_moves, " | ", unit.current_defense, "%"))
 	show()
 
 func clear_unit_info():
