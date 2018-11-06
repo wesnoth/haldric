@@ -78,7 +78,7 @@ theme = ExtResource( 4 )
 
 [node name="TopPanel" parent="HUD" index="2" instance=ExtResource( 7 )]
 
-margin_left = 614.0
+margin_left = 462.0
 margin_right = 1279.0
 
 [node name="BottomPanel" parent="HUD" index="3" instance=ExtResource( 8 )]

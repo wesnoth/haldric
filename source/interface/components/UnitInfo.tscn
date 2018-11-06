@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/interface/components/UnitInfo.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/components/UnitTextField.tscn" type="PackedScene" id=2]
-[ext_resource path="res://images/hud/level_plate.png" type="Texture" id=3]
-[ext_resource path="res://fonts/DejaVuSansMono14.tres" type="DynamicFont" id=4]
+[ext_resource path="res://fonts/DejaVuSans16.tres" type="DynamicFont" id=3]
+[ext_resource path="res://images/hud/level_plate.png" type="Texture" id=4]
+[ext_resource path="res://fonts/DejaVuSansMono14.tres" type="DynamicFont" id=5]
 
 [sub_resource type="Gradient" id=1]
 
@@ -203,29 +204,35 @@ _sections_unfolded = [ "custom_constants" ]
 [node name="Name" parent="Info" index="0" instance=ExtResource( 2 )]
 
 text = "Legalos"
+color = Color( 0.953125, 0.868773, 0.737183, 1 )
+
+[node name="Label" parent="Info/Name" index="0"]
+
+custom_fonts/font = ExtResource( 3 )
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="Type" parent="Info" index="1" instance=ExtResource( 2 )]
 
-margin_top = 22.0
-margin_bottom = 44.0
+margin_top = 20.0
+margin_bottom = 40.0
 text = "Elvish Archer"
 
 [node name="Alignment" parent="Info" index="2" instance=ExtResource( 2 )]
 
-margin_top = 44.0
-margin_bottom = 66.0
+margin_top = 40.0
+margin_bottom = 60.0
 text = "neutral"
 
 [node name="Race" parent="Info" index="3" instance=ExtResource( 2 )]
 
-margin_top = 66.0
-margin_bottom = 88.0
+margin_top = 60.0
+margin_bottom = 80.0
 text = "elf"
 
 [node name="LevelPlate" type="Sprite" parent="." index="2"]
 
 position = Vector2( -10, 43 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 flip_v = true
 _sections_unfolded = [ "Offset" ]
 
@@ -245,7 +252,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_as_outline = 1
@@ -258,3 +265,4 @@ max_lines_visible = -1
 _sections_unfolded = [ "custom_constants" ]
 
 
+[editable path="Info/Name"]
