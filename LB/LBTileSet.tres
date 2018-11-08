@@ -1,6 +1,7 @@
 [gd_resource type="TileSet" load_steps=5 format=2]
 
-[ext_resource path="res://LB/Test_grass_base.jpg" type="Texture" id=1]
+[ext_resource path="res://LB/mask.png" type="Texture" id=1]
+[ext_resource path="res://LB/Test_grass_base.jpg" type="Texture" id=2]
 
 [sub_resource type="Shader" id=1]
 
@@ -21,22 +22,17 @@ void fragment() {
 }"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="StreamTexture" id=2]
-
-flags = 0
-load_path = "res://.import/mask.png-b945516e6475612c1c4c3b4f8dd0bdc6.stex"
-
 [sub_resource type="ShaderMaterial" id=3]
 
 render_priority = 0
 shader = SubResource( 1 )
-shader_param/mask = SubResource( 2 )
+shader_param/mask = ExtResource( 1 )
 _sections_unfolded = [ "shader_param" ]
 
 [resource]
 
 0/name = "grass"
-0/texture = ExtResource( 1 )
+0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
 0/material = SubResource( 3 )
 0/modulate = Color( 1, 1, 1, 1 )
@@ -45,4 +41,5 @@ _sections_unfolded = [ "shader_param" ]
 0/occluder_offset = Vector2( 72, 72 )
 0/navigation_offset = Vector2( 72, 72 )
 0/shapes = [  ]
+_sections_unfolded = [ "0" ]
 
