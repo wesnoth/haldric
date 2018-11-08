@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Test_grass_decal2.png-50c4c1fed10e0c73e321b25cd73f47fa.stex"
+path="res://.import/Gg_decal_3.png-36baef8b93bfb7259463c1b7b13c7d57.stex"
 
 [deps]
 
-source_file="res://LB/Test_grass_decal2.png"
-dest_files=[ "res://.import/Test_grass_decal2.png-50c4c1fed10e0c73e321b25cd73f47fa.stex" ]
+source_file="res://LB/decals/images/Gg_decal_3.png"
+dest_files=[ "res://.import/Gg_decal_3.png-36baef8b93bfb7259463c1b7b13c7d57.stex" ]
 
 [params]
 

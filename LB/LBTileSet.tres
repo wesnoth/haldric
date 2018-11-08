@@ -4,14 +4,14 @@
 [ext_resource path="res://LB/mask.png" type="Texture" id=2]
 [ext_resource path="res://LB/Test_grass_base.jpg" type="Texture" id=3]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 
 render_priority = 0
 shader = ExtResource( 1 )
 shader_param/mask = ExtResource( 2 )
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=2]
 
 render_priority = 0
 shader = ExtResource( 1 )
@@ -23,7 +23,7 @@ _sections_unfolded = [ "shader_param" ]
 0/name = "grass"
 0/texture = ExtResource( 3 )
 0/tex_offset = Vector2( 0, 0 )
-0/material = SubResource( 2 )
+0/material = SubResource( 1 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 144, 144 )
 0/is_autotile = false
@@ -33,7 +33,7 @@ _sections_unfolded = [ "shader_param" ]
 1/name = "Gd"
 1/texture = ExtResource( 3 )
 1/tex_offset = Vector2( 0, 0 )
-1/material = SubResource( 1 )
+1/material = SubResource( 2 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 144, 144 )
 1/is_autotile = false
