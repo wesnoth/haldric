@@ -1,0 +1,26 @@
+{
+    "animation": {
+    "frames": [
+        "res://LB/decals/images/decal_frame1.png",
+        "res://LB/decals/images/decal_frame2.png",
+        "res://LB/decals/images/decal_frame3.png",
+        "res://LB/decals/images/decal_frame2.png"
+    ],
+    "fps": 4
+    },
+    "offset": { 
+        "x": 50, 
+        "y": 50
+    },
+    "apply_to": "Gg",
+    "layer": 6,
+    "probability": 0.6,
+    "placement_range": { 
+        "x": 40, 
+        "y": 50
+    },
+    "scale_range": { 
+        "min": 0.2, 
+        "max": 0.4 
+    }
+}

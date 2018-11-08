@@ -14,7 +14,7 @@ onready var detail_container = $"Details"
 
 
 func _ready():
-	_load_decal_dir("res://LB/decals/config")
+	_load_decal_dir("res://LB/decals/json")
 	
 	seed(random_seed)
 	
@@ -43,8 +43,8 @@ func add_detail(decal):
 	var offset = Vector2(0, 0)
 	var scale = Vector2(0, 0)
 
-	offset.x = decal.offset.x + ((randi() % (decal.placement_range.x + 1)) - decal.placement_range.x / 2) * 2
-	offset.y = decal.offset.z + ((randi() % (decal.placement_range.z + 1)) - decal.placement_range.z / 2) * 2
+	offset.x = decal.offset.x + ((randi() % (int(decal.placement_range.x) + 1)) - decal.placement_range.x / 2) * 2
+	offset.y = decal.offset.y + ((randi() % (int(decal.placement_range.y) + 1)) - decal.placement_range.y / 2) * 2
 
 	scale = rand_range(decal.scale_range.min, decal.scale_range.max)
 
@@ -64,7 +64,7 @@ func _load_decal_dir(path):
 	var files = []
 	files = Registry.get_files_in_directory(path, files)
 	for file in files:
-		var config = Registry.yaml_parser.parse(file.data.get_as_text())
+		var config = JSON.parse(file.data.get_as_text()).result
 		decals[file.id] = config
 		decals[file.id].id = file.id
 		
