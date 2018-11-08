@@ -4,6 +4,7 @@ export (int) var random_seed = 1
 export (Vector2) var scale_range = Vector2(0.8, 1.2)
 export (int, 0, 100) var offset_range = 60
 export (float, 0, 2.99) var decals = 0.5
+export (float, 0, 0.99) var flip = 0.5
 
 var SHADER = preload("res://LB/tile.shader")
 var MASK = preload("res://LB/mask.png")
@@ -47,6 +48,8 @@ func add_detail(tex, pos):
 	
 	pos += offset
 	
+	if randf() < flip:
+		sprite.flip_h = true
 	sprite.texture = tex
 	sprite.position = pos
 	sprite.scale = Vector2(scale, scale)

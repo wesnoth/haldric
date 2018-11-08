@@ -29,6 +29,7 @@ random_seed = 1
 scale_range = Vector2( 0.5, 1.2 )
 offset_range = 35
 decals = 0.8
+flip = 0.5
 
 [node name="Details" type="Node" parent="." index="0"]
 
