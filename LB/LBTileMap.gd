@@ -1,5 +1,6 @@
 extends TileMap
 
+export (bool) var use_map_size = false 
 export (Vector2) var map_size = Vector2(40, 40)
 export (bool) var use_layers = false
 export (int) var random_seed = 1
@@ -26,7 +27,8 @@ onready var layers = [
 ]
 
 func _ready():
-	generate_map()
+	if use_map_size:
+		generate_map()
 	_load_decal_dir("res://LB/decals/json")
 	generate_tile_set()
 	

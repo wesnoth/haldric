@@ -23,4 +23,5 @@ _sections_unfolded = [ "shader_param" ]
 0/occluder_offset = Vector2( 72, 72 )
 0/navigation_offset = Vector2( 72, 72 )
 0/shapes = [  ]
+_sections_unfolded = [ "0" ]
 
