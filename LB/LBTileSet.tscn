@@ -2,7 +2,7 @@
 
 [ext_resource path="res://LB/tile.shader" type="Shader" id=1]
 [ext_resource path="res://LB/mask.png" type="Texture" id=2]
-[ext_resource path="res://LB/Test_grass_base.jpg" type="Texture" id=3]
+[ext_resource path="res://LB/Test_stripes_base.jpg" type="Texture" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -11,7 +11,7 @@ shader = ExtResource( 1 )
 shader_param/mask = ExtResource( 2 )
 _sections_unfolded = [ "shader_param" ]
 
-[node name="LBTileSet" type="Node2D"]
+[node name="LBTileSet" type="Node2D" index="0"]
 
 [node name="Gg" type="Sprite" parent="." index="0"]
 
