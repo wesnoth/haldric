@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=6 format=2]
+[gd_resource type="TileSet" load_steps=5 format=2]
 
 [ext_resource path="res://LB/tile.shader" type="Shader" id=1]
 [ext_resource path="res://LB/mask.png" type="Texture" id=2]
@@ -11,16 +11,9 @@ shader = ExtResource( 1 )
 shader_param/mask = ExtResource( 2 )
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="ShaderMaterial" id=2]
-
-render_priority = 0
-shader = ExtResource( 1 )
-shader_param/mask = ExtResource( 2 )
-_sections_unfolded = [ "shader_param" ]
-
 [resource]
 
-0/name = "grass"
+0/name = "Gg"
 0/texture = ExtResource( 3 )
 0/tex_offset = Vector2( 0, 0 )
 0/material = SubResource( 1 )
@@ -30,15 +23,4 @@ _sections_unfolded = [ "shader_param" ]
 0/occluder_offset = Vector2( 72, 72 )
 0/navigation_offset = Vector2( 72, 72 )
 0/shapes = [  ]
-1/name = "Gd"
-1/texture = ExtResource( 3 )
-1/tex_offset = Vector2( 0, 0 )
-1/material = SubResource( 2 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 0, 144, 144 )
-1/is_autotile = false
-1/occluder_offset = Vector2( 72, 72 )
-1/navigation_offset = Vector2( 72, 72 )
-1/shapes = [  ]
-_sections_unfolded = [ "0" ]
 

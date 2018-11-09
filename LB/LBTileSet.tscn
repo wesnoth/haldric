@@ -11,9 +11,9 @@ shader = ExtResource( 1 )
 shader_param/mask = ExtResource( 2 )
 _sections_unfolded = [ "shader_param" ]
 
-[node name="LBTileSet" type="Node2D" index="0"]
+[node name="LBTileSet" type="Node2D"]
 
-[node name="grass" type="Sprite" parent="." index="0"]
+[node name="Gg" type="Sprite" parent="." index="0"]
 
 material = SubResource( 1 )
 texture = ExtResource( 3 )
