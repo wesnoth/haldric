@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/alpha_left.png-ac74a3a38680ea934a06384956a4251e.stex"
+path="res://.import/beach2-n-ne-se-s-sw-nw.png-7f82beb9cd4940fd95e60b8c97ea89da.stex"
 
 [deps]
 
-source_file="res://LB/alpha_left.png"
-dest_files=[ "res://.import/alpha_left.png-ac74a3a38680ea934a06384956a4251e.stex" ]
+source_file="res://LB/transitions/beach2-n-ne-se-s-sw-nw.png"
+dest_files=[ "res://.import/beach2-n-ne-se-s-sw-nw.png-7f82beb9cd4940fd95e60b8c97ea89da.stex" ]
 
 [params]
 

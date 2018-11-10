@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beach2-n-ne-se-s-sw-nw.png-a80134f69d365d899d42d589170900c6.stex"
+path="res://.import/snow-ne-se-s-sw.png-a59ec3604ae9ca8f52097ab7504773c5.stex"
 
 [deps]
 
-source_file="res://LB/beach2-n-ne-se-s-sw-nw.png"
-dest_files=[ "res://.import/beach2-n-ne-se-s-sw-nw.png-a80134f69d365d899d42d589170900c6.stex" ]
+source_file="res://LB/transitions/snow-ne-se-s-sw.png"
+dest_files=[ "res://.import/snow-ne-se-s-sw.png-a59ec3604ae9ca8f52097ab7504773c5.stex" ]
 
 [params]
 

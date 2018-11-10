@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/alpha_right.png-a407a4bb965d93b12cfb5cd11b408f98.stex"
+path="res://.import/alpha_ne.png-2b48d5cb2eda5cf19919242b76734150.stex"
 
 [deps]
 
-source_file="res://LB/alpha_right.png"
-dest_files=[ "res://.import/alpha_right.png-a407a4bb965d93b12cfb5cd11b408f98.stex" ]
+source_file="res://LB/transitions/alpha_ne.png"
+dest_files=[ "res://.import/alpha_ne.png-2b48d5cb2eda5cf19919242b76734150.stex" ]
 
 [params]
 
