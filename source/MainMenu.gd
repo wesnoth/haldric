@@ -18,7 +18,6 @@ func _ready():
 	start_game_button.connect("pressed", self, "_on_start_game_button_pressed")
 	quit_button.connect("pressed", self, "_on_quit_button_pressed")
 
-
 func _on_start_game_button_pressed():
 	var game = Game.instance()
 	get_tree().get_root().add_child(game)
