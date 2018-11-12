@@ -1,0 +1,18 @@
+{
+    "image": "res://test/decals/images/Gg_decal_1.png",
+    "offset": { 
+        "x": 67, 
+        "y": 62
+    },
+    "apply_to": "Gg",
+    "layer": 2,
+    "probability": 0.25,
+    "placement_range": { 
+        "x": 40, 
+        "y": 50
+    },
+    "scale_range": { 
+        "min": 0.5, 
+        "max": 1.5 
+    }
+}

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://test/transitions/TileMap.gd" type="Script" id=1]
+[ext_resource path="res://source/Camera.tscn" type="PackedScene" id=2]
+
+[node name="TileMap" type="TileMap" index="0"]
+
+scale = Vector2( 2, 2 )
+mode = 0
+tile_set = null
+cell_size = Vector2( 54, 72 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 1
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray(  )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Cell", "Material", "Region", "Transform" ]
+
+[node name="Camera" parent="." index="0" instance=ExtResource( 2 )]
+
+
