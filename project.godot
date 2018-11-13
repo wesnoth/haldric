@@ -18,7 +18,7 @@ config/icon="res://icon.png"
 
 Wesnoth="res://source/global/Wesnoth.gd"
 Registry="res://source/global/Registry.gd"
-MapLoader="res://source/global/MapLoader.gd"
+MapLoader="*res://source/global/MapLoader.gd"
 
 [debug]
 
