@@ -14,12 +14,6 @@ config/name="haldric"
 run/main_scene="res://source/MainMenu.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Wesnoth="res://source/global/Wesnoth.gd"
-Registry="res://source/global/Registry.gd"
-MapLoader="*res://source/global/MapLoader.gd"
-
 [debug]
 
 settings/stdout/print_fps=true
@@ -28,6 +22,7 @@ settings/stdout/print_fps=true
 
 window/size/width=1920
 window/size/height=1080
+window/size/resizable=false
 window/dpi/allow_hidpi=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"

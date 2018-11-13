@@ -11,12 +11,12 @@ func _input(event):
 	var new_position = position
 	
 	if Input.is_action_just_pressed("scroll_up"):
-		zoom.x = clamp(zoom.x - 0.2, 1, 4)
-		zoom.y = clamp(zoom.y - 0.2, 1, 4)
+		zoom.x = clamp(zoom.x - 0.5, 1, 4)
+		zoom.y = clamp(zoom.y - 0.5, 1, 4)
 
 	if Input.is_action_just_pressed("scroll_down"):
-		zoom.x = clamp(zoom.x + 0.2, 1, 4)
-		zoom.y = clamp(zoom.y + 0.2, 1, 4)
+		zoom.x = clamp(zoom.x + 0.5, 1, 4)
+		zoom.y = clamp(zoom.y + 0.5, 1, 4)
 	
 	set_position(new_position)
 	
@@ -26,9 +26,10 @@ func _input(event):
 			initial_mouse_position = Vector2(0,0) + get_viewport().get_mouse_position()
 		
 	if Input.is_mouse_button_pressed(BUTTON_MIDDLE):
-		set_position(initial_camera_position + (get_viewport().get_mouse_position() - initial_mouse_position) * -1)
+		set_position(initial_camera_position + (get_viewport().get_mouse_position() - initial_mouse_position) * -1 * zoom)
 
 func _process(delta):
+	var speed = self.speed * zoom.x / 2
 	
 	var new_position = position
 	
@@ -49,7 +50,7 @@ func _process(delta):
 func set_position(new_position):
 	
 	var viewport_size = get_viewport_rect().size
-	var terrain_size = get_parent().terrain.map_to_world(get_parent().terrain.get_used_rect().size)
+	var terrain_size = get_parent().size * get_parent().terrain.cell_size
 	
 	if new_position.x > 17 and new_position.x < terrain_size.x - viewport_size.x:
 		position.x = new_position.x

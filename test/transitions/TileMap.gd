@@ -9,24 +9,8 @@ var size = Vector2(0, 0)
 var terrain_table = {}
 var terrain = self
 
-var alpha_table = [
-	[
-		preload("res://test/transitions/images/alpha/Grass_abrupt_se.png"),
-		preload("res://test/transitions/images/alpha/Grass_abrupt_ne.png"),
-		preload("res://test/transitions/images/alpha/Grass_abrupt_n.png"),
-		preload("res://test/transitions/images/alpha/Grass_abrupt_nw.png"),
-		preload("res://test/transitions/images/alpha/Grass_abrupt_sw.png"),
-		preload("res://test/transitions/images/alpha/Grass_abrupt_s.png"),
-	],
-	[
-		preload("res://test/transitions/images/alpha/Grass_medium_se.png"),
-		preload("res://test/transitions/images/alpha/Grass_medium_ne.png"),
-		preload("res://test/transitions/images/alpha/Grass_medium_n.png"),
-		preload("res://test/transitions/images/alpha/Grass_medium_nw.png"),
-		preload("res://test/transitions/images/alpha/Grass_medium_sw.png"),
-		preload("res://test/transitions/images/alpha/Grass_medium_s.png"),
-	]
-]
+var alpha_table = []
+
 var neighbor_table = [
 	# EVEN col, ALL rows
     [
@@ -51,6 +35,7 @@ func _ready():
 	tile_set = TileSet.new()
 	randomize()
 	
+	load_alpha_table()
 	load_terrain_dir("res://test/transitions/json")
 #	load_map("res://test/transitions/test.map")
 	generate_map(50, 50)
@@ -83,6 +68,33 @@ func load_map(path):
 	file.close()
 	size = Vector2(get_used_rect().size)
 
+#func load_transitions():
+#	for cell in get_used_cells():
+#		var id = int(cell.y * size.x + cell.x)
+#		var code = tile_set.tile_get_name(id)
+#		var mat = ShaderMaterial.new()
+#
+#		mat.shader = SHADER
+#
+#		var index = 0
+#		for n_cell in get_neighbors(cell):
+#			var n_id = get_cellv(n_cell)
+#
+#			if n_id == TileMap.INVALID_CELL:
+#				index += 1
+#				continue
+#
+#			var n_code = tile_set.tile_get_name(n_id)
+#			var terrain = terrain_table[n_code]
+#
+#			var layer = terrain_table[code].layer
+#			var n_layer = terrain_table[n_code].layer
+#			if n_layer > layer:
+#				mat.set_shader_param(str("tex", index), terrain.image)
+#				mat.set_shader_param(str("mask", index), alpha_table[randi()%2][5-index][0])
+#				tile_set.tile_set_material(id, mat)
+#			index += 1
+
 func load_transitions():
 	for cell in get_used_cells():
 		var id = int(cell.y * size.x + cell.x)
@@ -106,9 +118,33 @@ func load_transitions():
 			var n_layer = terrain_table[n_code].layer
 			if n_layer > layer:
 				mat.set_shader_param(str("tex", index), terrain.image)
-				mat.set_shader_param(str("mask", index), alpha_table[randi() % 2][index])
+				mat.set_shader_param(str("mask", index), alpha_table[randi()%2][5-index][0])
 				tile_set.tile_set_material(id, mat)
 			index += 1
+
+func load_alpha_table():
+	var D = { D5 = "se", D4 = "ne", D3 = "n", D2 = "nw", D1 = "sw", D0 = "s" }
+	
+	for n in range(2):
+		alpha_table.append([])
+		for i in range(6):
+			alpha_table[n].append([])
+			for j in range(5):
+				alpha_table[n][i].append([])
+				alpha_table[n][i][j].append([])
+	# print("[", alpha_table.size(), "][", alpha_table[0].size(), "][", alpha_table[0][0].size(), "]")
+	
+	for start in range(6):
+		var append = ""
+		for follow in range(5):
+			if follow > 0:
+				append += str("-", D[str("D", (start+(follow))%6)])
+			else:
+				append += D[str("D", (start+(follow))%6)]
+			alpha_table[0][start][follow] = load(str("res://test/transitions/images/alpha/Grass_abrupt_", append,".png"))
+			alpha_table[1][start][follow] = load(str("res://test/transitions/images/alpha/Grass_medium_", append,".png"))
+			# print("[0]", "[", start, "]", "[", follow, "]", alpha_table[0][start][follow])
+			# print("[1]", "[", start, "]", "[", follow, "]", alpha_table[1][star][follow])
 
 func add_tile(index, terrain):
 	create_tile(index)
