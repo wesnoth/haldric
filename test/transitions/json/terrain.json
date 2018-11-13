@@ -1,34 +1,12 @@
 {
     "Gg": 
     {
-        "layer": 2,
-        "image": {
-            "base": "res://test/transitions/images/terrain/grass.png",
-            "transition": "res://test/transitions/images/terrain/grass_transition.png"
-        }
-    },
-    "Rb": 
-    {
-        "layer": 3,
-        "image": {
-            "base": "res://test/transitions/images/terrain/dirt.png",
-            "transition": "res://test/transitions/images/terrain/dirt_transition.png"
-        }
-    },
-    "Ds": 
-    {
-        "layer": 0,
-        "image": {
-            "base": "res://test/transitions/images/terrain/beach.png",
-            "transition": "res://test/transitions/images/terrain/beach_transition.png"
-        }
-    },
-    "Ss": 
-    {
         "layer": 1,
-        "image": {
-            "base": "res://test/transitions/images/terrain/swamp.png",
-            "transition": "res://test/transitions/images/terrain/swamp_transition.png"
-        }
+        "image": "res://test/transitions/images/terrain/Green.png"
+    },
+    "Gd": 
+    {
+        "layer": 2,
+        "image": "res://test/transitions/images/terrain/Dry.png"
     }
 }

@@ -32,12 +32,12 @@ vec4 overlay(vec4 base, vec4 transition, float alpha) {
 void fragment() {
 	vec4 base = texture(TEXTURE, UV).rgba;
 	
-	base = overlay(base, texture(tex0, UV).rgba, texture(mask0, UV).a);
-	base = overlay(base, texture(tex1, UV).rgba, texture(mask1, UV).a);
-	base = overlay(base, texture(tex2, UV).rgba, texture(mask2, UV).a);
-	base = overlay(base, texture(tex3, UV).rgba, texture(mask3, UV).a);
-	base = overlay(base, texture(tex4, UV).rgba, texture(mask4, UV).a);
-	base = overlay(base, texture(tex5, UV).rgba, texture(mask5, UV).a);
+	base = overlay(base, texture(tex0, UV).rgba, texture(mask0, UV).r);
+	base = overlay(base, texture(tex1, UV).rgba, texture(mask1, UV).r);
+	base = overlay(base, texture(tex2, UV).rgba, texture(mask2, UV).r);
+	base = overlay(base, texture(tex3, UV).rgba, texture(mask3, UV).r);
+	base = overlay(base, texture(tex4, UV).rgba, texture(mask4, UV).r);
+	base = overlay(base, texture(tex5, UV).rgba, texture(mask5, UV).r);
 	
 	COLOR = base;
 }

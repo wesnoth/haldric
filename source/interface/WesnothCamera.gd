@@ -1,6 +1,6 @@
 extends Camera2D
 
-var speed = 2000
+export var speed = 2000
 var border = 4
 
 var initial_camera_position
@@ -11,10 +11,12 @@ func _input(event):
 	var new_position = position
 	
 	if Input.is_action_just_pressed("scroll_up"):
-		new_position.y -= 100
+		zoom.x = clamp(zoom.x - 0.2, 1, 4)
+		zoom.y = clamp(zoom.y - 0.2, 1, 4)
 
 	if Input.is_action_just_pressed("scroll_down"):
-		new_position.y += 100
+		zoom.x = clamp(zoom.x + 0.2, 1, 4)
+		zoom.y = clamp(zoom.y + 0.2, 1, 4)
 	
 	set_position(new_position)
 	

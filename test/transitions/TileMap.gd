@@ -10,14 +10,23 @@ var terrain_table = {}
 var terrain = self
 
 var alpha_table = [
-	preload("res://test/transitions/images/alpha/se.png"),
-	preload("res://test/transitions/images/alpha/ne.png"),
-	preload("res://test/transitions/images/alpha/n.png"),
-	preload("res://test/transitions/images/alpha/nw.png"),
-	preload("res://test/transitions/images/alpha/sw.png"),
-	preload("res://test/transitions/images/alpha/s.png"),
+	[
+		preload("res://test/transitions/images/alpha/Grass_abrupt_se.png"),
+		preload("res://test/transitions/images/alpha/Grass_abrupt_ne.png"),
+		preload("res://test/transitions/images/alpha/Grass_abrupt_n.png"),
+		preload("res://test/transitions/images/alpha/Grass_abrupt_nw.png"),
+		preload("res://test/transitions/images/alpha/Grass_abrupt_sw.png"),
+		preload("res://test/transitions/images/alpha/Grass_abrupt_s.png"),
+	],
+	[
+		preload("res://test/transitions/images/alpha/Grass_medium_se.png"),
+		preload("res://test/transitions/images/alpha/Grass_medium_ne.png"),
+		preload("res://test/transitions/images/alpha/Grass_medium_n.png"),
+		preload("res://test/transitions/images/alpha/Grass_medium_nw.png"),
+		preload("res://test/transitions/images/alpha/Grass_medium_sw.png"),
+		preload("res://test/transitions/images/alpha/Grass_medium_s.png"),
+	]
 ]
-
 var neighbor_table = [
 	# EVEN col, ALL rows
     [
@@ -44,7 +53,7 @@ func _ready():
 	
 	load_terrain_dir("res://test/transitions/json")
 #	load_map("res://test/transitions/test.map")
-	generate_map(60, 60)
+	generate_map(50, 50)
 	load_transitions()
 
 func generate_map(width, height):
@@ -96,15 +105,15 @@ func load_transitions():
 			var layer = terrain_table[code].layer
 			var n_layer = terrain_table[n_code].layer
 			if n_layer > layer:
-				mat.set_shader_param(str("tex", index), terrain.image.transition)
-				mat.set_shader_param(str("mask", index), alpha_table[index])
+				mat.set_shader_param(str("tex", index), terrain.image)
+				mat.set_shader_param(str("mask", index), alpha_table[randi() % 2][index])
 				tile_set.tile_set_material(id, mat)
 			index += 1
 
 func add_tile(index, terrain):
 	create_tile(index)
 	tile_set_name(index, terrain.id)
-	tile_set_texture(index, terrain.image.base)
+	tile_set_texture(index, terrain.image)
 
 func create_tile(index):
 	tile_set.create_tile(index)
@@ -140,8 +149,7 @@ func load_terrain_dir(path):
 			terrain_table[key] = terrain
 			terrain_table[key].id = key
 			terrain_table[key].layer = terrain.layer
-			terrain_table[key].image.base = load(terrain.image.base)
-			terrain_table[key].image.transition = load(terrain.image.transition)
+			terrain_table[key].image = load(terrain.image)
 
 func get_files_in_directory(path, files):
 	var dir = Directory.new()

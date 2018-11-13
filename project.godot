@@ -20,10 +20,14 @@ Wesnoth="*res://source/global/Wesnoth.gd"
 Registry="*res://source/global/Registry.gd"
 MapLoader="*res://source/global/MapLoader.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
-window/size/width=1280
-window/size/height=800
+window/size/width=1920
+window/size/height=1080
 window/dpi/allow_hidpi=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
