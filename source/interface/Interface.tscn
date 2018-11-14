@@ -79,25 +79,27 @@ theme = ExtResource( 4 )
 
 [node name="TopPanel" parent="HUD" index="2" instance=ExtResource( 7 )]
 
-margin_left = 462.0
-margin_right = 1279.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -817.0
+margin_right = 0.0
 
 [node name="BottomPanel" parent="HUD" index="3" instance=ExtResource( 8 )]
 
-margin_top = 705.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -95.0
 margin_right = 568.0
-margin_bottom = 800.0
+margin_bottom = 0.0
 
 [node name="EndTurn" type="Button" parent="HUD" index="4"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 1174.0
-margin_top = 768.0
-margin_right = 1280.0
-margin_bottom = 800.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -106.0
+margin_top = -32.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0

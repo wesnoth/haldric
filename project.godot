@@ -28,9 +28,7 @@ settings/stdout/print_fps=true
 
 window/size/width=1920
 window/size/height=1080
-window/size/resizable=false
 window/dpi/allow_hidpi=true
-window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [input]
