@@ -1,4 +1,8 @@
+tool
 extends Node2D
+
+export (Vector2) var map_size = Vector2(20, 20)
+export (bool) var update = true setget set_update
 
 enum DIRECTION { N = 0, NE = 1, SE = 2, S = 3, SW = 4, NW = 5}
 
@@ -38,6 +42,33 @@ var tiles = {}
 
 onready var container = $Container
 
+func set_update(value):
+	if(Engine.is_editor_hint()):
+		container = $Container
+		for child in container.get_children():
+			child.free()
+		
+		DIR[S] = "s"
+		DIR[SW] = "sw"
+		DIR[NW] = "nw"
+		DIR[N] = "n"
+		DIR[NE] = "ne"
+		DIR[SE] = "se"
+	
+		terrain = TileMap.new()
+		terrain.cell_size = Vector2(384, 512)
+		terrain.cell_half_offset = TileMap.HALF_OFFSET_Y
+		
+		randomize()
+		
+		load_terrain_dir("res://test/transitions/json")
+		
+		generate_map(map_size.x, map_size.y)
+		
+		load_alpha_table()
+		load_transitions()
+	update = value
+
 func _ready():
 	DIR[S] = "s"
 	DIR[SW] = "sw"
@@ -50,11 +81,11 @@ func _ready():
 	terrain.cell_size = Vector2(384, 512)
 	terrain.cell_half_offset = TileMap.HALF_OFFSET_Y
 	
-	# randomize()
+	randomize()
 	
 	load_terrain_dir("res://test/transitions/json")
 	
-	generate_map(100, 100)
+	generate_map(map_size.x, map_size.y)
 	
 	load_alpha_table()
 	load_transitions()

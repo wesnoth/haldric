@@ -1,5 +1,10 @@
 {
-    "Gg": 
+    "G1": 
+    {
+        "layer": 1,
+        "image": "res://test/transitions/images/terrain/Green.png"
+    },
+    "Gg2": 
     {
         "layer": 1,
         "image": "res://test/transitions/images/terrain/Green.png"
