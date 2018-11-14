@@ -6,8 +6,8 @@
 [node name="Terrain" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
-map_size = Vector2( 20, 20 )
-update = false
+map_size = Vector2( 6, 5 )
+update = true
 
 [node name="Container" type="Node2D" parent="." index="0"]
 
