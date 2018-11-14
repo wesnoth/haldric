@@ -1,5 +1,6 @@
 extends Node2D
 
+var size = Vector2(0, 0)
 var turn = 1
 
 var sides = []
@@ -67,6 +68,7 @@ func initialize(reg_entry):
 	
 	interface.minimap.tiles = terrain.tiles
 	interface.minimap.map_size = Vector2(terrain.WIDTH, terrain.HEIGHT)
+	size = Vector2(terrain.WIDTH, terrain.HEIGHT)
 	
 	var Side = preload("res://source/utils/Side.gd")
 

@@ -11,12 +11,12 @@ func _input(event):
 	var new_position = position
 	
 	if Input.is_action_just_pressed("scroll_up"):
-		zoom.x = clamp(zoom.x - 0.5, 1, 4)
-		zoom.y = clamp(zoom.y - 0.5, 1, 4)
+		zoom.x = clamp(zoom.x - 0.5, 0.5, 4)
+		zoom.y = clamp(zoom.y - 0.5, 0.5, 4)
 
 	if Input.is_action_just_pressed("scroll_down"):
-		zoom.x = clamp(zoom.x + 0.5, 1, 4)
-		zoom.y = clamp(zoom.y + 0.5, 1, 4)
+		zoom.x = clamp(zoom.x + 0.5, 0.5, 4)
+		zoom.y = clamp(zoom.y + 0.5, 0.5, 4)
 	
 	set_position(new_position)
 	
