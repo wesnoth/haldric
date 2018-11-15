@@ -3,10 +3,10 @@
 [ext_resource path="res://test/transitions/Terrain.gd" type="Script" id=1]
 [ext_resource path="res://source/Camera.tscn" type="PackedScene" id=2]
 
-[node name="Terrain" type="Node2D"]
+[node name="Terrain" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
-map_size = Vector2( 8, 5 )
+map_size = Vector2( 40, 40 )
 update = true
 
 [node name="Container" type="Node2D" parent="." index="0"]
@@ -15,7 +15,6 @@ update = true
 
 position = Vector2( 1928.5, 1111.37 )
 anchor_mode = 1
-zoom = Vector2( 2, 2 )
 speed = 5000
 
 

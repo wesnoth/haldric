@@ -78,7 +78,7 @@ func _ready():
 	DIR[SE] = "se"
 
 	terrain = TileMap.new()
-	terrain.cell_size = Vector2(384, 512)
+	terrain.cell_size = Vector2(192, 256)
 	terrain.cell_half_offset = TileMap.HALF_OFFSET_Y
 	
 	randomize()
@@ -165,7 +165,7 @@ func setup_shader(mat, image, direction, chain):
 	return mat
 
 func load_alpha_table():
-	for n in range(2):
+	for n in range(3):
 		alpha_table.append([])
 		for i in range(6):
 			alpha_table[n].append([])
@@ -188,6 +188,11 @@ func load_alpha_table():
 			alpha_table[0][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_abrupt_", append,".png"))
 			alpha_table[1][start][follow][0] = append
 			alpha_table[1][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_medium_", append,".png"))
+			alpha_table[2][start][follow][0] = append
+			alpha_table[2][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_long_", append,".png"))
+			# alpha_table[3][start][follow][0] = append
+			# alpha_table[3][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_", append,".png"))
+			
 			# print("[0]", "[", start, "]", "[", follow, "]", alpha_table[0][start][follow][0])
 			# print("[1]", "[", start, "]", "[", follow, "]", alpha_table[1][start][follow][0])
 
@@ -198,7 +203,7 @@ func add_tile(tile_set, index, terrain):
 
 func add_tile_map():
 	var map = TileMap.new()
-	map.cell_size = Vector2(384, 512)
+	map.cell_size = Vector2(192, 256)
 	map.cell_half_offset = TileMap.HALF_OFFSET_Y
 	map.tile_set = TileSet.new()
 	container.add_child(map)

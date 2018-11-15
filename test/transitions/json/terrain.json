@@ -2,16 +2,68 @@
     "G1": 
     {
         "layer": 1,
-        "image": "res://test/transitions/images/terrain/Green.png"
+        "image": "res://test/transitions/images/terrain/grass/Green1.png"
     },
     "Gg2": 
     {
         "layer": 1,
-        "image": "res://test/transitions/images/terrain/Green.png"
+        "image": "res://test/transitions/images/terrain/grass/Green2.png"
     },
-    "Gd": 
+    "Gg3": 
+    {
+        "layer": 1,
+        "image": "res://test/transitions/images/terrain/grass/Green3.png"
+    },
+    "Gg4": 
+    {
+        "layer": 1,
+        "image": "res://test/transitions/images/terrain/grass/Green4.png"
+    },
+    "Gg5": 
+    {
+        "layer": 1,
+        "image": "res://test/transitions/images/terrain/grass/Green5.png"
+    },
+    "Gg6": 
+    {
+        "layer": 1,
+        "image": "res://test/transitions/images/terrain/grass/Green6.png"
+    },
+    "Gg7": 
+    {
+        "layer": 1,
+        "image": "res://test/transitions/images/terrain/grass/Green7.png"
+    },
+    "Gg8": 
+    {
+        "layer": 1,
+        "image": "res://test/transitions/images/terrain/grass/Green8.png"
+    },
+    "Gg9": 
+    {
+        "layer": 1,
+        "image": "res://test/transitions/images/terrain/grass/Green8.png"
+    },
+    "Gd1": 
     {
         "layer": 2,
-        "image": "res://test/transitions/images/terrain/Dry.png"
+        "image": "res://test/transitions/images/terrain/grass/Dry1.png"
+    }
+    ,
+    "Gd2": 
+    {
+        "layer": 2,
+        "image": "res://test/transitions/images/terrain/grass/Dry2.png"
+    }
+    ,
+    "Gd3": 
+    {
+        "layer": 2,
+        "image": "res://test/transitions/images/terrain/grass/Dry3.png"
+    },
+    "Gd4": 
+    {
+        "layer": 2,
+        "image": "res://test/transitions/images/terrain/grass/Dry3.png"
     }
 }
