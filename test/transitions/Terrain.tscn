@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://test/transitions/Terrain.gd" type="Script" id=1]
 [ext_resource path="res://source/Camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://data/core/images/units/elves-wood/archer.png" type="Texture" id=3]
 
 [node name="Terrain" type="Node2D" index="0"]
 
@@ -16,5 +17,13 @@ update = true
 position = Vector2( 1928.5, 1111.37 )
 anchor_mode = 1
 speed = 5000
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
+
+position = Vector2( 1152, 1280 )
+scale = Vector2( 3.55, 3.55 )
+texture = ExtResource( 3 )
+centered = false
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
 
 

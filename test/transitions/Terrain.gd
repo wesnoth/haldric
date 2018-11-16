@@ -1,6 +1,8 @@
 tool
 extends Node2D
 
+var YAML = preload("res://addons/godot-yaml/gdyaml.gdns").new()
+
 export (Vector2) var map_size = Vector2(20, 20)
 export (bool) var update = true setget set_update
 
@@ -13,8 +15,8 @@ const DIR = {}
 var size = Vector2(0,0)
 
 var terrain_table = {}
-
-var alpha_table = []
+var decal_table = {}
+var mask_table = []
 
 var neighbor_table = [
 	# EVEN col, ALL rows
@@ -40,36 +42,22 @@ var terrain
 
 var tiles = {}
 
-onready var container = $Container
+var container
 
 func set_update(value):
 	if(Engine.is_editor_hint()):
-		container = $Container
-		for child in container.get_children():
-			child.free()
-		
-		DIR[S] = "s"
-		DIR[SW] = "sw"
-		DIR[NW] = "nw"
-		DIR[N] = "n"
-		DIR[NE] = "ne"
-		DIR[SE] = "se"
-	
-		terrain = TileMap.new()
-		terrain.cell_size = Vector2(384, 512)
-		terrain.cell_half_offset = TileMap.HALF_OFFSET_Y
-		
-		randomize()
-		
-		load_terrain_dir("res://test/transitions/json")
-		
-		generate_map(map_size.x, map_size.y)
-		
-		load_alpha_table()
-		load_transitions()
+		setup()
 	update = value
 
 func _ready():
+	setup()
+
+func setup():
+	container = $Container
+
+	for child in container.get_children():
+			child.free()
+
 	DIR[S] = "s"
 	DIR[SW] = "sw"
 	DIR[NW] = "nw"
@@ -83,12 +71,14 @@ func _ready():
 	
 	randomize()
 	
-	load_terrain_dir("res://test/transitions/json")
+	load_terrain("res://test/transitions/yaml/terrain.yaml")
+	load_decals("res://test/transitions/yaml/decals.yaml")
+	load_alpha_table()
+	
+	#load_terrain_dir("res://test/transitions/yaml")
+	#load_decal_dir("res://test/transitions/yaml")
 	
 	generate_map(map_size.x, map_size.y)
-	
-	load_alpha_table()
-	load_transitions()
 
 func generate_map(width, height):
 	size = Vector2(width, height)
@@ -96,18 +86,61 @@ func generate_map(width, height):
 	for y in range(height):
 		var tile_map = add_tile_map()
 		for x in range(width):
-			var rand = randi() % terrain_table.values().size()
-			var code = terrain_table.values()[rand].id
+			var rand = randf()
+			var code
+			# var rand = randi() % terrain_table.values().size()
+			if rand < 0.8:
+				code = terrain_table.values()[1].id
+			else:
+				code = terrain_table.values()[0].id
 			var map_id = flatten(x, y)
-			add_tile(tile_map.tile_set, x, terrain_table[code])
-			tile_map.set_cell(x, y, x)
-			
+
 			tiles[map_id] = {
 				terrain_code = code,
+				variation = randi() % terrain_table[code].image.size(),
 				layer = terrain_table[code].layer,
 				map_id = map_id,
 				row_id = x
 			}
+
+			add_tile(tile_map.tile_set, x, terrain_table[code])
+			tile_map.set_cell(x, y, x)
+			
+	generate_decals()
+	load_transitions()
+
+func generate_decals():
+	var y = 0
+	for map_row in container.get_children():
+		var x = 0
+		for cell in map_row.get_used_cells():
+			var id = flatten(x, y)
+			var tile = tiles[id]
+			var decals = get_decals(tile.terrain_code)
+			print(decals)
+			for decal in decals:
+				if randf() < decal.probability:
+					var sprite = Sprite.new()
+					# sprite.centered = false
+					sprite.offset = Vector2(decal.offset.x, decal.offset.z)
+					sprite.texture = decal.image
+					sprite.position = map_to_world_centered(Vector2(x, y))
+					add_child(sprite)
+					print("Decal added at ", sprite.position)
+			x += 1
+		y += 1
+
+func map_to_world_centered(cell):
+	var offset = terrain.cell_size / 2
+	return terrain.map_to_world(cell) + offset
+
+func get_decals(terrain_code):
+	var decals = []
+	for decal in decal_table.values():
+		print(decal.apply_to, " == ", terrain_code)
+		if decal.apply_to == terrain_code:
+			decals.append(decal)
+	return decals
 
 func load_transitions():
 	var y = 0
@@ -139,7 +172,7 @@ func load_transitions():
 				var cfg = terrain_table[tiles[n_id].terrain_code]
 				print("[", y, "][", x, "]")
 				chain = chain(neighbors, n)
-				mat = setup_shader(mat, cfg.image, n, chain)
+				mat = setup_shader(mat, cfg.image[n_tile.variation], n, chain)
 				map_row.tile_set.tile_set_material(tile.row_id, mat)
 				n += 1
 			x += 1
@@ -160,20 +193,20 @@ func chain(neighbors, start):
 func setup_shader(mat, image, direction, chain):
 	var rand = randi()%2
 	mat.set_shader_param(str("tex", direction), image)
-	mat.set_shader_param(str("mask", direction), alpha_table[rand][direction][chain][1])
-	print(alpha_table[rand][direction][chain][0], " on ",  DIR[direction])
+	mat.set_shader_param(str("mask", direction), mask_table[rand][direction][chain][1])
+	print(mask_table[rand][direction][chain][0], " on ",  DIR[direction])
 	return mat
 
 func load_alpha_table():
 	for n in range(3):
-		alpha_table.append([])
+		mask_table.append([])
 		for i in range(6):
-			alpha_table[n].append([])
+			mask_table[n].append([])
 			for j in range(6):
-				alpha_table[n][i].append([])
-				alpha_table[n][i][j].append(null)
-				alpha_table[n][i][j].append(null)
-	print("[", alpha_table.size(), "][", alpha_table[0].size(), "][", alpha_table[0][0].size(), "][", alpha_table[0][0][0].size(), "]")
+				mask_table[n][i].append([])
+				mask_table[n][i][j].append(null)
+				mask_table[n][i][j].append(null)
+	print("[", mask_table.size(), "][", mask_table[0].size(), "][", mask_table[0][0].size(), "][", mask_table[0][0][0].size(), "]")
 	
 	for start in range(6):
 		var append = ""
@@ -184,22 +217,22 @@ func load_alpha_table():
 				append += str("-", DIR[(start+follow)%6])
 			else:
 				append += DIR[(start+follow)%6]
-			alpha_table[0][start][follow][0] = append
-			alpha_table[0][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_abrupt_", append,".png"))
-			alpha_table[1][start][follow][0] = append
-			alpha_table[1][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_medium_", append,".png"))
-			alpha_table[2][start][follow][0] = append
-			alpha_table[2][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_long_", append,".png"))
-			# alpha_table[3][start][follow][0] = append
-			# alpha_table[3][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_", append,".png"))
+			mask_table[0][start][follow][0] = append
+			mask_table[0][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_abrupt_", append,".png"))
+			mask_table[1][start][follow][0] = append
+			mask_table[1][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_medium_", append,".png"))
+			mask_table[2][start][follow][0] = append
+			mask_table[2][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_long_", append,".png"))
+			# mask_table[3][start][follow][0] = append
+			# mask_table[3][start][follow][1] = load(str("res://test/transitions/images/alpha/Grass_", append,".png"))
 			
-			# print("[0]", "[", start, "]", "[", follow, "]", alpha_table[0][start][follow][0])
-			# print("[1]", "[", start, "]", "[", follow, "]", alpha_table[1][start][follow][0])
+			# print("[0]", "[", start, "]", "[", follow, "]", mask_table[0][start][follow][0])
+			# print("[1]", "[", start, "]", "[", follow, "]", mask_table[1][start][follow][0])
 
 func add_tile(tile_set, index, terrain):
 	tile_set.create_tile(index)
 	tile_set.tile_set_name(index, terrain.id)
-	tile_set.tile_set_texture(index, terrain.image)
+	tile_set.tile_set_texture(index, terrain.image[randi()%terrain.image.size()])
 
 func add_tile_map():
 	var map = TileMap.new()
@@ -225,17 +258,83 @@ func flattenv(cell):
 func flatten(x, y):
 	return int(y * size.x + x)
 
+func load_terrain(path):
+	var file = load_file(path)
+	var config = YAML.parse(file.get_as_text())
+	
+	for key in config.keys():
+		var terrain = config[key]
+		terrain_table[key] = terrain
+		terrain_table[key].id = key
+		var image_array = get_image_array(terrain.image)
+		terrain_table[key].image = []
+		for i in range(image_array.size()):
+			terrain_table[key].image.append(load(image_array[i]))
+
+func load_decals(path):
+	var file = load_file(path)
+	var config = YAML.parse(file.get_as_text())
+	
+	for key in config.keys():
+		var decal = config[key]
+		decal_table[key] = decal
+		decal_table[key].id = key
+		print(decal.image)
+		decal_table[key].image = load(decal.image)
+
+#func load_masks(path):
+#	var file = load_file(path)
+#	var config = YAML.parse(file.get_as_text())
+#
+#	for key in config.keys():
+#		var mask = config[key]
+#		mask_table[key] = mask
+#		mask_table[key].id = key
+#		print(mask.image)
+#		mask_table[key].image = load(mask.image)
+
 func load_terrain_dir(path):
 	var files = []
 	files = get_files_in_directory(path, files)
 	for file in files:
-		var config = JSON.parse(file.data.get_as_text()).result
+		var config = YAML.parse(file.data.get_as_text())
 		for key in config.keys():
 			var terrain = config[key]
 			terrain_table[key] = terrain
 			terrain_table[key].id = key
 			terrain_table[key].layer = terrain.layer
-			terrain_table[key].image = load(terrain.image)
+			#print(terrain.image)
+			var image_array = get_image_array(terrain.image)
+			terrain_table[key].image = []
+			for i in range(image_array.size()):
+				terrain_table[key].image.append(load(image_array[i]))
+
+func load_file(path):
+	var file = File.new()
+	if file.open(path, file.READ) != OK:
+		print("File could not be laoded: ", path)
+		return null
+	return file
+
+func get_image_array(image_string):
+	var image_array = []
+	var temp = image_string.split("[")
+	var front = temp[0]
+	var back = temp[1]
+	#print("Front: ", front, " Back: ", back)
+	temp = back.split("]")
+	var list = temp[0]
+	var PNG = temp[1]
+	#print("List: ", list, " Extention: ", PNG)
+	var from_to = list.split("-")
+	var from = from_to[0]
+	var to = from_to[1]
+	#print("From: ", from, " To: ", to)
+	for i in range(int(from), int(to)+1, 1):
+		var s = str(front, i, PNG)
+		image_array.append(s)
+		print(s)
+	return image_array
 
 func get_files_in_directory(path, files):
 	var dir = Directory.new()
