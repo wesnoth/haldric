@@ -117,7 +117,7 @@ func generate_decals():
 			var id = flatten(x, y)
 			var tile = tiles[id]
 			var decals = get_decals(tile.terrain_code)
-			print(decals)
+			# print(decals)
 			for decal in decals:
 				if randf() < decal.probability:
 					var sprite = Sprite.new()
@@ -126,7 +126,7 @@ func generate_decals():
 					sprite.texture = decal.image
 					sprite.position = map_to_world_centered(Vector2(x, y))
 					add_child(sprite)
-					print("Decal added at ", sprite.position)
+					# print("Decal added at ", sprite.position)
 			x += 1
 		y += 1
 
@@ -137,7 +137,7 @@ func map_to_world_centered(cell):
 func get_decals(terrain_code):
 	var decals = []
 	for decal in decal_table.values():
-		print(decal.apply_to, " == ", terrain_code)
+		# print(decal.apply_to, " == ", terrain_code)
 		if decal.apply_to == terrain_code:
 			decals.append(decal)
 	return decals
@@ -170,7 +170,7 @@ func load_transitions():
 					continue
 				
 				var cfg = terrain_table[tiles[n_id].terrain_code]
-				print("[", y, "][", x, "]")
+				# print("[", y, "][", x, "]")
 				chain = chain(neighbors, n)
 				mat = setup_shader(mat, cfg.image[n_tile.variation], n, chain)
 				map_row.tile_set.tile_set_material(tile.row_id, mat)
@@ -194,7 +194,7 @@ func setup_shader(mat, image, direction, chain):
 	var rand = randi()%2
 	mat.set_shader_param(str("tex", direction), image)
 	mat.set_shader_param(str("mask", direction), mask_table[rand][direction][chain][1])
-	print(mask_table[rand][direction][chain][0], " on ",  DIR[direction])
+	# print(mask_table[rand][direction][chain][0], " on ",  DIR[direction])
 	return mat
 
 func load_alpha_table():
@@ -206,7 +206,7 @@ func load_alpha_table():
 				mask_table[n][i].append([])
 				mask_table[n][i][j].append(null)
 				mask_table[n][i][j].append(null)
-	print("[", mask_table.size(), "][", mask_table[0].size(), "][", mask_table[0][0].size(), "][", mask_table[0][0][0].size(), "]")
+	# print("[", mask_table.size(), "][", mask_table[0].size(), "][", mask_table[0][0].size(), "][", mask_table[0][0][0].size(), "]")
 	
 	for start in range(6):
 		var append = ""
@@ -279,7 +279,7 @@ func load_decals(path):
 		var decal = config[key]
 		decal_table[key] = decal
 		decal_table[key].id = key
-		print(decal.image)
+		# print(decal.image)
 		decal_table[key].image = load(decal.image)
 
 #func load_masks(path):
@@ -312,7 +312,7 @@ func load_terrain_dir(path):
 func load_file(path):
 	var file = File.new()
 	if file.open(path, file.READ) != OK:
-		print("File could not be laoded: ", path)
+		# print("File could not be laoded: ", path)
 		return null
 	return file
 
@@ -333,7 +333,7 @@ func get_image_array(image_string):
 	for i in range(int(from), int(to)+1, 1):
 		var s = str(front, i, PNG)
 		image_array.append(s)
-		print(s)
+		# print(s)
 	return image_array
 
 func get_files_in_directory(path, files):
@@ -352,7 +352,7 @@ func get_files_in_directory(path, files):
 		else:
 			var file = File.new()
 			var file_id = sub_path.split(".")[0]
-			print("load file: ", dir.get_current_dir() + "/" + sub_path)
+			# print("load file: ", dir.get_current_dir() + "/" + sub_path)
 			if file.open(dir.get_current_dir() + "/" + sub_path, file.READ) == OK:
 				files.append({ data = file, id = file_id })
 	dir.list_dir_end()
