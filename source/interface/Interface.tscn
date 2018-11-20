@@ -10,7 +10,7 @@
 [ext_resource path="res://source/interface/BottomPanel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/interface/minimap/MiniMap.tscn" type="PackedScene" id=9]
 
-[node name="Interface" type="Node2D" index="0"]
+[node name="Interface" type="Node2D"]
 
 script = ExtResource( 1 )
 path_texture = null
@@ -79,10 +79,10 @@ theme = ExtResource( 4 )
 
 [node name="TopPanel" parent="HUD" index="2" instance=ExtResource( 7 )]
 
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -817.0
-margin_right = 0.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -325.0
+margin_right = 325.0
 
 [node name="BottomPanel" parent="HUD" index="3" instance=ExtResource( 8 )]
 
