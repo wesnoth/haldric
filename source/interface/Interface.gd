@@ -87,8 +87,7 @@ func _process(delta):
 func _draw():
 	# draw path
 	for i in range(game.active_unit_path.size()-2):
-		i += 1
-		draw_texture(path_texture, game.terrain.map_to_world_centered(game.active_unit_path[i]) - Vector2(36,36) ) 
+		draw_texture(path_texture, game.terrain.map_to_world_centered(game.active_unit_path[i+1]) - Vector2(36,36) ) 
 		#draw_circle(game.terrain.map_to_world_centered(game.active_unit_path[i]), 5, Color(255, 0, 0))
 	
 	# draw villages
