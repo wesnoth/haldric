@@ -13,11 +13,9 @@ static func _get_file_data_in_directory(path : String, directory_data : Array) -
 	
 	var directory := Directory.new()
 	
-	if not directory.dir_exists(path) or not directory.open(path) == OK:
+	if not directory.dir_exists(path) or not directory.open(path) == OK or not directory.list_dir_begin(true, true) == OK:
 		print("Loader: failed to load ", path, ", return []")
 		return []
-	
-	directory.list_dir_begin(true, true)
 	
 	var sub_path := ""
 	
@@ -31,7 +29,7 @@ static func _get_file_data_in_directory(path : String, directory_data : Array) -
 			break
 		
 		elif directory.current_is_dir():
-			_get_file_data_in_directory(directory.get_current_dir() + "/" + sub_path, directory_data)
+			directory_data = _get_file_data_in_directory(directory.get_current_dir() + "/" + sub_path, directory_data)
 		
 		else:
 			var file_data = _get_file_data(directory.get_current_dir() + "/" + sub_path)
