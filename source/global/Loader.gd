@@ -1,15 +1,24 @@
-class_name Loader extends Node
+extends Node
 
+var YAML = preload("res://addons/godot-yaml/gdyaml.gdns").new()
 
-static func load_file(path : String) -> Dictionary:
-	return _get_file_data(path)
+func load_yaml_dir(path : String) -> Dictionary:
+	var directory_data := load_dir(path)
+	var dict := {}
+	
+	for file_data in directory_data:
+		var config : Dictionary = YAML.parse(file_data.text)
+		dict[config.id] = config
+	
+	return dict
 
-
-static func load_dir(path : String) -> Array:
+func load_dir(path : String) -> Array:
 	return _get_file_data_in_directory(path, [])
 
+func load_file(path : String) -> Dictionary:
+	return _get_file_data(path)
 
-static func _get_file_data_in_directory(path : String, directory_data : Array) -> Array:
+func _get_file_data_in_directory(path : String, directory_data : Array) -> Array:
 	
 	var directory := Directory.new()
 	
@@ -38,8 +47,7 @@ static func _get_file_data_in_directory(path : String, directory_data : Array) -
 	directory.list_dir_end()
 	return directory_data
 
-
-static func _get_file_data(path : String) -> Dictionary:
+func _get_file_data(path : String) -> Dictionary:
 	
 	var file := File.new()
 	var file_id := path.split(".")[0]

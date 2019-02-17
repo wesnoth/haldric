@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/map/Hex.gd"
 }, {
-"base": "Node",
-"class": "Loader",
-"language": "GDScript",
-"path": "res://source/utils/Loader.gd"
-}, {
 "base": "Reference",
 "class": "Location",
 "language": "GDScript",
@@ -36,7 +31,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Hex": "",
-"Loader": "",
 "Location": "",
 "Map": "",
 "Terrain": ""
@@ -47,6 +41,11 @@ _global_script_class_icons={
 config/name="Haldric"
 run/main_scene="res://source/interface/menus/TitleScreen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Registry="*res://source/global/Registry.gd"
+Loader="*res://source/global/Loader.gd"
 
 [importer_defaults]
 
