@@ -81,8 +81,7 @@ func initialize(reg_entry):
 		new_side.flag_shader = generate_flag_shader(team_color_data[side.team_color])
 
 		for recruit in side.recruit.split(","):
-			recruit = recruit.strip_edges()
-			new_side.recruit.append(recruit)
+			new_side.recruit.append(recruit.strip_edges())
 		
 		sides.append(new_side)
 		
