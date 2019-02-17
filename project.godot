@@ -9,15 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "FileLoader",
-"language": "GDScript",
-"path": "res://source/utils/FileLoader.gd"
-}, {
 "base": "Reference",
 "class": "Hex",
 "language": "GDScript",
 "path": "res://source/map/Hex.gd"
+}, {
+"base": "Node",
+"class": "Loader",
+"language": "GDScript",
+"path": "res://source/utils/Loader.gd"
 }, {
 "base": "Reference",
 "class": "Location",
@@ -35,8 +35,8 @@ _global_script_classes=[ {
 "path": "res://source/terrain/Terrain.gd"
 } ]
 _global_script_class_icons={
-"FileLoader": "",
 "Hex": "",
+"Loader": "",
 "Location": "",
 "Map": "",
 "Terrain": ""
