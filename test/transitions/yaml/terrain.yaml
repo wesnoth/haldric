@@ -1,6 +1,0 @@
-Gg:
-  layer: 1
-  image: res://test/transitions/images/terrain/grass/Green[1-8].png
-Gd:
-  layer: 2
-  image: res://test/transitions/images/terrain/grass/Dry[1-4].png
