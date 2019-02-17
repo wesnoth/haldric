@@ -2,18 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/archer.png-ade8bd66eaabe1669482ce97a7cdbcd2.stex"
+path="res://.import/archer.png-4026ffb0fe060c4ad98d47bb523a13a1.stex"
 
 [deps]
 
-source_file="res://data/core/images/units/elves-wood/archer.png"
-dest_files=[ "res://.import/archer.png-ade8bd66eaabe1669482ce97a7cdbcd2.stex" ]
+source_file="res://graphics/images/units/elves-wood/archer.png"
+dest_files=[ "res://.import/archer.png-4026ffb0fe060c4ad98d47bb523a13a1.stex" ]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -23,6 +24,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=false

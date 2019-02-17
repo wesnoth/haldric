@@ -2,18 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sword-elven.png-4d077991a327c0a0f76e3f6b041b3ec9.stex"
+path="res://.import/sword-elven.png-fbd21d0019661c9ae0bdb321b306d708.stex"
 
 [deps]
 
-source_file="res://data/core/images/attacks/sword-elven.png"
-dest_files=[ "res://.import/sword-elven.png-4d077991a327c0a0f76e3f6b041b3ec9.stex" ]
+source_file="res://graphics/images/attacks/sword-elven.png"
+dest_files=[ "res://.import/sword-elven.png-fbd21d0019661c9ae0bdb321b306d708.stex" ]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -23,6 +24,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=false

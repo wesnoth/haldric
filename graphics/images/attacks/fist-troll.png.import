@@ -2,18 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fist-troll.png-7636841e69582940e884caa93d0c3564.stex"
+path="res://.import/fist-troll.png-133eac5ae123f5b85bea32f1b22f4260.stex"
 
 [deps]
 
-source_file="res://data/core/images/attacks/fist-troll.png"
-dest_files=[ "res://.import/fist-troll.png-7636841e69582940e884caa93d0c3564.stex" ]
+source_file="res://graphics/images/attacks/fist-troll.png"
+dest_files=[ "res://.import/fist-troll.png-133eac5ae123f5b85bea32f1b22f4260.stex" ]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -23,6 +24,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=false

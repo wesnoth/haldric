@@ -2,18 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/assassin.png-ec98ce8baed2a807bacdbc82a6aa146a.stex"
+path="res://.import/assassin.png-ce25294c5cce110fa5390846275a54cf.stex"
 
 [deps]
 
-source_file="res://data/core/images/units/orcs/assassin.png"
-dest_files=[ "res://.import/assassin.png-ec98ce8baed2a807bacdbc82a6aa146a.stex" ]
+source_file="res://graphics/images/units/orcs/assassin.png"
+dest_files=[ "res://.import/assassin.png-ce25294c5cce110fa5390846275a54cf.stex" ]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -23,6 +24,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=false

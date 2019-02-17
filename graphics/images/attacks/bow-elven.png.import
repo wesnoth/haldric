@@ -2,18 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bow-elven.png-e69fbcec2759cce62adc60c332735d26.stex"
+path="res://.import/bow-elven.png-2a3adc8a1e80e78b4346919b615912b3.stex"
 
 [deps]
 
-source_file="res://data/core/images/attacks/bow-elven.png"
-dest_files=[ "res://.import/bow-elven.png-e69fbcec2759cce62adc60c332735d26.stex" ]
+source_file="res://graphics/images/attacks/bow-elven.png"
+dest_files=[ "res://.import/bow-elven.png-2a3adc8a1e80e78b4346919b615912b3.stex" ]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -23,6 +24,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=false
