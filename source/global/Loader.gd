@@ -22,8 +22,12 @@ func _get_file_data_in_directory(path : String, directory_data : Array) -> Array
 	
 	var directory := Directory.new()
 	
-	if not directory.dir_exists(path) or not directory.open(path) == OK or not directory.list_dir_begin(true, true) == OK:
-		print("Loader: failed to load ", path, ", return []")
+	if not directory.open(path) == OK:
+		print("Loader: failed to load ", path, ", return [] (open)")
+		return []
+	
+	if not directory.list_dir_begin(true, true) == OK:
+		print("Loader: failed to load ", path, ", return [] (list_dir_begin)")
 		return []
 	
 	var sub_path := ""
