@@ -7,16 +7,39 @@ var height := 0
 
 var locations := []
 
+var overlay := TileMap.new()
+var cover := TileMap.new()
+
+var grid : Grid = null
+
+
 func _ready():
+	_setup()
 	_initialize_locations()
 	width = get_used_rect().size.x
 	height = get_used_rect().size.y
+	grid = Grid.new(self, width, height)
 
 func map_to_world_centered(cell : Vector2) -> Vector2:
 	return map_to_world(cell) + OFFSET
 
 func world_to_world_centered(cell: Vector2) -> Vector2:
 	return map_to_world_centered(world_to_map(cell))
+
+func _setup() -> void:
+	_setup_tilemap(self)
+	_setup_tilemap(overlay)
+	add_child(overlay)
+	_setup_tilemap(cover)
+	add_child(cover)
+
+func _setup_tilemap(tilemap : TileMap) -> void:
+	tilemap.cell_size = Vector2(54, 72)
+	tilemap.cell_half_offset = TileMap.HALF_OFFSET_Y
+	if tilemap == self:
+		tilemap.tile_set = null
+	else:
+		tilemap.tile_set = tile_set
 
 func _initialize_locations() -> void:
 	for y in range(height):

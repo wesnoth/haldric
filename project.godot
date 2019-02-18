@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "Grid",
+"language": "GDScript",
+"path": "res://source/map/Grid.gd"
+}, {
 "base": "Reference",
 "class": "Hex",
 "language": "GDScript",
@@ -35,6 +40,7 @@ _global_script_classes=[ {
 "path": "res://source/units/Unit.gd"
 } ]
 _global_script_class_icons={
+"Grid": "",
 "Hex": "",
 "Location": "",
 "Map": "",
@@ -52,6 +58,14 @@ config/icon="res://icon.png"
 
 Registry="*res://source/global/Registry.gd"
 Loader="*res://source/global/Loader.gd"
+
+[debug]
+
+gdscript/warnings/unassigned_variable=false
+gdscript/warnings/unassigned_variable_op_assign=false
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_class_variable=false
+gdscript/warnings/unused_argument=false
 
 [importer_defaults]
 

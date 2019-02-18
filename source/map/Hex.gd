@@ -22,7 +22,7 @@ const NEIGHBOUR_TABLE = [
 		Vector2(-1,  0) # NW
 	]]
 
-static func get_neighbors(cell : Vector2):
+static func get_neighbors(cell : Vector2) -> Array:
 	var neighbors := []
 	for direction in DIRECTIONS:
 		neighbors.append(get_neighbor(cell, DIRECTIONS[direction]))

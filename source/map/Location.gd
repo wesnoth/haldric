@@ -10,5 +10,7 @@ var position := Vector2()
 var terrain : Terrain = null
 var unit : Unit = null
 
+var is_blocked := false
+
 func get_position_centered() -> Vector2:
 	return position + OFFSET
