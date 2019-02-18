@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Terrain",
 "language": "GDScript",
 "path": "res://source/terrain/Terrain.gd"
+}, {
+"base": "Node2D",
+"class": "Unit",
+"language": "GDScript",
+"path": "res://source/units/Unit.gd"
 } ]
 _global_script_class_icons={
 "Hex": "",
 "Location": "",
 "Map": "",
-"Terrain": ""
+"Terrain": "",
+"Unit": ""
 }
 
 [application]
