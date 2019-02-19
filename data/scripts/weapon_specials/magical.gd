@@ -1,11 +1,10 @@
 extends Resource
 
-var name = "Magical"
-var event = ""
-
-var default = {
+var config = {
+	name = "Magical",
+	event = "",
 	hit_chance = 70
 }
 
-func magical(unit, params):
+func magical(unit, config):
 	print("it's magic!")

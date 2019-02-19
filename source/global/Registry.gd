@@ -41,8 +41,8 @@ func load_scenario_dir(path):
 	files = get_files_in_directory(path, files)
 	for file in files:
 		var config = yaml_parser.parse(file.data.get_as_text())
-		scenarios[config.id] = config
-		scenarios[config.id].map_data = MapLoader.load_map(config.map_data)
+		scenarios[file.id] = config
+		scenarios[file.id].map_data = MapLoader.load_map(config.map_data)
 
 func get_files_in_directory(path, files):
 	var dir = Directory.new()
@@ -71,7 +71,7 @@ func validate_advancements():
 		if !units.has(config.advances_to) and config.advances_to != null:
 			print(config.id, ": Invalid Advancement! ", config.advances_to, " does not exist!")
 
-func create_unit(id, side):
+func create_unit(type, side, id):
 	var unit = load("res://source/Unit.tscn").instance()
-	unit.initialize(units[id], side)
+	unit.initialize(units[type], side, id)
 	return unit

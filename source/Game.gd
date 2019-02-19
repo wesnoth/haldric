@@ -1,5 +1,6 @@
 extends Node2D
 
+var size = Vector2(0, 0)
 var turn = 1
 
 var sides = []
@@ -37,7 +38,14 @@ var base_flag_color = []
 
 var team_color_data = {
 	"red":[Color("FF0000"),Color("FFFFFF"),Color("000000"),Color("FF0000")],
-	"blue":[Color("2E419B"),Color("FFFFFF"),Color("0F0F0F"),Color("0000FF")]
+	"blue":[Color("2E419B"),Color("FFFFFF"),Color("0F0F0F"),Color("0000FF")],
+	"green":[Color("62B664"),Color("FFFFFF"),Color("000000"),Color("00FF00")],
+	"purple":[Color("93009D"),Color("FFFFFF"),Color("000000"),Color("FF00FF")],
+	"black":[Color("5A5A5A"),Color("FFFFFF"),Color("000000"),Color("000000")],
+	"white":[Color("E1E1E1"),Color("FFFFFF"),Color("1E1E1E"),Color("FFFFFF")],
+	"brown":[Color("945027"),Color("FFFFFF"),Color("000000"),Color("AA4600")],
+	"orange":[Color("FF7E00"),Color("FFFFFF"),Color("0F0F0F"),Color("FFAA00")],
+	"teal":[Color("30CBC0"),Color("FFFFFF"),Color("000000"),Color("00F0C8")]
 }
 
 
@@ -45,16 +53,22 @@ const SHADER = preload("res://images/shader/TeamColors.shader")
 const FLAGSHADER = preload("res://images/shader/TeamFlag.shader")
 onready var combat_handler = $"CombatHandler"
 
+onready var interface = $"Interface"
 onready var map = $"Map"
 onready var units = $"UnitContainer"
 
 onready var recruit_popup = $"Interface/HUD/RecruitPopup"
 onready var attack_popup = $"Interface/HUD/AttackPopup"
-onready var flag_sprite = $"Interface/HUD/GameInfo/HBox/TurnLabel/TurnSprite"
+onready var flag_sprite = $"Interface/HUD/TopPanel/Turn/Info/Icon"
+
 func initialize(reg_entry):
 	terrain = reg_entry.map_data
 	terrain.game = self
 	add_child(terrain)
+	
+	interface.minimap.tiles = terrain.tiles
+	interface.minimap.map_size = Vector2(terrain.WIDTH, terrain.HEIGHT)
+	size = Vector2(terrain.WIDTH, terrain.HEIGHT)
 	
 	var Side = preload("res://source/utils/Side.gd")
 
@@ -67,13 +81,13 @@ func initialize(reg_entry):
 		new_side.flag_shader = generate_flag_shader(team_color_data[side.team_color])
 
 		for recruit in side.recruit.split(","):
-			recruit = recruit.strip_edges()
-			new_side.recruit.append(recruit)
+			new_side.recruit.append(recruit.strip_edges())
 		
 		sides.append(new_side)
 		
-		create_unit(side.type, side.side, side.position.x, side.position.z, true)
+		create_unit(side.type, side.side, side.position.x, side.position.z, side.id, true)
 	flag_sprite.set_material(sides[0].flag_shader)
+
 func _ready():
 	Wesnoth.connect("attacker_hits", self, "on_attacker_hits")
 	Wesnoth.connect("attacker_misses", self, "on_attacker_misses")
@@ -148,14 +162,14 @@ func _unhandled_input(event):
 			recruit_popup.add_recruits(get_current_side().recruit)
 			recruit_popup.show()
 
-func create_unit(id, side, x, y, is_leader = false):
-	var unit = Registry.create_unit(id, side)
+func create_unit(type, side, x, y, id = "", is_leader = false):
+	var unit = Registry.create_unit(type, side, id)
 	unit.position = terrain.map_to_world_centered(Vector2(x, y))
 	unit.game = self
 	unit.set_material(sides[side-1].shader)
 	unit.is_leader = is_leader
 	sides[side-1].leaders.append(unit)
-	units.add_child(unit)
+	units.add(unit)
 
 func is_unit_at_cell(cell):
 	var pos = terrain.map_to_world_centered(cell)
@@ -163,6 +177,9 @@ func is_unit_at_cell(cell):
 		if u.position == pos:
 			return true
 	return false
+
+func is_unit_at_position(pos):
+	is_unit_at_cell(terrain.world_to_map(pos))
 
 func is_cell_blocked(cell):
 	if terrain.check_boundaries(cell):
@@ -174,6 +191,9 @@ func get_unit_at_cell(cell):
 		if u.position == pos:
 			return u
 	return null
+
+func get_mouse_position():
+	return get_global_mouse_position()
 
 func get_unit_at_position(unit_position):
 	for u in units.get_children():
@@ -285,7 +305,7 @@ func on_attack_popup_id_pressed(id):
 func on_recruit_popup_id_pressed(id):
 	var unit_entry = recruit_popup.get_item_metadata(id)
 	
-	if get_current_side().gold - unit_entry.cost <= 0:
+	if get_current_side().gold - unit_entry.cost < 0:
 		return
 	
 	if active_side == 1:
@@ -392,15 +412,19 @@ func _handle_abilities(event):
 			continue
 		
 		for entry in unit.abilities:
-			var ability = Registry.abilities[entry.id]	
-			if ability.script.event != event:
+			var ability = Registry.abilities[entry.id]
+			if ability.script.config.event != event:
 				continue
 			
-			var params = {}
+			var config = ability.script.config
 			
-			if entry.has("params"):
-				params = entry.params
-			else:
-				params = ability.script.default
+			if entry.has("config"):
+				config = _overwrite_config(config, entry.config)
 			
-			ability.function.call_func(unit, params)
+			ability.function.call_func(unit, config)
+
+func _overwrite_config(config, o_config):
+	for key in o_config.keys():
+		if config.has(key):
+			config[key] = o_config[key]
+	return config

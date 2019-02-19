@@ -1,5 +1,7 @@
 name: Elvish Archer
 id: Elvish Archer
+race: elf
+alignment:  neutral
 level: 1
 cost: 17
 health: 29

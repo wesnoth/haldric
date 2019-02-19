@@ -1,5 +1,7 @@
 name: Orcish Archer
 id: Orcish Archer
+race: orc
+alignment: chaotic
 level: 1
 cost: 14
 health: 32

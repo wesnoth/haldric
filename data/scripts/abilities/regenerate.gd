@@ -1,12 +1,11 @@
 extends Resource
 
-var name = "Regenerate"
-var event = "turn refresh"
-
-var default = {
+var config = {
+	name = "Regenerate",
+	event = "turn refresh",
 	value = 8
 }
 
-func regenerate(unit, params):
-	unit.heal(params.value)
-	print(unit.id, " regenerated ", params.value, " HP")
+func regenerate(unit, config):
+	unit.heal(config.value)
+	print(unit.type, " regenerated ", config.value, " HP")

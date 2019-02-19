@@ -9,10 +9,18 @@ var can_attack = true
 var is_leader = false
 
 # Y A M L   S T A T S
-var id
+
+var numerical_id
+var string_id
+var type
+var race
+
 var level
+
 var cost
 var advances_to
+
+var alignment
 
 var base_experience
 var current_experience setget _set_current_experience
@@ -22,6 +30,8 @@ var base_max_moves
 
 var current_health setget _set_current_health
 var current_moves
+
+var current_defense = 0
 
 var abilities = {}
 
@@ -38,6 +48,7 @@ onready var lifebar = $"Lifebar"
 onready var xpbar = $"XPbar"
 
 func _ready():
+	current_defense = get_defense(get_current_tile().terrain_type)
 	update_lifebar()
 	update_xpbar()
 
@@ -50,43 +61,55 @@ func _process(delta):
 		advance(Registry.units[advances_to])
 
 
-func initialize(reg_entry, side):
-	id = reg_entry.id
-	level = reg_entry.level
-	cost = reg_entry.cost
-	base_max_health = reg_entry.health
+func initialize(config, side, id = ""):
+	if id == "":
+		string_id = str(config.id , Wesnoth.UNIT_ID)
+	else:
+		string_id = id
+	name = string_id
+	numerical_id = Wesnoth.UNIT_ID
+	Wesnoth.UNIT_ID += 1
+	
+	type = config.id
+	level = config.level
+	race = config.race
+	cost = config.cost
+	alignment = config.alignment
+	base_max_health = config.health
 	current_health = base_max_health
-	base_max_moves = reg_entry.moves
+	base_max_moves = config.moves
 	current_moves = base_max_moves
-	base_experience = reg_entry.experience
+	base_experience = config.experience
 	current_experience = 0
-	advances_to = reg_entry.advances_to
-	abilities = reg_entry.abilities
-	attacks = reg_entry.attacks
-	resistance = reg_entry.resistance
-	defense = reg_entry.defense
+	advances_to = config.advances_to
+	abilities = config.abilities
+	attacks = config.attacks
+	resistance = config.resistance
+	defense = config.defense
 	defense["impassable"] = 0
-	movement = reg_entry.movement
+	movement = config.movement
 	movement["impassable"] = 99
-	texture = load(reg_entry.image)
+	texture = load(config.image)
 	self.side = side
 
-func advance(reg_entry):
-	id = reg_entry.id
-	level = reg_entry.level
-	cost = reg_entry.cost
-	base_max_health = reg_entry.health
+func advance(config):
+	type = config.id
+	level = config.level
+	race = config.race
+	cost = config.cost
+	alignment = config.alignment
+	base_max_health = config.health
 	current_health = base_max_health
-	base_max_moves = reg_entry.moves
-	base_experience = reg_entry.experience
+	base_max_moves = config.moves
+	base_experience = config.experience
 	current_experience = 0
-	attacks = reg_entry.attacks
-	resistance = reg_entry.resistance
-	defense = reg_entry.defense
+	attacks = config.attacks
+	resistance = config.resistance
+	defense = config.defense
 	defense["impassable"] = 0
-	movement = reg_entry.movement
+	movement = config.movement
 	movement["impassable"] = 99
-	texture = load(reg_entry.image)
+	texture = load(config.image)
 	update_lifebar()
 	update_xpbar()
 
@@ -192,11 +215,13 @@ func _handle_movement():
 			get_current_tile().unit = self
 			current_moves = 0
 			tile_path = []
+			current_defense = get_defense(get_current_tile().terrain_type)
 			Wesnoth.emit_signal("unit_move_finished", self)
 		
 		elif tile_path.size() == 0 or current_moves - get_movement_cost(tile_path[0].terrain_type) < 0:
 			get_current_tile().unit = self
 			tile_path = []
+			current_defense = get_defense(get_current_tile().terrain_type)
 			Wesnoth.emit_signal("unit_move_finished", self)
 	
 	set_process(true)

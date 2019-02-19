@@ -1,5 +1,7 @@
 name: Troll
 id: Troll
+race: troll
+alignment: chaotic
 level: 2
 cost: 29
 health: 55
