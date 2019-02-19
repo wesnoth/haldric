@@ -1,0 +1,24 @@
+name: "Test"
+map_data: "res://data/multiplayer/maps/test.map"
+turns: 30
+sides: 
+  - {
+    side: 1,
+    type: "Elvish Fighter",
+    id: "Kalenz",
+    position: {x: 4, z: 4},
+    gold: 100,
+    income: 2,
+    recruit: "Elvish Fighter, Elvish Archer, Elvish Scout, Elvish Shaman",
+    team_color: "red"
+  }
+  - {
+    side: 2,
+    type: "Orcish Grunt",
+    id: "Ragga",
+    position: {x: 6, z: 6},
+    gold: 100,
+    income: 2,
+    recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Troll Whelp",
+    team_color: "blue"
+  }
