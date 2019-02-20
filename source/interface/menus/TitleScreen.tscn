@@ -23,3 +23,15 @@ texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Game" type="Button" parent="CenterContainer"]
+margin_left = 487.0
+margin_top = 290.0
+margin_right = 537.0
+margin_bottom = 310.0
+text = "Game"
+
+[connection signal="pressed" from="CenterContainer/Game" to="." method="_on_Game_pressed"]
