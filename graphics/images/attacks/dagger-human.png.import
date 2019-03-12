@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/dagger-human.png-d840575389ffbc5369181fe313384e4c.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

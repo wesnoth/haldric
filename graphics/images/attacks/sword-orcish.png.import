@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/sword-orcish.png-6f407edc624440e171419fdc641390a6.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

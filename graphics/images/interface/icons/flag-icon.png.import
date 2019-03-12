@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/flag-icon.png-618f907d6d10355e0da26739f438f2f0.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

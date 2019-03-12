@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/sand-clock.png-7108237cf083b1e8533d47f9e7f61674.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

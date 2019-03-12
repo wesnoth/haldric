@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/bow-elven.png-2a3adc8a1e80e78b4346919b615912b3.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

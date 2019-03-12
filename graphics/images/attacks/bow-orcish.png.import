@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/bow-orcish.png-4a85ac46c3c0c8be1241471d34891722.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

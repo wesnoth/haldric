@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/fangs-animal.png-d3f32a13329d84e33001ca3932a40487.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
