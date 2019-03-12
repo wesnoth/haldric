@@ -1,16 +1,10 @@
-extends CanvasLayer
+extends Node
 
-var next_scene := ""
+# Resources
+var tileset = preload("res://graphics/tilesets/tileset.tres")
 
-onready var anim = $AnimationPlayer
-
-func change_scene(scene) -> void:
-	next_scene = scene
-	anim.play("fade_out")
-
-func _on_AnimationPlayer_animation_finished(anim_name) -> void:
-	if anim_name == "fade_out":
-		if not get_tree().change_scene(next_scene) == OK:
-			print("Global: failed to load ", next_scene)
-		anim.play("fade_in")
-		next_scene = ""
+# Toggle Fullscreen
+func _input(event):
+	if event.is_action_pressed("toggle_fullscreen"):
+		OS.window_fullscreen = !OS.window_fullscreen
+		OS.window_size = Vector2(1280, 720)

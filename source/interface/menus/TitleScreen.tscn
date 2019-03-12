@@ -28,10 +28,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Game" type="Button" parent="CenterContainer"]
-margin_left = 487.0
-margin_top = 290.0
-margin_right = 537.0
-margin_bottom = 310.0
+margin_left = 615.0
+margin_top = 350.0
+margin_right = 665.0
+margin_bottom = 370.0
 text = "Game"
 
 [connection signal="pressed" from="CenterContainer/Game" to="." method="_on_Game_pressed"]

@@ -58,8 +58,8 @@ config/icon="res://icon.png"
 
 Registry="*res://source/global/Registry.gd"
 Loader="*res://source/global/Loader.gd"
-Get="*res://source/global/Get.gd"
-Global="*res://source/global/Global.tscn"
+Global="*res://source/global/Global.gd"
+Scene="*res://source/global/Scene.tscn"
 
 [debug]
 
@@ -68,6 +68,11 @@ gdscript/warnings/unassigned_variable_op_assign=false
 gdscript/warnings/unused_variable=false
 gdscript/warnings/unused_class_variable=false
 gdscript/warnings/unused_argument=false
+
+[display]
+
+window/size/width=1280
+window/size/height=720
 
 [importer_defaults]
 
@@ -90,6 +95,14 @@ texture={
 "size_limit": 0,
 "stream": false,
 "svg/scale": 1.0
+}
+
+[input]
+
+toggle_fullscreen={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
+ ]
 }
 
 [rendering]

@@ -66,7 +66,7 @@ func _setup_tilemap(tilemap : TileMap) -> void:
 	tilemap.cell_size = CELL_SIZE
 	tilemap.cell_half_offset = TileMap.HALF_OFFSET_Y
 	if tilemap == self:
-		tilemap.tile_set = Get.tileset
+		tilemap.tile_set = Global.tileset
 	else:
 		tilemap.tile_set = tile_set
 
