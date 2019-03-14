@@ -7,12 +7,12 @@ reloadable=true
 
 [entry]
 
-X11.64="res://bin/x11/libLuaScript.so"
-Windows.64="res://bin/win64/LuaScript.dll"
-OSX.64="res://bin/osx/LuaScript.dylib"
+X11.64="res://addons/lua-module/x11/libLuaScript.so"
+Windows.64="res://addons/lua-module/win64/LuaScript.dll"
+OSX.64="res://addons/lua-module/osx/LuaScript.dylib"
 
 [dependencies]
 
-X11.64=[ "res://bin/x11/liblua.a" ]
-Windows.64=[ "res://bin/win64/lua5.3.0.dll" ]
+X11.64=[ "res://addons/lua-module/x11/liblua.a" ]
+Windows.64=[ "res://addons/lua-module/win64/lua5.3.0.dll" ]
 OSX.64=[  ]
