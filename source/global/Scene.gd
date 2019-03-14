@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 # Scenes
-var Game = "res://source/game/Game.tscn"
+var Game = "res://source/core/game/Game.tscn"
 
 var next_scene := ""
 

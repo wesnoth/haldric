@@ -16,10 +16,10 @@ func _load_units() -> void:
 			unit.abilities = []
 
 func _load_scenarios() -> void:
-	scenarios = Loader.load_yaml_dir("res://data/multiplayer/scenarios")
+	scenarios = Loader.load_resource_dir("res://data/multiplayer/scenarios")
 
 func _load_terrain() -> void:
-	terrain = Loader.load_yaml_dir("res://data/terrain")
+	terrain = Loader.load_yaml_dir("res://data/terrain_yaml")
 	terrain = terrain.values()[0]
 	for code in terrain:
 		terrain[code].code = code

@@ -12,38 +12,50 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Grid",
 "language": "GDScript",
-"path": "res://source/map/Grid.gd"
+"path": "res://source/core/map/Grid.gd"
 }, {
 "base": "Reference",
 "class": "Hex",
 "language": "GDScript",
-"path": "res://source/map/Hex.gd"
+"path": "res://source/core/map/Hex.gd"
 }, {
 "base": "Reference",
 "class": "Location",
 "language": "GDScript",
-"path": "res://source/map/Location.gd"
+"path": "res://source/core/map/Location.gd"
 }, {
 "base": "TileMap",
 "class": "Map",
 "language": "GDScript",
-"path": "res://source/map/Map.gd"
+"path": "res://source/core/map/Map.gd"
+}, {
+"base": "Resource",
+"class": "RScenario",
+"language": "GDScript",
+"path": "res://source/templates/RScenario.gd"
+}, {
+"base": "Resource",
+"class": "RTerrain",
+"language": "GDScript",
+"path": "res://source/templates/RTerrain.gd"
 }, {
 "base": "Resource",
 "class": "Terrain",
 "language": "GDScript",
-"path": "res://source/terrain/Terrain.gd"
+"path": "res://source/core/terrain/Terrain.gd"
 }, {
 "base": "Node2D",
 "class": "Unit",
 "language": "GDScript",
-"path": "res://source/units/Unit.gd"
+"path": "res://source/core/units/Unit.gd"
 } ]
 _global_script_class_icons={
 "Grid": "",
 "Hex": "",
 "Location": "",
 "Map": "",
+"RScenario": "",
+"RTerrain": "",
 "Terrain": "",
 "Unit": ""
 }
@@ -73,6 +85,9 @@ gdscript/warnings/unused_argument=false
 
 window/size/width=1280
 window/size/height=720
+window/size/borderless=true
+window/dpi/allow_hidpi=true
+window/stretch/mode="2d"
 
 [importer_defaults]
 
