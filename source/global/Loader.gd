@@ -27,6 +27,16 @@ func load_map(path : String) -> Map:
 	file.close()
 	return map
 
+func load_resource_dir(path : String) -> Dictionary:
+	var directory_data := load_dir(path)
+	var dict := {}
+	
+	for file_data in directory_data:
+		var resource : Resource = load(file_data.path)
+		dict[file_data.id] = resource
+	
+	return dict
+
 func load_yaml_dir(path : String) -> Dictionary:
 	var directory_data := load_dir(path)
 	var dict := {}
@@ -84,7 +94,7 @@ func _get_file_data(path : String, file_name : String) -> Dictionary:
 		file.close()
 		return file_data
 	
-	file_data = { text = file.get_as_text(), id = file_id }
+	file_data = { text = file.get_as_text(), id = file_id, path = path}
 	print("Loader: load file: ", path)
 	
 	file.close()
