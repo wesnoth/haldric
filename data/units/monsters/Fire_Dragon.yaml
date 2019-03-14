@@ -1,0 +1,62 @@
+name: Fire Dragon
+id: Fire Dragon
+race: monster
+alignment: chaotic
+level: 5
+cost: 100
+health: 101
+moves: 8
+experience: 250
+advances_to: null
+image: res://data/core/images/units/monsters/fire-dragon.png
+
+attacks:
+  - {
+    name: bite,
+    damage: 21,
+    strikes: 2,
+    range: melee,
+    type: blade,
+    icon: res://data/core/images/attacks/fangs-animal.png
+  }
+  - {
+    name: tail,
+    damage: 24,
+    strikes: 1,
+    range: melee,
+    type: impact,
+    icon: res://data/core/images/attacks/tail-dragon.png
+  }
+  - {
+    name: fire breath,
+    damage: 14,
+    strikes: 4,
+    range: ranged,
+    type: fire,
+    icon: res://data/core/images/attacks/fire-breath-drake.png
+  }
+
+
+resistance:
+  blade: 90
+  pierce: 110
+  impact: 80
+  fire: 0
+  cold: 150
+  arcane: 130
+
+defense:
+  castle: 40
+  flat: 30
+  forest: 40
+  hills: 40
+  mountains: 40
+  village: 40
+
+movement:
+  castle: 1
+  flat: 1
+  forest: 1
+  hills: 1
+  mountains: 1
+  village: 1

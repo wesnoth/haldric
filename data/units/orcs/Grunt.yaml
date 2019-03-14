@@ -1,0 +1,45 @@
+name: Orcish Grunt
+id: Orcish Grunt
+race: orc
+alignment: chaotic
+level: 1
+cost: 12
+health: 38
+moves: 5
+experience: 42
+advances_to: null
+image: res://data/core/images/units/orcs/grunt.png
+
+attacks:
+  - {
+    name: sword,
+    damage: 9,
+    strikes: 2,
+    range: melee,
+    type: blade,
+    icon: res://data/core/images/attacks/sword-orcish.png
+  }
+
+resistance:
+  blade: 100
+  pierce: 100
+  impact: 100
+  fire: 100
+  cold: 100
+  arcane: 100
+
+defense:
+  castle: 60
+  flat: 40
+  forest: 50
+  hills: 50
+  mountains: 60
+  village: 60
+
+movement:
+  castle: 1
+  flat: 1
+  forest: 2
+  hills: 1
+  mountains: 2
+  village: 1
