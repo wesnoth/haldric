@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://source/templates/RScenario.gd"
 }, {
 "base": "Resource",
+"class": "RTerrain",
+"language": "GDScript",
+"path": "res://source/templates/RTerrain.gd"
+}, {
+"base": "Resource",
 "class": "Terrain",
 "language": "GDScript",
 "path": "res://source/core/terrain/Terrain.gd"
@@ -50,6 +55,7 @@ _global_script_class_icons={
 "Location": "",
 "Map": "",
 "RScenario": "",
+"RTerrain": "",
 "Terrain": "",
 "Unit": ""
 }
