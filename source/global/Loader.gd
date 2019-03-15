@@ -58,19 +58,20 @@ func _get_directory_data(path : String, directory_data : Array, extentions : Arr
 			if not extentions.has(sub_path.get_extension()):
 				continue
 			
-			var file_data = _get_file_data(directory.get_current_dir() + "/" + sub_path, sub_path)
+			var file_data = _get_file_data(directory.get_current_dir() + "/" + sub_path)
 			directory_data.append(file_data)
 	
 	directory.list_dir_end()
 	return directory_data
 
-func _get_file_data(path : String, file_name : String) -> Dictionary:
-	
+func _get_file_data(path : String) -> Dictionary:
 	var file_data := {}
-	var file_id := file_name.split(".")[0]
+	
+	var file_name_extention := path.get_file()
+	var file_name := file_name_extention.split(".")[0]
 	
 	file_data = { 
-		id = file_id,
+		id = file_name,
 		data = load(path)
 	}
 	
