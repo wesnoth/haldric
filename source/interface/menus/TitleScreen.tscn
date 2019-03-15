@@ -16,7 +16,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )
 expand = true
-stretch_mode = 1
 
 [node name="Map" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -46,9 +45,9 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/CenterContainer"]
 margin_left = 50.0
-margin_top = 276.0
+margin_top = 438.0
 margin_right = 150.0
-margin_bottom = 344.0
+margin_bottom = 542.0
 alignment = 1
 
 [node name="Singleplayer" parent="MenuPanel/CenterContainer/VBoxContainer" instance=ExtResource( 5 )]
@@ -57,17 +56,18 @@ margin_top = 0.0
 margin_right = 100.0
 margin_bottom = 32.0
 
-[node name="Quit" parent="MenuPanel/CenterContainer/VBoxContainer" instance=ExtResource( 5 )]
+[node name="Options" parent="MenuPanel/CenterContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_left = 0.0
 margin_top = 36.0
 margin_right = 100.0
 margin_bottom = 68.0
 
-[node name="Control" type="Control" parent="."]
-margin_left = 429.399
-margin_top = 110.2
-margin_right = 469.399
-margin_bottom = 150.2
+[node name="Quit" parent="MenuPanel/CenterContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_left = 0.0
+margin_top = 72.0
+margin_right = 100.0
+margin_bottom = 104.0
 
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
+[connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
