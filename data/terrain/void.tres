@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/templates/RTerrain.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+code = "Xv"
+name = "Void"
+type = "impassable"
+recruit_onto = false
+recruit_from = false
+heals = false
+gives_income = false
+submerge = false
+

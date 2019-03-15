@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "Scenario"
-map_data = "res://data/multiplayer/maps/scenario.map"
+map_data = "res://data/multiplayer/maps/scenario.tres"
 turns = 12
 sides = [  ]
 

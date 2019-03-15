@@ -17,3 +17,6 @@ func _load_units():
 	var unit = Unit.new(Registry.units["Archer"])
 	add_child(unit)
 	unit.move_to(map.get_location(Vector2(4, 4)))
+
+func _on_SaveMap_pressed():
+	Loader.save_map(map)

@@ -58,8 +58,10 @@ func get_map_string() -> String:
 func _setup() -> void:
 	_setup_tilemap(self)
 	_setup_tilemap(overlay)
+	overlay.name = "Overlay"
 	add_child(overlay)
 	_setup_tilemap(cover)
+	cover.name = "Cover"
 	add_child(cover)
 
 func _setup_tilemap(tilemap : TileMap) -> void:

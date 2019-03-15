@@ -1,5 +1,7 @@
 extends Node
 
+const map_path = "res://data/multiplayer/maps/"
+
 func load_map(path : String) -> Map:
 	var map := Map.new()
 	var file = File.new()
@@ -8,6 +10,11 @@ func load_map(path : String) -> Map:
 		print("Loader: failed to load ", path, ", return null")
 		file.close()
 		return null
+	
+	var file_name_extention = path.get_file()
+	var file_name = file_name_extention.split(".")[0]
+	
+	map.name = file_name
 	
 	var y = 0
 	while not file.eof_reached():
@@ -24,6 +31,15 @@ func load_map(path : String) -> Map:
 	
 	file.close()
 	return map
+
+func save_map(map : Map) -> void:
+	var path = map_path + map.name + ".tres"
+	
+	var file = File.new()
+	if file.open(path, File.WRITE) != OK:
+		print("could not save file")
+	file.store_string(map.get_map_string())
+	file.close()
 
 func load_dir(path : String, extentions : Array) -> Array:
 	return _get_directory_data(path, [], extentions)
