@@ -1,9 +1,0 @@
-[gd_resource type="NativeScript" load_steps=2 format=2]
-
-[ext_resource path="res://addons/lua-module/LuaScript.gdnlib" type="GDNativeLibrary" id=1]
-
-[resource]
-resource_name = "LuaScript"
-class_name = "LuaScript"
-library = ExtResource( 1 )
-
