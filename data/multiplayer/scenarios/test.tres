@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "Test"
-map_data = "res://data/multiplayer/maps/test.tres"
+map_data = "res://data/multiplayer/maps/test.map.tres"
 turns = 99
 sides = [  ]
 

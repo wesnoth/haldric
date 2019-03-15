@@ -33,7 +33,7 @@ func load_map(path : String) -> Map:
 	return map
 
 func save_map(map : Map) -> void:
-	var path = map_path + map.name + ".tres"
+	var path = map_path + map.name + ".map.tres"
 	
 	var file = File.new()
 	if file.open(path, File.WRITE) != OK:
