@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/maps/background.jpg" type="Texture" id=2]
 [ext_resource path="res://graphics/images/maps/titlescreen.png" type="Texture" id=3]
 [ext_resource path="res://graphics/images/interface/panels/panel1.png" type="Texture" id=4]
 [ext_resource path="res://source/interface/buttons/Button.tscn" type="PackedScene" id=5]
-[ext_resource path="res://audio/music/return_to_wesnoth.ogg" type="AudioStream" id=6]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -69,10 +68,6 @@ margin_left = 429.399
 margin_top = 110.2
 margin_right = 469.399
 margin_bottom = 150.2
-
-[node name="Menu Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-autoplay = true
 
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
