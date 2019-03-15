@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://data/units/elves-wood/Archer/_resources/defense.tres" type="Resource" id=1]
+[ext_resource path="res://data/units/elves-wood/Archer/_resources/movement.tres" type="Resource" id=2]
+[ext_resource path="res://data/units/elves-wood/Archer/_resources/resistance.tres" type="Resource" id=3]
+[ext_resource path="res://source/templates/RUnit.gd" type="Script" id=4]
+
+[resource]
+script = ExtResource( 4 )
+name = "Elvish Archer"
+ID = "Elvish Archer"
+race = "elf"
+alignment = "neutral"
+level = 1
+cost = 17
+health = 29
+moves = 6
+experience = 40
+advances_to = ""
+attacks = [  ]
+defense = ExtResource( 1 )
+movement = ExtResource( 2 )
+resistance = ExtResource( 3 )
+

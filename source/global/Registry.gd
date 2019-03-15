@@ -12,7 +12,7 @@ func _ready() -> void:
 	_load_terrain()
 
 func _load_units() -> void:
-	units = Loader.load_dir("res://data/units", Loader.FILE_TYPE.TEXT)
+	units = Loader.load_dir("res://data/units", Loader.FILE_TYPE.RESOURCE)
 	for unit in units.values():
 		if unit.has("abilities"):
 			unit.abilities = []

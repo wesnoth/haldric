@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/templates/RDefense.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+castle = 60
+flat = 40
+forest = 50
+hills = 50
+mountains = 60
+village = 60
+

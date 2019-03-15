@@ -59,7 +59,7 @@ func _get_directory_data(path : String, directory_data : Array, file_type : int)
 	while true:
 		sub_path = directory.get_next()
 		
-		if sub_path == "." or sub_path == "..":
+		if sub_path == "." or sub_path == ".." or sub_path.begins_with("_"):
 			continue
 		
 		elif sub_path == "":
