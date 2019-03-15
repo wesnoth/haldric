@@ -55,9 +55,7 @@ func _get_directory_data(path : String, directory_data : Array, extentions : Arr
 			directory_data = _get_directory_data(directory.get_current_dir() + "/" + sub_path, directory_data, extentions)
 		
 		else:
-			var extention = sub_path.split(".")[sub_path.split(".").size()-1]
-			
-			if not extentions.has(extention):
+			if not extentions.has(sub_path.get_extension()):
 				continue
 			
 			var file_data = _get_file_data(directory.get_current_dir() + "/" + sub_path, sub_path)
