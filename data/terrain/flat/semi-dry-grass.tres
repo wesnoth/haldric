@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource( 1 )
-code = "Hh"
-name = "Regular Hills"
-type = "hills"
+code = "Gs"
+name = "Semi-Dry Grass"
+type = "flat"
 recruit_onto = false
 recruit_from = false
 heals = false

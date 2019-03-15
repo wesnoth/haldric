@@ -12,16 +12,22 @@ func _ready() -> void:
 	_load_terrain()
 
 func _load_units() -> void:
-	units = Loader.load_dir("res://data/units", Loader.FILE_TYPE.RESOURCE)
+	var directory_data = Loader.load_dir("res://data/units", ["tres", "res"])
+	for file_data in directory_data:
+		units[file_data.id] = file_data.data
 
 func _load_music() -> void:
-	music = Loader.load_dir("res://audio/music", Loader.FILE_TYPE.RESOURCE)
+	var directory_data = Loader.load_dir("res://audio/music", ["ogg", "wav"])
+	for file_data in directory_data:
+		music[file_data.id] = file_data.data
 
 func _load_scenarios() -> void:
-	scenarios = Loader.load_dir("res://data/multiplayer/scenarios", Loader.FILE_TYPE.RESOURCE)
+	var directory_data = Loader.load_dir("res://data/multiplayer/scenarios", ["tres", "res"])
+	for file_data in directory_data:
+		scenarios[file_data.id] = file_data.data
 
 func _load_terrain() -> void:
-	terrain = Loader.load_dir("res://data/terrain_yaml", Loader.FILE_TYPE.TEXT)
-	terrain = terrain.values()[0]
-	for code in terrain:
-		terrain[code].code = code
+	var directory_data = Loader.load_dir("res://data/terrain", ["tres", "res"])
+	for file_data in directory_data:
+		var code = file_data.data.code
+		terrain[code] = file_data.data

@@ -4,11 +4,11 @@
 
 [resource]
 script = ExtResource( 1 )
-code = "Hh"
-name = "Regular Hills"
-type = "hills"
-recruit_onto = false
-recruit_from = false
+code = "Kh"
+name = "Keep (Human)"
+type = "castle"
+recruit_onto = true
+recruit_from = true
 heals = false
 gives_income = false
 submerge = false

@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource( 1 )
-code = "Hh"
-name = "Regular Hills"
+code = "Hhd"
+name = "Dry Hills"
 type = "hills"
 recruit_onto = false
 recruit_from = false

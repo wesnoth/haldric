@@ -9,3 +9,5 @@ export(bool) var recruit_from := false
 
 export(bool) var heals := false
 export(bool) var gives_income := false
+
+export(bool) var submerge := false

@@ -13,27 +13,18 @@ var heals := false
 
 var submerge := false
 
-func _init(cfgs : Array) -> void:
-	for cfg in cfgs:
-		name = cfg.name
+func _init(resources : Array) -> void:
+	for res in resources:
+		name = res.name
 		
-		code.append(cfg.code)
-		type.append(cfg.type)
+		code.append(res.code)
+		type.append(res.type)
 		
-		if cfg.has("recruit_onto"):
-			recruit_onto = cfg.recruit_onto
-		
-		if cfg.has("recruit_from"):
-			recruit_from = cfg.recruit_from
-		
-		if cfg.has("gives_income"):
-			gives_income = cfg.gives_income
-		
-		if cfg.has("heals"):
-			heals = cfg.heals
-		
-		if cfg.has("submerge"):
-			submerge = cfg.submerge
+		recruit_onto = res.recruit_onto
+		recruit_from = res.recruit_from
+		gives_income = res.gives_income
+		heals = res.heals
+		submerge = res.submerge
 
 func get_code() -> String:
 	var s := ""

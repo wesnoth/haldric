@@ -1,9 +1,5 @@
 extends Node
 
-enum FILE_TYPE { TEXT, RESOURCE }
-
-var YAML = preload("res://addons/godot-yaml/gdyaml.gdns").new()
-
 func load_map(path : String) -> Map:
 	var map := Map.new()
 	var file = File.new()
@@ -29,20 +25,10 @@ func load_map(path : String) -> Map:
 	file.close()
 	return map
 
-func load_dir(path : String, file_type : int) -> Dictionary:
-	var directory_data := _get_directory_data(path, [], file_type)
-	var dict := {}
-	
-	for file_data in directory_data:
-		match(file_type):
-			FILE_TYPE.TEXT:
-				dict[file_data.id] = YAML.parse(file_data.data)
-			FILE_TYPE.RESOURCE:
-				dict[file_data.id] = file_data.data
-	return dict
+func load_dir(path : String, extentions : Array) -> Array:
+	return _get_directory_data(path, [], extentions)
 
-
-func _get_directory_data(path : String, directory_data : Array, file_type : int) -> Array:
+func _get_directory_data(path : String, directory_data : Array, extentions : Array) -> Array:
 	
 	var directory := Directory.new()
 	
@@ -66,50 +52,32 @@ func _get_directory_data(path : String, directory_data : Array, file_type : int)
 			break
 		
 		elif directory.current_is_dir():
-			directory_data = _get_directory_data(directory.get_current_dir() + "/" + sub_path, directory_data, file_type)
+			directory_data = _get_directory_data(directory.get_current_dir() + "/" + sub_path, directory_data, extentions)
 		
 		else:
-			if sub_path.ends_with(".import"):
+			var extention = sub_path.split(".")[sub_path.split(".").size()-1]
+			
+			if not extentions.has(extention):
 				continue
 			
-			var file_data = _get_file_data(directory.get_current_dir() + "/" + sub_path, sub_path, file_type)
+			var file_data = _get_file_data(directory.get_current_dir() + "/" + sub_path, sub_path)
 			directory_data.append(file_data)
 	
 	directory.list_dir_end()
 	return directory_data
 
-func _get_file_data(path : String, file_name : String, file_type : int) -> Dictionary:
+func _get_file_data(path : String, file_name : String) -> Dictionary:
 	
 	var file_data := {}
 	var file_id := file_name.split(".")[0]
 	
-	match(file_type):
-		
-		FILE_TYPE.TEXT:
-			
-			var file := File.new()
-		
-			if not file.open(path, file.READ) == OK:
-				print("Loader: failed to load file: ", path, ", return {}")
-				file.close()
-				return file_data
-			
-			print("Loader: load file: ", path)
-			
-			file_data = { 
-				id = file_id,
-				data = file.get_as_text()
-			}
-			
-			file.close()
-		
-		FILE_TYPE.RESOURCE:
-			
-			print("Loader: load file: ", path)
-			
-			file_data = { 
-				id = file_id,
-				data = load(path)
-			}
+	file_data = { 
+		id = file_id,
+		data = load(path)
+	}
 	
+	if file_data.data:
+		print("Loader: load file: ", path)
+	else:
+		print("Loader: could not load file: ", path)
 	return file_data

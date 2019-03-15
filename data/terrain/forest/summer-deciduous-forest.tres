@@ -4,11 +4,12 @@
 
 [resource]
 script = ExtResource( 1 )
-code = "^Fds"
-name = "Summer Deciduous Forest"
+code = "^Fp"
+name = "Pine Forest"
 type = "forest"
 recruit_onto = false
 recruit_from = false
 heals = false
 gives_income = false
+submerge = false
 
