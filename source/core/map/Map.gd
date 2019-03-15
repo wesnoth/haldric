@@ -97,7 +97,7 @@ func _initialize_locations() -> void:
 			
 			location.id = id
 			location.cell = Vector2(x, y)
-			location.position = map_to_world(cell)
+			location.position = map_to_world_centered(cell)
 			locations[id] = location
 
 func _initialize_grid() -> void:

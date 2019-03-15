@@ -1,6 +1,6 @@
 class_name RUnit extends Resource
 
-export(Texture) var image = null
+export(Texture) var base_image = null
 
 export(String) var name = ""
 export(String) var ID = ""

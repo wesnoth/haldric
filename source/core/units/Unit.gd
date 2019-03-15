@@ -1,6 +1,14 @@
 class_name Unit extends Node2D
 
-var location := null
+var location = null
+
+var sprite = Sprite.new()
+
+func _ready():
+	add_child(sprite)
+
+func _init(res : Resource) -> void:
+	sprite.texture = res.base_image
 
 func move_to(loc) -> void:
 	if self.location:
