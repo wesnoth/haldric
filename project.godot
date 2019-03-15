@@ -72,6 +72,7 @@ Registry="*res://source/global/Registry.gd"
 Loader="*res://source/global/Loader.gd"
 Global="*res://source/global/Global.gd"
 Scene="*res://source/global/Scene.tscn"
+Audio="*res://source/global/Audio.tscn"
 
 [debug]
 
