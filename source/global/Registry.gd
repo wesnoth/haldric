@@ -13,9 +13,6 @@ func _ready() -> void:
 
 func _load_units() -> void:
 	units = Loader.load_dir("res://data/units", Loader.FILE_TYPE.RESOURCE)
-	for unit in units.values():
-		if unit.has("abilities"):
-			unit.abilities = []
 
 func _load_music() -> void:
 	music = Loader.load_dir("res://audio/music", Loader.FILE_TYPE.RESOURCE)
