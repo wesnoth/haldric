@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
 [ext_resource path="res://graphics/images/maps/background.jpg" type="Texture" id=3]
 [ext_resource path="res://graphics/images/maps/titlescreen.png" type="Texture" id=4]
-[ext_resource path="res://graphics/images/interface/panels/panel-transparent.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/interface/logo/logo-bg.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/interface/logo/logo.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/interface/panels/panel-transparent.png" type="Texture" id=7]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -25,6 +27,24 @@ texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
 
+[node name="Shield" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -300.0
+margin_top = 50.0
+margin_right = 300.0
+margin_bottom = 250.0
+texture = ExtResource( 5 )
+
+[node name="LogoText" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -300.0
+margin_top = 50.0
+margin_right = 300.0
+margin_bottom = 250.0
+texture = ExtResource( 6 )
+
 [node name="MenuPanel" type="NinePatchRect" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -34,7 +54,7 @@ margin_top = 50.0
 margin_right = -50.0
 margin_bottom = -50.0
 rect_min_size = Vector2( 200, 0 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
