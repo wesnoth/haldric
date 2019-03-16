@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://graphics/themes/wesnoth.theme" type="Theme" id=1]
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/Options.gd" type="Script" id=2]
 
 [node name="Options" type="Control"]
@@ -14,32 +14,38 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 895.0
-margin_top = 510.0
-margin_right = 1025.0
-margin_bottom = 570.0
+margin_left = 884.0
+margin_top = 494.0
+margin_right = 1036.0
+margin_bottom = 586.0
 custom_constants/separation = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 130.0
-margin_bottom = 20.0
+margin_right = 152.0
+margin_bottom = 36.0
 custom_constants/separation = 5
 
 [node name="OptionButton" type="OptionButton" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_right = 84.0
-margin_bottom = 20.0
+margin_right = 86.0
+margin_bottom = 36.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "Item 0"
 
 [node name="Save" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 89.0
-margin_right = 130.0
-margin_bottom = 20.0
+margin_left = 91.0
+margin_right = 152.0
+margin_bottom = 36.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "Save"
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 40.0
-margin_right = 130.0
-margin_bottom = 60.0
+margin_top = 56.0
+margin_right = 152.0
+margin_bottom = 92.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "Back"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Save" to="." method="_on_Save_pressed"]

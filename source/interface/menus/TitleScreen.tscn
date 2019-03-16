@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://graphics/themes/wesnoth.theme" type="Theme" id=1]
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
 [ext_resource path="res://graphics/images/maps/background.jpg" type="Texture" id=3]
 [ext_resource path="res://graphics/images/maps/titlescreen.png" type="Texture" id=4]
@@ -54,18 +54,24 @@ alignment = 1
 [node name="Singleplayer" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
 margin_right = 113.0
 margin_bottom = 36.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "Singleplayer"
 
 [node name="Options" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
 margin_top = 40.0
 margin_right = 113.0
 margin_bottom = 76.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "Options"
 
 [node name="Quit" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
 margin_top = 80.0
 margin_right = 113.0
 margin_bottom = 116.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "Quit"
 
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]

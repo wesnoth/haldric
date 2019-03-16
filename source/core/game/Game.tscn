@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://source/core/game/Game.gd" type="Script" id=1]
-[ext_resource path="res://graphics/themes/wesnoth.theme" type="Theme" id=2]
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=2]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,7 +21,9 @@ margin_left = -85.0
 margin_top = -30.0
 margin_right = -5.0
 margin_bottom = -5.0
+focus_mode = 0
 theme = ExtResource( 2 )
+enabled_focus_mode = 0
 text = "Save Map"
 
 [connection signal="pressed" from="CanvasLayer/SaveMap" to="." method="_on_SaveMap_pressed"]
