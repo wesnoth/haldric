@@ -51,6 +51,15 @@ margin_right = 300.0
 margin_bottom = 100.0
 texture = ExtResource( 6 )
 
+[node name="Version" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -26.0
+margin_right = 142.0
+margin_bottom = -6.0
+text = "Version: 0.0.0-status"
+
 [node name="MenuPanel" type="NinePatchRect" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0

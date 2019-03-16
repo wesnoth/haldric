@@ -89,6 +89,10 @@ _global_script_class_icons={
 config/name="Haldric"
 run/main_scene="res://source/interface/menus/TitleScreen.tscn"
 config/icon="res://icon.png"
+version/major=0
+version/minor=1
+version/patch=0
+version/status="dev"
 
 [autoload]
 
