@@ -1,5 +1,7 @@
 class_name Map extends TileMap
 
+const MapBorder = preload("res://source/core/map/MapBorder.tscn")
+
 const OFFSET = Vector2(36, 36)
 const CELL_SIZE = Vector2(54, 72)
 
@@ -21,6 +23,7 @@ func _ready() -> void:
 	height = get_used_rect().size.y
 	_initialize_locations()
 	_initialize_grid()
+	_initialize_border()
 
 func map_to_world_centered(cell : Vector2) -> Vector2:
 	return map_to_world(cell) + OFFSET
@@ -104,6 +107,13 @@ func _initialize_locations() -> void:
 
 func _initialize_grid() -> void:
 	grid = Grid.new(self, width, height)
+
+func _initialize_border() -> void:
+	var border = MapBorder.instance()
+	var size = Vector2(width, height)
+	print(size)
+	add_child(border)
+	border.rect_size = map_to_world(size) + Vector2(18, 36)
 
 func _flatten(cell : Vector2) -> int:
 	return int(cell.y) * int(width) + int(cell.x)
