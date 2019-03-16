@@ -27,22 +27,28 @@ texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
 
-[node name="Shield" type="TextureRect" parent="."]
+[node name="Logo" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = 150.0
+margin_bottom = 150.0
+
+[node name="Shield" type="TextureRect" parent="Logo"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -300.0
-margin_top = 50.0
+margin_top = -100.0
 margin_right = 300.0
-margin_bottom = 250.0
+margin_bottom = 100.0
 texture = ExtResource( 5 )
 
-[node name="LogoText" type="TextureRect" parent="."]
+[node name="Text" type="TextureRect" parent="Logo"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -300.0
-margin_top = 50.0
+margin_top = -100.0
 margin_right = 300.0
-margin_bottom = 250.0
+margin_bottom = 100.0
 texture = ExtResource( 6 )
 
 [node name="MenuPanel" type="NinePatchRect" parent="."]
