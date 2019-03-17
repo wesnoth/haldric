@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://source/core/editor/Editor.gd" type="Script" id=1]
+[ext_resource path="res://source/editor/Editor.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/terrain/off-map/off-map.png" type="Texture" id=2]
 [ext_resource path="res://graphics/tilesets/tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://source/core/editor/Map.gd" type="Script" id=4]
-[ext_resource path="res://source/core/editor/HUD.gd" type="Script" id=5]
+[ext_resource path="res://source/editor/Map.gd" type="Script" id=4]
+[ext_resource path="res://source/editor/HUD.gd" type="Script" id=5]
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=6]
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=7]
-[ext_resource path="res://source/core/camera/Camera2D.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/camera/Camera2D.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 

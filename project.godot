@@ -9,25 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Resource",
+"base": "Reference",
 "class": "Grid",
 "language": "GDScript",
-"path": "res://source/core/map/Grid.gd"
+"path": "res://source/core/scenario/map/Grid.gd"
 }, {
 "base": "Reference",
 "class": "Hex",
 "language": "GDScript",
-"path": "res://source/core/map/Hex.gd"
+"path": "res://source/core/scenario/map/Hex.gd"
 }, {
 "base": "Reference",
 "class": "Location",
 "language": "GDScript",
-"path": "res://source/core/map/Location.gd"
+"path": "res://source/core/scenario/map/Location.gd"
 }, {
-"base": "TileMap",
+"base": "Reference",
 "class": "Map",
 "language": "GDScript",
-"path": "res://source/core/map/Map.gd"
+"path": "res://source/core/scenario/map/Map.gd"
 }, {
 "base": "Resource",
 "class": "RDefense",
@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/templates/RUnit.gd"
 }, {
+"base": "Node2D",
+"class": "Scenario",
+"language": "GDScript",
+"path": "res://source/core/scenario/Scenario.gd"
+}, {
 "base": "Resource",
 "class": "Terrain",
 "language": "GDScript",
@@ -67,7 +72,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Unit",
 "language": "GDScript",
-"path": "res://source/core/units/Unit.gd"
+"path": "res://source/core/unit/Unit.gd"
 } ]
 _global_script_class_icons={
 "Grid": "",
@@ -80,6 +85,7 @@ _global_script_class_icons={
 "RScenario": "",
 "RTerrain": "",
 "RUnit": "",
+"Scenario": "",
 "Terrain": "",
 "Unit": ""
 }
@@ -96,10 +102,10 @@ version/status="dev"
 
 [autoload]
 
-Registry="*res://source/global/Registry.gd"
-Loader="*res://source/global/Loader.gd"
-Global="*res://source/global/Global.gd"
 Scene="*res://source/global/Scene.tscn"
+Global="*res://source/global/Global.gd"
+Loader="*res://source/global/Loader.gd"
+Registry="*res://source/global/Registry.gd"
 Audio="*res://source/global/Audio.tscn"
 
 [debug]

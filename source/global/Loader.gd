@@ -2,45 +2,6 @@ extends Node
 
 const map_path = "res://data/multiplayer/maps/"
 
-func load_map(path : String) -> Map:
-	var map := Map.new()
-	var file = File.new()
-
-	if not file.open(path, file.READ) == OK:
-		print("Loader: failed to load ", path, ", return null")
-		file.close()
-		return null
-
-	var file_name_extention = path.get_file()
-	var file_name = file_name_extention.split(".")[0]
-
-	map.name = file_name
-
-	var y = 0
-	while not file.eof_reached():
-		var line = file.get_csv_line()
-		for x in range(line.size()):
-			var item = line[x].strip_edges().split("^")
-			var base = item[0]
-			var id = map.tile_set.find_tile_by_name(base)
-			map.set_cell(x, y, id)
-			if (item.size() == 2):
-				var overlay_id = map.tile_set.find_tile_by_name("^" + item[1])
-				map.overlay.set_cell(x, y, overlay_id)
-		y += 1
-
-	file.close()
-	return map
-
-func save_map(map : Map) -> void:
-	var path = map_path + map.name + ".map.tres"
-
-	var file = File.new()
-	if file.open(path, File.WRITE) != OK:
-		print("could not save file")
-	file.store_string(map.get_map_string())
-	file.close()
-
 func load_dir(path : String, extentions : Array) -> Array:
 	return _get_directory_data(path, [], extentions)
 

@@ -1,6 +1,6 @@
 class_name Map extends TileMap
 
-const MapBorder = preload("res://source/core/map/MapBorder.tscn")
+const MapBorder = preload("res://source/core/scenario/MapBorder.tscn")
 
 const OFFSET = Vector2(36, 36)
 const CELL_SIZE = Vector2(54, 72)
@@ -10,13 +10,10 @@ var height := 0
 
 var locations := {}
 
-var overlay := TileMap.new()
-var cover := TileMap.new()
-
 var grid : Grid = null
 
-func _init() -> void:
-	_setup()
+onready var overlay := $Overlay
+onready var cover := $Cover
 
 func _ready() -> void:
 	width = get_used_rect().size.x
@@ -57,23 +54,6 @@ func get_map_string() -> String:
 				string += code + overlay_code
 		string += "\n"
 	return string
-
-func _setup() -> void:
-	_setup_tilemap(self)
-	_setup_tilemap(overlay)
-	overlay.name = "Overlay"
-	add_child(overlay)
-	_setup_tilemap(cover)
-	cover.name = "Cover"
-	add_child(cover)
-
-func _setup_tilemap(tilemap : TileMap) -> void:
-	tilemap.cell_size = CELL_SIZE
-	tilemap.cell_half_offset = TileMap.HALF_OFFSET_Y
-	if tilemap == self:
-		tilemap.tile_set = Global.tileset
-	else:
-		tilemap.tile_set = tile_set
 
 func _initialize_locations() -> void:
 	for y in range(height):

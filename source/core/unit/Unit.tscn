@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://source/core/units/Unit.gd" type="Script" id=1]
+[ext_resource path="res://source/core/unit/Unit.gd" type="Script" id=1]
+
 
 [node name="Unit" type="Node2D"]
 script = ExtResource( 1 )
