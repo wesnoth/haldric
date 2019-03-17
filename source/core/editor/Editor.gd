@@ -21,6 +21,7 @@ func _add_terrain_button(id : int) -> void:
 	texture.atlas = map.tile_set.tile_get_texture(id)
 	texture.region = map.tile_set.tile_get_region(id)
 	button.texture_normal = texture
+	button.rect_size = Vector2(54, 72)
 	HUD.add_button(button)
 
 func _on_button_pressed(id):

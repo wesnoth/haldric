@@ -3,7 +3,7 @@
 [ext_resource path="res://source/core/game/Game.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/terrain/off-map/off-map.png" type="Texture" id=2]
 [ext_resource path="res://source/interface/hud/HUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/core/game/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://source/core/camera/Camera2D.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -24,10 +24,5 @@ axis_stretch_vertical = 1
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 960, 540 )
-current = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
-script = ExtResource( 4 )
+[node name="Camera2D" parent="." instance=ExtResource( 4 )]
 
