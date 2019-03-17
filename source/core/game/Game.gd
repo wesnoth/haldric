@@ -2,7 +2,7 @@ extends Node2D
 
 var map : Map
 
-onready var map_container = $MapContainer
+onready var scenario_container = $ScenarioContainer
 onready var unit_container = $UnitContainer
 
 func _ready():
@@ -11,7 +11,7 @@ func _ready():
 
 func _load_map() -> void:
 	var scenario = load(Registry.scenarios["tilemap_test"]).instance()
-	map_container.add_child(scenario)
+	scenario_container.add_child(scenario)
 
 #func _load_units() -> void:
 #	var unit = Unit.new(Registry.units["Archer"])
