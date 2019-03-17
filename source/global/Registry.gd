@@ -22,9 +22,9 @@ func _load_music() -> void:
 		music[file_data.id] = file_data.data
 
 func _load_scenarios() -> void:
-	var directory_data = Loader.load_dir("res://data/multiplayer/scenarios", ["tres", "res"])
+	var directory_data = Loader.load_dir("res://data/multiplayer/scenarios", ["tscn"])
 	for file_data in directory_data:
-		scenarios[file_data.id] = file_data.data
+		scenarios[file_data.id] = file_data.path
 
 func _load_terrain() -> void:
 	var directory_data = Loader.load_dir("res://data/terrain", ["tres", "res"])
