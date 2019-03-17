@@ -18,7 +18,7 @@ texture = ExtResource( 2 )
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="MapContainer" type="Node2D" parent="."]
+[node name="ScenarioContainer" type="Node2D" parent="."]
 
 [node name="UnitContainer" type="Node2D" parent="."]
 
