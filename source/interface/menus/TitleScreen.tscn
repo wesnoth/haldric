@@ -6,7 +6,7 @@
 [ext_resource path="res://graphics/images/maps/titlescreen.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/interface/logo/logo-bg.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/interface/logo/logo.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/interface/panels/panel-transparent.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=7]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -70,6 +70,7 @@ margin_right = -50.0
 margin_bottom = -50.0
 rect_min_size = Vector2( 200, 0 )
 texture = ExtResource( 7 )
+region_rect = Rect2( 20, 0, 20, 20 )
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
