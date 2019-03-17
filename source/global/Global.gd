@@ -6,11 +6,11 @@ var tileset = preload("res://graphics/tilesets/tileset.tres")
 var version = _get_version_string()
 
 # Toggle Fullscreen
-func _input(event):
+func _input(event : InputEvent) -> void:
 	if event.is_action_pressed("toggle_fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen
 
-func _get_version_string():
+func _get_version_string() -> String:
 	var version = ""
 	version += str(ProjectSettings.get("application/version/major"), ".")
 	version += str(ProjectSettings.get("application/version/minor"), ".")

@@ -12,7 +12,7 @@ var sizes = [
 
 onready var resolutions = $CenterContainer/VBoxContainer/HBoxContainer/OptionButton
 
-func _ready():
+func _ready() -> void:
 	resolutions.add_item("720p (16:9)", 0)
 	resolutions.add_item("720p (21:9)", 1)
 	resolutions.add_item("1080p (16:9)", 2)
@@ -21,11 +21,11 @@ func _ready():
 	resolutions.add_item("1440p (21:9)", 5)
 	resolutions.add_item("2160p (16:9)", 6)
 	
-func _on_Save_pressed():
+func _on_Save_pressed() -> void:
 	var new_resolution = sizes[resolutions.get_selected_id()]
 	ProjectSettings.set("display/window/size/height", new_resolution.y)
 	ProjectSettings.set("display/window/size/width", new_resolution.x)
 	ProjectSettings.save()
 
-func _on_Back_pressed():
+func _on_Back_pressed() -> void:
 	Scene.change(Scene.TitleScreen)
