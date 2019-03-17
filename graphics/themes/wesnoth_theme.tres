@@ -1,16 +1,28 @@
-[gd_resource type="Theme" load_steps=10 format=2]
+[gd_resource type="Theme" load_steps=13 format=2]
 
 [ext_resource path="res://graphics/themes/button_stylebox.tres" type="StyleBox" id=1]
 [ext_resource path="res://graphics/images/interface/buttons/checkbox-pressed.png" type="Texture" id=2]
 [ext_resource path="res://graphics/images/interface/buttons/checkbox.png" type="Texture" id=3]
 [ext_resource path="res://graphics/images/interface/buttons/slider.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/interface/buttons/slider-active.png" type="Texture" id=5]
-[ext_resource path="res://graphics/images/interface/buttons/radiobox-small-pressed.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/interface/buttons/radiobox-small.png" type="Texture" id=7]
-[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://graphics/themes/panel_stylebox.tres" type="StyleBox" id=6]
+[ext_resource path="res://graphics/images/interface/buttons/radiobox-small-pressed.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/interface/buttons/radiobox-small.png" type="Texture" id=8]
+[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.494118, 0.360784, 0.243137, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.494118, 0.360784, 0.243137, 1 )
+anti_aliasing = false
 
 [sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 8 )
+font_data = ExtResource( 9 )
 
 [resource]
 default_font = SubResource( 1 )
@@ -48,10 +60,10 @@ HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = ExtResource( 5 )
 HSlider/icons/tick = null
 HSlider/styles/focus = null
-HSlider/styles/grabber_area = null
+HSlider/styles/grabber_area = SubResource( 2 )
 HSlider/styles/grabber_disabled = null
 HSlider/styles/grabber_highlight = null
-HSlider/styles/slider = null
+HSlider/styles/slider = ExtResource( 6 )
 PopupMenu/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
 PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
@@ -60,14 +72,14 @@ PopupMenu/constants/hseparation = 8
 PopupMenu/constants/vseparation = 8
 PopupMenu/fonts/font = null
 PopupMenu/icons/checked = null
-PopupMenu/icons/radio_checked = ExtResource( 6 )
-PopupMenu/icons/radio_unchecked = ExtResource( 7 )
+PopupMenu/icons/radio_checked = ExtResource( 7 )
+PopupMenu/icons/radio_unchecked = ExtResource( 8 )
 PopupMenu/icons/submenu = null
 PopupMenu/icons/unchecked = null
 PopupMenu/styles/hover = null
 PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
-PopupMenu/styles/panel = null
+PopupMenu/styles/panel = ExtResource( 6 )
 PopupMenu/styles/panel_disabled = null
-PopupMenu/styles/separator = null
+PopupMenu/styles/separator = SubResource( 3 )
 
