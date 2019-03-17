@@ -8,7 +8,7 @@ var terrain := {}
 func _ready() -> void:
 	scan()
 
-func scan():
+func scan() -> void:
 	_load_music()
 	_load_units()
 	_load_scenarios()

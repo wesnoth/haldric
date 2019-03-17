@@ -14,8 +14,6 @@ func _load_map() -> void:
 		scenario_container.add_child(scenario)
 
 func _load_units() -> void:
-	var unit = Unit.new(Registry.units["Archer"])
-	scenario.add_unit(unit, Vector2(4, 4))
-
-func _on_SaveMap_pressed() -> void:
-	Loader.save_map(scenario.map)
+	if scenario:
+		var unit = Unit.new(Registry.units["Archer"])
+		scenario.add_unit(unit, Vector2(4, 4))
