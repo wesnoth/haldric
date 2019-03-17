@@ -1,20 +1,41 @@
-[gd_resource type="Theme" load_steps=15 format=2]
+[gd_resource type="Theme" load_steps=16 format=2]
 
 [ext_resource path="res://graphics/themes/button_stylebox.tres" type="StyleBox" id=1]
-[ext_resource path="res://graphics/images/interface/buttons/checkbox-pressed.png" type="Texture" id=2]
-[ext_resource path="res://graphics/images/interface/buttons/checkbox.png" type="Texture" id=3]
-[ext_resource path="res://graphics/images/interface/buttons/slider.png" type="Texture" id=4]
-[ext_resource path="res://graphics/images/interface/buttons/slider-active.png" type="Texture" id=5]
-[ext_resource path="res://graphics/themes/panel_stylebox.tres" type="StyleBox" id=6]
-[ext_resource path="res://graphics/images/interface/buttons/radiobox-small-pressed.png" type="Texture" id=7]
-[ext_resource path="res://graphics/images/interface/buttons/radiobox-small.png" type="Texture" id=8]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=9]
-[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://graphics/themes/panel_stylebox.tres" type="StyleBox" id=2]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=3]
+[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/buttons.png-36653569f31c0fdd836a1ebc45bafa0a.stex"
 
-[sub_resource type="StyleBoxTexture" id=4]
-texture = ExtResource( 9 )
+[sub_resource type="AtlasTexture" id=2]
+atlas = SubResource( 1 )
+region = Rect2( 0, 16, 39, 36 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = SubResource( 1 )
+region = Rect2( 39, 16, 40, 36 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = SubResource( 1 )
+region = Rect2( 32, 70, 32, 44 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = SubResource( 1 )
+region = Rect2( 0, 70, 32, 44 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = SubResource( 1 )
+region = Rect2( 0, 52, 18, 18 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = SubResource( 1 )
+region = Rect2( 18, 51, 18, 19 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 20, 20 )
 margin_left = 2.0
 margin_right = 2.0
@@ -22,7 +43,7 @@ margin_top = 2.0
 margin_bottom = 2.0
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.494118, 0.360784, 0.243137, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -31,11 +52,11 @@ border_width_bottom = 1
 border_color = Color( 0.494118, 0.360784, 0.243137, 1 )
 anti_aliasing = false
 
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 10 )
+[sub_resource type="DynamicFont" id=11]
+font_data = ExtResource( 4 )
 
 [resource]
-default_font = SubResource( 1 )
+default_font = SubResource( 11 )
 Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
@@ -55,25 +76,25 @@ CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 8
 CheckBox/fonts/font = null
-CheckBox/icons/checked = ExtResource( 2 )
+CheckBox/icons/checked = SubResource( 2 )
 CheckBox/icons/radio_checked = null
 CheckBox/icons/radio_unchecked = null
-CheckBox/icons/unchecked = ExtResource( 3 )
+CheckBox/icons/unchecked = SubResource( 3 )
 CheckBox/styles/disabled = null
 CheckBox/styles/focus = null
 CheckBox/styles/hover = null
 CheckBox/styles/hover_pressed = null
 CheckBox/styles/normal = null
 CheckBox/styles/pressed = null
-HSlider/icons/grabber = ExtResource( 4 )
+HSlider/icons/grabber = SubResource( 4 )
 HSlider/icons/grabber_disabled = null
-HSlider/icons/grabber_highlight = ExtResource( 5 )
+HSlider/icons/grabber_highlight = SubResource( 5 )
 HSlider/icons/tick = null
 HSlider/styles/focus = null
-HSlider/styles/grabber_area = SubResource( 2 )
+HSlider/styles/grabber_area = SubResource( 6 )
 HSlider/styles/grabber_disabled = null
 HSlider/styles/grabber_highlight = null
-HSlider/styles/slider = ExtResource( 6 )
+HSlider/styles/slider = ExtResource( 2 )
 PopupMenu/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
 PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
@@ -82,14 +103,14 @@ PopupMenu/constants/hseparation = 8
 PopupMenu/constants/vseparation = 8
 PopupMenu/fonts/font = null
 PopupMenu/icons/checked = null
-PopupMenu/icons/radio_checked = ExtResource( 7 )
-PopupMenu/icons/radio_unchecked = ExtResource( 8 )
+PopupMenu/icons/radio_checked = SubResource( 7 )
+PopupMenu/icons/radio_unchecked = SubResource( 8 )
 PopupMenu/icons/submenu = null
 PopupMenu/icons/unchecked = null
-PopupMenu/styles/hover = SubResource( 4 )
+PopupMenu/styles/hover = SubResource( 9 )
 PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
-PopupMenu/styles/panel = ExtResource( 6 )
+PopupMenu/styles/panel = ExtResource( 2 )
 PopupMenu/styles/panel_disabled = null
-PopupMenu/styles/separator = SubResource( 3 )
+PopupMenu/styles/separator = SubResource( 10 )
 

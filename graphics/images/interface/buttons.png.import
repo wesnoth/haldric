@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/radiobox.png-4544ac4143b9df85e26291641e1e92b6.stex"
+path="res://.import/buttons.png-36653569f31c0fdd836a1ebc45bafa0a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/images/interface/buttons/radiobox.png"
-dest_files=[ "res://.import/radiobox.png-4544ac4143b9df85e26291641e1e92b6.stex" ]
+source_file="res://graphics/images/interface/buttons.png"
+dest_files=[ "res://.import/buttons.png-36653569f31c0fdd836a1ebc45bafa0a.stex" ]
 
 [params]
 
