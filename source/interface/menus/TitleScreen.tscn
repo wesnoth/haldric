@@ -82,9 +82,9 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/CenterContainer"]
 margin_left = 43.0
-margin_top = 428.0
+margin_top = 406.0
 margin_right = 156.0
-margin_bottom = 552.0
+margin_bottom = 574.0
 alignment = 1
 
 [node name="Singleplayer" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
@@ -94,22 +94,31 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "Singleplayer"
 
-[node name="Options" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
+[node name="Editor" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
 margin_top = 44.0
 margin_right = 113.0
 margin_bottom = 80.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "Options"
+text = "Editor"
 
-[node name="Quit" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
 margin_top = 88.0
 margin_right = 113.0
 margin_bottom = 124.0
 focus_mode = 0
 enabled_focus_mode = 0
+text = "Options"
+
+[node name="Quit" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
+margin_top = 132.0
+margin_right = 113.0
+margin_bottom = 168.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "Quit"
 
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
+[connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Editor" to="." method="_on_Editor_pressed"]
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

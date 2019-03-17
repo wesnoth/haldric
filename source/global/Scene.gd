@@ -3,8 +3,8 @@ extends CanvasLayer
 # Scenes
 var TitleScreen = "res://source/interface/menus/TitleScreen.tscn"
 var Options = "res://source/interface/menus/Options.tscn"
+var Editor = "res://source/core/editor/Editor.tscn"
 var Game = "res://source/core/game/Game.tscn"
-
 var next_scene := ""
 
 onready var anim = $AnimationPlayer
