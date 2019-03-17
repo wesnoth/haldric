@@ -4,6 +4,7 @@ extends Node
 var tileset = preload("res://graphics/tilesets/tileset.tres")
 
 var version = _get_version_string()
+var scenario_name = null
 
 # Toggle Fullscreen
 func _input(event : InputEvent) -> void:

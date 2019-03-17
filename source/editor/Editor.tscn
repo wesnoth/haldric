@@ -1,15 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/editor/Editor.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/terrain/off-map/off-map.png" type="Texture" id=2]
-[ext_resource path="res://graphics/tilesets/tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://source/editor/Map.gd" type="Script" id=4]
-[ext_resource path="res://source/editor/HUD.gd" type="Script" id=5]
-[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=6]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=7]
-[ext_resource path="res://source/interface/camera/Camera2D.tscn" type="PackedScene" id=8]
-
-[sub_resource type="AtlasTexture" id=1]
+[ext_resource path="res://source/core/scenario/Scenario.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/editor/HUD.gd" type="Script" id=4]
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=5]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
+[ext_resource path="res://source/interface/camera/Camera2D.tscn" type="PackedScene" id=7]
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )
@@ -22,6 +19,9 @@ motion_mirroring = Vector2( 1, 1 )
 [node name="NinePatchRect" type="NinePatchRect" parent="ParallaxBackground/ParallaxLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -1.0
+margin_right = 1920.0
+margin_bottom = 1079.0
 rect_min_size = Vector2( 1920, 1080 )
 texture = ExtResource( 2 )
 patch_margin_left = 2
@@ -31,27 +31,12 @@ patch_margin_bottom = 2
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Map" type="TileMap" parent="."]
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 54, 72 )
-cell_half_offset = 1
-format = 1
-script = ExtResource( 4 )
+[node name="ScenarioContainer" type="Node2D" parent="."]
 
-[node name="Overlay" type="TileMap" parent="Map"]
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 54, 72 )
-cell_half_offset = 1
-format = 1
-
-[node name="Cover" type="TileMap" parent="Map"]
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 54, 72 )
-cell_half_offset = 1
-format = 1
+[node name="Scenario" parent="ScenarioContainer" instance=ExtResource( 3 )]
 
 [node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 
 [node name="TileButtons" type="Control" parent="HUD"]
 anchor_left = 1.0
@@ -59,12 +44,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -223.0
 margin_bottom = 1.0
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HUD/TileButtons"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 20, 20 )
 patch_margin_left = 2
 patch_margin_top = 2
@@ -92,14 +77,68 @@ margin_right = -7.0
 margin_bottom = -7.0
 text = "Back"
 
-[node name="TextureButton" type="TextureButton" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-texture_normal = SubResource( 1 )
+[node name="UIButtons" type="Control" parent="HUD"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -55.0
+margin_right = 447.0
+theme = ExtResource( 5 )
 
-[node name="Camera2D" parent="." instance=ExtResource( 8 )]
+[node name="NinePatchRect" type="NinePatchRect" parent="HUD/UIButtons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 20, 20 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/UIButtons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 6.0
+margin_right = -1.0
+margin_bottom = -5.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="New" type="Button" parent="HUD/UIButtons/HBoxContainer"]
+margin_left = 21.0
+margin_right = 82.0
+margin_bottom = 44.0
+text = "New"
+
+[node name="LineEdit" type="LineEdit" parent="HUD/UIButtons/HBoxContainer"]
+margin_left = 102.0
+margin_right = 262.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 160, 0 )
+focus_mode = 1
+focus_mode = 1
+context_menu_enabled = false
+placeholder_text = "scenario name"
+
+[node name="Save" type="Button" parent="HUD/UIButtons/HBoxContainer"]
+margin_left = 282.0
+margin_right = 343.0
+margin_bottom = 44.0
+text = "Save"
+
+[node name="Load" type="Button" parent="HUD/UIButtons/HBoxContainer"]
+margin_left = 363.0
+margin_right = 425.0
+margin_bottom = 44.0
+text = "Load"
+
+[node name="Camera2D" parent="." instance=ExtResource( 7 )]
 visible = false
 limit_left = 0
 limit_top = 0
 
 [connection signal="pressed" from="HUD/TileButtons/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="HUD/UIButtons/HBoxContainer/New" to="." method="_on_New_pressed"]
+[connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Load" to="." method="_on_Load_pressed"]

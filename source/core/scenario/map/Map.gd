@@ -14,8 +14,7 @@ onready var overlay := $Overlay
 onready var cover := $Cover
 
 func _ready() -> void:
-	width = get_used_rect().size.x
-	height = get_used_rect().size.y
+	_update_size()
 	_initialize_locations()
 	_initialize_grid()
 	_initialize_border()
@@ -28,6 +27,23 @@ func world_to_world_centered(cell: Vector2) -> Vector2:
 
 func get_location(cell : Vector2) -> Location:
 	return locations[_flatten(cell)]
+
+func set_tile(global_position, id):
+	var cell = world_to_map(global_position)
+	
+	if id == -1:
+		set_cellv(cell, id)
+		overlay.set_cellv(cell, id)
+		return
+		
+	var code = tile_set.tile_get_name(id)
+	if code.begins_with("^"):
+		overlay.set_cellv(cell, id)
+		if get_cellv(cell) == -1:
+			var grass_id = tile_set.find_tile_by_name("Gg")
+			set_cellv(cell, grass_id)
+	else:
+		set_cellv(cell, id)
 
 func get_map_string() -> String:
 	var string = ""
@@ -85,6 +101,10 @@ func _initialize_locations() -> void:
 
 func _initialize_grid() -> void:
 	grid = Grid.new(self, width, height)
+
+func _update_size():
+	width = get_used_rect().size.x
+	height = get_used_rect().size.y
 
 func _initialize_border() -> void:
 	var border = $MapBorder

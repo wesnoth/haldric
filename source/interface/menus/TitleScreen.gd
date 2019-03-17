@@ -5,7 +5,7 @@ func _ready():
 	$Version.text = Global.version
 
 func _on_Singleplayer_pressed() -> void:
-	Scene.change(Scene.Game)
+	Scene.change(Scene.ChooseScenario)
 
 func _on_Editor_pressed():
 	Scene.change(Scene.Editor)

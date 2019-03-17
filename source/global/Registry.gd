@@ -6,6 +6,9 @@ var scenarios := {}
 var terrain := {}
 
 func _ready() -> void:
+	scan()
+
+func scan():
 	_load_music()
 	_load_units()
 	_load_scenarios()
