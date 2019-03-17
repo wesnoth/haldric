@@ -3,7 +3,6 @@ extends Node2D
 var scenario = null
 
 onready var scenario_container = $ScenarioContainer
-onready var unit_container = $UnitContainer
 
 func _ready():
 	_load_map()
