@@ -1,7 +1,5 @@
 extends Node
 
-const map_path = "res://data/multiplayer/maps/"
-
 func load_dir(path : String, extentions : Array) -> Array:
 	return _get_directory_data(path, [], extentions)
 

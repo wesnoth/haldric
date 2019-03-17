@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Reference",
+"base": "Resource",
 "class": "Grid",
 "language": "GDScript",
 "path": "res://source/core/scenario/map/Grid.gd"
@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/core/scenario/map/Location.gd"
 }, {
-"base": "Reference",
+"base": "TileMap",
 "class": "Map",
 "language": "GDScript",
 "path": "res://source/core/scenario/map/Map.gd"
@@ -43,11 +43,6 @@ _global_script_classes=[ {
 "class": "RResistance",
 "language": "GDScript",
 "path": "res://source/templates/RResistance.gd"
-}, {
-"base": "Resource",
-"class": "RScenario",
-"language": "GDScript",
-"path": "res://source/templates/RScenario.gd"
 }, {
 "base": "Resource",
 "class": "RTerrain",
@@ -82,7 +77,6 @@ _global_script_class_icons={
 "RDefense": "",
 "RMovement": "",
 "RResistance": "",
-"RScenario": "",
 "RTerrain": "",
 "RUnit": "",
 "Scenario": "",
