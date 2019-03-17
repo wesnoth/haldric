@@ -27,3 +27,6 @@ func _add_terrain_button(id : int) -> void:
 func _on_button_pressed(id):
 	print(id)
 	current_tile = id
+
+func _on_Back_pressed():
+	Scene.change(Scene.TitleScreen)

@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/core/editor/Editor.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/terrain/off-map/off-map.png" type="Texture" id=2]
 [ext_resource path="res://graphics/tilesets/tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://source/core/editor/Map.gd" type="Script" id=4]
 [ext_resource path="res://source/core/editor/HUD.gd" type="Script" id=5]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
-[ext_resource path="res://source/core/camera/Camera2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=6]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=7]
+[ext_resource path="res://source/core/camera/Camera2D.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 
@@ -57,11 +58,13 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -223.0
+margin_bottom = 1.0
+theme = ExtResource( 6 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HUD/TileButtons"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 20, 20 )
 patch_margin_left = 2
 patch_margin_top = 2
@@ -73,17 +76,30 @@ axis_stretch_vertical = 1
 [node name="VBoxContainer" type="GridContainer" parent="HUD/TileButtons"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = -50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
+
+[node name="Back" type="Button" parent="HUD/TileButtons"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -82.0
+margin_top = -44.0
+margin_right = -7.0
+margin_bottom = -7.0
+text = "Back"
 
 [node name="TextureButton" type="TextureButton" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 texture_normal = SubResource( 1 )
 
-[node name="Camera2D" parent="." instance=ExtResource( 7 )]
+[node name="Camera2D" parent="." instance=ExtResource( 8 )]
 visible = false
 limit_left = 0
 limit_top = 0
 
+[connection signal="pressed" from="HUD/TileButtons/Back" to="." method="_on_Back_pressed"]
