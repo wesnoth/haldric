@@ -7,7 +7,7 @@ onready var map = $Map
 onready var units = $Units
 onready var sides = $Sides
 
-func initialize() -> void:
+func _ready() -> void:
 	TeamColor.initializeFlagColors()
 
 func add_unit(side_number : int, unit_id : String, x : int, y : int) -> void:

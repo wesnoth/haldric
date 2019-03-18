@@ -28,7 +28,6 @@ func _load_map() -> void:
 	if Registry.scenarios.has(Global.scenario_name):
 		scenario = load(Registry.scenarios[Global.scenario_name]).instance()
 		scenario_container.add_child(scenario)
-		scenario.initialize()
 
 func _load_units() -> void:
 	if scenario:
