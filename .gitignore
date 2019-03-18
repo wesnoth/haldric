@@ -9,6 +9,9 @@ export_presets.cfg
 .vs/
 obj/
 
+# Visual Studio Code - specific ignores
+.vscode
+
 # Linux-specific ignores (Dolphin)
 .directory
 
