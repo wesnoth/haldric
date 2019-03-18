@@ -44,7 +44,7 @@ func has_village(cell):
 
 func get_villages():
 	return villages
-s
+
 func calculate_income():
 	income = income_per_village * villages.size() + base_income
 

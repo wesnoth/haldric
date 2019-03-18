@@ -137,4 +137,4 @@ func add_unit(unit : Unit, cell : Vector2, sideNum : int) -> void:
 	side.add_child(unit)
 	var loc = map.get_location(cell)
 	unit.move_to(loc)
-    unit.sprite.set_material(side.shader)
+	unit.sprite.set_material(side.shader)
