@@ -10,7 +10,7 @@ onready var sides = $Sides
 
 func initialize() -> void:
 	TeamColor.initializeFlagColors()
-	for i in range(sides):
+	for i in range(side_number):
 		var side := Side.new()
 		side.initialize(i)
 		side.team_color = TeamColor.team_color_data.keys()[i]
