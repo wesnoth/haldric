@@ -1,18 +1,19 @@
-class_name Side extends Node2D
+class_name Side extends Node
 
 const income_per_village := 2
 
 const heal_on_village := 8
 const heal_on_rest := 2
 
-var base_income := 2
-
-var team_color := ""
-var team_color_info := []
 var side := 0
 
-var gold := 100
-var income := 2
+export(int) var base_income = 2
+
+export(String) var team_color = ""
+var team_color_info := []
+
+export(int) var gold = 100
+export(int) var income = 2
 
 var shader : ShaderMaterial = null
 var flag_shader : ShaderMaterial = null
@@ -25,11 +26,13 @@ var leaders := []
 
 var units := []
 
-func initialize(side : int, gold := 100, base_income := 2, starting_villages := []) -> void:
-	self.base_income = base_income
-	self.side = side
-	self.gold = gold
-	self.villages = starting_villages
+func _ready() -> void:
+	side = get_index()
+
+	team_color = TeamColor.team_color_data.keys()[side]
+	team_color_info = TeamColor.team_color_data[team_color]
+	shader = TeamColor.generate_team_shader(team_color_info)
+
 	calculate_income()
 
 func add_village(cell : Vector2) -> void:
