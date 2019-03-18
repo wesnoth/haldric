@@ -15,7 +15,6 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
-tile_data = PoolIntArray( 65520, 18, 0 )
 script = ExtResource( 3 )
 
 [node name="Overlay" type="TileMap" parent="Map"]
