@@ -24,7 +24,6 @@ func _ready() -> void:
 	_setup_scenario()
 
 func _setup_scenario() -> void:
-	scenario.map.get_node("MapBorder").hide()
 	for id in scenario.map.tile_set.get_tiles_ids():
 		_add_terrain_button(id)
 
@@ -42,7 +41,6 @@ func _new_map() -> void:
 	scenario.free()
 	scenario = SCENARIO.instance()
 	scenario_container.add_child(scenario)
-	scenario.map.get_node("MapBorder").hide()
 
 func _load_map(scenario_name) -> void:
 	var packed_scene = load(default_path + scenario_name + ".tscn")

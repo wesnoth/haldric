@@ -52,6 +52,7 @@ func set_tile(global_position, id):
 			set_cellv(cell, grass_id)
 	else:
 		set_cellv(cell, id)
+	_update_size()
 
 func get_map_string() -> String:
 	var string = ""
@@ -113,8 +114,14 @@ func _initialize_grid() -> void:
 	grid = Grid.new(self, width, height)
 
 func _update_size():
+	if get_cell(0, 0) == -1:
+		set_cell(0, 0, tile_set.find_tile_by_name("Xv"))
 	width = get_used_rect().size.x
 	height = get_used_rect().size.y
+	if width % 2 == 0:
+		$MapBorder.rect_size = map_to_world(Vector2(width, height)) + Vector2(18, 36)
+	else:
+		$MapBorder.rect_size = map_to_world(Vector2(width, height)) + Vector2(18, 0)
 
 func _initialize_border() -> void:
 	var border = $MapBorder
