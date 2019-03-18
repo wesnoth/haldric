@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/core/scenario/Scenario.gd"
 }, {
+"base": "Node2D",
+"class": "Side",
+"language": "GDScript",
+"path": "res://source/core/scenario/Side.gd"
+}, {
 "base": "Resource",
 "class": "Terrain",
 "language": "GDScript",
@@ -80,6 +85,7 @@ _global_script_class_icons={
 "RTerrain": "",
 "RUnit": "",
 "Scenario": "",
+"Side": "",
 "Terrain": "",
 "Unit": ""
 }
