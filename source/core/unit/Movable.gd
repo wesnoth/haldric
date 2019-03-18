@@ -49,6 +49,8 @@ func highlight_moves():
 		if reachable.has(location.map.get_location(cell)):
 			continue
 		location.map.cover.set_cellv(cell, darken_id)
+func unhighlight_moves():
+	location.map.cover.clear()
 
 func _on_Tween_tween_completed(object, key):
 	if path and tween:

@@ -47,8 +47,9 @@ func find_all_reachable_cells(unit : Unit) -> Dictionary:
 		var newPath := []
 		var cost = 0
 		for pathCell in path:
-			if cost + unit.terrain_cost(get_location(pathCell)) > unit.movementPoints:
+			if cost + unit.terrain_cost(pathCell) > unit.movementPoints:
 				break
+			cost += unit.terrain_cost(pathCell)
 			newPath.append(pathCell)
 			paths[pathCell] = newPath
 	return paths	
@@ -63,14 +64,16 @@ func update_weight(unit : Unit) -> void:
 
 			var other_unit = location.movable
 			if other_unit:
-				if not other_unit.parent.side == unit.side:
+				if not other_unit.get_parent().side == unit.side:
 					cost = 99
 			else:	
 				for loc in Hex.get_neighbors(cell):
-					if not get_location(loc).movable.parent.side == unit.side:
+					if _is_out_of_bounds(loc):
+						continue
+					if get_location(loc).movable and not get_location(loc).movable.get_parent().side == unit.side:
 						cost += 100
 						break
-			grid.set_point_weight_scale(id, cost)
+			grid.astar.set_point_weight_scale(id, cost)
 
 
 func get_location(cell : Vector2) -> Location:
@@ -184,4 +187,4 @@ func _flatten(cell : Vector2) -> int:
 	return int(cell.y) * int(width) + int(cell.x)
 
 func _is_out_of_bounds(cell : Vector2) -> bool:
-	return cell.x < 0 or cell.x > width or cell.y < 0 or cell.y > height
+	return cell.x < 0 or cell.x >= width or cell.y < 0 or cell.y >= height

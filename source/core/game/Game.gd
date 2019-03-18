@@ -17,9 +17,11 @@ func _unhandled_input(event : InputEvent) -> void:
 			selected_unit.reachable = scenario.map.find_all_reachable_cells(selected_unit)
 			selected_unit.highlight_moves()
 		elif selected_unit and not location.movable:
+			selected_unit.unhighlight_moves()
 			selected_unit.move_to(location)
 	
 	elif event.is_action_pressed("mouse_right"):
+		selected_unit.unhighlight_moves()
 		selected_unit = null
 
 func _ready():
@@ -34,4 +36,4 @@ func _load_map() -> void:
 func _load_units() -> void:
 	if scenario:
 		scenario.add_unit(1, "Archer", 4, 4)
-		scenario.add_unit(1, "Archer", 7, 8)
+		scenario.add_unit(2, "Archer", 7, 8)

@@ -31,7 +31,7 @@ static func get_cells_in_range(cell : Vector2, _range : int, width : int, height
 				var parity = int(current_cell.x) & 1
 				var temp = NEIGHBOUR_TABLE[parity][(j+5)%6]
 				current_cell += temp
-				if current_cell.x < 0 or current_cell.x > width or current_cell.y < 0 or current_cell.y > height:
+				if current_cell.x >= 0 and current_cell.x < width and current_cell.y >= 0 and current_cell.y < height:
 					cells.append(current_cell)
 	return cells
 static func get_neighbors(cell : Vector2) -> Array:

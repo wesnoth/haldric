@@ -3,7 +3,7 @@ class_name Grid extends Resource
 var width := 0
 var height := 0
 
-var astar = AStar.new()
+var astar := AStar.new()
 
 var map : TileMap = null
 
