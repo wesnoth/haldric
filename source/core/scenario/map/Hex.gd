@@ -42,4 +42,4 @@ static func quad_to_hex(hex : Vector2) -> Vector3:
     var x := hex.x
     var z := hex.y - (hex.x - (int(hex.x) & 1)) / 2
     var y := -x-z
-    return Vector3(x, y, z)
+	return Vector3(x, y, z)

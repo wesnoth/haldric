@@ -20,7 +20,7 @@ func _ready() -> void:
 	resolutions.add_item("1440p (16:9)", 4)
 	resolutions.add_item("1440p (21:9)", 5)
 	resolutions.add_item("2160p (16:9)", 6)
-	
+
 func _on_Save_pressed() -> void:
 	var new_resolution = sizes[resolutions.get_selected_id()]
 	ProjectSettings.set("display/window/size/height", new_resolution.y)

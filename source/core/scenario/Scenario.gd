@@ -74,7 +74,7 @@ func new_color_map(team_data : Array, base_color : Array) -> Dictionary:
 	var new_red_avg = team_data[0].r
 	var new_green_avg = team_data[0].g
 	var new_blue_avg = team_data[0].b
-	
+
 	var new_red_max = team_data[1].r
 	var new_green_max = team_data[1].g
 	var new_blue_max = team_data[1].b
@@ -108,7 +108,7 @@ func new_color_map(team_data : Array, base_color : Array) -> Dictionary:
 		new_color = Color(min(r,1),min(g,1),min(b,1))
 		color_map[color] = new_color
 	return color_map
-	
+
 func initializeFlagColors() -> void:
 	var hex_format = "%X"
 	for i in range(255):
@@ -137,4 +137,4 @@ func add_unit(unit : Unit, cell : Vector2, sideNum : int) -> void:
 	side.add_child(unit)
 	var loc = map.get_location(cell)
 	unit.move_to(loc)
-	unit.sprite.set_material(side.shader)
+    unit.sprite.set_material(side.shader)

@@ -14,7 +14,7 @@ func _unhandled_input(event) -> void:
 	if Input.is_action_pressed("mouse_left"):
 		var mouse_position = get_global_mouse_position()
 		scenario.map.set_tile(mouse_position, current_tile)
-	
+
 	if Input.is_action_pressed("mouse_right"):
 		var mouse_position = get_global_mouse_position()
 		scenario.map.set_tile(mouse_position, -1)
@@ -46,10 +46,10 @@ func _new_map() -> void:
 
 func _load_map(scenario_name) -> void:
 	var packed_scene = load(default_path + scenario_name + ".tscn")
-	
+
 	if packed_scene == null:
 		return
-	
+
 	scenario.free()
 	scenario = packed_scene.instance()
 	scenario_container.add_child(scenario)

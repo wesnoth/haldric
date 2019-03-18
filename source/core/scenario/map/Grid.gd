@@ -33,7 +33,7 @@ func _generate_points() -> void:
 		for x in range(width):
 			var cell := Vector2(x, y)
 			var id := _flatten(cell)
-			
+
 			astar.add_point(id, Vector3(x, y, 0))
 
 func _generate_point_connections() -> void:
@@ -42,16 +42,16 @@ func _generate_point_connections() -> void:
 			var cell := Vector2(x, y)
 			var id := _flatten(cell)
 			var point : Vector3 = astar.get_point_position(id)
-			
+
 			_connect_with_neighbors(cell)
 
 func _connect_with_neighbors(cell : Vector2) -> void:
 	var id := _flatten(cell)
 	var neighbors := Hex.get_neighbors(cell)
-	
+
 	for n in neighbors:
 		var n_id := _flatten(n)
-		
+
 		if _check_boundaries(n) and not astar.are_points_connected(id, n_id):
 			if not map.locations[id].is_blocked and not map.locations[n_id].is_blocked:
 				astar.connect_points(id, n_id)
@@ -59,10 +59,10 @@ func _connect_with_neighbors(cell : Vector2) -> void:
 func _disconnect_with_neighbors(cell : Vector2) -> void:
 	var id = _flatten(cell)
 	var neighbors = Hex.get_neighbors(cell)
-	
+
 	for n in neighbors:
 		var n_id = _flatten(n)
-		
+
 		if _check_boundaries(n) and not astar.are_points_connected(id, n_id):
 			astar.disconnect_points(id, n_id)
 

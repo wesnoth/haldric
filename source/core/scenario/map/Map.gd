@@ -30,12 +30,12 @@ func get_location(cell : Vector2) -> Location:
 
 func set_tile(global_position, id):
 	var cell = world_to_map(global_position)
-	
+
 	if id == -1:
 		set_cellv(cell, id)
 		overlay.set_cellv(cell, id)
 		return
-		
+
 	var code = tile_set.tile_get_name(id)
 	if code.begins_with("^"):
 		overlay.set_cellv(cell, id)
@@ -47,14 +47,14 @@ func set_tile(global_position, id):
 
 func get_map_string() -> String:
 	var string = ""
-	
+
 	for y in range(height):
 		for x in range(width):
 			var id = _flatten(Vector2(x, y))
 			if get_cell(x, y) == TileMap.INVALID_CELL:
 				set_cell(x, y, tile_set.find_tile_by_name("Xv"))
 				overlay.set_cell(x, y, TileMap.INVALID_CELL)
-			
+
 			var code = tile_set.tile_get_name(get_cell(x, y))
 			var overlay_code = ""
 
@@ -74,26 +74,26 @@ func _initialize_locations() -> void:
 		for x in range (width):
 			var cell := Vector2(x, y)
 			var id := _flatten(cell)
-			
+
 			var base_code := ""
 			var overlay_code := ""
-			
+
 			var location := Location.new()
-			
+
 			if get_cellv(cell) == TileMap.INVALID_CELL:
 				set_cellv(cell, tile_set.find_tile_by_name("Xv"))
 				overlay.set_cellv(cell, TileMap.INVALID_CELL)
-			
+
 			if overlay.get_cellv(cell) != TileMap.INVALID_CELL:
 				overlay_code = tile_set.tile_get_name(overlay.get_cellv(cell))
-			
+
 			base_code = tile_set.tile_get_name(get_cell(x, y))
-			
+
 			if overlay_code == "":
 				location.terrain = Terrain.new([Registry.terrain[base_code]])
 			else:
 				location.terrain = Terrain.new([Registry.terrain[base_code], Registry.terrain[overlay_code]])
-			
+
 			location.id = id
 			location.cell = Vector2(x, y)
 			location.position = map_to_world_centered(cell)
