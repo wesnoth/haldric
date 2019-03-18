@@ -1,17 +1,17 @@
 extends Node2D
 
-var scenario : Scenario = null
+var scenario: Scenario = null
 
-onready var scenario_container = $ScenarioContainer
+var selected_unit: Movable = null
 
-var selected_unit = null
+onready var scenario_container := $ScenarioContainer as Node2D
 
-func _unhandled_input(event : InputEvent) -> void:
-	
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left"):
-		var mouse_cell = scenario.map.world_to_map(get_global_mouse_position())
+		var mouse_cell: Vector2 =\
+				scenario.map.world_to_map(get_global_mouse_position())
 		print(mouse_cell)
-		var location = scenario.map.get_location(mouse_cell)
+		var location: Location = scenario.map.get_location(mouse_cell)
 		if location.movable:
 			selected_unit = location.movable
 		elif selected_unit and not location.movable:
@@ -20,7 +20,7 @@ func _unhandled_input(event : InputEvent) -> void:
 	elif event.is_action_pressed("mouse_right"):
 		selected_unit = null
 
-func _ready():
+func _ready() -> void:
 	_load_map()
 	_load_units()
 

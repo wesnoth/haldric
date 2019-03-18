@@ -1,8 +1,9 @@
-class_name RMovement extends Resource
+extends Resource
+class_name RMovement
 
-export(int) var castle = 1
-export(int) var flat = 1
-export(int) var forest = 1
-export(int) var hills = 2
-export(int) var mountains = 3
-export(int) var village = 1
+export var castle := 1
+export var flat := 1
+export var forest := 1
+export var hills := 2
+export var mountains := 3
+export var village := 1

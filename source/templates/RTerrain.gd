@@ -1,13 +1,14 @@
-class_name RTerrain extends Resource
+extends Resource
+class_name RTerrain
 
-export(String) var code := ""
-export(String) var name := ""
-export(String) var type := ""
+export var code := ""
+export var name := ""
+export var type := ""
 
-export(bool) var recruit_onto := false
-export(bool) var recruit_from := false
+export var recruit_onto := false
+export var recruit_from := false
 
-export(bool) var heals := false
-export(bool) var gives_income := false
+export var heals := false
+export var gives_income := false
 
-export(bool) var submerge := false
+export var submerge := false

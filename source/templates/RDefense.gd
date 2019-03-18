@@ -1,8 +1,9 @@
-class_name RDefense extends Resource
+extends Resource
+class_name RDefense
 
-export(int) var castle = 60
-export(int) var flat = 40
-export(int) var forest = 50
-export(int) var hills = 50
-export(int) var mountains = 60
-export(int) var village = 60
+export var castle := 60
+export var flat := 40
+export var forest := 50
+export var hills := 50
+export var mountains := 60
+export var village := 60

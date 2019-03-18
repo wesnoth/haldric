@@ -1,22 +1,23 @@
-class_name RUnit extends Resource
+extends Resource
+class_name RUnit
 
-export(Texture) var base_image = null
+export var base_image: Texture = null
 
-export(String) var name = ""
-export(String) var ID = ""
-export(String) var race = ""
-export(String) var alignment = ""
+export var name := ""
+export var ID := ""
+export var race := ""
+export var alignment := ""
 
-export(int) var level = 1
-export(int) var cost = 1
-export(int) var health = 1
-export(int) var moves = 1
-export(int) var experience = 1
+export var level := 1
+export var cost := 1
+export var health := 1
+export var moves := 1
+export var experience := 1
 
-export(String) var advances_to = ""
+export var advances_to := ""
 
 export(Array, Resource) var attacks = null
 
-export(Resource) var defense = null
-export(Resource) var movement = null
-export(Resource) var resistance = null
+export var defense: Resource = null
+export var movement: Resource = null
+export var resistance: Resource = null

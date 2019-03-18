@@ -1,8 +1,9 @@
-class_name RResistance extends Resource
+extends Resource
+class_name RResistance
 
-export(int) var blade = 100
-export(int) var pierce = 100
-export(int) var impact = 100
-export(int) var fire = 100
-export(int) var cold = 100
-export(int) var arcane = 100
+export var blade := 100
+export var pierce := 100
+export var impact := 100
+export var fire := 100
+export var cold := 100
+export var arcane := 100
