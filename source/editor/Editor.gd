@@ -48,6 +48,7 @@ func _new_map() -> void:
 	scenario.free()
 	scenario = SCENARIO.instance()
 	scenario_container.add_child(scenario)
+	scenario.map.set_size(Vector2(15, 10))
 
 func _load_map(scenario_name) -> void:
 	var packed_scene = load(default_path + scenario_name + ".tscn")
@@ -58,7 +59,6 @@ func _load_map(scenario_name) -> void:
 	scenario.free()
 	scenario = packed_scene.instance()
 	scenario_container.add_child(scenario)
-	_setup_scenario()
 
 func _save_map(scenario_name) -> void:
 	var path = default_path + scenario_name + ".tscn"

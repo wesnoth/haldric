@@ -36,8 +36,19 @@ func find_path(start_loc : Location, end_loc : Location) -> Array:
 func get_location(cell : Vector2) -> Location:
 	return locations[_flatten(cell)]
 
+func set_size(cell : Vector2) -> void:
+	width = cell.x
+	height = cell.y
+	
+	_initialize_locations()
+	_initialize_grid()
+	_initialize_border()
+
 func set_tile(global_position, id):
 	var cell = world_to_map(global_position)
+
+	if _is_out_of_bounds(cell):
+		return
 
 	if id == -1:
 		set_cellv(cell, id)
@@ -131,3 +142,6 @@ func _initialize_border() -> void:
 
 func _flatten(cell : Vector2) -> int:
 	return int(cell.y) * int(width) + int(cell.x)
+
+func _is_out_of_bounds(cell : Vector2) -> bool:
+	return cell.x < 0 or cell.x > width or cell.y < 0 or cell.y > height
