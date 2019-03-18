@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/core/scenario/Scenario.gd"
 }, {
-"base": "Node2D",
+"base": "Node",
 "class": "Side",
 "language": "GDScript",
 "path": "res://source/core/scenario/Side.gd"
