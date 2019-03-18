@@ -22,6 +22,18 @@ const NEIGHBOUR_TABLE = [
 		Vector2(-1,  0) # NW
 	]]
 
+static func get_cells_in_range(cell : Vector2, _range : int, width : int, height : int) -> Array:
+	var cells = [cell]
+	for n in range(1,_range+1):
+		var current_cell = Vector2(cell.x, cell.y + n)
+		for j in range(6):
+			for i in range(n):
+				var parity = int(current_cell.x) & 1
+				var temp = NEIGHBOUR_TABLE[parity][(j+5)%6]
+				current_cell += temp
+				if current_cell.x < 0 or current_cell.x > width or current_cell.y < 0 or current_cell.y > height:
+					cells.append(current_cell)
+	return cells
 static func get_neighbors(cell : Vector2) -> Array:
 	var neighbors := []
 	for direction in DIRECTIONS:

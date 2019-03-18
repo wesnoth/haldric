@@ -33,6 +33,46 @@ func find_path(start_loc : Location, end_loc : Location) -> Array:
 		loc_path.append(get_location(cell))
 	return loc_path
 
+func find_all_reachable_cells(unit : Unit) -> Dictionary:
+	update_weight(unit)
+	var paths := {}
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.movementPoints, width, height)
+	cells.remove(0)
+	cells.invert()
+	for cell in cells:
+		if paths.has(cell):
+			continue
+		var path = find_path(unit.location, get_location(cell))
+		path.remove(0)
+		var newPath := []
+		var cost = 0
+		for pathCell in path:
+			if cost + unit.terrain_cost(get_location(pathCell)) > unit.movementPoints:
+				break
+			newPath.append(pathCell)
+			paths[pathCell] = newPath
+	return paths	
+
+func update_weight(unit : Unit) -> void:
+	for y in range(height):
+		for x in range(width):
+			var cell = Vector2(x,y)
+			var id = _flatten(cell)
+			var location = locations[id]
+			var cost = unit.terrain_cost(location)
+
+			var other_unit = location.movable
+			if other_unit:
+				if not other_unit.parent.side == unit.side:
+					cost = 99
+			else:	
+				for loc in Hex.get_neighbors(cell):
+					if not get_location(loc).movable.parent.side == unit.side:
+						cost += 100
+						break
+			grid.set_point_weight_scale(id, cost)
+
+
 func get_location(cell : Vector2) -> Location:
 	return locations[_flatten(cell)]
 
