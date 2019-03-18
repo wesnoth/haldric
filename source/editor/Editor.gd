@@ -57,7 +57,10 @@ func _save_map(scenario_name) -> void:
 	var path = default_path + scenario_name + ".tscn"
 	var packed_scene = PackedScene.new()
 	packed_scene.pack(scenario)
-	ResourceSaver.save(path, packed_scene)
+
+	if ResourceSaver.save(path, packed_scene) != OK:
+		print("Failed to save map ", path)
+
 	Registry.scenarios[scenario_name] = path
 
 func _on_button_pressed(id) -> void:

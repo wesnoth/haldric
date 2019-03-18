@@ -25,7 +25,9 @@ func _on_Save_pressed() -> void:
 	var new_resolution = sizes[resolutions.get_selected_id()]
 	ProjectSettings.set("display/window/size/height", new_resolution.y)
 	ProjectSettings.set("display/window/size/width", new_resolution.x)
-	ProjectSettings.save()
+
+	if ProjectSettings.save() != OK:
+		print("Failed to save project settings")
 
 func _on_Back_pressed() -> void:
 	Scene.change(Scene.TitleScreen)
