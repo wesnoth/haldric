@@ -10,5 +10,7 @@ func _on_Back_pressed():
 	Scene.change(Scene.TitleScreen)
 
 func _on_Play_pressed():
+	if not Global.scenarios.has(line_edit.text):
+		return
 	Global.scenario_name = line_edit.text
 	Scene.change(Scene.Game)
