@@ -2,7 +2,9 @@ class_name Unit extends Node2D
 
 var location = null
 
-var sprite = Sprite.new()
+var side := 0
+
+var sprite := Sprite.new()
 
 func _ready():
 	add_child(sprite)
