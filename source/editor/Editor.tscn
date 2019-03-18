@@ -8,9 +8,9 @@
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
 [ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=7]
 
-
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )
+button_size = 50
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -43,7 +43,7 @@ script = ExtResource( 4 )
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -223.0
+margin_left = -265.0
 margin_bottom = 1.0
 theme = ExtResource( 5 )
 
@@ -59,13 +59,18 @@ patch_margin_bottom = 2
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="VBoxContainer" type="GridContainer" parent="HUD/TileButtons"]
+[node name="GridContainer" type="GridContainer" parent="HUD/TileButtons"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 12.0
+margin_right = -12.0
 margin_bottom = -50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 2
+custom_constants/vseparation = 12
+custom_constants/hseparation = 12
+columns = 4
 
 [node name="Back" type="Button" parent="HUD/TileButtons"]
 anchor_left = 1.0

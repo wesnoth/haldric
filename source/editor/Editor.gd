@@ -3,6 +3,8 @@ extends Node2D
 const SCENARIO = preload("res://source/core/scenario/Scenario.tscn")
 const default_path = "res://data/scenarios/"
 
+export(int) var button_size = 60
+
 onready var HUD = $HUD
 onready var scenario_container = $ScenarioContainer
 onready var scenario = $ScenarioContainer/Scenario
@@ -32,10 +34,15 @@ func _add_terrain_button(id : int) -> void:
 	button.connect("pressed", self, "_on_button_pressed", [ id ])
 	var texture = AtlasTexture.new()
 	texture.atlas = scenario.map.tile_set.tile_get_texture(id)
-	texture.region = scenario.map.tile_set.tile_get_region(id)
+	texture.region = _normalize_region(scenario.map.tile_set.tile_get_region(id))
 	button.texture_normal = texture
 	button.rect_size = Vector2(54, 72)
 	HUD.add_button(button)
+
+func _normalize_region(region : Rect2) -> Rect2:
+	var rect_position = (region.position + (region.size / 2)) - Vector2(button_size / 2, button_size / 2)
+	var rect = Rect2(rect_position, Vector2(button_size, button_size))
+	return rect
 
 func _new_map() -> void:
 	scenario.free()
