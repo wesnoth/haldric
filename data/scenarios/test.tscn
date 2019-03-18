@@ -38,7 +38,6 @@ cell_half_offset = 1
 format = 1
 
 [node name="MapBorder" parent="Map" instance=ExtResource( 5 )]
-visible = false
 margin_right = 1314.0
 margin_bottom = 1044.0
 
