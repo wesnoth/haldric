@@ -28,21 +28,18 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 856.0
-margin_top = 495.0
+margin_top = 500.0
 margin_right = 1064.0
-margin_bottom = 584.0
+margin_bottom = 580.0
 
-[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="CenterContainer/VBoxContainer"]
 margin_right = 208.0
-margin_bottom = 45.0
-focus_mode = 1
-focus_mode = 1
-placeholder_text = "Scenario"
+margin_bottom = 36.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 53.0
+margin_top = 44.0
 margin_right = 208.0
-margin_bottom = 89.0
+margin_bottom = 80.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 100.0
