@@ -7,8 +7,9 @@ var id := 0
 var cell := Vector2()
 var position := Vector2()
 
+var map = null
+var movable = null
 var terrain : Terrain = null
-var unit : Unit = null
 
 var is_blocked := false
 

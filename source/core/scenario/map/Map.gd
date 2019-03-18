@@ -25,6 +25,14 @@ func map_to_world_centered(cell : Vector2) -> Vector2:
 func world_to_world_centered(cell: Vector2) -> Vector2:
 	return map_to_world_centered(world_to_map(cell))
 
+func find_path(start_loc : Location, end_loc : Location) -> Array:
+	var loc_path = []
+	var cell_path = grid.find_path_by_cell(start_loc.cell, end_loc.cell)
+
+	for cell in cell_path:
+		loc_path.append(get_location(cell))
+	return loc_path
+
 func get_location(cell : Vector2) -> Location:
 	return locations[_flatten(cell)]
 
@@ -79,6 +87,8 @@ func _initialize_locations() -> void:
 			var overlay_code := ""
 
 			var location := Location.new()
+
+			location.map = self
 
 			if get_cellv(cell) == TileMap.INVALID_CELL:
 				set_cellv(cell, tile_set.find_tile_by_name("Xv"))

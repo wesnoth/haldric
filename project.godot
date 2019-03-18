@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/core/scenario/map/Map.gd"
 }, {
+"base": "Node2D",
+"class": "Movable",
+"language": "GDScript",
+"path": "res://source/core/unit/Movable.gd"
+}, {
 "base": "Resource",
 "class": "RDefense",
 "language": "GDScript",
@@ -67,9 +72,9 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Terrain",
 "language": "GDScript",
-"path": "res://source/core/terrain/Terrain.gd"
+"path": "res://source/core/scenario/map/Terrain.gd"
 }, {
-"base": "Node2D",
+"base": "Movable",
 "class": "Unit",
 "language": "GDScript",
 "path": "res://source/core/unit/Unit.gd"
@@ -79,6 +84,7 @@ _global_script_class_icons={
 "Hex": "",
 "Location": "",
 "Map": "",
+"Movable": "",
 "RDefense": "",
 "RMovement": "",
 "RResistance": "",
@@ -102,6 +108,7 @@ version/status="dev"
 
 [autoload]
 
+Wesnoth="*res://source/global/Wesnoth.gd"
 Scene="*res://source/global/Scene.tscn"
 Global="*res://source/global/Global.gd"
 Loader="*res://source/global/Loader.gd"

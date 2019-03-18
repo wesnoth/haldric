@@ -16,5 +16,4 @@ func _load_map() -> void:
 
 func _load_units() -> void:
 	if scenario:
-		var unit = Unit.new(Registry.units["Archer"])
-		scenario.add_unit(unit, Vector2(4, 4),2)
+		scenario.add_unit(2, "Archer", 4, 4)

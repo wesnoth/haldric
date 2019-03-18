@@ -19,9 +19,14 @@ func initialize() -> void:
 		side.shader = TeamColor.generate_team_shader(side.team_color_info)
 		sides.add_child(side)
 
-func add_unit(unit : Unit, cell : Vector2, side_number : int) -> void:
+func add_unit(side_number : int, unit_id : String, x : int, y : int) -> void:
 	var side : Side = sides.get_child(side_number-1)
+	var unit = Wesnoth.Unit.instance()
+	
 	side.add_child(unit)
-	var loc = map.get_location(cell)
-	unit.move_to(loc)
+	unit.initialize(Registry.units[unit_id])
+	
+	var loc = map.get_location(Vector2(x, y))
+	unit.place_at(loc)
+	
 	unit.sprite.set_material(side.shader)
