@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+layer = 2
 code = "Gs"
 name = "Semi-Dry Grass"
 type = "flat"

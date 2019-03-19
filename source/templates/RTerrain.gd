@@ -1,6 +1,8 @@
 extends Resource
 class_name RTerrain
 
+export var layer := 0
+
 export var code := ""
 export var name := ""
 export var type := ""

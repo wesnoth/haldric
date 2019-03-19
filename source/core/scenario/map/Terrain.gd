@@ -1,6 +1,7 @@
 extends Resource
 class_name Terrain
 
+var layer := 0
 var code := []
 var type := []
 
@@ -17,6 +18,8 @@ var submerge := false
 func _init(resources: Array) -> void:
 	for res in resources:
 		name = res.name
+
+		layer = res.layer
 
 		code.append(res.code)
 		type.append(res.type)

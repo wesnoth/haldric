@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+layer = 8
 code = "Kh"
 name = "Keep (Human)"
 type = "castle"
