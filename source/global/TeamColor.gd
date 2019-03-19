@@ -48,7 +48,7 @@ func generate_team_shader(team_data: Array) -> ShaderMaterial:
 		mat.set_shader_param("base" + str(i), key)
 		mat.set_shader_param("color" + str(i), color_map[key])
 		i += 1
-	
+
 	return mat
 
 func generate_flag_shader(team_data: Array) -> ShaderMaterial:
@@ -60,7 +60,7 @@ func generate_flag_shader(team_data: Array) -> ShaderMaterial:
 		mat.set_shader_param("base" + str(i), key)
 		mat.set_shader_param("color" + str(i), color_map[key])
 		i += 1
-	
+
 	return mat
 
 func new_color_map(team_data: Array, base_color: Array) -> Dictionary:
@@ -89,20 +89,20 @@ func new_color_map(team_data: Array, base_color: Array) -> Dictionary:
 		var b: float
 		if color_avg <= temp_avg:
 			var ratio: float = color_avg / temp_avg
-			
+
 			r = ratio*new_red_avg + (1 - ratio)*new_red_min
 			g = ratio*new_green_avg + (1 - ratio)*new_green_min
 			b = ratio*new_blue_avg + (1 - ratio)*new_blue_min
 		else:
 			var ratio: float = (1.0 - color_avg) / (1.0 - temp_avg)
-			
+
 			r = ratio*new_red_avg + (1 - ratio)*new_red_max
 			g = ratio*new_green_avg + (1 - ratio)*new_green_max
 			b = ratio*new_blue_avg + (1 - ratio)*new_blue_max
-		
+
 		new_color = Color(min(r , 1), min(g , 1), min(b , 1))
 		color_map[color] = new_color
-	
+
 	return color_map
 
 func initializeFlagColors() -> void:

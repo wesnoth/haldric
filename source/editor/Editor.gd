@@ -68,10 +68,10 @@ func _save_map(scenario_name: String) -> void:
 	var packed_scene := PackedScene.new()
 	#warning-ignore:return_value_discarded
 	packed_scene.pack(scenario)
-	
+
 	if ResourceSaver.save(path, packed_scene) != OK:
 		print("Failed to save map ", path)
-	
+
 	Registry.scenarios[scenario_name] = path
 
 func _on_button_pressed(id: int) -> void:

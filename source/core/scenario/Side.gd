@@ -58,5 +58,5 @@ func turn_refresh() -> void:
 func get_first_leader() -> Unit:
 	if leaders.size() > 0:
 		return leaders[0]
-	
+
 	return null

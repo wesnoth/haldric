@@ -19,7 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif selected_unit and not location.movable:
 			selected_unit.unhighlight_moves()
 			selected_unit.move_to(location)
-	
+
 	elif event.is_action_pressed("mouse_right"):
 		selected_unit.unhighlight_moves()
 		selected_unit = null

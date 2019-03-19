@@ -17,5 +17,5 @@ func _get_version_string() -> String:
 	new_version += str(ProjectSettings.get("application/version/minor"), ".")
 	new_version += str(ProjectSettings.get("application/version/patch"), "-")
 	new_version += str(ProjectSettings.get("application/version/status"))
-	
+
 	return new_version
