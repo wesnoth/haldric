@@ -4,7 +4,7 @@
 [ext_resource path="res://data/scenarios/test.gd" type="Script" id=2]
 [ext_resource path="res://source/core/scenario/Side.tscn" type="PackedScene" id=3]
 
-[node name="Scenario" index="0" instance=ExtResource( 1 )]
+[node name="Scenario" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="1" parent="Sides" index="0" instance=ExtResource( 3 )]

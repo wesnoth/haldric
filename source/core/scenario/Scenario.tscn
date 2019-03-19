@@ -38,4 +38,3 @@ margin_bottom = 144.0
 texture = ExtResource( 5 )
 
 [node name="Units" type="Node2D" parent="."]
-
