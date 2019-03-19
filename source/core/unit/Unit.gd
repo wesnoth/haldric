@@ -1,7 +1,6 @@
 extends Movable
 class_name Unit
 
-var side := 0
 var data : Resource = null
 
 onready var sprite := $Sprite as Sprite

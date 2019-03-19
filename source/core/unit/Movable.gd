@@ -6,6 +6,7 @@ var location: Location = null
 var path := []
 var reachable := {}
 
+var side := 0
 var movement_points : int = 0
 var move_data : RMovement = null
 
@@ -31,8 +32,8 @@ func move_to(loc: Location) -> void:
 	_move()
 
 func find_path(loc : Location) -> Array:
-	if reachable.has(loc):
-		return reachable[loc]
+	#if reachable.has(loc):
+	#	return reachable[loc]
 	return loc.map.find_path(location,loc)
 
 func terrain_cost(loc: Location) -> int:

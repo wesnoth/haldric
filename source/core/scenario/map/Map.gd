@@ -8,7 +8,7 @@ var width := 0
 var height := 0
 
 var locations := {}
-
+var labels := []
 var grid: Grid = null
 
 onready var overlay := $Overlay as TileMap
@@ -66,6 +66,9 @@ func find_all_reachable_cells(unit: Movable) -> Dictionary:
 	return paths
 
 func update_weight(unit: Movable) -> void:
+	for label in labels:
+		remove_child(label)
+	labels.clear()
 	for y in height:
 		for x in width:
 			var cell = Vector2(x, y)
@@ -75,17 +78,22 @@ func update_weight(unit: Movable) -> void:
 
 			var other_unit = location.movable
 			if other_unit:
-				if not other_unit.get_parent().side == unit.get_parent().side:
+				if not other_unit.side == unit.side:
 					cost = 99
 			else:
 				for n_cell in Hex.get_neighbors(cell):
 					if _is_out_of_bounds(n_cell):
 						continue
 					var n_loc = get_location(n_cell)
-					if n_loc.movable and not n_loc.movable.get_parent().side == unit.get_parent().side:
+					if n_loc.movable and not n_loc.movable.side == unit.side:
 						cost += 100
 						break
 			#print(cost)
+			var label : Label = Label.new()
+			label.text = String(cost)
+			label.set_position(location.position)
+			labels.append(label)
+			add_child(label)
 			grid.astar.set_point_weight_scale(id, cost)
 
 func get_location(cell: Vector2) -> Location:

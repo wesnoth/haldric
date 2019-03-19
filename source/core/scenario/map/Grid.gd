@@ -30,7 +30,6 @@ func find_path_by_cell(start_cell : Vector2, end_cell : Vector2) -> Array:
 				astar.get_point_path(_flatten(start_cell), _flatten(end_cell))
 		for point in path3D:
 			path2D.append(Vector2(point.x, point.y))
-	
 	return path2D
 
 func _generate_points() -> void:
