@@ -70,14 +70,14 @@ func update_weight(unit: Unit) -> void:
 
 			var other_unit = location.movable
 			if other_unit:
-				if not other_unit.get_parent().side == unit.side:
+				if not other_unit.side == unit.side:
 					cost = 99
 			else:
-				for loc in Hex.get_neighbors(cell):
-					if _is_out_of_bounds(loc):
+				for n_cell in Hex.get_neighbors(cell):
+					if _is_out_of_bounds(n_cell):
 						continue
-					if get_location(loc).movable and not get_location(
-							loc).movable.get_parent().side == unit.side:
+					var n_loc = get_location(n_cell)
+					if n_loc.movable:
 						cost += 100
 						break
 			grid.astar.set_point_weight_scale(id, cost)
