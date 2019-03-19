@@ -19,7 +19,7 @@ func _ready() -> void:
 	_initialize_locations()
 	_initialize_grid()
 	_initialize_border()
-	
+
 	# So the initial size is also correct when first entering the editor.
 	call_deferred("_update_size")
 
@@ -103,7 +103,7 @@ func set_tile(global_pos: Vector2, id: int):
 		set_cellv(cell, id)
 		overlay.set_cellv(cell, id)
 		_update_size()
-		
+
 		return
 
 	var code: String = tile_set.tile_get_name(id)

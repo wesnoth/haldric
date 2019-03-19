@@ -44,7 +44,7 @@ func _normalize_region(region : Rect2) -> Rect2:
 	var rect_position = (region.position + (region.size / 2.0)) -\
 			Vector2(button_size / 2.0, button_size / 2.0)
 	var rect = Rect2(rect_position, Vector2(button_size, button_size))
-	
+
 	return rect
 
 func _new_map() -> void:
