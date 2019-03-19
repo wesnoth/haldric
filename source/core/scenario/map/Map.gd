@@ -19,6 +19,9 @@ func _ready() -> void:
 	_initialize_locations()
 	_initialize_grid()
 	_initialize_border()
+	
+	# So the initial size is also correct when first entering the editor.
+	call_deferred("_update_size")
 
 func map_to_world_centered(cell: Vector2) -> Vector2:
 	return map_to_world(cell) + OFFSET
@@ -54,7 +57,8 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 			cost += unit.terrain_cost(path_cell)
 			new_path.append(path_cell)
 			paths[path_cell] = new_path
-	return paths	
+	
+	return paths
 
 func update_weight(unit: Unit) -> void:
 	for y in height:
@@ -72,7 +76,8 @@ func update_weight(unit: Unit) -> void:
 				for loc in Hex.get_neighbors(cell):
 					if _is_out_of_bounds(loc):
 						continue
-					if get_location(loc).movable and not get_location(loc).movable.get_parent().side == unit.side:
+					if get_location(loc).movable and not get_location(
+							loc).movable.get_parent().side == unit.side:
 						cost += 100
 						break
 			grid.astar.set_point_weight_scale(id, cost)
@@ -97,6 +102,8 @@ func set_tile(global_pos: Vector2, id: int):
 	if id == -1:
 		set_cellv(cell, id)
 		overlay.set_cellv(cell, id)
+		_update_size()
+		
 		return
 	
 	var code: String = tile_set.tile_get_name(id)
@@ -136,7 +143,7 @@ func get_map_string() -> String:
 
 func _initialize_locations() -> void:
 	for y in height:
-		for x in range (width):
+		for x in width:
 			var cell := Vector2(x, y)
 			var id: int = _flatten(cell)
 			
@@ -173,6 +180,12 @@ func _initialize_grid() -> void:
 func _update_size() -> void:
 	if get_cell(0, 0) == -1:
 		set_cell(0, 0, tile_set.find_tile_by_name("Xv"))
+	else:
+		# Hack so 'get_used_rect()' returns a correct value when tiles are
+		# removed. It will be fixed by GH-27080.
+		var cell: int = get_cell(0, 0)
+		set_cell(0, 0, 0 if cell == -1 else -1)
+		set_cell(0, 0, cell)
 	width = int(get_used_rect().size.x)
 	height = int(get_used_rect().size.y)
 	if width % 2 == 0:

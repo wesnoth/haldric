@@ -55,5 +55,6 @@ margin_right = 208.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 100, 0 )
 text = "Play"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Play" to="." method="_on_Play_pressed"]

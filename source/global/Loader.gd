@@ -42,20 +42,18 @@ func _get_directory_data(
 	return directory_data
 
 func _get_file_data(path: String) -> Dictionary:
-	var file_data := {}
-	
 	var file_name := path.get_file()
 	var file_name_split := file_name.split(".")
 	
 	var is_scene: bool = file_name_split[1] == "tscn"
 	
-	file_data = {
+	var file_data := {
 		id = file_name_split[0],
 		data = null,
 		path = path
 	}
 	
-	# Scenes are loaded later
+	# Scenes are loaded later.
 	if not is_scene:
 		file_data.data = load(path)
 	
