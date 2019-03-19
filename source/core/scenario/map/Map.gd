@@ -191,4 +191,4 @@ func _flatten(cell: Vector2) -> int:
 	return int(cell.y)*int(width) + int(cell.x)
 
 func _is_out_of_bounds(cell: Vector2) -> bool:
-	return cell.x < 0 or cell.x > width or cell.y < 0 or cell.y > height
+	return cell.x < 0 or cell.x >= width or cell.y < 0 or cell.y >= height
