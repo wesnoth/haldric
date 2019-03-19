@@ -13,12 +13,14 @@ var grid: Grid = null
 
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
+onready var transitions := $Transitions as Transitions
 
 func _ready() -> void:
 	_update_size()
 	_initialize_locations()
 	_initialize_grid()
 	_initialize_border()
+	transitions.initialize(self)
 
 	# So the initial size is also correct when first entering the editor.
 	call_deferred("_update_size")
@@ -74,7 +76,7 @@ func update_weight(unit: Unit) -> void:
 					cost = 99
 			else:
 				for n_cell in Hex.get_neighbors(cell):
-					if _is_out_of_bounds(n_cell):
+					if not _is_cell_in_map(n_cell):
 						continue
 					var n_loc = get_location(n_cell)
 					if n_loc.movable:
@@ -96,7 +98,7 @@ func set_size(cell: Vector2) -> void:
 func set_tile(global_pos: Vector2, id: int):
 	var cell: Vector2 = world_to_map(global_pos)
 
-	if _is_out_of_bounds(cell):
+	if not _is_cell_in_map(cell):
 		return
 
 	if id == -1:
@@ -203,5 +205,5 @@ func _initialize_border() -> void:
 func _flatten(cell: Vector2) -> int:
 	return int(cell.y)*int(width) + int(cell.x)
 
-func _is_out_of_bounds(cell: Vector2) -> bool:
-	return cell.x < 0 or cell.x >= width or cell.y < 0 or cell.y >= height
+func _is_cell_in_map(cell: Vector2) -> bool:
+	return cell.x >= 0 and cell.x < width and cell.y >= 0 and cell.y < height

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/core/scenario/Scenario.gd" type="Script" id=1]
 [ext_resource path="res://graphics/tilesets/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://source/core/scenario/map/Map.gd" type="Script" id=3]
-[ext_resource path="res://source/core/scenario/MapBorder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/core/scenario/Transitions.gd" type="Script" id=4]
+[ext_resource path="res://graphics/tilesets/transitions.tres" type="TileSet" id=5]
+[ext_resource path="res://source/core/scenario/MapBorder.tscn" type="PackedScene" id=6]
 
 [node name="Scenario" type="Node2D"]
 script = ExtResource( 1 )
@@ -15,10 +17,50 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
+tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 2, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 2, 0, 65542, 2, 0, 65543, 2, 0, 131072, 1, 0, 131073, 1, 0, 131074, 3, 0, 131075, 3, 0, 131076, 1, 0, 131077, 4, 0, 131078, 2, 0, 131079, 2, 0, 196608, 1, 0, 196609, 1, 0, 196610, 4, 0, 196611, 3, 0, 196612, 1, 0, 196613, 1, 0, 196614, 2, 0, 196615, 2, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 4, 0, 262148, 3, 0, 262149, 3, 0, 262150, 3, 0, 262151, 1, 0, 327680, 4, 0, 327681, 4, 0, 327682, 4, 0, 327683, 4, 0, 327684, 1, 0, 327685, 1, 0, 327686, 3, 0, 327687, 1, 0, 393216, 1, 0, 393217, 3, 0, 393218, 1, 0, 393219, 4, 0, 393220, 1, 0, 393221, 3, 0, 393222, 1, 0, 393223, 1, 0 )
 script = ExtResource( 3 )
 
 [node name="Overlay" type="TileMap" parent="Map"]
 tile_set = ExtResource( 2 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+
+[node name="Transitions" type="Node2D" parent="Map"]
+script = ExtResource( 4 )
+
+[node name="1" type="TileMap" parent="Map/Transitions"]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+
+[node name="2" type="TileMap" parent="Map/Transitions"]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+
+[node name="3" type="TileMap" parent="Map/Transitions"]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+
+[node name="4" type="TileMap" parent="Map/Transitions"]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+
+[node name="5" type="TileMap" parent="Map/Transitions"]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+
+[node name="6" type="TileMap" parent="Map/Transitions"]
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
@@ -29,7 +71,7 @@ cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
-[node name="MapBorder" parent="Map" instance=ExtResource( 4 )]
+[node name="MapBorder" parent="Map" instance=ExtResource( 6 )]
 margin_right = 144.0
 margin_bottom = 144.0
 
