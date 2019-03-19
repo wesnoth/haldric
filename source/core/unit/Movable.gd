@@ -27,8 +27,13 @@ func place_at(loc: Location) -> void:
 func move_to(loc: Location) -> void:
 	if location:
 		location.movable = null
-	path = loc.map.find_path(location, loc)
+	path = find_path(loc)
 	_move()
+
+func find_path(loc : Location) -> Array:
+	if reachable.has(loc):
+		return reachable[loc]
+	return loc.map.find_path(location,loc)
 
 func terrain_cost(loc: Location) -> int:
 	var cost =  move_data.get(loc.terrain.type[0])

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/core/scenario/Scenario.gd" type="Script" id=1]
 [ext_resource path="res://graphics/tilesets/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://source/core/scenario/map/Map.gd" type="Script" id=3]
 [ext_resource path="res://source/core/scenario/MapBorder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/terrain/path.png" type="Texture" id=6]
 
 [node name="Scenario" type="Node2D"]
 script = ExtResource( 1 )
@@ -32,6 +34,13 @@ format = 1
 [node name="MapBorder" parent="Map" instance=ExtResource( 4 )]
 margin_right = 144.0
 margin_bottom = 144.0
+
+[node name="CellSelector" type="Sprite" parent="Map"]
+texture = ExtResource( 5 )
+
+[node name="PathSelector" type="Sprite" parent="Map"]
+visible = false
+texture = ExtResource( 6 )
 
 [node name="Units" type="Node2D" parent="."]
 

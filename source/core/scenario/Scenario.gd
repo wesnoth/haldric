@@ -4,7 +4,7 @@ class_name Scenario
 export var title := ""
 export var turns := 99
 
-onready var map := $Map as TileMap
+onready var map := $Map as Map
 onready var units := $Units as Node2D
 onready var sides := $Sides as Node
 
