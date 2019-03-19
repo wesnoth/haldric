@@ -6,7 +6,6 @@ var data : Resource = null
 onready var sprite = $Sprite
 
 func initialize(res : Resource) -> void:
+	.initialize(res)
 	sprite.texture = res.base_image
 	data = res
-	moveData = res.movement
-	movementPoints = res.moves

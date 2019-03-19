@@ -34,6 +34,7 @@ static func get_cells_in_range(cell : Vector2, _range : int, width : int, height
 				if current_cell.x >= 0 and current_cell.x < width and current_cell.y >= 0 and current_cell.y < height:
 					cells.append(current_cell)
 	return cells
+
 static func get_neighbors(cell : Vector2) -> Array:
 	var neighbors := []
 	for direction in DIRECTIONS:

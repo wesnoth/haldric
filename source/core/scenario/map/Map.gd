@@ -36,7 +36,7 @@ func find_path(start_loc : Location, end_loc : Location) -> Array:
 func find_all_reachable_cells(unit : Unit) -> Dictionary:
 	update_weight(unit)
 	var paths := {}
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.movementPoints, width, height)
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.movement_points, width, height)
 	cells.remove(0)
 	cells.invert()
 	for cell in cells:
@@ -44,29 +44,29 @@ func find_all_reachable_cells(unit : Unit) -> Dictionary:
 			continue
 		var path = find_path(unit.location, get_location(cell))
 		path.remove(0)
-		var newPath := []
+		var new_path := []
 		var cost = 0
-		for pathCell in path:
-			if cost + unit.terrain_cost(pathCell) > unit.movementPoints:
+		for path_cell in path:
+			if cost + unit.terrain_cost(path_cell) > unit.movement_points:
 				break
-			cost += unit.terrain_cost(pathCell)
-			newPath.append(pathCell)
-			paths[pathCell] = newPath
+			cost += unit.terrain_cost(path_cell)
+			new_path.append(path_cell)
+			paths[path_cell] = new_path
 	return paths	
 
 func update_weight(unit : Unit) -> void:
-	for y in range(height):
-		for x in range(width):
-			var cell = Vector2(x,y)
+	for y in height:
+		for x in width:
+			var cell = Vector2(x, y)
 			var id = _flatten(cell)
 			var location = locations[id]
 			var cost = unit.terrain_cost(location)
-
+			
 			var other_unit = location.movable
 			if other_unit:
 				if not other_unit.get_parent().side == unit.side:
 					cost = 99
-			else:	
+			else:
 				for loc in Hex.get_neighbors(cell):
 					if _is_out_of_bounds(loc):
 						continue
