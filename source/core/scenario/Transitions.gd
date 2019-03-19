@@ -1,7 +1,8 @@
 extends Node2D
 class_name Transitions
 
-var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
+# var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
+var directions = [ "s", "sw", "nw", "n", "ne", "se" ]
 
 onready var layers = [ $"1", $"2", $"3", $"4", $"5", $"6", ]
 
@@ -11,6 +12,7 @@ func initialize(map) -> void: # : Map, cyclic reference
 		for x in map.width:
 			var cell = Vector2(x, y)
 			var tile_id = map.get_cell(x, y)
+			var terrain = map.get_location(cell).terrain
 			var code = map.tile_set.tile_get_name(tile_id)
 			var neighbors = Hex.get_neighbors(cell)
 
@@ -19,10 +21,16 @@ func initialize(map) -> void: # : Map, cyclic reference
 			var chain = 0
 			for layer in 6:
 				var n_cell = neighbors[layer]
+
 				if not map._is_cell_in_map(n_cell) or layer < chain:
 					continue
 
-				var n_code = map.get_location(n_cell).terrain.code[0]
+				var n_terrain = map.get_location(n_cell).terrain
+
+				if terrain.layer <= n_terrain.layer:
+					continue
+
+				var n_code = n_terrain.code[0]
 				chain = _chain(map, code, neighbors, layer)
 				_set_transition_tile(n_cell, code, layer, chain)
 				s += str(" ", n_code, map._flatten(n_cell), n_cell)
@@ -30,8 +38,9 @@ func initialize(map) -> void: # : Map, cyclic reference
 			print("Transition on ", map._flatten(cell), cell, " Code: ", code, " Neighbors: ", s)
 
 func _chain(map, code: String, neighbors: Array, layer: int) -> int:
-	for i in 6:
-		var next_cell = neighbors[(layer + i + 1) % 6]
+	for i in range(layer, 5):
+		var next_direction = i + 1
+		var next_cell = neighbors[next_direction]
 
 		if not map._is_cell_in_map(next_cell):
 			continue
@@ -47,7 +56,7 @@ func _set_transition_tile(cell: Vector2, code: String , layer: int, chain: int) 
 	var transition = _get_transition_name(code, layer, chain)
 	var tile_id = layers[layer].tile_set.find_tile_by_name(transition)
 	layers[layer].set_cellv(cell, tile_id)
-	# print("Set Tile ID: ", tile_id, " (", transition, ")", " on Layer: ", layers[layer])
+	print("Set Tile ID: ", tile_id, " (", transition, ")", " on Layer: ", layers[layer])
 
 func _get_transition_name(code: String , layer: int, chain: int) -> String:
 	var transition = code + "_"
