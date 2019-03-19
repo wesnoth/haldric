@@ -56,7 +56,7 @@ func find_all_reachable_cells(unit: Movable) -> Dictionary:
 		for path_cell in path:
 			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
 			if path_cell == path.back() and cell_cost > 100:
-				cell_cost -= 100 
+				cell_cost -= 100
 			if cost + cell_cost > unit.movement_points:
 				break
 			cost += cell_cost

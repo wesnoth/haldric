@@ -42,5 +42,3 @@ texture = ExtResource( 5 )
 visible = false
 texture = ExtResource( 6 )
 
-[node name="Units" type="Node2D" parent="."]
-

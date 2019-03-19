@@ -20,7 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				selected_unit.reachable = scenario.map.find_all_reachable_cells(selected_unit)
 				selected_unit.highlight_moves()
 			elif selected_unit and not location.movable:
-				selected_unit.unhighlight_moves()	
+				selected_unit.unhighlight_moves()
 				_clear_temp_path()
 				selected_unit.move_to(location)
 				selected_unit = null
@@ -29,7 +29,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		selected_unit.unhighlight_moves()
 		selected_unit = null
 		_clear_temp_path()
-		
+
 	elif event is InputEventMouseMotion:
 		var mouse_cell: Vector2 =\
 				scenario.map.world_to_map(get_global_mouse_position())
@@ -40,7 +40,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				if path_to_cursor.empty() or not path_to_cursor.keys().back() == loc:
 					_clear_temp_path()
 					_draw_temp_path(selected_unit.find_path(loc))
-			
+
 
 func _ready() -> void:
 	_load_map()
@@ -55,7 +55,7 @@ func _load_units() -> void:
 	if scenario:
 		scenario.add_unit(1, "Archer", 4, 4)
 		scenario.add_unit(2, "Archer", 7, 8)
-		
+
 func _draw_temp_path(path : Array) -> void:
 	for loc in path:
 		var temp : Sprite = Sprite.new()
