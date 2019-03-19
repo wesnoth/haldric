@@ -125,3 +125,4 @@ PopupMenu/styles/labeled_separator_right = null
 PopupMenu/styles/panel = ExtResource( 2 )
 PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = SubResource( 10 )
+

@@ -37,13 +37,13 @@ func _ready() -> void:
 
 	calculate_income()
 
-func add_village(cell : Vector2) -> void:
+func add_village(cell: Vector2) -> void:
 	villages.append(cell)
 
-func remove_village(cell : Vector2) -> void:
+func remove_village(cell: Vector2) -> void:
 	villages.erase(cell)
 
-func has_village(cell : Vector2) -> bool:
+func has_village(cell: Vector2) -> bool:
 	return villages.has(cell)
 
 func get_villages() -> Array:
