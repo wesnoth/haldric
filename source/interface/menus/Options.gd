@@ -1,6 +1,6 @@
 extends Control
 
-var sizes = [
+var sizes := [
 	Vector2(1280, 720),
 	Vector2(1720, 720),
 	Vector2(1920, 1080),
@@ -10,7 +10,9 @@ var sizes = [
 	Vector2(3840, 2160),
 ]
 
-onready var resolutions = $CenterContainer/VBoxContainer/HBoxContainer/OptionButton
+onready var resolutions :=\
+		$CenterContainer/VBoxContainer/HBoxContainer/OptionButton\
+		as OptionButton
 
 func _ready() -> void:
 	resolutions.add_item("720p (16:9)", 0)
@@ -22,7 +24,7 @@ func _ready() -> void:
 	resolutions.add_item("2160p (16:9)", 6)
 
 func _on_Save_pressed() -> void:
-	var new_resolution = sizes[resolutions.get_selected_id()]
+	var new_resolution: Vector2 = sizes[resolutions.get_selected_id()]
 	ProjectSettings.set("display/window/size/height", new_resolution.y)
 	ProjectSettings.set("display/window/size/width", new_resolution.x)
 

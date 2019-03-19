@@ -1,4 +1,4 @@
 extends Scenario
 
-func _ready():
+func _ready() -> void:
 	pass

@@ -1,22 +1,24 @@
-class_name Side extends Node
+extends Node
+class_name Side
 
-const income_per_village := 2
+const INCOME_PER_VILLAGE = 2
 
-const heal_on_village := 8
-const heal_on_rest := 2
+const HEAL_ON_VILLAGE = 8
+const HEAL_ON_REST = 2
 
 var side := 0
 
-export(int) var base_income = 2
-
-export(String) var team_color = ""
 var team_color_info := []
 
-export(int) var gold = 100
-export(int) var income = 2
+export var team_color := ""
 
-var shader : ShaderMaterial = null
-var flag_shader : ShaderMaterial = null
+export var base_income := 2
+
+export var gold := 100
+export var income := 2
+
+var shader: ShaderMaterial = null
+var flag_shader: ShaderMaterial = null
 
 var recruit := []
 
@@ -48,7 +50,7 @@ func get_villages() -> Array:
 	return villages
 
 func calculate_income() -> void:
-	income = income_per_village * villages.size() + base_income
+	income = INCOME_PER_VILLAGE * villages.size() + base_income
 
 func turn_refresh() -> void:
 	gold += income
@@ -56,4 +58,5 @@ func turn_refresh() -> void:
 func get_first_leader() -> Unit:
 	if leaders.size() > 0:
 		return leaders[0]
+	
 	return null
