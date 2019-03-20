@@ -43,18 +43,18 @@ margin_top = 44.0
 margin_right = 208.0
 margin_bottom = 80.0
 
-[node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_right = 100.0
-margin_bottom = 36.0
-rect_min_size = Vector2( 100, 0 )
-text = "Back"
-
 [node name="Play" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 108.0
-margin_right = 208.0
+margin_right = 100.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 100, 0 )
 text = "Play"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_Back_pressed"]
+[node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 108.0
+margin_right = 208.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 100, 0 )
+text = "Back"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_Back_pressed"]
