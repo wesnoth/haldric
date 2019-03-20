@@ -76,7 +76,8 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 			cost += cell_cost
 			new_path.append(path_cell)
 			paths[path_cell] = new_path.duplicate(true)
-
+			if cost == unit.movement_points:
+				break
 	return paths
 
 func update_weight(unit: Unit) -> void:
@@ -114,6 +115,8 @@ func update_weight(unit: Unit) -> void:
 							if new_neighbor == location.cell or new_neighbor in neighbors:
 								if not unit.location.cell == new_neighbor:
 									continue
+							if new_neighbor in ZOC_tiles and grid.astar.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
+								grid.astar.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
 							grid.astar.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
 						#print("zoc - " + String(current_cell))
 						ZOC_tiles.append(get_location(neighbor))

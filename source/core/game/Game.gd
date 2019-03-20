@@ -51,6 +51,7 @@ func _load_units() -> void:
 	if scenario:
 		scenario.add_unit(1, "Archer", 4, 4)
 		scenario.add_unit(2, "Archer", 7, 8)
+		scenario.add_unit(2, "Archer", 8, 8)
 
 func _draw_temp_path(path : Array) -> void:
 	for loc in path:
