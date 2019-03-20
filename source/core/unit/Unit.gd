@@ -44,8 +44,8 @@ func find_path(loc : Location) -> Array:
 func terrain_cost(loc: Location) -> int:
 	var cost =  move_data.get(loc.terrain.type[0])
 	if (loc.terrain.type.size() > 1):
-		var costOverlay = move_data.get(loc.terrain.type[1])
-		cost = max(costOverlay, cost)
+		var cost_overlay = move_data.get(loc.terrain.type[1])
+		cost = max(cost_overlay, cost)
 	return cost
 
 func highlight_moves() -> void:
