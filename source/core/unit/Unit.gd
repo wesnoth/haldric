@@ -61,14 +61,14 @@ func unhighlight_moves() -> void:
 func _move() -> void:
 	if path and tween:
 		var loc = path[0]
-		
+
 		location.unit = null
 		location = loc
 		location.unit = self
-		
+
 		#warning-ignore:return_value_discarded
 		tween.interpolate_property(self, "position", position, loc.position, move_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		
+
 		path.remove(0)
 		#warning-ignore:return_value_discarded
 		tween.start()
