@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-layer = 1
+layer = 0
 code = "Gll"
 name = "Leaf Litter"
 type = "flat"

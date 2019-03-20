@@ -1,78 +1,115 @@
 extends Node2D
 class_name Transitions
 
+var map = null
+
+var tile_set = preload("res://graphics/tilesets/transitions.tres")
+
 # original:
-# var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
+var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
 # inverted because a "n" transitions has to go into "s" from the tile that is processed
-var directions = [ "s", "sw", "nw", "n", "ne", "se" ]
+# var directions = [ "s", "sw", "nw", "n", "ne", "se" ]
+
 
 onready var layers = [ $"1", $"2", $"3", $"4", $"5", $"6", ]
 
-# : Map, cyclic reference
+# map: Map - cyclic reference
 func initialize(map) -> void:
-	print("Loading transitions on map ", Vector2(map.width, map.height))
+	self.map = map
 	for y in map.height:
 		for x in map.width:
 			var cell = Vector2(x, y)
-			var tile_id = map.get_cell(x, y)
-			var terrain = map.get_location(cell).terrain
-			var code = map.tile_set.tile_get_name(tile_id)
-			var neighbors = Hex.get_neighbors(cell)
+			_apply_transition_from_cell(cell)
 
-			var s = ""
+# map: Map - cyclic reference
+func update_transitions(map) -> void:
+	self.map = map
+	for layer in layers:
+		layer.clear()
 
-			var chain = 0
-			for layer in 6:
-				var n_cell = neighbors[layer]
+	for y in map.height:
+		for x in map.width:
+			var cell = Vector2(x, y)
+			_apply_transition_from_cell(cell)
 
-				if not map._is_cell_in_map(n_cell) or layer < chain:
-					continue
+# map: Map - cyclic reference
+func _apply_transition_from_cell(cell : Vector2) -> void:
+	var location = map.get_location(cell)
+	var code = location.terrain.get_base_code()
+	var neighbors = Hex.get_neighbors(cell)
 
-				var n_terrain = map.get_location(n_cell).terrain
+	var layer = 0
+	while layer < 6:
+		var n_cell = neighbors[layer]
+		var n_location = map.get_location(n_cell)
 
-				if terrain.layer <= n_terrain.layer:
-					continue
-
-				var n_code = n_terrain.code[0]
-				chain = _chain(map, code, neighbors, layer)
-				_set_transition_tile(n_cell, code, layer, chain)
-				s += str(" ", n_code, map._flatten(n_cell), n_cell)
-#
-			print("Transition on ", map._flatten(cell), cell, " Code: ", code, " Neighbors: ", s)
-
-func _chain(map, code: String, neighbors: Array, layer: int) -> int:
-	for i in range(layer, 5):
-		var next_direction = i + 1
-		var next_cell = neighbors[next_direction]
-
-		if not map._is_cell_in_map(next_cell):
+		if not n_location:
+			layer += 1
 			continue
 
-		var n_code = map.get_location(next_cell).terrain.code[0]
-		var n_index = map._flatten(next_cell)
+		if location.terrain.layer >= n_location.terrain.layer:
+			layer += 1
+			continue
 
-		if not map.locations.has(n_index) or not code == n_code:
-			return i
-	return 5
+		var transition = _get_chain_tile_data(code, cell, layer)
 
-func _set_transition_tile(cell: Vector2, code: String , layer: int, chain: int) -> void:
-	var transition = _get_transition_name(code, layer, chain)
+		if transition.directions == "":
+			layer += 1
+			continue
+
+		print(transition)
+		_set_transition_tile(transition.code + "_" + transition.directions, cell, layer)
+		layer += transition.chain
+
+# map: Map - cyclic reference
+func _get_chain_tile_data(code: String, cell : Vector2, start_direction : int) -> Dictionary:
+
+	var neighbors := Hex.get_neighbors(cell)
+
+	var start_cell : Vector2 = neighbors[start_direction]
+	var start_code := _get_base_terrain_code_from_cell(start_cell)
+
+	var transition := {
+		code = start_code,
+		directions = "",
+		chain = 0
+	}
+
+	for direction in range(start_direction, 6):
+		var n_cell : Vector2 = neighbors[direction]
+		var previous = transition.duplicate(true)
+
+		var n_code = _get_base_terrain_code_from_cell(n_cell)
+
+		if not start_code == n_code:
+			return transition
+
+		transition.directions += _get_direction_string(start_direction, direction)
+		transition.chain += 1
+
+		if not _tile_set_has_tile(start_code + "_" + transition.directions):
+			return previous
+
+	return transition
+
+func _get_base_terrain_code_from_cell(cell: Vector2) -> String:
+	var location = map.get_location(cell)
+	if location:
+		return location.terrain.get_base_code()
+	return ""
+
+func _set_transition_tile(transition: String, cell: Vector2, layer: int) -> void:
 	var tile_id = layers[layer].tile_set.find_tile_by_name(transition)
 	layers[layer].set_cellv(cell, tile_id)
-	print("Set Tile ID: ", tile_id, " (", transition, ")", " on Layer: ", layers[layer])
+	print("Set Tile ", cell, " on layer ", layer, " to ", transition)
 
-func _get_transition_name(code: String , layer: int, chain: int) -> String:
-	var transition = code + "_"
+func _tile_set_has_tile(tile_name):
+	var id = tile_set.find_tile_by_name(tile_name)
+	if id == -1:
+		return false
+	return true
 
-	for i in range(layer, 6):
-
-		if i == layer:
-			transition += directions[i]
-		else:
-			transition += "-" + directions[i]
-
-		if i == chain + layer:
-			break
-
-	print("Layer: ", layer, " Chain: ", chain, " Transition: ", transition)
-	return transition
+func _get_direction_string(start_direction : int, current_direction : int) -> String:
+	if start_direction == current_direction:
+		return directions[current_direction]
+	return "-" + directions[current_direction]

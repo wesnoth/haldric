@@ -30,6 +30,14 @@ func _init(resources: Array) -> void:
 		heals = res.heals
 		submerge = res.submerge
 
+func get_base_code():
+	return code[0]
+
+func get_overlay_code():
+	if code.size() == 2:
+		return code[1]
+	return ""
+
 func get_code() -> String:
 	var s := ""
 	for c in code:

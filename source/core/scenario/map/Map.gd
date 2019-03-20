@@ -25,7 +25,7 @@ func _ready() -> void:
 	_initialize_locations()
 	_initialize_grid()
 	_initialize_border()
-	transitions.initialize(self)
+	_initialize_transitions()
 
 	# So the initial size is also correct when first entering the editor.
 	call_deferred("_update_size")
@@ -69,6 +69,11 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 			paths[path_cell] = new_path.duplicate(true)
 
 	return paths
+
+func update_terrain() -> void:
+	_initialize_locations()
+	_initialize_grid()
+	_initialize_transitions()
 
 func update_weight(unit: Unit) -> void:
 	for label in labels:
@@ -189,8 +194,7 @@ func _initialize_locations() -> void:
 			if overlay_code == "":
 				location.terrain = Terrain.new([Registry.terrain[base_code]])
 			else:
-				location.terrain = Terrain.new([Registry.terrain[base_code],
-						Registry.terrain[overlay_code]])
+				location.terrain = Terrain.new([Registry.terrain[base_code], Registry.terrain[overlay_code]])
 
 			location.id = id
 			location.cell = Vector2(x, y)
@@ -222,6 +226,9 @@ func _initialize_border() -> void:
 	var size := Vector2(width, height)
 	print(size)
 	$MapBorder.rect_size = map_to_world(size) + Vector2(18, 36)
+
+func _initialize_transitions() -> void:
+		transitions.update_transitions(self)
 
 func _flatten(cell: Vector2) -> int:
 	return int(cell.y)*int(width) + int(cell.x)
