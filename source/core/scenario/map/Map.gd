@@ -82,9 +82,11 @@ func update_weight(unit: Unit) -> void:
 					cost = 99
 			else:
 				for n_cell in Hex.get_neighbors(cell):
-					if _is_out_of_bounds(n_cell):
-						continue
 					var n_loc = get_location(n_cell)
+					
+					if not n_loc:
+						continue
+					
 					if n_loc.unit and not n_loc.unit.side == unit.side:
 						cost += 100
 						break
