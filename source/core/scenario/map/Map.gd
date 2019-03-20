@@ -25,6 +25,14 @@ func _ready() -> void:
 	# So the initial size is also correct when first entering the editor.
 	call_deferred("_update_size")
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var mouse_cell: Vector2 = world_to_map(get_global_mouse_position())
+		var loc: Location = get_location(mouse_cell)
+
+		if loc:
+			cell_selector.position = loc.position
+
 func map_to_world_centered(cell: Vector2) -> Vector2:
 	return map_to_world(cell) + OFFSET
 
