@@ -4,6 +4,8 @@ class_name Map
 const OFFSET = Vector2(36, 36)
 const CELL_SIZE = Vector2(54, 72)
 
+const DEFAULT_TERRAIN := "Gg"
+
 var width := 0
 var height := 0
 
@@ -136,7 +138,7 @@ func set_tile(global_pos: Vector2, id: int):
 	if code.begins_with("^"):
 		overlay.set_cellv(cell, id)
 		if get_cellv(cell) == -1:
-			var grass_id: int = tile_set.find_tile_by_name("Gg")
+			var grass_id: int = tile_set.find_tile_by_name(DEFAULT_TERRAIN)
 			set_cellv(cell, grass_id)
 	else:
 		set_cellv(cell, id)
@@ -149,7 +151,7 @@ func get_map_string() -> String:
 		for x in width:
 			var id: int = _flatten(Vector2(x, y))
 			if get_cell(x, y) == TileMap.INVALID_CELL:
-				set_cell(x, y, tile_set.find_tile_by_name("Xv"))
+				set_cell(x, y, tile_set.find_tile_by_name(DEFAULT_TERRAIN))
 				overlay.set_cell(x, y, TileMap.INVALID_CELL)
 
 			var code: String = tile_set.tile_get_name(get_cell(x, y))
@@ -181,7 +183,7 @@ func _initialize_locations() -> void:
 			location.map = self
 
 			if get_cellv(cell) == TileMap.INVALID_CELL:
-				set_cellv(cell, tile_set.find_tile_by_name("Xv"))
+				set_cellv(cell, tile_set.find_tile_by_name(DEFAULT_TERRAIN))
 				overlay.set_cellv(cell, TileMap.INVALID_CELL)
 
 			if overlay.get_cellv(cell) != TileMap.INVALID_CELL:
@@ -205,7 +207,7 @@ func _initialize_grid() -> void:
 
 func _update_size() -> void:
 	if get_cell(0, 0) == -1:
-		set_cell(0, 0, tile_set.find_tile_by_name("Xv"))
+		set_cell(0, 0, tile_set.find_tile_by_name(DEFAULT_TERRAIN))
 	else:
 		# Hack so 'get_used_rect()' returns a correct value when tiles are
 		# removed. It will be fixed by GH-27080.
