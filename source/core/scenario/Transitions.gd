@@ -57,7 +57,7 @@ func _apply_transition_from_cell(cell : Vector2) -> void:
 			layer += 1
 			continue
 
-		print(transition)
+		# print(transition)
 		_set_transition_tile(transition.code + "_" + transition.directions, cell, layer)
 		layer += transition.chain
 
@@ -101,7 +101,7 @@ func _get_base_terrain_code_from_cell(cell: Vector2) -> String:
 func _set_transition_tile(transition: String, cell: Vector2, layer: int) -> void:
 	var tile_id = layers[layer].tile_set.find_tile_by_name(transition)
 	layers[layer].set_cellv(cell, tile_id)
-	print("Set Tile ", cell, " on layer ", layer, " to ", transition)
+	# print("Set Tile ", cell, " on layer ", layer, " to ", transition)
 
 func _tile_set_has_tile(tile_name):
 	var id = tile_set.find_tile_by_name(tile_name)
