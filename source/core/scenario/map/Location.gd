@@ -7,9 +7,9 @@ var id := 0
 var cell := Vector2()
 var position := Vector2()
 
-# "map" and "movable" can't be typed because of cyclic recursion.
+# "map" and "unit" can't be typed because of cyclic recursion.
 var map = null
-var movable = null
+var unit = null
 
 var terrain: Terrain = null
 

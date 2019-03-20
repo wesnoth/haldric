@@ -40,7 +40,7 @@ func find_path(start_loc: Location, end_loc: Location) -> Array:
 
 	return loc_path
 
-func find_all_reachable_cells(unit: Movable) -> Dictionary:
+func find_all_reachable_cells(unit: Unit) -> Dictionary:
 	update_weight(unit)
 	var paths := {}
 	var cells := Hex.get_cells_in_range(unit.location.cell, unit.movement_points, width, height)
@@ -65,7 +65,7 @@ func find_all_reachable_cells(unit: Movable) -> Dictionary:
 
 	return paths
 
-func update_weight(unit: Movable) -> void:
+func update_weight(unit: Unit) -> void:
 	for label in labels:
 		remove_child(label)
 	labels.clear()
@@ -76,7 +76,7 @@ func update_weight(unit: Movable) -> void:
 			var location = locations[id]
 			var cost = unit.terrain_cost(location)
 
-			var other_unit = location.movable
+			var other_unit = location.unit
 			if other_unit:
 				if not other_unit.side == unit.side:
 					cost = 99
@@ -85,7 +85,7 @@ func update_weight(unit: Movable) -> void:
 					if _is_out_of_bounds(n_cell):
 						continue
 					var n_loc = get_location(n_cell)
-					if n_loc.movable and not n_loc.movable.side == unit.side:
+					if n_loc.unit and not n_loc.unit.side == unit.side:
 						cost += 100
 						break
 			#print(cost)

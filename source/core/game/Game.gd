@@ -2,7 +2,7 @@ extends Node2D
 
 var scenario: Scenario = null
 
-var selected_unit: Movable = null
+var selected_unit: Unit = null
 
 onready var scenario_container := $ScenarioContainer as Node2D
 
@@ -15,11 +15,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		print(mouse_cell)
 		var location: Location = scenario.map.get_location(mouse_cell)
 		if location:
-			if location.movable:
-				selected_unit = location.movable
+			if location.unit:
+				selected_unit = location.unit
 				selected_unit.reachable = scenario.map.find_all_reachable_cells(selected_unit)
 				selected_unit.highlight_moves()
-			elif selected_unit and not location.movable:
+			elif selected_unit and not location.unit:
 				selected_unit.unhighlight_moves()
 				_clear_temp_path()
 				selected_unit.move_to(location)
