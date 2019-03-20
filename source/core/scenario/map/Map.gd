@@ -97,7 +97,7 @@ func update_weight(unit: Unit) -> void:
 			grid.astar.set_point_weight_scale(id, cost)
 
 func get_location(cell: Vector2) -> Location:
-	if _flatten(cell) >= locations.size():
+	if _is_out_of_bounds(cell):
 		return null
 	return locations[_flatten(cell)]
 
