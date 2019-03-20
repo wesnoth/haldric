@@ -8,12 +8,17 @@ var width := 0
 var height := 0
 
 var locations := {}
-
+var labels := []
 var grid: Grid = null
 
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
+
 onready var transitions := $Transitions as Transitions
+
+onready var cell_selector := $CellSelector as Node2D
+onready var path_selector : StreamTexture = preload("res://graphics/images/terrain/path.png")
+
 
 func _ready() -> void:
 	_update_size()
@@ -54,15 +59,21 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 		var new_path := []
 		var cost := 0
 		for path_cell in path:
-			if cost + unit.terrain_cost(path_cell) > unit.movement_points:
+			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
+			if path_cell == path.back() and cell_cost > 100:
+				cell_cost -= 100
+			if cost + cell_cost > unit.movement_points:
 				break
-			cost += unit.terrain_cost(path_cell)
+			cost += cell_cost
 			new_path.append(path_cell)
-			paths[path_cell] = new_path
+			paths[path_cell] = new_path.duplicate(true)
 
 	return paths
 
 func update_weight(unit: Unit) -> void:
+	for label in labels:
+		remove_child(label)
+	labels.clear()
 	for y in height:
 		for x in width:
 			var cell = Vector2(x, y)
@@ -70,21 +81,31 @@ func update_weight(unit: Unit) -> void:
 			var location = locations[id]
 			var cost = unit.terrain_cost(location)
 
-			var other_unit = location.movable
+			var other_unit = location.unit
 			if other_unit:
 				if not other_unit.side == unit.side:
 					cost = 99
 			else:
 				for n_cell in Hex.get_neighbors(cell):
-					if not _is_cell_in_map(n_cell):
-						continue
 					var n_loc = get_location(n_cell)
-					if n_loc.movable:
+
+					if not n_loc:
+						continue
+
+					if n_loc.unit and not n_loc.unit.side == unit.side:
 						cost += 100
 						break
+			#print(cost)
+			var label : Label = Label.new()
+			label.text = String(cost)
+			label.set_position(location.position)
+			labels.append(label)
+			add_child(label)
 			grid.astar.set_point_weight_scale(id, cost)
 
 func get_location(cell: Vector2) -> Location:
+	if not _is_cell_in_map(cell):
+		return null
 	return locations[_flatten(cell)]
 
 func set_size(cell: Vector2) -> void:

@@ -29,11 +29,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/core/scenario/map/Map.gd"
 }, {
-"base": "Node2D",
-"class": "Movable",
-"language": "GDScript",
-"path": "res://source/core/unit/Movable.gd"
-}, {
 "base": "Resource",
 "class": "RDefense",
 "language": "GDScript",
@@ -79,7 +74,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/core/scenario/Transitions.gd"
 }, {
-"base": "Movable",
+"base": "Node2D",
 "class": "Unit",
 "language": "GDScript",
 "path": "res://source/core/unit/Unit.gd"
@@ -89,7 +84,6 @@ _global_script_class_icons={
 "Hex": "",
 "Location": "",
 "Map": "",
-"Movable": "",
 "RDefense": "",
 "RMovement": "",
 "RResistance": "",
