@@ -93,7 +93,7 @@ func update_weight(unit: Unit) -> void:
 			var id = _flatten(cell)
 			var location : Location = locations[id]
 			var cost = unit.terrain_cost(location)
-			
+
 			var other_unit = location.unit
 			if other_unit:
 				if not other_unit.side == unit.side:
@@ -123,7 +123,7 @@ func update_weight(unit: Unit) -> void:
 			#print(cost)
 
 			grid.astar.set_point_weight_scale(id, cost)
-	for loc in ZOC_tiles:			
+	for loc in ZOC_tiles:
 		var label : Label = Label.new()
 		label.text = "ZOC"
 		label.set_position(loc.position)

@@ -25,8 +25,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				selected_unit = null
 
 	elif event.is_action_pressed("mouse_right"):
-		selected_unit.unhighlight_moves()
-		selected_unit = null
+		if selected_unit:
+			selected_unit.unhighlight_moves()
+			selected_unit = null
 		_clear_temp_path()
 
 	elif event is InputEventMouseMotion:
