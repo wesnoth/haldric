@@ -20,12 +20,6 @@ cell_half_offset = 1
 format = 1
 script = ExtResource( 3 )
 
-[node name="Overlay" type="TileMap" parent="Map"]
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 54, 72 )
-cell_half_offset = 1
-format = 1
-
 [node name="Transitions" type="Node2D" parent="Map"]
 script = ExtResource( 4 )
 
@@ -61,6 +55,12 @@ format = 1
 
 [node name="6" type="TileMap" parent="Map/Transitions"]
 tile_set = ExtResource( 5 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+
+[node name="Overlay" type="TileMap" parent="Map"]
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
