@@ -19,6 +19,6 @@ func _on_Back_pressed() -> void:
 
 func _on_Play_pressed() -> void:
 	var scenario: String = option_button.get_selected_metadata()
-	
+
 	Global.scenario_name = scenario
 	Scene.change(Scene.Game)
