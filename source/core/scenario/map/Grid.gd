@@ -32,6 +32,13 @@ func find_path_by_cell(start_cell : Vector2, end_cell : Vector2) -> Array:
 			path2D.append(Vector2(point.x, point.y))
 	return path2D
 
+func block_cell(cell : Vector2):
+	_disconnect_with_neighbors(cell)
+	
+func unblock_cell(cell : Vector2):
+	_disconnect_with_neighbors(cell)
+	_connect_with_neighbors(cell)
+
 func _generate_points() -> void:
 	for y in height:
 		for x in width:
@@ -69,7 +76,7 @@ func _disconnect_with_neighbors(cell: Vector2) -> void:
 	for n in neighbors:
 		var n_id: int = _flatten(n)
 		
-		if _check_boundaries(n) and not astar.are_points_connected(id, n_id):
+		if _check_boundaries(n) and astar.are_points_connected(id, n_id):
 			astar.disconnect_points(id, n_id)
 
 func _flatten(cell: Vector2) -> int:

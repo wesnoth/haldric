@@ -12,6 +12,7 @@ var height := 0
 var locations := {}
 var labels := []
 var grid: Grid = null
+var ZOC_tiles := []
 
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
@@ -60,15 +61,18 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 		if paths.has(cell):
 			continue
 		var path = find_path(unit.location, get_location(cell))
+		if path.empty():
+			continue
 		path.remove(0)
 		var new_path := []
 		var cost := 0
 		for path_cell in path:
 			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
-			if path_cell == path.back() and cell_cost > 100:
-				cell_cost -= 100
+			if path_cell in ZOC_tiles:
+				cell_cost = unit.movement_points - cost
 			if cost + cell_cost > unit.movement_points:
 				break
+
 			cost += cell_cost
 			new_path.append(path_cell)
 			paths[path_cell] = new_path.duplicate(true)
@@ -79,34 +83,49 @@ func update_weight(unit: Unit) -> void:
 	for label in labels:
 		remove_child(label)
 	labels.clear()
+	for loc in ZOC_tiles:
+		grid.unblock_cell(loc.cell)
+	ZOC_tiles.clear()
 	for y in height:
 		for x in width:
 			var cell = Vector2(x, y)
 			var id = _flatten(cell)
-			var location = locations[id]
+			var location : Location = locations[id]
 			var cost = unit.terrain_cost(location)
-
+			
 			var other_unit = location.unit
 			if other_unit:
 				if not other_unit.side == unit.side:
-					cost = 99
-			else:
-				for n_cell in Hex.get_neighbors(cell):
-					var n_loc = get_location(n_cell)
-
-					if not n_loc:
-						continue
-
-					if n_loc.unit and not n_loc.unit.side == unit.side:
-						cost += 100
-						break
+					grid.block_cell(location.cell)
+					ZOC_tiles.append(location)
+					var current_cell := Vector2(cell.x, cell.y + 1)
+					var next_cell := Vector2(cell.x, cell.y + 1)
+					var neighbors = Hex.get_neighbors(location.cell)
+					for neighbor in neighbors:
+						if _is_out_of_bounds(neighbor):
+							continue
+						if unit.location.cell == neighbor:
+							continue
+						grid.block_cell(neighbor)
+						var new_neighbors = Hex.get_neighbors(neighbor)
+						for new_neighbor in new_neighbors:
+							if _is_out_of_bounds(new_neighbor):
+								continue
+							if new_neighbor == location.cell or new_neighbor in neighbors:
+								if not unit.location.cell == new_neighbor:
+									continue
+							grid.astar.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
+						#print("zoc - " + String(current_cell))
+						ZOC_tiles.append(get_location(neighbor))
 			#print(cost)
-			var label : Label = Label.new()
-			label.text = String(cost)
-			label.set_position(location.position)
-			labels.append(label)
-			add_child(label)
+
 			grid.astar.set_point_weight_scale(id, cost)
+	for loc in ZOC_tiles:			
+		var label : Label = Label.new()
+		label.text = "ZOC"
+		label.set_position(loc.position)
+		labels.append(label)
+		add_child(label)
 
 func get_location(cell: Vector2) -> Location:
 	if _is_out_of_bounds(cell):
