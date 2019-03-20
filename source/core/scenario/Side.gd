@@ -26,7 +26,7 @@ var villages := []
 
 var leaders := []
 
-var units := []
+onready var units = $Units as Node2D
 
 func _ready() -> void:
 	side = get_index()
