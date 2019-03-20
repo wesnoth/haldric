@@ -1,12 +1,15 @@
 extends Node2D
 class_name Transitions
 
+# original:
 # var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
+# inverted because a "n" transitions has to go into "s" from the tile that is processed
 var directions = [ "s", "sw", "nw", "n", "ne", "se" ]
 
 onready var layers = [ $"1", $"2", $"3", $"4", $"5", $"6", ]
 
-func initialize(map) -> void: # : Map, cyclic reference
+# : Map, cyclic reference
+func initialize(map) -> void:
 	print("Loading transitions on map ", Vector2(map.width, map.height))
 	for y in map.height:
 		for x in map.width:
