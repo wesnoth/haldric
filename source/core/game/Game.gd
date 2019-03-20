@@ -10,8 +10,7 @@ var path_to_cursor : Dictionary = {}
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left"):
-		var mouse_cell: Vector2 =\
-				scenario.map.world_to_map(get_global_mouse_position())
+		var mouse_cell: Vector2 = scenario.map.world_to_map(get_global_mouse_position())
 		print(mouse_cell)
 		var location: Location = scenario.map.get_location(mouse_cell)
 		if location:
@@ -26,20 +25,18 @@ func _unhandled_input(event: InputEvent) -> void:
 				selected_unit = null
 
 	elif event.is_action_pressed("mouse_right"):
-		selected_unit.unhighlight_moves()
-		selected_unit = null
+		if selected_unit:
+			selected_unit.unhighlight_moves()
+			selected_unit = null
 		_clear_temp_path()
 
 	elif event is InputEventMouseMotion:
-		var mouse_cell: Vector2 =\
-				scenario.map.world_to_map(get_global_mouse_position())
-		var loc : Location = scenario.map.get_location(mouse_cell)
-		if loc:
-			scenario.map.cell_selector.position = loc.position
-			if selected_unit:
-				if path_to_cursor.empty() or not path_to_cursor.keys().back() == loc:
-					_clear_temp_path()
-					_draw_temp_path(selected_unit.find_path(loc))
+		var mouse_cell: Vector2 = scenario.map.world_to_map(get_global_mouse_position())
+		var loc: Location = scenario.map.get_location(mouse_cell)
+		if loc and selected_unit:
+			if path_to_cursor.empty() or not path_to_cursor.keys().back() == loc:
+				_clear_temp_path()
+				_draw_temp_path(selected_unit.find_path(loc))
 
 
 func _ready() -> void:
@@ -55,6 +52,7 @@ func _load_units() -> void:
 	if scenario:
 		scenario.add_unit(1, "Archer", 4, 4)
 		scenario.add_unit(2, "Archer", 7, 8)
+		scenario.add_unit(2, "Archer", 8, 8)
 
 func _draw_temp_path(path : Array) -> void:
 	for loc in path:

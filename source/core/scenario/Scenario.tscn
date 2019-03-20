@@ -77,6 +77,3 @@ margin_bottom = 144.0
 
 [node name="CellSelector" type="Sprite" parent="Map"]
 texture = ExtResource( 7 )
-
-[node name="Units" type="Node2D" parent="."]
-

@@ -17,7 +17,7 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 	var side: Side = sides.get_child(side_number - 1)
 	var unit := Wesnoth.Unit.instance() as Node2D
 
-	side.add_child(unit)
+	side.units.add_child(unit)
 	unit.initialize(Registry.units[unit_id])
 
 	var loc: Location = map.get_location(Vector2(x, y))

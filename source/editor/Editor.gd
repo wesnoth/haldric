@@ -2,6 +2,7 @@ extends Node2D
 
 const Scenario = preload("res://source/core/scenario/Scenario.tscn")
 const DEFAULT_PATH = "res://data/scenarios/"
+const DEFAULT_MAP_SIZE := Vector2(44, 33)
 
 export var button_size := 60
 
@@ -57,7 +58,7 @@ func _new_map() -> void:
 	scenario.queue_free()
 	scenario = Scenario.instance()
 	scenario_container.add_child(scenario)
-	scenario.map.set_size(Vector2(15, 10))
+	scenario.map.set_size(DEFAULT_MAP_SIZE)
 
 func _load_map(scenario_name: String) -> void:
 	var packed_scene = load(DEFAULT_PATH + scenario_name + ".tscn")
