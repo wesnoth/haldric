@@ -18,6 +18,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		var mouse_position: Vector2 = get_global_mouse_position()
 		scenario.map.set_tile(mouse_position, current_tile)
 
+	if Input.is_action_just_released("mouse_left"):
+		_update()
+
 	if Input.is_action_pressed("mouse_right"):
 		var mouse_position: Vector2 = get_global_mouse_position()
 		scenario.map.set_tile(mouse_position, -1)
@@ -25,6 +28,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_new_map()
 	_setup_scenario()
+
+func _update():
+	scenario.map.update_terrain()
 
 func _setup_scenario() -> void:
 	for id in scenario.map.tile_set.get_tiles_ids():

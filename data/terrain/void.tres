@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+layer = 99
 code = "Xv"
 name = "Void"
 type = "impassable"
