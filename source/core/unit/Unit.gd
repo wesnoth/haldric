@@ -49,14 +49,15 @@ func terrain_cost(loc: Location) -> int:
 	return cost
 
 func highlight_moves() -> void:
-	var darken_id = location.map.tile_set.find_tile_by_name("darken")
-	for cell in location.map.get_used_cells():
-		if reachable.has(location.map.get_location(cell)):
-			continue
-		location.map.cover.set_cellv(cell, darken_id)
+	for loc in reachable:
+		location.map.cover.set_cellv(loc.cell, -1)
+	location.map.cover.show()
 
 func unhighlight_moves() -> void:
-	location.map.cover.clear()
+	var darken_id = location.map.tile_set.find_tile_by_name("darken")
+	for loc in reachable:
+		location.map.cover.set_cellv(loc.cell, darken_id)
+	location.map.cover.hide()
 
 func _move() -> void:
 	if path and tween:

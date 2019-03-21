@@ -9,7 +9,7 @@
 [ext_resource path="res://source/core/scenario/MapBorder.tscn" type="PackedScene" id=7]
 [ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=8]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
 
 [node name="Scenario" type="Node2D"]
@@ -70,7 +70,8 @@ cell_half_offset = 1
 format = 1
 
 [node name="Cover" type="TileMap" parent="Map"]
-material = SubResource( 2 )
+visible = false
+material = SubResource( 1 )
 z_index = 100
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 54, 72 )

@@ -15,6 +15,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		var location: Location = scenario.map.get_location(mouse_cell)
 		if location:
 			if location.unit:
+				if selected_unit:
+					selected_unit.unhighlight_moves()
 				selected_unit = location.unit
 				selected_unit.reachable = scenario.map.find_all_reachable_cells(selected_unit)
 				selected_unit.highlight_moves()
