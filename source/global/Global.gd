@@ -1,8 +1,5 @@
 extends Node
 
-# Resources
-var tileset: TileSet = preload("res://graphics/tilesets/tileset.tres")
-
 var version: String = _get_version_string()
 var scenario_name := ""
 
