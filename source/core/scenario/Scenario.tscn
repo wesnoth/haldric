@@ -1,16 +1,143 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://source/core/scenario/Scenario.gd" type="Script" id=1]
 [ext_resource path="res://graphics/tilesets/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://source/core/scenario/map/Map.gd" type="Script" id=3]
 [ext_resource path="res://source/core/scenario/Transitions.gd" type="Script" id=4]
 [ext_resource path="res://graphics/tilesets/transitions.tres" type="TileSet" id=5]
-[ext_resource path="res://graphics/shader/desaturate.shader" type="Shader" id=6]
-[ext_resource path="res://source/core/scenario/MapBorder.tscn" type="PackedScene" id=7]
-[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=8]
+[ext_resource path="res://source/core/scenario/MapBorder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=7]
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 6 )
+[sub_resource type="VisualShaderNodeScalarConstant" id=9]
+constant = 0.8
+
+[sub_resource type="VisualShaderNodeInput" id=10]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeInput" id=11]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeTexture" id=12]
+source = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id=13]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVec3Constant" id=15]
+constant = Vector3( 0.3, 0.59, 0.11 )
+
+[sub_resource type="VisualShaderNodeVectorInterp" id=16]
+
+[sub_resource type="VisualShaderNodeTexture" id=4]
+source = 1
+
+[sub_resource type="VisualShaderNodeVectorCompose" id=18]
+
+[sub_resource type="VisualShaderNodeVectorLen" id=19]
+
+[sub_resource type="VisualShader" id=2]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:20
+	vec3 n_out20p0;
+	n_out20p0 = vec3(SCREEN_UV,0.0);
+
+// Texture:3
+	vec3 n_out3p0;
+	float n_out3p1;
+	{
+		vec4 _tex_read = textureLod( SCREEN_TEXTURE , n_out20p0.xy, 0.0 );
+		n_out3p0 = _tex_read.rgb;
+		n_out3p1 = _tex_read.a;
+	}
+
+// Vector:27
+	vec3 n_out27p0;
+	n_out27p0 = vec3(0.300000,0.590000,0.110000);
+
+// VectorOp:25
+	vec3 n_out25p0;
+	n_out25p0 = n_out27p0 * n_out3p0;
+
+// VectorLen:32
+	float n_out32p0;
+	n_out32p0 = length( n_out25p0 );
+
+// VectorCompose:31
+	vec3 n_out31p0;
+	n_out31p0 = vec3( n_out32p0 , n_out32p0 , n_out32p0 );
+
+// Scalar:17
+	float n_out17p0;
+	n_out17p0 = 0.800000;
+
+// VectorInterp:28
+	vec3 n_out28p0;
+	n_out28p0 = mix( n_out3p0 , n_out31p0 , vec3(n_out17p0) );
+
+// Input:21
+	vec3 n_out21p0;
+	n_out21p0 = vec3(UV,0.0);
+
+// Texture:22
+	vec3 n_out22p0;
+	float n_out22p1;
+	{
+		vec4 _tex_read = texture( TEXTURE , n_out21p0.xy );
+		n_out22p0 = _tex_read.rgb;
+		n_out22p1 = _tex_read.a;
+	}
+
+// Output:0
+	COLOR.rgb = n_out28p0;
+	COLOR.a = n_out22p1;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -1768.59, -323.675 )
+mode = 1
+flags/light_only = false
+flags/unshaded = true
+nodes/fragment/0/position = Vector2( -460, 400 )
+nodes/fragment/3/node = SubResource( 4 )
+nodes/fragment/3/position = Vector2( -2100, 180 )
+nodes/fragment/17/node = SubResource( 9 )
+nodes/fragment/17/position = Vector2( -1180, 420 )
+nodes/fragment/20/node = SubResource( 10 )
+nodes/fragment/20/position = Vector2( -2460, 180 )
+nodes/fragment/21/node = SubResource( 11 )
+nodes/fragment/21/position = Vector2( -1120, 640 )
+nodes/fragment/22/node = SubResource( 12 )
+nodes/fragment/22/position = Vector2( -780, 560 )
+nodes/fragment/25/node = SubResource( 13 )
+nodes/fragment/25/position = Vector2( -1780, -20 )
+nodes/fragment/27/node = SubResource( 15 )
+nodes/fragment/27/position = Vector2( -2120, -180 )
+nodes/fragment/28/node = SubResource( 16 )
+nodes/fragment/28/position = Vector2( -780, 220 )
+nodes/fragment/31/node = SubResource( 18 )
+nodes/fragment/31/position = Vector2( -1160, -20 )
+nodes/fragment/32/node = SubResource( 19 )
+nodes/fragment/32/position = Vector2( -1480, 20 )
+nodes/fragment/connections = PoolIntArray( 20, 0, 3, 0, 22, 1, 0, 1, 27, 0, 25, 0, 3, 0, 25, 1, 21, 0, 22, 0, 31, 0, 28, 1, 3, 0, 28, 0, 17, 0, 28, 2, 28, 0, 0, 0, 25, 0, 32, 0, 32, 0, 31, 0, 32, 0, 31, 1, 32, 0, 31, 2 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 
 [node name="Scenario" type="Node2D"]
 script = ExtResource( 1 )
@@ -70,17 +197,17 @@ cell_half_offset = 1
 format = 1
 
 [node name="Cover" type="TileMap" parent="Map"]
-material = SubResource( 2 )
+material = SubResource( 3 )
 z_index = 100
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
-[node name="MapBorder" parent="Map" instance=ExtResource( 7 )]
+[node name="MapBorder" parent="Map" instance=ExtResource( 6 )]
 margin_right = 144.0
 margin_bottom = 144.0
 
 [node name="CellSelector" type="Sprite" parent="Map"]
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 
