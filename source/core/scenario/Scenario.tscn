@@ -30,6 +30,7 @@ format = 1
 script = ExtResource( 3 )
 
 [node name="Transitions" type="Node2D" parent="Map"]
+editor/display_folded = true
 script = ExtResource( 4 )
 
 [node name="1" type="TileMap" parent="Map/Transitions"]
