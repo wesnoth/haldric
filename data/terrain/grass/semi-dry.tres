@@ -4,8 +4,9 @@
 
 [resource]
 script = ExtResource( 1 )
-code = "Gg"
-name = "Green Grass"
+layer = 2
+code = "Gs"
+name = "Semi-Dry Grass"
 type = "flat"
 recruit_onto = false
 recruit_from = false

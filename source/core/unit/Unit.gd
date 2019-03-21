@@ -12,7 +12,7 @@ var location: Location = null
 var path := []
 var reachable := {}
 
-export(float, 0.1, 1.0) var move_time := 0.2
+export(float, 0.1, 1.0) var move_time := 0.15
 
 onready var sprite := $Sprite as Sprite
 onready var tween := $Tween as Tween

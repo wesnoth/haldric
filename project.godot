@@ -70,6 +70,11 @@ _global_script_classes=[ {
 "path": "res://source/core/scenario/map/Terrain.gd"
 }, {
 "base": "Node2D",
+"class": "Transitions",
+"language": "GDScript",
+"path": "res://source/core/scenario/Transitions.gd"
+}, {
+"base": "Node2D",
 "class": "Unit",
 "language": "GDScript",
 "path": "res://source/core/unit/Unit.gd"
@@ -87,6 +92,7 @@ _global_script_class_icons={
 "Scenario": "",
 "Side": "",
 "Terrain": "",
+"Transitions": "",
 "Unit": ""
 }
 

@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+layer = 0
 code = "^Vh"
 name = "Cottage"
 type = "village"

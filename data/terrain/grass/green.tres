@@ -4,11 +4,13 @@
 
 [resource]
 script = ExtResource( 1 )
-code = "Gd"
-name = "Dry Grass"
+layer = 3
+code = "Gg"
+name = "Green Grass"
 type = "flat"
 recruit_onto = false
 recruit_from = false
 heals = false
 gives_income = false
+submerge = false
 

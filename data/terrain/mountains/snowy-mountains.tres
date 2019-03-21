@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+layer = 6
 code = "Ms"
 name = "Snowy Mountains"
 type = "mountains"

@@ -16,14 +16,19 @@ var ZOC_tiles := []
 
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
+
+onready var transitions := $Transitions as Transitions
+
 onready var cell_selector := $CellSelector as Node2D
 onready var path_selector : StreamTexture = preload("res://graphics/images/terrain/path.png")
+
 
 func _ready() -> void:
 	_update_size()
 	_initialize_locations()
 	_initialize_grid()
 	_initialize_border()
+	_initialize_transitions()
 
 	# So the initial size is also correct when first entering the editor.
 	call_deferred("_update_size")
@@ -80,6 +85,11 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 				break
 	return paths
 
+func update_terrain() -> void:
+	_initialize_locations()
+	_initialize_grid()
+	_initialize_transitions()
+
 func update_weight(unit: Unit) -> void:
 	for label in labels:
 		remove_child(label)
@@ -93,7 +103,7 @@ func update_weight(unit: Unit) -> void:
 			var id = _flatten(cell)
 			var location : Location = locations[id]
 			var cost = unit.terrain_cost(location)
-			
+
 			var other_unit = location.unit
 			if other_unit:
 				if not other_unit.side == unit.side:
@@ -103,14 +113,14 @@ func update_weight(unit: Unit) -> void:
 					var next_cell := Vector2(cell.x, cell.y + 1)
 					var neighbors = Hex.get_neighbors(location.cell)
 					for neighbor in neighbors:
-						if _is_out_of_bounds(neighbor):
+						if not _is_cell_in_map(neighbor):
 							continue
 						if unit.location.cell == neighbor:
 							continue
 						grid.block_cell(neighbor)
 						var new_neighbors = Hex.get_neighbors(neighbor)
 						for new_neighbor in new_neighbors:
-							if _is_out_of_bounds(new_neighbor):
+							if not _is_cell_in_map(new_neighbor):
 								continue
 							if new_neighbor == location.cell or new_neighbor in neighbors:
 								if not unit.location.cell == new_neighbor:
@@ -125,7 +135,7 @@ func update_weight(unit: Unit) -> void:
 			#print(cost)
 
 			grid.astar.set_point_weight_scale(id, cost)
-	for loc in ZOC_tiles:			
+	for loc in ZOC_tiles:
 		var label : Label = Label.new()
 		label.text = "ZOC"
 		label.set_position(loc.position)
@@ -133,7 +143,7 @@ func update_weight(unit: Unit) -> void:
 		add_child(label)
 
 func get_location(cell: Vector2) -> Location:
-	if _is_out_of_bounds(cell):
+	if not _is_cell_in_map(cell):
 		return null
 	return locations[_flatten(cell)]
 
@@ -148,7 +158,7 @@ func set_size(cell: Vector2) -> void:
 func set_tile(global_pos: Vector2, id: int):
 	var cell: Vector2 = world_to_map(global_pos)
 
-	if _is_out_of_bounds(cell):
+	if not _is_cell_in_map(cell):
 		return
 
 	if id == -1:
@@ -218,8 +228,7 @@ func _initialize_locations() -> void:
 			if overlay_code == "":
 				location.terrain = Terrain.new([Registry.terrain[base_code]])
 			else:
-				location.terrain = Terrain.new([Registry.terrain[base_code],
-						Registry.terrain[overlay_code]])
+				location.terrain = Terrain.new([Registry.terrain[base_code], Registry.terrain[overlay_code]])
 
 			location.id = id
 			location.cell = Vector2(x, y)
@@ -252,8 +261,11 @@ func _initialize_border() -> void:
 	print(size)
 	$MapBorder.rect_size = map_to_world(size) + Vector2(18, 36)
 
+func _initialize_transitions() -> void:
+		transitions.update_transitions(self)
+
 func _flatten(cell: Vector2) -> int:
 	return int(cell.y)*int(width) + int(cell.x)
 
-func _is_out_of_bounds(cell: Vector2) -> bool:
-	return cell.x < 0 or cell.x >= width or cell.y < 0 or cell.y >= height
+func _is_cell_in_map(cell: Vector2) -> bool:
+	return cell.x >= 0 and cell.x < width and cell.y >= 0 and cell.y < height
