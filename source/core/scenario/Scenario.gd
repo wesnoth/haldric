@@ -1,9 +1,6 @@
 extends Node2D
 class_name Scenario
 
-export var title := ""
-export var turns := 99
-
 onready var map := $Map as Map
 onready var sides := $Sides as Node
 

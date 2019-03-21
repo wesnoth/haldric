@@ -47,8 +47,13 @@ func _ready() -> void:
 
 func _load_map() -> void:
 	if Registry.scenarios.has(Global.scenario_name):
-		scenario = load(Registry.scenarios[Global.scenario_name]).instance()
-		scenario_container.add_child(scenario)
+		# Look for an accompanying .tscn file
+		scenario = load(Registry.scenarios[Global.scenario_name].base_path + ".tscn").instance()
+
+		if scenario:
+			scenario_container.add_child(scenario)
+		else:
+			print("No .tscn file found for scenario " % Global.scenario_name)
 
 func _load_units() -> void:
 	if scenario:

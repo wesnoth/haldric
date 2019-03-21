@@ -127,7 +127,7 @@ func update_weight(unit: Unit) -> void:
 									continue
 							if get_location(new_neighbor) in ZOC_tiles:
 								if grid.astar.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
-									grid.astar.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))								
+									grid.astar.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
 							else:
 								grid.astar.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
 						#print("zoc - " + String(current_cell))
@@ -222,17 +222,17 @@ func _initialize_locations() -> void:
 
 			if overlay.get_cellv(cell) != TileMap.INVALID_CELL:
 				overlay_code = tile_set.tile_get_name(overlay.get_cellv(cell))
-			
+
 			var cover_tile = tile_set.find_tile_by_name("Xv")
 			cover.set_cellv(cell, cover_tile)
-			
+
 			base_code = tile_set.tile_get_name(get_cell(x, y))
 
 			if overlay_code == "":
 				location.terrain = Terrain.new([Registry.terrain[base_code]])
 			else:
 				location.terrain = Terrain.new([Registry.terrain[base_code], Registry.terrain[overlay_code]])
-			
+
 			location.id = id
 			location.cell = Vector2(x, y)
 			location.position = map_to_world_centered(cell)

@@ -45,6 +45,11 @@ _global_script_classes=[ {
 "path": "res://source/templates/RResistance.gd"
 }, {
 "base": "Resource",
+"class": "RScenario",
+"language": "GDScript",
+"path": "res://source/templates/RScenario.gd"
+}, {
+"base": "Resource",
 "class": "RTerrain",
 "language": "GDScript",
 "path": "res://source/templates/RTerrain.gd"
@@ -87,6 +92,7 @@ _global_script_class_icons={
 "RDefense": "",
 "RMovement": "",
 "RResistance": "",
+"RScenario": "",
 "RTerrain": "",
 "RUnit": "",
 "Scenario": "",

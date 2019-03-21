@@ -45,21 +45,15 @@ func _get_file_data(path: String) -> Dictionary:
 	var file_name := path.get_file()
 	var file_name_split := file_name.split(".")
 
-	var is_scene: bool = file_name_split[1] == "tscn"
-
 	var file_data := {
-		id = file_name_split[0],
-		data = null,
-		path = path
+		id = file_name_split[0], # Name, no extension
+		base_path = path.get_basename(), # Full path, no extension
+		data = load(path)
 	}
-
-	# Scenes are loaded later.
-	if not is_scene:
-		file_data.data = load(path)
 
 	if file_data.data:
 		print("Loader: load file: ", path)
-	elif not is_scene:
+	else:
 		print("Loader: could not load file: ", path)
 
 	return file_data
