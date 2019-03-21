@@ -9,13 +9,13 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	var i := 0
 	for scenario in Registry.scenarios:
-		option_button.add_item(scenario, i)
+
+		if Registry.scenarios[scenario].data.title != "":
+			option_button.add_item(Registry.scenarios[scenario].data.title, i)
+		else:
+			option_button.add_item(scenario, i)
+
 		option_button.set_item_metadata(i, scenario)
-
-		# TODO: why doesn't this label display in the box itself?
-		if Registry.scenarios[scenario].data.title:
-			option_button.set_item_text(i, Registry.scenarios[scenario].data.title)
-
 		i += 1
 
 func _on_Back_pressed() -> void:
