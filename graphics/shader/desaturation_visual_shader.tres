@@ -101,30 +101,30 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -2369.21, -184.554 )
+graph_offset = Vector2( -1829.12, -136.554 )
 mode = 1
 flags/light_only = false
 flags/unshaded = true
-nodes/fragment/0/position = Vector2( -1040, 200 )
+nodes/fragment/0/position = Vector2( -740, 460 )
 nodes/fragment/3/node = SubResource( 8 )
 nodes/fragment/3/position = Vector2( -2120, 220 )
 nodes/fragment/17/node = SubResource( 1 )
-nodes/fragment/17/position = Vector2( -1560, 320 )
+nodes/fragment/17/position = Vector2( -1440, 400 )
 nodes/fragment/20/node = SubResource( 2 )
-nodes/fragment/20/position = Vector2( -2340, 260 )
+nodes/fragment/20/position = Vector2( -2460, 200 )
 nodes/fragment/21/node = SubResource( 3 )
-nodes/fragment/21/position = Vector2( -2340, 380 )
+nodes/fragment/21/position = Vector2( -2460, 360 )
 nodes/fragment/22/node = SubResource( 4 )
-nodes/fragment/22/position = Vector2( -1300, 360 )
+nodes/fragment/22/position = Vector2( -2120, 420 )
 nodes/fragment/25/node = SubResource( 5 )
-nodes/fragment/25/position = Vector2( -1920, 100 )
+nodes/fragment/25/position = Vector2( -1820, 0 )
 nodes/fragment/27/node = SubResource( 6 )
-nodes/fragment/27/position = Vector2( -2140, 120 )
+nodes/fragment/27/position = Vector2( -2140, -60 )
 nodes/fragment/28/node = SubResource( 7 )
-nodes/fragment/28/position = Vector2( -1300, 240 )
+nodes/fragment/28/position = Vector2( -1060, 260 )
 nodes/fragment/31/node = SubResource( 9 )
-nodes/fragment/31/position = Vector2( -1540, 100 )
+nodes/fragment/31/position = Vector2( -1220, 0 )
 nodes/fragment/32/node = SubResource( 10 )
-nodes/fragment/32/position = Vector2( -1720, 140 )
+nodes/fragment/32/position = Vector2( -1540, 40 )
 nodes/fragment/connections = PoolIntArray( 20, 0, 3, 0, 22, 1, 0, 1, 27, 0, 25, 0, 3, 0, 25, 1, 21, 0, 22, 0, 31, 0, 28, 1, 3, 0, 28, 0, 17, 0, 28, 2, 25, 0, 32, 0, 32, 0, 31, 0, 32, 0, 31, 1, 32, 0, 31, 2, 28, 0, 0, 0 )
 
