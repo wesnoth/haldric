@@ -11,7 +11,7 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
-shader_param/BlendColor = Color( 0.301961, 0.588235, 0.109804, 1 )
+shader_param/BlendColor = Color( 0.3, 0.59, 0.11, 1 )
 shader_param/Blur = 0.2
 shader_param/Saturation = 0.2
 shader_param/Contrast = 1.2
