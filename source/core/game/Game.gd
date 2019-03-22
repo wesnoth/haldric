@@ -6,8 +6,6 @@ var selected_unit: Unit = null
 
 onready var scenario_container := $ScenarioContainer as Node2D
 
-var path_to_cursor : Dictionary = {}
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left"):
 		var mouse_cell: Vector2 = scenario.map.world_to_map(get_global_mouse_position())
@@ -36,10 +34,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		var mouse_cell: Vector2 = scenario.map.world_to_map(get_global_mouse_position())
 		var loc: Location = scenario.map.get_location(mouse_cell)
 		if loc and selected_unit:
-			if path_to_cursor.empty() or not path_to_cursor.keys().back() == loc:
-				_clear_temp_path()
+			if scenario.map.path_canvas.path.empty() or not scenario.map.path_canvas.path.back() == loc:
 				_draw_temp_path(selected_unit.find_path(loc))
-
 
 func _ready() -> void:
 	_load_map()
@@ -62,14 +58,7 @@ func _load_units() -> void:
 		scenario.add_unit(2, "Archer", 8, 8)
 
 func _draw_temp_path(path : Array) -> void:
-	for loc in path:
-		var temp : Sprite = Sprite.new()
-		temp.texture = scenario.map.path_selector
-		temp.position = loc.position
-		scenario.map.add_child(temp)
-		path_to_cursor[loc] = temp
+	scenario.map.path_canvas.path = path
 
 func _clear_temp_path() -> void:
-	for node in path_to_cursor.values():
-		scenario.map.remove_child(node)
-	path_to_cursor.clear()
+	scenario.map.path_canvas.path = [] # Uses assignment to trigger setter

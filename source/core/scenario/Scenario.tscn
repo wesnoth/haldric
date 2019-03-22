@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://source/core/scenario/Scenario.gd" type="Script" id=1]
 [ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://graphics/tilesets/transitions.tres" type="TileSet" id=5]
 [ext_resource path="res://graphics/shader/cover_visual_shader.tres" type="Shader" id=6]
 [ext_resource path="res://source/core/scenario/MapBorder.tscn" type="PackedScene" id=7]
-[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=8]
+[ext_resource path="res://source/core/scenario/PathCanvas.gd" type="Script" id=8]
+[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -16,6 +17,11 @@ shader_param/Blur = 0.2
 shader_param/Saturation = 0.2
 shader_param/Contrast = 1.2
 shader_param/Brightness = 1.1
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array(  )
+}
 
 [node name="Scenario" type="Node2D"]
 script = ExtResource( 1 )
@@ -88,6 +94,13 @@ format = 1
 margin_right = 144.0
 margin_bottom = 144.0
 
+[node name="PathCanvas" type="Node2D" parent="Map"]
+z_index = 500
+script = ExtResource( 8 )
+
+[node name="Path" type="Path2D" parent="Map/PathCanvas"]
+curve = SubResource( 2 )
+
 [node name="CellSelector" type="Sprite" parent="Map"]
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 

@@ -20,8 +20,7 @@ onready var cover := $Cover as TileMap
 onready var transitions := $Transitions as Transitions
 
 onready var cell_selector := $CellSelector as Node2D
-onready var path_selector : StreamTexture = preload("res://graphics/images/terrain/path.png")
-
+onready var path_canvas := $PathCanvas as Node2D
 
 func _ready() -> void:
 	_update_size()
