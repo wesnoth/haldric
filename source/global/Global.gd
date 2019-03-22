@@ -1,5 +1,8 @@
 extends Node
 
+# References
+var Camera = null
+
 var version: String = _get_version_string()
 var scenario_name := ""
 

@@ -31,6 +31,9 @@ func _input(event: InputEvent) -> void:
 				(get_viewport().get_mouse_position() -
 				initial_mouse_position)*-1*zoom)
 
+func _ready() -> void:
+	Global.Camera = self
+
 func _process(delta: float) -> void:
 	var speed_adjusted: float = speed * zoom.x / 2
 
