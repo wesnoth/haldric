@@ -134,12 +134,12 @@ func update_weight(unit: Unit) -> void:
 			#print(cost)
 
 			grid.astar.set_point_weight_scale(id, cost)
-	for loc in ZOC_tiles:
-		var label : Label = Label.new()
-		label.text = "ZOC"
-		label.set_position(loc.position)
-		labels.append(label)
-		add_child(label)
+	#for loc in ZOC_tiles:
+	#	var label : Label = Label.new()
+	#	label.text = "ZOC"
+	#	label.set_position(loc.position)
+	#	labels.append(label)
+	#	add_child(label)
 
 func get_location(cell: Vector2) -> Location:
 	if not _is_cell_in_map(cell):
