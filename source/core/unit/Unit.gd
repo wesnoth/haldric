@@ -2,7 +2,11 @@ extends Node2D
 class_name Unit
 
 var side := 0
-var movement_points : int = 0
+
+var current_health := 0
+var current_moves := 0
+var current_experience := 0
+
 
 var data : Resource = null
 var move_data : RMovement = null
@@ -18,9 +22,10 @@ onready var sprite := $Sprite as Sprite
 onready var tween := $Tween as Tween
 
 func initialize(res: Resource) -> void:
-	move_data = res.movement
-	movement_points = res.moves
 	sprite.texture = res.base_image
+	current_health = res.health
+	current_moves = res.moves
+	move_data = res.movement
 	data = res
 
 func place_at(loc: Location) -> void:

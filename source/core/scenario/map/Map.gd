@@ -58,7 +58,7 @@ func find_path(start_loc: Location, end_loc: Location) -> Array:
 func find_all_reachable_cells(unit: Unit) -> Dictionary:
 	update_weight(unit)
 	var paths := {}
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.movement_points, width, height)
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.current_moves, width, height)
 	cells.remove(0)
 	cells.invert()
 	for cell in cells:
@@ -73,14 +73,14 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 		for path_cell in path:
 			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
 			if path_cell in ZOC_tiles:
-				cell_cost = unit.movement_points - cost
-			if cost + cell_cost > unit.movement_points:
+				cell_cost = unit.current_moves - cost
+			if cost + cell_cost > unit.current_moves:
 				break
 
 			cost += cell_cost
 			new_path.append(path_cell)
 			paths[path_cell] = new_path.duplicate(true)
-			if cost == unit.movement_points:
+			if cost == unit.current_moves:
 				break
 	return paths
 
