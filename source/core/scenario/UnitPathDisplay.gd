@@ -1,11 +1,9 @@
-extends Node2D
+extends Path2D
 
 const BEND := 0.5
 const COLOR := Color("ff0000")
 
 var path := [] setget path_updated
-
-onready var curve = $Path.get_curve() as Curve2D
 
 func _draw() -> void:
 	if path.size() < 2:
