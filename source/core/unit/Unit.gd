@@ -10,7 +10,7 @@ var move_data : RMovement = null
 var location: Location = null
 
 var path := []
-var reachable := {}
+var reachable := {} setget _set_reachable
 
 export(float, 0.1, 1.0) var move_time := 0.15
 
@@ -73,6 +73,10 @@ func _move() -> void:
 		path.remove(0)
 		#warning-ignore:return_value_discarded
 		tween.start()
+
+func _set_reachable(value):
+	reachable = value
+	reachable[location] = location
 
 func _on_Tween_tween_completed(object, key):
 	if path and tween:
