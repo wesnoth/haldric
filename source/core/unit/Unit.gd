@@ -36,10 +36,9 @@ func place_at(loc: Location) -> void:
 	location.unit = self
 
 func move_to(loc: Location) -> void:
-	if location:
-		location.unit = null
+	# TODO: is it a problem that the unit isn't marked as being at every loc along the way?
+	place_at(loc)
 	path = find_path(loc)
-	_move()
 
 func find_path(loc : Location) -> Array:
 	#if reachable.has(loc):

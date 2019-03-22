@@ -20,7 +20,6 @@ onready var cover := $Cover as TileMap
 onready var transitions := $Transitions as Transitions
 
 onready var cell_selector := $CellSelector as Node2D
-onready var unit_path_display := $UnitPathDisplay as Path2D
 
 func _ready() -> void:
 	_update_size()

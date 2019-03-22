@@ -17,6 +17,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				_set_selected_unit(location.unit)
 			elif selected_unit and not location.unit:
 				selected_unit.move_to(location)
+				scenario.unit_path_display.move_along_path(selected_unit)
 				_set_selected_unit(null)
 
 	elif event.is_action_pressed("mouse_right"):
@@ -27,7 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var mouse_cell: Vector2 = scenario.map.world_to_map(get_global_mouse_position())
 		var loc: Location = scenario.map.get_location(mouse_cell)
 		if loc and selected_unit:
-			if scenario.map.unit_path_display.path.empty() or not scenario.map.unit_path_display.path.back() == loc:
+			if scenario.unit_path_display.path.empty() or not scenario.unit_path_display.path.back() == loc:
 				_draw_temp_path(selected_unit.find_path(loc))
 
 func _ready() -> void:
@@ -51,10 +52,10 @@ func _load_units() -> void:
 		scenario.add_unit(2, "Archer", 8, 8)
 
 func _draw_temp_path(path : Array) -> void:
-	scenario.map.unit_path_display.path = path
+	scenario.unit_path_display.path = path
 
 func _clear_temp_path() -> void:
-	scenario.map.unit_path_display.path = [] # Uses assignment to trigger setter
+	scenario.unit_path_display.path = [] # Uses assignment to trigger setter
 
 func _set_selected_unit(value):
 	if selected_unit:

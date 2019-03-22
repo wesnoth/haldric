@@ -3,6 +3,7 @@ class_name Scenario
 
 onready var map := $Map as Map
 onready var sides := $Sides as Node
+onready var unit_path_display := $UnitPathDisplay as Path2D
 
 func _ready() -> void:
 	TeamColor.initializeFlagColors()
