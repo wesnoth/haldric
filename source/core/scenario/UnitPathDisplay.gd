@@ -56,8 +56,7 @@ func path_updated(new_val: Array) -> void:
 func move_along_path(obj: Node2D) -> void:
 	remote_control.remote_path = obj.get_path()
 
-	# TODO: make time proportional to distance
-	var time := 2
+	var time := clamp(path.size() * 0.2, 0.5, 2)
 
 	tween.interpolate_property(follow, "unit_offset", 0, 1, time, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
