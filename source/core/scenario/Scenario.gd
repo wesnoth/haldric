@@ -17,9 +17,13 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 
 	side.units.add_child(unit)
 	unit.initialize(Registry.units[unit_id])
+	side.calculate_upkeep()
 
 	var loc: Location = map.get_location(Vector2(x, y))
 
 	unit.place_at(loc)
 	unit.side = side_number
 	unit.sprite.set_material(side.shader)
+
+func get_village_count():
+	return map.village_count

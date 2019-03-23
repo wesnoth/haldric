@@ -2,10 +2,11 @@ extends Node2D
 
 var scenario: Scenario = null
 
+var current_side : Side = null setget _set_side
 var selected_unit: Unit = null setget _set_selected_unit
 
+onready var HUD = $HUD as CanvasLayer
 onready var scenario_container := $ScenarioContainer as Node2D
-onready var HUD = $HUD
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left"):
@@ -34,6 +35,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_load_map()
 	_load_units()
+	if scenario.sides.get_child_count() > 0:
+		_set_side(scenario.sides.get_child(0))
 
 func _load_map() -> void:
 	if Registry.scenarios.has(Global.scenario_name):
@@ -56,6 +59,11 @@ func _draw_temp_path(path : Array) -> void:
 
 func _clear_temp_path() -> void:
 	scenario.unit_path_display.path = [] # Uses assignment to trigger setter
+
+func _set_side(value):
+	current_side = value
+	if current_side:
+		HUD.update_side_info(scenario, current_side)
 
 func _set_selected_unit(value):
 	if selected_unit:

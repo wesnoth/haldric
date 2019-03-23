@@ -14,6 +14,8 @@ var labels := []
 var grid: Grid = null
 var ZOC_tiles := []
 
+var village_count = 0
+
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
 
@@ -220,6 +222,9 @@ func _initialize_locations() -> void:
 
 			if overlay.get_cellv(cell) != TileMap.INVALID_CELL:
 				overlay_code = tile_set.tile_get_name(overlay.get_cellv(cell))
+				print(overlay_code)
+				if overlay_code == "^Vh":
+					village_count += 1
 
 			var cover_tile = tile_set.find_tile_by_name("Xv")
 			cover.set_cellv(cell, cover_tile)
