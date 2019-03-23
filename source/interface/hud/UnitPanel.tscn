@@ -62,7 +62,7 @@ patch_margin_bottom = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 4 )
-stretch_mode = 4
+stretch_mode = 6
 
 [node name="Name" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer"]
 margin_top = 152.0
