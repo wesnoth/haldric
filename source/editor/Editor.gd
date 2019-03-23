@@ -71,15 +71,25 @@ func _load_map(scenario_name: String) -> void:
 	scenario_container.add_child(scenario)
 
 func _save_map(scenario_name: String) -> void:
-	var path: String = DEFAULT_PATH + scenario_name + ".tscn"
+	var id = scenario_name.replace(" ", "_").to_lower()
+	var scn_path: String = DEFAULT_PATH + id + ".tscn"
+	var res_path: String = DEFAULT_PATH + id + ".tres"
+
 	var packed_scene := PackedScene.new()
 	#warning-ignore:return_value_discarded
 	packed_scene.pack(scenario)
 
-	if ResourceSaver.save(path, packed_scene) != OK:
-		print("Failed to save map ", path)
+	var r_scenario = RScenario.new();
+	r_scenario.title = scenario_name
 
-	Registry.scenarios[scenario_name] = path
+	if ResourceSaver.save(scn_path, packed_scene) != OK:
+		print("Failed to save map scene ", scn_path)
+	elif ResourceSaver.save(res_path, r_scenario) != OK:
+		print("Failed to save map resource", res_path)
+	else:
+		Registry.scenarios[id] = {}
+		Registry.scenarios[id].data = r_scenario
+		Registry.scenarios[id].base_path = scn_path.get_basename()
 
 func _on_button_pressed(id: int) -> void:
 	print(id)
