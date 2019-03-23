@@ -7,7 +7,7 @@ var path := [] setget path_updated
 
 onready var follow = $Follow as PathFollow2D
 onready var tween = $Tween
-onready var remote_control = get_node("Follow/RemoteControl") as RemoteTransform2D
+onready var remote_control = $Follow/RemoteControl as RemoteTransform2D
 
 func _draw() -> void:
 	if path.size() < 2:
