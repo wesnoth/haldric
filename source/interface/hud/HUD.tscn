@@ -41,8 +41,8 @@ text = "Back"
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -960.0
-margin_top = 5.0
+margin_top = 10.0
 margin_right = 960.0
-margin_bottom = 45.0
+margin_bottom = 50.0
 
 [connection signal="pressed" from="Control/Back" to="." method="_on_Back_pressed"]
