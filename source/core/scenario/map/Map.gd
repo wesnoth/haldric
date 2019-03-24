@@ -68,8 +68,7 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 		var path = find_path(unit.location, get_location(cell))
 		if path.empty():
 			continue
-		path.remove(0)
-		var new_path := []
+		var new_path := [unit.location]
 		var cost := 0
 		for path_cell in path:
 			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
