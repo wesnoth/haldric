@@ -36,6 +36,7 @@ func _ready() -> void:
 	team_color = TeamColor.team_color_data.keys()[get_index()]
 	team_color_info = TeamColor.team_color_data[team_color]
 	shader = TeamColor.generate_team_shader(team_color_info)
+	flag_shader = TeamColor.generate_flag_shader(team_color_info)
 	calculate_upkeep()
 	calculate_income()
 
