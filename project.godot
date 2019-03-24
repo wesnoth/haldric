@@ -121,6 +121,7 @@ version/status="dev"
 [autoload]
 
 Wesnoth="*res://source/global/Wesnoth.gd"
+Network="*res://source/global/Network.gd"
 Scene="*res://source/global/Scene.tscn"
 Global="*res://source/global/Global.gd"
 Loader="*res://source/global/Loader.gd"
