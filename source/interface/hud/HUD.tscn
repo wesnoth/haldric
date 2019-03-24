@@ -2,8 +2,8 @@
 
 [ext_resource path="res://source/interface/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/hud/UnitPanel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=3]
-[ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/menus/PauseMenu.tscn" type="PackedScene" id=4]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -18,26 +18,7 @@ margin_top = -270.0
 margin_right = -10.0
 margin_bottom = 270.0
 
-[node name="Control" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-theme = ExtResource( 3 )
-
-[node name="Back" type="Button" parent="Control"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -75.0
-margin_top = -41.0
-margin_right = -5.0
-margin_bottom = -5.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Back"
-
-[node name="SidePanel" parent="." instance=ExtResource( 4 )]
+[node name="SidePanel" parent="." instance=ExtResource( 3 )]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -960.0
@@ -45,4 +26,14 @@ margin_top = 10.0
 margin_right = 960.0
 margin_bottom = 50.0
 
-[connection signal="pressed" from="Control/Back" to="." method="_on_Back_pressed"]
+[node name="PauseMenu" parent="." instance=ExtResource( 4 )]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -200.0
+margin_right = 150.0
+margin_bottom = 200.0
+
