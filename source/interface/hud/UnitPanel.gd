@@ -20,6 +20,7 @@ func update_unit(unit : Unit) -> void:
 	tween.start()
 	unit_name.text = unit.name
 	image.texture = unit.sprite.texture
+	image.set_material(unit.sprite.get_material())
 	level.text = str("L", unit.data.level)
 	type.text = str(unit.data.ID)
 	race.text = str(unit.data.race)

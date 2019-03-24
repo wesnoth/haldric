@@ -33,7 +33,7 @@ onready var units = $Units as Node2D
 func _ready() -> void:
 	side = get_index() + 1
 
-	team_color = TeamColor.team_color_data.keys()[side]
+	team_color = TeamColor.team_color_data.keys()[get_index()]
 	team_color_info = TeamColor.team_color_data[team_color]
 	shader = TeamColor.generate_team_shader(team_color_info)
 	calculate_upkeep()

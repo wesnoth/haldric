@@ -41,8 +41,8 @@ func move_to(loc: Location) -> void:
 	path = find_path(loc)
 
 func find_path(loc : Location) -> Array:
-	#if reachable.has(loc):
-	#	return reachable[loc]
+	if reachable.has(loc):
+		return reachable[loc]
 	return loc.map.find_path(location,loc)
 
 func terrain_cost(loc: Location) -> int:
