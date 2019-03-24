@@ -1,14 +1,10 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://graphics/images/terrain/off-map/off-map.png" type="Texture" id=1]
+[gd_scene format=2]
 
 [node name="OffMap" type="CanvasLayer"]
 layer = -1
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 1 )
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+color = Color( 0.117647, 0.109804, 0.105882, 1 )
 
