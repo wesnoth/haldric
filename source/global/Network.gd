@@ -55,7 +55,7 @@ func create_client(player_name, ip : String) -> bool:
 # O N   S I G N A L
 
 func _player_connected(id) -> void:
-	print(id, " connected")
+	print(players[id].name, " connected")
 
 func _player_disconnected(id) -> void:
 	print(players[id].name, " disconnected")
@@ -63,15 +63,15 @@ func _player_disconnected(id) -> void:
 
 func _connected_ok() -> void:
 	# only called on clients, not on the server. Send my ID and info to all other peers
-	print("connection OK")
+	print("Connection OK")
 	rpc("register_player", get_tree().get_network_unique_id(), me)
 
 func _connected_fail() -> void:
-	print("connection FAILED")
+	print("Connection FAILED")
 
 func _server_disconnected() -> void:
 	get_tree().set_network_peer(null)
-	print("server CLOSED")
+	print("Server CLOSED")
 
 remote func register_player(id, info) -> void:
 	players[id] = info

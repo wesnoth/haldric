@@ -1,0 +1,118 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
+[ext_resource path="res://source/lobby/Lobby.gd" type="Script" id=2]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=3]
+
+[node name="Lobby" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 20, 20 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Setup" type="Control" parent="."]
+anchor_bottom = 1.0
+margin_top = 9.0
+margin_right = 240.0
+margin_bottom = -7.0
+rect_min_size = Vector2( 240, 140 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Setup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_right = 6.0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Setup/VBoxContainer"]
+margin_top = 932.0
+margin_right = 240.0
+margin_bottom = 968.0
+
+[node name="Name" type="LineEdit" parent="Setup/VBoxContainer/HBoxContainer"]
+margin_right = 240.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 0, 36 )
+size_flags_horizontal = 3
+placeholder_text = "Name"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Setup/VBoxContainer"]
+margin_top = 976.0
+margin_right = 240.0
+margin_bottom = 976.0
+
+[node name="IP" type="LineEdit" parent="Setup/VBoxContainer"]
+visible = false
+margin_top = 940.0
+margin_right = 240.0
+margin_bottom = 976.0
+rect_min_size = Vector2( 0, 36 )
+placeholder_text = "IP"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Setup/VBoxContainer"]
+margin_top = 984.0
+margin_right = 240.0
+margin_bottom = 1020.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Join" type="Button" parent="Setup/VBoxContainer/HBoxContainer3"]
+margin_left = 16.0
+margin_right = 116.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 100, 0 )
+text = "Join"
+
+[node name="Host" type="Button" parent="Setup/VBoxContainer/HBoxContainer3"]
+margin_left = 124.0
+margin_right = 224.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 100, 0 )
+text = "Host"
+
+[node name="Leave" type="Button" parent="Setup/VBoxContainer"]
+margin_top = 1028.0
+margin_right = 240.0
+margin_bottom = 1064.0
+rect_min_size = Vector2( 100, 0 )
+text = "Leave"
+
+[node name="Room" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 238.0
+margin_top = 15.0
+margin_right = -16.0
+margin_bottom = -12.0
+
+[node name="Display" type="RichTextLabel" parent="Room"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 19.0
+margin_bottom = -45.0
+
+[node name="Input" type="LineEdit" parent="Room"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = -31.0
+margin_bottom = 3.0
+rect_min_size = Vector2( 0, 34 )
+placeholder_text = "Chat"
+
+[connection signal="pressed" from="Setup/VBoxContainer/HBoxContainer3/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="Setup/VBoxContainer/HBoxContainer3/Host" to="." method="_on_Host_pressed"]
+[connection signal="pressed" from="Setup/VBoxContainer/Leave" to="." method="_on_Leave_pressed"]

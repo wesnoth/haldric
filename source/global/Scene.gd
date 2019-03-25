@@ -6,6 +6,7 @@ var ChooseScenario := "res://source/interface/menus/ChooseScenario.tscn"
 var Options := "res://source/interface/menus/Options.tscn"
 var Editor := "res://source/editor/Editor.tscn"
 var Game := "res://source/core/game/Game.tscn"
+var Lobby := "res://source/lobby/Lobby.tscn"
 var next_scene := ""
 
 onready var anim := $AnimationPlayer as AnimationPlayer
