@@ -40,7 +40,15 @@ func create_client(player_name, ip : String) -> bool:
 	if not ip.is_valid_ip_address():
 		return false
 	var peer := NetworkedMultiplayerENet.new()
-	peer.create_client(ip, DEFAULT_PORT)
+
+	match peer.create_client(ip, port):
+		ERR_ALREADY_IN_USE:
+			print("Connection to %s already open", ip)
+		ERR_CANT_CREATE:
+			print("Cound not open connection to %s", ip)
+		OK:
+			print("Opened connection to %s", ip)
+
 	get_tree().set_network_peer(peer)
 	return true
 

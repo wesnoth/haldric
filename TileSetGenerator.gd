@@ -38,8 +38,8 @@ func _generate_tile_set():
 			var tile_name = terrain + "_" + direction
 			var tile_texture = transition_table[terrain][direction]
 
-			print(tile_name)
-			print(transition_table[terrain][direction])
+			#tile_name)
+			#print(transition_table[terrain][direction])
 
 			tile_set.create_tile(id)
 			tile_set.tile_set_name(id, tile_name)

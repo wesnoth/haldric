@@ -30,13 +30,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 58.0
+margin_left = 40.0
 margin_top = 110.0
-margin_right = 141.0
+margin_right = 160.0
 margin_bottom = 190.0
+rect_min_size = Vector2( 120, 0 )
 
 [node name="Resume" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_right = 83.0
+margin_right = 120.0
 margin_bottom = 36.0
 focus_mode = 0
 enabled_focus_mode = 0
@@ -44,7 +45,7 @@ text = "Resume"
 
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 44.0
-margin_right = 83.0
+margin_right = 120.0
 margin_bottom = 80.0
 focus_mode = 0
 enabled_focus_mode = 0

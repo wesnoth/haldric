@@ -39,6 +39,9 @@ var team_color_data := {
 	"teal":[Color("30CBC0"),Color("FFFFFF"),Color("000000"),Color("00F0C8")]
 }
 
+func _ready() -> void:
+	initializeFlagColors()
+
 func generate_team_shader(team_data: Array) -> ShaderMaterial:
 	var mat := ShaderMaterial.new()
 	mat.shader = SHADER
@@ -60,7 +63,6 @@ func generate_flag_shader(team_data: Array) -> ShaderMaterial:
 		mat.set_shader_param("base" + str(i), key)
 		mat.set_shader_param("color" + str(i), color_map[key])
 		i += 1
-
 	return mat
 
 func new_color_map(team_data: Array, base_color: Array) -> Dictionary:
