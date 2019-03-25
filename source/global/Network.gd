@@ -41,7 +41,7 @@ func create_client(player_name, ip : String) -> bool:
 		return false
 	var peer := NetworkedMultiplayerENet.new()
 
-	match peer.create_client(ip, port):
+	match peer.create_client(ip, DEFAULT_PORT):
 		ERR_ALREADY_IN_USE:
 			print("Connection to %s already open", ip)
 		ERR_CANT_CREATE:
