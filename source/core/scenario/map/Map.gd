@@ -18,6 +18,7 @@ var village_count = 0
 
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
+onready var fog := $Fog as TileMap
 
 onready var transitions := $Transitions as Transitions
 
@@ -227,6 +228,7 @@ func _initialize_locations() -> void:
 
 			var cover_tile = tile_set.find_tile_by_name("Xv")
 			cover.set_cellv(cell, cover_tile)
+			fog.set_cellv(cell, cover_tile)
 
 			base_code = tile_set.tile_get_name(get_cell(x, y))
 

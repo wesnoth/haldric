@@ -17,7 +17,7 @@ func _process(delta):
 
 func update_side(scenario : Scenario, side : Side) -> void:
 	flag.set_text(str(side.side))
-	flag.set_material(side.flag_shader)	
+	flag.set_material(side.flag_shader)
 	gold.set_text(str(side.gold))
 	units.set_text(str(side.units.get_child_count()))
 	upkeep.set_text(str(side.upkeep))
