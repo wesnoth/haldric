@@ -1,6 +1,6 @@
 extends Control
 
-onready var ip = $Setup/VBoxContainer/HBoxContainer2/IP as LineEdit
+onready var ip = $Setup/VBoxContainer/IP as LineEdit
 
 onready var player_name = $Setup/VBoxContainer/HBoxContainer/Name as LineEdit
 onready var host = $Setup/VBoxContainer/HBoxContainer3/Host as Button
@@ -16,10 +16,27 @@ func _input(event):
             _send_message()
 
 func _ready() -> void:
-	get_tree().connect("connected_to_server", self, "_enter_room")
-	get_tree().connect("network_peer_connected", self, "_user_entered")
-	get_tree().connect("network_peer_disconnected", self, "_user_exited")
-	get_tree().connect("server_disconnected", self, "_server_disconnected")
+	Network.Lobby = self
+
+func _exit_tree():
+	Network.Lobby = null
+
+func enter_room() -> void:
+	leave.show()
+	join.hide()
+	host.hide()
+	ip.hide()
+	display.text = "Successfully Joined Room!\n"
+
+remote func user_entered(id) -> void:
+    display.text += str(Network.players[id].name) + " joined the room\n"
+
+remote func user_exited(id) -> void:
+    display.text += str(Network.players[id].name) + " left the room\n"
+
+remote func server_disconnected():
+    display.text += "Disconnected from Server\n"
+    _on_Leave_pressed()
 
 func _send_message():
     var msg = input.text
@@ -43,23 +60,3 @@ func _on_Leave_pressed():
 	host.show()
 	ip.show()
 	display.text += "Left Room\n"
-	get_tree().set_network_peer(null)
-
-func _enter_room() -> void:
-	leave.show()
-	join.hide()
-	host.hide()
-	ip.hide()
-	display.text = "Successfully Joined Room!\n"
-
-func _user_entered(id) -> void:
-    display.text += str(Network.players[id].name) + " joined the room\n"
-
-func _user_exited(id) -> void:
-    display.text += str(Network.players[id].name) + " left the room\n"
-
-func _server_disconnected():
-    display.text += "Disconnected from Server\n"
-    _on_Leave_pressed()
-
-

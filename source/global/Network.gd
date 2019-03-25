@@ -7,20 +7,23 @@ const MAX_CLIENTS = 32
 signal player_connected()
 signal player_disconnected()
 
+# Lobby
+var Lobby = null
+
 # Info of all connected players
 var players := {}
 
 # Info we send to other players
 var me := {
-	name = "Haldric"
+	name = ""
 }
 
 # O V E R R I D E
 
 func _ready() -> void:
 	set_pause_mode(PAUSE_MODE_PROCESS)
-	get_tree().connect("network_peer_connected",self,"_player_connected")
-	get_tree().connect("network_peer_disconnected",self,"_player_disconnected")
+	get_tree().connect("network_peer_connected",self,"_network_peer_connected")
+	get_tree().connect("network_peer_disconnected",self,"_network_peer_disconnected")
 	get_tree().connect("connected_to_server", self, "_connected_ok")
 	get_tree().connect("connection_failed", self, "_connection_failed")
 	get_tree().connect("server_disconnected",self,"_server_disconnected")
@@ -54,27 +57,31 @@ func create_client(player_name, ip : String) -> bool:
 
 # O N   S I G N A L
 
-func _player_connected(id) -> void:
-	print(players[id].name, " connected")
+func _network_peer_connected(id) -> void:
+	if Lobby:
+		Lobby.enter_room()
 
-func _player_disconnected(id) -> void:
-	print(players[id].name, " disconnected")
+func _network_peer_disconnected(id) -> void:
+	if Lobby:
+		Lobby.rpc("user_exited", id)
 	players.erase(id)
 
 func _connected_ok() -> void:
+	var id = get_tree().get_network_unique_id()
+	players[id] = me
 	# only called on clients, not on the server. Send my ID and info to all other peers
-	print("Connection OK")
-	rpc("register_player", get_tree().get_network_unique_id(), me)
+	rpc("register_player", id, me)
 
 func _connected_fail() -> void:
 	print("Connection FAILED")
 
 func _server_disconnected() -> void:
+	if Lobby:
+		Lobby.rpc("server_disconnected")
 	get_tree().set_network_peer(null)
 	print("Server CLOSED")
 
 remote func register_player(id, info) -> void:
-	players[id] = info
 
 	# If I'm the server, let the new guys know about existing players.
 	if get_tree().is_network_server():
@@ -86,4 +93,4 @@ remote func register_player(id, info) -> void:
 		for peer_id in players:
 			rpc_id(id, "register_player", peer_id, players[peer_id])
 
-	# update lobby ui
+	Lobby.rpc("user_entered", id)
