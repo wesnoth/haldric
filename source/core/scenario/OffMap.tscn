@@ -82,7 +82,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -1.33333, -118.333 )
+graph_offset = Vector2( 0, -103 )
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2( 1520, 0 )
@@ -111,13 +111,17 @@ height = 256
 seamless = true
 noise = SubResource( 7 )
 
-[node name="OffMap" type="CanvasLayer"]
-layer = -1
+[node name="OffMap" type="ParallaxBackground"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 1920, 1080 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayer"]
 material = SubResource( 6 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 mouse_filter = 2
 texture = SubResource( 8 )
 stretch_mode = 2
