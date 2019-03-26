@@ -5,20 +5,12 @@
 [ext_resource path="res://source/core/scenario/map/Map.gd" type="Script" id=3]
 [ext_resource path="res://source/core/scenario/Transitions.gd" type="Script" id=4]
 [ext_resource path="res://graphics/tilesets/transitions.tres" type="TileSet" id=5]
-[ext_resource path="res://graphics/shader/cover_visual_shader.tres" type="Shader" id=6]
-[ext_resource path="res://graphics/shader/fog.shader" type="Shader" id=7]
-[ext_resource path="res://source/core/scenario/Fog.gd" type="Script" id=8]
+[ext_resource path="res://graphics/shader/fog.shader" type="Shader" id=6]
+[ext_resource path="res://source/core/scenario/Fog.gd" type="Script" id=7]
+[ext_resource path="res://graphics/shader/cover_visual_shader.tres" type="Shader" id=8]
 [ext_resource path="res://source/core/scenario/MapBorder.tscn" type="PackedScene" id=9]
 [ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=10]
 [ext_resource path="res://source/core/scenario/UnitPathDisplay.gd" type="Script" id=11]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 6 )
-shader_param/BlendColor = Color( 0.3, 0.59, 0.11, 1 )
-shader_param/Blur = 0.2
-shader_param/Saturation = 0.2
-shader_param/Contrast = 1.2
-shader_param/Brightness = 0.9
 
 [sub_resource type="OpenSimplexNoise" id=2]
 octaves = 6
@@ -29,10 +21,18 @@ seamless = true
 noise = SubResource( 2 )
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 7 )
+shader = ExtResource( 6 )
 shader_param/intensity = 1.5
 shader_param/offset = null
 shader_param/noise = SubResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 8 )
+shader_param/BlendColor = Color( 0.3, 0.59, 0.11, 1 )
+shader_param/Blur = 0.2
+shader_param/Saturation = 0.2
+shader_param/Contrast = 1.2
+shader_param/Brightness = 0.9
 
 [sub_resource type="Curve2D" id=5]
 _data = {
@@ -97,6 +97,15 @@ cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
+[node name="Fog" type="TileMap" parent="Map"]
+material = SubResource( 4 )
+z_index = 100
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+script = ExtResource( 7 )
+
 [node name="Cover" type="TileMap" parent="Map"]
 visible = false
 material = SubResource( 1 )
@@ -105,15 +114,6 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
-
-[node name="Fog" type="TileMap" parent="Map"]
-material = SubResource( 4 )
-z_index = 100
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 54, 72 )
-cell_half_offset = 1
-format = 1
-script = ExtResource( 8 )
 
 [node name="MapBorder" parent="Map" instance=ExtResource( 9 )]
 margin_right = 144.0
