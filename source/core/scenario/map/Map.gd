@@ -222,7 +222,6 @@ func _initialize_locations() -> void:
 
 			if overlay.get_cellv(cell) != TileMap.INVALID_CELL:
 				overlay_code = tile_set.tile_get_name(overlay.get_cellv(cell))
-				print(overlay_code)
 				if overlay_code == "^Vh":
 					village_count += 1
 
