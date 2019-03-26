@@ -21,8 +21,7 @@ shader_param/Contrast = 1.2
 shader_param/Brightness = 0.9
 
 [sub_resource type="OpenSimplexNoise" id=2]
-octaves = 5
-persistence = 0.6
+octaves = 6
 lacunarity = 3.5
 
 [sub_resource type="NoiseTexture" id=3]
@@ -31,7 +30,7 @@ noise = SubResource( 2 )
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
-shader_param/intensity = 1.4
+shader_param/intensity = 1.5
 shader_param/offset = null
 shader_param/noise = SubResource( 3 )
 

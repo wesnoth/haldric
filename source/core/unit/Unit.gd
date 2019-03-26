@@ -55,6 +55,7 @@ func terrain_cost(loc: Location) -> int:
 func highlight_moves() -> void:
 	for loc in reachable:
 		location.map.cover.set_cellv(loc.cell, -1)
+		location.map.fog.set_cellv(loc.cell, -1)
 	location.map.cover.show()
 
 func unhighlight_moves() -> void:
