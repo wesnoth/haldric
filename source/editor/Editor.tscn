@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/editor/Editor.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/terrain/off-map/off-map.png" type="Texture" id=2]
+[ext_resource path="res://source/core/scenario/OffMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/core/scenario/Scenario.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/editor/HUD.gd" type="Script" id=4]
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=5]
@@ -12,25 +12,7 @@
 script = ExtResource( 1 )
 button_size = 50
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 1, 1 )
-
-[node name="NinePatchRect" type="NinePatchRect" parent="ParallaxBackground/ParallaxLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -1.0
-margin_right = 1920.0
-margin_bottom = 1079.0
-rect_min_size = Vector2( 1920, 1080 )
-texture = ExtResource( 2 )
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+[node name="OffMap" parent="." instance=ExtResource( 2 )]
 
 [node name="ScenarioContainer" type="Node2D" parent="."]
 
