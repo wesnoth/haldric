@@ -22,12 +22,12 @@ func _generate_tile_set():
 
 	for transition in transition_images:
 		var name = transition.id.split("_")[0]
-		transition_table[CODE[name]] = {}
+		transition_table[CODE[transition.parent_folder + "-" + name]] = {}
 
 	for transition in transition_images:
 		var name = transition.id.split("_")[0]
 		var direction = transition.id.split("_")[1]
-		transition_table[CODE[name]][direction] = (transition.data)
+		transition_table[CODE[transition.parent_folder + "-" + name]][direction] = (transition.data)
 
 	var tile_set = TileSet.new()
 
@@ -49,8 +49,12 @@ func _generate_tile_set():
 	ResourceSaver.save(save_path, tile_set)
 
 func _setup_terrain_code_table():
-	CODE["green"] = "Gg"
-	CODE["dry"] = "Gd"
-	CODE["semi-dry"] = "Gs"
-	CODE["leaf-litter"] = "Gll"
+	CODE["grass-green"] = "Gg"
+	CODE["grass-dry"] = "Gd"
+	CODE["grass-semi-dry"] = "Gs"
+	CODE["grass-leaf-litter"] = "Gll"
+	CODE["hills-desert"] = "Hd"
+	CODE["hills-regular"] = "Hh"
+	CODE["hills-dry"] = "Hhd"
+	CODE["hills-snow"] = "Ha"
 

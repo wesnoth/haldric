@@ -1,83 +1,114 @@
-[gd_resource type="TileSet" load_steps=76 format=2]
+[gd_resource type="TileSet" load_steps=107 format=2]
 
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_nw-n-ne.png" type="Texture" id=1]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_n-ne.png" type="Texture" id=2]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_se-s.png" type="Texture" id=3]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_s.png" type="Texture" id=4]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_n.png" type="Texture" id=5]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_se.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_nw-n.png" type="Texture" id=7]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_s-sw-nw.png" type="Texture" id=8]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_ne.png" type="Texture" id=9]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_se-s-sw.png" type="Texture" id=10]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_n.png" type="Texture" id=11]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_nw-n.png" type="Texture" id=12]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_s-sw.png" type="Texture" id=13]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_s.png" type="Texture" id=14]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_n-ne-se.png" type="Texture" id=15]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_sw-nw-n.png" type="Texture" id=16]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_se-s-sw.png" type="Texture" id=17]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_nw-n-ne.png" type="Texture" id=18]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_ne.png" type="Texture" id=19]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_s-sw.png" type="Texture" id=20]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_s-sw-nw.png" type="Texture" id=21]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_ne-se-s.png" type="Texture" id=22]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_se.png" type="Texture" id=23]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_ne-se-s.png" type="Texture" id=24]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_ne-se.png" type="Texture" id=25]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_sw.png" type="Texture" id=26]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_sw-nw.png" type="Texture" id=27]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_se-s.png" type="Texture" id=28]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_nw.png" type="Texture" id=29]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry/semi-dry_n-ne.png" type="Texture" id=30]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_n-ne.png" type="Texture" id=31]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_se-s.png" type="Texture" id=32]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_nw.png" type="Texture" id=33]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_ne-se-s.png" type="Texture" id=34]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_nw.png" type="Texture" id=35]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_n-ne-se.png" type="Texture" id=36]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_s-sw-nw.png" type="Texture" id=37]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_sw.png" type="Texture" id=38]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_s-sw.png" type="Texture" id=39]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_se.png" type="Texture" id=40]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_nw-n.png" type="Texture" id=41]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_nw-n-ne.png" type="Texture" id=42]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_ne.png" type="Texture" id=43]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_sw-nw-n.png" type="Texture" id=44]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_sw-nw.png" type="Texture" id=45]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_sw-nw-n.png" type="Texture" id=46]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_n.png" type="Texture" id=47]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_s.png" type="Texture" id=48]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_se-s-sw.png" type="Texture" id=49]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter/leaf-litter_ne-se.png" type="Texture" id=50]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_sw.png" type="Texture" id=51]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_s-sw.png" type="Texture" id=52]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_se-s-sw.png" type="Texture" id=53]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_sw-nw-n.png" type="Texture" id=54]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_nw.png" type="Texture" id=55]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_sw-nw-n-ne-se.png" type="Texture" id=56]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_sw.png" type="Texture" id=57]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_nw-n.png" type="Texture" id=58]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_sw-nw.png" type="Texture" id=59]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_n.png" type="Texture" id=60]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_s-sw-nw-n-ne-se.png" type="Texture" id=61]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_n-ne.png" type="Texture" id=62]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_se.png" type="Texture" id=63]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_nw-n-ne.png" type="Texture" id=64]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_s-sw-nw.png" type="Texture" id=65]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_ne.png" type="Texture" id=66]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_s.png" type="Texture" id=67]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_n-ne-se.png" type="Texture" id=68]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_s-sw-nw-n-ne.png" type="Texture" id=69]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_n-ne-se.png" type="Texture" id=70]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_ne-se-s.png" type="Texture" id=71]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_se-s.png" type="Texture" id=72]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/green/green_ne-se.png" type="Texture" id=73]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_ne-se.png" type="Texture" id=74]
-[ext_resource path="res://graphics/images/terrain/transitions/grass/dry/dry_sw-nw.png" type="Texture" id=75]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/desert_n.png" type="Texture" id=1]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/desert_s-sw.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/regular_ne.png" type="Texture" id=3]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_s.png" type="Texture" id=4]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_s-sw-nw-n-ne.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_n-ne-se.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_ne-se-s.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_se-s.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_ne-se.png" type="Texture" id=9]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/regular_sw.png" type="Texture" id=10]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/regular_nw.png" type="Texture" id=11]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/regular_s-sw.png" type="Texture" id=12]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/regular_s.png" type="Texture" id=13]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/dry_n-ne.png" type="Texture" id=14]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/dry_s-sw.png" type="Texture" id=15]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/dry_nw.png" type="Texture" id=16]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/dry_sw.png" type="Texture" id=17]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/dry_s.png" type="Texture" id=18]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/desert_se.png" type="Texture" id=19]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/dry_n.png" type="Texture" id=20]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/dry_se.png" type="Texture" id=21]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/dry_ne.png" type="Texture" id=22]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/snow_s.png" type="Texture" id=23]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/snow_n.png" type="Texture" id=24]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/snow_se.png" type="Texture" id=25]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/snow_ne.png" type="Texture" id=26]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/snow_nw.png" type="Texture" id=27]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/snow_sw.png" type="Texture" id=28]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/snow_n-ne.png" type="Texture" id=29]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/desert_ne.png" type="Texture" id=30]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/snow_s-sw.png" type="Texture" id=31]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_n.png" type="Texture" id=32]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_nw-n.png" type="Texture" id=33]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_s.png" type="Texture" id=34]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_n-ne-se.png" type="Texture" id=35]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_sw-nw-n.png" type="Texture" id=36]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_se-s-sw.png" type="Texture" id=37]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_nw-n-ne.png" type="Texture" id=38]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_ne.png" type="Texture" id=39]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_s-sw.png" type="Texture" id=40]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/desert_s.png" type="Texture" id=41]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_s-sw-nw.png" type="Texture" id=42]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_ne-se-s.png" type="Texture" id=43]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_se.png" type="Texture" id=44]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_ne-se.png" type="Texture" id=45]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_sw.png" type="Texture" id=46]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_sw-nw.png" type="Texture" id=47]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_se-s.png" type="Texture" id=48]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_nw.png" type="Texture" id=49]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/semi-dry_n-ne.png" type="Texture" id=50]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_n-ne.png" type="Texture" id=51]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/desert_n-ne.png" type="Texture" id=52]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_se-s.png" type="Texture" id=53]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_nw.png" type="Texture" id=54]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_ne-se-s.png" type="Texture" id=55]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_n-ne-se.png" type="Texture" id=56]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_s-sw-nw.png" type="Texture" id=57]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_sw.png" type="Texture" id=58]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_s-sw.png" type="Texture" id=59]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_se.png" type="Texture" id=60]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_nw-n.png" type="Texture" id=61]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_nw-n-ne.png" type="Texture" id=62]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/desert_nw.png" type="Texture" id=63]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_ne.png" type="Texture" id=64]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_sw-nw-n.png" type="Texture" id=65]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_sw-nw.png" type="Texture" id=66]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_n.png" type="Texture" id=67]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_s.png" type="Texture" id=68]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_se-s-sw.png" type="Texture" id=69]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/leaf-litter_ne-se.png" type="Texture" id=70]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_nw-n-ne.png" type="Texture" id=71]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_n-ne.png" type="Texture" id=72]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_s-sw.png" type="Texture" id=73]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/regular_se.png" type="Texture" id=74]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_ne-se-s.png" type="Texture" id=75]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_nw.png" type="Texture" id=76]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_sw-nw-n.png" type="Texture" id=77]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_sw.png" type="Texture" id=78]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_n-ne-se.png" type="Texture" id=79]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_ne-se.png" type="Texture" id=80]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_sw-nw.png" type="Texture" id=81]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_se-s.png" type="Texture" id=82]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_s.png" type="Texture" id=83]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_n.png" type="Texture" id=84]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/regular_n-ne.png" type="Texture" id=85]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_se.png" type="Texture" id=86]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_nw-n.png" type="Texture" id=87]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_s-sw-nw.png" type="Texture" id=88]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_ne.png" type="Texture" id=89]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/dry_se-s-sw.png" type="Texture" id=90]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_sw.png" type="Texture" id=91]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_s-sw.png" type="Texture" id=92]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_se-s-sw.png" type="Texture" id=93]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_sw-nw-n.png" type="Texture" id=94]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_nw.png" type="Texture" id=95]
+[ext_resource path="res://graphics/images/terrain/transitions/hills/regular_n.png" type="Texture" id=96]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_sw-nw-n-ne-se.png" type="Texture" id=97]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_nw-n.png" type="Texture" id=98]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_sw-nw.png" type="Texture" id=99]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_n.png" type="Texture" id=100]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_s-sw-nw-n-ne-se.png" type="Texture" id=101]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_n-ne.png" type="Texture" id=102]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_se.png" type="Texture" id=103]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_nw-n-ne.png" type="Texture" id=104]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_s-sw-nw.png" type="Texture" id=105]
+[ext_resource path="res://graphics/images/terrain/transitions/grass/green_ne.png" type="Texture" id=106]
 
 [resource]
-0/name = "Gd_nw-n-ne"
+0/name = "Hd_n"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
@@ -87,7 +118,7 @@
 0/navigation_offset = Vector2( 0, 0 )
 0/shapes = [  ]
 0/z_index = 0
-1/name = "Gd_n-ne"
+1/name = "Hd_s-sw"
 1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
@@ -97,8 +128,8 @@
 1/navigation_offset = Vector2( 0, 0 )
 1/shapes = [  ]
 1/z_index = 0
-2/name = "Gd_s-sw"
-2/texture = ExtResource( 13 )
+2/name = "Hd_se"
+2/texture = ExtResource( 19 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 0, 0 )
@@ -107,8 +138,8 @@
 2/navigation_offset = Vector2( 0, 0 )
 2/shapes = [  ]
 2/z_index = 0
-3/name = "Gd_ne-se-s"
-3/texture = ExtResource( 24 )
+3/name = "Hd_ne"
+3/texture = ExtResource( 30 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 0, 0, 0 )
@@ -117,8 +148,8 @@
 3/navigation_offset = Vector2( 0, 0 )
 3/shapes = [  ]
 3/z_index = 0
-4/name = "Gd_nw"
-4/texture = ExtResource( 35 )
+4/name = "Hd_s"
+4/texture = ExtResource( 41 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 0, 0, 0, 0 )
@@ -127,8 +158,8 @@
 4/navigation_offset = Vector2( 0, 0 )
 4/shapes = [  ]
 4/z_index = 0
-5/name = "Gd_sw-nw-n"
-5/texture = ExtResource( 46 )
+5/name = "Hd_n-ne"
+5/texture = ExtResource( 52 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 0, 0, 0, 0 )
@@ -137,8 +168,8 @@
 5/navigation_offset = Vector2( 0, 0 )
 5/shapes = [  ]
 5/z_index = 0
-6/name = "Gd_sw"
-6/texture = ExtResource( 57 )
+6/name = "Hd_nw"
+6/texture = ExtResource( 63 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 0, 0, 0 )
@@ -147,8 +178,8 @@
 6/navigation_offset = Vector2( 0, 0 )
 6/shapes = [  ]
 6/z_index = 0
-7/name = "Gd_n-ne-se"
-7/texture = ExtResource( 68 )
+7/name = "Hh_se"
+7/texture = ExtResource( 74 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 0, 0, 0, 0 )
@@ -157,8 +188,8 @@
 7/navigation_offset = Vector2( 0, 0 )
 7/shapes = [  ]
 7/z_index = 0
-8/name = "Gd_ne-se"
-8/texture = ExtResource( 74 )
+8/name = "Hh_n-ne"
+8/texture = ExtResource( 85 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 0, 0, 0, 0 )
@@ -167,8 +198,8 @@
 8/navigation_offset = Vector2( 0, 0 )
 8/shapes = [  ]
 8/z_index = 0
-9/name = "Gd_sw-nw"
-9/texture = ExtResource( 75 )
+9/name = "Hh_n"
+9/texture = ExtResource( 96 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 0, 0, 0, 0 )
@@ -177,7 +208,7 @@
 9/navigation_offset = Vector2( 0, 0 )
 9/shapes = [  ]
 9/z_index = 0
-10/name = "Gd_se-s"
+10/name = "Hh_ne"
 10/texture = ExtResource( 3 )
 10/tex_offset = Vector2( 0, 0 )
 10/modulate = Color( 1, 1, 1, 1 )
@@ -187,8 +218,8 @@
 10/navigation_offset = Vector2( 0, 0 )
 10/shapes = [  ]
 10/z_index = 0
-11/name = "Gd_s"
-11/texture = ExtResource( 4 )
+11/name = "Hh_sw"
+11/texture = ExtResource( 10 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 0, 0, 0, 0 )
@@ -197,8 +228,8 @@
 11/navigation_offset = Vector2( 0, 0 )
 11/shapes = [  ]
 11/z_index = 0
-12/name = "Gd_n"
-12/texture = ExtResource( 5 )
+12/name = "Hh_nw"
+12/texture = ExtResource( 11 )
 12/tex_offset = Vector2( 0, 0 )
 12/modulate = Color( 1, 1, 1, 1 )
 12/region = Rect2( 0, 0, 0, 0 )
@@ -207,8 +238,8 @@
 12/navigation_offset = Vector2( 0, 0 )
 12/shapes = [  ]
 12/z_index = 0
-13/name = "Gd_se"
-13/texture = ExtResource( 6 )
+13/name = "Hh_s-sw"
+13/texture = ExtResource( 12 )
 13/tex_offset = Vector2( 0, 0 )
 13/modulate = Color( 1, 1, 1, 1 )
 13/region = Rect2( 0, 0, 0, 0 )
@@ -217,8 +248,8 @@
 13/navigation_offset = Vector2( 0, 0 )
 13/shapes = [  ]
 13/z_index = 0
-14/name = "Gd_nw-n"
-14/texture = ExtResource( 7 )
+14/name = "Hh_s"
+14/texture = ExtResource( 13 )
 14/tex_offset = Vector2( 0, 0 )
 14/modulate = Color( 1, 1, 1, 1 )
 14/region = Rect2( 0, 0, 0, 0 )
@@ -227,8 +258,8 @@
 14/navigation_offset = Vector2( 0, 0 )
 14/shapes = [  ]
 14/z_index = 0
-15/name = "Gd_s-sw-nw"
-15/texture = ExtResource( 8 )
+15/name = "Hhd_n-ne"
+15/texture = ExtResource( 14 )
 15/tex_offset = Vector2( 0, 0 )
 15/modulate = Color( 1, 1, 1, 1 )
 15/region = Rect2( 0, 0, 0, 0 )
@@ -237,8 +268,8 @@
 15/navigation_offset = Vector2( 0, 0 )
 15/shapes = [  ]
 15/z_index = 0
-16/name = "Gd_ne"
-16/texture = ExtResource( 9 )
+16/name = "Hhd_s-sw"
+16/texture = ExtResource( 15 )
 16/tex_offset = Vector2( 0, 0 )
 16/modulate = Color( 1, 1, 1, 1 )
 16/region = Rect2( 0, 0, 0, 0 )
@@ -247,8 +278,8 @@
 16/navigation_offset = Vector2( 0, 0 )
 16/shapes = [  ]
 16/z_index = 0
-17/name = "Gd_se-s-sw"
-17/texture = ExtResource( 10 )
+17/name = "Hhd_nw"
+17/texture = ExtResource( 16 )
 17/tex_offset = Vector2( 0, 0 )
 17/modulate = Color( 1, 1, 1, 1 )
 17/region = Rect2( 0, 0, 0, 0 )
@@ -257,8 +288,8 @@
 17/navigation_offset = Vector2( 0, 0 )
 17/shapes = [  ]
 17/z_index = 0
-18/name = "Gs_n"
-18/texture = ExtResource( 11 )
+18/name = "Hhd_sw"
+18/texture = ExtResource( 17 )
 18/tex_offset = Vector2( 0, 0 )
 18/modulate = Color( 1, 1, 1, 1 )
 18/region = Rect2( 0, 0, 0, 0 )
@@ -267,8 +298,8 @@
 18/navigation_offset = Vector2( 0, 0 )
 18/shapes = [  ]
 18/z_index = 0
-19/name = "Gs_nw-n"
-19/texture = ExtResource( 12 )
+19/name = "Hhd_s"
+19/texture = ExtResource( 18 )
 19/tex_offset = Vector2( 0, 0 )
 19/modulate = Color( 1, 1, 1, 1 )
 19/region = Rect2( 0, 0, 0, 0 )
@@ -277,8 +308,8 @@
 19/navigation_offset = Vector2( 0, 0 )
 19/shapes = [  ]
 19/z_index = 0
-20/name = "Gs_s"
-20/texture = ExtResource( 14 )
+20/name = "Hhd_n"
+20/texture = ExtResource( 20 )
 20/tex_offset = Vector2( 0, 0 )
 20/modulate = Color( 1, 1, 1, 1 )
 20/region = Rect2( 0, 0, 0, 0 )
@@ -287,8 +318,8 @@
 20/navigation_offset = Vector2( 0, 0 )
 20/shapes = [  ]
 20/z_index = 0
-21/name = "Gs_n-ne-se"
-21/texture = ExtResource( 15 )
+21/name = "Hhd_se"
+21/texture = ExtResource( 21 )
 21/tex_offset = Vector2( 0, 0 )
 21/modulate = Color( 1, 1, 1, 1 )
 21/region = Rect2( 0, 0, 0, 0 )
@@ -297,8 +328,8 @@
 21/navigation_offset = Vector2( 0, 0 )
 21/shapes = [  ]
 21/z_index = 0
-22/name = "Gs_sw-nw-n"
-22/texture = ExtResource( 16 )
+22/name = "Hhd_ne"
+22/texture = ExtResource( 22 )
 22/tex_offset = Vector2( 0, 0 )
 22/modulate = Color( 1, 1, 1, 1 )
 22/region = Rect2( 0, 0, 0, 0 )
@@ -307,8 +338,8 @@
 22/navigation_offset = Vector2( 0, 0 )
 22/shapes = [  ]
 22/z_index = 0
-23/name = "Gs_se-s-sw"
-23/texture = ExtResource( 17 )
+23/name = "Ha_s"
+23/texture = ExtResource( 23 )
 23/tex_offset = Vector2( 0, 0 )
 23/modulate = Color( 1, 1, 1, 1 )
 23/region = Rect2( 0, 0, 0, 0 )
@@ -317,8 +348,8 @@
 23/navigation_offset = Vector2( 0, 0 )
 23/shapes = [  ]
 23/z_index = 0
-24/name = "Gs_nw-n-ne"
-24/texture = ExtResource( 18 )
+24/name = "Ha_n"
+24/texture = ExtResource( 24 )
 24/tex_offset = Vector2( 0, 0 )
 24/modulate = Color( 1, 1, 1, 1 )
 24/region = Rect2( 0, 0, 0, 0 )
@@ -327,8 +358,8 @@
 24/navigation_offset = Vector2( 0, 0 )
 24/shapes = [  ]
 24/z_index = 0
-25/name = "Gs_ne"
-25/texture = ExtResource( 19 )
+25/name = "Ha_se"
+25/texture = ExtResource( 25 )
 25/tex_offset = Vector2( 0, 0 )
 25/modulate = Color( 1, 1, 1, 1 )
 25/region = Rect2( 0, 0, 0, 0 )
@@ -337,8 +368,8 @@
 25/navigation_offset = Vector2( 0, 0 )
 25/shapes = [  ]
 25/z_index = 0
-26/name = "Gs_s-sw"
-26/texture = ExtResource( 20 )
+26/name = "Ha_ne"
+26/texture = ExtResource( 26 )
 26/tex_offset = Vector2( 0, 0 )
 26/modulate = Color( 1, 1, 1, 1 )
 26/region = Rect2( 0, 0, 0, 0 )
@@ -347,8 +378,8 @@
 26/navigation_offset = Vector2( 0, 0 )
 26/shapes = [  ]
 26/z_index = 0
-27/name = "Gs_s-sw-nw"
-27/texture = ExtResource( 21 )
+27/name = "Ha_nw"
+27/texture = ExtResource( 27 )
 27/tex_offset = Vector2( 0, 0 )
 27/modulate = Color( 1, 1, 1, 1 )
 27/region = Rect2( 0, 0, 0, 0 )
@@ -357,8 +388,8 @@
 27/navigation_offset = Vector2( 0, 0 )
 27/shapes = [  ]
 27/z_index = 0
-28/name = "Gs_ne-se-s"
-28/texture = ExtResource( 22 )
+28/name = "Ha_sw"
+28/texture = ExtResource( 28 )
 28/tex_offset = Vector2( 0, 0 )
 28/modulate = Color( 1, 1, 1, 1 )
 28/region = Rect2( 0, 0, 0, 0 )
@@ -367,8 +398,8 @@
 28/navigation_offset = Vector2( 0, 0 )
 28/shapes = [  ]
 28/z_index = 0
-29/name = "Gs_se"
-29/texture = ExtResource( 23 )
+29/name = "Ha_n-ne"
+29/texture = ExtResource( 29 )
 29/tex_offset = Vector2( 0, 0 )
 29/modulate = Color( 1, 1, 1, 1 )
 29/region = Rect2( 0, 0, 0, 0 )
@@ -377,8 +408,8 @@
 29/navigation_offset = Vector2( 0, 0 )
 29/shapes = [  ]
 29/z_index = 0
-30/name = "Gs_ne-se"
-30/texture = ExtResource( 25 )
+30/name = "Ha_s-sw"
+30/texture = ExtResource( 31 )
 30/tex_offset = Vector2( 0, 0 )
 30/modulate = Color( 1, 1, 1, 1 )
 30/region = Rect2( 0, 0, 0, 0 )
@@ -387,8 +418,8 @@
 30/navigation_offset = Vector2( 0, 0 )
 30/shapes = [  ]
 30/z_index = 0
-31/name = "Gs_sw"
-31/texture = ExtResource( 26 )
+31/name = "Gs_n"
+31/texture = ExtResource( 32 )
 31/tex_offset = Vector2( 0, 0 )
 31/modulate = Color( 1, 1, 1, 1 )
 31/region = Rect2( 0, 0, 0, 0 )
@@ -397,8 +428,8 @@
 31/navigation_offset = Vector2( 0, 0 )
 31/shapes = [  ]
 31/z_index = 0
-32/name = "Gs_sw-nw"
-32/texture = ExtResource( 27 )
+32/name = "Gs_nw-n"
+32/texture = ExtResource( 33 )
 32/tex_offset = Vector2( 0, 0 )
 32/modulate = Color( 1, 1, 1, 1 )
 32/region = Rect2( 0, 0, 0, 0 )
@@ -407,8 +438,8 @@
 32/navigation_offset = Vector2( 0, 0 )
 32/shapes = [  ]
 32/z_index = 0
-33/name = "Gs_se-s"
-33/texture = ExtResource( 28 )
+33/name = "Gs_s"
+33/texture = ExtResource( 34 )
 33/tex_offset = Vector2( 0, 0 )
 33/modulate = Color( 1, 1, 1, 1 )
 33/region = Rect2( 0, 0, 0, 0 )
@@ -417,8 +448,8 @@
 33/navigation_offset = Vector2( 0, 0 )
 33/shapes = [  ]
 33/z_index = 0
-34/name = "Gs_nw"
-34/texture = ExtResource( 29 )
+34/name = "Gs_n-ne-se"
+34/texture = ExtResource( 35 )
 34/tex_offset = Vector2( 0, 0 )
 34/modulate = Color( 1, 1, 1, 1 )
 34/region = Rect2( 0, 0, 0, 0 )
@@ -427,8 +458,8 @@
 34/navigation_offset = Vector2( 0, 0 )
 34/shapes = [  ]
 34/z_index = 0
-35/name = "Gs_n-ne"
-35/texture = ExtResource( 30 )
+35/name = "Gs_sw-nw-n"
+35/texture = ExtResource( 36 )
 35/tex_offset = Vector2( 0, 0 )
 35/modulate = Color( 1, 1, 1, 1 )
 35/region = Rect2( 0, 0, 0, 0 )
@@ -437,8 +468,8 @@
 35/navigation_offset = Vector2( 0, 0 )
 35/shapes = [  ]
 35/z_index = 0
-36/name = "Gll_n-ne"
-36/texture = ExtResource( 31 )
+36/name = "Gs_se-s-sw"
+36/texture = ExtResource( 37 )
 36/tex_offset = Vector2( 0, 0 )
 36/modulate = Color( 1, 1, 1, 1 )
 36/region = Rect2( 0, 0, 0, 0 )
@@ -447,8 +478,8 @@
 36/navigation_offset = Vector2( 0, 0 )
 36/shapes = [  ]
 36/z_index = 0
-37/name = "Gll_se-s"
-37/texture = ExtResource( 32 )
+37/name = "Gs_nw-n-ne"
+37/texture = ExtResource( 38 )
 37/tex_offset = Vector2( 0, 0 )
 37/modulate = Color( 1, 1, 1, 1 )
 37/region = Rect2( 0, 0, 0, 0 )
@@ -457,8 +488,8 @@
 37/navigation_offset = Vector2( 0, 0 )
 37/shapes = [  ]
 37/z_index = 0
-38/name = "Gll_nw"
-38/texture = ExtResource( 33 )
+38/name = "Gs_ne"
+38/texture = ExtResource( 39 )
 38/tex_offset = Vector2( 0, 0 )
 38/modulate = Color( 1, 1, 1, 1 )
 38/region = Rect2( 0, 0, 0, 0 )
@@ -467,8 +498,8 @@
 38/navigation_offset = Vector2( 0, 0 )
 38/shapes = [  ]
 38/z_index = 0
-39/name = "Gll_ne-se-s"
-39/texture = ExtResource( 34 )
+39/name = "Gs_s-sw"
+39/texture = ExtResource( 40 )
 39/tex_offset = Vector2( 0, 0 )
 39/modulate = Color( 1, 1, 1, 1 )
 39/region = Rect2( 0, 0, 0, 0 )
@@ -477,8 +508,8 @@
 39/navigation_offset = Vector2( 0, 0 )
 39/shapes = [  ]
 39/z_index = 0
-40/name = "Gll_n-ne-se"
-40/texture = ExtResource( 36 )
+40/name = "Gs_s-sw-nw"
+40/texture = ExtResource( 42 )
 40/tex_offset = Vector2( 0, 0 )
 40/modulate = Color( 1, 1, 1, 1 )
 40/region = Rect2( 0, 0, 0, 0 )
@@ -487,8 +518,8 @@
 40/navigation_offset = Vector2( 0, 0 )
 40/shapes = [  ]
 40/z_index = 0
-41/name = "Gll_s-sw-nw"
-41/texture = ExtResource( 37 )
+41/name = "Gs_ne-se-s"
+41/texture = ExtResource( 43 )
 41/tex_offset = Vector2( 0, 0 )
 41/modulate = Color( 1, 1, 1, 1 )
 41/region = Rect2( 0, 0, 0, 0 )
@@ -497,8 +528,8 @@
 41/navigation_offset = Vector2( 0, 0 )
 41/shapes = [  ]
 41/z_index = 0
-42/name = "Gll_sw"
-42/texture = ExtResource( 38 )
+42/name = "Gs_se"
+42/texture = ExtResource( 44 )
 42/tex_offset = Vector2( 0, 0 )
 42/modulate = Color( 1, 1, 1, 1 )
 42/region = Rect2( 0, 0, 0, 0 )
@@ -507,8 +538,8 @@
 42/navigation_offset = Vector2( 0, 0 )
 42/shapes = [  ]
 42/z_index = 0
-43/name = "Gll_s-sw"
-43/texture = ExtResource( 39 )
+43/name = "Gs_ne-se"
+43/texture = ExtResource( 45 )
 43/tex_offset = Vector2( 0, 0 )
 43/modulate = Color( 1, 1, 1, 1 )
 43/region = Rect2( 0, 0, 0, 0 )
@@ -517,8 +548,8 @@
 43/navigation_offset = Vector2( 0, 0 )
 43/shapes = [  ]
 43/z_index = 0
-44/name = "Gll_se"
-44/texture = ExtResource( 40 )
+44/name = "Gs_sw"
+44/texture = ExtResource( 46 )
 44/tex_offset = Vector2( 0, 0 )
 44/modulate = Color( 1, 1, 1, 1 )
 44/region = Rect2( 0, 0, 0, 0 )
@@ -527,8 +558,8 @@
 44/navigation_offset = Vector2( 0, 0 )
 44/shapes = [  ]
 44/z_index = 0
-45/name = "Gll_nw-n"
-45/texture = ExtResource( 41 )
+45/name = "Gs_sw-nw"
+45/texture = ExtResource( 47 )
 45/tex_offset = Vector2( 0, 0 )
 45/modulate = Color( 1, 1, 1, 1 )
 45/region = Rect2( 0, 0, 0, 0 )
@@ -537,8 +568,8 @@
 45/navigation_offset = Vector2( 0, 0 )
 45/shapes = [  ]
 45/z_index = 0
-46/name = "Gll_nw-n-ne"
-46/texture = ExtResource( 42 )
+46/name = "Gs_se-s"
+46/texture = ExtResource( 48 )
 46/tex_offset = Vector2( 0, 0 )
 46/modulate = Color( 1, 1, 1, 1 )
 46/region = Rect2( 0, 0, 0, 0 )
@@ -547,8 +578,8 @@
 46/navigation_offset = Vector2( 0, 0 )
 46/shapes = [  ]
 46/z_index = 0
-47/name = "Gll_ne"
-47/texture = ExtResource( 43 )
+47/name = "Gs_nw"
+47/texture = ExtResource( 49 )
 47/tex_offset = Vector2( 0, 0 )
 47/modulate = Color( 1, 1, 1, 1 )
 47/region = Rect2( 0, 0, 0, 0 )
@@ -557,8 +588,8 @@
 47/navigation_offset = Vector2( 0, 0 )
 47/shapes = [  ]
 47/z_index = 0
-48/name = "Gll_sw-nw-n"
-48/texture = ExtResource( 44 )
+48/name = "Gs_n-ne"
+48/texture = ExtResource( 50 )
 48/tex_offset = Vector2( 0, 0 )
 48/modulate = Color( 1, 1, 1, 1 )
 48/region = Rect2( 0, 0, 0, 0 )
@@ -567,8 +598,8 @@
 48/navigation_offset = Vector2( 0, 0 )
 48/shapes = [  ]
 48/z_index = 0
-49/name = "Gll_sw-nw"
-49/texture = ExtResource( 45 )
+49/name = "Gll_n-ne"
+49/texture = ExtResource( 51 )
 49/tex_offset = Vector2( 0, 0 )
 49/modulate = Color( 1, 1, 1, 1 )
 49/region = Rect2( 0, 0, 0, 0 )
@@ -577,8 +608,8 @@
 49/navigation_offset = Vector2( 0, 0 )
 49/shapes = [  ]
 49/z_index = 0
-50/name = "Gll_n"
-50/texture = ExtResource( 47 )
+50/name = "Gll_se-s"
+50/texture = ExtResource( 53 )
 50/tex_offset = Vector2( 0, 0 )
 50/modulate = Color( 1, 1, 1, 1 )
 50/region = Rect2( 0, 0, 0, 0 )
@@ -587,8 +618,8 @@
 50/navigation_offset = Vector2( 0, 0 )
 50/shapes = [  ]
 50/z_index = 0
-51/name = "Gll_s"
-51/texture = ExtResource( 48 )
+51/name = "Gll_nw"
+51/texture = ExtResource( 54 )
 51/tex_offset = Vector2( 0, 0 )
 51/modulate = Color( 1, 1, 1, 1 )
 51/region = Rect2( 0, 0, 0, 0 )
@@ -597,8 +628,8 @@
 51/navigation_offset = Vector2( 0, 0 )
 51/shapes = [  ]
 51/z_index = 0
-52/name = "Gll_se-s-sw"
-52/texture = ExtResource( 49 )
+52/name = "Gll_ne-se-s"
+52/texture = ExtResource( 55 )
 52/tex_offset = Vector2( 0, 0 )
 52/modulate = Color( 1, 1, 1, 1 )
 52/region = Rect2( 0, 0, 0, 0 )
@@ -607,8 +638,8 @@
 52/navigation_offset = Vector2( 0, 0 )
 52/shapes = [  ]
 52/z_index = 0
-53/name = "Gll_ne-se"
-53/texture = ExtResource( 50 )
+53/name = "Gll_n-ne-se"
+53/texture = ExtResource( 56 )
 53/tex_offset = Vector2( 0, 0 )
 53/modulate = Color( 1, 1, 1, 1 )
 53/region = Rect2( 0, 0, 0, 0 )
@@ -617,8 +648,8 @@
 53/navigation_offset = Vector2( 0, 0 )
 53/shapes = [  ]
 53/z_index = 0
-54/name = "Gg_sw"
-54/texture = ExtResource( 51 )
+54/name = "Gll_s-sw-nw"
+54/texture = ExtResource( 57 )
 54/tex_offset = Vector2( 0, 0 )
 54/modulate = Color( 1, 1, 1, 1 )
 54/region = Rect2( 0, 0, 0, 0 )
@@ -627,8 +658,8 @@
 54/navigation_offset = Vector2( 0, 0 )
 54/shapes = [  ]
 54/z_index = 0
-55/name = "Gg_s-sw"
-55/texture = ExtResource( 52 )
+55/name = "Gll_sw"
+55/texture = ExtResource( 58 )
 55/tex_offset = Vector2( 0, 0 )
 55/modulate = Color( 1, 1, 1, 1 )
 55/region = Rect2( 0, 0, 0, 0 )
@@ -637,8 +668,8 @@
 55/navigation_offset = Vector2( 0, 0 )
 55/shapes = [  ]
 55/z_index = 0
-56/name = "Gg_se-s-sw"
-56/texture = ExtResource( 53 )
+56/name = "Gll_s-sw"
+56/texture = ExtResource( 59 )
 56/tex_offset = Vector2( 0, 0 )
 56/modulate = Color( 1, 1, 1, 1 )
 56/region = Rect2( 0, 0, 0, 0 )
@@ -647,8 +678,8 @@
 56/navigation_offset = Vector2( 0, 0 )
 56/shapes = [  ]
 56/z_index = 0
-57/name = "Gg_sw-nw-n"
-57/texture = ExtResource( 54 )
+57/name = "Gll_se"
+57/texture = ExtResource( 60 )
 57/tex_offset = Vector2( 0, 0 )
 57/modulate = Color( 1, 1, 1, 1 )
 57/region = Rect2( 0, 0, 0, 0 )
@@ -657,8 +688,8 @@
 57/navigation_offset = Vector2( 0, 0 )
 57/shapes = [  ]
 57/z_index = 0
-58/name = "Gg_nw"
-58/texture = ExtResource( 55 )
+58/name = "Gll_nw-n"
+58/texture = ExtResource( 61 )
 58/tex_offset = Vector2( 0, 0 )
 58/modulate = Color( 1, 1, 1, 1 )
 58/region = Rect2( 0, 0, 0, 0 )
@@ -667,8 +698,8 @@
 58/navigation_offset = Vector2( 0, 0 )
 58/shapes = [  ]
 58/z_index = 0
-59/name = "Gg_sw-nw-n-ne-se"
-59/texture = ExtResource( 56 )
+59/name = "Gll_nw-n-ne"
+59/texture = ExtResource( 62 )
 59/tex_offset = Vector2( 0, 0 )
 59/modulate = Color( 1, 1, 1, 1 )
 59/region = Rect2( 0, 0, 0, 0 )
@@ -677,8 +708,8 @@
 59/navigation_offset = Vector2( 0, 0 )
 59/shapes = [  ]
 59/z_index = 0
-60/name = "Gg_nw-n"
-60/texture = ExtResource( 58 )
+60/name = "Gll_ne"
+60/texture = ExtResource( 64 )
 60/tex_offset = Vector2( 0, 0 )
 60/modulate = Color( 1, 1, 1, 1 )
 60/region = Rect2( 0, 0, 0, 0 )
@@ -687,8 +718,8 @@
 60/navigation_offset = Vector2( 0, 0 )
 60/shapes = [  ]
 60/z_index = 0
-61/name = "Gg_sw-nw"
-61/texture = ExtResource( 59 )
+61/name = "Gll_sw-nw-n"
+61/texture = ExtResource( 65 )
 61/tex_offset = Vector2( 0, 0 )
 61/modulate = Color( 1, 1, 1, 1 )
 61/region = Rect2( 0, 0, 0, 0 )
@@ -697,8 +728,8 @@
 61/navigation_offset = Vector2( 0, 0 )
 61/shapes = [  ]
 61/z_index = 0
-62/name = "Gg_n"
-62/texture = ExtResource( 60 )
+62/name = "Gll_sw-nw"
+62/texture = ExtResource( 66 )
 62/tex_offset = Vector2( 0, 0 )
 62/modulate = Color( 1, 1, 1, 1 )
 62/region = Rect2( 0, 0, 0, 0 )
@@ -707,8 +738,8 @@
 62/navigation_offset = Vector2( 0, 0 )
 62/shapes = [  ]
 62/z_index = 0
-63/name = "Gg_s-sw-nw-n-ne-se"
-63/texture = ExtResource( 61 )
+63/name = "Gll_n"
+63/texture = ExtResource( 67 )
 63/tex_offset = Vector2( 0, 0 )
 63/modulate = Color( 1, 1, 1, 1 )
 63/region = Rect2( 0, 0, 0, 0 )
@@ -717,8 +748,8 @@
 63/navigation_offset = Vector2( 0, 0 )
 63/shapes = [  ]
 63/z_index = 0
-64/name = "Gg_n-ne"
-64/texture = ExtResource( 62 )
+64/name = "Gll_s"
+64/texture = ExtResource( 68 )
 64/tex_offset = Vector2( 0, 0 )
 64/modulate = Color( 1, 1, 1, 1 )
 64/region = Rect2( 0, 0, 0, 0 )
@@ -727,8 +758,8 @@
 64/navigation_offset = Vector2( 0, 0 )
 64/shapes = [  ]
 64/z_index = 0
-65/name = "Gg_se"
-65/texture = ExtResource( 63 )
+65/name = "Gll_se-s-sw"
+65/texture = ExtResource( 69 )
 65/tex_offset = Vector2( 0, 0 )
 65/modulate = Color( 1, 1, 1, 1 )
 65/region = Rect2( 0, 0, 0, 0 )
@@ -737,8 +768,8 @@
 65/navigation_offset = Vector2( 0, 0 )
 65/shapes = [  ]
 65/z_index = 0
-66/name = "Gg_nw-n-ne"
-66/texture = ExtResource( 64 )
+66/name = "Gll_ne-se"
+66/texture = ExtResource( 70 )
 66/tex_offset = Vector2( 0, 0 )
 66/modulate = Color( 1, 1, 1, 1 )
 66/region = Rect2( 0, 0, 0, 0 )
@@ -747,8 +778,8 @@
 66/navigation_offset = Vector2( 0, 0 )
 66/shapes = [  ]
 66/z_index = 0
-67/name = "Gg_s-sw-nw"
-67/texture = ExtResource( 65 )
+67/name = "Gd_nw-n-ne"
+67/texture = ExtResource( 71 )
 67/tex_offset = Vector2( 0, 0 )
 67/modulate = Color( 1, 1, 1, 1 )
 67/region = Rect2( 0, 0, 0, 0 )
@@ -757,8 +788,8 @@
 67/navigation_offset = Vector2( 0, 0 )
 67/shapes = [  ]
 67/z_index = 0
-68/name = "Gg_ne"
-68/texture = ExtResource( 66 )
+68/name = "Gd_n-ne"
+68/texture = ExtResource( 72 )
 68/tex_offset = Vector2( 0, 0 )
 68/modulate = Color( 1, 1, 1, 1 )
 68/region = Rect2( 0, 0, 0, 0 )
@@ -767,8 +798,8 @@
 68/navigation_offset = Vector2( 0, 0 )
 68/shapes = [  ]
 68/z_index = 0
-69/name = "Gg_s"
-69/texture = ExtResource( 67 )
+69/name = "Gd_s-sw"
+69/texture = ExtResource( 73 )
 69/tex_offset = Vector2( 0, 0 )
 69/modulate = Color( 1, 1, 1, 1 )
 69/region = Rect2( 0, 0, 0, 0 )
@@ -777,8 +808,8 @@
 69/navigation_offset = Vector2( 0, 0 )
 69/shapes = [  ]
 69/z_index = 0
-70/name = "Gg_s-sw-nw-n-ne"
-70/texture = ExtResource( 69 )
+70/name = "Gd_ne-se-s"
+70/texture = ExtResource( 75 )
 70/tex_offset = Vector2( 0, 0 )
 70/modulate = Color( 1, 1, 1, 1 )
 70/region = Rect2( 0, 0, 0, 0 )
@@ -787,8 +818,8 @@
 70/navigation_offset = Vector2( 0, 0 )
 70/shapes = [  ]
 70/z_index = 0
-71/name = "Gg_n-ne-se"
-71/texture = ExtResource( 70 )
+71/name = "Gd_nw"
+71/texture = ExtResource( 76 )
 71/tex_offset = Vector2( 0, 0 )
 71/modulate = Color( 1, 1, 1, 1 )
 71/region = Rect2( 0, 0, 0, 0 )
@@ -797,8 +828,8 @@
 71/navigation_offset = Vector2( 0, 0 )
 71/shapes = [  ]
 71/z_index = 0
-72/name = "Gg_ne-se-s"
-72/texture = ExtResource( 71 )
+72/name = "Gd_sw-nw-n"
+72/texture = ExtResource( 77 )
 72/tex_offset = Vector2( 0, 0 )
 72/modulate = Color( 1, 1, 1, 1 )
 72/region = Rect2( 0, 0, 0, 0 )
@@ -807,8 +838,8 @@
 72/navigation_offset = Vector2( 0, 0 )
 72/shapes = [  ]
 72/z_index = 0
-73/name = "Gg_se-s"
-73/texture = ExtResource( 72 )
+73/name = "Gd_sw"
+73/texture = ExtResource( 78 )
 73/tex_offset = Vector2( 0, 0 )
 73/modulate = Color( 1, 1, 1, 1 )
 73/region = Rect2( 0, 0, 0, 0 )
@@ -817,8 +848,8 @@
 73/navigation_offset = Vector2( 0, 0 )
 73/shapes = [  ]
 73/z_index = 0
-74/name = "Gg_ne-se"
-74/texture = ExtResource( 73 )
+74/name = "Gd_n-ne-se"
+74/texture = ExtResource( 79 )
 74/tex_offset = Vector2( 0, 0 )
 74/modulate = Color( 1, 1, 1, 1 )
 74/region = Rect2( 0, 0, 0, 0 )
@@ -827,4 +858,314 @@
 74/navigation_offset = Vector2( 0, 0 )
 74/shapes = [  ]
 74/z_index = 0
+75/name = "Gd_ne-se"
+75/texture = ExtResource( 80 )
+75/tex_offset = Vector2( 0, 0 )
+75/modulate = Color( 1, 1, 1, 1 )
+75/region = Rect2( 0, 0, 0, 0 )
+75/tile_mode = 0
+75/occluder_offset = Vector2( 0, 0 )
+75/navigation_offset = Vector2( 0, 0 )
+75/shapes = [  ]
+75/z_index = 0
+76/name = "Gd_sw-nw"
+76/texture = ExtResource( 81 )
+76/tex_offset = Vector2( 0, 0 )
+76/modulate = Color( 1, 1, 1, 1 )
+76/region = Rect2( 0, 0, 0, 0 )
+76/tile_mode = 0
+76/occluder_offset = Vector2( 0, 0 )
+76/navigation_offset = Vector2( 0, 0 )
+76/shapes = [  ]
+76/z_index = 0
+77/name = "Gd_se-s"
+77/texture = ExtResource( 82 )
+77/tex_offset = Vector2( 0, 0 )
+77/modulate = Color( 1, 1, 1, 1 )
+77/region = Rect2( 0, 0, 0, 0 )
+77/tile_mode = 0
+77/occluder_offset = Vector2( 0, 0 )
+77/navigation_offset = Vector2( 0, 0 )
+77/shapes = [  ]
+77/z_index = 0
+78/name = "Gd_s"
+78/texture = ExtResource( 83 )
+78/tex_offset = Vector2( 0, 0 )
+78/modulate = Color( 1, 1, 1, 1 )
+78/region = Rect2( 0, 0, 0, 0 )
+78/tile_mode = 0
+78/occluder_offset = Vector2( 0, 0 )
+78/navigation_offset = Vector2( 0, 0 )
+78/shapes = [  ]
+78/z_index = 0
+79/name = "Gd_n"
+79/texture = ExtResource( 84 )
+79/tex_offset = Vector2( 0, 0 )
+79/modulate = Color( 1, 1, 1, 1 )
+79/region = Rect2( 0, 0, 0, 0 )
+79/tile_mode = 0
+79/occluder_offset = Vector2( 0, 0 )
+79/navigation_offset = Vector2( 0, 0 )
+79/shapes = [  ]
+79/z_index = 0
+80/name = "Gd_se"
+80/texture = ExtResource( 86 )
+80/tex_offset = Vector2( 0, 0 )
+80/modulate = Color( 1, 1, 1, 1 )
+80/region = Rect2( 0, 0, 0, 0 )
+80/tile_mode = 0
+80/occluder_offset = Vector2( 0, 0 )
+80/navigation_offset = Vector2( 0, 0 )
+80/shapes = [  ]
+80/z_index = 0
+81/name = "Gd_nw-n"
+81/texture = ExtResource( 87 )
+81/tex_offset = Vector2( 0, 0 )
+81/modulate = Color( 1, 1, 1, 1 )
+81/region = Rect2( 0, 0, 0, 0 )
+81/tile_mode = 0
+81/occluder_offset = Vector2( 0, 0 )
+81/navigation_offset = Vector2( 0, 0 )
+81/shapes = [  ]
+81/z_index = 0
+82/name = "Gd_s-sw-nw"
+82/texture = ExtResource( 88 )
+82/tex_offset = Vector2( 0, 0 )
+82/modulate = Color( 1, 1, 1, 1 )
+82/region = Rect2( 0, 0, 0, 0 )
+82/tile_mode = 0
+82/occluder_offset = Vector2( 0, 0 )
+82/navigation_offset = Vector2( 0, 0 )
+82/shapes = [  ]
+82/z_index = 0
+83/name = "Gd_ne"
+83/texture = ExtResource( 89 )
+83/tex_offset = Vector2( 0, 0 )
+83/modulate = Color( 1, 1, 1, 1 )
+83/region = Rect2( 0, 0, 0, 0 )
+83/tile_mode = 0
+83/occluder_offset = Vector2( 0, 0 )
+83/navigation_offset = Vector2( 0, 0 )
+83/shapes = [  ]
+83/z_index = 0
+84/name = "Gd_se-s-sw"
+84/texture = ExtResource( 90 )
+84/tex_offset = Vector2( 0, 0 )
+84/modulate = Color( 1, 1, 1, 1 )
+84/region = Rect2( 0, 0, 0, 0 )
+84/tile_mode = 0
+84/occluder_offset = Vector2( 0, 0 )
+84/navigation_offset = Vector2( 0, 0 )
+84/shapes = [  ]
+84/z_index = 0
+85/name = "Gg_sw"
+85/texture = ExtResource( 91 )
+85/tex_offset = Vector2( 0, 0 )
+85/modulate = Color( 1, 1, 1, 1 )
+85/region = Rect2( 0, 0, 0, 0 )
+85/tile_mode = 0
+85/occluder_offset = Vector2( 0, 0 )
+85/navigation_offset = Vector2( 0, 0 )
+85/shapes = [  ]
+85/z_index = 0
+86/name = "Gg_s-sw"
+86/texture = ExtResource( 92 )
+86/tex_offset = Vector2( 0, 0 )
+86/modulate = Color( 1, 1, 1, 1 )
+86/region = Rect2( 0, 0, 0, 0 )
+86/tile_mode = 0
+86/occluder_offset = Vector2( 0, 0 )
+86/navigation_offset = Vector2( 0, 0 )
+86/shapes = [  ]
+86/z_index = 0
+87/name = "Gg_se-s-sw"
+87/texture = ExtResource( 93 )
+87/tex_offset = Vector2( 0, 0 )
+87/modulate = Color( 1, 1, 1, 1 )
+87/region = Rect2( 0, 0, 0, 0 )
+87/tile_mode = 0
+87/occluder_offset = Vector2( 0, 0 )
+87/navigation_offset = Vector2( 0, 0 )
+87/shapes = [  ]
+87/z_index = 0
+88/name = "Gg_sw-nw-n"
+88/texture = ExtResource( 94 )
+88/tex_offset = Vector2( 0, 0 )
+88/modulate = Color( 1, 1, 1, 1 )
+88/region = Rect2( 0, 0, 0, 0 )
+88/tile_mode = 0
+88/occluder_offset = Vector2( 0, 0 )
+88/navigation_offset = Vector2( 0, 0 )
+88/shapes = [  ]
+88/z_index = 0
+89/name = "Gg_nw"
+89/texture = ExtResource( 95 )
+89/tex_offset = Vector2( 0, 0 )
+89/modulate = Color( 1, 1, 1, 1 )
+89/region = Rect2( 0, 0, 0, 0 )
+89/tile_mode = 0
+89/occluder_offset = Vector2( 0, 0 )
+89/navigation_offset = Vector2( 0, 0 )
+89/shapes = [  ]
+89/z_index = 0
+90/name = "Gg_sw-nw-n-ne-se"
+90/texture = ExtResource( 97 )
+90/tex_offset = Vector2( 0, 0 )
+90/modulate = Color( 1, 1, 1, 1 )
+90/region = Rect2( 0, 0, 0, 0 )
+90/tile_mode = 0
+90/occluder_offset = Vector2( 0, 0 )
+90/navigation_offset = Vector2( 0, 0 )
+90/shapes = [  ]
+90/z_index = 0
+91/name = "Gg_nw-n"
+91/texture = ExtResource( 98 )
+91/tex_offset = Vector2( 0, 0 )
+91/modulate = Color( 1, 1, 1, 1 )
+91/region = Rect2( 0, 0, 0, 0 )
+91/tile_mode = 0
+91/occluder_offset = Vector2( 0, 0 )
+91/navigation_offset = Vector2( 0, 0 )
+91/shapes = [  ]
+91/z_index = 0
+92/name = "Gg_sw-nw"
+92/texture = ExtResource( 99 )
+92/tex_offset = Vector2( 0, 0 )
+92/modulate = Color( 1, 1, 1, 1 )
+92/region = Rect2( 0, 0, 0, 0 )
+92/tile_mode = 0
+92/occluder_offset = Vector2( 0, 0 )
+92/navigation_offset = Vector2( 0, 0 )
+92/shapes = [  ]
+92/z_index = 0
+93/name = "Gg_n"
+93/texture = ExtResource( 100 )
+93/tex_offset = Vector2( 0, 0 )
+93/modulate = Color( 1, 1, 1, 1 )
+93/region = Rect2( 0, 0, 0, 0 )
+93/tile_mode = 0
+93/occluder_offset = Vector2( 0, 0 )
+93/navigation_offset = Vector2( 0, 0 )
+93/shapes = [  ]
+93/z_index = 0
+94/name = "Gg_s-sw-nw-n-ne-se"
+94/texture = ExtResource( 101 )
+94/tex_offset = Vector2( 0, 0 )
+94/modulate = Color( 1, 1, 1, 1 )
+94/region = Rect2( 0, 0, 0, 0 )
+94/tile_mode = 0
+94/occluder_offset = Vector2( 0, 0 )
+94/navigation_offset = Vector2( 0, 0 )
+94/shapes = [  ]
+94/z_index = 0
+95/name = "Gg_n-ne"
+95/texture = ExtResource( 102 )
+95/tex_offset = Vector2( 0, 0 )
+95/modulate = Color( 1, 1, 1, 1 )
+95/region = Rect2( 0, 0, 0, 0 )
+95/tile_mode = 0
+95/occluder_offset = Vector2( 0, 0 )
+95/navigation_offset = Vector2( 0, 0 )
+95/shapes = [  ]
+95/z_index = 0
+96/name = "Gg_se"
+96/texture = ExtResource( 103 )
+96/tex_offset = Vector2( 0, 0 )
+96/modulate = Color( 1, 1, 1, 1 )
+96/region = Rect2( 0, 0, 0, 0 )
+96/tile_mode = 0
+96/occluder_offset = Vector2( 0, 0 )
+96/navigation_offset = Vector2( 0, 0 )
+96/shapes = [  ]
+96/z_index = 0
+97/name = "Gg_nw-n-ne"
+97/texture = ExtResource( 104 )
+97/tex_offset = Vector2( 0, 0 )
+97/modulate = Color( 1, 1, 1, 1 )
+97/region = Rect2( 0, 0, 0, 0 )
+97/tile_mode = 0
+97/occluder_offset = Vector2( 0, 0 )
+97/navigation_offset = Vector2( 0, 0 )
+97/shapes = [  ]
+97/z_index = 0
+98/name = "Gg_s-sw-nw"
+98/texture = ExtResource( 105 )
+98/tex_offset = Vector2( 0, 0 )
+98/modulate = Color( 1, 1, 1, 1 )
+98/region = Rect2( 0, 0, 0, 0 )
+98/tile_mode = 0
+98/occluder_offset = Vector2( 0, 0 )
+98/navigation_offset = Vector2( 0, 0 )
+98/shapes = [  ]
+98/z_index = 0
+99/name = "Gg_ne"
+99/texture = ExtResource( 106 )
+99/tex_offset = Vector2( 0, 0 )
+99/modulate = Color( 1, 1, 1, 1 )
+99/region = Rect2( 0, 0, 0, 0 )
+99/tile_mode = 0
+99/occluder_offset = Vector2( 0, 0 )
+99/navigation_offset = Vector2( 0, 0 )
+99/shapes = [  ]
+99/z_index = 0
+100/name = "Gg_s"
+100/texture = ExtResource( 4 )
+100/tex_offset = Vector2( 0, 0 )
+100/modulate = Color( 1, 1, 1, 1 )
+100/region = Rect2( 0, 0, 0, 0 )
+100/tile_mode = 0
+100/occluder_offset = Vector2( 0, 0 )
+100/navigation_offset = Vector2( 0, 0 )
+100/shapes = [  ]
+100/z_index = 0
+101/name = "Gg_s-sw-nw-n-ne"
+101/texture = ExtResource( 5 )
+101/tex_offset = Vector2( 0, 0 )
+101/modulate = Color( 1, 1, 1, 1 )
+101/region = Rect2( 0, 0, 0, 0 )
+101/tile_mode = 0
+101/occluder_offset = Vector2( 0, 0 )
+101/navigation_offset = Vector2( 0, 0 )
+101/shapes = [  ]
+101/z_index = 0
+102/name = "Gg_n-ne-se"
+102/texture = ExtResource( 6 )
+102/tex_offset = Vector2( 0, 0 )
+102/modulate = Color( 1, 1, 1, 1 )
+102/region = Rect2( 0, 0, 0, 0 )
+102/tile_mode = 0
+102/occluder_offset = Vector2( 0, 0 )
+102/navigation_offset = Vector2( 0, 0 )
+102/shapes = [  ]
+102/z_index = 0
+103/name = "Gg_ne-se-s"
+103/texture = ExtResource( 7 )
+103/tex_offset = Vector2( 0, 0 )
+103/modulate = Color( 1, 1, 1, 1 )
+103/region = Rect2( 0, 0, 0, 0 )
+103/tile_mode = 0
+103/occluder_offset = Vector2( 0, 0 )
+103/navigation_offset = Vector2( 0, 0 )
+103/shapes = [  ]
+103/z_index = 0
+104/name = "Gg_se-s"
+104/texture = ExtResource( 8 )
+104/tex_offset = Vector2( 0, 0 )
+104/modulate = Color( 1, 1, 1, 1 )
+104/region = Rect2( 0, 0, 0, 0 )
+104/tile_mode = 0
+104/occluder_offset = Vector2( 0, 0 )
+104/navigation_offset = Vector2( 0, 0 )
+104/shapes = [  ]
+104/z_index = 0
+105/name = "Gg_ne-se"
+105/texture = ExtResource( 9 )
+105/tex_offset = Vector2( 0, 0 )
+105/modulate = Color( 1, 1, 1, 1 )
+105/region = Rect2( 0, 0, 0, 0 )
+105/tile_mode = 0
+105/occluder_offset = Vector2( 0, 0 )
+105/navigation_offset = Vector2( 0, 0 )
+105/shapes = [  ]
+105/z_index = 0
 

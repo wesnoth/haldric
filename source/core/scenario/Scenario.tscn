@@ -12,21 +12,21 @@
 [ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=10]
 [ext_resource path="res://source/core/scenario/UnitPathDisplay.gd" type="Script" id=11]
 
-[sub_resource type="OpenSimplexNoise" id=2]
+[sub_resource type="OpenSimplexNoise" id=1]
 octaves = 6
 lacunarity = 3.5
 
-[sub_resource type="NoiseTexture" id=3]
+[sub_resource type="NoiseTexture" id=2]
 seamless = true
-noise = SubResource( 2 )
+noise = SubResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 6 )
 shader_param/intensity = 1.5
 shader_param/offset = null
-shader_param/noise = SubResource( 3 )
+shader_param/noise = SubResource( 2 )
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 8 )
 shader_param/BlendColor = Color( 0.3, 0.59, 0.11, 1 )
 shader_param/Blur = 0.2
@@ -52,7 +52,6 @@ format = 1
 script = ExtResource( 3 )
 
 [node name="Transitions" type="Node2D" parent="Map"]
-editor/display_folded = true
 script = ExtResource( 4 )
 
 [node name="1" type="TileMap" parent="Map/Transitions"]
@@ -98,7 +97,8 @@ cell_half_offset = 1
 format = 1
 
 [node name="Fog" type="TileMap" parent="Map"]
-material = SubResource( 4 )
+visible = false
+material = SubResource( 3 )
 z_index = 100
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 54, 72 )
@@ -108,7 +108,7 @@ script = ExtResource( 7 )
 
 [node name="Cover" type="TileMap" parent="Map"]
 visible = false
-material = SubResource( 1 )
+material = SubResource( 4 )
 z_index = 100
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 54, 72 )
