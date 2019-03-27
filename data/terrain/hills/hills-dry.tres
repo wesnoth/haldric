@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-layer = 4
+layer = 9
 code = "Hhd"
 name = "Dry Hills"
 type = "hills"
