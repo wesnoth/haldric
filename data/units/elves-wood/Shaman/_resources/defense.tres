@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 castle = 60
 flat = 40
-forest = 60
+forest = 70
 hills = 50
 mountains = 60
 village = 60
