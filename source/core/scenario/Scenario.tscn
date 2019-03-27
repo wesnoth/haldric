@@ -97,7 +97,6 @@ cell_half_offset = 1
 format = 1
 
 [node name="Fog" type="TileMap" parent="Map"]
-visible = false
 material = SubResource( 3 )
 z_index = 100
 tile_set = ExtResource( 2 )
