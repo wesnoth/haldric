@@ -4,7 +4,7 @@ class_name Map
 const OFFSET = Vector2(36, 36)
 const CELL_SIZE = Vector2(54, 72)
 
-const DEFAULT_TERRAIN := "Gg"
+const DEFAULT_TERRAIN = "Gg"
 
 var width := 0
 var height := 0
@@ -14,7 +14,7 @@ var labels := []
 var grid: Grid = null
 var ZOC_tiles := []
 
-var village_count = 0
+var village_count := 0
 
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
@@ -66,7 +66,7 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 	for cell in cells:
 		if paths.has(cell):
 			continue
-		var path = find_path(unit.location, get_location(cell))
+		var path: Array = find_path(unit.location, get_location(cell))
 		if path.empty():
 			continue
 		var new_path := []
@@ -99,10 +99,10 @@ func update_weight(unit: Unit) -> void:
 	ZOC_tiles.clear()
 	for y in height:
 		for x in width:
-			var cell = Vector2(x, y)
-			var id = _flatten(cell)
-			var location : Location = locations[id]
-			var cost = unit.terrain_cost(location)
+			var cell := Vector2(x, y)
+			var id: int = _flatten(cell)
+			var location: Location = locations[id]
+			var cost: int = unit.terrain_cost(location)
 
 			var other_unit = location.unit
 			if other_unit:
@@ -111,7 +111,7 @@ func update_weight(unit: Unit) -> void:
 					ZOC_tiles.append(location)
 					var current_cell := Vector2(cell.x, cell.y + 1)
 					var next_cell := Vector2(cell.x, cell.y + 1)
-					var neighbors = Hex.get_neighbors(location.cell)
+					var neighbors: Array = Hex.get_neighbors(location.cell)
 					for neighbor in neighbors:
 						if not _is_cell_in_map(neighbor):
 							continue
@@ -225,7 +225,7 @@ func _initialize_locations() -> void:
 				if overlay_code == "^Vh":
 					village_count += 1
 
-			var cover_tile = tile_set.find_tile_by_name("Xv")
+			var cover_tile: int = tile_set.find_tile_by_name("Xv")
 			cover.set_cellv(cell, cover_tile)
 			fog.set_cellv(cell, cover_tile)
 

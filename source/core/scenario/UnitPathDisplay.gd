@@ -1,13 +1,13 @@
 extends Path2D
 
-const BEND := 0.3
-const COLOR := Color(255, 0, 0, 0.5)
+const BEND = 0.3
+const COLOR = Color(255, 0, 0, 0.5)
 
 var path := [] setget path_updated
 
-onready var follow = $Follow as PathFollow2D
-onready var tween = $Tween
-onready var remote_control = $Follow/RemoteControl as RemoteTransform2D
+onready var follow := $Follow as PathFollow2D
+onready var tween := $Tween as Tween
+onready var remote_control := $Follow/RemoteControl as RemoteTransform2D
 
 func _draw() -> void:
 	if path.size() < 2:
@@ -15,7 +15,7 @@ func _draw() -> void:
 
 	curve.clear_points()
 
-	for i in range(0, path.size()):
+	for i in path.size():
 		# Control points
 		var cp1 := Vector2(0, 0)
 		var cp2 := Vector2(0, 0)
