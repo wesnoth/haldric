@@ -4,8 +4,8 @@ extends Node
 var images_path := "res://graphics/images/terrain/transitions"
 var save_path := "res://graphics/tilesets/transitions.tres"
 
-var CODE = {}
-var transition_table = {}
+var CODE := {}
+var transition_table := {}
 
 export var generate := false setget _set_generate
 
@@ -15,10 +15,9 @@ func _set_generate(value):
 		_generate_tile_set()
 
 func _generate_tile_set():
+	var Loader: Node = preload("res://source/global/Loader.gd").new()
 
-	var Loader = load("res://source/global/Loader.gd").new()
-
-	var transition_images = Loader.load_dir(images_path, ["png"])
+	var transition_images: Array = Loader.load_dir(images_path, ["png"])
 
 	for transition in transition_images:
 		var name = transition.id.split("_")[0]
@@ -29,9 +28,9 @@ func _generate_tile_set():
 		var direction = transition.id.split("_")[1]
 		transition_table[CODE[transition.parent_folder + "-" + name]][direction] = (transition.data)
 
-	var tile_set = TileSet.new()
+	var tile_set := TileSet.new()
 
-	var id = 0
+	var id := 0
 
 	for terrain in transition_table:
 		for direction in transition_table[terrain]:
@@ -57,4 +56,3 @@ func _setup_terrain_code_table():
 	CODE["hills-regular"] = "Hh"
 	CODE["hills-dry"] = "Hhd"
 	CODE["hills-snow"] = "Ha"
-

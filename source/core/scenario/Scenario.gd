@@ -6,7 +6,7 @@ onready var sides := $Sides as Node
 onready var unit_path_display := $UnitPathDisplay as Path2D
 
 func _ready() -> void:
-	TeamColor.initializeFlagColors()
+	TeamColor.initialize_flag_colors()
 
 func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 	if side_number > sides.get_child_count():
