@@ -55,7 +55,7 @@ func get_villages() -> Array:
 func calculate_upkeep() -> void:
 	upkeep = 0
 	for unit in units.get_children():
-		upkeep += unit.data.level
+		upkeep += unit.type.level
 
 func calculate_income() -> void:
 	income = INCOME_PER_VILLAGE * villages.size() + base_income

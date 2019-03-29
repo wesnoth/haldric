@@ -1,5 +1,5 @@
-extends Resource
-class_name RDefense
+extends Node
+class_name Defense
 
 export var castle := 60
 export var flat := 40

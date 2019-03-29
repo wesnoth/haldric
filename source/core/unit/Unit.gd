@@ -7,10 +7,6 @@ var current_health := 0
 var current_moves := 0
 var current_experience := 0
 
-
-var data : Resource = null
-var move_data : RMovement = null
-
 var location: Location = null
 
 var path := []
@@ -21,12 +17,11 @@ export(float, 0.1, 1.0) var move_time := 0.15
 onready var sprite := $Sprite as Sprite
 onready var tween := $Tween as Tween
 
-func initialize(res: Resource) -> void:
-	sprite.texture = res.base_image
-	current_health = res.health
-	current_moves = res.moves
-	move_data = res.movement
-	data = res
+onready var type := $Type as UnitType
+
+func _ready() -> void:
+	current_health = type.health
+	current_moves = type.moves
 
 func place_at(loc: Location) -> void:
 	if location:
@@ -37,18 +32,19 @@ func place_at(loc: Location) -> void:
 
 func move_to(loc: Location) -> void:
 	# TODO: is it a problem that the unit isn't marked as being at every loc along the way?
+	# BITRON: Might be, when simultaneous movement is allowed and two units have the same location as target for their movement.
 	place_at(loc)
 	path = find_path(loc)
 
 func find_path(loc : Location) -> Array:
 	if reachable.has(loc):
 		return reachable[loc]
-	return loc.map.find_path(location,loc)
+	return loc.map.find_path(location, loc)
 
 func terrain_cost(loc: Location) -> int:
-	var cost =  move_data.get(loc.terrain.type[0])
+	var cost =  type.movement.get(loc.terrain.type[0])
 	if (loc.terrain.type.size() > 1):
-		var cost_overlay = move_data.get(loc.terrain.type[1])
+		var cost_overlay = type.movement.get(loc.terrain.type[1])
 		cost = max(cost_overlay, cost)
 	return cost
 

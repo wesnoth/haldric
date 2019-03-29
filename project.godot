@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Defense",
+"language": "GDScript",
+"path": "res://source/core/unit/Defense.gd"
+}, {
 "base": "Resource",
 "class": "Grid",
 "language": "GDScript",
@@ -29,20 +34,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/core/scenario/map/Map.gd"
 }, {
-"base": "Resource",
-"class": "RDefense",
+"base": "Node",
+"class": "Movement",
 "language": "GDScript",
-"path": "res://source/templates/RDefense.gd"
-}, {
-"base": "Resource",
-"class": "RMovement",
-"language": "GDScript",
-"path": "res://source/templates/RMovement.gd"
-}, {
-"base": "Resource",
-"class": "RResistance",
-"language": "GDScript",
-"path": "res://source/templates/RResistance.gd"
+"path": "res://source/core/unit/Movement.gd"
 }, {
 "base": "Resource",
 "class": "RScenario",
@@ -54,10 +49,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/templates/RTerrain.gd"
 }, {
-"base": "Resource",
-"class": "RUnit",
+"base": "Node",
+"class": "Resistance",
 "language": "GDScript",
-"path": "res://source/templates/RUnit.gd"
+"path": "res://source/core/unit/Resistance.gd"
 }, {
 "base": "Node2D",
 "class": "Scenario",
@@ -88,24 +83,29 @@ _global_script_classes=[ {
 "class": "Unit",
 "language": "GDScript",
 "path": "res://source/core/unit/Unit.gd"
+}, {
+"base": "Node",
+"class": "UnitType",
+"language": "GDScript",
+"path": "res://source/core/unit/UnitType.gd"
 } ]
 _global_script_class_icons={
+"Defense": "",
 "Grid": "",
 "Hex": "",
 "Location": "",
 "Map": "",
-"RDefense": "",
-"RMovement": "",
-"RResistance": "",
+"Movement": "",
 "RScenario": "",
 "RTerrain": "",
-"RUnit": "",
+"Resistance": "",
 "Scenario": "",
 "Side": "",
 "SidePanelItem": "",
 "Terrain": "",
 "Transitions": "",
-"Unit": ""
+"Unit": "",
+"UnitType": ""
 }
 
 [application]

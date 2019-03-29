@@ -1,5 +1,5 @@
-extends Resource
-class_name RMovement
+extends Node
+class_name Movement
 
 export var castle := 1
 export var flat := 1

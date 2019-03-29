@@ -13,10 +13,10 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 		return
 
 	var side: Side = sides.get_child(side_number - 1)
-	var unit := Wesnoth.Unit.instance() as Node2D
+
+	var unit := Registry.units[unit_id].instance() as Unit
 
 	side.units.add_child(unit)
-	unit.initialize(Registry.units[unit_id])
 	side.calculate_upkeep()
 
 	var loc: Location = map.get_location(Vector2(x, y))

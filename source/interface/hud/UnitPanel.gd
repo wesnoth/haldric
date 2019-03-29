@@ -21,12 +21,12 @@ func update_unit(unit : Unit) -> void:
 	unit_name.text = unit.name
 	image.texture = unit.sprite.texture
 	image.set_material(unit.sprite.get_material())
-	level.text = str("L", unit.data.level)
-	type.text = str(unit.data.ID)
-	race.text = str(unit.data.race)
-	hp.text = str("HP: ", unit.current_health, "/", unit.data.health)
-	xp.text = str("XP: ", unit.current_experience, "/", unit.data.experience)
-	mp.text = str("MP: ", unit.current_moves, "/", unit.data.moves)
+	level.text = str("L", unit.type.level)
+	type.text = str(unit.type.ID)
+	race.text = str(unit.type.race)
+	hp.text = str("HP: ", unit.current_health, "/", unit.type.health)
+	xp.text = str("XP: ", unit.current_experience, "/", unit.type.experience)
+	mp.text = str("MP: ", unit.current_moves, "/", unit.type.moves)
 
 func clear_unit() -> void:
 	tween.interpolate_property(self, "modulate", modulate, Color("00ffffff"), 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)

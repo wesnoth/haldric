@@ -1,5 +1,5 @@
-extends Resource
-class_name RResistance
+extends Node
+class_name Resistance
 
 export var blade := 100
 export var pierce := 100

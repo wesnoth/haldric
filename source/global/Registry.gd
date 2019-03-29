@@ -15,7 +15,7 @@ func scan() -> void:
 	_load_terrain()
 
 func _load_units() -> void:
-	for file_data in Loader.load_dir("res://data/units", ["tres", "res"]):
+	for file_data in Loader.load_dir("res://data/units", ["tscn", "scn"]):
 		units[file_data.id] = file_data.data
 
 func _load_music() -> void:
