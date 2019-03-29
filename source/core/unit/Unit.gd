@@ -36,7 +36,7 @@ func move_to(loc: Location) -> void:
 	place_at(loc)
 	path = find_path(loc)
 
-func find_path(loc : Location) -> Array:
+func find_path(loc: Location) -> Array:
 	if reachable.has(loc):
 		return reachable[loc]
 	return loc.map.find_path(location, loc)
@@ -55,14 +55,14 @@ func highlight_moves() -> void:
 	location.map.cover.show()
 
 func unhighlight_moves() -> void:
-	var darken_id = location.map.tile_set.find_tile_by_name("darken")
+	var darken_id: int = location.map.tile_set.find_tile_by_name("darken")
 	for loc in reachable:
 		location.map.cover.set_cellv(loc.cell, darken_id)
 	location.map.cover.hide()
 
 func _move() -> void:
 	if path and tween:
-		var loc = path[0]
+		var loc: Location = path[0]
 
 		location.unit = null
 		location = loc

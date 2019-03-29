@@ -40,7 +40,7 @@ var team_color_data := {
 }
 
 func _ready() -> void:
-	initializeFlagColors()
+	initialize_flag_colors()
 
 func generate_team_shader(team_data: Array) -> ShaderMaterial:
 	var mat := ShaderMaterial.new()
@@ -57,12 +57,13 @@ func generate_team_shader(team_data: Array) -> ShaderMaterial:
 func generate_flag_shader(team_data: Array) -> ShaderMaterial:
 	var mat := ShaderMaterial.new()
 	mat.shader = FLAG_SHADER
-	var color_map = new_color_map(team_data, base_flag_color)
+	var color_map: Dictionary = new_color_map(team_data, base_flag_color)
 	var i := 1
 	for key in color_map:
 		mat.set_shader_param("base" + str(i), key)
 		mat.set_shader_param("color" + str(i), color_map[key])
 		i += 1
+
 	return mat
 
 func new_color_map(team_data: Array, base_color: Array) -> Dictionary:
@@ -107,12 +108,12 @@ func new_color_map(team_data: Array, base_color: Array) -> Dictionary:
 
 	return color_map
 
-func initializeFlagColors() -> void:
+func initialize_flag_colors() -> void:
 	var hex_format := "%X"
 	for i in 255:
-		var hex_number = hex_format % [(i+1)]
+		var hex_number = hex_format % [(i + 1)]
 		# Why C8 you ask? Who knows, I hope who ever made this pallete does.
-		if (hex_number == "C8"):
+		if hex_number == "C8":
 			continue
 		if hex_number.length() < 2:
 			hex_number = "0" + hex_number

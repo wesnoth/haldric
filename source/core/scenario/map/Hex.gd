@@ -25,12 +25,12 @@ const NEIGHBOUR_TABLE = [
 
 static func get_cells_in_range(cell: Vector2, _range: int, width: int, height: int) -> Array:
 	var cells := [ cell ]
-	for n in range(1,_range+1):
+	for n in range(1, _range + 1):
 		var current_cell := Vector2(cell.x, cell.y + n)
 		for j in 6:
 			for i in n:
-				var parity : int = int(current_cell.x) & 1
-				var temp : Vector2 = NEIGHBOUR_TABLE[parity][(j+5)%6]
+				var parity := int(current_cell.x) & 1
+				var temp: Vector2 = NEIGHBOUR_TABLE[parity][(j + 5) % 6]
 				current_cell += temp
 				if current_cell.x >= 0 and current_cell.x < width and current_cell.y >= 0 and current_cell.y < height:
 					cells.append(current_cell)

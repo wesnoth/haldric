@@ -45,8 +45,8 @@ func _get_file_data(path: String) -> Dictionary:
 	var file_name := path.get_file()
 	var file_name_split := file_name.split(".")
 
-	var base_path = path.get_basename()
-	var parent_folder = base_path.split("/")[base_path.split("/").size()-2]
+	var base_path: String = path.get_basename()
+	var parent_folder: String = base_path.split("/")[base_path.split("/").size() - 2]
 
 	var file_data := {
 		id = file_name_split[0], # Name, no extension
