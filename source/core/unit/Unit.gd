@@ -14,6 +14,7 @@ var reachable := {} #setget _set_reachable
 
 export(float, 0.1, 1.0) var move_time := 0.15
 
+onready var anim := $AnimationPlayer as AnimationPlayer
 onready var sprite := $Sprite as Sprite
 onready var tween := $Tween as Tween
 
@@ -22,6 +23,7 @@ onready var type := $Type as UnitType
 func _ready() -> void:
 	current_health = type.health
 	current_moves = type.moves
+	anim.play("idle")
 
 func place_at(loc: Location) -> void:
 	if location:

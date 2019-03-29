@@ -52,7 +52,7 @@ func _load_units() -> void:
 	if scenario:
 		scenario.add_unit(1, "Archer", 4, 4)
 		scenario.add_unit(2, "Fighter", 7, 8)
-		# scenario.add_unit(2, "Scout", 8, 8)
+		scenario.add_unit(2, "Bat", 8, 8)
 		# scenario.add_unit(2, "Shaman", 4, 8)
 
 func _draw_temp_path(path : Array) -> void:
