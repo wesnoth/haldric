@@ -23,7 +23,8 @@ onready var type := $Type as UnitType
 func _ready() -> void:
 	current_health = type.health
 	current_moves = type.moves
-	anim.play("idle")
+	if anim.has_animation("idle"):
+		anim.play("idle")
 
 func place_at(loc: Location) -> void:
 	if location:
