@@ -8,10 +8,6 @@
 [ext_resource path="res://graphics/images/interface/logo/logo.png" type="Texture" id=6]
 [ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=7]
 
-[sub_resource type="DynamicFont" id=1]
-size = 22
-font_data = ExtResource( 7 )
-
 [sub_resource type="Animation" id=2]
 resource_name = "Enter"
 tracks/0/type = "value"
@@ -51,11 +47,19 @@ tracks/2/keys = {
 "values": [ Vector2( -50, 0 ), Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="DynamicFont" id=1]
+size = 22
+font_data = ExtResource( 7 )
+
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Enter"
+anims/Enter = SubResource( 2 )
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -182,10 +186,6 @@ focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 enabled_focus_mode = 0
 text = "Quit"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Enter"
-anims/Enter = SubResource( 2 )
 
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Lobby" to="." method="_on_Lobby_pressed"]
