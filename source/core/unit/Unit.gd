@@ -58,7 +58,7 @@ func highlight_moves() -> void:
 	location.map.cover.show()
 
 func unhighlight_moves() -> void:
-	var darken_id: int = location.map.tile_set.find_tile_by_name("darken")
+	var darken_id: int = location.map.tile_set.find_tile_by_name("Xv")
 	for loc in reachable:
 		location.map.cover.set_cellv(loc.cell, darken_id)
 	location.map.cover.hide()
