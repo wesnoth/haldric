@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/interface/logo/logo-bg.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/interface/logo/logo.png" type="Texture" id=6]
+[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+font_data = ExtResource( 7 )
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -94,6 +99,7 @@ margin_right = 250.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
+custom_fonts/font = SubResource( 1 )
 enabled_focus_mode = 0
 text = "Singleplayer"
 
@@ -103,6 +109,7 @@ margin_right = 250.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
+custom_fonts/font = SubResource( 1 )
 enabled_focus_mode = 0
 text = "Lobby"
 
@@ -112,6 +119,7 @@ margin_right = 250.0
 margin_bottom = 196.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
+custom_fonts/font = SubResource( 1 )
 enabled_focus_mode = 0
 text = "Editor"
 
@@ -121,6 +129,7 @@ margin_right = 250.0
 margin_bottom = 264.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
+custom_fonts/font = SubResource( 1 )
 enabled_focus_mode = 0
 text = "Options"
 
@@ -130,6 +139,7 @@ margin_right = 250.0
 margin_bottom = 332.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
+custom_fonts/font = SubResource( 1 )
 enabled_focus_mode = 0
 text = "Quit"
 
