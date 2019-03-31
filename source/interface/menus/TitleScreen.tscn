@@ -45,6 +45,9 @@ patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Logo" type="Control" parent="MenuPanel"]
 anchor_left = 0.5
