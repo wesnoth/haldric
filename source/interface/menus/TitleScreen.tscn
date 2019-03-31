@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
@@ -12,6 +12,45 @@
 size = 22
 font_data = ExtResource( 7 )
 
+[sub_resource type="Animation" id=2]
+resource_name = "Enter"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MenuPanel:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1370, 50 ), Vector2( 1270, 50 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MenuPanel:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Background:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -50, 0 ), Vector2( 0, 0 ) ]
+}
+
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,6 +60,7 @@ script = ExtResource( 2 )
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 50.0
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 7
@@ -142,6 +182,10 @@ focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 enabled_focus_mode = 0
 text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Enter"
+anims/Enter = SubResource( 2 )
 
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Lobby" to="." method="_on_Lobby_pressed"]
