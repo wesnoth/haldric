@@ -2,7 +2,7 @@ extends Control
 
 func _ready() -> void:
 	Audio.play(Registry.music.return_to_wesnoth)
-	$Version.text = Global.version
+	$Version.text = Global.version_string
 
 func _on_Singleplayer_pressed() -> void:
 	Scene.change(Scene.ChooseScenario)
