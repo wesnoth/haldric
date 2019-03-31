@@ -208,14 +208,4 @@
 19/navigation_offset = Vector2( 0, 0 )
 19/shapes = [  ]
 19/z_index = 0
-20/name = "darken"
-20/texture = ExtResource( 1 )
-20/tex_offset = Vector2( 0, 0 )
-20/modulate = Color( 1, 1, 1, 1 )
-20/region = Rect2( 0, 0, 72, 72 )
-20/tile_mode = 0
-20/occluder_offset = Vector2( 36, 36 )
-20/navigation_offset = Vector2( 36, 36 )
-20/shapes = [  ]
-20/z_index = 0
 
