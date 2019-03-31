@@ -112,6 +112,9 @@ _global_script_class_icons={
 
 config/name="Haldric"
 run/main_scene="res://source/interface/menus/TitleScreen.tscn"
+boot_splash/image="res://graphics/images/interface/logo/logo-bg.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 version/major=0
 version/minor=1
@@ -141,6 +144,8 @@ gdscript/warnings/unused_argument=false
 
 window/size/width=1920
 window/size/height=1080
+window/size/resizable=false
+window/size/borderless=true
 window/dpi/allow_hidpi=true
 mouse_cursor/custom_image="res://graphics/images/interface/cursor/normal.png"
 window/stretch/mode="2d"
