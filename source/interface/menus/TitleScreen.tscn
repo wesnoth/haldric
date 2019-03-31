@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
-[ext_resource path="res://graphics/images/maps/background.jpg" type="Texture" id=3]
-[ext_resource path="res://graphics/images/maps/titlescreen.png" type="Texture" id=4]
+[ext_resource path="res://graphics/images/interface/backgrounds/titlescreen.jpg" type="Texture" id=3]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/interface/logo/logo-bg.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/interface/logo/logo.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=7]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -19,37 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
 expand = true
-
-[node name="Map" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 6
-
-[node name="Logo" type="Control" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_top = 150.0
-margin_bottom = 150.0
-
-[node name="Shield" type="TextureRect" parent="Logo"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -300.0
-margin_top = -100.0
-margin_right = 300.0
-margin_bottom = 100.0
-texture = ExtResource( 5 )
-
-[node name="Text" type="TextureRect" parent="Logo"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -300.0
-margin_top = -100.0
-margin_right = 300.0
-margin_bottom = 100.0
-texture = ExtResource( 6 )
+stretch_mode = 7
 
 [node name="Version" type="Label" parent="."]
 anchor_top = 1.0
@@ -62,66 +31,101 @@ text = "Version: 0.0.0-status"
 
 [node name="MenuPanel" type="NinePatchRect" parent="."]
 anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -250.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
-rect_min_size = Vector2( 200, 0 )
-texture = ExtResource( 7 )
+anchor_bottom = 0.5
+margin_left = -650.001
+margin_top = -490.0
+margin_right = -350.001
+margin_bottom = 490.0
+rect_min_size = Vector2( 300, 0 )
+texture = ExtResource( 4 )
 region_rect = Rect2( 20, 0, 20, 20 )
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
+[node name="Logo" type="Control" parent="MenuPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = 133.0
+margin_bottom = 133.0
+
+[node name="Shield" type="TextureRect" parent="MenuPanel/Logo"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -300.0
+margin_top = -100.0
+margin_right = 300.0
+margin_bottom = 100.0
+texture = ExtResource( 5 )
+
+[node name="Text" type="TextureRect" parent="MenuPanel/Logo"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -300.0
+margin_top = -100.0
+margin_right = 300.0
+margin_bottom = 100.0
+texture = ExtResource( 6 )
+
 [node name="CenterContainer" type="CenterContainer" parent="MenuPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/CenterContainer"]
-margin_left = 43.0
-margin_top = 384.0
-margin_right = 156.0
-margin_bottom = 596.0
+margin_left = 25.0
+margin_top = 324.0
+margin_right = 275.0
+margin_bottom = 656.0
+rect_min_size = Vector2( 250, 0 )
 alignment = 1
 
 [node name="Singleplayer" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
-margin_right = 113.0
-margin_bottom = 36.0
+margin_right = 250.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Singleplayer"
 
 [node name="Lobby" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
-margin_top = 44.0
-margin_right = 113.0
-margin_bottom = 80.0
+margin_top = 68.0
+margin_right = 250.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Lobby"
 
 [node name="Editor" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
-margin_top = 88.0
-margin_right = 113.0
-margin_bottom = 124.0
+margin_top = 136.0
+margin_right = 250.0
+margin_bottom = 196.0
+rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Editor"
 
 [node name="Options" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
-margin_top = 132.0
-margin_right = 113.0
-margin_bottom = 168.0
+margin_top = 204.0
+margin_right = 250.0
+margin_bottom = 264.0
+rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Options"
 
 [node name="Quit" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
-margin_top = 176.0
-margin_right = 113.0
-margin_bottom = 212.0
+margin_top = 272.0
+margin_right = 250.0
+margin_bottom = 332.0
+rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Quit"
