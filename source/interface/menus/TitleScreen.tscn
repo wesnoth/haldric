@@ -6,7 +6,7 @@
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/interface/logo/logo-bg.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/interface/logo/logo.png" type="Texture" id=6]
-[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://graphics/fonts/Raleway-Medium.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Enter"
@@ -38,6 +38,7 @@ tracks/1/keys = {
 
 [sub_resource type="DynamicFont" id=2]
 size = 22
+extra_spacing_char = 1
 font_data = ExtResource( 7 )
 
 [node name="TitleScreen" type="Control"]
@@ -135,6 +136,8 @@ focus_mode = 0
 custom_fonts/font = SubResource( 2 )
 enabled_focus_mode = 0
 text = "Singleplayer"
+flat = true
+align = 0
 
 [node name="Lobby" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
 margin_top = 68.0
@@ -145,6 +148,8 @@ focus_mode = 0
 custom_fonts/font = SubResource( 2 )
 enabled_focus_mode = 0
 text = "Lobby"
+flat = true
+align = 0
 
 [node name="Editor" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
 margin_top = 136.0
@@ -155,6 +160,8 @@ focus_mode = 0
 custom_fonts/font = SubResource( 2 )
 enabled_focus_mode = 0
 text = "Editor"
+flat = true
+align = 0
 
 [node name="Options" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
 margin_top = 204.0
@@ -165,6 +172,8 @@ focus_mode = 0
 custom_fonts/font = SubResource( 2 )
 enabled_focus_mode = 0
 text = "Options"
+flat = true
+align = 0
 
 [node name="Quit" type="Button" parent="MenuPanel/CenterContainer/VBoxContainer"]
 margin_top = 272.0
@@ -175,6 +184,8 @@ focus_mode = 0
 custom_fonts/font = SubResource( 2 )
 enabled_focus_mode = 0
 text = "Quit"
+flat = true
+align = 0
 
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="MenuPanel/CenterContainer/VBoxContainer/Lobby" to="." method="_on_Lobby_pressed"]
