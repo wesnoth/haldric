@@ -3,9 +3,9 @@ class_name Unit
 
 var side := 0
 
-var current_health := 0
-var current_moves := 0
-var current_experience := 0
+var health_current := 0
+var moves_current := 0
+var experience_current := 0
 
 var location: Location = null
 
@@ -21,8 +21,8 @@ onready var tween := $Tween as Tween
 onready var type := $Type as UnitType
 
 func _ready() -> void:
-	current_health = type.health
-	current_moves = type.moves
+	health_current = type.health
+	moves_current = type.moves
 	if anim.has_animation("idle"):
 		anim.play("idle")
 
