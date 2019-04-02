@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://source/interface/PanelBorderTop.tscn" type="PackedScene" id=4]
 [ext_resource path="res://graphics/images/interface/logo/logo-bg.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/interface/logo/logo.png" type="Texture" id=6]
-[ext_resource path="res://graphics/fonts/Raleway-Medium.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://graphics/fonts/Lato22.tres" type="DynamicFont" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Enter"
@@ -35,11 +35,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-
-[sub_resource type="DynamicFont" id=4]
-size = 22
-extra_spacing_char = 1
-font_data = ExtResource( 7 )
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -138,7 +133,7 @@ margin_right = 250.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 7 )
 enabled_focus_mode = 0
 text = "Singleplayer"
 flat = true
@@ -150,7 +145,7 @@ margin_right = 250.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 7 )
 enabled_focus_mode = 0
 text = "Lobby"
 flat = true
@@ -162,7 +157,7 @@ margin_right = 250.0
 margin_bottom = 196.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 7 )
 enabled_focus_mode = 0
 text = "Editor"
 flat = true
@@ -174,7 +169,7 @@ margin_right = 250.0
 margin_bottom = 264.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 7 )
 enabled_focus_mode = 0
 text = "Options"
 flat = true
@@ -186,7 +181,7 @@ margin_right = 250.0
 margin_bottom = 332.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 7 )
 enabled_focus_mode = 0
 text = "Quit"
 flat = true

@@ -1,9 +1,9 @@
-[gd_resource type="Theme" load_steps=16 format=2]
+[gd_resource type="Theme" load_steps=15 format=2]
 
 [ext_resource path="res://graphics/themes/button_stylebox.tres" type="StyleBox" id=1]
 [ext_resource path="res://graphics/themes/panel_stylebox.tres" type="StyleBox" id=2]
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=3]
-[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://graphics/fonts/Lato16.tres" type="DynamicFont" id=4]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/buttons.png-36653569f31c0fdd836a1ebc45bafa0a.stex"
@@ -52,11 +52,8 @@ border_width_bottom = 1
 border_color = Color( 0.494118, 0.360784, 0.243137, 1 )
 anti_aliasing = false
 
-[sub_resource type="DynamicFont" id=11]
-font_data = ExtResource( 4 )
-
 [resource]
-default_font = SubResource( 11 )
+default_font = ExtResource( 4 )
 Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )

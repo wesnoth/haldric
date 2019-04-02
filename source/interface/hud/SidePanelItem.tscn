@@ -39,13 +39,13 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 margin_left = 33.0
 margin_right = 58.0
-margin_bottom = 46.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 25, 40 )
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 margin_left = 66.0
-margin_top = 13.0
+margin_top = 10.0
 margin_right = 66.0
-margin_bottom = 33.0
+margin_bottom = 30.0
 

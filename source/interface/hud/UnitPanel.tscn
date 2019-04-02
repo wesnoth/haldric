@@ -1,18 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/hud/UnitPanel.gd" type="Script" id=2]
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=3]
 [ext_resource path="res://graphics/images/units/elves-wood/archer.png" type="Texture" id=4]
-[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-size = 18
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 12
-font_data = ExtResource( 5 )
+[ext_resource path="res://graphics/fonts/Lato18.tres" type="DynamicFont" id=5]
+[ext_resource path="res://graphics/fonts/Lato12.tres" type="DynamicFont" id=6]
 
 [node name="UnitPanel" type="Control"]
 margin_right = 221.0
@@ -68,7 +61,7 @@ stretch_mode = 6
 margin_top = 152.0
 margin_right = 208.0
 margin_bottom = 174.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "Lagoles"
 align = 1
 valign = 1
@@ -84,7 +77,7 @@ margin_left = 31.0
 margin_right = 61.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 6 )
 text = "L1"
 align = 1
 valign = 1
@@ -94,7 +87,7 @@ margin_left = 69.0
 margin_right = 138.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 6 )
 text = "Elvish Archer"
 align = 1
 valign = 1
@@ -104,7 +97,7 @@ margin_left = 146.0
 margin_right = 176.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 6 )
 text = "Elf"
 align = 1
 valign = 1
@@ -143,8 +136,7 @@ margin_bottom = 48.0
 alignment = 1
 
 [node name="MP" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/Stats/Row2"]
-margin_left = 54.0
-margin_right = 154.0
+margin_right = 100.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 100, 0 )
 text = "MP: 6/6"
@@ -152,7 +144,6 @@ align = 1
 valign = 1
 
 [node name="D" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/Stats/Row2"]
-visible = false
 margin_left = 108.0
 margin_right = 208.0
 margin_bottom = 20.0
