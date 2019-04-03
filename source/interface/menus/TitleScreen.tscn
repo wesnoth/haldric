@@ -6,7 +6,7 @@
 [ext_resource path="res://source/interface/PanelBorderTop.tscn" type="PackedScene" id=4]
 [ext_resource path="res://graphics/images/interface/logo/logo-bg.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/interface/logo/logo.png" type="Texture" id=6]
-[ext_resource path="res://graphics/fonts/Lato22.tres" type="DynamicFont" id=7]
+[ext_resource path="res://graphics/fonts/Raleway22.tres" type="DynamicFont" id=7]
 [ext_resource path="res://source/interface/menus/ChooseCampaign.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
