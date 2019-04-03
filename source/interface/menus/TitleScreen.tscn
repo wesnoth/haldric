@@ -42,7 +42,7 @@ resource_name = "campaigns_back"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -58,13 +58,13 @@ resource_name = "campaigns_enter"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"transitions": PoolRealArray( 1, 0.999997 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 1920, 0 ) ]
 }
@@ -250,7 +250,6 @@ anchor_mode = 0
 current = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
-smoothing_enabled = true
 
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Campaigns" to="." method="_on_Campaigns_pressed"]
