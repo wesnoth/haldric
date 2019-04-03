@@ -11,20 +11,21 @@ theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 50.0
 margin_top = 50.0
-margin_right = 1920.0
+margin_right = 1870.0
 margin_bottom = 1030.0
-rect_min_size = Vector2( 1920, 980 )
+rect_min_size = Vector2( 1820, 980 )
 scroll_horizontal_enabled = false
 
 [node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
-margin_right = 1896.0
+margin_right = 1816.0
 margin_bottom = 1600.0
 size_flags_horizontal = 3
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer/CenterContainer"]
-margin_left = 133.0
-margin_right = 1763.0
+margin_left = 93.0
+margin_right = 1723.0
 margin_bottom = 1600.0
 custom_constants/vseparation = 50
 custom_constants/hseparation = 50

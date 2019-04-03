@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=2]
+[gd_resource type="Theme" load_steps=17 format=2]
 
 [ext_resource path="res://graphics/themes/button_stylebox.tres" type="StyleBox" id=1]
 [ext_resource path="res://graphics/themes/panel_stylebox.tres" type="StyleBox" id=2]
@@ -51,6 +51,15 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.494118, 0.360784, 0.243137, 1 )
 anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.494118, 0.360784, 0.243137, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0, 0, 0, 0 )
+border_width_left = 2
+border_width_right = 2
+border_color = Color( 0, 0, 0, 0 )
 
 [resource]
 default_font = ExtResource( 4 )
@@ -122,4 +131,13 @@ PopupMenu/styles/labeled_separator_right = null
 PopupMenu/styles/panel = ExtResource( 2 )
 PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = SubResource( 10 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 11 )
+VScrollBar/styles/grabber_highlight = SubResource( 11 )
+VScrollBar/styles/grabber_pressed = SubResource( 11 )
+VScrollBar/styles/scroll = SubResource( 12 )
+VScrollBar/styles/scroll_focus = null
 
