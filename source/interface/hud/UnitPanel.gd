@@ -12,6 +12,8 @@ onready var defense := $NinePatchRect/CenterContainer/VBoxContainer/Stats/Row2/D
 
 onready var tween := $Tween as Tween
 
+# Das ist ein Kommentar
+
 func _ready() -> void:
 	clear_unit()
 

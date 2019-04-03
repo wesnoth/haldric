@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
+[ext_resource path="res://source/interface/menus/ChooseCampaign.gd" type="Script" id=2]
+[ext_resource path="res://source/interface/menus/CampaignCard.tscn" type="PackedScene" id=3]
+
+[node name="ChooseCampaign" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+margin_left = 107.0
+margin_top = 55.0
+margin_right = 1812.0
+margin_bottom = 1025.0
+custom_constants/vseparation = 35
+custom_constants/hseparation = 35
+columns = 4
+
+[node name="CampaignCard" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+
+[node name="CampaignCard2" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 435.0
+margin_right = 835.0
+
+[node name="CampaignCard3" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 870.0
+margin_right = 1270.0
+
+[node name="CampaignCard4" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 1305.0
+margin_right = 1705.0
+
+[node name="CampaignCard5" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_top = 335.0
+margin_bottom = 635.0
+
+[node name="CampaignCard6" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 435.0
+margin_top = 335.0
+margin_right = 835.0
+margin_bottom = 635.0
+
+[node name="CampaignCard7" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 870.0
+margin_top = 335.0
+margin_right = 1270.0
+margin_bottom = 635.0
+
+[node name="CampaignCard8" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 1305.0
+margin_top = 335.0
+margin_right = 1705.0
+margin_bottom = 635.0
+
+[node name="CampaignCard9" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_top = 670.0
+margin_bottom = 970.0
+
+[node name="CampaignCard10" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 435.0
+margin_top = 670.0
+margin_right = 835.0
+margin_bottom = 970.0
+
+[node name="CampaignCard11" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 870.0
+margin_top = 670.0
+margin_right = 1270.0
+margin_bottom = 970.0
+
+[node name="CampaignCard12" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 1305.0
+margin_top = 670.0
+margin_right = 1705.0
+margin_bottom = 970.0
+
+[node name="Back" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -67.0
+margin_top = -41.0
+margin_right = -5.0
+margin_bottom = -5.0
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

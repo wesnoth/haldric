@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
@@ -7,12 +7,13 @@
 [ext_resource path="res://graphics/images/interface/logo/logo-bg.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/interface/logo/logo.png" type="Texture" id=6]
 [ext_resource path="res://graphics/fonts/Lato22.tres" type="DynamicFont" id=7]
+[ext_resource path="res://source/interface/menus/ChooseCampaign.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Enter"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Background:rect_position")
+tracks/0/path = NodePath("ParallaxBackground/ParallaxLayer/Background:rect_position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -36,6 +37,38 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "campaigns_back"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1920, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "campaigns_enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1920, 0 ) ]
+}
+
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -45,11 +78,20 @@ script = ExtResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Enter"
 anims/Enter = SubResource( 1 )
+anims/campaigns_back = SubResource( 3 )
+anims/campaigns_enter = SubResource( 2 )
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.3, 1 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Background" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 50.0
+rect_min_size = Vector2( 1920, 1080 )
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 7
@@ -122,9 +164,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer"]
 margin_left = 25.0
-margin_top = 369.0
+margin_top = 335.0
 margin_right = 275.0
-margin_bottom = 701.0
+margin_bottom = 735.0
 rect_min_size = Vector2( 250, 0 )
 alignment = 1
 
@@ -139,10 +181,22 @@ text = "Singleplayer"
 flat = true
 align = 0
 
-[node name="Lobby" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="Campaigns" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
 margin_top = 68.0
 margin_right = 250.0
 margin_bottom = 128.0
+rect_min_size = Vector2( 0, 60 )
+focus_mode = 0
+custom_fonts/font = ExtResource( 7 )
+enabled_focus_mode = 0
+text = "Campaigns"
+flat = true
+align = 0
+
+[node name="Lobby" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
+margin_top = 136.0
+margin_right = 250.0
+margin_bottom = 196.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
 custom_fonts/font = ExtResource( 7 )
@@ -152,9 +206,9 @@ flat = true
 align = 0
 
 [node name="Editor" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
-margin_top = 136.0
+margin_top = 204.0
 margin_right = 250.0
-margin_bottom = 196.0
+margin_bottom = 264.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
 custom_fonts/font = ExtResource( 7 )
@@ -164,9 +218,9 @@ flat = true
 align = 0
 
 [node name="Options" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
-margin_top = 204.0
+margin_top = 272.0
 margin_right = 250.0
-margin_bottom = 264.0
+margin_bottom = 332.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
 custom_fonts/font = ExtResource( 7 )
@@ -176,9 +230,9 @@ flat = true
 align = 0
 
 [node name="Quit" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
-margin_top = 272.0
+margin_top = 340.0
 margin_right = 250.0
-margin_bottom = 332.0
+margin_bottom = 400.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
 custom_fonts/font = ExtResource( 7 )
@@ -187,8 +241,21 @@ text = "Quit"
 flat = true
 align = 0
 
+[node name="ChooseCampaign" parent="." instance=ExtResource( 8 )]
+margin_left = 1920.0
+margin_right = 1920.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Campaigns" to="." method="_on_Campaigns_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Lobby" to="." method="_on_Lobby_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Editor" to="." method="_on_Editor_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="back" from="ChooseCampaign" to="." method="_on_ChooseCampaign_back"]
