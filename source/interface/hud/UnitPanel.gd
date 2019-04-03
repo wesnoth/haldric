@@ -33,9 +33,9 @@ func update_unit(target: Unit) -> void:
 	level.text = str("L", unit.type.level)
 	type.text = str(unit.type.ID)
 	race.text = str(unit.type.race)
-	hp.text = str("HP: ", unit.health_current, "/", unit.type.health)
-	xp.text = str("XP: ", unit.experience_current, "/", unit.type.experience)
-	mp.text = str("MP: ", unit.moves_current, "/", unit.type.moves)
+	hp.text = "HP: %d/%d" % [unit.health_current, unit.type.health]
+	xp.text = "XP: %d/%d" % [unit.experience_current, unit.type.experience]
+	mp.text = "MP: %d/%d" % [unit.moves_current,  unit.type.moves]
 
 func clear_unit() -> void:
 	tween.interpolate_property(self, "modulate", modulate, Color("00ffffff"), 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
