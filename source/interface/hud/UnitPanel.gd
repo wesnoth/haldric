@@ -12,12 +12,19 @@ onready var defense := $NinePatchRect/CenterContainer/VBoxContainer/Stats/Row2/D
 
 onready var tween := $Tween as Tween
 
-# Das ist ein Kommentar
+var unit: Unit = null
 
 func _ready() -> void:
 	clear_unit()
 
-func update_unit(unit: Unit) -> void:
+# TODO: maybe find a better way to do this
+func _process(delta: float) -> void:
+	if unit:
+		image.texture = unit.sprite.texture
+
+func update_unit(target: Unit) -> void:
+	unit = target
+
 	tween.interpolate_property(self, "modulate", modulate, Color("ffffffff"), 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
 	unit_name.text = unit.name
