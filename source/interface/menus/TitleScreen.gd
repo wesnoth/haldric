@@ -9,13 +9,13 @@ func _ready() -> void:
 func _on_Singleplayer_pressed() -> void:
 	Scene.change(Scene.ChooseScenario)
 
-func _on_Campaigns_pressed():
+func _on_Campaigns_pressed() -> void:
 	anim.play("campaigns_enter")
 
-func _on_ChooseCampaign_back():
+func _on_ChooseCampaign_back() -> void:
 	anim.play("campaigns_back")
 
-func _on_Lobby_pressed():
+func _on_Lobby_pressed() -> void:
 	Scene.change(Scene.Lobby)
 
 func _on_Editor_pressed() -> void:
