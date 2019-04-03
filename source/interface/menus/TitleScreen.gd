@@ -16,7 +16,11 @@ func _on_ChooseCampaign_back() -> void:
 	anim.play("campaigns_back")
 
 func _on_Lobby_pressed() -> void:
-	Scene.change(Scene.Lobby)
+	# Scene.change(Scene.Lobby)
+	anim.play("lobby_enter")
+
+func _on_Lobby_back():
+	anim.play("lobby_back")
 
 func _on_Editor_pressed() -> void:
 	Scene.change(Scene.Editor)
@@ -26,3 +30,4 @@ func _on_Options_pressed() -> void:
 
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
+

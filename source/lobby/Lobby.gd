@@ -1,5 +1,7 @@
 extends Control
 
+signal back
+
 onready var ip := $Setup/VBoxContainer/IP as LineEdit
 
 onready var player_name := $Setup/VBoxContainer/HBoxContainer/Name as LineEdit
@@ -51,6 +53,7 @@ func _on_Join_pressed():
 	Network.create_client(player_name.text, Network.DEFAULT_IP)
 
 func _on_Host_pressed():
+	leave.show()
 	Network.create_server(player_name.text)
 	display.text = "Room Created!\n"
 
@@ -60,3 +63,6 @@ func _on_Leave_pressed():
 	host.show()
 	ip.show()
 	display.text += "Left Room\n"
+
+func _on_Back_pressed():
+	emit_signal("back")
