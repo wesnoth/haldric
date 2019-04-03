@@ -5,8 +5,8 @@
 [node name="CampaignCard" type="ColorRect"]
 editor/display_folded = true
 margin_right = 400.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 400, 300 )
+margin_bottom = 500.0
+rect_min_size = Vector2( 400, 500 )
 color = Color( 0.364706, 0.32549, 0.32549, 1 )
 
 [node name="Label" type="Label" parent="."]
