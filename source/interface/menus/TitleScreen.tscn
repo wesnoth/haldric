@@ -116,6 +116,8 @@ margin_left = -1920.0
 margin_right = -1920.0
 
 [node name="ChooseCampaign" parent="." instance=ExtResource( 5 )]
+margin_left = 1920.0
+margin_right = 1920.0
 
 [node name="ChooseScenario" parent="." instance=ExtResource( 6 )]
 margin_left = 3840.0
@@ -195,7 +197,6 @@ margin_bottom = 43.0
 
 [node name="Menu" type="Control" parent="."]
 editor/display_folded = true
-visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
