@@ -21,6 +21,7 @@ func _on_Singleplayer_pressed() -> void:
 
 func _on_Campaigns_pressed() -> void:
 	_move_camera_to(campaigns.rect_position)
+	campaigns.animate()
 
 func _on_ChooseCampaign_back() -> void:
 	_move_camera_to(Vector2(0, 0))
