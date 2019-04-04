@@ -5,9 +5,9 @@
 [ext_resource path="res://graphics/fonts/Raleway32.tres" type="DynamicFont" id=3]
 
 [node name="CampaignCard" type="NinePatchRect"]
-margin_right = 370.0
+margin_right = 360.0
 margin_bottom = 500.0
-rect_min_size = Vector2( 370, 500 )
+rect_min_size = Vector2( 360, 500 )
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 20, 20 )
 patch_margin_left = 2

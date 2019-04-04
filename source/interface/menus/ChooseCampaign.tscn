@@ -21,74 +21,74 @@ scroll_horizontal_enabled = false
 
 [node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
 margin_right = 1816.0
-margin_bottom = 1600.0
+margin_bottom = 1620.0
 size_flags_horizontal = 3
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer/CenterContainer"]
-margin_left = 93.0
-margin_right = 1723.0
-margin_bottom = 1600.0
-custom_constants/vseparation = 50
-custom_constants/hseparation = 50
+margin_left = 98.0
+margin_right = 1718.0
+margin_bottom = 1620.0
+custom_constants/vseparation = 60
+custom_constants/hseparation = 60
 columns = 4
 
 [node name="CampaignCard" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
 
 [node name="CampaignCard2" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
 margin_left = 420.0
-margin_right = 790.0
+margin_right = 780.0
 
 [node name="CampaignCard3" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
 margin_left = 840.0
-margin_right = 1210.0
+margin_right = 1200.0
 
 [node name="CampaignCard4" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
 margin_left = 1260.0
-margin_right = 1630.0
+margin_right = 1620.0
 
 [node name="CampaignCard5" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
-margin_top = 550.0
-margin_bottom = 1050.0
+margin_top = 560.0
+margin_bottom = 1060.0
 
 [node name="CampaignCard6" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
 margin_left = 420.0
-margin_top = 550.0
-margin_right = 790.0
-margin_bottom = 1050.0
+margin_top = 560.0
+margin_right = 780.0
+margin_bottom = 1060.0
 
 [node name="CampaignCard7" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
 margin_left = 840.0
-margin_top = 550.0
-margin_right = 1210.0
-margin_bottom = 1050.0
+margin_top = 560.0
+margin_right = 1200.0
+margin_bottom = 1060.0
 
 [node name="CampaignCard8" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
 margin_left = 1260.0
-margin_top = 550.0
-margin_right = 1630.0
-margin_bottom = 1050.0
+margin_top = 560.0
+margin_right = 1620.0
+margin_bottom = 1060.0
 
 [node name="CampaignCard9" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
-margin_top = 1100.0
-margin_bottom = 1600.0
+margin_top = 1120.0
+margin_bottom = 1620.0
 
 [node name="CampaignCard10" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
 margin_left = 420.0
-margin_top = 1100.0
-margin_right = 790.0
-margin_bottom = 1600.0
+margin_top = 1120.0
+margin_right = 780.0
+margin_bottom = 1620.0
 
 [node name="CampaignCard11" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
 margin_left = 840.0
-margin_top = 1100.0
-margin_right = 1210.0
-margin_bottom = 1600.0
+margin_top = 1120.0
+margin_right = 1200.0
+margin_bottom = 1620.0
 
 [node name="CampaignCard12" parent="ScrollContainer/CenterContainer/GridContainer" instance=ExtResource( 3 )]
 margin_left = 1260.0
-margin_top = 1100.0
-margin_right = 1630.0
-margin_bottom = 1600.0
+margin_top = 1120.0
+margin_right = 1620.0
+margin_bottom = 1620.0
 
 [node name="Back" type="Button" parent="."]
 anchor_left = 1.0
