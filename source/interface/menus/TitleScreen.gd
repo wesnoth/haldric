@@ -12,24 +12,24 @@ func _ready() -> void:
 	$Version.text = Global.version_string
 	_on_screen_resized()
 
+func _move_camera_to(new_position: Vector2) -> void:
+	tween.interpolate_property(camera, "position", camera.position, new_position, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	tween.start()
+
 func _on_Singleplayer_pressed() -> void:
 	Scene.change(Scene.ChooseScenario)
 
 func _on_Campaigns_pressed() -> void:
-	tween.interpolate_property(camera, "position", camera.position, campaigns.rect_position, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	tween.start()
+	_move_camera_to(campaigns.rect_position)
 
 func _on_ChooseCampaign_back() -> void:
-	tween.interpolate_property(camera, "position", camera.position, Vector2(0, 0), 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	tween.start()
+	_move_camera_to(Vector2(0, 0))
 
 func _on_Lobby_pressed() -> void:
-	tween.interpolate_property(camera, "position", camera.position, lobby.rect_position, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	tween.start()
+	_move_camera_to(lobby.rect_position)
 
 func _on_Lobby_back() -> void:
-	tween.interpolate_property(camera, "position", camera.position, Vector2(0, 0), 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	tween.start()
+	_move_camera_to(Vector2(0, 0))
 
 func _on_Editor_pressed() -> void:
 	Scene.change(Scene.Editor)
