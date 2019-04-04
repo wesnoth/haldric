@@ -2,7 +2,7 @@ extends Node2D
 
 var scenario: Scenario = null
 
-var current_side : Side = null setget _set_side
+var current_side: Side = null setget _set_side
 var selected_unit: Unit = null setget _set_selected_unit
 
 onready var HUD = $HUD as CanvasLayer
@@ -53,7 +53,6 @@ func _load_units() -> void:
 		scenario.add_unit(1, "Archer", 4, 4)
 		scenario.add_unit(2, "Fighter", 7, 8)
 		scenario.add_unit(2, "Bat", 8, 8)
-		# scenario.add_unit(2, "Shaman", 4, 8)
 
 func _draw_temp_path(path : Array) -> void:
 	scenario.unit_path_display.path = path
@@ -61,15 +60,17 @@ func _draw_temp_path(path : Array) -> void:
 func _clear_temp_path() -> void:
 	scenario.unit_path_display.path = [] # Uses assignment to trigger setter
 
-func _set_side(value):
+func _set_side(value : Side) -> void:
 	current_side = value
 	if current_side:
 		HUD.update_side_info(scenario, current_side)
 
-func _set_selected_unit(value):
+func _set_selected_unit(value : Unit) -> void:
 	if selected_unit:
 		selected_unit.unhighlight_moves()
+
 	selected_unit = value
+
 	if selected_unit:
 		HUD.update_unit_info(selected_unit)
 		selected_unit.reachable = scenario.map.find_all_reachable_cells(selected_unit)

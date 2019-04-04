@@ -13,6 +13,6 @@ export var experience := 1
 
 export var advances_to := ""
 
-onready var defense = $Defense
-onready var movement = $Movement
-onready var resistance = $Resistance
+onready var defense = $Defense as Defense
+onready var movement = $Movement as Movement
+onready var resistance = $Resistance as Resistance

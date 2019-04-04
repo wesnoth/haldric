@@ -5,11 +5,7 @@ var map = null
 
 var tile_set = preload("res://graphics/tilesets/transitions.tres")
 
-# original:
 var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
-# inverted because a "n" transitions has to go into "s" from the tile that is processed
-# var directions = [ "s", "sw", "nw", "n", "ne", "se" ]
-
 
 onready var layers = [ $"1", $"2", $"3", $"4", $"5", $"6", ]
 
@@ -61,7 +57,6 @@ func _apply_transition_from_cell(cell : Vector2) -> void:
 		_set_transition_tile(transition.code + "_" + transition.directions, cell, layer)
 		layer += transition.chain
 
-# map: Map - cyclic reference
 func _get_chain_tile_data(code: String, cell : Vector2, start_direction : int) -> Dictionary:
 
 	var neighbors := Hex.get_neighbors(cell)
@@ -94,6 +89,7 @@ func _get_chain_tile_data(code: String, cell : Vector2, start_direction : int) -
 
 func _get_base_terrain_code_from_cell(cell: Vector2) -> String:
 	var location = map.get_location(cell)
+
 	if location:
 		return location.terrain.get_base_code()
 	return ""
@@ -101,13 +97,10 @@ func _get_base_terrain_code_from_cell(cell: Vector2) -> String:
 func _set_transition_tile(transition: String, cell: Vector2, layer: int) -> void:
 	var tile_id = layers[layer].tile_set.find_tile_by_name(transition)
 	layers[layer].set_cellv(cell, tile_id)
-	# print("Set Tile ", cell, " on layer ", layer, " to ", transition)
 
 func _tile_set_has_tile(tile_name):
 	var id = tile_set.find_tile_by_name(tile_name)
-	if id == -1:
-		return false
-	return true
+	return id != -1
 
 func _get_direction_string(start_direction : int, current_direction : int) -> String:
 	if start_direction == current_direction:

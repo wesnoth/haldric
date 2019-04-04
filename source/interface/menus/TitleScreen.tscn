@@ -69,7 +69,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 1920, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "lobby_back"
 length = 0.5
 tracks/0/type = "value"
@@ -85,8 +85,7 @@ tracks/0/keys = {
 "values": [ Vector2( -1920, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "lobby_enter"
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera2D:position")
@@ -129,8 +128,8 @@ autoplay = "Enter"
 anims/Enter = SubResource( 1 )
 anims/campaigns_back = SubResource( 2 )
 anims/campaigns_enter = SubResource( 3 )
-anims/lobby_back = SubResource( 5 )
-anims/lobby_enter = SubResource( 4 )
+anims/lobby_back = SubResource( 4 )
+anims/lobby_enter = SubResource( 5 )
 
 [node name="ChooseCampaign" parent="." instance=ExtResource( 4 )]
 margin_left = 1920.0
