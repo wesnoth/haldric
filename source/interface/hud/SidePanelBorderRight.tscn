@@ -17,8 +17,8 @@ width = 200
 [node name="SidePanelBorderRight" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1920.0
-margin_bottom = -1080.0
+margin_right = -1720.0
+margin_bottom = -1040.0
 rect_min_size = Vector2( 200, 40 )
 
 [node name="Background" type="TextureRect" parent="."]
@@ -31,27 +31,20 @@ rect_scale = Vector2( -1, 1 )
 texture = SubResource( 2 )
 expand = true
 
-[node name="TopBorder" type="TextureRect" parent="."]
+[node name="TopBorder" type="TextureRect" parent="Background"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 200.0
 margin_top = 1.0
-margin_right = 200.0
-margin_bottom = -38.0
 rect_min_size = Vector2( 0, 1 )
-rect_scale = Vector2( -1, 1 )
 texture = SubResource( 4 )
 expand = true
 
-[node name="TopBorder2" type="TextureRect" parent="."]
+[node name="TopBorder2" type="TextureRect" parent="Background"]
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 200.0
-margin_top = 38.0
-margin_right = 200.0
+margin_top = -2.0
 margin_bottom = -1.0
 rect_min_size = Vector2( 0, 1 )
-rect_scale = Vector2( -1, 1 )
 texture = SubResource( 4 )
 expand = true
 

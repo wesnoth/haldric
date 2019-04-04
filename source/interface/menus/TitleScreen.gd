@@ -11,6 +11,7 @@ func _ready() -> void:
 	Audio.play(Registry.music.return_to_wesnoth)
 	$Version.text = Global.version_string
 	_on_screen_resized()
+	_on_Campaigns_pressed()
 
 func _move_camera_to(new_position: Vector2) -> void:
 	tween.interpolate_property(camera, "position", camera.position, new_position, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
@@ -20,6 +21,7 @@ func _on_Singleplayer_pressed() -> void:
 	Scene.change(Scene.ChooseScenario)
 
 func _on_Campaigns_pressed() -> void:
+	print("Campaigns pressed")
 	_move_camera_to(campaigns.rect_position)
 	campaigns.animate()
 
@@ -45,5 +47,10 @@ func _on_screen_resized() -> void:
 	var size : Vector2 = get_viewport().size
 	campaigns.rect_position.x = size.x
 #	campaigns.rect_size = size
-	lobby.rect_position.x = -size.x
+	lobby.rect_position.x = 0
+	#lobby.rect_position.x = -size.x
 #	lobby.rect_size = size
+
+func _on_Multiplayer_pressed():
+	print("Multiplayer pressed")
+	_on_Lobby_pressed()

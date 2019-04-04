@@ -23,7 +23,7 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 
 	unit.place_at(loc)
 	unit.side = side_number
-	unit.sprite.set_material(side.shader)
+	unit.sprite.material = side.shader
 
 func get_village_count():
 	return map.village_count
