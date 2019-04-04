@@ -17,18 +17,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.470588 )
 
-[node name="TopBorder" type="ColorRect" parent="."]
+[node name="TopBorder" type="ColorRect" parent="Background"]
 anchor_right = 1.0
-anchor_bottom = 1.0
 margin_top = 1.0
-margin_bottom = -38.0
+rect_min_size = Vector2( 0, 1 )
 color = Color( 0.494118, 0.360784, 0.243137, 1 )
 
-[node name="BottomBorder" type="ColorRect" parent="."]
+[node name="BottomBorder" type="ColorRect" parent="Background"]
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 38.0
+margin_top = -2.0
 margin_bottom = -1.0
+rect_min_size = Vector2( 0, 1 )
 color = Color( 0.494118, 0.360784, 0.243137, 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
