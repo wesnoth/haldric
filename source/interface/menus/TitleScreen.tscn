@@ -2,7 +2,7 @@
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
-[ext_resource path="res://graphics/images/interface/backgrounds/titlescreen.jpg" type="Texture" id=3]
+[ext_resource path="res://source/interface/menus/TitleScreenBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/menus/ChooseCampaign.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/lobby/Lobby.tscn" type="PackedScene" id=5]
 [ext_resource path="res://source/interface/PanelBorderTop.tscn" type="PackedScene" id=6]
@@ -14,7 +14,7 @@
 resource_name = "Enter"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Background/ParallaxLayer/Background:rect_position")
+tracks/0/path = NodePath("TitleScreenBackground/ParallaxLayer/Background:rect_position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -106,20 +106,7 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="Background" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2( 0.3, 1 )
-motion_mirroring = Vector2( 1920, 0 )
-
-[node name="Background" type="TextureRect" parent="Background/ParallaxLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-rect_min_size = Vector2( 1920, 1080 )
-texture = ExtResource( 3 )
-expand = true
+[node name="TitleScreenBackground" parent="." instance=ExtResource( 3 )]
 
 [node name="Tween" type="Tween" parent="."]
 

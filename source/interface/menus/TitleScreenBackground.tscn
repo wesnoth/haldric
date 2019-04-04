@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/interface/menus/TitleScreenBackground.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/interface/backgrounds/titlescreen.jpg" type="Texture" id=2]
+
+[node name="TitleScreenBackground" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.3, 1 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Background" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
