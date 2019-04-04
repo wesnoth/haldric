@@ -151,15 +151,15 @@ margin_left = 593.0
 margin_right = 693.0
 text = "Lobby"
 
-[node name="Singleplayer" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
-margin_left = 693.0
-margin_right = 861.0
-text = "Singleplayer"
-
 [node name="Campaigns" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
-margin_left = 861.0
-margin_right = 1013.0
+margin_left = 693.0
+margin_right = 845.0
 text = "Campaigns"
+
+[node name="Singleplayer" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
+margin_left = 845.0
+margin_right = 1013.0
+text = "Singleplayer"
 
 [node name="Editor" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
 margin_left = 1013.0
@@ -301,8 +301,8 @@ drag_margin_v_enabled = false
 [connection signal="back" from="ChooseCampaign" to="." method="_on_ChooseCampaign_back"]
 [connection signal="back" from="Lobby" to="." method="_on_Lobby_back"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Lobby" to="." method="_on_Lobby_pressed"]
-[connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Campaigns" to="." method="_on_Campaigns_pressed"]
+[connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Editor" to="." method="_on_Editor_pressed"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
