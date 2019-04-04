@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "Controller",
+"language": "GDScript",
+"path": "res://source/controller/Controller.gd"
+}, {
+"base": "Node",
 "class": "Defense",
 "language": "GDScript",
 "path": "res://source/core/unit/Defense.gd"
@@ -90,6 +95,7 @@ _global_script_classes=[ {
 "path": "res://source/core/unit/UnitType.gd"
 } ]
 _global_script_class_icons={
+"Controller": "",
 "Defense": "",
 "Grid": "",
 "Hex": "",
