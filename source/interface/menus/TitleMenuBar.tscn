@@ -20,39 +20,44 @@ alignment = 1
 [node name="SidePanelBorderLeft" parent="HBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 450.0
-margin_right = 650.0
+margin_left = 373.0
+margin_right = 573.0
 margin_bottom = 43.0
 
 [node name="Multiplayer" parent="HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 650.0
-margin_right = 804.0
+margin_left = 573.0
+margin_right = 727.0
+text = "Multiplayer"
+
+[node name="Menu" parent="HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 727.0
+margin_right = 881.0
 text = "Multiplayer"
 
 [node name="Campaigns" parent="HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 804.0
-margin_right = 956.0
+margin_left = 881.0
+margin_right = 1033.0
 text = "Campaigns"
 
 [node name="Editor" parent="HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 956.0
-margin_right = 1056.0
+margin_left = 1033.0
+margin_right = 1133.0
 text = "Editor"
 
 [node name="Options" parent="HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 1056.0
-margin_right = 1170.0
+margin_left = 1133.0
+margin_right = 1247.0
 text = "Options"
 
 [node name="Quit" parent="HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 1170.0
-margin_right = 1270.0
+margin_left = 1247.0
+margin_right = 1347.0
 text = "Quit"
 
 [node name="SidePanelBorderRight" parent="HBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1270.0
-margin_right = 1470.0
+margin_left = 1347.0
+margin_right = 1547.0
 margin_bottom = 43.0
 

@@ -94,6 +94,8 @@ tracks/0/keys = {
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1920.0
+margin_right = 1920.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
@@ -116,8 +118,8 @@ margin_right = -1920.0
 [node name="ChooseCampaign" parent="." instance=ExtResource( 5 )]
 
 [node name="ChooseScenario" parent="." instance=ExtResource( 6 )]
-margin_left = 1920.0
-margin_right = 1920.0
+margin_left = 3840.0
+margin_right = 3840.0
 
 [node name="Version" type="Label" parent="."]
 anchor_top = 1.0
@@ -145,45 +147,50 @@ alignment = 1
 [node name="SidePanelBorderLeft" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 393.0
-margin_right = 593.0
+margin_left = 343.0
+margin_right = 543.0
 margin_bottom = 43.0
 
 [node name="Lobby" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
-margin_left = 593.0
-margin_right = 693.0
+margin_left = 543.0
+margin_right = 643.0
 text = "Lobby"
 
+[node name="Menu" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
+margin_left = 643.0
+margin_right = 743.0
+text = "Menu"
+
 [node name="Campaigns" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
-margin_left = 693.0
-margin_right = 845.0
+margin_left = 743.0
+margin_right = 895.0
 text = "Campaigns"
 
 [node name="Singleplayer" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
-margin_left = 845.0
-margin_right = 1013.0
+margin_left = 895.0
+margin_right = 1063.0
 text = "Singleplayer"
 
 [node name="Editor" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
-margin_left = 1013.0
-margin_right = 1113.0
+margin_left = 1063.0
+margin_right = 1163.0
 text = "Editor"
 
 [node name="Options" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
-margin_left = 1113.0
-margin_right = 1227.0
+margin_left = 1163.0
+margin_right = 1277.0
 text = "Options"
 
 [node name="Quit" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
-margin_left = 1227.0
-margin_right = 1327.0
+margin_left = 1277.0
+margin_right = 1377.0
 text = "Quit"
 
 [node name="SidePanelBorderRight" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1327.0
-margin_right = 1527.0
+margin_left = 1377.0
+margin_right = 1577.0
 margin_bottom = 43.0
 
 [node name="Menu" type="Control" parent="."]
@@ -304,6 +311,7 @@ drag_margin_v_enabled = false
 [connection signal="back" from="Lobby" to="." method="_on_Lobby_back"]
 [connection signal="back" from="ChooseCampaign" to="." method="_on_ChooseCampaign_back"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Lobby" to="." method="_on_Lobby_pressed"]
+[connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Campaigns" to="." method="_on_Campaigns_pressed"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Editor" to="." method="_on_Editor_pressed"]

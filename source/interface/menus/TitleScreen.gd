@@ -12,15 +12,21 @@ func _ready() -> void:
 	Audio.play(Registry.music.return_to_wesnoth)
 	$Version.text = Global.version_string
 	_on_screen_resized()
-	_on_Campaigns_pressed()
+	_on_Menu_pressed()
 
 func _move_camera_to(new_position: Vector2) -> void:
+	$TopMenu/TitleMenuBar.visible = true
 	tween.interpolate_property(camera, "position", camera.position, new_position, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
 
 func _on_Singleplayer_pressed() -> void:
 	_move_camera_to(singleplayer.rect_position)
 	#Scene.change(Scene.ChooseScenario)
+
+func _on_Menu_pressed():
+	$Menu.show()
+	_move_camera_to(Vector2(0, 0))
+	$TopMenu/TitleMenuBar.visible = false
 
 func _on_Campaigns_pressed() -> void:
 	print("Campaigns pressed")
@@ -48,5 +54,7 @@ func _on_Quit_pressed() -> void:
 func _on_screen_resized() -> void:
 	var size : Vector2 = get_viewport().size
 	lobby.rect_position.x = -size.x
-	campaigns.rect_position.x = 0
-	singleplayer.rect_position.x = size.x
+	campaigns.rect_position.x = size.x
+	singleplayer.rect_position.x = size.x * 2
+
+
