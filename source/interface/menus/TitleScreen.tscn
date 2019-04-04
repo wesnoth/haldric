@@ -1,16 +1,17 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
 [ext_resource path="res://source/interface/menus/TitleScreenBackground.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/interface/menus/ChooseCampaign.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/lobby/Lobby.tscn" type="PackedScene" id=5]
-[ext_resource path="res://source/interface/hud/SidePanelBorderLeft.tscn" type="PackedScene" id=6]
-[ext_resource path="res://source/interface/menus/TitleMenuBarButton.tscn" type="PackedScene" id=7]
-[ext_resource path="res://source/interface/hud/SidePanelBorderRight.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/interface/PanelBorderTop.tscn" type="PackedScene" id=9]
-[ext_resource path="res://source/interface/Logo.tscn" type="PackedScene" id=10]
-[ext_resource path="res://graphics/fonts/Raleway22.tres" type="DynamicFont" id=11]
+[ext_resource path="res://source/lobby/Lobby.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/menus/ChooseCampaign.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/interface/menus/ChooseScenario.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/interface/hud/SidePanelBorderLeft.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/interface/menus/TitleMenuBarButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/hud/SidePanelBorderRight.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/interface/PanelBorderTop.tscn" type="PackedScene" id=10]
+[ext_resource path="res://source/interface/Logo.tscn" type="PackedScene" id=11]
+[ext_resource path="res://graphics/fonts/Raleway22.tres" type="DynamicFont" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Enter"
@@ -108,13 +109,15 @@ anims/campaigns_enter = SubResource( 3 )
 anims/lobby_back = SubResource( 4 )
 anims/lobby_enter = SubResource( 5 )
 
-[node name="ChooseCampaign" parent="." instance=ExtResource( 4 )]
-margin_left = 1920.0
-margin_right = 1920.0
-
-[node name="Lobby" parent="." instance=ExtResource( 5 )]
+[node name="Lobby" parent="." instance=ExtResource( 4 )]
 margin_left = -1920.0
 margin_right = -1920.0
+
+[node name="ChooseCampaign" parent="." instance=ExtResource( 5 )]
+
+[node name="ChooseScenario" parent="." instance=ExtResource( 6 )]
+margin_left = 1920.0
+margin_right = 1920.0
 
 [node name="Version" type="Label" parent="."]
 anchor_top = 1.0
@@ -139,44 +142,44 @@ anchor_bottom = 1.0
 custom_constants/separation = 0
 alignment = 1
 
-[node name="SidePanelBorderLeft" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 6 )]
+[node name="SidePanelBorderLeft" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 393.0
 margin_right = 593.0
 margin_bottom = 43.0
 
-[node name="Lobby" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
+[node name="Lobby" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 593.0
 margin_right = 693.0
 text = "Lobby"
 
-[node name="Campaigns" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
+[node name="Campaigns" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 693.0
 margin_right = 845.0
 text = "Campaigns"
 
-[node name="Singleplayer" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
+[node name="Singleplayer" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 845.0
 margin_right = 1013.0
 text = "Singleplayer"
 
-[node name="Editor" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
+[node name="Editor" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 1013.0
 margin_right = 1113.0
 text = "Editor"
 
-[node name="Options" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
+[node name="Options" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 1113.0
 margin_right = 1227.0
 text = "Options"
 
-[node name="Quit" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 7 )]
+[node name="Quit" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 1227.0
 margin_right = 1327.0
 text = "Quit"
 
-[node name="SidePanelBorderRight" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
+[node name="SidePanelBorderRight" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1327.0
@@ -195,7 +198,7 @@ margin_top = -500.0
 margin_right = -200.0
 margin_bottom = 540.0
 
-[node name="PanelBorder" parent="Menu" instance=ExtResource( 9 )]
+[node name="PanelBorder" parent="Menu" instance=ExtResource( 10 )]
 anchor_left = 1.0
 anchor_top = 1.0
 margin_left = -300.0
@@ -203,7 +206,7 @@ margin_top = 0.0
 margin_right = 740.0
 margin_bottom = 300.0
 
-[node name="Logo" parent="Menu" instance=ExtResource( 10 )]
+[node name="Logo" parent="Menu" instance=ExtResource( 11 )]
 
 [node name="CenterContainer" type="CenterContainer" parent="Menu"]
 anchor_right = 1.0
@@ -226,7 +229,7 @@ margin_right = 250.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 enabled_focus_mode = 0
 text = "Singleplayer"
 flat = true
@@ -238,7 +241,7 @@ margin_right = 250.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 enabled_focus_mode = 0
 text = "Campaigns"
 flat = true
@@ -250,7 +253,7 @@ margin_right = 250.0
 margin_bottom = 196.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 enabled_focus_mode = 0
 text = "Lobby"
 flat = true
@@ -262,7 +265,7 @@ margin_right = 250.0
 margin_bottom = 264.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 enabled_focus_mode = 0
 text = "Editor"
 flat = true
@@ -274,7 +277,7 @@ margin_right = 250.0
 margin_bottom = 332.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 enabled_focus_mode = 0
 text = "Options"
 flat = true
@@ -286,7 +289,7 @@ margin_right = 250.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 enabled_focus_mode = 0
 text = "Quit"
 flat = true
@@ -298,8 +301,8 @@ current = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 
-[connection signal="back" from="ChooseCampaign" to="." method="_on_ChooseCampaign_back"]
 [connection signal="back" from="Lobby" to="." method="_on_Lobby_back"]
+[connection signal="back" from="ChooseCampaign" to="." method="_on_ChooseCampaign_back"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Lobby" to="." method="_on_Lobby_pressed"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Campaigns" to="." method="_on_Campaigns_pressed"]
 [connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]

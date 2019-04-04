@@ -3,6 +3,7 @@ extends Control
 onready var tween := $Tween
 onready var anim := $AnimationPlayer as AnimationPlayer
 onready var campaigns := $ChooseCampaign as Control
+onready var singleplayer := $ChooseScenario as Control
 onready var lobby := $Lobby as Control
 onready var camera := $Camera2D as Camera2D
 
@@ -18,7 +19,8 @@ func _move_camera_to(new_position: Vector2) -> void:
 	tween.start()
 
 func _on_Singleplayer_pressed() -> void:
-	Scene.change(Scene.ChooseScenario)
+	_move_camera_to(singleplayer.rect_position)
+	#Scene.change(Scene.ChooseScenario)
 
 func _on_Campaigns_pressed() -> void:
 	print("Campaigns pressed")
@@ -45,9 +47,6 @@ func _on_Quit_pressed() -> void:
 
 func _on_screen_resized() -> void:
 	var size : Vector2 = get_viewport().size
-	#campaigns.rect_position.x = size.x
-	campaigns.rect_position.x = 0
-#	campaigns.rect_size = size
 	lobby.rect_position.x = -size.x
-	#lobby.rect_position.x = 0
-#	lobby.rect_size = size
+	campaigns.rect_position.x = 0
+	singleplayer.rect_position.x = size.x

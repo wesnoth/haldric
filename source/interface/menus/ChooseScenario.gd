@@ -2,9 +2,9 @@ extends Control
 
 onready var option_button := $CenterContainer/VBoxContainer/OptionButton as OptionButton
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		_on_Play_pressed()
+#func _input(event: InputEvent) -> void:
+#	if event.is_action_pressed("ui_accept"):
+#		_on_Play_pressed()
 
 func _ready() -> void:
 	var i := 0
