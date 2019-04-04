@@ -1,16 +1,16 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://source/core/scenario/Scenario.gd" type="Script" id=1]
+[ext_resource path="res://source/scenario/Scenario.gd" type="Script" id=1]
 [ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=2]
-[ext_resource path="res://source/core/scenario/map/Map.gd" type="Script" id=3]
-[ext_resource path="res://source/core/scenario/Transitions.gd" type="Script" id=4]
+[ext_resource path="res://source/scenario/map/Map.gd" type="Script" id=3]
+[ext_resource path="res://source/scenario/Transitions.gd" type="Script" id=4]
 [ext_resource path="res://graphics/tilesets/transitions.tres" type="TileSet" id=5]
 [ext_resource path="res://graphics/shaders/fog.shader" type="Shader" id=6]
-[ext_resource path="res://source/core/scenario/Fog.gd" type="Script" id=7]
+[ext_resource path="res://source/scenario/Fog.gd" type="Script" id=7]
 [ext_resource path="res://graphics/shaders_visual/cover.tres" type="Shader" id=8]
-[ext_resource path="res://source/core/scenario/MapBorder.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/scenario/MapBorder.tscn" type="PackedScene" id=9]
 [ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=10]
-[ext_resource path="res://source/core/scenario/UnitPathDisplay.gd" type="Script" id=11]
+[ext_resource path="res://source/scenario/UnitPathDisplay.gd" type="Script" id=11]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 octaves = 6
@@ -134,3 +134,4 @@ rotate = false
 loop = false
 
 [node name="RemoteControl" type="RemoteTransform2D" parent="UnitPathDisplay/Follow"]
+

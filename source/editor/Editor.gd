@@ -1,6 +1,6 @@
 extends Node2D
 
-const Scenario = preload("res://source/core/scenario/Scenario.tscn")
+const Scenario = preload("res://source/scenario/Scenario.tscn")
 const DEFAULT_PATH = "res://data/scenarios/"
 const DEFAULT_MAP_SIZE := Vector2(44, 33)
 

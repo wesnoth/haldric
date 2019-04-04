@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://source/core/game/Game.gd" type="Script" id=1]
-[ext_resource path="res://source/core/scenario/OffMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/game/Game.gd" type="Script" id=1]
+[ext_resource path="res://source/scenario/OffMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/interface/hud/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=4]
+
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )

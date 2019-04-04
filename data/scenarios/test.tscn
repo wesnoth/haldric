@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://source/core/scenario/Scenario.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/scenario/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://data/scenarios/test.gd" type="Script" id=2]
-[ext_resource path="res://source/core/scenario/Side.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/scenario/Side.tscn" type="PackedScene" id=3]
+
 
 [node name="Scenario" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
