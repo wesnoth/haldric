@@ -54,18 +54,18 @@ func _load_units() -> void:
 		scenario.add_unit(2, "Fighter", 7, 8)
 		scenario.add_unit(2, "Bat", 8, 8)
 
-func _draw_temp_path(path : Array) -> void:
+func _draw_temp_path(path: Array) -> void:
 	scenario.unit_path_display.path = path
 
 func _clear_temp_path() -> void:
 	scenario.unit_path_display.path = [] # Uses assignment to trigger setter
 
-func _set_side(value : Side) -> void:
+func _set_side(value: Side) -> void:
 	current_side = value
 	if current_side:
 		HUD.update_side_info(scenario, current_side)
 
-func _set_selected_unit(value : Unit) -> void:
+func _set_selected_unit(value: Unit) -> void:
 	if selected_unit:
 		selected_unit.unhighlight_moves()
 

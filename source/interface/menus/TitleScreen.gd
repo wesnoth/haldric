@@ -19,7 +19,7 @@ func _on_Lobby_pressed() -> void:
 	# Scene.change(Scene.Lobby)
 	anim.play("lobby_enter")
 
-func _on_Lobby_back():
+func _on_Lobby_back() -> void:
 	anim.play("lobby_back")
 
 func _on_Editor_pressed() -> void:

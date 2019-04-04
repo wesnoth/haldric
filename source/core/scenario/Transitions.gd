@@ -30,14 +30,14 @@ func update_transitions(map) -> void:
 
 # map: Map - cyclic reference
 func _apply_transition_from_cell(cell : Vector2) -> void:
-	var location = map.get_location(cell)
-	var code = location.terrain.get_base_code()
-	var neighbors = Hex.get_neighbors(cell)
+	var location: Location = map.get_location(cell)
+	var code: String = location.terrain.get_base_code()
+	var neighbors := Hex.get_neighbors(cell)
 
 	var layer = 0
 	while layer < 6:
-		var n_cell = neighbors[layer]
-		var n_location = map.get_location(n_cell)
+		var n_cell: Vector2 = neighbors[layer]
+		var n_location: Location = map.get_location(n_cell)
 
 		if not n_location:
 			layer += 1
@@ -72,9 +72,9 @@ func _get_chain_tile_data(code: String, cell : Vector2, start_direction : int) -
 
 	for direction in range(start_direction, 6):
 		var n_cell : Vector2 = neighbors[direction]
-		var previous = transition.duplicate(true)
+		var previous := transition.duplicate(true)
 
-		var n_code = _get_base_terrain_code_from_cell(n_cell)
+		var n_code := _get_base_terrain_code_from_cell(n_cell)
 
 		if not start_code == n_code:
 			return transition
@@ -95,12 +95,12 @@ func _get_base_terrain_code_from_cell(cell: Vector2) -> String:
 	return ""
 
 func _set_transition_tile(transition: String, cell: Vector2, layer: int) -> void:
-	var tile_id = layers[layer].tile_set.find_tile_by_name(transition)
+	var tile_id: int = layers[layer].tile_set.find_tile_by_name(transition)
 	layers[layer].set_cellv(cell, tile_id)
 
-func _tile_set_has_tile(tile_name):
-	var id = tile_set.find_tile_by_name(tile_name)
-	return id != -1
+func _tile_set_has_tile(tile_name: String):
+	var tile_id: int = tile_set.find_tile_by_name(tile_name)
+	return tile_id != -1
 
 func _get_direction_string(start_direction : int, current_direction : int) -> String:
 	if start_direction == current_direction:
