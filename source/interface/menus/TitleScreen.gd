@@ -50,7 +50,3 @@ func _on_screen_resized() -> void:
 	lobby.rect_position.x = 0
 	#lobby.rect_position.x = -size.x
 #	lobby.rect_size = size
-
-func _on_Multiplayer_pressed():
-	print("Multiplayer pressed")
-	_on_Lobby_pressed()
