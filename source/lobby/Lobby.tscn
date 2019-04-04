@@ -11,6 +11,7 @@ theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
@@ -109,11 +110,11 @@ text = "Back"
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 269.0
-margin_top = 21.0
+margin_top = 50.0
 margin_right = -20.0
-margin_bottom = -21.0
+margin_bottom = -51.0
 texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 20, 20 )
+region_rect = Rect2( 20, 0, 20, 20 )
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
@@ -127,13 +128,14 @@ anchor_bottom = 1.0
 margin_left = 6.0
 margin_top = 6.0
 margin_right = -8.0
-margin_bottom = -35.0
+margin_bottom = -6.0
 
 [node name="Input" type="LineEdit" parent="Room"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -24.0
+margin_top = 8.0
+margin_bottom = 44.0
 rect_min_size = Vector2( 0, 36 )
 placeholder_text = "Chat"
 

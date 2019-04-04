@@ -45,8 +45,9 @@ func _on_Quit_pressed() -> void:
 
 func _on_screen_resized() -> void:
 	var size : Vector2 = get_viewport().size
-	campaigns.rect_position.x = size.x
+	#campaigns.rect_position.x = size.x
+	campaigns.rect_position.x = 0
 #	campaigns.rect_size = size
-	lobby.rect_position.x = 0
-	#lobby.rect_position.x = -size.x
+	lobby.rect_position.x = -size.x
+	#lobby.rect_position.x = 0
 #	lobby.rect_size = size
