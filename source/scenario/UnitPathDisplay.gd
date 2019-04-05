@@ -5,10 +5,6 @@ const COLOR = Color(255, 0, 0, 0.5)
 
 var path := [] setget path_updated
 
-onready var follow := $Follow as PathFollow2D
-onready var tween := $Tween as Tween
-onready var remote_control := $Follow/RemoteControl as RemoteTransform2D
-
 func _draw() -> void:
 	if path.size() < 2:
 		return
@@ -52,11 +48,3 @@ func path_updated(new_val: Array) -> void:
 
 	# Redraw
 	update()
-
-func move_along_path(obj: Node2D) -> void:
-	remote_control.remote_path = obj.get_path()
-
-	var time := clamp(path.size() * 0.2, 0.5, 2.5)
-
-	tween.interpolate_property(follow, "unit_offset", 0, 1, time, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	tween.start()

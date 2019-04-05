@@ -129,9 +129,3 @@ script = ExtResource( 11 )
 
 [node name="Tween" type="Tween" parent="UnitPathDisplay"]
 
-[node name="Follow" type="PathFollow2D" parent="UnitPathDisplay"]
-rotate = false
-loop = false
-
-[node name="RemoteControl" type="RemoteTransform2D" parent="UnitPathDisplay/Follow"]
-
