@@ -57,10 +57,10 @@ func find_path(start_loc: Location, end_loc: Location) -> Array:
 
 	return loc_path
 
-func find_all_reachable_cells(unit: Unit) -> Dictionary:
+func find_all_viewable_cells(unit: Unit) -> Dictionary:
 	update_weight(unit)
 	var paths := {}
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.moves_current, width, height)
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, width, height)
 	cells.remove(0)
 	cells.invert()
 	for cell in cells:
@@ -74,14 +74,14 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 		for path_cell in path:
 			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
 			if path_cell in ZOC_tiles:
-				cell_cost = unit.moves_current - cost
-			if cost + cell_cost > unit.moves_current:
+				cell_cost = unit.type.moves - cost
+			if cost + cell_cost > unit.type.moves:
 				break
 
 			cost += cell_cost
 			new_path.append(path_cell)
 			paths[path_cell] = new_path.duplicate(true)
-			if cost == unit.moves_current:
+			if cost == unit.type.moves:
 				break
 	return paths
 
@@ -91,9 +91,9 @@ func update_terrain() -> void:
 	_initialize_transitions()
 
 func update_weight(unit: Unit) -> void:
-	for label in labels:
-		remove_child(label)
-	labels.clear()
+	#for label in labels:
+	#	remove_child(label)
+	#labels.clear()
 	for loc in ZOC_tiles:
 		grid.unblock_cell(loc.cell)
 	ZOC_tiles.clear()

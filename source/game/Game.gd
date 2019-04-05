@@ -11,13 +11,15 @@ onready var scenario_container := $ScenarioContainer as Node2D
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left"):
 		var mouse_cell: Vector2 = scenario.map.world_to_map(get_global_mouse_position())
-		print(mouse_cell)
+		#print(mouse_cell)
 		var location: Location = scenario.map.get_location(mouse_cell)
 		if location:
 			if location.unit:
 				_set_selected_unit(location.unit)
+				_set_side(scenario.sides.get_child(location.unit.side-1))
 			elif selected_unit and not location.unit:
 				selected_unit.move_to(location)
+				scenario.unit_path_display.path = selected_unit.unit_path
 				scenario.unit_path_display.move_along_path(selected_unit)
 				_set_selected_unit(null)
 
@@ -64,6 +66,8 @@ func _set_side(value: Side) -> void:
 	current_side = value
 	if current_side:
 		HUD.update_side_info(scenario, current_side)
+		for unit in current_side.units.get_children():
+			pass
 
 func _set_selected_unit(value: Unit) -> void:
 	if selected_unit:
@@ -73,7 +77,8 @@ func _set_selected_unit(value: Unit) -> void:
 
 	if selected_unit:
 		HUD.update_unit_info(selected_unit)
-		selected_unit.reachable = scenario.map.find_all_reachable_cells(selected_unit)
+		selected_unit.viewable = scenario.map.find_all_viewable_cells(selected_unit)
+		selected_unit.set_reachable()
 		selected_unit.highlight_moves()
 	else:
 		HUD.clear_unit_info()
