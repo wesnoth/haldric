@@ -18,7 +18,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				_set_selected_unit(location.unit)
 			elif selected_unit and not location.unit:
 				selected_unit.move_to(location)
-				scenario.unit_path_display.move_along_path(selected_unit)
 				_set_selected_unit(null)
 
 	elif event.is_action_pressed("mouse_right"):

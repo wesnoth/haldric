@@ -34,10 +34,8 @@ func place_at(loc: Location) -> void:
 	location.unit = self
 
 func move_to(loc: Location) -> void:
-	# TODO: is it a problem that the unit isn't marked as being at every loc along the way?
-	# BITRON: Might be, when simultaneous movement is allowed and two units have the same location as target for their movement.
-	place_at(loc)
 	path = find_path(loc)
+	_move()
 
 func find_path(loc: Location) -> Array:
 	if reachable.has(loc):
