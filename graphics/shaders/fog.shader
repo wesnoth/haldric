@@ -17,6 +17,7 @@ void fragment() {
 	
 	if (final.a > 0.0) {
 		final.a = final.r * intensity;
+		final.r = final.r * 0.92
 	}
 	
 	COLOR = final.rgba;
