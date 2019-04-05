@@ -17,6 +17,7 @@ margin_left = -231.0
 margin_top = -270.0
 margin_right = -10.0
 margin_bottom = 270.0
+mouse_filter = 2
 
 [node name="SidePanel" parent="." instance=ExtResource( 3 )]
 anchor_left = 0.5
@@ -27,7 +28,6 @@ margin_right = 960.0
 margin_bottom = 50.0
 
 [node name="PauseMenu" parent="." instance=ExtResource( 4 )]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
