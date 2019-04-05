@@ -20,6 +20,7 @@ anchor_bottom = 1.0
 margin_right = -1720.0
 margin_bottom = -1040.0
 rect_min_size = Vector2( 200, 40 )
+mouse_filter = 2
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -28,6 +29,7 @@ margin_left = 200.0
 margin_right = 200.0
 rect_min_size = Vector2( 0, 40 )
 rect_scale = Vector2( -1, 1 )
+mouse_filter = 2
 texture = SubResource( 2 )
 expand = true
 
@@ -35,6 +37,7 @@ expand = true
 anchor_right = 1.0
 margin_top = 1.0
 rect_min_size = Vector2( 0, 1 )
+mouse_filter = 2
 texture = SubResource( 4 )
 expand = true
 
@@ -45,6 +48,7 @@ anchor_bottom = 1.0
 margin_top = -2.0
 margin_bottom = -1.0
 rect_min_size = Vector2( 0, 1 )
+mouse_filter = 2
 texture = SubResource( 4 )
 expand = true
 

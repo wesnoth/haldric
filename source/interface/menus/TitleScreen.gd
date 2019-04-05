@@ -2,10 +2,12 @@ extends Control
 
 onready var tween := $Tween
 onready var anim := $AnimationPlayer as AnimationPlayer
+onready var camera := $Camera2D as Camera2D
+
 onready var campaigns := $ChooseCampaign as Control
 onready var singleplayer := $ChooseScenario as Control
+onready var options := $Options as Control
 onready var lobby := $Lobby as Control
-onready var camera := $Camera2D as Camera2D
 
 func _ready() -> void:
 	get_tree().connect("screen_resized", self, "_on_screen_resized")
@@ -46,15 +48,17 @@ func _on_Editor_pressed() -> void:
 	Scene.change(Scene.Editor)
 
 func _on_Options_pressed() -> void:
-	Scene.change(Scene.Options)
+	_move_camera_to(options.rect_position)
+	# Scene.change(Scene.Options)
 
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
 
 func _on_screen_resized() -> void:
 	var size : Vector2 = get_viewport().size
-	lobby.rect_position.x = -size.x
-	campaigns.rect_position.x = size.x
-	singleplayer.rect_position.x = size.x * 2
+	lobby.rect_position = Vector2(0, -size.y)
+	campaigns.rect_position = Vector2(-size.x, 0)
+	singleplayer.rect_position = size
+	options.rect_position = Vector2(0, size.y)
 
 

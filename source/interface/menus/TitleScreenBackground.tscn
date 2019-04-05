@@ -13,6 +13,16 @@ motion_scale = Vector2( 0, 1 )
 motion_mirroring = Vector2( 1920, 0 )
 
 [node name="Background" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background2" type="TextureRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )

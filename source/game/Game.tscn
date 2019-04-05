@@ -5,7 +5,6 @@
 [ext_resource path="res://source/interface/hud/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=4]
 
-
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 

@@ -38,9 +38,9 @@ margin_right = 16.0
 alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Setup/VBoxContainer"]
-margin_top = 888.0
+margin_top = 932.0
 margin_right = 242.0
-margin_bottom = 924.0
+margin_bottom = 968.0
 
 [node name="Name" type="LineEdit" parent="Setup/VBoxContainer/HBoxContainer"]
 margin_right = 242.0
@@ -50,22 +50,22 @@ size_flags_horizontal = 3
 placeholder_text = "Name"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Setup/VBoxContainer"]
-margin_top = 932.0
-margin_right = 242.0
-margin_bottom = 932.0
-
-[node name="IP" type="LineEdit" parent="Setup/VBoxContainer"]
-margin_top = 940.0
+margin_top = 976.0
 margin_right = 242.0
 margin_bottom = 976.0
+
+[node name="IP" type="LineEdit" parent="Setup/VBoxContainer"]
+margin_top = 984.0
+margin_right = 242.0
+margin_bottom = 1020.0
 rect_min_size = Vector2( 0, 36 )
 text = "127.0.0.1"
 placeholder_text = "IP"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Setup/VBoxContainer"]
-margin_top = 984.0
+margin_top = 1028.0
 margin_right = 242.0
-margin_bottom = 1020.0
+margin_bottom = 1064.0
 size_flags_horizontal = 3
 alignment = 1
 
@@ -98,6 +98,7 @@ enabled_focus_mode = 0
 text = "Leave"
 
 [node name="Back" type="Button" parent="Setup/VBoxContainer"]
+visible = false
 margin_top = 1028.0
 margin_right = 242.0
 margin_bottom = 1064.0
