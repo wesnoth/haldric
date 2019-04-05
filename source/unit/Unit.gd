@@ -64,7 +64,11 @@ func unhighlight_moves() -> void:
 func _move() -> void:
 	if path and tween:
 		var loc: Location = path[0]
-
+		var cost = terrain_cost(loc)
+		
+		if cost > moves_current:
+			return
+		
 		location.unit = null
 		location = loc
 		location.unit = self
@@ -72,6 +76,7 @@ func _move() -> void:
 		#warning-ignore:return_value_discarded
 		tween.interpolate_property(self, "position", position, loc.position, move_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 
+		moves_current -= cost
 		path.remove(0)
 		#warning-ignore:return_value_discarded
 		tween.start()
