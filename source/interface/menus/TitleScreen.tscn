@@ -8,10 +8,10 @@
 [ext_resource path="res://source/interface/menus/ChooseCampaign.tscn" type="PackedScene" id=6]
 [ext_resource path="res://source/interface/menus/ChooseScenario.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/interface/hud/SidePanelBorderLeft.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/interface/menus/TitleMenuBarButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/interface/menus/components/TitleMenuBarButton.tscn" type="PackedScene" id=9]
 [ext_resource path="res://source/interface/hud/SidePanelBorderRight.tscn" type="PackedScene" id=10]
-[ext_resource path="res://source/interface/PanelBorderTop.tscn" type="PackedScene" id=11]
-[ext_resource path="res://source/interface/Logo.tscn" type="PackedScene" id=12]
+[ext_resource path="res://source/interface/menus/components/PanelBorderTop.tscn" type="PackedScene" id=11]
+[ext_resource path="res://source/interface/menus/components/Logo.tscn" type="PackedScene" id=12]
 [ext_resource path="res://graphics/fonts/Raleway22.tres" type="DynamicFont" id=13]
 
 [sub_resource type="Animation" id=1]

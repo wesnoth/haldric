@@ -2,8 +2,10 @@
 
 [ext_resource path="res://source/interface/hud/SidePanel.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/hud/SidePanelBorderLeft.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/interface/menus/TitleMenuBarButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/menus/components/TitleMenuBarButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/hud/SidePanelBorderRight.tscn" type="PackedScene" id=4]
+
+
 
 [node name="TitleMenuBar" type="Control"]
 anchor_right = 1.0
