@@ -9,9 +9,8 @@ var experience_current := 0
 
 var location: Location = null
 
-var unit_path := []
-var viewable := {} #setget _set_reachable
-var reachable := {}
+var path := []
+var reachable := {} #setget _set_reachable
 
 export(float, 0.1, 1.0) var move_time := 0.15
 
@@ -37,23 +36,13 @@ func place_at(loc: Location) -> void:
 func move_to(loc: Location) -> void:
 	# TODO: is it a problem that the unit isn't marked as being at every loc along the way?
 	# BITRON: Might be, when simultaneous movement is allowed and two units have the same location as target for their movement.
-	
-	unit_path = find_path(loc)
-	while (path_cost(unit_path) > moves_current):
-		unit_path.pop_back()
-		
-	place_at(unit_path.back())
+	place_at(loc)
+	path = find_path(loc)
 
 func find_path(loc: Location) -> Array:
 	if reachable.has(loc):
 		return reachable[loc]
 	return loc.map.find_path(location, loc)
-
-func path_cost(path: Array) -> int:
-	var cost = 0
-	for loc in path:
-		cost += terrain_cost(loc)
-	return cost
 
 func terrain_cost(loc: Location) -> int:
 	var cost =  type.movement.get(loc.terrain.type[0])
@@ -62,21 +51,6 @@ func terrain_cost(loc: Location) -> int:
 		cost = max(cost_overlay, cost)
 	return cost
 
-func set_reachable() -> void:
-	if viewable.empty():
-		return
-	if moves_current == type.moves:
-		reachable = viewable
-	else:
-		for key in viewable.keys():
-			var cur_path = viewable[key]
-			var cost = 0
-			for loc in cur_path:
-				cost += terrain_cost(loc)
-				if cost > moves_current:
-					break
-			if cost <= moves_current:
-				reachable[key] = viewable[key]
 func highlight_moves() -> void:
 	for loc in reachable:
 		location.map.cover.set_cellv(loc.cell, -1)
@@ -90,8 +64,8 @@ func unhighlight_moves() -> void:
 	location.map.cover.hide()
 
 func _move() -> void:
-	if unit_path and tween:
-		var loc: Location = unit_path[0]
+	if path and tween:
+		var loc: Location = path[0]
 
 		location.unit = null
 		location = loc
@@ -100,10 +74,10 @@ func _move() -> void:
 		#warning-ignore:return_value_discarded
 		tween.interpolate_property(self, "position", position, loc.position, move_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 
-		unit_path.remove(0)
+		path.remove(0)
 		#warning-ignore:return_value_discarded
 		tween.start()
 
 func _on_Tween_tween_completed(object, key):
-	if unit_path and tween:
+	if path and tween:
 		_move()
