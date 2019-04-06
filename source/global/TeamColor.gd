@@ -42,7 +42,9 @@ var team_color_data := {
 func _ready() -> void:
 	initialize_flag_colors()
 
-func generate_team_shader(team_data: Array) -> ShaderMaterial:
+func generate_team_shader(team_color: String) -> ShaderMaterial:
+	var team_data = team_color_data[team_color]
+
 	var mat := ShaderMaterial.new()
 	mat.shader = SHADER
 	var color_map = new_color_map(team_data, base_color_map)
@@ -54,7 +56,8 @@ func generate_team_shader(team_data: Array) -> ShaderMaterial:
 
 	return mat
 
-func generate_flag_shader(team_data: Array) -> ShaderMaterial:
+func generate_flag_shader(team_color: String) -> ShaderMaterial:
+	var team_data = team_color_data[team_color]
 	var mat := ShaderMaterial.new()
 	mat.shader = FLAG_SHADER
 	var color_map: Dictionary = new_color_map(team_data, base_flag_color)
