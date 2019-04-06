@@ -9,7 +9,7 @@ func _ready() -> void:
 	for button in $HUD/MenuBar/HBoxContainer/Buttons.get_children():
 		menu_bar.register_button(button)
 
-	call_deferred("_set_current_page", pages[0])
+	call_deferred("_set_current_page", pages[1])
 	menu_bar.reveal()
 
 func _on_Quit_pressed():
