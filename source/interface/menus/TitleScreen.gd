@@ -9,7 +9,5 @@ func _ready() -> void:
 	for button in $HUD/MenuBar/HBoxContainer/Buttons.get_children():
 		menu_bar.register_button(button)
 
-	_set_current_page(pages[1])
-
 func _on_Quit_pressed():
 	get_tree().quit()

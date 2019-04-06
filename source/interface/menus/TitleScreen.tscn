@@ -7,8 +7,18 @@
 [ext_resource path="res://source/interface/menus/Campaigns.tscn" type="PackedScene" id=5]
 [ext_resource path="res://source/interface/menus/Scenarios.tscn" type="PackedScene" id=6]
 
-[node name="TitleScreen" instance=ExtResource( 1 )]
+[node name="TitleScreen" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="PressEnter" type="Label" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "PRESS ENTER"
+align = 1
+valign = 1
+
+[node name="MenuBar" parent="HUD" index="0"]
+modulate = Color( 1, 1, 1, 0 )
 
 [node name="SidePanelBorderLeft" parent="HUD/MenuBar/HBoxContainer" index="0"]
 margin_left = 294.0
@@ -69,7 +79,7 @@ margin_bottom = 0.0
 
 [node name="Credits" parent="Pages" index="5" instance=ExtResource( 4 )]
 
-[node name="Version" type="Label" parent="." index="5"]
+[node name="Version" type="Label" parent="." index="6"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
