@@ -21,6 +21,8 @@ layer = -2
 [node name="Back" parent="Background" instance=ExtResource( 2 )]
 mouse_filter = 2
 texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
 scale = 0.0
 
 [node name="Middle2" parent="Background" instance=ExtResource( 2 )]

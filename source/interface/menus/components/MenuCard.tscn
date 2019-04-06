@@ -31,11 +31,12 @@ expand = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
-region_rect = Rect2( 40, 0, 20, 20 )
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
+draw_center = false
+region_rect = Rect2( 60, 0, 20, 20 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
