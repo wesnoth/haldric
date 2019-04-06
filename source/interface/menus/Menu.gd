@@ -20,17 +20,14 @@ onready var current_page : MenuPage = null
 
 func _input(event: InputEvent) -> void:
 
-	if event.is_action_pressed("ui_accept") and not ready:
-		_set_current_page(pages[0])
-		menu_bar.reveal()
-		anim.play("enter")
-	if event.is_action_pressed("ui_right") and not tween.is_active():
+	if event.is_action_pressed("ui_right") and not tween.is_active() and ready:
 		_next_page()
-	elif event.is_action_pressed("ui_left") and not tween.is_active():
+	elif event.is_action_pressed("ui_left") and not tween.is_active() and ready:
 		_previous_page()
 
 func _ready() -> void:
 	menu_bar.modulate = Color("00FFFFFF")
+	#warning-ignore:return_value_discarded
 	get_tree().connect("screen_resized", self, "_on_screen_resized")
 	_on_screen_resized()
 
