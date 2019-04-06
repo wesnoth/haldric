@@ -1,5 +1,4 @@
-extends Resource
+extends RCard
 class_name RScenario
 
-export var title := ""
 export var turns := 99

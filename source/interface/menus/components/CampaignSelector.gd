@@ -1,14 +1,19 @@
-extends ScrollContainer
+extends CardSelector
 class_name CampaignSelector
 
-onready var campaign_cards = $CenterContainer/GridContainer.get_children()
+const CampaignCard = preload("res://source/interface/menus/components/CampaignCard.tscn")
 
-func animate():
-	_hide_all_cards()
-	for child in campaign_cards:
-		child.animate()
-		yield(get_tree().create_timer(0.1), "timeout")
+func _ready() -> void:
+	for campaign in Registry.campaigns:
+		print(campaign)
+		_add_campaign(campaign)
 
-func _hide_all_cards() -> void:
-	for child in campaign_cards:
-		child.modulate = Color("00FFFFFF")
+func _add_campaign(campaign) -> void:
+	var file_data = Registry.campaigns[campaign]
+	var button = CampaignCard.instance()
+	button.connect("pressed", self, "_on_campaign_card_pressed", [campaign])
+	grid_container.add_child(button)
+	button.initialize(file_data.data)
+
+func _on_campaign_card_pressed(id) -> void:
+	print(id, " selected; loading Campaign")
