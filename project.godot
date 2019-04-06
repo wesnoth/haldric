@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "NinePatchRect",
+"class": "ButtonHover",
+"language": "GDScript",
+"path": "res://source/interface/menus/components/ButtonHover.gd"
+}, {
+"base": "Button",
+"class": "CampaignCard",
+"language": "GDScript",
+"path": "res://source/interface/menus/components/CampaignCard.gd"
+}, {
+"base": "ScrollContainer",
+"class": "CampaignSelector",
+"language": "GDScript",
+"path": "res://source/interface/menus/components/CampaignSelector.gd"
+}, {
 "base": "Node",
 "class": "Controller",
 "language": "GDScript",
@@ -39,6 +54,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/map/Map.gd"
 }, {
+"base": "Control",
+"class": "Menu",
+"language": "GDScript",
+"path": "res://source/interface/menus/Menu.gd"
+}, {
+"base": "Control",
+"class": "MenuBar",
+"language": "GDScript",
+"path": "res://source/interface/menus/components/MenuBar.gd"
+}, {
+"base": "Control",
+"class": "MenuPage",
+"language": "GDScript",
+"path": "res://source/interface/menus/components/MenuPage.gd"
+}, {
 "base": "Node",
 "class": "Movement",
 "language": "GDScript",
@@ -63,6 +93,16 @@ _global_script_classes=[ {
 "class": "Scenario",
 "language": "GDScript",
 "path": "res://source/scenario/Scenario.gd"
+}, {
+"base": "Button",
+"class": "ScenarioCard",
+"language": "GDScript",
+"path": "res://source/interface/menus/components/ScenarioCard.gd"
+}, {
+"base": "ScrollContainer",
+"class": "ScenarioSelector",
+"language": "GDScript",
+"path": "res://source/interface/menus/components/ScenarioSelector.gd"
 }, {
 "base": "Node",
 "class": "Side",
@@ -95,17 +135,25 @@ _global_script_classes=[ {
 "path": "res://source/unit/UnitType.gd"
 } ]
 _global_script_class_icons={
+"ButtonHover": "",
+"CampaignCard": "",
+"CampaignSelector": "",
 "Controller": "",
 "Defense": "",
 "Grid": "",
 "Hex": "",
 "Location": "",
 "Map": "",
+"Menu": "",
+"MenuBar": "",
+"MenuPage": "",
 "Movement": "",
 "RScenario": "",
 "RTerrain": "",
 "Resistance": "",
 "Scenario": "",
+"ScenarioCard": "",
+"ScenarioSelector": "",
 "Side": "",
 "SidePanelItem": "",
 "Terrain": "",
@@ -151,7 +199,7 @@ gdscript/warnings/unused_argument=false
 window/size/width=1920
 window/size/height=1080
 window/size/resizable=false
-window/size/borderless=true
+window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 mouse_cursor/custom_image="res://graphics/images/interface/cursor/normal.png"
 window/stretch/mode="2d"

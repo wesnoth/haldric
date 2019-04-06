@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
+[ext_resource path="res://source/interface/menus/Menu.gd" type="Script" id=2]
+[ext_resource path="res://source/interface/menus/components/MenuBar.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "enter"
+length = 0.6
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+page_time = 0.6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/enter = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MenuBar" parent="HUD" instance=ExtResource( 3 )]
+margin_top = 10.0
+margin_bottom = 70.0
+
+[node name="Pages" type="Control" parent="."]
+margin_top = 70.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[connection signal="button_pressed" from="HUD/MenuBar" to="." method="_on_MenuBar_button_pressed"]
+
+[editable path="HUD/MenuBar"]

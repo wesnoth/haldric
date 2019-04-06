@@ -1,7 +1,5 @@
 extends Control
 
-signal back
-
 onready var grid_container = $ScrollContainer/CenterContainer/GridContainer as GridContainer
 
 onready var campaign_cards = grid_container.get_children()
@@ -18,6 +16,3 @@ func animate() -> void:
 func hide_all_cards() -> void:
 	for child in campaign_cards:
 		child.modulate = Color("00FFFFFF")
-
-func _on_Back_pressed() -> void:
-	emit_signal("back")

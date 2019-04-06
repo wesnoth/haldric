@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
-[ext_resource path="res://source/interface/menus/ChooseScenario.gd" type="Script" id=2]
+[ext_resource path="res://source/interface/menus/old/ChooseScenario.gd" type="Script" id=2]
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=3]
 
 [node name="ChooseScenario" type="Control"]

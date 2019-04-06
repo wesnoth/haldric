@@ -3,7 +3,8 @@
 [ext_resource path="res://source/interface/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/hud/UnitPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/interface/menus/PauseMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/hud/PauseMenu.tscn" type="PackedScene" id=4]
+
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
