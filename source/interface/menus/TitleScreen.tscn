@@ -14,12 +14,12 @@ script = ExtResource( 2 )
 modulate = Color( 1, 1, 1, 0 )
 
 [node name="SidePanelBorderLeft" parent="HUD/MenuBar/HBoxContainer" index="0"]
-margin_left = 294.0
-margin_right = 494.0
+margin_left = 228.0
+margin_right = 428.0
 
 [node name="Buttons" parent="HUD/MenuBar/HBoxContainer" index="1"]
-margin_left = 494.0
-margin_right = 1292.0
+margin_left = 428.0
+margin_right = 1359.0
 
 [node name="Tutorials" parent="HUD/MenuBar/HBoxContainer/Buttons" index="0" instance=ExtResource( 3 )]
 margin_right = 133.0
@@ -40,24 +40,36 @@ margin_left = 399.0
 margin_right = 532.0
 margin_bottom = 60.0
 
-[node name="Settings" parent="HUD/MenuBar/HBoxContainer/Buttons" index="4" instance=ExtResource( 3 )]
+[node name="Addons" parent="HUD/MenuBar/HBoxContainer/Buttons" index="4" instance=ExtResource( 3 )]
 margin_left = 532.0
 margin_right = 665.0
 margin_bottom = 60.0
 
-[node name="Credits" parent="HUD/MenuBar/HBoxContainer/Buttons" index="5" instance=ExtResource( 3 )]
+[node name="Settings" parent="HUD/MenuBar/HBoxContainer/Buttons" index="5" instance=ExtResource( 3 )]
 margin_left = 665.0
 margin_right = 798.0
 margin_bottom = 60.0
 
+[node name="Credits" parent="HUD/MenuBar/HBoxContainer/Buttons" index="6" instance=ExtResource( 3 )]
+margin_left = 798.0
+margin_right = 931.0
+margin_bottom = 60.0
+
 [node name="Quit" parent="HUD/MenuBar/HBoxContainer" index="2" instance=ExtResource( 3 )]
-margin_left = 1292.0
-margin_right = 1425.0
+margin_left = 1359.0
+margin_right = 1492.0
 margin_bottom = 60.0
 
 [node name="SidePanelBorderRight" parent="HUD/MenuBar/HBoxContainer" index="3"]
-margin_left = 1425.0
-margin_right = 1625.0
+margin_left = 1492.0
+margin_right = 1692.0
+
+[node name="Pages" parent="." index="4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 80.0
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="Tutorials" parent="Pages" index="0" instance=ExtResource( 4 )]
 
@@ -68,9 +80,11 @@ margin_bottom = 0.0
 
 [node name="Editor" parent="Pages" index="3" instance=ExtResource( 4 )]
 
-[node name="Settings" parent="Pages" index="4" instance=ExtResource( 4 )]
+[node name="Addons" parent="Pages" index="4" instance=ExtResource( 4 )]
 
-[node name="Credits" parent="Pages" index="5" instance=ExtResource( 4 )]
+[node name="Settings" parent="Pages" index="5" instance=ExtResource( 4 )]
+
+[node name="Credits" parent="Pages" index="6" instance=ExtResource( 4 )]
 
 [node name="Version" type="Label" parent="." index="5"]
 anchor_top = 1.0
