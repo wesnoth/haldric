@@ -11,6 +11,7 @@
 script = ExtResource( 2 )
 
 [node name="MenuBar" parent="HUD" index="0"]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 
 [node name="SidePanelBorderLeft" parent="HUD/MenuBar/HBoxContainer" index="0"]
