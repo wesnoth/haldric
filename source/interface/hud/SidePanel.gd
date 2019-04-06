@@ -16,7 +16,7 @@ func _process(delta):
 		battery_item.hide()
 
 func update_side(scenario : Scenario, side : Side) -> void:
-	flag_item.texture_rect.material = side.flag_shader
+	# flag_item.texture_rect.material = side.flag_shader
 	flag_item.set_text(str(side.side))
 	gold_item.set_text(str(side.gold))
 	units_item.set_text(str(side.units.get_child_count()))
