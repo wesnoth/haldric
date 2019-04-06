@@ -41,7 +41,6 @@ anchor_bottom = 0.0
 margin_left = 560.0
 margin_right = 660.0
 margin_bottom = 40.0
-mouse_filter = 2
 texture = ExtResource( 4 )
 
 [node name="Gold" parent="HBoxContainer" instance=ExtResource( 3 )]
@@ -50,7 +49,6 @@ anchor_bottom = 0.0
 margin_left = 660.0
 margin_right = 760.0
 margin_bottom = 40.0
-mouse_filter = 2
 texture = ExtResource( 5 )
 
 [node name="Villages" parent="HBoxContainer" instance=ExtResource( 3 )]
@@ -60,7 +58,6 @@ anchor_bottom = 0.0
 margin_left = 760.0
 margin_right = 860.0
 margin_bottom = 40.0
-mouse_filter = 2
 texture = ExtResource( 6 )
 
 [node name="Units" parent="HBoxContainer" instance=ExtResource( 3 )]
@@ -70,7 +67,6 @@ anchor_bottom = 0.0
 margin_left = 860.0
 margin_right = 960.0
 margin_bottom = 40.0
-mouse_filter = 2
 texture = ExtResource( 7 )
 
 [node name="Upkeep" parent="HBoxContainer" instance=ExtResource( 3 )]
@@ -79,7 +75,6 @@ anchor_bottom = 0.0
 margin_left = 960.0
 margin_right = 1060.0
 margin_bottom = 40.0
-mouse_filter = 2
 texture = ExtResource( 8 )
 
 [node name="Income" parent="HBoxContainer" instance=ExtResource( 3 )]
@@ -88,7 +83,6 @@ anchor_bottom = 0.0
 margin_left = 1060.0
 margin_right = 1160.0
 margin_bottom = 40.0
-mouse_filter = 2
 texture = ExtResource( 9 )
 
 [node name="Battery" parent="HBoxContainer" instance=ExtResource( 3 )]
@@ -98,7 +92,6 @@ anchor_bottom = 0.0
 margin_left = 1160.0
 margin_right = 1260.0
 margin_bottom = 40.0
-mouse_filter = 2
 texture = ExtResource( 10 )
 
 [node name="Time" parent="HBoxContainer" instance=ExtResource( 3 )]
@@ -108,7 +101,6 @@ anchor_bottom = 0.0
 margin_left = 1260.0
 margin_right = 1360.0
 margin_bottom = 40.0
-mouse_filter = 2
 texture = ExtResource( 11 )
 
 [node name="SidePanelBorderRight" parent="HBoxContainer" instance=ExtResource( 12 )]
