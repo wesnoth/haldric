@@ -3,7 +3,6 @@ extends Menu
 onready var version = $Version
 
 func _ready() -> void:
-	._ready()
 	Audio.play(Registry.music.return_to_wesnoth)
 	version.text = Global.version_string
 

@@ -39,7 +39,9 @@ func _previous_page() -> void:
 
 func _animate(menu_page: MenuPage) -> void:
 	menu_page.fade_in(direction, page_time)
+	#warning-ignore:return_value_discarded
 	tween.interpolate_property(camera, "position", camera.position, menu_page.rect_position, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	#warning-ignore:return_value_discarded
 	tween.start()
 
 func _set_current_page(value):
@@ -56,10 +58,6 @@ func _set_current_page(value):
 
 func _on_screen_resized() -> void:
 	var size : Vector2 = get_viewport().size
-#	lobby.rect_position = Vector2(0, -size.y)
-#	campaigns.rect_position = Vector2(-size.x, 0)
-#	singleplayer.rect_position = size
-#	options.rect_position = Vector2(0, size.y)
 
 func _on_MenuBar_button_pressed(id):
 	_set_current_page(pages[id])
