@@ -5,8 +5,6 @@ var direction: int = 0
 
 export var page_time := 0.8
 
-var ready = false
-
 onready var anim = $AnimationPlayer
 onready var tween := $Tween
 onready var camera := $Camera2D as Camera2D
@@ -20,9 +18,9 @@ onready var current_page : MenuPage = null
 
 func _input(event: InputEvent) -> void:
 
-	if event.is_action_pressed("ui_right") and not tween.is_active() and ready:
+	if event.is_action_pressed("ui_right") and not tween.is_active():
 		_next_page()
-	elif event.is_action_pressed("ui_left") and not tween.is_active() and ready:
+	elif event.is_action_pressed("ui_left") and not tween.is_active():
 		_previous_page()
 
 func _ready() -> void:
