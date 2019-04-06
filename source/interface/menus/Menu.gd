@@ -26,8 +26,6 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	menu_bar.modulate = Color("00FFFFFF")
 	#warning-ignore:return_value_discarded
-	get_tree().connect("screen_resized", self, "_on_screen_resized")
-	_on_screen_resized()
 
 func _next_page() -> void:
 	var next_index = (current_page.get_index() + 1) % pages.size()
@@ -57,9 +55,6 @@ func _set_current_page(value):
 
 	_animate(current_page)
 	menu_bar.highlight_button(current_page.get_index())
-
-func _on_screen_resized() -> void:
-	var size : Vector2 = get_viewport().size
 
 func _on_MenuBar_button_pressed(id):
 	_set_current_page(pages[id])
