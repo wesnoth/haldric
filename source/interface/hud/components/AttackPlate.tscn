@@ -15,41 +15,41 @@ anchor_bottom = 1.0
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 margin_right = 60.0
-margin_bottom = 64.0
+margin_bottom = 75.0
 texture = ExtResource( 2 )
 stretch_mode = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 68.0
 margin_right = 202.0
-margin_bottom = 64.0
+margin_bottom = 75.0
 size_flags_horizontal = 3
 custom_constants/separation = 0
 alignment = 1
 
 [node name="Name" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_top = 7.0
+margin_top = 12.0
 margin_right = 134.0
-margin_bottom = 32.0
+margin_bottom = 37.0
 text = "5 x 4 - Bow"
 
 [node name="Details" type="Label" parent="HBoxContainer/VBoxContainer"]
-modulate = Color( 0.376471, 0.376471, 0.376471, 1 )
-margin_top = 32.0
+modulate = Color( 0.670588, 0.670588, 0.670588, 1 )
+margin_top = 37.0
 margin_right = 134.0
-margin_bottom = 57.0
+margin_bottom = 62.0
 text = "ranged - fire"
 
 [node name="Specials" type="Label" parent="HBoxContainer/VBoxContainer"]
 visible = false
-modulate = Color( 0.376471, 0.376471, 0.376471, 1 )
-margin_top = 42.0
-margin_right = 132.0
-margin_bottom = 62.0
+modulate = Color( 0.670588, 0.670588, 0.670588, 1 )
+margin_top = 50.0
+margin_right = 134.0
+margin_bottom = 75.0
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 210.0
 margin_right = 210.0
-margin_bottom = 64.0
+margin_bottom = 75.0
 
