@@ -3,7 +3,7 @@ class_name Menu
 
 var direction: int = 0
 
-export var page_time := 0.8
+export var page_time := 0.6
 
 onready var anim = $AnimationPlayer
 onready var tween := $Tween
