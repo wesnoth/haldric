@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/hud/SidePanelItem.gd" type="Script" id=2]
+[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=3]
+[ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=4]
 
 [node name="SidePanelItem" type="Control"]
 anchor_right = 1.0
@@ -13,11 +15,13 @@ mouse_filter = 2
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+material = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0, 0, 0, 0.470588 )
+texture = ExtResource( 4 )
+expand = true
 
 [node name="TopBorder" type="ColorRect" parent="Background"]
 anchor_right = 1.0

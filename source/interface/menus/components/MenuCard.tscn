@@ -5,7 +5,6 @@
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=3]
 [ext_resource path="res://graphics/fonts/Raleway28.tres" type="DynamicFont" id=4]
 
-
 [node name="MenuCard" type="Button"]
 margin_right = 310.0
 margin_bottom = 450.0
