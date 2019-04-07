@@ -1,0 +1,2 @@
+extends MenuCard
+class_name ScenarioCard

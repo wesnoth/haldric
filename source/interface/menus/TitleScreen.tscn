@@ -1,324 +1,93 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
+[ext_resource path="res://source/interface/menus/Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
-[ext_resource path="res://source/interface/menus/TitleScreenBackground.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/lobby/Lobby.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/interface/menus/Options.tscn" type="PackedScene" id=5]
-[ext_resource path="res://source/interface/menus/ChooseCampaign.tscn" type="PackedScene" id=6]
-[ext_resource path="res://source/interface/menus/ChooseScenario.tscn" type="PackedScene" id=7]
-[ext_resource path="res://source/interface/hud/SidePanelBorderLeft.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/interface/menus/components/TitleMenuBarButton.tscn" type="PackedScene" id=9]
-[ext_resource path="res://source/interface/hud/SidePanelBorderRight.tscn" type="PackedScene" id=10]
-[ext_resource path="res://source/interface/menus/components/PanelBorderTop.tscn" type="PackedScene" id=11]
-[ext_resource path="res://source/interface/menus/components/Logo.tscn" type="PackedScene" id=12]
-[ext_resource path="res://graphics/fonts/Raleway22.tres" type="DynamicFont" id=13]
+[ext_resource path="res://source/interface/menus/components/MenuBarButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/menus/Play.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/menus/Campaigns.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/interface/menus/Scenarios.tscn" type="PackedScene" id=6]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Enter"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Menu:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "campaigns_back"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
-"update": 0,
-"values": [ Vector2( 1920, 0 ), Vector2( 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 0.999997 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1920, 0 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "lobby_back"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
-"update": 0,
-"values": [ Vector2( -1920, 0 ), Vector2( 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=5]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 0.999997 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -1920, 0 ) ]
-}
-
-[node name="TitleScreen" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource( 1 )
+[node name="TitleScreen" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="MenuBar" parent="HUD" index="0"]
+modulate = Color( 1, 1, 1, 0 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Enter"
-anims/Enter = SubResource( 1 )
-anims/campaigns_back = SubResource( 2 )
-anims/campaigns_enter = SubResource( 3 )
-anims/lobby_back = SubResource( 4 )
-anims/lobby_enter = SubResource( 5 )
+[node name="SidePanelBorderLeft" parent="HUD/MenuBar/HBoxContainer" index="0"]
+margin_left = 294.0
+margin_right = 494.0
 
-[node name="TitleScreenBackground" parent="." instance=ExtResource( 3 )]
+[node name="Buttons" parent="HUD/MenuBar/HBoxContainer" index="1"]
+margin_left = 494.0
+margin_right = 1292.0
 
-[node name="Lobby" parent="." instance=ExtResource( 4 )]
-margin_top = -1080.0
-margin_bottom = -1080.0
+[node name="Tutorials" parent="HUD/MenuBar/HBoxContainer/Buttons" index="0" instance=ExtResource( 3 )]
+margin_right = 133.0
+margin_bottom = 60.0
 
-[node name="Options" parent="." instance=ExtResource( 5 )]
-margin_top = 1080.0
-margin_bottom = 1080.0
+[node name="Campaigns" parent="HUD/MenuBar/HBoxContainer/Buttons" index="1" instance=ExtResource( 3 )]
+margin_left = 133.0
+margin_right = 266.0
+margin_bottom = 60.0
 
-[node name="ChooseCampaign" parent="." instance=ExtResource( 6 )]
-margin_left = -1920.0
-margin_right = -1920.0
+[node name="Scenarios" parent="HUD/MenuBar/HBoxContainer/Buttons" index="2" instance=ExtResource( 3 )]
+margin_left = 266.0
+margin_right = 399.0
+margin_bottom = 60.0
 
-[node name="ChooseScenario" parent="." instance=ExtResource( 7 )]
-margin_left = 1920.0
-margin_top = 1080.0
-margin_right = 1920.0
-margin_bottom = 1080.0
+[node name="Addons" parent="HUD/MenuBar/HBoxContainer/Buttons" index="3" instance=ExtResource( 3 )]
+margin_left = 399.0
+margin_right = 532.0
+margin_bottom = 60.0
 
-[node name="Version" type="Label" parent="."]
+[node name="Settings" parent="HUD/MenuBar/HBoxContainer/Buttons" index="4" instance=ExtResource( 3 )]
+margin_left = 532.0
+margin_right = 665.0
+margin_bottom = 60.0
+
+[node name="Credits" parent="HUD/MenuBar/HBoxContainer/Buttons" index="5" instance=ExtResource( 3 )]
+margin_left = 665.0
+margin_right = 798.0
+margin_bottom = 60.0
+
+[node name="Quit" parent="HUD/MenuBar/HBoxContainer" index="2" instance=ExtResource( 3 )]
+margin_left = 1292.0
+margin_right = 1425.0
+margin_bottom = 60.0
+
+[node name="SidePanelBorderRight" parent="HUD/MenuBar/HBoxContainer" index="3"]
+margin_left = 1425.0
+margin_right = 1625.0
+
+[node name="Pages" parent="." index="4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 80.0
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="Tutorials" parent="Pages" index="0" instance=ExtResource( 4 )]
+
+[node name="Campaigns" parent="Pages" index="1" instance=ExtResource( 5 )]
+
+[node name="Scenarios" parent="Pages" index="2" instance=ExtResource( 6 )]
+margin_bottom = 0.0
+
+[node name="Addons" parent="Pages" index="3" instance=ExtResource( 4 )]
+
+[node name="Settings" parent="Pages" index="4" instance=ExtResource( 4 )]
+
+[node name="Credits" parent="Pages" index="5" instance=ExtResource( 4 )]
+
+[node name="Version" type="Label" parent="." index="5"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
-margin_top = -26.0
-margin_right = 142.0
-margin_bottom = -6.0
+margin_top = -25.0
+margin_right = 151.0
+margin_bottom = -5.0
 text = "Version: 0.0.0-status"
 
-[node name="TopMenu" type="CanvasLayer" parent="."]
+[connection signal="pressed" from="HUD/MenuBar/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 
-[node name="TitleMenuBar" type="Control" parent="TopMenu"]
-anchor_right = 1.0
-margin_top = 5.0
-margin_bottom = 45.0
-rect_min_size = Vector2( 0, 40 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TopMenu/TitleMenuBar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/separation = 0
-alignment = 1
-
-[node name="SidePanelBorderLeft" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 8 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 393.0
-margin_right = 593.0
-margin_bottom = 43.0
-
-[node name="Menu" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 593.0
-margin_right = 693.0
-text = "Menu"
-
-[node name="Lobby" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 693.0
-margin_right = 793.0
-text = "Lobby"
-
-[node name="Campaigns" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 793.0
-margin_right = 945.0
-text = "Campaigns"
-
-[node name="Singleplayer" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 945.0
-margin_right = 1113.0
-text = "Singleplayer"
-
-[node name="Options" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 1113.0
-margin_right = 1227.0
-text = "Options"
-
-[node name="Quit" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 1227.0
-margin_right = 1327.0
-text = "Quit"
-
-[node name="SidePanelBorderRight" parent="TopMenu/TitleMenuBar/HBoxContainer" instance=ExtResource( 10 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 1327.0
-margin_right = 1527.0
-margin_bottom = 43.0
-
-[node name="Menu" type="Control" parent="."]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -500.0
-margin_top = -500.0
-margin_right = -200.0
-margin_bottom = 540.0
-
-[node name="PanelBorder" parent="Menu" instance=ExtResource( 11 )]
-anchor_left = 1.0
-anchor_top = 1.0
-margin_left = -300.0
-margin_top = 0.0
-margin_right = 740.0
-margin_bottom = 300.0
-
-[node name="Logo" parent="Menu" instance=ExtResource( 12 )]
-
-[node name="CenterContainer" type="CenterContainer" parent="Menu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = 30.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer"]
-margin_left = 25.0
-margin_top = 335.0
-margin_right = 275.0
-margin_bottom = 735.0
-rect_min_size = Vector2( 250, 0 )
-alignment = 1
-
-[node name="Singleplayer" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
-margin_right = 250.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 0, 60 )
-focus_mode = 0
-custom_fonts/font = ExtResource( 13 )
-enabled_focus_mode = 0
-text = "Singleplayer"
-flat = true
-align = 0
-
-[node name="Campaigns" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
-margin_top = 68.0
-margin_right = 250.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 0, 60 )
-focus_mode = 0
-custom_fonts/font = ExtResource( 13 )
-enabled_focus_mode = 0
-text = "Campaigns"
-flat = true
-align = 0
-
-[node name="Lobby" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
-margin_top = 136.0
-margin_right = 250.0
-margin_bottom = 196.0
-rect_min_size = Vector2( 0, 60 )
-focus_mode = 0
-custom_fonts/font = ExtResource( 13 )
-enabled_focus_mode = 0
-text = "Lobby"
-flat = true
-align = 0
-
-[node name="Editor" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
-margin_top = 204.0
-margin_right = 250.0
-margin_bottom = 264.0
-rect_min_size = Vector2( 0, 60 )
-focus_mode = 0
-custom_fonts/font = ExtResource( 13 )
-enabled_focus_mode = 0
-text = "Editor"
-flat = true
-align = 0
-
-[node name="Options" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
-margin_top = 272.0
-margin_right = 250.0
-margin_bottom = 332.0
-rect_min_size = Vector2( 0, 60 )
-focus_mode = 0
-custom_fonts/font = ExtResource( 13 )
-enabled_focus_mode = 0
-text = "Options"
-flat = true
-align = 0
-
-[node name="Quit" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
-margin_top = 340.0
-margin_right = 250.0
-margin_bottom = 400.0
-rect_min_size = Vector2( 0, 60 )
-focus_mode = 0
-custom_fonts/font = ExtResource( 13 )
-enabled_focus_mode = 0
-text = "Quit"
-flat = true
-align = 0
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-current = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
-
-[connection signal="back" from="Lobby" to="." method="_on_Lobby_back"]
-[connection signal="back" from="ChooseCampaign" to="." method="_on_ChooseCampaign_back"]
-[connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Menu" to="." method="_on_Menu_pressed"]
-[connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Lobby" to="." method="_on_Lobby_pressed"]
-[connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Campaigns" to="." method="_on_Campaigns_pressed"]
-[connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
-[connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="TopMenu/TitleMenuBar/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Singleplayer" to="." method="_on_Singleplayer_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Campaigns" to="." method="_on_Campaigns_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Lobby" to="." method="_on_Lobby_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Editor" to="." method="_on_Editor_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[editable path="HUD/MenuBar"]

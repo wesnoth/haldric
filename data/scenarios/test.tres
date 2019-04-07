@@ -1,9 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://source/templates/RScenario.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/interface/backgrounds/titlescreen.jpg" type="Texture" id=1]
+[ext_resource path="res://source/templates/RScenario.gd" type="Script" id=2]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 title = "Test Scenario"
+card_image = ExtResource( 1 )
 turns = 99
 

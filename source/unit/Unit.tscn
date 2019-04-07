@@ -27,4 +27,8 @@ script = ExtResource( 4 )
 [node name="Resistance" type="Node" parent="Type"]
 script = ExtResource( 5 )
 
+[node name="Abilities" type="Node" parent="Type"]
+
+[node name="Attacks" type="Node" parent="Type"]
+
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

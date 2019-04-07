@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://source/interface/menus/components/MenuCard.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/interface/misc/campaign_card_overlay.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=3]
+[ext_resource path="res://graphics/fonts/Raleway28.tres" type="DynamicFont" id=4]
+
+[node name="MenuCard" type="Button"]
+margin_right = 310.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 310, 450 )
+flat = true
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="CardImage" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+expand = true
+stretch_mode = 7
+
+[node name="Tint" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Border" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+draw_center = false
+region_rect = Rect2( 60, 0, 20, 20 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -145.0
+margin_top = -180.0
+margin_right = 145.0
+custom_fonts/font = ExtResource( 4 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+align = 1
+valign = 1
+autowrap = true
+

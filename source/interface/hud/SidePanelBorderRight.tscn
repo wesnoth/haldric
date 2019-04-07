@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=1]
 
 [sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0.470588 )
+colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0.54902 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -23,6 +25,7 @@ rect_min_size = Vector2( 200, 40 )
 mouse_filter = 2
 
 [node name="Background" type="TextureRect" parent="."]
+material = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 200.0
