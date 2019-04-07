@@ -11,6 +11,7 @@ var location: Location = null
 
 var path := []
 var reachable := {} #setget _set_reachable
+var viewable := {}
 
 export(float, 0.1, 1.0) var move_time := 0.15
 
@@ -32,6 +33,12 @@ func place_at(loc: Location) -> void:
 	location = loc
 	position = location.position
 	location.unit = self
+	
+func path_cost(unit_path : Array) -> int:
+	var cost = 0
+	for loc in unit_path:
+		cost += terrain_cost(loc)
+	return cost
 
 func move_to(loc: Location) -> void:
 	path = find_path(loc)
@@ -49,10 +56,19 @@ func terrain_cost(loc: Location) -> int:
 		cost = max(cost_overlay, cost)
 	return cost
 
+func set_reachable() -> void:
+	if moves_current == type.moves:
+		reachable = viewable
+		return
+	reachable.clear()
+	for key in viewable.keys():
+		var cost = path_cost(viewable[key])
+		if cost <= moves_current:
+			reachable[key] = viewable[key]
+			
 func highlight_moves() -> void:
 	for loc in reachable:
 		location.map.cover.set_cellv(loc.cell, -1)
-		location.map.fog.set_cellv(loc.cell, -1)
 	location.map.cover.show()
 
 func unhighlight_moves() -> void:
@@ -60,6 +76,11 @@ func unhighlight_moves() -> void:
 	for loc in reachable:
 		location.map.cover.set_cellv(loc.cell, darken_id)
 	location.map.cover.hide()
+	
+func reveal_fog() -> void:
+	for loc in viewable:
+		location.map.fog.set_cellv(loc.cell, -1)
+	location.map.fog.set_cellv(location.cell,-1)
 
 func _move() -> void:
 	if path and tween:
@@ -77,6 +98,8 @@ func _move() -> void:
 		tween.interpolate_property(self, "position", position, loc.position, move_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 
 		moves_current -= cost
+		viewable = location.map.find_all_viewable_cells(self)
+		reveal_fog()
 		path.remove(0)
 		#warning-ignore:return_value_discarded
 		tween.start()

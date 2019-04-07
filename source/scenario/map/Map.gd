@@ -20,6 +20,8 @@ onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
 onready var fog := $Fog as TileMap
 
+var cover_tile: int = tile_set.find_tile_by_name("Xv")
+
 onready var transitions := $Transitions as Transitions
 
 onready var cell_selector := $CellSelector as Node2D
@@ -51,17 +53,17 @@ func world_to_world_centered(cell: Vector2) -> Vector2:
 func find_path(start_loc: Location, end_loc: Location) -> Array:
 	var loc_path := []
 	var cell_path: Array = grid.find_path_by_cell(start_loc.cell, end_loc.cell)
-
+	cell_path.pop_front()
 	for cell in cell_path:
 		loc_path.append(get_location(cell))
 
 	return loc_path
 
-func find_all_reachable_cells(unit: Unit) -> Dictionary:
+func find_all_viewable_cells(unit: Unit) -> Dictionary:
 	update_weight(unit)
 	var paths := {}
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.moves_current, width, height)
-	cells.remove(0)
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, width, height)
+	cells.pop_front()
 	cells.invert()
 	for cell in cells:
 		if paths.has(cell):
@@ -74,14 +76,14 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 		for path_cell in path:
 			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
 			if path_cell in ZOC_tiles:
-				cell_cost = unit.moves_current - cost
-			if cost + cell_cost > unit.moves_current:
+				cell_cost = unit.type.moves - cost
+			if cost + cell_cost > unit.type.moves:
 				break
 
 			cost += cell_cost
 			new_path.append(path_cell)
 			paths[path_cell] = new_path.duplicate(true)
-			if cost == unit.moves_current:
+			if cost == unit.type.moves:
 				break
 	return paths
 
@@ -91,9 +93,9 @@ func update_terrain() -> void:
 	_initialize_transitions()
 
 func update_weight(unit: Unit) -> void:
-	for label in labels:
-		remove_child(label)
-	labels.clear()
+	#for label in labels:
+	#	remove_child(label)
+	#abels.clear()
 	for loc in ZOC_tiles:
 		grid.unblock_cell(loc.cell)
 	ZOC_tiles.clear()
@@ -225,7 +227,6 @@ func _initialize_locations() -> void:
 				if overlay_code == "^Vh":
 					village_count += 1
 
-			var cover_tile: int = tile_set.find_tile_by_name("Xv")
 			cover.set_cellv(cell, cover_tile)
 			fog.set_cellv(cell, cover_tile)
 
