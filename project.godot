@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/menus/components/CampaignCard.gd"
 }, {
-"base": "CardSelector",
+"base": "ScrollContainer",
 "class": "CampaignSelector",
 "language": "GDScript",
 "path": "res://source/interface/menus/components/CampaignSelector.gd"
@@ -99,7 +99,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/templates/RCard.gd"
 }, {
-"base": "RCard",
+"base": "Resource",
 "class": "RScenario",
 "language": "GDScript",
 "path": "res://source/templates/RScenario.gd"
@@ -119,12 +119,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/Scenario.gd"
 }, {
-"base": "MenuCard",
+"base": "Button",
 "class": "ScenarioCard",
 "language": "GDScript",
 "path": "res://source/interface/menus/components/ScenarioCard.gd"
 }, {
-"base": "CardSelector",
+"base": "ScrollContainer",
 "class": "ScenarioSelector",
 "language": "GDScript",
 "path": "res://source/interface/menus/components/ScenarioSelector.gd"
