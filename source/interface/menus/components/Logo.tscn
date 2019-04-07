@@ -4,14 +4,6 @@
 [ext_resource path="res://graphics/images/interface/logo/logo.png" type="Texture" id=2]
 
 [node name="Logo" type="Control"]
-editor/display_folded = true
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -0.5
-margin_top = 132.0
-margin_right = -0.5
-margin_bottom = -848.0
 __meta__ = {
 "_edit_group_": true
 }
