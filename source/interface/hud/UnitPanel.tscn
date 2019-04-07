@@ -8,8 +8,8 @@
 [ext_resource path="res://graphics/fonts/Lato12.tres" type="DynamicFont" id=6]
 
 [node name="UnitPanel" type="Control"]
-margin_right = 221.0
-margin_bottom = 378.0
+margin_right = 236.0
+margin_bottom = 624.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
@@ -30,10 +30,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/CenterContainer"]
-margin_left = 6.0
-margin_top = 48.0
-margin_right = 214.0
-margin_bottom = 329.0
+margin_left = 14.0
+margin_top = 167.0
+margin_right = 222.0
+margin_bottom = 456.0
 alignment = 1
 
 [node name="Image" type="Control" parent="NinePatchRect/CenterContainer/VBoxContainer"]
@@ -159,4 +159,10 @@ margin_bottom = 281.0
 text = "Alignment: +25 %"
 align = 1
 valign = 1
+
+[node name="Attacks" type="VBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer"]
+margin_top = 289.0
+margin_right = 208.0
+margin_bottom = 289.0
+custom_constants/separation = 0
 

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://source/unit/Attack.gd"
+}, {
 "base": "NinePatchRect",
 "class": "ButtonHover",
 "language": "GDScript",
@@ -155,6 +160,7 @@ _global_script_classes=[ {
 "path": "res://source/unit/UnitType.gd"
 } ]
 _global_script_class_icons={
+"Attack": "",
 "ButtonHover": "",
 "CampaignCard": "",
 "CampaignSelector": "",
