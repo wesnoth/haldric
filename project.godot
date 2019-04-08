@@ -40,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://source/controller/Controller.gd"
 }, {
 "base": "Node",
+"class": "DayTime",
+"language": "GDScript",
+"path": "res://source/game/DayTime.gd"
+}, {
+"base": "Node",
 "class": "Defense",
 "language": "GDScript",
 "path": "res://source/unit/Defense.gd"
@@ -166,6 +171,7 @@ _global_script_class_icons={
 "CampaignSelector": "",
 "CardSelector": "",
 "Controller": "",
+"DayTime": "",
 "Defense": "",
 "Grid": "",
 "Hex": "",

@@ -1,16 +1,17 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://source/scenario/Scenario.gd" type="Script" id=1]
-[ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=2]
-[ext_resource path="res://source/scenario/map/Map.gd" type="Script" id=3]
-[ext_resource path="res://source/scenario/Transitions.gd" type="Script" id=4]
-[ext_resource path="res://graphics/tilesets/transitions.tres" type="TileSet" id=5]
-[ext_resource path="res://graphics/shaders/fog.shader" type="Shader" id=6]
-[ext_resource path="res://source/scenario/Fog.gd" type="Script" id=7]
-[ext_resource path="res://graphics/shaders_visual/cover.tres" type="Shader" id=8]
-[ext_resource path="res://source/scenario/MapBorder.tscn" type="PackedScene" id=9]
-[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=10]
-[ext_resource path="res://source/scenario/UnitPathDisplay.gd" type="Script" id=11]
+[ext_resource path="res://source/scenario/TimeOfDay.gd" type="Script" id=2]
+[ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=3]
+[ext_resource path="res://source/scenario/map/Map.gd" type="Script" id=4]
+[ext_resource path="res://source/scenario/Transitions.gd" type="Script" id=5]
+[ext_resource path="res://graphics/tilesets/transitions.tres" type="TileSet" id=6]
+[ext_resource path="res://graphics/shaders/fog.shader" type="Shader" id=7]
+[ext_resource path="res://source/scenario/Fog.gd" type="Script" id=8]
+[ext_resource path="res://graphics/shaders_visual/cover.tres" type="Shader" id=9]
+[ext_resource path="res://source/scenario/MapBorder.tscn" type="PackedScene" id=10]
+[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=11]
+[ext_resource path="res://source/scenario/UnitPathDisplay.gd" type="Script" id=12]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 octaves = 6
@@ -21,13 +22,13 @@ seamless = true
 noise = SubResource( 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 6 )
+shader = ExtResource( 7 )
 shader_param/intensity = 1.5
 shader_param/offset = null
 shader_param/noise = SubResource( 2 )
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 8 )
+shader = ExtResource( 9 )
 shader_param/BlendColor = Color( 0.3, 0.59, 0.11, 1 )
 shader_param/Blur = 0.2
 shader_param/Saturation = 0.2
@@ -42,56 +43,59 @@ _data = {
 [node name="Scenario" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="Times" type="CanvasModulate" parent="."]
+script = ExtResource( 2 )
+
 [node name="Sides" type="Node2D" parent="."]
 
 [node name="Map" type="TileMap" parent="."]
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
-script = ExtResource( 3 )
-
-[node name="Transitions" type="Node2D" parent="Map"]
 script = ExtResource( 4 )
 
+[node name="Transitions" type="Node2D" parent="Map"]
+script = ExtResource( 5 )
+
 [node name="1" type="TileMap" parent="Map/Transitions"]
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
 [node name="2" type="TileMap" parent="Map/Transitions"]
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
 [node name="3" type="TileMap" parent="Map/Transitions"]
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
 [node name="4" type="TileMap" parent="Map/Transitions"]
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
 [node name="5" type="TileMap" parent="Map/Transitions"]
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
 [node name="6" type="TileMap" parent="Map/Transitions"]
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
 [node name="Overlay" type="TileMap" parent="Map"]
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
@@ -99,33 +103,33 @@ format = 1
 [node name="Fog" type="TileMap" parent="Map"]
 material = SubResource( 3 )
 z_index = 100
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [node name="Cover" type="TileMap" parent="Map"]
 visible = false
 material = SubResource( 4 )
 z_index = 100
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
-[node name="MapBorder" parent="Map" instance=ExtResource( 9 )]
+[node name="MapBorder" parent="Map" instance=ExtResource( 10 )]
 margin_right = 144.0
 margin_bottom = 144.0
 
 [node name="CellSelector" type="Sprite" parent="Map"]
 z_index = 600
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="UnitPathDisplay" type="Path2D" parent="."]
 z_index = 500
 curve = SubResource( 5 )
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="Tween" type="Tween" parent="UnitPathDisplay"]
 

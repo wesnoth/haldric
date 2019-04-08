@@ -15,6 +15,8 @@ var heals := false
 
 var submerge := false
 
+var time_of_day : DayTime = null
+
 func _init(resources: Array) -> void:
 	for res in resources:
 		name = res.name
@@ -29,6 +31,9 @@ func _init(resources: Array) -> void:
 		gives_income = res.gives_income
 		heals = res.heals
 		submerge = res.submerge
+
+func set_time_of_day(daytime: DayTime)-> void:
+	time_of_day = daytime
 
 func get_base_code():
 	return code[0]

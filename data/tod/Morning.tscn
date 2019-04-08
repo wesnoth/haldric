@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/game/DayTime.gd" type="Script" id=1]
+
+[node name="Morning" type="Node"]
+script = ExtResource( 1 )
+tint = Color( 0.984314, 0.980392, 0.956863, 1 )
+advantage = [ "lawful" ]
+disadvantage = [ "chaotic" ]
+bonus = 25
+malus = 25
+

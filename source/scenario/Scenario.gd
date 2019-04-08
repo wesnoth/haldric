@@ -4,6 +4,7 @@ class_name Scenario
 onready var map := $Map as Map
 onready var sides := $Sides as Node
 onready var unit_path_display := $UnitPathDisplay as Path2D
+onready var time_of_day := $Times
 
 func _ready() -> void:
 	TeamColor.initialize_flag_colors()
@@ -27,3 +28,7 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 
 func get_village_count():
 	return map.village_count
+
+func next_time_of_day():
+	time_of_day.next()
+	map.set_time_of_day(time_of_day.current_time)

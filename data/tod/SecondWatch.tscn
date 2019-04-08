@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/game/DayTime.gd" type="Script" id=1]
+
+[node name="SecondWatch" type="Node"]
+script = ExtResource( 1 )
+tint = Color( 0.603922, 0.584314, 0.764706, 1 )
+advantage = [ "chaotic" ]
+disadvantage = [ "lawful" ]
+bonus = 25
+malus = 25
+

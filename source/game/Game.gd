@@ -1,5 +1,7 @@
 extends Node2D
 
+var time_of_day := []
+
 var scenario: Scenario = null
 
 var current_side: Side = null setget _set_side
@@ -16,6 +18,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if location:
 			if location.unit:
 				_set_side(scenario.sides.get_child(location.unit.side-1))
+				scenario.next_time_of_day()
 				_set_selected_unit(location.unit)
 			elif selected_unit and not location.unit:
 				selected_unit.move_to(location)

@@ -144,11 +144,6 @@ func update_weight(unit: Unit) -> void:
 	#	labels.append(label)
 	#	add_child(label)
 
-func get_location(cell: Vector2) -> Location:
-	if not _is_cell_in_map(cell):
-		return null
-	return locations[_flatten(cell)]
-
 func set_size(cell: Vector2) -> void:
 	width = int(cell.x)
 	height = int(cell.y)
@@ -179,6 +174,15 @@ func set_tile(global_pos: Vector2, id: int):
 	else:
 		set_cellv(cell, id)
 	_update_size()
+
+func set_time_of_day(daytime: DayTime) -> void:
+	for loc in locations.values():
+		loc.terrain.time_of_day = daytime
+
+func get_location(cell: Vector2) -> Location:
+	if not _is_cell_in_map(cell):
+		return null
+	return locations[_flatten(cell)]
 
 func get_map_string() -> String:
 	var string := ""
