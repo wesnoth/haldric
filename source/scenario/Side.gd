@@ -8,7 +8,7 @@ const INCOME_PER_VILLAGE = 2
 const HEAL_ON_VILLAGE = 8
 const HEAL_ON_REST = 2
 
-var shader: ShaderMaterial = null
+var unit_shader: ShaderMaterial = null
 var flag_shader: ShaderMaterial = null
 
 var number := 0
@@ -38,7 +38,7 @@ func _ready() -> void:
 
 	team_color = TeamColor.team_color_data.keys()[get_index()]
 
-	shader = TeamColor.generate_team_shader(team_color)
+	unit_shader = TeamColor.generate_team_shader(team_color)
 	flag_shader = TeamColor.generate_flag_shader(team_color)
 
 	calculate_upkeep()
@@ -48,13 +48,16 @@ func _ready() -> void:
 func add_unit(unit) -> void:
 	units.add_child(unit)
 	unit.side = self
-	unit.sprite.material = shader
+	unit.sprite.material = unit_shader
 	calculate_upkeep()
+	calculate_income()
 
 func add_village(loc: Location) -> bool:
 	if not villages.has(loc):
 		villages.append(loc)
 		_add_flag(loc)
+		calculate_upkeep()
+		calculate_income()
 		return true
 	return false
 
@@ -62,6 +65,8 @@ func remove_village(loc: Location) -> void:
 	if villages.has(loc):
 		loc.flag.queue_free()
 		villages.erase(loc)
+		calculate_upkeep()
+		calculate_income()
 
 func has_village(loc: Location) -> bool:
 	return villages.has(loc)
@@ -87,7 +92,13 @@ func get_first_leader():
 	return null
 
 func _add_flag(loc: Location) -> void:
+
+	if loc.flag:
+		loc.flag.side.remove_village(loc)
+
 	var flag = Flag.instance()
+
+	flag.side = self
 	flag.position = loc.position
 	# flag.material = flag_shader
 	loc.flag = flag

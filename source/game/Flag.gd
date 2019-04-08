@@ -1,3 +1,4 @@
 extends AnimatedSprite
 
-var side := 0
+# :Side
+var side = null
