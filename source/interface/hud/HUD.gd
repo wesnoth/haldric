@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal turn_end_pressed
+
 onready var unit_panel = $UnitPanel as Control
 onready var side_panel = $SidePanel as Control
 onready var tod_panel = $ToDPanel as Control
@@ -18,3 +20,6 @@ func clear_unit_info() -> void:
 
 func _on_Back_pressed() -> void:
 	Scene.change(Scene.TitleScreen)
+
+func _on_TurnEndPanel_turn_end_pressed():
+	emit_signal("turn_end_pressed")

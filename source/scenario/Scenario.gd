@@ -7,6 +7,7 @@ onready var unit_path_display := $UnitPathDisplay as Path2D
 onready var time_of_day := $Times
 
 func _ready() -> void:
+	map.set_time_of_day(time_of_day.current_time)
 	TeamColor.initialize_flag_colors()
 
 func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:

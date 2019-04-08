@@ -16,10 +16,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		print(mouse_cell)
 		var location: Location = scenario.map.get_location(mouse_cell)
 		if location:
-			if location.unit:
-				_set_side(scenario.sides.get_child(location.unit.side-1))
-				scenario.next_time_of_day()
-				HUD.update_tod_info(scenario.time_of_day.current_time)
+			if location.unit and location.unit.side == current_side.side:
 				_set_selected_unit(location.unit)
 			elif selected_unit and not location.unit:
 				selected_unit.move_to(location)
@@ -97,5 +94,16 @@ func _set_selected_unit(value: Unit) -> void:
 		selected_unit.set_reachable()
 		selected_unit.highlight_moves()
 	else:
-		HUD.clear_unit_info()
+		# HUD.clear_unit_info()
 		_clear_temp_path()
+
+func _next_side() -> void:
+	var new_index = (current_side.get_index() + 1) % scenario.sides.get_child_count()
+	_set_side(scenario.sides.get_child(new_index))
+
+	if new_index == 0:
+		scenario.next_time_of_day()
+
+func _on_HUD_turn_end_pressed():
+	_next_side()
+	HUD.update_tod_info(scenario.time_of_day.current_time)

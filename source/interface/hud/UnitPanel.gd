@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 func update_unit(target: Unit) -> void:
 	_clear_attack_plates()
-	_fade_in()
+	# _fade_in()
 
 	unit = target
 
@@ -59,7 +59,11 @@ func update_unit(target: Unit) -> void:
 		_add_attack_plate(attack)
 
 func clear_unit() -> void:
-	_fade_out()
+	unit = null
+
+	image.texture = null
+
+	# _fade_out()
 	unit_name.text = "-"
 
 	level.text = "-"

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/interface/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/hud/UnitPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/hud/PauseMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/interface/hud/ToDPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/interface/hud/TurnEndPanel.tscn" type="PackedScene" id=6]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -16,7 +17,7 @@ anchor_bottom = 1.0
 margin_left = -249.0
 margin_top = 100.0
 margin_right = -10.0
-margin_bottom = -10.0
+margin_bottom = -100.0
 mouse_filter = 2
 
 [node name="SidePanel" parent="." instance=ExtResource( 3 )]
@@ -45,3 +46,14 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 90.0
 
+[node name="TurnEndPanel" parent="." instance=ExtResource( 6 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -249.0
+margin_top = -90.0
+margin_right = -10.0
+margin_bottom = -10.0
+
+[connection signal="turn_end_pressed" from="TurnEndPanel" to="." method="_on_TurnEndPanel_turn_end_pressed"]
