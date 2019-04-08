@@ -104,7 +104,7 @@ func update_weight(unit: Unit) -> void:
 			var cell := Vector2(x, y)
 			var id: int = _flatten(cell)
 			var location: Location = locations[id]
-			var cost: int = unit.terrain_cost(location)
+			var cost: int = unit.get_movement_cost(location)
 
 			var other_unit = location.unit
 			if other_unit:

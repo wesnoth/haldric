@@ -37,7 +37,7 @@ func place_at(loc: Location) -> void:
 func path_cost(unit_path : Array) -> int:
 	var cost = 0
 	for loc in unit_path:
-		cost += terrain_cost(loc)
+		cost += get_movement_cost(loc)
 	return cost
 
 func move_to(loc: Location) -> void:
@@ -49,12 +49,19 @@ func find_path(loc: Location) -> Array:
 		return reachable[loc]
 	return loc.map.find_path(location, loc)
 
-func terrain_cost(loc: Location) -> int:
+func get_movement_cost(loc: Location) -> int:
 	var cost =  type.movement.get(loc.terrain.type[0])
 	if (loc.terrain.type.size() > 1):
 		var cost_overlay = type.movement.get(loc.terrain.type[1])
 		cost = max(cost_overlay, cost)
 	return cost
+
+func get_defense() -> int:
+	var defense = type.defense.get(location.terrain.type[0])
+	if location.terrain.type.size() > 1:
+		var defense_overlay = type.defense.get(location.terrain.type[1])
+		defense = max(defense_overlay, defense)
+	return defense
 
 func set_reachable() -> void:
 	if moves_current == type.moves:
@@ -85,7 +92,7 @@ func reveal_fog() -> void:
 func _move() -> void:
 	if path and tween:
 		var loc: Location = path[0]
-		var cost = terrain_cost(loc)
+		var cost = get_movement_cost(loc)
 
 		if cost > moves_current:
 			return

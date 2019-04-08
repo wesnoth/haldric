@@ -5,12 +5,12 @@
 [ext_resource path="res://graphics/shaders/panel_blur.shader" type="Shader" id=3]
 [ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=4]
 [ext_resource path="res://graphics/fonts/Raleway18.tres" type="DynamicFont" id=5]
-[ext_resource path="res://graphics/fonts/Raleway12.tres" type="DynamicFont" id=6]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=7]
-[ext_resource path="res://graphics/images/units/elves-wood/archer.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/units/elves-wood/archer.png" type="Texture" id=7]
+[ext_resource path="res://graphics/fonts/Raleway12.tres" type="DynamicFont" id=8]
 [ext_resource path="res://source/interface/hud/components/StatBar.tscn" type="PackedScene" id=9]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 shader_param/blur = 1.5
 
@@ -23,7 +23,7 @@ script = ExtResource( 2 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="NinePatchRect" type="TextureRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 4 )
@@ -35,11 +35,10 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/CenterContainer"]
 margin_left = 28.0
-margin_top = 144.0
+margin_top = 141.0
 margin_right = 208.0
-margin_bottom = 479.0
+margin_bottom = 483.0
 custom_constants/separation = 8
-alignment = 1
 
 [node name="Name" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer"]
 margin_right = 180.0
@@ -49,53 +48,16 @@ text = "Lagoles"
 align = 1
 valign = 1
 
-[node name="General" type="HBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer"]
+[node name="Image" type="Control" parent="NinePatchRect/CenterContainer/VBoxContainer"]
 margin_top = 30.0
 margin_right = 180.0
-margin_bottom = 45.0
-alignment = 1
-
-[node name="Level" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
-margin_left = 10.0
-margin_right = 40.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 6 )
-text = "L1"
-align = 1
-valign = 1
-
-[node name="Type" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
-margin_left = 48.0
-margin_right = 132.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 6 )
-text = "Elvish Archer"
-align = 1
-valign = 1
-
-[node name="Race" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
-margin_left = 140.0
-margin_right = 170.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 6 )
-text = "Elf"
-align = 1
-valign = 1
-
-[node name="Image" type="Control" parent="NinePatchRect/CenterContainer/VBoxContainer"]
-editor/display_folded = true
-margin_top = 53.0
-margin_right = 180.0
-margin_bottom = 197.0
+margin_bottom = 174.0
 rect_min_size = Vector2( 180, 144 )
 
 [node name="Panel" type="NinePatchRect" parent="NinePatchRect/CenterContainer/VBoxContainer/Image"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 20, 0, 20, 20 )
 patch_margin_left = 2
 patch_margin_top = 2
@@ -105,104 +67,97 @@ patch_margin_bottom = 2
 [node name="Unit" type="TextureRect" parent="NinePatchRect/CenterContainer/VBoxContainer/Image"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 stretch_mode = 6
+
+[node name="Defense" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/Image"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = -19.0
+margin_right = -4.0
+margin_bottom = -4.0
+text = "60%"
+align = 2
+
+[node name="General" type="HBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 182.0
+margin_right = 180.0
+margin_bottom = 197.0
+alignment = 1
+
+[node name="Level" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
+margin_left = 10.0
+margin_right = 40.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = ExtResource( 8 )
+text = "L1"
+align = 1
+valign = 1
+
+[node name="Type" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
+margin_left = 48.0
+margin_right = 132.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = ExtResource( 8 )
+text = "Elvish Archer"
+align = 1
+valign = 1
+
+[node name="Race" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
+margin_left = 140.0
+margin_right = 170.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = ExtResource( 8 )
+text = "Elf"
+align = 1
+valign = 1
+
+[node name="Aligment" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer"]
+margin_top = 205.0
+margin_right = 180.0
+margin_bottom = 220.0
+text = "neutral (+0%)"
+align = 1
 
 [node name="HP" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 205.0
+margin_top = 228.0
 margin_right = 180.0
-margin_bottom = 235.0
+margin_bottom = 258.0
 bar_color = Color( 0.403922, 0.780392, 0.254902, 1 )
 
 [node name="XP" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 243.0
+margin_top = 266.0
 margin_right = 180.0
-margin_bottom = 273.0
+margin_bottom = 296.0
 bar_color = Color( 0.458824, 0.780392, 0.713726, 1 )
 
 [node name="MP" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 281.0
+margin_top = 304.0
 margin_right = 180.0
-margin_bottom = 311.0
+margin_bottom = 334.0
 bar_color = Color( 0.380392, 0.341176, 0.588235, 1 )
 
-[node name="Stats" type="VBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer"]
-margin_top = 319.0
-margin_right = 180.0
-margin_bottom = 327.0
-
-[node name="Row1" type="HBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer/Stats"]
-margin_right = 180.0
-alignment = 1
-
-[node name="HP" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/Stats/Row1"]
-visible = false
-margin_right = 100.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 100, 0 )
-text = "HP: 50/50"
-align = 1
-valign = 1
-
-[node name="XP" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/Stats/Row1"]
-visible = false
-margin_left = 54.0
-margin_right = 154.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 100, 0 )
-text = "XP: 100/100"
-align = 1
-valign = 1
-
-[node name="Row2" type="HBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer/Stats"]
-margin_top = 8.0
-margin_right = 180.0
-margin_bottom = 8.0
-alignment = 1
-
-[node name="MP" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/Stats/Row2"]
-visible = false
-margin_right = 100.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 100, 0 )
-text = "MP: 6/6"
-align = 1
-valign = 1
-
-[node name="D" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/Stats/Row2"]
-visible = false
-margin_left = 22.0
-margin_right = 122.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 100, 0 )
-text = "Def: 60"
-align = 1
-valign = 1
-
-[node name="Alignment" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer"]
-visible = false
-margin_top = 316.0
-margin_right = 145.0
-margin_bottom = 336.0
-text = "Alignment: +25 %"
-align = 1
-valign = 1
-
 [node name="Attacks" type="VBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer"]
-margin_top = 335.0
+margin_top = 342.0
 margin_right = 180.0
-margin_bottom = 335.0
+margin_bottom = 342.0
 
 [node name="Border" type="NinePatchRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 draw_center = false
 region_rect = Rect2( 60, 0, 20, 20 )
 patch_margin_left = 4
