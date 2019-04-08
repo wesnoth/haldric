@@ -1,7 +1,8 @@
 extends Path2D
 
-const BEND = 0.3
-const COLOR = Color(255, 0, 0, 0.5)
+const BEND := 0.3
+const COLOR := Color(255, 0, 0, 0.5)
+const WIDTH := 20
 
 var path := [] setget path_updated
 
@@ -41,7 +42,7 @@ func _draw() -> void:
 		# TODO: tweak control points to be bungle a little less on the incurve
 		curve.add_point(current, -cp2, -cp1)
 
-	draw_polyline(curve.tessellate(), COLOR, 20, true)
+	draw_polyline(curve.tessellate(), COLOR, WIDTH, true)
 
 func path_updated(new_val: Array) -> void:
 	path = new_val
