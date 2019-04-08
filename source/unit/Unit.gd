@@ -33,7 +33,7 @@ func place_at(loc: Location) -> void:
 	location = loc
 	position = location.position
 	location.unit = self
-	
+
 func path_cost(unit_path : Array) -> int:
 	var cost = 0
 	for loc in unit_path:
@@ -65,7 +65,7 @@ func set_reachable() -> void:
 		var cost = path_cost(viewable[key])
 		if cost <= moves_current:
 			reachable[key] = viewable[key]
-			
+
 func highlight_moves() -> void:
 	for loc in reachable:
 		location.map.cover.set_cellv(loc.cell, -1)
@@ -76,7 +76,7 @@ func unhighlight_moves() -> void:
 	for loc in reachable:
 		location.map.cover.set_cellv(loc.cell, darken_id)
 	location.map.cover.hide()
-	
+
 func reveal_fog() -> void:
 	for loc in viewable:
 		location.map.fog.set_cellv(loc.cell, -1)
@@ -86,10 +86,10 @@ func _move() -> void:
 	if path and tween:
 		var loc: Location = path[0]
 		var cost = terrain_cost(loc)
-		
+
 		if cost > moves_current:
 			return
-		
+
 		location.unit = null
 		location = loc
 		location.unit = self
