@@ -51,9 +51,9 @@ func update_unit(target: Unit) -> void:
 
 	var tod_bonus = unit.get_time_of_day_percentage()
 	if tod_bonus >= 0:
-		alignment.text = str("%s (+%d%s)" % [unit.type.alignment,tod_bonus ,"%"])
+		alignment.text = str("%s (+%d%%)" % [unit.type.alignment, tod_bonus])
 	else:
-		alignment.text = str("%s (%d%s)" % [unit.type.alignment,tod_bonus ,"%"])
+		alignment.text = str("%s (%d%%)" % [unit.type.alignment, tod_bonus])
 
 	for attack in unit.type.get_attacks():
 		_add_attack_plate(attack)

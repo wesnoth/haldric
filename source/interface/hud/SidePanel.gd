@@ -18,8 +18,8 @@ func _process(delta):
 		update_side(scenario, side)
 
 	time_item.set_text(_get_time_string())
-	battery_item.set_text( "%d%s" % [OS.get_power_percent_left(), "%"])
-
+	battery_item.set_text("%d%%" % OS.get_power_percent_left())
+	
 	if OS.get_power_percent_left() == -1:
 		battery_item.hide()
 
@@ -31,7 +31,7 @@ func update_side(scenario : Scenario, side : Side) -> void:
 	else:
 		flag_item.set_text(str(scenario.turn))
 
-	flag_item.texture_rect.material = side.flag_shader
+	#flag_item.texture_rect.material = side.flag_shader
 
 	gold_item.set_text(str(side.gold))
 	units_item.set_text(str(side.units.get_child_count()))
