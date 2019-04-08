@@ -13,20 +13,23 @@ var flag_shader: ShaderMaterial = null
 
 var number := 0
 
+var income := 0
 var upkeep := 0
-
-var recruit := []
 
 var villages := []
 
 var leaders := []
 
-export var team_color := ""
-
-export var base_income := 2
+export(String, "Red", "Blue", "Green", "Purple", "Black", "White", "Brown", "Orange", "Teal") var team_color := "Red"
 
 export var gold := 100
-export var income := 2
+export var base_income := 2
+
+export var start_position := Vector2()
+
+export(Array, String) var leader := [""]
+export(Array, String) var random_leader := [""]
+export(Array, String) var recruit := [""]
 
 onready var units = $Units as Node2D
 onready var flags = $Flags as Node2D
@@ -36,10 +39,9 @@ func _ready() -> void:
 
 	number = get_index() + 1
 
-	team_color = TeamColor.team_color_data.keys()[get_index()]
-
+	team_color = team_color.to_lower()
 	unit_shader = TeamColor.generate_team_shader(team_color)
-	flag_shader = TeamColor.generate_flag_shader(team_color)
+	flag_shader = null # TeamColor.generate_flag_shader(team_color)
 
 	calculate_upkeep()
 	calculate_income()
@@ -100,12 +102,12 @@ func _add_flag(loc: Location) -> void:
 
 	flag.side = self
 	flag.position = loc.position
-	# flag.material = flag_shader
+	flag.material = flag_shader
 	loc.flag = flag
 	flags.add_child(flag)
 
 func _on_turn_refresh(turn: int, side: int) -> void:
-	if self.number == side:
+	if self.number == side and not turn == 1:
 		calculate_upkeep()
 		calculate_income()
 		gold += income
