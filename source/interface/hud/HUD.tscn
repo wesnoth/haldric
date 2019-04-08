@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://source/interface/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/hud/UnitPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/hud/PauseMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/hud/ToDPanel.tscn" type="PackedScene" id=5]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -13,7 +14,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -249.0
-margin_top = 10.0
+margin_top = 100.0
 margin_right = -10.0
 margin_bottom = -10.0
 mouse_filter = 2
@@ -35,4 +36,12 @@ margin_left = -150.0
 margin_top = -200.0
 margin_right = 150.0
 margin_bottom = 200.0
+
+[node name="ToDPanel" parent="." instance=ExtResource( 5 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -248.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 90.0
 

@@ -19,6 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if location.unit:
 				_set_side(scenario.sides.get_child(location.unit.side-1))
 				scenario.next_time_of_day()
+				HUD.update_tod_info(scenario.time_of_day.current_time)
 				_set_selected_unit(location.unit)
 			elif selected_unit and not location.unit:
 				selected_unit.move_to(location)
@@ -40,6 +41,7 @@ func _ready() -> void:
 	_load_units()
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
+	HUD.update_tod_info(scenario.time_of_day.current_time)
 
 func _load_map() -> void:
 	if Registry.scenarios.has(Global.scenario_name):

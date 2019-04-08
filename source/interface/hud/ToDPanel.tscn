@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://source/interface/hud/ToDPanel.gd" type="Script" id=1]
+[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=2]
+[ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=3]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=4]
+
+[node name="ToDPanel" type="Control"]
+margin_right = 180.0
+rect_min_size = Vector2( 180, 80 )
+script = ExtResource( 1 )
+
+[node name="Background" type="TextureRect" parent="."]
+material = ExtResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Border" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+region_rect = Rect2( 40, 0, 20, 20 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "SecondWatch"
+align = 1
+valign = 1
+
