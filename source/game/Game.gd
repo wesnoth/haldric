@@ -15,6 +15,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var location: Location = scenario.map.get_location(mouse_cell)
 		if location:
 			if location.unit:
+				_set_side(scenario.sides.get_child(location.unit.side-1))
 				_set_selected_unit(location.unit)
 			elif selected_unit and not location.unit:
 				selected_unit.move_to(location)
@@ -54,15 +55,31 @@ func _load_units() -> void:
 		scenario.add_unit(2, "Bat", 8, 8)
 
 func _draw_temp_path(path: Array) -> void:
-	scenario.unit_path_display.path = path
+	if selected_unit:
+		var new_path = path.duplicate(true)
+		new_path.push_front(selected_unit.location)
+		scenario.unit_path_display.path = new_path
 
 func _clear_temp_path() -> void:
 	scenario.unit_path_display.path = [] # Uses assignment to trigger setter
 
 func _set_side(value: Side) -> void:
+	if current_side == value:
+		return
 	current_side = value
 	if current_side:
+		var used_fog = scenario.map.fog.get_used_cells()
+		for y in scenario.map.height:
+			for x in scenario.map.width:
+				var cell = Vector2(x,y)
+				if cell in used_fog:
+					continue
+				scenario.map.fog.set_cellv(cell,scenario.map.cover_tile)
 		HUD.update_side_info(scenario, current_side)
+		for unit in current_side.units.get_children():
+			unit.moves_current = unit.type.moves
+			unit.viewable = scenario.map.find_all_viewable_cells(unit)
+			unit.reveal_fog()
 
 func _set_selected_unit(value: Unit) -> void:
 	if selected_unit:
@@ -72,7 +89,7 @@ func _set_selected_unit(value: Unit) -> void:
 
 	if selected_unit:
 		HUD.update_unit_info(selected_unit)
-		selected_unit.reachable = scenario.map.find_all_reachable_cells(selected_unit)
+		selected_unit.set_reachable()
 		selected_unit.highlight_moves()
 	else:
 		HUD.clear_unit_info()
