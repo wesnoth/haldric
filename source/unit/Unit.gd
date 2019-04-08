@@ -98,7 +98,6 @@ func _move() -> void:
 		var cost = get_movement_cost(loc)
 
 		if cost > moves_current:
-			_grab_village()
 			return
 
 		location.unit = null
@@ -117,11 +116,11 @@ func _move() -> void:
 
 func _grab_village():
 	if location.terrain.gives_income:
-		side.add_village(location)
+		if side.add_village(location):
+			moves_current = 0
 
 func _on_Tween_tween_completed(object, key):
+	_grab_village()
 	Event.emit_signal("move_to", self, location)
 	if path:
 		_move()
-	else:
-		_grab_village()

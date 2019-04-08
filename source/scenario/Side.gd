@@ -48,9 +48,11 @@ func add_unit(unit) -> void:
 	unit.sprite.material = shader
 	calculate_upkeep()
 
-func add_village(loc: Location) -> void:
+func add_village(loc: Location) -> bool:
 	if not villages.has(loc):
 		villages.append(loc)
+		return true
+	return false
 
 func remove_village(loc: Location) -> void:
 	if villages.has(loc):

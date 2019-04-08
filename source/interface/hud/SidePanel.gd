@@ -19,7 +19,7 @@ func _process(delta):
 
 	time_item.set_text(_get_time_string())
 	battery_item.set_text("%d%%" % OS.get_power_percent_left())
-	
+
 	if OS.get_power_percent_left() == -1:
 		battery_item.hide()
 
