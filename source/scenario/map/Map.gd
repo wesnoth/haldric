@@ -16,7 +16,6 @@ var ZOC_tiles := []
 
 var village_count := 0
 
-onready var location_container := $LocationContainer as Node2D
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
 onready var fog := $Fog as TileMap
@@ -245,7 +244,6 @@ func _initialize_locations() -> void:
 			location.id = id
 			location.cell = Vector2(x, y)
 			location.position = map_to_world_centered(cell)
-			location_container.add_child(location)
 			locations[id] = location
 
 func _initialize_grid() -> void:

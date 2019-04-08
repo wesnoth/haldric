@@ -1,6 +1,8 @@
 extends Node
 class_name Side
 
+const Flag = preload("res://source/game/Flag.tscn")
+
 const INCOME_PER_VILLAGE = 2
 
 const HEAL_ON_VILLAGE = 8
@@ -27,6 +29,7 @@ export var gold := 100
 export var income := 2
 
 onready var units = $Units as Node2D
+onready var flags = $Flags as Node2D
 
 func _ready() -> void:
 	Event.connect("turn_refresh", self, "_on_turn_refresh")
@@ -51,12 +54,13 @@ func add_unit(unit) -> void:
 func add_village(loc: Location) -> bool:
 	if not villages.has(loc):
 		villages.append(loc)
-		loc.add_flag(number, flag_shader)
+		_add_flag(loc)
 		return true
 	return false
 
 func remove_village(loc: Location) -> void:
 	if villages.has(loc):
+		loc.flag.queue_free()
 		villages.erase(loc)
 
 func has_village(loc: Location) -> bool:
@@ -80,8 +84,14 @@ func turn_refresh() -> void:
 func get_first_leader():
 	if leaders.size() > 0:
 		return leaders[0]
-
 	return null
+
+func _add_flag(loc: Location) -> void:
+	var flag = Flag.instance()
+	flag.position = loc.position
+	# flag.material = flag_shader
+	loc.flag = flag
+	flags.add_child(flag)
 
 func _on_turn_refresh(turn, side):
 	if self.number == side:

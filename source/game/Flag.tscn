@@ -16,7 +16,7 @@ animations = [ {
 
 [node name="Flag" type="AnimatedSprite"]
 frames = SubResource( 1 )
-frame = 1
+frame = 3
 playing = true
 script = ExtResource( 5 )
 

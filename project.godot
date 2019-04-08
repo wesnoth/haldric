@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/map/Hex.gd"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "Location",
 "language": "GDScript",
 "path": "res://source/scenario/map/Location.gd"
