@@ -37,8 +37,8 @@ func fade_out(direction: int, time: float) -> void:
 		layer.fade_out(direction, time)
 	_leave(time)
 
-func _enter():
+func _enter() -> void:
 	pass
 
-func _leave(time: int):
+func _leave(time: int) -> void:
 	pass

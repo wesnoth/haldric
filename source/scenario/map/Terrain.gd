@@ -35,10 +35,10 @@ func _init(resources: Array) -> void:
 func set_time_of_day(daytime: DayTime)-> void:
 	time_of_day = daytime
 
-func get_base_code():
+func get_base_code() -> String:
 	return code[0]
 
-func get_overlay_code():
+func get_overlay_code() -> String:
 	if code.size() == 2:
 		return code[1]
 	return ""
@@ -47,7 +47,6 @@ func get_code() -> String:
 	var s := ""
 	for c in code:
 		s += c
-
 	return s
 
 func get_type() -> String:
@@ -58,5 +57,4 @@ func get_type() -> String:
 		else:
 			s += ", " + type[i]
 	s += ")"
-
 	return s

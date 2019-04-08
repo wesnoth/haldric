@@ -15,5 +15,5 @@ func update_stat(current: int, maximum: int) -> void:
 	bar.max_value = maximum
 	bar.value = current
 
-func clear():
+func clear() -> void:
 	value_label.text = "-"

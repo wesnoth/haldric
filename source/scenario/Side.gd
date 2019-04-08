@@ -93,7 +93,7 @@ func _add_flag(loc: Location) -> void:
 	loc.flag = flag
 	flags.add_child(flag)
 
-func _on_turn_refresh(turn, side):
+func _on_turn_refresh(turn: int, side: int) -> void:
 	if self.number == side:
 		calculate_upkeep()
 		calculate_income()

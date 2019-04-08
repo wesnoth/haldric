@@ -12,5 +12,5 @@ func _ready() -> void:
 	call_deferred("_set_current_page", pages[1])
 	menu_bar.reveal()
 
-func _on_Quit_pressed():
+func _on_Quit_pressed() -> void:
 	get_tree().quit()

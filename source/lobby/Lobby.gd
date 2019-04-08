@@ -36,33 +36,33 @@ remote func user_entered(id) -> void:
 remote func user_exited(id) -> void:
 	display.text += str(Network.players[id].name) + " left the room\n"
 
-remote func server_disconnected():
+remote func server_disconnected() -> void:
 	display.text += "Disconnected from Server\n"
 	_on_Leave_pressed()
 
-func _send_message():
+func _send_message() -> void:
 	var msg: String = input.text
 	input.text = ""
 	var id: int = get_tree().get_network_unique_id()
 	rpc("_receive_message", id, msg)
 
-sync func _receive_message(id, msg):
+sync func _receive_message(id: int, msg: String) -> void:
 	display.text += str(Network.players[id].name) + ": " + msg + "\n"
 
-func _on_Join_pressed():
+func _on_Join_pressed() -> void:
 	Network.create_client(player_name.text, Network.DEFAULT_IP)
 
-func _on_Host_pressed():
+func _on_Host_pressed() -> void:
 	leave.show()
 	Network.create_server(player_name.text)
 	display.text = "Room Created!\n"
 
-func _on_Leave_pressed():
+func _on_Leave_pressed() -> void:
 	leave.hide()
 	join.show()
 	host.show()
 	ip.show()
 	display.text += "Left Room\n"
 
-func _on_Back_pressed():
+func _on_Back_pressed() -> void:
 	emit_signal("back")

@@ -93,7 +93,7 @@ func _add_attack_plate(attack: Attack) -> void:
 	attacks.add_child(plate)
 	plate.update_attack(attack)
 
-func _clear_attack_plates():
+func _clear_attack_plates() -> void:
 	for plate in attacks.get_children():
 		plate.queue_free()
 

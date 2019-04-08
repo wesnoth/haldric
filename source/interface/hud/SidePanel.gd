@@ -12,7 +12,7 @@ onready var income_item = $HBoxContainer/Income as SidePanelItem
 onready var battery_item = $HBoxContainer/Battery as SidePanelItem
 onready var time_item = $HBoxContainer/Time as SidePanelItem
 
-func _process(delta):
+func _process(delta) -> void:
 
 	if scenario and side:
 		update_side(scenario, side)

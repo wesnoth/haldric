@@ -1,6 +1,6 @@
 extends MenuPage
 
-onready var campaign_selector = $CampaignSelector
+onready var campaign_selector := $CampaignSelector as CampaignSelector
 
 func _enter() -> void:
 	campaign_selector.animate()

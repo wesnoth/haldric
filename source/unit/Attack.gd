@@ -9,4 +9,4 @@ export var reach := ""
 export var damage := 0
 export var strikes := 0
 
-onready var specials = get_children()
+onready var specials := get_children()

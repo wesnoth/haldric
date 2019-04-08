@@ -114,12 +114,12 @@ func _move() -> void:
 		#warning-ignore:return_value_discarded
 		tween.start()
 
-func _grab_village():
+func _grab_village() -> void:
 	if location.terrain.gives_income:
 		if side.add_village(location):
 			moves_current = 0
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
 	_grab_village()
 	Event.emit_signal("move_to", self, location)
 	if path:

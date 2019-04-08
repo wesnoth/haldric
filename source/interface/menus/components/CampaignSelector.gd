@@ -9,8 +9,8 @@ func _ready() -> void:
 		_add_campaign(campaign)
 
 func _add_campaign(campaign) -> void:
-	var file_data = Registry.campaigns[campaign]
-	var button = CampaignCard.instance()
+	var file_data : Dictionary = Registry.campaigns[campaign]
+	var button := CampaignCard.instance()
 	button.connect("pressed", self, "_on_campaign_card_pressed", [campaign])
 	grid_container.add_child(button)
 	button.initialize(file_data.data)

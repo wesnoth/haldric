@@ -29,7 +29,7 @@ func _ready() -> void:
 	_new_map()
 	_setup_scenario()
 
-func _update():
+func _update() -> void:
 	scenario.map.update_terrain()
 
 func _setup_scenario() -> void:
