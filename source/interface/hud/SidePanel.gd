@@ -31,7 +31,7 @@ func update_side(scenario : Scenario, side : Side) -> void:
 	else:
 		flag_item.set_text(str(scenario.turn))
 
-	#flag_item.texture_rect.material = side.flag_shader
+	# flag_item.texture_rect.material = side.flag_shader
 
 	gold_item.set_text(str(side.gold))
 	units_item.set_text(str(side.units.get_child_count()))

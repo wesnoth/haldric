@@ -51,6 +51,7 @@ func add_unit(unit) -> void:
 func add_village(loc: Location) -> bool:
 	if not villages.has(loc):
 		villages.append(loc)
+		loc.add_flag(number, flag_shader)
 		return true
 	return false
 

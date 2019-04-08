@@ -100,6 +100,8 @@ cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
+[node name="LocationContainer" type="Node2D" parent="Map"]
+
 [node name="Fog" type="TileMap" parent="Map"]
 material = SubResource( 3 )
 z_index = 100
