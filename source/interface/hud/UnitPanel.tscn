@@ -35,9 +35,9 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/CenterContainer"]
 margin_left = 28.0
-margin_top = 141.0
+margin_top = 135.0
 margin_right = 208.0
-margin_bottom = 483.0
+margin_bottom = 489.0
 custom_constants/separation = 8
 
 [node name="Name" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer"]
@@ -125,34 +125,34 @@ margin_bottom = 220.0
 text = "neutral (+0%)"
 align = 1
 
-[node name="HP" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
+[node name="Health" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 228.0
 margin_right = 180.0
-margin_bottom = 258.0
+margin_bottom = 262.0
 bar_color = Color( 0.403922, 0.780392, 0.254902, 1 )
 
-[node name="XP" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
+[node name="Moves" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 266.0
+margin_top = 270.0
 margin_right = 180.0
-margin_bottom = 296.0
+margin_bottom = 304.0
+bar_color = Color( 0.482353, 0.403922, 0.352941, 1 )
+
+[node name="Experience" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 312.0
+margin_right = 180.0
+margin_bottom = 346.0
 bar_color = Color( 0.458824, 0.780392, 0.713726, 1 )
 
-[node name="MP" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 304.0
-margin_right = 180.0
-margin_bottom = 334.0
-bar_color = Color( 0.380392, 0.341176, 0.588235, 1 )
-
 [node name="Attacks" type="VBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer"]
-margin_top = 342.0
+margin_top = 354.0
 margin_right = 180.0
-margin_bottom = 342.0
+margin_bottom = 354.0
 
 [node name="Border" type="NinePatchRect" parent="."]
 anchor_right = 1.0

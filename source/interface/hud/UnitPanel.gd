@@ -7,9 +7,9 @@ onready var image := $NinePatchRect/CenterContainer/VBoxContainer/Image/Unit as 
 onready var level := $NinePatchRect/CenterContainer/VBoxContainer/General/Level as Label
 onready var type := $NinePatchRect/CenterContainer/VBoxContainer/General/Type as Label
 onready var race := $NinePatchRect/CenterContainer/VBoxContainer/General/Race as Label
-onready var hp := $NinePatchRect/CenterContainer/VBoxContainer/HP as VBoxContainer
-onready var xp := $NinePatchRect/CenterContainer/VBoxContainer/XP as VBoxContainer
-onready var mp := $NinePatchRect/CenterContainer/VBoxContainer/MP as VBoxContainer
+onready var hp := $NinePatchRect/CenterContainer/VBoxContainer/Health as VBoxContainer
+onready var xp := $NinePatchRect/CenterContainer/VBoxContainer/Experience as VBoxContainer
+onready var mp := $NinePatchRect/CenterContainer/VBoxContainer/Moves as VBoxContainer
 onready var defense := $NinePatchRect/CenterContainer/VBoxContainer/Image/Defense
 onready var alignment := $NinePatchRect/CenterContainer/VBoxContainer/Aligment
 
@@ -40,11 +40,14 @@ func update_unit(target: Unit) -> void:
 	race.text = str(unit.type.race)
 
 	defense.text = str(unit.get_defense())  + "%"
-	defense.modulate = _get_defense_color(unit.get_defense())
+	defense.modulate = _get_red_to_green_color(unit.get_defense())
 
 	hp.update_stat(unit.health_current, unit.type.health)
+	hp.bar.tint_progress = _get_red_to_green_color((100 * unit.health_current) / unit.type.health)
 	xp.update_stat(unit.experience_current, unit.type.experience)
+	xp.bar.tint_progress = _get_cyan_to_white_color((100 * unit.experience_current) / unit.type.experience)
 	mp.update_stat(unit.moves_current, unit.type.moves)
+	mp.bar.tint_progress = _get_light_to_dark_brown((100 * unit.moves_current) / unit.type.moves)
 
 	var tod_bonus = unit.get_time_of_day_percentage()
 	if tod_bonus >= 0:
@@ -90,8 +93,17 @@ func _clear_attack_plates():
 	for plate in attacks.get_children():
 		plate.queue_free()
 
-func _get_defense_color(defense: int) -> Color:
+func _get_red_to_green_color(defense: int) -> Color:
 	var mod = float(defense) * 0.01
 	var r = 1.0 - (1.0 * mod)
 	var g = 1.0 * mod
 	return Color(r, g, 0.0)
+
+func _get_cyan_to_white_color(value: int) -> Color:
+	var mod = float(value) * 0.01
+	var r = 1.0 * mod
+	return Color(r, 1.0, 1.0)
+
+func _get_light_to_dark_brown(value: int) -> Color:
+	var mod = float(value) * 0.01
+	return Color(0.48 * mod + 0.1, 0.4 * mod + 0.1, 0.35 * mod + 0.1)
