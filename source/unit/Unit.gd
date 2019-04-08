@@ -1,7 +1,7 @@
 extends Node2D
 class_name Unit
 
-var side := 0
+var side : Side = null
 
 var health_current := 0
 var moves_current := 0
@@ -98,6 +98,7 @@ func _move() -> void:
 		var cost = get_movement_cost(loc)
 
 		if cost > moves_current:
+			_grab_village()
 			return
 
 		location.unit = null
@@ -114,6 +115,13 @@ func _move() -> void:
 		#warning-ignore:return_value_discarded
 		tween.start()
 
+func _grab_village():
+	if location.terrain.gives_income:
+		side.add_village(location)
+
 func _on_Tween_tween_completed(object, key):
-	if path and tween:
+	Event.emit_signal("move_to", self, location)
+	if path:
 		_move()
+	else:
+		_grab_village()

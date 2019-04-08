@@ -20,20 +20,17 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 
 	var side: Side = sides.get_child(side_number - 1)
 
+	var loc: Location = map.get_location(Vector2(x, y))
 	var unit := Registry.units[unit_id].instance() as Unit
 
-	side.units.add_child(unit)
-	side.calculate_upkeep()
+	unit.connect("move_finished", self, "_on_unit_move_finished")
 
-	var loc: Location = map.get_location(Vector2(x, y))
-
+	side.add_unit(unit)
 	unit.place_at(loc)
-	unit.side = side_number
-	unit.sprite.material = side.shader
 
-func get_village_count():
+func get_village_count() -> int:
 	return map.village_count
 
-func next_time_of_day():
+func next_time_of_day() -> void:
 	time_of_day.next()
 	map.set_time_of_day(time_of_day.current_time)

@@ -108,7 +108,7 @@ func update_weight(unit: Unit) -> void:
 
 			var other_unit = location.unit
 			if other_unit:
-				if not other_unit.side == unit.side:
+				if not other_unit.side.number == unit.side.number:
 					grid.block_cell(location.cell)
 					ZOC_tiles.append(location)
 					var current_cell := Vector2(cell.x, cell.y + 1)

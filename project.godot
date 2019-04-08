@@ -221,6 +221,7 @@ Loader="*res://source/global/Loader.gd"
 Registry="*res://source/global/Registry.gd"
 Audio="*res://source/global/Audio.tscn"
 TeamColor="*res://source/global/TeamColor.gd"
+Event="*res://source/global/Event.gd"
 
 [debug]
 

@@ -1,5 +1,8 @@
 extends Control
 
+var scenario : Scenario = null
+var side : Side = null
+
 onready var flag_item = $HBoxContainer/Flag as SidePanelItem
 onready var gold_item = $HBoxContainer/Gold as SidePanelItem
 onready var villages_item = $HBoxContainer/Villages as SidePanelItem
@@ -10,13 +13,19 @@ onready var battery_item = $HBoxContainer/Battery as SidePanelItem
 onready var time_item = $HBoxContainer/Time as SidePanelItem
 
 func _process(delta):
+
+	if scenario and side:
+		update_side(scenario, side)
+
 	time_item.set_text(_get_time_string())
 	battery_item.set_text( "%d%s" % [OS.get_power_percent_left(), "%"])
+
 	if OS.get_power_percent_left() == -1:
 		battery_item.hide()
 
 func update_side(scenario : Scenario, side : Side) -> void:
-
+	self.scenario = scenario
+	self.side = side
 	if scenario.turns >= 0:
 		flag_item.set_text(str("%d / %d" % [scenario.turn, scenario.turns]))
 	else:

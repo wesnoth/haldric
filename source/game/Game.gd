@@ -16,7 +16,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		print(mouse_cell)
 		var location: Location = scenario.map.get_location(mouse_cell)
 		if location:
-			if location.unit and location.unit.side == current_side.side:
+			if location.unit and location.unit.side.number == current_side.number:
 				_set_selected_unit(location.unit)
 			elif selected_unit and not location.unit:
 				selected_unit.move_to(location)
@@ -36,8 +36,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_load_map()
 	_load_units()
+
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
+
 	HUD.update_tod_info(scenario.time_of_day.current_time)
 
 func _load_map() -> void:
@@ -118,6 +120,7 @@ func _next_side() -> void:
 	var new_index = (current_side.get_index() + 1) % scenario.sides.get_child_count()
 	_set_side(scenario.sides.get_child(new_index))
 
-
 func _on_HUD_turn_end_pressed():
+	Event.emit_signal("turn_end", scenario.turn, current_side.number)
 	_next_side()
+	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)

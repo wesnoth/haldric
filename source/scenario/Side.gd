@@ -9,7 +9,7 @@ const HEAL_ON_REST = 2
 var shader: ShaderMaterial = null
 var flag_shader: ShaderMaterial = null
 
-var side := 0
+var number := 0
 
 var upkeep := 0
 
@@ -29,7 +29,9 @@ export var income := 2
 onready var units = $Units as Node2D
 
 func _ready() -> void:
-	side = get_index() + 1
+	Event.connect("turn_refresh", self, "_on_turn_refresh")
+
+	number = get_index() + 1
 
 	team_color = TeamColor.team_color_data.keys()[get_index()]
 
@@ -39,14 +41,23 @@ func _ready() -> void:
 	calculate_upkeep()
 	calculate_income()
 
-func add_village(cell: Vector2) -> void:
-	villages.append(cell)
+# :Unit
+func add_unit(unit) -> void:
+	units.add_child(unit)
+	unit.side = self
+	unit.sprite.material = shader
+	calculate_upkeep()
 
-func remove_village(cell: Vector2) -> void:
-	villages.erase(cell)
+func add_village(loc: Location) -> void:
+	if not villages.has(loc):
+		villages.append(loc)
 
-func has_village(cell: Vector2) -> bool:
-	return villages.has(cell)
+func remove_village(loc: Location) -> void:
+	if villages.has(loc):
+		villages.erase(loc)
+
+func has_village(loc: Location) -> bool:
+	return villages.has(loc)
 
 func get_villages() -> Array:
 	return villages
@@ -57,13 +68,20 @@ func calculate_upkeep() -> void:
 		upkeep += unit.type.level
 
 func calculate_income() -> void:
-	income = INCOME_PER_VILLAGE * villages.size() + base_income
+	income = base_income + INCOME_PER_VILLAGE * villages.size() - upkeep
 
 func turn_refresh() -> void:
 	gold += income
 
-func get_first_leader() -> Unit:
+# -> Unit
+func get_first_leader():
 	if leaders.size() > 0:
 		return leaders[0]
 
 	return null
+
+func _on_turn_refresh(turn, side):
+	if self.number == side:
+		calculate_upkeep()
+		calculate_income()
+		gold += income
