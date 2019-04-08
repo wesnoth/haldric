@@ -21,5 +21,5 @@ func clear_unit_info() -> void:
 func _on_Back_pressed() -> void:
 	Scene.change(Scene.TitleScreen)
 
-func _on_TurnEndPanel_turn_end_pressed():
+func _on_TurnEndPanel_turn_end_pressed() -> void:
 	emit_signal("turn_end_pressed")

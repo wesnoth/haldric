@@ -24,7 +24,7 @@ func _ready() -> void:
 # TODO: maybe find a better way to do this
 func _process(delta: float) -> void:
 	if unit:
-		image.texture = unit.sprite.texture
+		update_unit(unit)
 
 func update_unit(target: Unit) -> void:
 	_clear_attack_plates()
