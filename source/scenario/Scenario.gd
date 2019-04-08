@@ -1,10 +1,14 @@
 extends Node2D
 class_name Scenario
 
+var turn := 0
+var turns := -1
+
 onready var map := $Map as Map
 onready var sides := $Sides as Node
-onready var unit_path_display := $UnitPathDisplay as Path2D
 onready var time_of_day := $Times
+
+onready var unit_path_display := $UnitPathDisplay as Path2D
 
 func _ready() -> void:
 	map.set_time_of_day(time_of_day.current_time)

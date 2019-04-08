@@ -66,22 +66,35 @@ func _clear_temp_path() -> void:
 	scenario.unit_path_display.path = [] # Uses assignment to trigger setter
 
 func _set_side(value: Side) -> void:
+
 	if current_side == value:
 		return
+
 	current_side = value
-	if current_side:
-		var used_fog = scenario.map.fog.get_used_cells()
-		for y in scenario.map.height:
-			for x in scenario.map.width:
-				var cell = Vector2(x,y)
-				if cell in used_fog:
-					continue
-				scenario.map.fog.set_cellv(cell,scenario.map.cover_tile)
-		HUD.update_side_info(scenario, current_side)
-		for unit in current_side.units.get_children():
-			unit.moves_current = unit.type.moves
-			unit.viewable = scenario.map.find_all_viewable_cells(unit)
-			unit.reveal_fog()
+
+	if not current_side:
+		return
+
+	if current_side.get_index() % scenario.sides.get_child_count() == 0:
+		scenario.turn += 1
+		scenario.next_time_of_day()
+		HUD.update_tod_info(scenario.time_of_day.current_time)
+
+	var used_fog = scenario.map.fog.get_used_cells()
+
+	for y in scenario.map.height:
+		for x in scenario.map.width:
+			var cell = Vector2(x,y)
+			if cell in used_fog:
+				continue
+			scenario.map.fog.set_cellv(cell,scenario.map.cover_tile)
+
+	HUD.update_side_info(scenario, current_side)
+
+	for unit in current_side.units.get_children():
+		unit.moves_current = unit.type.moves
+		unit.viewable = scenario.map.find_all_viewable_cells(unit)
+		unit.reveal_fog()
 
 func _set_selected_unit(value: Unit) -> void:
 	if selected_unit:
@@ -98,12 +111,13 @@ func _set_selected_unit(value: Unit) -> void:
 		_clear_temp_path()
 
 func _next_side() -> void:
+
+	if scenario.turns >= 0 and scenario.turn > scenario.turns:
+		pass # turn over
+
 	var new_index = (current_side.get_index() + 1) % scenario.sides.get_child_count()
 	_set_side(scenario.sides.get_child(new_index))
 
-	if new_index == 0:
-		scenario.next_time_of_day()
 
 func _on_HUD_turn_end_pressed():
 	_next_side()
-	HUD.update_tod_info(scenario.time_of_day.current_time)
