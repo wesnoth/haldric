@@ -27,10 +27,12 @@ script = ExtResource( 2 )
 
 [node name="Custom1" parent="Sides" index="0" instance=ExtResource( 9 )]
 team_color = "Teal"
+flag_type = "Ragged"
 gold = 125
 
 [node name="Custom2" parent="Sides" index="1" instance=ExtResource( 9 )]
 team_color = "Green"
+flag_type = "Long"
 gold = 125
 
 [node name="Map" parent="." index="2"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/long-flag-3.png-ad0e6b1ce7b126d8d73c059af43b51bf.stex"
+path="res://.import/flags.png-58501840febc7b110b867619770312f9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/images/flags/long-flag-3.png"
-dest_files=[ "res://.import/long-flag-3.png-ad0e6b1ce7b126d8d73c059af43b51bf.stex" ]
+source_file="res://graphics/images/flags/flags.png"
+dest_files=[ "res://.import/flags.png-58501840febc7b110b867619770312f9.stex" ]
 
 [params]
 

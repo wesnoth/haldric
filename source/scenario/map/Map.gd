@@ -88,7 +88,7 @@ func find_all_viewable_cells(unit: Unit) -> Dictionary:
 				var attack_path = new_path.duplicate(true)
 				for enemey_cell in ZOC_tiles[path_cell]:
 					if not paths.has(enemey_cell):
-						attack_path.append(enemey_cell)	
+						attack_path.append(enemey_cell)
 						paths[enemey_cell] = attack_path.duplicate(true)
 						attack_path.pop_back()
 				break
@@ -145,7 +145,7 @@ func update_weight(unit: Unit) -> void:
 							else:
 								grid.astar.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
 						#print("zoc - " + String(current_cell))
-						if ZOC_tiles.has(get_location(neighbor)):	
+						if ZOC_tiles.has(get_location(neighbor)):
 							ZOC_tiles[get_location(neighbor)].append(location)
 						else:
 							ZOC_tiles[get_location(neighbor)] = [location]

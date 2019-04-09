@@ -21,6 +21,7 @@ var villages := []
 var leaders := []
 
 export(String, "Red", "Blue", "Green", "Purple", "Black", "White", "Brown", "Orange", "Teal") var team_color := "Red"
+export(String, "Standard", "Knalgan", "Long", "Ragged", "Undead", "Wood-Elvish") var flag_type := "Standard"
 
 export var gold := 100
 export var base_income := 2
@@ -39,7 +40,9 @@ func _ready() -> void:
 
 	number = get_index() + 1
 
+	flag_type = flag_type.to_lower()
 	team_color = team_color.to_lower()
+
 	unit_shader = TeamColor.generate_team_shader(team_color)
 	flag_shader = TeamColor.generate_flag_shader(team_color)
 
@@ -105,6 +108,7 @@ func _add_flag(loc: Location) -> void:
 	flag.material = flag_shader
 	loc.flag = flag
 	flags.add_child(flag)
+	flag.play(flag_type)
 
 func _on_turn_refresh(turn: int, side: int) -> void:
 	if self.number == side and not turn == 1:

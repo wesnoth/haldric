@@ -7,7 +7,7 @@ var id := 0
 var position := Vector2()
 var cell := Vector2()
 
-var flag : AnimatedSprite = null
+var flag : Sprite = null
 
 # "map" and "unit" can't be typed because of cyclic recursion.
 var map = null

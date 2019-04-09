@@ -142,7 +142,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "SidePanelItem",
 "language": "GDScript",
-"path": "res://source/interface/hud/SidePanelItem.gd"
+"path": "res://source/interface/hud/components/SidePanelItem.gd"
 }, {
 "base": "Resource",
 "class": "Terrain",

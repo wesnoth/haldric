@@ -1,10 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://source/interface/menus/components/MenuBar.gd" type="Script" id=1]
-[ext_resource path="res://source/interface/hud/SidePanelBorderLeft.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/interface/hud/SidePanelBorderRight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/hud/components/SidePanelBorderLeft.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/interface/hud/components/SidePanelBorderRight.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/menus/components/ButtonHover.tscn" type="PackedScene" id=4]
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=5]
+
 
 [node name="MenuBar" type="Control"]
 anchor_right = 1.0

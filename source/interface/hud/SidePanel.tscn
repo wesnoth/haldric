@@ -1,17 +1,16 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://source/interface/hud/SidePanel.gd" type="Script" id=1]
-[ext_resource path="res://source/interface/hud/SidePanelBorderLeft.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/interface/hud/SidePanelItem.tscn" type="PackedScene" id=3]
-[ext_resource path="res://graphics/images/interface/icons/flag-icon.png" type="Texture" id=4]
-[ext_resource path="res://graphics/images/interface/icons/gold.png" type="Texture" id=5]
-[ext_resource path="res://graphics/images/interface/icons/villages.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/interface/icons/units.png" type="Texture" id=7]
-[ext_resource path="res://graphics/images/interface/icons/upkeep.png" type="Texture" id=8]
-[ext_resource path="res://graphics/images/interface/icons/income.png" type="Texture" id=9]
-[ext_resource path="res://graphics/images/interface/icons/battery.png" type="Texture" id=10]
-[ext_resource path="res://graphics/images/interface/icons/sand-clock.png" type="Texture" id=11]
-[ext_resource path="res://source/interface/hud/SidePanelBorderRight.tscn" type="PackedScene" id=12]
+[ext_resource path="res://source/interface/hud/components/SidePanelBorderLeft.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/interface/hud/components/SidePanelItem.tscn" type="PackedScene" id=3]
+[ext_resource path="res://graphics/images/interface/icons/gold.png" type="Texture" id=4]
+[ext_resource path="res://graphics/images/interface/icons/villages.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/interface/icons/units.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/interface/icons/upkeep.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/interface/icons/income.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/interface/icons/battery.png" type="Texture" id=9]
+[ext_resource path="res://graphics/images/interface/icons/sand-clock.png" type="Texture" id=10]
+[ext_resource path="res://source/interface/hud/components/SidePanelBorderRight.tscn" type="PackedScene" id=11]
 
 [node name="SidePanel" type="Control"]
 anchor_right = 1.0
@@ -42,7 +41,6 @@ anchor_bottom = 0.0
 margin_left = 560.0
 margin_right = 660.0
 margin_bottom = 50.0
-texture = ExtResource( 4 )
 
 [node name="Gold" parent="HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -50,7 +48,7 @@ anchor_bottom = 0.0
 margin_left = 660.0
 margin_right = 760.0
 margin_bottom = 50.0
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 
 [node name="Villages" parent="HBoxContainer" instance=ExtResource( 3 )]
 editor/display_folded = true
@@ -59,7 +57,7 @@ anchor_bottom = 0.0
 margin_left = 760.0
 margin_right = 860.0
 margin_bottom = 50.0
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 
 [node name="Units" parent="HBoxContainer" instance=ExtResource( 3 )]
 editor/display_folded = true
@@ -68,7 +66,7 @@ anchor_bottom = 0.0
 margin_left = 860.0
 margin_right = 960.0
 margin_bottom = 50.0
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 
 [node name="Upkeep" parent="HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -76,7 +74,7 @@ anchor_bottom = 0.0
 margin_left = 960.0
 margin_right = 1060.0
 margin_bottom = 50.0
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 
 [node name="Income" parent="HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -84,7 +82,7 @@ anchor_bottom = 0.0
 margin_left = 1060.0
 margin_right = 1160.0
 margin_bottom = 50.0
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="Battery" parent="HBoxContainer" instance=ExtResource( 3 )]
 editor/display_folded = true
@@ -93,7 +91,7 @@ anchor_bottom = 0.0
 margin_left = 1160.0
 margin_right = 1260.0
 margin_bottom = 50.0
-texture = ExtResource( 10 )
+texture = ExtResource( 9 )
 
 [node name="Time" parent="HBoxContainer" instance=ExtResource( 3 )]
 editor/display_folded = true
@@ -102,9 +100,9 @@ anchor_bottom = 0.0
 margin_left = 1260.0
 margin_right = 1360.0
 margin_bottom = 50.0
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 
-[node name="SidePanelBorderRight" parent="HBoxContainer" instance=ExtResource( 12 )]
+[node name="SidePanelBorderRight" parent="HBoxContainer" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1360.0
