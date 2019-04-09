@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/hud/UnitPanel.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://graphics/images/units/elves-wood/archer.png" type="Texture" id=7]
 [ext_resource path="res://graphics/fonts/Raleway12.tres" type="DynamicFont" id=8]
 [ext_resource path="res://source/interface/hud/components/StatBar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/interface/hud/components/ResistancePlate.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -34,14 +35,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/CenterContainer"]
-margin_left = 28.0
-margin_top = 135.0
-margin_right = 208.0
-margin_bottom = 489.0
+margin_left = 18.0
+margin_top = 129.0
+margin_right = 218.0
+margin_bottom = 494.0
+rect_min_size = Vector2( 200, 0 )
 custom_constants/separation = 8
 
 [node name="Name" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer"]
-margin_right = 180.0
+margin_right = 200.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 5 )
 text = "Lagoles"
@@ -50,7 +52,7 @@ valign = 1
 
 [node name="Image" type="Control" parent="NinePatchRect/CenterContainer/VBoxContainer"]
 margin_top = 30.0
-margin_right = 180.0
+margin_right = 200.0
 margin_bottom = 174.0
 rect_min_size = Vector2( 180, 144 )
 
@@ -84,13 +86,13 @@ align = 2
 [node name="General" type="HBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer"]
 editor/display_folded = true
 margin_top = 182.0
-margin_right = 180.0
+margin_right = 200.0
 margin_bottom = 197.0
 alignment = 1
 
 [node name="Level" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
-margin_left = 10.0
-margin_right = 40.0
+margin_left = 20.0
+margin_right = 50.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 30, 0 )
 custom_fonts/font = ExtResource( 8 )
@@ -99,8 +101,8 @@ align = 1
 valign = 1
 
 [node name="Type" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
-margin_left = 48.0
-margin_right = 132.0
+margin_left = 58.0
+margin_right = 142.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 30, 0 )
 custom_fonts/font = ExtResource( 8 )
@@ -109,8 +111,8 @@ align = 1
 valign = 1
 
 [node name="Race" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
-margin_left = 140.0
-margin_right = 170.0
+margin_left = 150.0
+margin_right = 180.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 30, 0 )
 custom_fonts/font = ExtResource( 8 )
@@ -120,7 +122,7 @@ valign = 1
 
 [node name="Aligment" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer"]
 margin_top = 205.0
-margin_right = 180.0
+margin_right = 200.0
 margin_bottom = 220.0
 text = "neutral (+0%)"
 align = 1
@@ -129,30 +131,37 @@ align = 1
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 228.0
-margin_right = 180.0
-margin_bottom = 262.0
+margin_right = 200.0
+margin_bottom = 263.0
 bar_color = Color( 0.403922, 0.780392, 0.254902, 1 )
 
 [node name="Moves" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 270.0
-margin_right = 180.0
-margin_bottom = 304.0
+margin_top = 271.0
+margin_right = 200.0
+margin_bottom = 306.0
 bar_color = Color( 0.482353, 0.403922, 0.352941, 1 )
 
 [node name="Experience" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 312.0
-margin_right = 180.0
-margin_bottom = 346.0
+margin_top = 314.0
+margin_right = 200.0
+margin_bottom = 349.0
 bar_color = Color( 0.458824, 0.780392, 0.713726, 1 )
 
+[node name="ResistancePlate" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 357.0
+margin_right = 200.0
+margin_bottom = 357.0
+
 [node name="Attacks" type="VBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer"]
-margin_top = 354.0
-margin_right = 180.0
-margin_bottom = 354.0
+margin_top = 365.0
+margin_right = 200.0
+margin_bottom = 365.0
 
 [node name="Border" type="NinePatchRect" parent="."]
 anchor_right = 1.0
