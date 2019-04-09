@@ -49,6 +49,7 @@ func _generate_tile_set():
 
 func _setup_terrain_code_table():
 	CODE["grass-green"] = "Gg"
+	CODE["void-void"] = "Xv"
 	CODE["grass-dry"] = "Gd"
 	CODE["grass-semi-dry"] = "Gs"
 	CODE["grass-leaf-litter"] = "Gll"

@@ -8,7 +8,6 @@
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
 [ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=7]
 
-
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )
 button_size = 50
@@ -95,7 +94,7 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="New" type="Button" parent="HUD/UIButtons/HBoxContainer"]
-margin_left = 21.0
+margin_left = 26.0
 margin_right = 82.0
 margin_bottom = 44.0
 text = "New"
@@ -112,13 +111,13 @@ placeholder_text = "scenario name"
 
 [node name="Save" type="Button" parent="HUD/UIButtons/HBoxContainer"]
 margin_left = 282.0
-margin_right = 343.0
+margin_right = 340.0
 margin_bottom = 44.0
 text = "Save"
 
 [node name="Load" type="Button" parent="HUD/UIButtons/HBoxContainer"]
-margin_left = 363.0
-margin_right = 425.0
+margin_left = 360.0
+margin_right = 419.0
 margin_bottom = 44.0
 text = "Load"
 
