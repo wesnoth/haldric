@@ -10,6 +10,10 @@ var Lobby := "res://source/lobby/Lobby.tscn"
 var next_scene := ""
 
 onready var anim := $AnimationPlayer as AnimationPlayer
+onready var fps_label := $FPS as Label
+
+func _process(delta):
+	fps_label.text = str("%d FPS" % Engine.get_frames_per_second())
 
 func change(scene: String) -> void:
 	next_scene = scene
