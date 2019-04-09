@@ -13,6 +13,8 @@ onready var mp := $NinePatchRect/CenterContainer/VBoxContainer/Moves as VBoxCont
 onready var defense := $NinePatchRect/CenterContainer/VBoxContainer/Image/Defense
 onready var alignment := $NinePatchRect/CenterContainer/VBoxContainer/Aligment
 
+onready var resistance := $NinePatchRect/CenterContainer/VBoxContainer/ResistancePlate as Control
+
 onready var attacks := $NinePatchRect/CenterContainer/VBoxContainer/Attacks as VBoxContainer
 
 onready var tween := $Tween as Tween
@@ -33,8 +35,10 @@ func update_unit(target: Unit) -> void:
 	unit = target
 
 	unit_name.text = unit.name
+
 	image.texture = unit.type.sprite.texture
 	image.set_material(unit.type.sprite.get_material())
+
 	level.text = str("L", unit.type.level)
 	type.text = str(unit.type.id)
 	race.text = str(unit.type.race)
@@ -54,6 +58,8 @@ func update_unit(target: Unit) -> void:
 		alignment.text = str("%s (+%d%%)" % [unit.type.alignment, tod_bonus])
 	else:
 		alignment.text = str("%s (%d%%)" % [unit.type.alignment, tod_bonus])
+
+	resistance.update_resistance(unit.type.resistance)
 
 	for attack in unit.type.get_attacks():
 		_add_attack_plate(attack)

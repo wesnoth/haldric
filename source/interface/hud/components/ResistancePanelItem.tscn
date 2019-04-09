@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://source/interface/hud/components/ResistancePanelItem.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/interface/icons/icons-resistances.png" type="Texture" id=2]
+[ext_resource path="res://graphics/fonts/Raleway12.tres" type="DynamicFont" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 26, 26 )
+
+[node name="ResistancePanelItem" type="HBoxContainer"]
+margin_right = 59.0
+margin_bottom = 26.0
+custom_constants/separation = 2
+script = ExtResource( 1 )
+icon_texture = ExtResource( 2 )
+region = Rect2( 0, 0, 26, 26 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 26.0
+margin_bottom = 26.0
+texture = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 63.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 35, 15 )
+custom_fonts/font = ExtResource( 3 )
+text = "-50%"
+align = 1
+
