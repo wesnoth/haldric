@@ -53,7 +53,7 @@ func _ready() -> void:
 func add_unit(unit) -> void:
 	units.add_child(unit)
 	unit.side = self
-	unit.sprite.material = unit_shader
+	unit.type.sprite.material = unit_shader
 	calculate_upkeep()
 	calculate_income()
 

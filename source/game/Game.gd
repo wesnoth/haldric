@@ -55,8 +55,14 @@ func _load_map() -> void:
 func _load_units() -> void:
 	if scenario:
 		scenario.add_unit(1, "Archer", 4, 4)
-		scenario.add_unit(2, "Fighter", 7, 8)
-		scenario.add_unit(2, "Bat", 8, 8)
+		scenario.add_unit(1, "Scout", 5, 4)
+		scenario.add_unit(1, "Fighter", 6, 4)
+		scenario.add_unit(1, "Shaman", 7, 4)
+
+		scenario.add_unit(2, "Bat", 12, 8)
+		scenario.add_unit(2, "Ghost", 13, 4)
+		scenario.add_unit(2, "Bat", 14, 4)
+		scenario.add_unit(2, "Ghost", 15, 4)
 
 func _draw_temp_path(path: Array) -> void:
 	if selected_unit:

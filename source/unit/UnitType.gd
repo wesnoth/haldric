@@ -1,7 +1,7 @@
-extends Node
+extends Node2D
 class_name UnitType
 
-export var ID := ""
+export var id := ""
 export var race := ""
 export var alignment := ""
 
@@ -18,6 +18,13 @@ onready var movement := $Movement as Movement
 onready var resistance := $Resistance as Resistance
 
 onready var attacks := $Attacks as Node
+
+onready var anim = $AnimationPlayer
+onready var sprite = $Sprite
+
+func _ready() -> void:
+	if anim.has_animation("stand"):
+		anim.play("stand")
 
 func get_attacks() -> Array:
 	return attacks.get_children()

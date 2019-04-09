@@ -33,10 +33,10 @@ func update_unit(target: Unit) -> void:
 	unit = target
 
 	unit_name.text = unit.name
-	image.texture = unit.sprite.texture
-	image.set_material(unit.sprite.get_material())
+	image.texture = unit.type.sprite.texture
+	image.set_material(unit.type.sprite.get_material())
 	level.text = str("L", unit.type.level)
-	type.text = str(unit.type.ID)
+	type.text = str(unit.type.id)
 	race.text = str(unit.type.race)
 
 	defense.text = str(unit.get_defense())  + "%"

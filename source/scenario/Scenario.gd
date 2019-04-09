@@ -21,9 +21,13 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 	var side: Side = sides.get_child(side_number - 1)
 
 	var loc: Location = map.get_location(Vector2(x, y))
-	var unit := Registry.units[unit_id].instance() as Unit
+
+	var unit_type := Registry.units[unit_id].instance() as UnitType
+
+	var unit = preload("res://source/unit/Unit.tscn").instance()
 
 	unit.connect("move_finished", self, "_on_unit_move_finished")
+	unit.initialize(unit_type)
 
 	side.add_unit(unit)
 	unit.place_at(loc)

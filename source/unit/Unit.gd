@@ -15,17 +15,17 @@ var viewable := {}
 
 export(float, 0.1, 1.0) var move_time := 0.15
 
-onready var anim := $AnimationPlayer as AnimationPlayer
-onready var sprite := $Sprite as Sprite
 onready var tween := $Tween as Tween
 
-onready var type := $Type as UnitType
+var type : UnitType = null
 
 func _ready() -> void:
 	health_current = type.health
 	moves_current = type.moves
-	if anim.has_animation("idle"):
-		anim.play("idle")
+	add_child(type)
+
+func initialize(unit_type: UnitType) -> void:
+	type = unit_type
 
 func place_at(loc: Location) -> void:
 	if location:
