@@ -1,7 +1,8 @@
 extends Node
 class_name DayTime
 
-export var tint := Color("FFFFFF")
+# TODO: use 3 ints?
+export var color_adjust := Vector3(0, 0, 0)
 
 export(Array, String) var advantage := []
 export(Array, String) var disadvantage := []

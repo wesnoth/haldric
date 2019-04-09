@@ -194,6 +194,7 @@ func set_tile(global_pos: Vector2, id: int):
 func set_time_of_day(daytime: DayTime) -> void:
 	for loc in locations.values():
 		loc.terrain.time_of_day = daytime
+	material.set_shader_param("delta", daytime.color_adjust)
 
 func get_location(cell: Vector2) -> Location:
 	if not _is_cell_in_map(cell):

@@ -4,7 +4,6 @@
 
 [node name="Morning" type="Node"]
 script = ExtResource( 1 )
-tint = Color( 0.984314, 0.980392, 0.956863, 1 )
 advantage = [ "lawful" ]
 disadvantage = [ "chaotic" ]
 bonus = 25

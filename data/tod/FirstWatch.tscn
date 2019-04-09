@@ -4,7 +4,7 @@
 
 [node name="FirstWatch" type="Node"]
 script = ExtResource( 1 )
-tint = Color( 0.603922, 0.584314, 0.764706, 1 )
+color_adjust = Vector3( -75, -45, -13 )
 advantage = [ "chaotic" ]
 disadvantage = [ "lawful" ]
 bonus = 25

@@ -4,5 +4,5 @@
 
 [node name="Sunset" type="Node"]
 script = ExtResource( 1 )
-tint = Color( 0.8, 0.705882, 0.737255, 1 )
+color_adjust = Vector3( 10, -20, -35 )
 
