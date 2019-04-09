@@ -3,7 +3,7 @@ extends Menu
 onready var version = $Version
 
 func _ready() -> void:
-	Audio.play(Registry.music.return_to_wesnoth)
+	#Audio.play(Registry.music.return_to_wesnoth)
 	version.text = Global.version_string
 
 	for button in $HUD/MenuBar/HBoxContainer/Buttons.get_children():
