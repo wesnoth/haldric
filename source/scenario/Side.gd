@@ -41,7 +41,7 @@ func _ready() -> void:
 
 	team_color = team_color.to_lower()
 	unit_shader = TeamColor.generate_team_shader(team_color)
-	flag_shader = null # TeamColor.generate_flag_shader(team_color)
+	flag_shader = TeamColor.generate_flag_shader(team_color)
 
 	calculate_upkeep()
 	calculate_income()
