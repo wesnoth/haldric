@@ -31,6 +31,17 @@ func find_path_by_cell(start_cell: Vector2, end_cell: Vector2) -> Array:
 			path2D.append(Vector2(point.x, point.y))
 	return path2D
 
+func make_cell_one_way(cell: Vector2):
+	var id: int = _flatten(cell)
+	var neighbors = Hex.get_neighbors(cell)
+
+	for n in neighbors:
+		var n_id: int = _flatten(n)
+
+		if _check_boundaries(n) and astar.are_points_connected(id, n_id):
+			astar.disconnect_points(id, n_id)
+			astar.connect_points(n_id,id,false)
+
 func block_cell(cell: Vector2):
 	_disconnect_with_neighbors(cell)
 
@@ -75,8 +86,12 @@ func _disconnect_with_neighbors(cell: Vector2) -> void:
 	for n in neighbors:
 		var n_id: int = _flatten(n)
 
-		if _check_boundaries(n) and astar.are_points_connected(id, n_id):
-			astar.disconnect_points(id, n_id)
+		if _check_boundaries(n):
+			if astar.are_points_connected(id, n_id):
+				astar.disconnect_points(id, n_id)
+			elif astar.are_points_connected(n_id, id):
+				astar.disconnect_points(n_id, id)
+		
 
 func _flatten(cell: Vector2) -> int:
 	return int(cell.y)*width + int(cell.x)

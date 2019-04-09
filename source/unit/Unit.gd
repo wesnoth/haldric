@@ -37,6 +37,9 @@ func place_at(loc: Location) -> void:
 func path_cost(unit_path : Array) -> int:
 	var cost = 0
 	for loc in unit_path:
+		if loc.unit:
+			if not loc.unit.side.number == side.number:
+				break #going to assume this is the end and nothing else needs to be added to cost
 		cost += get_movement_cost(loc)
 	return cost
 
@@ -67,6 +70,7 @@ func get_time_of_day_percentage() -> int:
 	return location.terrain.time_of_day.get_percentage(type.alignment)
 
 func set_reachable() -> void:
+	viewable = location.map.find_all_viewable_cells(self)
 	if moves_current == type.moves:
 		reachable = viewable
 		return
@@ -107,7 +111,10 @@ func _move() -> void:
 		#warning-ignore:return_value_discarded
 		tween.interpolate_property(self, "position", position, loc.position, move_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 
-		moves_current -= cost
+		if location.map.ZOC_tiles.has(location):
+			moves_current = 0
+		else:
+			moves_current -= cost
 		viewable = location.map.find_all_viewable_cells(self)
 		reveal_fog()
 		path.remove(0)
