@@ -89,7 +89,7 @@ func _set_side(value: Side) -> void:
 			var cell = Vector2(x,y)
 			if cell in used_fog:
 				continue
-			scenario.map.fog.set_cellv(cell,scenario.map.cover_tile)
+			scenario.map.fog.set_cellv(cell, scenario.map.fog_tile)
 
 	HUD.update_side_info(scenario, current_side)
 

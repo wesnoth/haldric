@@ -24,7 +24,7 @@ noise = SubResource( 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 7 )
-shader_param/intensity = 1.5
+shader_param/intensity = 1.0
 shader_param/offset = null
 shader_param/noise = SubResource( 2 )
 

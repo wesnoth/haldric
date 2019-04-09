@@ -16,7 +16,7 @@ void fragment() {
 	final.a = cover.a;
 	
 	if (final.a > 0.0) {
-		final.a = final.r * intensity;
+		final.a = min(final.a, final.r) * intensity;
 		final.r = final.r * 0.92
 	}
 	
