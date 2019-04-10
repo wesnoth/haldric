@@ -112,10 +112,11 @@ func _grab_village() -> void:
 			moves_current = 0
 
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
-	_grab_village()
 	Event.emit_signal("move_to", self, location)
 	if path:
 		_move()
+	else:
+		_grab_village()
 
 func _set_location(value: Location) -> void:
 	location = value
