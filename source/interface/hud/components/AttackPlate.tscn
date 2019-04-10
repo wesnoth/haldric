@@ -3,7 +3,7 @@
 [ext_resource path="res://source/interface/hud/components/AttackPlate.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=2]
 [ext_resource path="res://graphics/images/attacks/bow-elven.png" type="Texture" id=3]
-[ext_resource path="res://graphics/fonts/Raleway12.tres" type="DynamicFont" id=4]
+[ext_resource path="res://graphics/fonts/Lato12.tres" type="DynamicFont" id=4]
 
 [node name="AttackPlate" type="Control"]
 margin_right = 250.0
