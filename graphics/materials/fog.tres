@@ -32,19 +32,19 @@ void fragment() {
 	COLOR = final;
 }"
 
-[sub_resource type="OpenSimplexNoise" id=3]
+[sub_resource type="OpenSimplexNoise" id=2]
 octaves = 6
 lacunarity = 3.5
 
-[sub_resource type="NoiseTexture" id=4]
+[sub_resource type="NoiseTexture" id=3]
 width = 1024
 height = 1024
 seamless = true
-noise = SubResource( 3 )
+noise = SubResource( 2 )
 
 [resource]
 shader = SubResource( 1 )
 shader_param/intensity = 1.6
 shader_param/offset = null
-shader_param/noise = SubResource( 4 )
+shader_param/noise = SubResource( 3 )
 

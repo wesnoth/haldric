@@ -7,7 +7,7 @@ var health_current := 0
 var moves_current := 0
 var experience_current := 0
 
-var location: Location = null
+var location: Location = null setget _set_location
 
 var path := []
 var reachable := {} #setget _set_reachable
@@ -33,6 +33,7 @@ func place_at(loc: Location) -> void:
 	location = loc
 	position = location.position
 	location.unit = self
+	set_reachable() # TODO: do we want this?
 
 func path_cost(unit_path : Array) -> int:
 	var cost = 0
@@ -80,17 +81,6 @@ func set_reachable() -> void:
 		if cost <= moves_current:
 			reachable[key] = viewable[key]
 
-func highlight_moves() -> void:
-	for loc in reachable:
-		location.map.cover.set_cellv(loc.cell, -1)
-	location.map.cover.show()
-
-func unhighlight_moves() -> void:
-	var darken_id: int = location.map.tile_set.find_tile_by_name("Xv")
-	for loc in reachable:
-		location.map.cover.set_cellv(loc.cell, darken_id)
-	location.map.cover.hide()
-
 func _move() -> void:
 	if path and tween:
 		var loc: Location = path[0]
@@ -111,6 +101,7 @@ func _move() -> void:
 		else:
 			moves_current -= cost
 		viewable = location.map.find_all_viewable_cells(self)
+		set_reachable() # TODO: do we want this?
 		path.remove(0)
 		#warning-ignore:return_value_discarded
 		tween.start()
@@ -125,3 +116,7 @@ func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
 	Event.emit_signal("move_to", self, location)
 	if path:
 		_move()
+
+func _set_location(value: Location) -> void:
+	location = value
+	set_reachable() # TODO: do we want this?

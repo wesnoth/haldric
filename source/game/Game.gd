@@ -11,27 +11,36 @@ onready var HUD = $HUD as CanvasLayer
 onready var scenario_container := $ScenarioContainer as Node2D
 
 func _unhandled_input(event: InputEvent) -> void:
+	var loc: Location = scenario.map.get_location_from_mouse()
+
 	if event.is_action_pressed("mouse_left"):
-		var mouse_cell: Vector2 = scenario.map.world_to_map(get_global_mouse_position())
-		print(mouse_cell)
-		var location: Location = scenario.map.get_location(mouse_cell)
-		if location:
-			if location.unit and location.unit.side.number == current_side.number:
-				_set_selected_unit(location.unit)
-			elif selected_unit and not location.unit:
-				selected_unit.move_to(location)
+		if loc:
+			# Select a unit
+			if loc.unit and loc.unit.side.number == current_side.number:
+				_set_selected_unit(loc.unit)
+
+			# Move the selected unit
+			elif selected_unit and not loc.unit:
+				selected_unit.move_to(loc)
 				_set_selected_unit(null)
 
+	# Deselect a unit
 	elif event.is_action_pressed("mouse_right"):
 		_set_selected_unit(null)
 
-
+	# TODO: should not be handled by mouse move
 	elif event is InputEventMouseMotion:
-		var mouse_cell: Vector2 = scenario.map.world_to_map(get_global_mouse_position())
-		var loc: Location = scenario.map.get_location(mouse_cell)
-		if loc and selected_unit:
-			if scenario.unit_path_display.path.empty() or not scenario.unit_path_display.path.back() == loc:
-				_draw_temp_path(selected_unit.find_path(loc))
+		if loc:
+			var unit_under_mouse: Unit = selected_unit if selected_unit != null else loc.unit
+
+			# Display selected unit's path to hovered location
+			if selected_unit:
+				if scenario.unit_path_display.path.empty() or not scenario.unit_path_display.path.back() == loc:
+					_draw_temp_path(selected_unit.find_path(loc))
+			elif loc.unit:
+				scenario.map.display_reachable_for(loc.unit.reachable)
+			else:
+				scenario.map.display_reachable_for({})
 
 func _ready() -> void:
 	_load_map()
@@ -86,15 +95,11 @@ func _set_side(value: Side) -> void:
 		unit.viewable = scenario.map.find_all_viewable_cells(unit)
 
 func _set_selected_unit(value: Unit) -> void:
-	if selected_unit:
-		selected_unit.unhighlight_moves()
-
 	selected_unit = value
 
 	if selected_unit:
 		HUD.update_unit_info(selected_unit)
-		selected_unit.set_reachable()
-		selected_unit.highlight_moves()
+		scenario.map.display_reachable_for(selected_unit.reachable)
 	else:
 		# HUD.clear_unit_info()
 		_clear_temp_path()

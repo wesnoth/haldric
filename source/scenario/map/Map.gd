@@ -39,9 +39,9 @@ func _ready() -> void:
 	call_deferred("_update_size")
 
 func _unhandled_input(event: InputEvent) -> void:
+	# TODO: should not be handled by mouse move
 	if event is InputEventMouseMotion:
-		var mouse_cell: Vector2 = world_to_map(get_global_mouse_position())
-		var loc: Location = get_location(mouse_cell)
+		var loc: Location = get_location_from_mouse()
 
 		if loc:
 			cell_selector.position = loc.position
@@ -112,7 +112,7 @@ func update_weight(unit: Unit) -> void:
 		for val in ZOC_tiles[loc]:
 			grid.unblock_cell(val.cell)
 	ZOC_tiles.clear()
-	print("cell: " + String(unit.location.cell))
+	#print("cell: " + String(unit.location.cell))
 	for y in height:
 		for x in width:
 			var cell := Vector2(x, y)
@@ -305,3 +305,25 @@ func _flatten(cell: Vector2) -> int:
 
 func _is_cell_in_map(cell: Vector2) -> bool:
 	return cell.x >= 0 and cell.x < width and cell.y >= 0 and cell.y < height
+
+func get_location_from_mouse() -> Location:
+	return get_location(world_to_map(get_global_mouse_position()))
+
+func display_reachable_for(reachable_locs: Dictionary) -> void:
+	var darken_id: int = tile_set.find_tile_by_name("Xv")
+
+	# "Clear" the cover map by filling in everything with the Void terrain.
+	for y in height:
+		for x in width:
+			cover.set_cellv(Vector2(x, y), darken_id)
+
+	# Nothing to show, hide the map and bail.
+	if reachable_locs.empty():
+		cover.hide()
+		return;
+
+	# Punch out visible area
+	for loc in reachable_locs:
+		cover.set_cellv(loc.cell, -1)
+
+	cover.show()
