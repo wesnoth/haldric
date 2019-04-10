@@ -58,6 +58,8 @@ func _load_map() -> void:
 
 		if scenario:
 			scenario_container.add_child(scenario)
+			scenario.connect("unit_moved", self, "_on_unit_moved")
+			scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
 		else:
 			print("No .tscn file found for scenario " % Global.scenario_name)
 
@@ -111,6 +113,17 @@ func _next_side() -> void:
 
 	var new_index = (current_side.get_index() + 1) % scenario.sides.get_child_count()
 	_set_side(scenario.sides.get_child(new_index))
+
+func _grab_village(unit, location) -> void:
+	if location.terrain.gives_income:
+		if unit.side.add_village(location):
+			unit.moves_current = 0
+
+func _on_unit_moved(unit: Unit, location: Location) -> void:
+	Event.emit_signal("move_to", unit, location)
+
+func _on_unit_move_finished(unit: Unit, location: Location) -> void:
+	_grab_village(unit, location)
 
 func _on_HUD_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)

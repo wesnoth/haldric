@@ -1,6 +1,9 @@
 extends Node2D
 class_name Unit
 
+signal moved(unit, location)
+signal move_finished(unit, location)
+
 var side : Side = null
 
 var health_current := 0
@@ -106,17 +109,12 @@ func _move() -> void:
 		#warning-ignore:return_value_discarded
 		tween.start()
 
-func _grab_village() -> void:
-	if location.terrain.gives_income:
-		if side.add_village(location):
-			moves_current = 0
-
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
-	Event.emit_signal("move_to", self, location)
+	emit_signal("moved", self, location)
 	if path:
 		_move()
 	else:
-		_grab_village()
+		emit_signal("move_finished", self, location)
 
 func _set_location(value: Location) -> void:
 	location = value
