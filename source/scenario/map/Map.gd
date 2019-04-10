@@ -16,6 +16,7 @@ var ZOC_tiles := {}
 
 var village_count := 0
 
+onready var tween := $Tween as Tween
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
 onready var fog := $Fog as TileMap
@@ -203,11 +204,8 @@ func set_time_of_day(daytime: DayTime) -> void:
 		material.set_shader_param("delta", next_tint)
 		return
 
-	# TODO: can we use a tween?
-	for i in range(1, 10):
-		curr_tint = lerp(curr_tint, next_tint, 0.1)
-		material.set_shader_param("delta", curr_tint)
-		yield(get_tree().create_timer(0.01), "timeout")
+	tween.interpolate_property(material, "param/delta", curr_tint, next_tint, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
 
 func get_location(cell: Vector2) -> Location:
 	if not _is_cell_in_map(cell):

@@ -15,25 +15,25 @@
 [ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=13]
 [ext_resource path="res://source/scenario/UnitPathDisplay.gd" type="Script" id=14]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 shader_param/delta = null
 
-[sub_resource type="OpenSimplexNoise" id=3]
+[sub_resource type="OpenSimplexNoise" id=2]
 octaves = 6
 lacunarity = 3.5
 
-[sub_resource type="NoiseTexture" id=4]
+[sub_resource type="NoiseTexture" id=3]
 seamless = true
-noise = SubResource( 3 )
+noise = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 8 )
+shader_param/intensity = 1.0
+shader_param/offset = null
+shader_param/noise = SubResource( 3 )
 
 [sub_resource type="ShaderMaterial" id=5]
-shader = ExtResource( 8 )
-shader_param/intensity = 1.5
-shader_param/offset = null
-shader_param/noise = SubResource( 4 )
-
-[sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 11 )
 shader_param/BlendColor = Color( 0.3, 0.59, 0.11, 1 )
 shader_param/Blur = 0.2
@@ -41,7 +41,7 @@ shader_param/Saturation = 0.2
 shader_param/Contrast = 1.2
 shader_param/Brightness = 0.9
 
-[sub_resource type="Curve2D" id=7]
+[sub_resource type="Curve2D" id=6]
 _data = {
 "points": PoolVector2Array(  )
 }
@@ -55,12 +55,14 @@ script = ExtResource( 2 )
 [node name="Sides" type="Node2D" parent="."]
 
 [node name="Map" type="TileMap" parent="."]
-material = SubResource( 2 )
+material = SubResource( 1 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 script = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="Map"]
 
 [node name="Transitions" type="Node2D" parent="Map"]
 use_parent_material = true
@@ -118,7 +120,7 @@ format = 1
 [node name="LocationContainer" type="Node2D" parent="Map"]
 
 [node name="Fog" type="TileMap" parent="Map"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 z_index = 100
 tile_set = ExtResource( 9 )
 cell_size = Vector2( 54, 72 )
@@ -128,7 +130,7 @@ script = ExtResource( 10 )
 
 [node name="Cover" type="TileMap" parent="Map"]
 visible = false
-material = SubResource( 6 )
+material = SubResource( 5 )
 z_index = 100
 tile_set = ExtResource( 9 )
 cell_size = Vector2( 54, 72 )
@@ -145,7 +147,7 @@ texture = ExtResource( 13 )
 
 [node name="UnitPathDisplay" type="Path2D" parent="."]
 z_index = 500
-curve = SubResource( 7 )
+curve = SubResource( 6 )
 script = ExtResource( 14 )
 
 [node name="Tween" type="Tween" parent="UnitPathDisplay"]
