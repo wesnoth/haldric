@@ -11,27 +11,36 @@ onready var HUD = $HUD as CanvasLayer
 onready var scenario_container := $ScenarioContainer as Node2D
 
 func _unhandled_input(event: InputEvent) -> void:
+	var loc: Location = scenario.map.get_location_from_mouse()
+
 	if event.is_action_pressed("mouse_left"):
-		var mouse_cell: Vector2 = scenario.map.world_to_map(get_global_mouse_position())
-		print(mouse_cell)
-		var location: Location = scenario.map.get_location(mouse_cell)
-		if location:
-			if location.unit and location.unit.side.number == current_side.number:
-				_set_selected_unit(location.unit)
-			elif selected_unit and not location.unit:
-				selected_unit.move_to(location)
+		if loc:
+			# Select a unit
+			if loc.unit and loc.unit.side.number == current_side.number:
+				_set_selected_unit(loc.unit)
+
+			# Move the selected unit
+			elif selected_unit and not loc.unit:
+				selected_unit.move_to(loc)
 				_set_selected_unit(null)
 
+	# Deselect a unit
 	elif event.is_action_pressed("mouse_right"):
 		_set_selected_unit(null)
 
-
+	# TODO: should not be handled by mouse move
 	elif event is InputEventMouseMotion:
-		var mouse_cell: Vector2 = scenario.map.world_to_map(get_global_mouse_position())
-		var loc: Location = scenario.map.get_location(mouse_cell)
-		if loc and selected_unit:
-			if scenario.unit_path_display.path.empty() or not scenario.unit_path_display.path.back() == loc:
-				_draw_temp_path(selected_unit.find_path(loc))
+		if loc:
+			var unit_under_mouse: Unit = selected_unit if selected_unit != null else loc.unit
+
+			# Display selected unit's path to hovered location
+			if selected_unit:
+				if scenario.unit_path_display.path.empty() or not scenario.unit_path_display.path.back() == loc:
+					_draw_temp_path(selected_unit.find_path(loc))
+			elif loc.unit:
+				scenario.map.display_reachable_for(loc.unit.reachable)
+			else:
+				scenario.map.display_reachable_for({})
 
 func _ready() -> void:
 	_load_map()
@@ -49,20 +58,13 @@ func _load_map() -> void:
 
 		if scenario:
 			scenario_container.add_child(scenario)
+			scenario.connect("unit_moved", self, "_on_unit_moved")
+			scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
 		else:
 			print("No .tscn file found for scenario " % Global.scenario_name)
 
 func _load_units() -> void:
-	if scenario:
-		scenario.add_unit(1, "Archer", 4, 4)
-		scenario.add_unit(1, "Scout", 5, 4)
-		scenario.add_unit(1, "Fighter", 6, 4)
-		scenario.add_unit(1, "Shaman", 7, 4)
-
-		scenario.add_unit(2, "Bat", 12, 8)
-		scenario.add_unit(2, "Ghost", 13, 4)
-		scenario.add_unit(2, "Bat", 14, 4)
-		scenario.add_unit(2, "Ghost", 15, 4)
+	pass;
 
 func _draw_temp_path(path: Array) -> void:
 	if selected_unit:
@@ -88,32 +90,18 @@ func _set_side(value: Side) -> void:
 		scenario.next_time_of_day()
 		HUD.update_tod_info(scenario.time_of_day.current_time)
 
-	var used_fog = scenario.map.fog.get_used_cells()
-
-	for y in scenario.map.height:
-		for x in scenario.map.width:
-			var cell = Vector2(x,y)
-			if cell in used_fog:
-				continue
-			scenario.map.fog.set_cellv(cell, scenario.map.fog_tile)
-
 	HUD.update_side_info(scenario, current_side)
 
 	for unit in current_side.units.get_children():
 		unit.moves_current = unit.type.moves
 		unit.viewable = scenario.map.find_all_viewable_cells(unit)
-		unit.reveal_fog()
 
 func _set_selected_unit(value: Unit) -> void:
-	if selected_unit:
-		selected_unit.unhighlight_moves()
-
 	selected_unit = value
 
 	if selected_unit:
 		HUD.update_unit_info(selected_unit)
-		selected_unit.set_reachable()
-		selected_unit.highlight_moves()
+		scenario.map.display_reachable_for(selected_unit.reachable)
 	else:
 		# HUD.clear_unit_info()
 		_clear_temp_path()
@@ -125,6 +113,17 @@ func _next_side() -> void:
 
 	var new_index = (current_side.get_index() + 1) % scenario.sides.get_child_count()
 	_set_side(scenario.sides.get_child(new_index))
+
+func _grab_village(unit, location) -> void:
+	if location.terrain.gives_income:
+		if unit.side.add_village(location):
+			unit.moves_current = 0
+
+func _on_unit_moved(unit: Unit, location: Location) -> void:
+	Event.emit_signal("move_to", unit, location)
+
+func _on_unit_move_finished(unit: Unit, location: Location) -> void:
+	_grab_village(unit, location)
 
 func _on_HUD_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)

@@ -5,7 +5,7 @@
 [ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=3]
 [ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=5]
-[ext_resource path="res://graphics/fonts/Raleway28.tres" type="DynamicFont" id=6]
+[ext_resource path="res://graphics/fonts/Lato28.tres" type="DynamicFont" id=6]
 
 [node name="TurnEndPanel" type="Control"]
 margin_right = 180.0

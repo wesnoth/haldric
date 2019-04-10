@@ -104,7 +104,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/templates/RCard.gd"
 }, {
-"base": "Resource",
+"base": "RCard",
 "class": "RScenario",
 "language": "GDScript",
 "path": "res://source/templates/RScenario.gd"
@@ -124,12 +124,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/Scenario.gd"
 }, {
-"base": "Button",
+"base": "MenuCard",
 "class": "ScenarioCard",
 "language": "GDScript",
 "path": "res://source/interface/menus/components/ScenarioCard.gd"
 }, {
-"base": "ScrollContainer",
+"base": "CardSelector",
 "class": "ScenarioSelector",
 "language": "GDScript",
 "path": "res://source/interface/menus/components/ScenarioSelector.gd"
@@ -159,7 +159,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/Unit.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "UnitType",
 "language": "GDScript",
 "path": "res://source/unit/UnitType.gd"

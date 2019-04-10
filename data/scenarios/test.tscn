@@ -2,13 +2,15 @@
 
 [ext_resource path="res://source/scenario/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://data/scenarios/test.gd" type="Script" id=2]
-[ext_resource path="res://data/tod/Sunrise.tscn" type="PackedScene" id=3]
+[ext_resource path="res://data/tod/Dawn.tscn" type="PackedScene" id=3]
 [ext_resource path="res://data/tod/Morning.tscn" type="PackedScene" id=4]
 [ext_resource path="res://data/tod/Afternoon.tscn" type="PackedScene" id=5]
-[ext_resource path="res://data/tod/Sunset.tscn" type="PackedScene" id=6]
+[ext_resource path="res://data/tod/Dusk.tscn" type="PackedScene" id=6]
 [ext_resource path="res://data/tod/FirstWatch.tscn" type="PackedScene" id=7]
 [ext_resource path="res://data/tod/SecondWatch.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/scenario/Side.tscn" type="PackedScene" id=9]
+
+
 
 [node name="Scenario" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

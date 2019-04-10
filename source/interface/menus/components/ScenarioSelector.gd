@@ -12,7 +12,7 @@ func _add_scenario(scenario) -> void:
 	var file_data = Registry.scenarios[scenario]
 	var button = ScenarioCard.instance()
 	button.connect("pressed", self, "_on_scenario_card_pressed", [scenario])
-	grid_container.add_child(button)
+	card_container.add_child(button)
 	button.initialize(file_data.data)
 
 func _on_scenario_card_pressed(id):

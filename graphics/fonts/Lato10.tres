@@ -3,7 +3,6 @@
 [ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 32
-extra_spacing_char = 1
+size = 10
 font_data = ExtResource( 1 )
 

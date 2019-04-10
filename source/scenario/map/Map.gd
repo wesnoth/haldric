@@ -16,16 +16,17 @@ var ZOC_tiles := {}
 
 var village_count := 0
 
+onready var tween := $Tween as Tween
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
-onready var fog := $Fog as TileMap
 
 onready var cover_tile: int = tile_set.find_tile_by_name("Xv")
-onready var fog_tile: int = fog.tile_set.find_tile_by_name("XV")
 
 onready var transitions := $Transitions as Transitions
 
 onready var cell_selector := $CellSelector as Node2D
+
+onready var map_border = $MapBorder
 
 func _ready() -> void:
 	_update_size()
@@ -38,9 +39,9 @@ func _ready() -> void:
 	call_deferred("_update_size")
 
 func _unhandled_input(event: InputEvent) -> void:
+	# TODO: should not be handled by mouse move
 	if event is InputEventMouseMotion:
-		var mouse_cell: Vector2 = world_to_map(get_global_mouse_position())
-		var loc: Location = get_location(mouse_cell)
+		var loc: Location = get_location_from_mouse()
 
 		if loc:
 			cell_selector.position = loc.position
@@ -138,7 +139,7 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 		for val in ZOC_tiles[loc]:
 			grid.unblock_cell(val.cell)
 	ZOC_tiles.clear()
-	print("cell: " + String(unit.location.cell))
+	#print("cell: " + String(unit.location.cell))
 	for y in height:
 		for x in width:
 			var cell := Vector2(x, y)
@@ -223,9 +224,19 @@ func set_tile(global_pos: Vector2, id: int):
 	_update_size()
 
 func set_time_of_day(daytime: DayTime) -> void:
+	# TODO: global shader not taking individual time areas into account...
 	for loc in locations.values():
 		loc.terrain.time_of_day = daytime
-	material.set_shader_param("delta", daytime.color_adjust)
+
+	var curr_tint: Vector3 = material.get_shader_param("delta")
+	var next_tint: Vector3 = daytime.color_adjust
+
+	if curr_tint == null or curr_tint == next_tint:
+		material.set_shader_param("delta", next_tint)
+		return
+
+	tween.interpolate_property(material, "param/delta", curr_tint, next_tint, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
 
 func get_location(cell: Vector2) -> Location:
 	if not _is_cell_in_map(cell):
@@ -280,7 +291,6 @@ func _initialize_locations() -> void:
 					village_count += 1
 
 			cover.set_cellv(cell, cover_tile)
-			fog.set_cellv(cell, fog_tile)
 
 			base_code = tile_set.tile_get_name(get_cell(x, y))
 
@@ -309,16 +319,14 @@ func _update_size() -> void:
 	width = int(get_used_rect().size.x)
 	height = int(get_used_rect().size.y)
 	if width % 2 == 0:
-		$MapBorder.rect_size =\
-				map_to_world(Vector2(width, height)) + Vector2(18, 36)
+		map_border.rect_size = map_to_world(Vector2(width, height)) + Vector2(18, 36)
 	else:
-		$MapBorder.rect_size =\
-				map_to_world(Vector2(width, height)) + Vector2(18, 0)
+		map_border.rect_size = map_to_world(Vector2(width, height)) + Vector2(18, 0)
 
 func _initialize_border() -> void:
 	var size := Vector2(width, height)
 	print(size)
-	$MapBorder.rect_size = map_to_world(size) + Vector2(18, 36)
+	map_border.rect_size = map_to_world(size) + Vector2(18, 36)
 
 func _initialize_transitions() -> void:
 		transitions.update_transitions(self)
@@ -328,3 +336,25 @@ func _flatten(cell: Vector2) -> int:
 
 func _is_cell_in_map(cell: Vector2) -> bool:
 	return cell.x >= 0 and cell.x < width and cell.y >= 0 and cell.y < height
+
+func get_location_from_mouse() -> Location:
+	return get_location(world_to_map(get_global_mouse_position()))
+
+func display_reachable_for(reachable_locs: Dictionary) -> void:
+	var darken_id: int = tile_set.find_tile_by_name("Xv")
+
+	# "Clear" the cover map by filling in everything with the Void terrain.
+	for y in height:
+		for x in width:
+			cover.set_cellv(Vector2(x, y), darken_id)
+
+	# Nothing to show, hide the map and bail.
+	if reachable_locs.empty():
+		cover.hide()
+		return;
+
+	# Punch out visible area
+	for loc in reachable_locs:
+		cover.set_cellv(loc.cell, -1)
+
+	cover.show()

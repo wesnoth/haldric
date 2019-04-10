@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=2]
 
-[sub_resource type="OpenSimplexNoise" id=7]
+[sub_resource type="OpenSimplexNoise" id=1]
 octaves = 6
 period = 0.1
 persistence = 0.1
 
-[sub_resource type="NoiseTexture" id=8]
+[sub_resource type="NoiseTexture" id=2]
 flags = 3
 width = 256
 height = 256
 seamless = true
-noise = SubResource( 7 )
+noise = SubResource( 1 )
 
 [node name="OffMap" type="ParallaxBackground"]
 
@@ -24,6 +24,6 @@ anchor_bottom = 1.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 mouse_filter = 2
-texture = SubResource( 8 )
+texture = SubResource( 2 )
 stretch_mode = 2
 

@@ -1,13 +1,16 @@
 extends Node2D
 class_name Unit
 
+signal moved(unit, location)
+signal move_finished(unit, location)
+
 var side : Side = null
 
 var health_current := 0
 var moves_current := 0
 var experience_current := 0
 
-var location: Location = null
+var location: Location = null setget _set_location
 
 var path := []
 var reachable := {} #setget _set_reachable
@@ -33,6 +36,7 @@ func place_at(loc: Location) -> void:
 	location = loc
 	position = location.position
 	location.unit = self
+	set_reachable() # TODO: do we want this?
 
 func path_cost(unit_path : Array) -> int:
 	var cost = 0
@@ -74,22 +78,6 @@ func set_reachable() -> void:
 		viewable = location.map.find_all_viewable_cells(self)
 	reachable = location.map.find_all_reachable_cells(self)
 
-func highlight_moves() -> void:
-	for loc in reachable:
-		location.map.cover.set_cellv(loc.cell, -1)
-	location.map.cover.show()
-
-func unhighlight_moves() -> void:
-	var darken_id: int = location.map.tile_set.find_tile_by_name("Xv")
-	for loc in reachable:
-		location.map.cover.set_cellv(loc.cell, darken_id)
-	location.map.cover.hide()
-
-func reveal_fog() -> void:
-	for loc in viewable:
-		location.map.fog.set_cellv(loc.cell, -1)
-	location.map.fog.set_cellv(location.cell,-1)
-
 func _move() -> void:
 	if path and tween:
 		var loc: Location = path[0]
@@ -110,18 +98,18 @@ func _move() -> void:
 		else:
 			moves_current -= cost
 		viewable = location.map.find_all_viewable_cells(self)
-		reveal_fog()
+		set_reachable() # TODO: do we want this?
 		path.remove(0)
 		#warning-ignore:return_value_discarded
 		tween.start()
 
-func _grab_village() -> void:
-	if location.terrain.gives_income:
-		if side.add_village(location):
-			moves_current = 0
-
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
-	_grab_village()
-	Event.emit_signal("move_to", self, location)
+	emit_signal("moved", self, location)
 	if path:
 		_move()
+	else:
+		emit_signal("move_finished", self, location)
+
+func _set_location(value: Location) -> void:
+	location = value
+	set_reachable() # TODO: do we want this?
