@@ -14,50 +14,54 @@ script = ExtResource( 2 )
 modulate = Color( 1, 1, 1, 0 )
 
 [node name="SidePanelBorderLeft" parent="HUD/MenuBar/HBoxContainer" index="0"]
-margin_left = 294.0
-margin_right = 494.0
+margin_left = 695.0
+margin_right = 895.0
+margin_bottom = 385.0
 
 [node name="Buttons" parent="HUD/MenuBar/HBoxContainer" index="1"]
-margin_left = 494.0
-margin_right = 1292.0
+margin_left = 895.0
+margin_right = 1025.0
+margin_bottom = 385.0
 
 [node name="Tutorials" parent="HUD/MenuBar/HBoxContainer/Buttons" index="0" instance=ExtResource( 3 )]
-margin_right = 133.0
-margin_bottom = 60.0
+margin_right = 130.0
+margin_bottom = 55.0
 
 [node name="Campaigns" parent="HUD/MenuBar/HBoxContainer/Buttons" index="1" instance=ExtResource( 3 )]
-margin_left = 133.0
-margin_right = 266.0
-margin_bottom = 60.0
+margin_top = 55.0
+margin_right = 130.0
+margin_bottom = 110.0
 
 [node name="Scenarios" parent="HUD/MenuBar/HBoxContainer/Buttons" index="2" instance=ExtResource( 3 )]
-margin_left = 266.0
-margin_right = 399.0
-margin_bottom = 60.0
+margin_top = 110.0
+margin_right = 130.0
+margin_bottom = 165.0
 
 [node name="Addons" parent="HUD/MenuBar/HBoxContainer/Buttons" index="3" instance=ExtResource( 3 )]
-margin_left = 399.0
-margin_right = 532.0
-margin_bottom = 60.0
+margin_top = 165.0
+margin_right = 130.0
+margin_bottom = 220.0
 
 [node name="Settings" parent="HUD/MenuBar/HBoxContainer/Buttons" index="4" instance=ExtResource( 3 )]
-margin_left = 532.0
-margin_right = 665.0
-margin_bottom = 60.0
+margin_top = 220.0
+margin_right = 130.0
+margin_bottom = 275.0
 
 [node name="Credits" parent="HUD/MenuBar/HBoxContainer/Buttons" index="5" instance=ExtResource( 3 )]
-margin_left = 665.0
-margin_right = 798.0
-margin_bottom = 60.0
+margin_top = 275.0
+margin_right = 130.0
+margin_bottom = 330.0
 
-[node name="Quit" parent="HUD/MenuBar/HBoxContainer" index="2" instance=ExtResource( 3 )]
-margin_left = 1292.0
-margin_right = 1425.0
-margin_bottom = 60.0
+[node name="Quit" parent="HUD/MenuBar/HBoxContainer/Buttons" index="6" instance=ExtResource( 3 )]
+margin_top = 330.0
+margin_right = 130.0
+margin_bottom = 385.0
+has_page = false
 
-[node name="SidePanelBorderRight" parent="HUD/MenuBar/HBoxContainer" index="3"]
-margin_left = 1425.0
-margin_right = 1625.0
+[node name="SidePanelBorderRight" parent="HUD/MenuBar/HBoxContainer" index="2"]
+margin_left = 1025.0
+margin_right = 1225.0
+margin_bottom = 385.0
 
 [node name="Pages" parent="." index="4"]
 anchor_right = 1.0
@@ -88,6 +92,6 @@ margin_right = 151.0
 margin_bottom = -5.0
 text = "Version: 0.0.0-status"
 
-[connection signal="pressed" from="HUD/MenuBar/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="HUD/MenuBar/HBoxContainer/Buttons/Quit" to="." method="_on_Quit_pressed"]
 
 [editable path="HUD/MenuBar"]

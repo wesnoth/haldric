@@ -7,7 +7,8 @@ func _ready() -> void:
 	version.text = Global.version_string
 
 	for button in $HUD/MenuBar/HBoxContainer/Buttons.get_children():
-		menu_bar.register_button(button)
+		if button.has_page:
+			menu_bar.register_button(button)
 
 	call_deferred("_set_current_page", pages[1])
 	menu_bar.reveal()
