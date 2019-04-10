@@ -60,8 +60,8 @@ func find_path(start_loc: Location, end_loc: Location) -> Array:
 
 	return loc_path
 
-func find_all_viewable_cells(unit: Unit) -> Dictionary:
-	update_weight(unit)
+func find_all_viewable_cells(unit: Unit) -> Array:
+	update_weight(unit, false, true)
 	var paths := {}
 	paths[unit.location] = []
 	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, width, height)
@@ -77,9 +77,36 @@ func find_all_viewable_cells(unit: Unit) -> Dictionary:
 		var cost := 0
 		for path_cell in path:
 			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
+			if cost + cell_cost > unit.type.moves:
+				break
+
+			cost += cell_cost
+			new_path.append(path_cell)
+			paths[path_cell] = []
+			if cost == unit.type.moves:
+				break
+	return paths.keys()
+
+func find_all_reachable_cells(unit: Unit) -> Dictionary:
+	update_weight(unit)
+	var paths := {}
+	paths[unit.location] = []
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.moves_current, width, height)
+	cells.pop_front()
+	cells.invert()
+	for cell in cells:
+		if paths.has(cell):
+			continue
+		var path: Array = find_path(unit.location, get_location(cell))
+		if path.empty():
+			continue
+		var new_path := []
+		var cost := 0
+		for path_cell in path:
+			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
 			if ZOC_tiles.has(path_cell):
 				cell_cost = 1
-			if cost + cell_cost > unit.type.moves:
+			if cost + cell_cost > unit.moves_current:
 				break
 
 			cost += cell_cost
@@ -93,7 +120,7 @@ func find_all_viewable_cells(unit: Unit) -> Dictionary:
 						paths[enemey_cell] = attack_path.duplicate(true)
 						attack_path.pop_back()
 				break
-			if cost == unit.type.moves:
+			if cost == unit.moves_current:
 				break
 	return paths
 
@@ -102,7 +129,7 @@ func update_terrain() -> void:
 	_initialize_grid()
 	_initialize_transitions()
 
-func update_weight(unit: Unit) -> void:
+func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = false) -> void:
 	#for label in labels:
 	#	remove_child(label)
 	#labels.clear()
@@ -118,38 +145,42 @@ func update_weight(unit: Unit) -> void:
 			var id: int = _flatten(cell)
 			var location: Location = locations[id]
 			var cost: int = unit.get_movement_cost(location)
-
+			
 			var other_unit = location.unit
-			if other_unit:
+			if not ignore_units and other_unit:
 				if not other_unit.side.number == unit.side.number:
 					cost = 1
-					var current_cell := Vector2(cell.x, cell.y + 1)
-					var next_cell := Vector2(cell.x, cell.y + 1)
-					var neighbors: Array = Hex.get_neighbors(location.cell)
-					for neighbor in neighbors:
-						if not _is_cell_in_map(neighbor):
-							continue
-						if unit.location.cell == neighbor:
-							continue
-						grid.block_cell(neighbor)
-						var new_neighbors = Hex.get_neighbors(neighbor)
-						for new_neighbor in new_neighbors:
-							if not _is_cell_in_map(new_neighbor):
+					#var current_cell := Vector2(cell.x, cell.y + 1)
+					#var next_cell := Vector2(cell.x, cell.y + 1)
+					if ignore_ZOC:
+						Hex.make_cell_one_way(location.cell)
+						ZOC_tiles[location]=[]
+					else:
+						var neighbors: Array = Hex.get_neighbors(location.cell)
+						for neighbor in neighbors:
+							if not _is_cell_in_map(neighbor):
 								continue
-							if new_neighbor in neighbors and not unit.location.cell == new_neighbor:
+							if unit.location.cell == neighbor:
 								continue
-							if new_neighbor == location.cell:
-								grid.astar.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
-							elif get_location(new_neighbor) in ZOC_tiles.keys():
-								if grid.astar.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
-									grid.astar.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
+							grid.block_cell(neighbor)
+							var new_neighbors = Hex.get_neighbors(neighbor)
+							for new_neighbor in new_neighbors:
+								if not _is_cell_in_map(new_neighbor):
+									continue
+								if new_neighbor in neighbors and not unit.location.cell == new_neighbor:
+									continue
+								if new_neighbor == location.cell:
+									grid.astar.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
+								elif get_location(new_neighbor) in ZOC_tiles.keys():
+									if grid.astar.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
+										grid.astar.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
+								else:
+									grid.astar.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
+							#print("zoc - " + String(current_cell))
+							if ZOC_tiles.has(get_location(neighbor)):
+								ZOC_tiles[get_location(neighbor)].append(location)
 							else:
-								grid.astar.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
-						#print("zoc - " + String(current_cell))
-						if ZOC_tiles.has(get_location(neighbor)):
-							ZOC_tiles[get_location(neighbor)].append(location)
-						else:
-							ZOC_tiles[get_location(neighbor)] = [location]
+								ZOC_tiles[get_location(neighbor)] = [location]
 			#print(cost)
 
 			grid.astar.set_point_weight_scale(id, cost)

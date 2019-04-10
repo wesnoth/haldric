@@ -11,7 +11,7 @@ var location: Location = null
 
 var path := []
 var reachable := {} #setget _set_reachable
-var viewable := {}
+var viewable := []
 
 export(float, 0.1, 1.0) var move_time := 0.15
 
@@ -70,15 +70,9 @@ func get_time_of_day_percentage() -> int:
 	return location.terrain.time_of_day.get_percentage(type.alignment)
 
 func set_reachable() -> void:
-	viewable = location.map.find_all_viewable_cells(self)
-	if moves_current == type.moves:
-		reachable = viewable
-		return
-	reachable.clear()
-	for key in viewable.keys():
-		var cost = path_cost(viewable[key])
-		if cost <= moves_current:
-			reachable[key] = viewable[key]
+	if viewable.empty():
+		viewable = location.map.find_all_viewable_cells(self)
+	reachable = location.map.find_all_reachable_cells(self)
 
 func highlight_moves() -> void:
 	for loc in reachable:
