@@ -15,5 +15,5 @@ func _draw() -> void:
 	if units:
 		for unit in units:
 			if unit.side.number == side:
-				for reachable in unit.reachable:
-					draw_texture(void_texture, reachable.position)
+				for viewable in unit.viewable:
+					draw_texture(void_texture, viewable.position)
