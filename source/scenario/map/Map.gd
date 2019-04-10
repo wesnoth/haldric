@@ -200,7 +200,7 @@ func set_time_of_day(daytime: DayTime) -> void:
 	var curr_tint: Vector3 = material.get_shader_param("delta")
 	var next_tint: Vector3 = daytime.color_adjust
 
-	if not curr_tint or curr_tint == next_tint :
+	if curr_tint == null or curr_tint == next_tint:
 		material.set_shader_param("delta", next_tint)
 		return
 
