@@ -6,30 +6,31 @@
 [ext_resource path="res://source/interface/menus/components/MenuCard.tscn" type="PackedScene" id=4]
 [ext_resource path="res://graphics/images/maps/titlescreen.png" type="Texture" id=5]
 
-[node name="Scenarios" instance=ExtResource( 1 )]
+[node name="Scenarios" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="ScenarioSelector" parent="." index="2" instance=ExtResource( 3 )]
 
 [node name="CenterContainer" parent="ScenarioSelector" index="0"]
-margin_bottom = 450.0
+margin_bottom = 910.0
 
-[node name="GridContainer" parent="ScenarioSelector/CenterContainer" index="0"]
+[node name="CardContainer" parent="ScenarioSelector/CenterContainer" index="0"]
 margin_left = 755.0
+margin_top = 230.0
 margin_right = 1065.0
-margin_bottom = 450.0
+margin_bottom = 680.0
 
-[node name="MapEditor" parent="ScenarioSelector/CenterContainer/GridContainer" index="0" instance=ExtResource( 4 )]
+[node name="MapEditor" parent="ScenarioSelector/CenterContainer/CardContainer" index="0" instance=ExtResource( 4 )]
 editor/display_folded = true
 
-[node name="CardImage" parent="ScenarioSelector/CenterContainer/GridContainer/MapEditor" index="1"]
+[node name="CardImage" parent="ScenarioSelector/CenterContainer/CardContainer/MapEditor" index="1"]
 texture = ExtResource( 5 )
 
-[node name="Title" parent="ScenarioSelector/CenterContainer/GridContainer/MapEditor" index="4"]
+[node name="Title" parent="ScenarioSelector/CenterContainer/CardContainer/MapEditor" index="4"]
 text = "Map Editor"
 
-[connection signal="pressed" from="ScenarioSelector/CenterContainer/GridContainer/MapEditor" to="." method="_on_MapEditor_pressed"]
+[connection signal="pressed" from="ScenarioSelector/CenterContainer/CardContainer/MapEditor" to="." method="_on_MapEditor_pressed"]
 
 [editable path="ScenarioSelector"]
 
-[editable path="ScenarioSelector/CenterContainer/GridContainer/MapEditor"]
+[editable path="ScenarioSelector/CenterContainer/CardContainer/MapEditor"]
