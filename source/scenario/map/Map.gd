@@ -28,6 +28,8 @@ onready var transitions := $Transitions as Transitions
 
 onready var cell_selector := $CellSelector as Node2D
 
+onready var map_boder = $MapBorder
+
 func _ready() -> void:
 	_update_size()
 	_initialize_locations()
@@ -289,16 +291,14 @@ func _update_size() -> void:
 	width = int(get_used_rect().size.x)
 	height = int(get_used_rect().size.y)
 	if width % 2 == 0:
-		$MapBorder.rect_size =\
-				map_to_world(Vector2(width, height)) + Vector2(18, 36)
+		map_boder.rect_size = map_to_world(Vector2(width, height)) + Vector2(18, 36)
 	else:
-		$MapBorder.rect_size =\
-				map_to_world(Vector2(width, height)) + Vector2(18, 0)
+		map_boder.rect_size = map_to_world(Vector2(width, height)) + Vector2(18, 0)
 
 func _initialize_border() -> void:
 	var size := Vector2(width, height)
 	print(size)
-	$MapBorder.rect_size = map_to_world(size) + Vector2(18, 36)
+	map_boder.rect_size = map_to_world(size) + Vector2(18, 36)
 
 func _initialize_transitions() -> void:
 		transitions.update_transitions(self)
