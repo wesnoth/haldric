@@ -192,9 +192,22 @@ func set_tile(global_pos: Vector2, id: int):
 	_update_size()
 
 func set_time_of_day(daytime: DayTime) -> void:
+	# TODO: global shader not taking individual time areas into account...
 	for loc in locations.values():
 		loc.terrain.time_of_day = daytime
-	material.set_shader_param("delta", daytime.color_adjust)
+
+	var curr_tint: Vector3 = material.get_shader_param("delta")
+	var next_tint: Vector3 = daytime.color_adjust
+
+	if not curr_tint or curr_tint == next_tint :
+		material.set_shader_param("delta", next_tint)
+		return
+
+	# TODO: can we use a tween?
+	for i in range(1, 10):
+		curr_tint = lerp(curr_tint, next_tint, 0.1)
+		material.set_shader_param("delta", curr_tint)
+		yield(get_tree().create_timer(0.01), "timeout")
 
 func get_location(cell: Vector2) -> Location:
 	if not _is_cell_in_map(cell):
