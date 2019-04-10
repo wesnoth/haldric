@@ -88,21 +88,11 @@ func _set_side(value: Side) -> void:
 		scenario.next_time_of_day()
 		HUD.update_tod_info(scenario.time_of_day.current_time)
 
-	var used_fog = scenario.map.fog.get_used_cells()
-
-	for y in scenario.map.height:
-		for x in scenario.map.width:
-			var cell = Vector2(x,y)
-			if cell in used_fog:
-				continue
-			scenario.map.fog.set_cellv(cell, scenario.map.fog_tile)
-
 	HUD.update_side_info(scenario, current_side)
 
 	for unit in current_side.units.get_children():
 		unit.moves_current = unit.type.moves
 		unit.viewable = scenario.map.find_all_viewable_cells(unit)
-		unit.reveal_fog()
 
 func _set_selected_unit(value: Unit) -> void:
 	if selected_unit:

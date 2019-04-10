@@ -91,11 +91,6 @@ func unhighlight_moves() -> void:
 		location.map.cover.set_cellv(loc.cell, darken_id)
 	location.map.cover.hide()
 
-func reveal_fog() -> void:
-	for loc in viewable:
-		location.map.fog.set_cellv(loc.cell, -1)
-	location.map.fog.set_cellv(location.cell,-1)
-
 func _move() -> void:
 	if path and tween:
 		var loc: Location = path[0]
@@ -116,7 +111,6 @@ func _move() -> void:
 		else:
 			moves_current -= cost
 		viewable = location.map.find_all_viewable_cells(self)
-		reveal_fog()
 		path.remove(0)
 		#warning-ignore:return_value_discarded
 		tween.start()

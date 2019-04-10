@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://source/scenario/Scenario.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/TimeOfDay.gd" type="Script" id=2]
@@ -7,34 +7,18 @@
 [ext_resource path="res://source/scenario/map/Map.gd" type="Script" id=5]
 [ext_resource path="res://source/scenario/Transitions.gd" type="Script" id=6]
 [ext_resource path="res://graphics/tilesets/transitions.tres" type="TileSet" id=7]
-[ext_resource path="res://graphics/shaders/fog.shader" type="Shader" id=8]
+[ext_resource path="res://graphics/shaders_visual/cover.tres" type="Shader" id=8]
 [ext_resource path="res://graphics/tilesets/void.tres" type="TileSet" id=9]
-[ext_resource path="res://source/scenario/Fog.gd" type="Script" id=10]
-[ext_resource path="res://graphics/shaders_visual/cover.tres" type="Shader" id=11]
-[ext_resource path="res://source/scenario/MapBorder.tscn" type="PackedScene" id=12]
-[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=13]
-[ext_resource path="res://source/scenario/UnitPathDisplay.gd" type="Script" id=14]
+[ext_resource path="res://source/scenario/MapBorder.tscn" type="PackedScene" id=10]
+[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=11]
+[ext_resource path="res://source/scenario/UnitPathDisplay.gd" type="Script" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 shader_param/delta = null
 
-[sub_resource type="OpenSimplexNoise" id=2]
-octaves = 6
-lacunarity = 3.5
-
-[sub_resource type="NoiseTexture" id=3]
-seamless = true
-noise = SubResource( 2 )
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 8 )
-shader_param/intensity = 1.0
-shader_param/offset = null
-shader_param/noise = SubResource( 3 )
-
 [sub_resource type="ShaderMaterial" id=5]
-shader = ExtResource( 11 )
+shader = ExtResource( 8 )
 shader_param/BlendColor = Color( 0.3, 0.59, 0.11, 1 )
 shader_param/Blur = 0.2
 shader_param/Saturation = 0.2
@@ -119,15 +103,6 @@ format = 1
 
 [node name="LocationContainer" type="Node2D" parent="Map"]
 
-[node name="Fog" type="TileMap" parent="Map"]
-material = SubResource( 4 )
-z_index = 100
-tile_set = ExtResource( 9 )
-cell_size = Vector2( 54, 72 )
-cell_half_offset = 1
-format = 1
-script = ExtResource( 10 )
-
 [node name="Cover" type="TileMap" parent="Map"]
 visible = false
 material = SubResource( 5 )
@@ -137,18 +112,18 @@ cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
-[node name="MapBorder" parent="Map" instance=ExtResource( 12 )]
+[node name="MapBorder" parent="Map" instance=ExtResource( 10 )]
 margin_right = 144.0
 margin_bottom = 144.0
 
 [node name="CellSelector" type="Sprite" parent="Map"]
 z_index = 600
-texture = ExtResource( 13 )
+texture = ExtResource( 11 )
 
 [node name="UnitPathDisplay" type="Path2D" parent="."]
 z_index = 500
 curve = SubResource( 6 )
-script = ExtResource( 14 )
+script = ExtResource( 12 )
 
 [node name="Tween" type="Tween" parent="UnitPathDisplay"]
 

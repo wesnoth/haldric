@@ -1,0 +1,50 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float intensity : hint_range(0.1, 2.0);
+uniform sampler2D noise : hint_albedo;
+uniform vec2 offset;
+
+void fragment() {
+	vec4 cover = texture(TEXTURE, UV);
+	vec2 coord = SCREEN_UV + vec2(offset.x, -offset.y);
+	
+	vec4 n = texture(noise, coord + TIME * 0.01);
+	vec4 n2 = texture(noise, vec2(coord.y, coord.x) - TIME * 0.01);
+	
+	if (cover.r > 0.0) {
+		cover.a = 1.0 - cover.r;
+		cover.rgb = vec3(0.0, 0.0, 0.0);
+	}
+	
+	vec4 final = mix(n, n2, 0.5);
+	
+	final.a = cover.a;
+	
+	if (final.a > 0.0) {
+		final.a = min(final.a, final.r);
+		final.a = min(final.a, final.r) * intensity;
+		final.r = final.r * 0.92
+	}
+	
+	COLOR = final;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=3]
+octaves = 6
+lacunarity = 3.5
+
+[sub_resource type="NoiseTexture" id=4]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 3 )
+
+[resource]
+shader = SubResource( 1 )
+shader_param/intensity = 1.6
+shader_param/offset = null
+shader_param/noise = SubResource( 4 )
+
