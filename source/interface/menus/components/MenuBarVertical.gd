@@ -7,7 +7,7 @@ var buttons := {}
 
 var current_id := 0
 
-onready var hover := $ButtonHover as ColorRect
+onready var hover := $GradientButtonHover as TextureRect
 onready var tween := $Tween as Tween
 
 func reveal() -> void:

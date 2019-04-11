@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://source/interface/menus/components/MenuBarVertical.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=2]
+[ext_resource path="res://source/interface/menus/components/GradientButtonHover.tscn" type="PackedScene" id=3]
 
 [node name="MenuBarVertical" type="Control"]
 margin_right = 350.0
@@ -25,10 +26,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 alignment = 1
 
-[node name="ButtonHover" type="ColorRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color( 1, 1, 1, 0.235294 )
+[node name="GradientButtonHover" parent="." instance=ExtResource( 3 )]
 

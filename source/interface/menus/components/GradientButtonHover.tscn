@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.0873786, 0.296117, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.784314, 1, 1, 1, 0.196078, 1, 1, 1, 0.0643963, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.165049, 0.572816, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.784314, 1, 1, 1, 0.196078, 1, 1, 1, 0.0643963, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[node name="GradientButtonHover" type="TextureRect"]
+margin_right = 350.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 2 )
+expand = true
+
+[node name="BorderBottom" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+rect_min_size = Vector2( 0, 1 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 4 )
+expand = true
+
+[node name="Bordertop" type="TextureRect" parent="."]
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 1 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 4 )
+expand = true
+
