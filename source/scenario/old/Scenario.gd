@@ -7,12 +7,15 @@ signal unit_move_finished(unit, location)
 var turn := 0
 var turns := -1
 
+export var schedule_id := "default"
+
 onready var map := $Map as Map
 onready var sides := $Sides as Node
-onready var time_of_day := $Times
+onready var schedule := Schedule.new()
 
 func _ready() -> void:
-	map.set_time_of_day(time_of_day.current_time)
+	_load_schedule()
+	map.update_time(schedule.current_time)
 	TeamColor.initialize_flag_colors()
 
 func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
@@ -37,9 +40,26 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 func get_village_count() -> int:
 	return map.village_count
 
-func next_time_of_day() -> void:
-	time_of_day.next()
-	map.set_time_of_day(time_of_day.current_time)
+func cycle_schedule() -> void:
+	schedule.next()
+	map.update_time(schedule.current_time)
+
+func _load_schedule() -> void:
+	add_child(schedule)
+
+	var time_schedule = Registry.schedules[schedule_id]
+	if not time_schedule:
+		time_schedule = Registry.schedules["default"]
+
+	print(time_schedule)
+	for time_id in time_schedule.schedule:
+		print(time_id)
+		if Registry.times.has(time_id):
+			var res = Registry.times[time_id]
+			var time = Time.new()
+			schedule.add_child(time)
+			print("added ", time)
+			time.initialize(res)
 
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	emit_signal("unit_moved", unit, location)

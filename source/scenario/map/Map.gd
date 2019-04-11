@@ -212,17 +212,17 @@ func set_tile(global_pos: Vector2, id: int):
 		set_cellv(cell, id)
 	_update_size()
 
-func set_time_of_day(daytime: DayTime) -> void:
+func update_time(time: Time) -> void:
 	# TODO: handl better
-	if daytime == null:
+	if time == null:
 		return
 
 	# TODO: global shader not taking individual time areas into account...
 	for loc in locations.values():
-		loc.terrain.time_of_day = daytime
+		loc.terrain.time = time
 
 	var curr_tint: Vector3 = material.get_shader_param("delta")
-	var next_tint: Vector3 = daytime.color_adjust
+	var next_tint: Vector3 = Vector3(time.tint.red, time.tint.green, time.tint.blue)
 
 	if curr_tint == null or curr_tint == next_tint:
 		material.set_shader_param("delta", next_tint)

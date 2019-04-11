@@ -1,6 +1,6 @@
 extends Node2D
 
-var time_of_day := []
+var schedule := []
 
 var scenario: Scenario = null
 
@@ -52,7 +52,7 @@ func _ready() -> void:
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
 
-	HUD.update_tod_info(scenario.time_of_day.current_time)
+	HUD.update_time_info(scenario.schedule.current_time)
 
 func _load_map() -> void:
 	if Registry.scenarios.has(Global.scenario_name):
@@ -96,8 +96,8 @@ func _set_side(value: Side) -> void:
 
 	if current_side.get_index() % scenario.sides.get_child_count() == 0:
 		scenario.turn += 1
-		scenario.next_time_of_day()
-		HUD.update_tod_info(scenario.time_of_day.current_time)
+		scenario.cycle_schedule()
+		HUD.update_time_info(scenario.schedule.current_time)
 
 	HUD.update_side_info(scenario, current_side)
 

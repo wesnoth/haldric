@@ -1,6 +1,5 @@
 extends Node2D
 
-const Scenario = preload("res://source/scenario/old/Scenario.tscn")
 const DEFAULT_PATH = "res://data/scenarios/"
 const DEFAULT_MAP_SIZE := Vector2(44, 33)
 
@@ -56,7 +55,7 @@ func _normalize_region(region : Rect2) -> Rect2:
 
 func _new_map() -> void:
 	scenario.queue_free()
-	scenario = Scenario.instance()
+	scenario = Create.scenario()
 	scenario_container.add_child(scenario)
 	scenario.map.set_size(DEFAULT_MAP_SIZE)
 

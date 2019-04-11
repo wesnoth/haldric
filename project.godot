@@ -40,11 +40,6 @@ _global_script_classes=[ {
 "path": "res://source/controller/Controller.gd"
 }, {
 "base": "Node",
-"class": "DayTime",
-"language": "GDScript",
-"path": "res://source/game/DayTime.gd"
-}, {
-"base": "Node",
 "class": "Defense",
 "language": "GDScript",
 "path": "res://source/unit/Defense.gd"
@@ -110,9 +105,19 @@ _global_script_classes=[ {
 "path": "res://source/templates/RScenario.gd"
 }, {
 "base": "Resource",
+"class": "RSchedule",
+"language": "GDScript",
+"path": "res://source/templates/RSchedule.gd"
+}, {
+"base": "Resource",
 "class": "RTerrain",
 "language": "GDScript",
 "path": "res://source/templates/RTerrain.gd"
+}, {
+"base": "Resource",
+"class": "RTime",
+"language": "GDScript",
+"path": "res://source/templates/RTime.gd"
 }, {
 "base": "Node",
 "class": "Resistance",
@@ -135,6 +140,11 @@ _global_script_classes=[ {
 "path": "res://source/interface/menus/components/ScenarioSelector.gd"
 }, {
 "base": "Node",
+"class": "Schedule",
+"language": "GDScript",
+"path": "res://source/scenario/old/Schedule.gd"
+}, {
+"base": "Node",
 "class": "Side",
 "language": "GDScript",
 "path": "res://source/scenario/old/Side.gd"
@@ -148,6 +158,11 @@ _global_script_classes=[ {
 "class": "Terrain",
 "language": "GDScript",
 "path": "res://source/scenario/map/Terrain.gd"
+}, {
+"base": "Node",
+"class": "Time",
+"language": "GDScript",
+"path": "res://source/game/Time.gd"
 }, {
 "base": "Node2D",
 "class": "Transitions",
@@ -171,7 +186,6 @@ _global_script_class_icons={
 "CampaignSelector": "",
 "CardSelector": "",
 "Controller": "",
-"DayTime": "",
 "Defense": "",
 "Grid": "",
 "Hex": "",
@@ -185,14 +199,18 @@ _global_script_class_icons={
 "RCampaign": "",
 "RCard": "",
 "RScenario": "",
+"RSchedule": "",
 "RTerrain": "",
+"RTime": "",
 "Resistance": "",
 "Scenario": "",
 "ScenarioCard": "",
 "ScenarioSelector": "",
+"Schedule": "",
 "Side": "",
 "SidePanelItem": "",
 "Terrain": "",
+"Time": "",
 "Transitions": "",
 "Unit": "",
 "UnitType": ""
@@ -222,6 +240,7 @@ Registry="*res://source/global/Registry.gd"
 Audio="*res://source/global/Audio.tscn"
 TeamColor="*res://source/global/TeamColor.gd"
 Event="*res://source/global/Event.gd"
+Create="*res://source/global/Create.gd"
 
 [debug]
 

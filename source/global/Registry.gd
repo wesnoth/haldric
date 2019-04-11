@@ -5,6 +5,8 @@ var music := {}
 var scenarios := {}
 var campaigns := {}
 var terrain := {}
+var times := {}
+var schedules := {}
 
 func _ready() -> void:
 	scan()
@@ -15,6 +17,8 @@ func scan() -> void:
 	_load_scenarios()
 	_load_campaigns()
 	_load_terrain()
+	_load_times()
+	_load_schedules()
 
 func _load_units() -> void:
 	for file_data in Loader.load_dir("res://data/units", ["tscn", "scn"]):
@@ -36,3 +40,11 @@ func _load_terrain() -> void:
 	for file_data in Loader.load_dir("res://data/terrain", ["tres", "res"]):
 		var code = file_data.data.code
 		terrain[code] = file_data.data
+
+func _load_times() -> void:
+	for file_data in Loader.load_dir("res://data/times", ["tres", "res"]):
+		times[file_data.id] = file_data.data
+
+func _load_schedules() -> void:
+	for file_data in Loader.load_dir("res://data/schedules", ["tres", "res"]):
+		schedules[file_data.id] = file_data.data

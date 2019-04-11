@@ -123,8 +123,6 @@ text = "Load"
 
 [node name="Camera2D" parent="." instance=ExtResource( 7 )]
 visible = false
-limit_left = 0
-limit_top = 0
 
 [connection signal="pressed" from="HUD/TileButtons/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/New" to="." method="_on_New_pressed"]

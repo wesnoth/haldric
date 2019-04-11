@@ -70,8 +70,8 @@ func get_defense() -> int:
 		defense = max(defense_overlay, defense)
 	return defense
 
-func get_time_of_day_percentage() -> int:
-	return location.terrain.time_of_day.get_percentage(type.alignment)
+func get_time_percentage() -> int:
+	return location.terrain.time.get_percentage(type.alignment)
 
 func set_reachable() -> void:
 	if viewable.empty():

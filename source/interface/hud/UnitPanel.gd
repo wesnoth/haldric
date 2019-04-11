@@ -53,7 +53,7 @@ func update_unit(target: Unit) -> void:
 	mp.update_stat(unit.moves_current, unit.type.moves)
 	mp.bar.tint_progress = _get_light_to_dark_brown((100 * unit.moves_current) / unit.type.moves)
 
-	var tod_bonus = unit.get_time_of_day_percentage()
+	var tod_bonus = unit.get_time_percentage()
 	if tod_bonus >= 0:
 		alignment.text = str("%s (+%d%%)" % [unit.type.alignment, tod_bonus])
 	else:
