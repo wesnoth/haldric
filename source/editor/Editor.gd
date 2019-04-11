@@ -1,6 +1,6 @@
 extends Node2D
 
-const Scenario = preload("res://source/scenario/Scenario.tscn")
+const Scenario = preload("res://source/scenario/old/Scenario.tscn")
 const DEFAULT_PATH = "res://data/scenarios/"
 const DEFAULT_MAP_SIZE := Vector2(44, 33)
 
@@ -59,7 +59,6 @@ func _new_map() -> void:
 	scenario = Scenario.instance()
 	scenario_container.add_child(scenario)
 	scenario.map.set_size(DEFAULT_MAP_SIZE)
-	scenario.map.fog.hide()
 
 func _load_map(scenario_name: String) -> void:
 	var packed_scene = load(DEFAULT_PATH + scenario_name + ".tscn")
