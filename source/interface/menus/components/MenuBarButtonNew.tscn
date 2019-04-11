@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
+[ext_resource path="res://graphics/fonts/Lato32.tres" type="DynamicFont" id=2]
+[ext_resource path="res://source/interface/menus/components/MenuBarButtonNew.gd" type="Script" id=3]
+
+[node name="MenuBarButtonNew" type="Button"]
+margin_right = 103.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 40 )
+focus_mode = 0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Button"
+flat = true
+align = 0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+

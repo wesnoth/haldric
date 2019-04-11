@@ -10,8 +10,12 @@ func _ready() -> void:
 		if button.has_page:
 			menu_bar.register_button(button)
 
+	for button in $HUD/MenuBarVertical/Buttons.get_children():
+		if button.has_page:
+			menu_bar_vertical.register_button(button)
+
 	call_deferred("_set_current_page", pages[1])
 	menu_bar.reveal()
-
+	menu_bar_vertical.reveal()
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
