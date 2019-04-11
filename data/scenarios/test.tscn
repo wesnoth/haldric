@@ -10,11 +10,7 @@
 [ext_resource path="res://data/times/SecondWatch.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/scenario/old/Side.tscn" type="PackedScene" id=9]
 
-
-
-
-
-[node name="Scenario" index="0" instance=ExtResource( 1 )]
+[node name="test" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Sunrise" parent="Times" index="0" instance=ExtResource( 3 )]
