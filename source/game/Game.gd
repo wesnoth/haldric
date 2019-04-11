@@ -49,6 +49,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_load_map()
 	_load_units()
+	draw.update_units(get_tree().get_nodes_in_group("Unit"))
 
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))

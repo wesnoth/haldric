@@ -19,6 +19,9 @@ func _process(delta: float) -> void:
 	fog_texture.side = side
 	fog.texture = viewport.get_texture()
 
+func update_units(units: Array) -> void:
+	fog_texture.units = units
+
 func update_map_border(size) -> void:
 	map_border.rect_size = size
 
