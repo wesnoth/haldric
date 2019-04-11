@@ -10,6 +10,7 @@ onready var tween := $Tween
 onready var camera := $Camera2D as Camera2D
 
 onready var menu_bar := $HUD/MenuBar as MenuBar
+onready var menu_bar_vertical := $HUD/MenuBarVertical as MenuBarVertical
 
 onready var pages := $Pages.get_children()
 onready var buttons := $HUD/MenuBar/HBoxContainer/Buttons.get_children()

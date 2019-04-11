@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/Menu.gd" type="Script" id=2]
-[ext_resource path="res://source/interface/menus/components/MenuBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/menus/components/MenuBarVertical.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/menus/components/MenuBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "enter"
@@ -37,7 +38,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-page_time = 0.6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/enter = SubResource( 1 )
@@ -49,16 +49,24 @@ anchor_mode = 0
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 
+[node name="Pages" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 400.0
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="MenuBar" parent="HUD" instance=ExtResource( 3 )]
+[node name="MenuBarVertical" parent="HUD" instance=ExtResource( 3 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1320.0
+margin_right = -250.0
+
+[node name="MenuBar" parent="HUD" instance=ExtResource( 4 )]
+editor/display_folded = true
+visible = false
 margin_top = 10.0
 margin_bottom = 70.0
-
-[node name="Pages" type="Control" parent="."]
-margin_top = 70.0
-margin_right = 1920.0
-margin_bottom = 1080.0
 
 [connection signal="button_pressed" from="HUD/MenuBar" to="." method="_on_MenuBar_button_pressed"]
 
