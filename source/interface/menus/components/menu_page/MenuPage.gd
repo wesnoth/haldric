@@ -11,6 +11,7 @@ func _ready() -> void:
 
 func fade_in(direction: int, time: float) -> void:
 	_enter()
+
 	var start_pos = Vector2(get_viewport().size.x * direction, 0)
 	#warning-ignore:return_value_discarded
 	tween.interpolate_property(self, "rect_position", start_pos, Vector2(0, 0), time, Tween.TRANS_SINE, Tween.EASE_OUT)
@@ -20,6 +21,7 @@ func fade_in(direction: int, time: float) -> void:
 	tween.interpolate_property(self, "visible", false, true, time, Tween.TRANS_SINE, Tween.EASE_OUT)
 	#warning-ignore:return_value_discarded
 	tween.start()
+
 	for layer in backgrounds:
 		layer.fade_in(direction, time)
 
@@ -33,8 +35,10 @@ func fade_out(direction: int, time: float) -> void:
 	tween.interpolate_property(self, "visible", true, false, time, Tween.TRANS_SINE, Tween.EASE_OUT)
 	#warning-ignore:return_value_discarded
 	tween.start()
+
 	for layer in backgrounds:
 		layer.fade_out(direction, time)
+
 	_leave(time)
 
 func _enter() -> void:

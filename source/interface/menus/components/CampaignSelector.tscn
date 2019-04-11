@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://source/interface/menus/components/CardSelector.tscn" type="PackedScene" id=1]
-[ext_resource path="res://source/interface/menus/components/CampaignSelector.gd" type="Script" id=2]
-
-[node name="CampaignSelector" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
-

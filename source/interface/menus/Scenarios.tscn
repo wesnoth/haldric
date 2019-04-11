@@ -1,10 +1,13 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://source/interface/menus/components/MenuPage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/interface/menus/components/menu_page/MenuPage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/interface/menus/Scenarios.gd" type="Script" id=2]
-[ext_resource path="res://source/interface/menus/components/ScenarioSelector.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/interface/menus/components/MenuCard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/menus/components/cards/ScenarioSelector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/menus/components/cards/MenuCard.tscn" type="PackedScene" id=4]
 [ext_resource path="res://graphics/images/maps/titlescreen.png" type="Texture" id=5]
+
+
+
 
 [node name="Scenarios" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

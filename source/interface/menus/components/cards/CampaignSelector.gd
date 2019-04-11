@@ -1,7 +1,7 @@
 extends CardSelector
 class_name CampaignSelector
 
-const CampaignCard = preload("res://source/interface/menus/components/CampaignCard.tscn")
+const CampaignCard = preload("res://source/interface/menus/components/cards/CampaignCard.tscn")
 
 func _ready() -> void:
 	for campaign in Registry.campaigns:

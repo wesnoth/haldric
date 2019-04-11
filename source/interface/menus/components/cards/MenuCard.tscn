@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://source/interface/menus/components/MenuCard.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/menus/components/cards/MenuCard.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/misc/campaign_card_overlay.png" type="Texture" id=2]
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=3]
 [ext_resource path="res://graphics/fonts/Lato28.tres" type="DynamicFont" id=4]

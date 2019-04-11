@@ -14,25 +14,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/Attack.gd"
 }, {
-"base": "NinePatchRect",
+"base": "Control",
 "class": "ButtonHover",
 "language": "GDScript",
-"path": "res://source/interface/menus/components/ButtonHover.gd"
+"path": "res://source/interface/menus/components/menu_bar/ButtonHover.gd"
 }, {
 "base": "MenuCard",
 "class": "CampaignCard",
 "language": "GDScript",
-"path": "res://source/interface/menus/components/CampaignCard.gd"
+"path": "res://source/interface/menus/components/cards/CampaignCard.gd"
 }, {
 "base": "CardSelector",
 "class": "CampaignSelector",
 "language": "GDScript",
-"path": "res://source/interface/menus/components/CampaignSelector.gd"
+"path": "res://source/interface/menus/components/cards/CampaignSelector.gd"
 }, {
 "base": "ScrollContainer",
 "class": "CardSelector",
 "language": "GDScript",
-"path": "res://source/interface/menus/components/CardSelector.gd"
+"path": "res://source/interface/menus/components/cards/CardSelector.gd"
 }, {
 "base": "Node",
 "class": "Controller",
@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "Grid",
 "language": "GDScript",
 "path": "res://source/scenario/map/Grid.gd"
+}, {
+"base": "MenuBar",
+"class": "HMenuBar",
+"language": "GDScript",
+"path": "res://source/interface/menus/components/menu_bar/HMenuBar.gd"
 }, {
 "base": "Reference",
 "class": "Hex",
@@ -72,22 +77,17 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "MenuBar",
 "language": "GDScript",
-"path": "res://source/interface/menus/components/MenuBar.gd"
-}, {
-"base": "Control",
-"class": "MenuBarVertical",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/MenuBarVertical.gd"
+"path": "res://source/interface/menus/components/menu_bar/MenuBar.gd"
 }, {
 "base": "Button",
 "class": "MenuCard",
 "language": "GDScript",
-"path": "res://source/interface/menus/components/MenuCard.gd"
+"path": "res://source/interface/menus/components/cards/MenuCard.gd"
 }, {
 "base": "Control",
 "class": "MenuPage",
 "language": "GDScript",
-"path": "res://source/interface/menus/components/MenuPage.gd"
+"path": "res://source/interface/menus/components/menu_page/MenuPage.gd"
 }, {
 "base": "Node",
 "class": "Movement",
@@ -137,12 +137,12 @@ _global_script_classes=[ {
 "base": "MenuCard",
 "class": "ScenarioCard",
 "language": "GDScript",
-"path": "res://source/interface/menus/components/ScenarioCard.gd"
+"path": "res://source/interface/menus/components/cards/ScenarioCard.gd"
 }, {
 "base": "CardSelector",
 "class": "ScenarioSelector",
 "language": "GDScript",
-"path": "res://source/interface/menus/components/ScenarioSelector.gd"
+"path": "res://source/interface/menus/components/cards/ScenarioSelector.gd"
 }, {
 "base": "Node",
 "class": "Schedule",
@@ -183,6 +183,11 @@ _global_script_classes=[ {
 "class": "UnitType",
 "language": "GDScript",
 "path": "res://source/unit/UnitType.gd"
+}, {
+"base": "MenuBar",
+"class": "VMenuBar",
+"language": "GDScript",
+"path": "res://source/interface/menus/components/menu_bar/VMenuBar.gd"
 } ]
 _global_script_class_icons={
 "Attack": "",
@@ -193,12 +198,12 @@ _global_script_class_icons={
 "Controller": "",
 "Defense": "",
 "Grid": "",
+"HMenuBar": "",
 "Hex": "",
 "Location": "",
 "Map": "",
 "Menu": "",
 "MenuBar": "",
-"MenuBarVertical": "",
 "MenuCard": "",
 "MenuPage": "",
 "Movement": "",
@@ -219,7 +224,8 @@ _global_script_class_icons={
 "Time": "",
 "Transitions": "",
 "Unit": "",
-"UnitType": ""
+"UnitType": "",
+"VMenuBar": ""
 }
 
 [application]
@@ -260,7 +266,6 @@ gdscript/warnings/unused_argument=false
 
 window/size/width=1920
 window/size/height=1080
-window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 mouse_cursor/custom_image="res://graphics/images/interface/cursor/normal.png"
 window/stretch/mode="2d"

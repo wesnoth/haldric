@@ -1,0 +1,75 @@
+extends Control
+class_name MenuBar
+
+signal button_focused(id)
+
+var _button_register := {}
+
+var buttons := []
+var current_button := 0
+
+onready var tween := $Tween as Tween
+onready var hover := $ButtonHover as ButtonHover
+
+func _ready() -> void:
+	call_deferred("highlight_button", 0)
+	reveal()
+
+func reveal() -> void:
+	tween.interpolate_property(self, "modulate", Color("00FFFFFF"), Color("FFFFFFFF"), 0.4, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.start()
+
+func _button_selected(button_id):
+
+	if not _button_register.has(button_id):
+		return
+
+	_button_register[button_id].emit_signal("pressed")
+
+func highlight_button(button_id: int) -> void:
+
+	if not _button_register.has(button_id):
+		return
+
+	hover.highlight_button(_button_register[button_id], 0.4)
+
+func register_button(button: Button) -> void:
+	_button_register[button.get_index()] = button
+	button.connect("pressed", self, "_on_button_pressed", [button.get_index()])
+
+func next_button():
+
+	if not buttons:
+		return
+
+	var next_index = (current_button + 1) % buttons.size()
+	to_button(next_index)
+
+func previous_button():
+
+	if not buttons:
+		return
+
+	var prev_index = current_button - 1
+
+	if prev_index < 0:
+		prev_index = buttons.size() - 1
+
+	to_button(prev_index)
+
+func to_button(new_index):
+
+	if not buttons:
+		return
+
+	current_button = new_index
+	highlight_button(current_button)
+	emit_signal("button_focused", current_button)
+
+func _register_buttons() -> void:
+	for button in buttons:
+		register_button(button)
+
+func _on_button_pressed(id: int) -> void:
+	highlight_button(id)
+	emit_signal("button_focused", id)

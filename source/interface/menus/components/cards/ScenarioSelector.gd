@@ -1,7 +1,7 @@
 extends CardSelector
 class_name ScenarioSelector
 
-const ScenarioCard = preload("res://source/interface/menus/components/ScenarioCard.tscn")
+const ScenarioCard = preload("res://source/interface/menus/components/cards/ScenarioCard.tscn")
 
 func _ready() -> void:
 	for scenario in Registry.scenarios:

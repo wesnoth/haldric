@@ -1,21 +1,37 @@
 extends Menu
 
+onready var menu_bar = $VMenuBar
+
 onready var version = $Version
 
 func _ready() -> void:
 	#Audio.play(Registry.music.return_to_wesnoth)
 	version.text = Global.version_string
 
-	for button in $HUD/MenuBar/HBoxContainer/Buttons.get_children():
-		if button.has_page:
-			menu_bar.register_button(button)
+func _on_Tutorials_pressed() -> void:
+	open_page("Tutorials")
 
-	for button in $HUD/MenuBarVertical/Buttons.get_children():
-		if button.has_page:
-			menu_bar_vertical.register_button(button)
+func _on_Campaigns_pressed() -> void:
+	open_page("Campaigns")
 
-	call_deferred("_set_current_page", pages[1])
-	menu_bar.reveal()
-	menu_bar_vertical.reveal()
+func _on_Scenarios_pressed() -> void:
+	open_page("Scenarios")
+
+func _on_Addons_pressed() -> void:
+	open_page("Addons")
+
+func _on_Settings_pressed() -> void:
+	open_page("Settings")
+
+func _on_Credits_pressed() -> void:
+	open_page("Credits")
+
+func _on_Editor_pressed() -> void:
+	Scene.change(Scene.Editor)
+
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
+
+
+
+
