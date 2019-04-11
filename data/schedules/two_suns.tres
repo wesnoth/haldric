@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource( 1 )
-schedule = [ "dawn", "morning", "afternoon", "dusk", "first_watch", "second_watch" ]
+schedule = [ "dawn", "morning", "afternoon", "dusk", "first_watch", "dawn", "morning", "dusk", "first_watch", "second_watch" ]
 
