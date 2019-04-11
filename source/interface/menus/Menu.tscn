@@ -61,6 +61,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1320.0
 margin_right = -250.0
+margin_bottom = 0.0
 
 [node name="MenuBar" parent="HUD" instance=ExtResource( 4 )]
 editor/display_folded = true

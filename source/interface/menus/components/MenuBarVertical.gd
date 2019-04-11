@@ -7,7 +7,7 @@ var buttons := {}
 
 var current_id := 0
 
-onready var hover := $ButtonHover as ButtonHover
+onready var hover := $ButtonHover as ColorRect
 onready var tween := $Tween as Tween
 
 func reveal() -> void:
@@ -15,7 +15,15 @@ func reveal() -> void:
 	tween.start()
 
 func highlight_button(button_id: int) -> void:
-	hover.highlight_button(buttons[button_id], 0.4)
+	var button: Button = buttons[button_id]
+	var time := 0.4
+
+	#warning-ignore:return_value_discarded
+	tween.interpolate_property(hover, "rect_global_position", hover.rect_global_position, button.rect_global_position, time, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	#warning-ignore:return_value_discarded
+	tween.interpolate_property(hover, "rect_size", hover.rect_size, button.rect_size, time, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	#warning-ignore:return_value_discarded
+	tween.start()
 
 func register_button(button: Button) -> void:
 	buttons[button.get_index()] = button
