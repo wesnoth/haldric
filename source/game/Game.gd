@@ -35,8 +35,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	# TODO: should not be handled by mouse move
 	elif event is InputEventMouseMotion:
 		if loc:
-			var unit_under_mouse: Unit = selected_unit if selected_unit != null else loc.unit
-
 			# Display selected unit's path to hovered location
 			if selected_unit:
 				if draw.unit_path_display.path.empty() or not draw.unit_path_display.path.back() == loc:

@@ -2,7 +2,6 @@ extends TileMap
 class_name Map
 
 const OFFSET := Vector2(36, 36)
-const CELL_SIZE := Vector2(54, 72)
 
 const DEFAULT_TERRAIN := "Gg"
 
