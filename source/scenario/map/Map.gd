@@ -213,6 +213,10 @@ func set_tile(global_pos: Vector2, id: int):
 	_update_size()
 
 func set_time_of_day(daytime: DayTime) -> void:
+	# TODO: handl better
+	if daytime == null:
+		return
+
 	# TODO: global shader not taking individual time areas into account...
 	for loc in locations.values():
 		loc.terrain.time_of_day = daytime
