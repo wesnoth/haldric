@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://source/interface/menus/components/MenuBarVertical.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=2]
-[ext_resource path="res://source/interface/menus/components/ButtonHover.tscn" type="PackedScene" id=3]
 
 [node name="MenuBarVertical" type="Control"]
+margin_right = 350.0
+margin_bottom = 1080.0
 rect_min_size = Vector2( 350, 1080 )
 script = ExtResource( 1 )
 
@@ -17,18 +18,17 @@ texture = ExtResource( 2 )
 expand = true
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-margin_left = 10.0
-margin_right = 360.0
+margin_right = 350.0
 margin_bottom = 1080.0
 rect_min_size = Vector2( 350, 1080 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
 alignment = 1
 
-[node name="ButtonHover" parent="." instance=ExtResource( 3 )]
-
-[node name="ColorRect" type="ColorRect" parent="ButtonHover"]
+[node name="ButtonHover" type="ColorRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 color = Color( 1, 1, 1, 0.235294 )
 

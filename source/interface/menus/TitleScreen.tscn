@@ -8,7 +8,7 @@
 [ext_resource path="res://source/interface/menus/components/MenuBarButtonNew.tscn" type="PackedScene" id=6]
 [ext_resource path="res://source/interface/menus/components/MenuBarButton.tscn" type="PackedScene" id=7]
 
-[node name="TitleScreen" index="0" instance=ExtResource( 1 )]
+[node name="TitleScreen" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Pages" parent="." index="3"]
@@ -72,51 +72,51 @@ visible = true
 modulate = Color( 1, 1, 1, 0 )
 
 [node name="SidePanelBorderLeft" parent="HUD/MenuBar/HBoxContainer" index="0"]
-margin_left = 287.0
-margin_right = 487.0
+margin_left = 273.0
+margin_right = 473.0
 
 [node name="Buttons" parent="HUD/MenuBar/HBoxContainer" index="1"]
-margin_left = 495.0
-margin_right = 1425.0
+margin_left = 481.0
+margin_right = 1439.0
 
 [node name="Tutorials" parent="HUD/MenuBar/HBoxContainer/Buttons" index="0" instance=ExtResource( 7 )]
-margin_right = 126.0
+margin_right = 130.0
 margin_bottom = 60.0
 
 [node name="Campaigns" parent="HUD/MenuBar/HBoxContainer/Buttons" index="1" instance=ExtResource( 7 )]
-margin_left = 134.0
-margin_right = 260.0
+margin_left = 138.0
+margin_right = 268.0
 margin_bottom = 60.0
 
 [node name="Scenarios" parent="HUD/MenuBar/HBoxContainer/Buttons" index="2" instance=ExtResource( 7 )]
-margin_left = 268.0
-margin_right = 394.0
+margin_left = 276.0
+margin_right = 406.0
 margin_bottom = 60.0
 
 [node name="Addons" parent="HUD/MenuBar/HBoxContainer/Buttons" index="3" instance=ExtResource( 7 )]
-margin_left = 402.0
-margin_right = 528.0
+margin_left = 414.0
+margin_right = 544.0
 margin_bottom = 60.0
 
 [node name="Settings" parent="HUD/MenuBar/HBoxContainer/Buttons" index="4" instance=ExtResource( 7 )]
-margin_left = 536.0
-margin_right = 662.0
+margin_left = 552.0
+margin_right = 682.0
 margin_bottom = 60.0
 
 [node name="Credits" parent="HUD/MenuBar/HBoxContainer/Buttons" index="5" instance=ExtResource( 7 )]
-margin_left = 670.0
-margin_right = 796.0
+margin_left = 690.0
+margin_right = 820.0
 margin_bottom = 60.0
 
 [node name="Quit" parent="HUD/MenuBar/HBoxContainer/Buttons" index="6" instance=ExtResource( 7 )]
-margin_left = 804.0
-margin_right = 930.0
+margin_left = 828.0
+margin_right = 958.0
 margin_bottom = 60.0
 has_page = false
 
 [node name="SidePanelBorderRight" parent="HUD/MenuBar/HBoxContainer" index="2"]
-margin_left = 1433.0
-margin_right = 1633.0
+margin_left = 1447.0
+margin_right = 1647.0
 
 [node name="Version" type="Label" parent="." index="5"]
 anchor_top = 1.0
