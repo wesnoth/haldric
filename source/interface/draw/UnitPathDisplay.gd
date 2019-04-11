@@ -4,7 +4,7 @@ const BEND := 0.3
 const COLOR := Color(255, 0, 0, 0.5)
 const WIDTH := 20
 
-var path := [] setget path_updated
+var path := [] setget _path_updated
 
 func _draw() -> void:
 	if path.size() < 2:
@@ -44,7 +44,7 @@ func _draw() -> void:
 
 	draw_polyline(curve.tessellate(), COLOR, WIDTH, true)
 
-func path_updated(new_val: Array) -> void:
+func _path_updated(new_val: Array) -> void:
 	path = new_val
 
 	# Redraw

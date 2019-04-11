@@ -122,7 +122,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Scenario",
 "language": "GDScript",
-"path": "res://source/scenario/Scenario.gd"
+"path": "res://source/scenario/old/Scenario.gd"
 }, {
 "base": "MenuCard",
 "class": "ScenarioCard",
@@ -137,7 +137,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Side",
 "language": "GDScript",
-"path": "res://source/scenario/Side.gd"
+"path": "res://source/scenario/old/Side.gd"
 }, {
 "base": "Control",
 "class": "SidePanelItem",
@@ -152,7 +152,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Transitions",
 "language": "GDScript",
-"path": "res://source/scenario/Transitions.gd"
+"path": "res://source/scenario/old/Transitions.gd"
 }, {
 "base": "Node2D",
 "class": "Unit",

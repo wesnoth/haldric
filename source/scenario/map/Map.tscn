@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://graphics/shaders/ColorAdjust.shader" type="Shader" id=1]
+[ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=2]
+[ext_resource path="res://source/scenario/map/Map.gd" type="Script" id=3]
+[ext_resource path="res://source/scenario/map/Transitions.tscn" type="PackedScene" id=4]
+[ext_resource path="res://graphics/shaders_visual/cover.tres" type="Shader" id=5]
+[ext_resource path="res://graphics/tilesets/void.tres" type="TileSet" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/delta = null
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 5 )
+shader_param/BlendColor = Color( 0.3, 0.59, 0.11, 1 )
+shader_param/Blur = 0.2
+shader_param/Saturation = 0.2
+shader_param/Contrast = 1.2
+shader_param/Brightness = 0.8
+
+[node name="Map" type="TileMap"]
+material = SubResource( 1 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+script = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Transitions" parent="." instance=ExtResource( 4 )]
+
+[node name="Overlay" type="TileMap" parent="."]
+use_parent_material = true
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+
+[node name="Cover" type="TileMap" parent="."]
+visible = false
+material = SubResource( 2 )
+z_index = 100
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+

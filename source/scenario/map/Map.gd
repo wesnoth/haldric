@@ -16,7 +16,8 @@ var ZOC_tiles := {}
 
 var village_count := 0
 
-onready var tween := $Tween as Tween
+onready var tween := Tween.new()
+
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
 
@@ -24,11 +25,8 @@ onready var cover_tile: int = tile_set.find_tile_by_name("Xv")
 
 onready var transitions := $Transitions as Transitions
 
-onready var cell_selector := $CellSelector as Node2D
-
-onready var map_border = $MapBorder
-
 func _ready() -> void:
+	add_child(tween)
 	_update_size()
 	_initialize_locations()
 	_initialize_grid()
@@ -37,14 +35,6 @@ func _ready() -> void:
 
 	# So the initial size is also correct when first entering the editor.
 	call_deferred("_update_size")
-
-func _unhandled_input(event: InputEvent) -> void:
-	# TODO: should not be handled by mouse move
-	if event is InputEventMouseMotion:
-		var loc: Location = get_location_from_mouse()
-
-		if loc:
-			cell_selector.position = loc.position
 
 func map_to_world_centered(cell: Vector2) -> Vector2:
 	return map_to_world(cell) + OFFSET
@@ -146,7 +136,7 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 			var id: int = _flatten(cell)
 			var location: Location = locations[id]
 			var cost: int = unit.get_movement_cost(location)
-			
+
 			var other_unit = location.unit
 			if not ignore_units and other_unit:
 				if not other_unit.side.number == unit.side.number:
@@ -243,6 +233,12 @@ func get_location(cell: Vector2) -> Location:
 		return null
 	return locations[_flatten(cell)]
 
+func get_pixel_size() -> Vector2:
+	if width % 2 == 0:
+		return map_to_world(Vector2(width, height)) + Vector2(18, 36)
+	else:
+		return map_to_world(Vector2(width, height)) + Vector2(18, 0)
+
 func get_map_string() -> String:
 	var string := ""
 
@@ -318,15 +314,10 @@ func _update_size() -> void:
 		set_cell(0, 0, cell)
 	width = int(get_used_rect().size.x)
 	height = int(get_used_rect().size.y)
-	if width % 2 == 0:
-		map_border.rect_size = map_to_world(Vector2(width, height)) + Vector2(18, 36)
-	else:
-		map_border.rect_size = map_to_world(Vector2(width, height)) + Vector2(18, 0)
 
 func _initialize_border() -> void:
 	var size := Vector2(width, height)
 	print(size)
-	map_border.rect_size = map_to_world(size) + Vector2(18, 36)
 
 func _initialize_transitions() -> void:
 		transitions.update_transitions(self)

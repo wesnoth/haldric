@@ -7,11 +7,15 @@ var scenario: Scenario = null
 var current_side: Side = null setget _set_side
 var selected_unit: Unit = null setget _set_selected_unit
 
-onready var HUD = $HUD as CanvasLayer
+onready var HUD := $HUD as CanvasLayer
+onready var draw := $Draw as Node2D
+
 onready var scenario_container := $ScenarioContainer as Node2D
 
 func _unhandled_input(event: InputEvent) -> void:
 	var loc: Location = scenario.map.get_location_from_mouse()
+
+	_update_hover(loc)
 
 	if event.is_action_pressed("mouse_left"):
 		if loc:
@@ -35,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 			# Display selected unit's path to hovered location
 			if selected_unit:
-				if scenario.unit_path_display.path.empty() or not scenario.unit_path_display.path.back() == loc:
+				if draw.unit_path_display.path.empty() or not draw.unit_path_display.path.back() == loc:
 					_draw_temp_path(selected_unit.find_path(loc))
 			elif loc.unit:
 				scenario.map.display_reachable_for(loc.unit.reachable)
@@ -60,20 +64,26 @@ func _load_map() -> void:
 			scenario_container.add_child(scenario)
 			scenario.connect("unit_moved", self, "_on_unit_moved")
 			scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
+
+			draw.update_map_border(scenario.map.get_pixel_size())
 		else:
 			print("No .tscn file found for scenario " % Global.scenario_name)
 
 func _load_units() -> void:
 	pass;
 
+func _update_hover(loc: Location) -> void:
+	if loc:
+		draw.update_hover(loc.position)
+
 func _draw_temp_path(path: Array) -> void:
 	if selected_unit:
 		var new_path = path.duplicate(true)
 		new_path.push_front(selected_unit.location)
-		scenario.unit_path_display.path = new_path
+		draw.update_path(new_path)
 
 func _clear_temp_path() -> void:
-	scenario.unit_path_display.path = [] # Uses assignment to trigger setter
+	draw.update_path([])
 
 func _set_side(value: Side) -> void:
 
