@@ -8,11 +8,11 @@
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.0873786, 0.296117, 1 )
-colors = PoolColorArray( 1, 1, 1, 0.784314, 1, 1, 1, 0.196078, 1, 1, 1, 0.0643963, 1, 1, 1, 0 )
+colors = PoolColorArray( 1, 1, 1, 0.392157, 1, 1, 1, 0.0627451 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
+width = 200
 
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.165049, 0.572816, 1 )
