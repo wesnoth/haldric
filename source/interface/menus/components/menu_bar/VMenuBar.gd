@@ -1,7 +1,6 @@
 extends MenuBar
 class_name VMenuBar
 
-# TODO: MOVE TO TITLESCREEN
 func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_up") and not tween.is_active():

@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/interface/menus/components/menu_bar/MenuBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/interface/menus/components/menu_bar/VMenuBar.gd" type="Script" id=2]
-[ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=3]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=4]
+[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=3]
+[ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=4]
+[ext_resource path="res://source/interface/menus/components/menu_bar/VButtonHover.gd" type="Script" id=5]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.0873786, 0.296117, 1 )
@@ -24,19 +26,22 @@ anchor_right = 0.0
 rect_min_size = Vector2( 300, 60 )
 script = ExtResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="." index="1"]
+[node name="Background" type="TextureRect" parent="." index="1"]
+material = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 expand = true
 
 [node name="Buttons" type="VBoxContainer" parent="." index="2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 0
 alignment = 1
 
 [node name="ButtonHover" parent="." index="3"]
 margin_right = 300.0
+script = ExtResource( 5 )
 
 [node name="Gradient" type="TextureRect" parent="ButtonHover" index="1"]
 anchor_right = 1.0
@@ -69,7 +74,7 @@ expand = true
 [node name="Border" type="NinePatchRect" parent="." index="4"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 60, 0, 20, 20 )
 patch_margin_left = 4
 patch_margin_top = 4

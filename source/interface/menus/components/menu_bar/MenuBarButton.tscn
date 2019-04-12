@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://graphics/fonts/Lato32.tres" type="DynamicFont" id=2]
 [ext_resource path="res://source/interface/menus/components/menu_bar/MenuBarButton.gd" type="Script" id=3]
+[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=4]
+[ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=5]
 
 [node name="MenuBarButton" type="Button"]
 rect_min_size = Vector2( 100, 40 )
@@ -17,4 +19,27 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Background" type="TextureRect" parent="."]
+show_behind_parent = true
+material = ExtResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="BorderTop" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+margin_top = 1.0
+rect_min_size = Vector2( 0, 1 )
+color = Color( 0.494118, 0.360784, 0.243137, 1 )
+
+[node name="BorderBottom" type="ColorRect" parent="Background"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_bottom = -1.0
+rect_min_size = Vector2( 0, 1 )
+color = Color( 0.494118, 0.360784, 0.243137, 1 )
 

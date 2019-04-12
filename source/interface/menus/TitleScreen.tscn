@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/interface/menus/Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
 [ext_resource path="res://source/interface/menus/components/menu_page/MenuPage.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/menus/Campaigns.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/interface/menus/Scenarios.tscn" type="PackedScene" id=5]
-[ext_resource path="res://source/interface/menus/components/menu_bar/VMenuBar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/interface/menus/components/menu_bar/HMenuBar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://source/interface/menus/components/menu_bar/MenuBarButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/interface/menus/components/menu_bar/VMenuBar.tscn" type="PackedScene" id=8]
 
 [node name="TitleScreen" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -33,54 +34,125 @@ margin_bottom = -10.0
 size_flags_horizontal = 9
 text = "Major.Minor.Patch-Status"
 
-[node name="VMenuBar" parent="." index="3" instance=ExtResource( 6 )]
+[node name="HMenuBar" parent="." index="3" instance=ExtResource( 6 )]
+margin_top = 20.0
+
+[node name="SidePanelBorderLeft" parent="HMenuBar/HBoxContainer" index="0"]
+margin_left = 240.0
+margin_right = 440.0
+
+[node name="Buttons" parent="HMenuBar/HBoxContainer" index="1"]
+margin_left = 440.0
+margin_right = 1480.0
+
+[node name="Tutorials" parent="HMenuBar/HBoxContainer/Buttons" index="0" instance=ExtResource( 7 )]
+margin_right = 130.0
+margin_bottom = 60.0
+
+[node name="Campaigns" parent="HMenuBar/HBoxContainer/Buttons" index="1" instance=ExtResource( 7 )]
+margin_left = 130.0
+margin_right = 260.0
+margin_bottom = 60.0
+
+[node name="Scenarios" parent="HMenuBar/HBoxContainer/Buttons" index="2" instance=ExtResource( 7 )]
+margin_left = 260.0
+margin_right = 390.0
+margin_bottom = 60.0
+
+[node name="Editor" parent="HMenuBar/HBoxContainer/Buttons" index="3" instance=ExtResource( 7 )]
+margin_left = 390.0
+margin_right = 520.0
+margin_bottom = 60.0
+
+[node name="Addons" parent="HMenuBar/HBoxContainer/Buttons" index="4" instance=ExtResource( 7 )]
+margin_left = 520.0
+margin_right = 650.0
+margin_bottom = 60.0
+
+[node name="Settings" parent="HMenuBar/HBoxContainer/Buttons" index="5" instance=ExtResource( 7 )]
+margin_left = 650.0
+margin_right = 780.0
+margin_bottom = 60.0
+
+[node name="Credits" parent="HMenuBar/HBoxContainer/Buttons" index="6" instance=ExtResource( 7 )]
+margin_left = 780.0
+margin_right = 910.0
+margin_bottom = 60.0
+
+[node name="Quit" parent="HMenuBar/HBoxContainer/Buttons" index="7" instance=ExtResource( 7 )]
+margin_left = 910.0
+margin_right = 1040.0
+margin_bottom = 60.0
+
+[node name="SidePanelBorderRight" parent="HMenuBar/HBoxContainer" index="2"]
+margin_left = 1480.0
+margin_right = 1680.0
+
+[node name="VMenuBar" parent="." index="4" instance=ExtResource( 8 )]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -500.0
+margin_top = 200.0
 margin_right = -200.0
-margin_bottom = 0.0
+margin_bottom = -200.0
 
 [node name="Tutorials" parent="VMenuBar/Buttons" index="0" instance=ExtResource( 7 )]
-margin_top = 292.0
+margin_top = 120.0
 margin_right = 300.0
-margin_bottom = 347.0
+margin_bottom = 175.0
+show_background = false
 
 [node name="Campaigns" parent="VMenuBar/Buttons" index="1" instance=ExtResource( 7 )]
-margin_top = 355.0
+margin_top = 175.0
 margin_right = 300.0
-margin_bottom = 410.0
+margin_bottom = 230.0
+show_background = false
 
 [node name="Scenarios" parent="VMenuBar/Buttons" index="2" instance=ExtResource( 7 )]
-margin_top = 418.0
+margin_top = 230.0
 margin_right = 300.0
-margin_bottom = 473.0
+margin_bottom = 285.0
+show_background = false
 
 [node name="Editor" parent="VMenuBar/Buttons" index="3" instance=ExtResource( 7 )]
-margin_top = 481.0
+margin_top = 285.0
 margin_right = 300.0
-margin_bottom = 536.0
+margin_bottom = 340.0
+show_background = false
 
 [node name="Addons" parent="VMenuBar/Buttons" index="4" instance=ExtResource( 7 )]
-margin_top = 544.0
+margin_top = 340.0
 margin_right = 300.0
-margin_bottom = 599.0
+margin_bottom = 395.0
+show_background = false
 
 [node name="Settings" parent="VMenuBar/Buttons" index="5" instance=ExtResource( 7 )]
-margin_top = 607.0
+margin_top = 395.0
 margin_right = 300.0
-margin_bottom = 662.0
+margin_bottom = 450.0
+show_background = false
 
 [node name="Credits" parent="VMenuBar/Buttons" index="6" instance=ExtResource( 7 )]
-margin_top = 670.0
+margin_top = 450.0
 margin_right = 300.0
-margin_bottom = 725.0
+margin_bottom = 505.0
+show_background = false
 
 [node name="Quit" parent="VMenuBar/Buttons" index="7" instance=ExtResource( 7 )]
-margin_top = 733.0
+margin_top = 505.0
 margin_right = 300.0
-margin_bottom = 788.0
+margin_bottom = 560.0
+show_background = false
 
+[connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Tutorials" to="." method="_on_Tutorials_pressed"]
+[connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Campaigns" to="." method="_on_Campaigns_pressed"]
+[connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Scenarios" to="." method="_on_Scenarios_pressed"]
+[connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Editor" to="." method="_on_Editor_pressed"]
+[connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Addons" to="." method="_on_Addons_pressed"]
+[connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Tutorials" to="." method="_on_Tutorials_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Campaigns" to="." method="_on_Campaigns_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Scenarios" to="." method="_on_Scenarios_pressed"]
@@ -89,5 +161,7 @@ margin_bottom = 788.0
 [connection signal="pressed" from="VMenuBar/Buttons/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Quit" to="." method="_on_Quit_pressed"]
+
+[editable path="HMenuBar"]
 
 [editable path="VMenuBar"]
