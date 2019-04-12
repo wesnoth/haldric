@@ -12,6 +12,7 @@ onready var tween := $Tween as Tween
 onready var hover := $ButtonHover as ButtonHover
 
 func _ready() -> void:
+	get_tree().connect("screen_resized", self, "_on_screen_resized")
 	call_deferred("highlight_button", 0)
 	reveal()
 
@@ -73,3 +74,6 @@ func _register_buttons() -> void:
 func _on_button_pressed(id: int) -> void:
 	highlight_button(id)
 	emit_signal("button_focused", id)
+
+func _on_screen_resized():
+	highlight_button(current_button)
