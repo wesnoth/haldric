@@ -12,6 +12,9 @@
 [node name="TitleScreen" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Pages" parent="." index="1"]
+margin_left = 400.0
+
 [node name="Main" parent="Pages" index="0" instance=ExtResource( 3 )]
 
 [node name="Tutorials" parent="Pages" index="1" instance=ExtResource( 3 )]
@@ -93,6 +96,7 @@ margin_left = 1480.0
 margin_right = 1680.0
 
 [node name="VMenuBar" parent="." index="4" instance=ExtResource( 8 )]
+editor/display_folded = true
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
