@@ -50,6 +50,5 @@ func on_page_changed(new_page: MenuPage) -> void:
 	if menu_bar.rect_position == new_pos:
 		return
 
-	# TODO: make time match the paging time
-	tween.interpolate_property(menu_bar, "rect_position", menu_bar.rect_position, new_pos, 0.4, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.interpolate_property(menu_bar, "rect_position", menu_bar.rect_position, new_pos, page_time, Tween.TRANS_SINE, Tween.EASE_OUT)
 	tween.start()
