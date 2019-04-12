@@ -15,7 +15,7 @@ script = ExtResource( 2 )
 [node name="Pages" parent="." index="1"]
 margin_left = 400.0
 
-[node name="Main" parent="Pages" index="0" instance=ExtResource( 3 )]
+[node name="Home" parent="Pages" index="0" instance=ExtResource( 3 )]
 
 [node name="Tutorials" parent="Pages" index="1" instance=ExtResource( 3 )]
 
@@ -105,58 +105,58 @@ margin_top = 200.0
 margin_right = -200.0
 margin_bottom = -200.0
 
-[node name="Main" parent="VMenuBar/Buttons" index="0" instance=ExtResource( 7 )]
-margin_top = 92.0
+[node name="Home" parent="VMenuBar/Buttons" index="0" instance=ExtResource( 7 )]
+margin_top = 115.0
 margin_right = 300.0
-margin_bottom = 147.0
+margin_bottom = 165.0
 show_background = false
 
 [node name="Tutorials" parent="VMenuBar/Buttons" index="1" instance=ExtResource( 7 )]
-margin_top = 147.0
+margin_top = 165.0
 margin_right = 300.0
-margin_bottom = 202.0
+margin_bottom = 215.0
 show_background = false
 
 [node name="Campaigns" parent="VMenuBar/Buttons" index="2" instance=ExtResource( 7 )]
-margin_top = 202.0
+margin_top = 215.0
 margin_right = 300.0
-margin_bottom = 257.0
+margin_bottom = 265.0
 show_background = false
 
 [node name="Scenarios" parent="VMenuBar/Buttons" index="3" instance=ExtResource( 7 )]
-margin_top = 257.0
+margin_top = 265.0
 margin_right = 300.0
-margin_bottom = 312.0
+margin_bottom = 315.0
 show_background = false
 
 [node name="Editor" parent="VMenuBar/Buttons" index="4" instance=ExtResource( 7 )]
-margin_top = 312.0
+margin_top = 315.0
 margin_right = 300.0
-margin_bottom = 367.0
+margin_bottom = 365.0
 show_background = false
 
 [node name="Addons" parent="VMenuBar/Buttons" index="5" instance=ExtResource( 7 )]
-margin_top = 367.0
+margin_top = 365.0
 margin_right = 300.0
-margin_bottom = 422.0
+margin_bottom = 415.0
 show_background = false
 
 [node name="Settings" parent="VMenuBar/Buttons" index="6" instance=ExtResource( 7 )]
-margin_top = 422.0
+margin_top = 415.0
 margin_right = 300.0
-margin_bottom = 477.0
+margin_bottom = 465.0
 show_background = false
 
 [node name="Credits" parent="VMenuBar/Buttons" index="7" instance=ExtResource( 7 )]
-margin_top = 477.0
+margin_top = 465.0
 margin_right = 300.0
-margin_bottom = 532.0
+margin_bottom = 515.0
 show_background = false
 
 [node name="Quit" parent="VMenuBar/Buttons" index="8" instance=ExtResource( 7 )]
-margin_top = 532.0
+margin_top = 515.0
 margin_right = 300.0
-margin_bottom = 587.0
+margin_bottom = 565.0
 show_background = false
 
 [connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Tutorials" to="." method="_on_Tutorials_pressed"]
@@ -167,7 +167,7 @@ show_background = false
 [connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="VMenuBar/Buttons/Main" to="." method="_on_Main_pressed"]
+[connection signal="pressed" from="VMenuBar/Buttons/Home" to="." method="_on_Home_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Tutorials" to="." method="_on_Tutorials_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Campaigns" to="." method="_on_Campaigns_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Scenarios" to="." method="_on_Scenarios_pressed"]

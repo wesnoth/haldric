@@ -12,8 +12,8 @@ func _ready() -> void:
 	#warning-ignore:return_value_discarded
 	connect("page_changed", self, "on_page_changed")
 
-func _on_Main_pressed() -> void:
-	open_page("Main")
+func _on_Home_pressed() -> void:
+	open_page("Home")
 
 func _on_Tutorials_pressed() -> void:
 	open_page("Tutorials")
@@ -42,7 +42,8 @@ func _on_Quit_pressed() -> void:
 func on_page_changed(new_page: MenuPage) -> void:
 	var new_pos: Vector2 = menu_bar.rect_position
 
-	if new_page.name == "Main":
+	# TODO: better method than checking by name
+	if new_page.name == "Home":
 		new_pos.x = menu_bar_pos_original.x
 	else:
 		new_pos.x = 100
