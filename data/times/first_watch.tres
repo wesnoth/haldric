@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+name = "First Watch"
 tint_red = -75
 tint_green = -45
 tint_blue = -13

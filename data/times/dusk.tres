@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+name = "Dusk"
 tint_red = 10
 tint_green = -20
 tint_blue = -35
