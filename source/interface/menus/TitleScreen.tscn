@@ -35,6 +35,8 @@ size_flags_horizontal = 9
 text = "Major.Minor.Patch-Status"
 
 [node name="HMenuBar" parent="." index="3" instance=ExtResource( 6 )]
+editor/display_folded = true
+visible = false
 margin_top = 20.0
 
 [node name="SidePanelBorderLeft" parent="HMenuBar/HBoxContainer" index="0"]
@@ -89,6 +91,7 @@ margin_left = 1480.0
 margin_right = 1680.0
 
 [node name="VMenuBar" parent="." index="4" instance=ExtResource( 8 )]
+editor/display_folded = true
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
