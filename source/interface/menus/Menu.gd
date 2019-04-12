@@ -1,7 +1,7 @@
 extends Control
 class_name Menu
 
-signal page_changed(index)
+signal page_changed(new_page)
 
 var direction: int = 0
 
@@ -35,4 +35,4 @@ func to_page(index: int):
 	current_page = pages.get_child(index)
 	current_page.fade_in(direction, page_time)
 
-	emit_signal("page_changed", index)
+	emit_signal("page_changed", current_page)
