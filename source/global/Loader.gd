@@ -56,7 +56,8 @@ func _get_file_data(path: String) -> Dictionary:
 	}
 
 	if file_data.data:
-		print("Loader: load file: ", path)
+		#print("Loader: load file: ", path)
+		pass
 	else:
 		print("Loader: could not load file: ", path)
 

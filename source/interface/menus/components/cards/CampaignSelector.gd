@@ -5,7 +5,7 @@ const CampaignCard = preload("res://source/interface/menus/components/cards/Camp
 
 func _ready() -> void:
 	for campaign in Registry.campaigns:
-		print(campaign)
+		#print(campaign)
 		_add_campaign(campaign)
 
 func _add_campaign(campaign) -> void:
