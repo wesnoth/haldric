@@ -46,23 +46,23 @@ func _ready() -> void:
 	unit_shader = TeamColor.generate_team_shader(team_color)
 	flag_shader = TeamColor.generate_flag_shader(team_color)
 
-	calculate_upkeep()
-	calculate_income()
+	_calculate_upkeep()
+	_calculate_income()
 
 # :Unit
 func add_unit(unit) -> void:
 	units.add_child(unit)
 	unit.side = self
 	unit.type.sprite.material = unit_shader
-	calculate_upkeep()
-	calculate_income()
+	_calculate_upkeep()
+	_calculate_income()
 
 func add_village(loc: Location) -> bool:
 	if not villages.has(loc):
 		villages.append(loc)
 		_add_flag(loc)
-		calculate_upkeep()
-		calculate_income()
+		_calculate_upkeep()
+		_calculate_income()
 		return true
 	return false
 
@@ -70,8 +70,8 @@ func remove_village(loc: Location) -> void:
 	if villages.has(loc):
 		loc.flag.queue_free()
 		villages.erase(loc)
-		calculate_upkeep()
-		calculate_income()
+		_calculate_upkeep()
+		_calculate_income()
 
 func has_village(loc: Location) -> bool:
 	return villages.has(loc)
@@ -79,22 +79,24 @@ func has_village(loc: Location) -> bool:
 func get_villages() -> Array:
 	return villages
 
-func calculate_upkeep() -> void:
-	upkeep = 0
-	for unit in units.get_children():
-		upkeep += unit.type.level
-
-func calculate_income() -> void:
-	income = base_income + INCOME_PER_VILLAGE * villages.size() - upkeep
-
-func turn_refresh() -> void:
-	gold += income
-
 # -> Unit
 func get_first_leader():
 	if leaders.size() > 0:
 		return leaders[0]
 	return null
+
+func _calculate_upkeep() -> void:
+	upkeep = 0
+	for unit in units.get_children():
+		upkeep += unit.type.level
+
+func _calculate_income() -> void:
+	income = base_income + INCOME_PER_VILLAGE * villages.size() - upkeep
+
+func _turn_refresh() -> void:
+	_calculate_upkeep()
+	_calculate_income()
+	gold += income
 
 func _add_flag(loc: Location) -> void:
 
@@ -112,6 +114,4 @@ func _add_flag(loc: Location) -> void:
 
 func _on_turn_refresh(turn: int, side: int) -> void:
 	if self.number == side and not turn == 1:
-		calculate_upkeep()
-		calculate_income()
-		gold += income
+		_turn_refresh()
