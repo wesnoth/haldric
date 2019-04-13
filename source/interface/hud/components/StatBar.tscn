@@ -9,7 +9,7 @@
 [node name="StatBar" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/separation = 2
+custom_constants/separation = 6
 script = ExtResource( 1 )
 
 [node name="StatLabel" type="Label" parent="."]
@@ -23,9 +23,9 @@ align = 1
 valign = 2
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
-margin_top = 17.0
+margin_top = 21.0
 margin_right = 1920.0
-margin_bottom = 20.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 0, 3 )
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -37,9 +37,9 @@ stretch_margin_top = 1
 stretch_margin_bottom = 1
 
 [node name="ValueLabel" type="Label" parent="."]
-margin_top = 22.0
+margin_top = 30.0
 margin_right = 1920.0
-margin_bottom = 35.0
+margin_bottom = 43.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
 text = "60/60"

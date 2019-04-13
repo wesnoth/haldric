@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/hud/UnitPanel.gd" type="Script" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
 [ext_resource path="res://graphics/images/units/elves-wood/archer.png" type="Texture" id=7]
 [ext_resource path="res://graphics/fonts/Lato12.tres" type="DynamicFont" id=8]
-[ext_resource path="res://source/interface/hud/components/StatBar.tscn" type="PackedScene" id=9]
-[ext_resource path="res://source/interface/hud/components/ResistancePlate.tscn" type="PackedScene" id=10]
+[ext_resource path="res://graphics/fonts/Lato14.tres" type="DynamicFont" id=9]
+[ext_resource path="res://source/interface/hud/components/StatBar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://source/interface/hud/components/ResistancePlate.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -36,9 +37,9 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/CenterContainer"]
 margin_left = 18.0
-margin_top = 89.0
+margin_top = 88.0
 margin_right = 218.0
-margin_bottom = 534.0
+margin_bottom = 535.0
 rect_min_size = Vector2( 200, 0 )
 custom_constants/separation = 8
 
@@ -86,13 +87,14 @@ align = 2
 [node name="General" type="HBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer"]
 margin_top = 182.0
 margin_right = 200.0
-margin_bottom = 197.0
+margin_bottom = 199.0
 alignment = 1
 
 [node name="Level" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
-margin_left = 27.0
-margin_right = 57.0
-margin_bottom = 15.0
+margin_left = 22.0
+margin_top = 1.0
+margin_right = 52.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 30, 0 )
 custom_fonts/font = ExtResource( 8 )
 text = "L1"
@@ -100,19 +102,20 @@ align = 1
 valign = 1
 
 [node name="Type" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
-margin_left = 65.0
-margin_right = 134.0
-margin_bottom = 15.0
+margin_left = 60.0
+margin_right = 140.0
+margin_bottom = 17.0
 rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 9 )
 text = "Elvish Archer"
 align = 1
 valign = 1
 
 [node name="Race" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer/General"]
-margin_left = 142.0
-margin_right = 172.0
-margin_bottom = 15.0
+margin_left = 148.0
+margin_top = 1.0
+margin_right = 178.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 30, 0 )
 custom_fonts/font = ExtResource( 8 )
 text = "Elf"
@@ -120,47 +123,47 @@ align = 1
 valign = 1
 
 [node name="Aligment" type="Label" parent="NinePatchRect/CenterContainer/VBoxContainer"]
-margin_top = 205.0
+margin_top = 207.0
 margin_right = 200.0
-margin_bottom = 220.0
+margin_bottom = 222.0
 text = "neutral (+0%)"
 align = 1
 
-[node name="Health" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
+[node name="Health" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 228.0
+margin_top = 230.0
 margin_right = 200.0
-margin_bottom = 263.0
+margin_bottom = 265.0
 bar_color = Color( 0.403922, 0.780392, 0.254902, 1 )
 
-[node name="Moves" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
+[node name="Moves" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 271.0
+margin_top = 273.0
 margin_right = 200.0
-margin_bottom = 306.0
+margin_bottom = 308.0
 bar_color = Color( 0.482353, 0.403922, 0.352941, 1 )
 
-[node name="Experience" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 9 )]
+[node name="Experience" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 314.0
+margin_top = 316.0
 margin_right = 200.0
-margin_bottom = 349.0
+margin_bottom = 351.0
 bar_color = Color( 0.458824, 0.780392, 0.713726, 1 )
 
-[node name="ResistancePlate" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 10 )]
+[node name="ResistancePlate" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 357.0
+margin_top = 359.0
 margin_right = 200.0
-margin_bottom = 437.0
+margin_bottom = 439.0
 
 [node name="Attacks" type="VBoxContainer" parent="NinePatchRect/CenterContainer/VBoxContainer"]
-margin_top = 445.0
+margin_top = 447.0
 margin_right = 200.0
-margin_bottom = 445.0
+margin_bottom = 447.0
 
 [node name="Border" type="NinePatchRect" parent="."]
 anchor_right = 1.0
