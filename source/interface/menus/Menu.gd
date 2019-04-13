@@ -5,7 +5,7 @@ signal page_changed(new_page)
 
 var direction: int = 0
 
-export var page_time := 0.5
+export var page_time := 0.4
 
 onready var tween := $Tween
 
