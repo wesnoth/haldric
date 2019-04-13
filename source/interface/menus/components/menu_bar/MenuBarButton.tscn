@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
-[ext_resource path="res://graphics/fonts/Lato32.tres" type="DynamicFont" id=2]
+[ext_resource path="res://graphics/fonts/Lato28.tres" type="DynamicFont" id=2]
 [ext_resource path="res://source/interface/menus/components/menu_bar/MenuBarButton.gd" type="Script" id=3]
 [ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=4]
 [ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=5]

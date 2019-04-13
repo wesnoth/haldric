@@ -11,6 +11,7 @@ var bonus := 0
 var malus := 0
 
 func initialize(res: RTime) -> void:
+	name = res.name
 	advantage = res.advantage
 	disadvantage = res.disadvantage
 	bonus = res.bonus

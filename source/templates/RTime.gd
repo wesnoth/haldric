@@ -1,6 +1,8 @@
 extends Resource
 class_name RTime
 
+export var name := ""
+
 export var tint_red := 0
 export var tint_green := 0
 export var tint_blue := 0

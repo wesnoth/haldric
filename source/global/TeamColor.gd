@@ -1,7 +1,7 @@
 extends Node
 
-const SHADER = preload("res://graphics/shaders/TeamColors.shader")
-const FLAG_SHADER = preload("res://graphics/shaders/TeamFlag.shader")
+const SHADER = preload("res://graphics/shaders/team_colors.shader")
+const FLAG_SHADER = preload("res://graphics/shaders/team_flag.shader")
 
 var base_color_map := [
 	Color("F49AC1"),
