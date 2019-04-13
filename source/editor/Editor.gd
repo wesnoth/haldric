@@ -94,9 +94,6 @@ func _on_button_pressed(id: int) -> void:
 	print(id)
 	current_tile = id
 
-func _on_Back_pressed() -> void:
-	Scene.change(Scene.TitleScreen)
-
 func _on_Save_pressed() -> void:
 	_save_map(line_edit.text)
 

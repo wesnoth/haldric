@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/editor/Editor.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/old/OffMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/scenario/old/Scenario.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/editor/HUD.gd" type="Script" id=4]
-[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=5]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
-[ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/interface/hud/PauseMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=6]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=7]
+[ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=8]
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,18 +22,28 @@ button_size = 50
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 4 )
 
+[node name="PauseMenu" parent="HUD" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -540.0
+margin_right = -760.0
+margin_bottom = -240.0
+
 [node name="TileButtons" type="Control" parent="HUD"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -265.0
 margin_bottom = 1.0
-theme = ExtResource( 5 )
+theme = ExtResource( 6 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HUD/TileButtons"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 20, 20 )
 patch_margin_left = 2
 patch_margin_top = 2
@@ -54,28 +65,17 @@ custom_constants/vseparation = 12
 custom_constants/hseparation = 12
 columns = 4
 
-[node name="Back" type="Button" parent="HUD/TileButtons"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -82.0
-margin_top = -44.0
-margin_right = -7.0
-margin_bottom = -7.0
-text = "Back"
-
 [node name="UIButtons" type="Control" parent="HUD"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -55.0
 margin_right = 447.0
-theme = ExtResource( 5 )
+theme = ExtResource( 6 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HUD/UIButtons"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 20, 20 )
 patch_margin_left = 2
 patch_margin_top = 2
@@ -121,10 +121,8 @@ margin_right = 412.0
 margin_bottom = 44.0
 text = "Load"
 
-[node name="Camera2D" parent="." instance=ExtResource( 7 )]
-visible = false
+[node name="Camera2D" parent="." instance=ExtResource( 8 )]
 
-[connection signal="pressed" from="HUD/TileButtons/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/New" to="." method="_on_New_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Load" to="." method="_on_Load_pressed"]
