@@ -104,6 +104,7 @@ func _set_side(value: Side) -> void:
 	for unit in current_side.units.get_children():
 		unit.moves_current = unit.type.moves
 		unit.viewable = scenario.map.find_all_viewable_cells(unit)
+		unit.reachable = scenario.map.find_all_reachable_cells(unit)
 
 func _set_selected_unit(value: Unit) -> void:
 	selected_unit = value
