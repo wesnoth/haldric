@@ -1,5 +1,6 @@
 extends Node2D
 
+const void_texture_offset = Vector2(108, 108)
 var void_texture = preload("res://graphics/images/terrain/fog-uncover.png")
 
 var units
@@ -19,6 +20,6 @@ func _draw() -> void:
 			if unit.side.number == side:
 				unit.visible = true
 				for viewable in unit.viewable:
-					draw_texture(void_texture, viewable.position)
+					draw_texture(void_texture, viewable.position - void_texture_offset)
 					if viewable.unit:
 						viewable.unit.visible = true
