@@ -27,6 +27,7 @@ arcane = -10
 [node name="Sword" parent="Attacks" index="0" instance=ExtResource( 3 )]
 id = "sword"
 reach = "melee"
+type = "blade"
 damage = 5
 strikes = 4
 icon = ExtResource( 4 )
