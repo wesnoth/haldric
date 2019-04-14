@@ -6,7 +6,7 @@
 [ext_resource path="res://graphics/images/units/undead/bat-se-3.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/units/undead/bat-se-4.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/units/undead/bat-se-5.png" type="Texture" id=6]
-[ext_resource path="res://source/unit/Attack.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/unit/Attack.gd" type="Script" id=7]
 [ext_resource path="res://graphics/images/attacks/fangs-animal.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ) ]
 }
 
-[node name="Bat" instance=ExtResource( 1 )]
+[node name="Bat" index="0" instance=ExtResource( 1 )]
 id = "Vampire Bat"
 race = "bat"
 alignment = "chaotic"
@@ -58,11 +58,12 @@ impact = -20
 cold = 30
 arcane = 20
 
-[node name="Fangs" parent="Attacks" index="0" instance=ExtResource( 7 )]
-icon = ExtResource( 8 )
+[node name="Fangs" type="Node" parent="Attacks" index="0"]
+script = ExtResource( 7 )
 id = "fangs"
-type = "blade"
 reach = "melee"
+type = "blade"
 damage = 4
 strikes = 2
+icon = ExtResource( 8 )
 

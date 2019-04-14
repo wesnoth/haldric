@@ -4,7 +4,7 @@
 [ext_resource path="res://graphics/images/units/undead/ghost-s-1.png" type="Texture" id=2]
 [ext_resource path="res://graphics/images/units/undead/ghost-s-2.png" type="Texture" id=3]
 [ext_resource path="res://graphics/images/units/undead/ghost-s-3.png" type="Texture" id=4]
-[ext_resource path="res://source/unit/Attack.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/unit/Attack.gd" type="Script" id=5]
 [ext_resource path="res://graphics/images/attacks/touch-undead.png" type="Texture" id=6]
 [ext_resource path="res://graphics/images/attacks/wail.png" type="Texture" id=7]
 
@@ -68,7 +68,8 @@ impact = -20
 cold = 30
 arcane = 20
 
-[node name="Touch" parent="Attacks" index="0" instance=ExtResource( 5 )]
+[node name="Touch" type="Node" parent="Attacks" index="0"]
+script = ExtResource( 5 )
 id = "touch"
 reach = "melee"
 type = "arcane"
@@ -76,7 +77,8 @@ damage = 4
 strikes = 3
 icon = ExtResource( 6 )
 
-[node name="Wail" parent="Attacks" index="1" instance=ExtResource( 5 )]
+[node name="Wail" type="Node" parent="Attacks" index="1"]
+script = ExtResource( 5 )
 id = "wail"
 reach = "ranged"
 type = "cold"
