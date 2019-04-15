@@ -3,6 +3,7 @@ class_name Unit
 
 signal moved(unit, location)
 signal move_finished(unit, location)
+signal state_changed(new_state)
 
 var side : Side = null
 
@@ -16,19 +17,38 @@ var path := []
 var reachable := {} #setget _set_reachable
 var viewable := []
 
-export(float, 0.1, 1.0) var move_time := 0.15
-
-onready var tween := $Tween as Tween
-
 var type : UnitType = null
 
+var current_state : State = null
+
+onready var states := {}
+
+onready var tween := $Tween as Tween
+onready var state_label := $StateLabel as Label
+
+func _unhandled_input(event: InputEvent) -> void:
+	current_state.input(self, event)
+
+func _process(delta: float) -> void:
+	current_state.update(self, delta)
+
 func _ready() -> void:
+	_setup_states()
 	health_current = type.health
 	moves_current = type.moves
 	add_child(type)
+	change_state("idle")
 
 func initialize(unit_type: UnitType) -> void:
 	type = unit_type
+
+func change_state(new_state):
+	if current_state:
+		current_state._exit(self)
+	current_state = states[new_state]
+	state_label.text = current_state.name
+	current_state._enter(self)
+	emit_signal("state_changed", current_state.name)
 
 func place_at(loc: Location) -> void:
 	if location:
@@ -49,7 +69,7 @@ func path_cost(unit_path : Array) -> int:
 
 func move_to(loc: Location) -> void:
 	path = find_path(loc)
-	_move()
+	change_state("move")
 
 func find_path(loc: Location) -> Array:
 	if reachable.has(loc):
@@ -78,38 +98,11 @@ func set_reachable() -> void:
 		viewable = location.map.find_all_viewable_cells(self)
 	reachable = location.map.find_all_reachable_cells(self)
 
-func _move() -> void:
-	if path and tween:
-		var loc: Location = path[0]
-		var cost = get_movement_cost(loc)
-
-		if cost > moves_current:
-			return
-
-		location.unit = null
-		location = loc
-		location.unit = self
-
-		#warning-ignore:return_value_discarded
-		tween.interpolate_property(self, "position", position, loc.position, move_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-
-		if location.map.ZOC_tiles.has(location):
-			moves_current = 0
-		else:
-			moves_current -= cost
-		viewable = location.map.find_all_viewable_cells(self)
-		set_reachable() # TODO: do we want this?
-		path.remove(0)
-		#warning-ignore:return_value_discarded
-		tween.start()
-
-func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
-	emit_signal("moved", self, location)
-	if path:
-		_move()
-	else:
-		emit_signal("move_finished", self, location)
-
 func _set_location(value: Location) -> void:
 	location = value
 	set_reachable() # TODO: do we want this?
+
+func _setup_states():
+	states["idle"] = $States/Idle
+	states["move"] = $States/Move
+	states["attack"] = $States/Attack
