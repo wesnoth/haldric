@@ -4,6 +4,7 @@ onready var menu_bar := $VMenuBar
 onready var menu_bar_pos_original: Vector2 = menu_bar.rect_position
 
 onready var version := $Version
+onready var header := $Header
 
 func _ready() -> void:
 	#Audio.play(Registry.music.return_to_wesnoth)
@@ -45,8 +46,10 @@ func on_page_changed(new_page: MenuPage) -> void:
 	# TODO: better method than checking by name
 	if new_page.name == "Home":
 		new_pos.x = menu_bar_pos_original.x
+		header.text = ""
 	else:
 		new_pos.x = 100
+		header.text = new_page.name
 
 	if menu_bar.rect_position == new_pos:
 		return
