@@ -1,4 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://graphics/images/terrain/fog-noise.jpg" type="Texture" id=1]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -32,19 +34,9 @@ void fragment() {
 	COLOR = final;
 }"
 
-[sub_resource type="OpenSimplexNoise" id=2]
-octaves = 6
-lacunarity = 3.5
-
-[sub_resource type="NoiseTexture" id=3]
-width = 1024
-height = 1024
-seamless = true
-noise = SubResource( 2 )
-
 [resource]
 shader = SubResource( 1 )
-shader_param/intensity = 1.6
+shader_param/intensity = 1.4
 shader_param/offset = null
-shader_param/noise = SubResource( 3 )
+shader_param/noise = ExtResource( 1 )
 
