@@ -2,7 +2,7 @@
 
 [ext_resource path="res://source/editor/Editor.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/old/OffMap.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/scenario/old/Scenario.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/scenario/Scenario.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/editor/HUD.gd" type="Script" id=4]
 [ext_resource path="res://source/interface/hud/PauseMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=6]
