@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://source/scenario/old/OffMap.gd" type="Script" id=1]
+[ext_resource path="res://source/scenario/OffMap.gd" type="Script" id=1]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 octaves = 6
@@ -29,4 +29,3 @@ margin_bottom = 1080.0
 mouse_filter = 2
 texture = SubResource( 2 )
 stretch_mode = 2
-
