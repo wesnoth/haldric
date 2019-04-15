@@ -120,9 +120,6 @@ func update_terrain() -> void:
 	_initialize_transitions()
 
 func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = false) -> void:
-	#for label in labels:
-	#	remove_child(label)
-	#labels.clear()
 	for loc in ZOC_tiles.keys():
 		grid.unblock_cell(loc.cell)
 		for val in ZOC_tiles[loc]:
@@ -174,12 +171,6 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 			#print(cost)
 
 			grid.astar.set_point_weight_scale(id, cost)
-	#for loc in ZOC_tiles:
-	#	var label : Label = Label.new()
-	#	label.text = "ZOC"
-	#	label.set_position(loc.position)
-	#	labels.append(label)
-	#	add_child(label)
 
 func set_size(cell: Vector2) -> void:
 	width = int(cell.x)
