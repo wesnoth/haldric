@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://graphics/shaders/ColorAdjust.shader" type="Shader" id=1]
+[ext_resource path="res://graphics/shaders/color_adjust.shader" type="Shader" id=1]
 [ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=2]
 [ext_resource path="res://source/scenario/map/Map.gd" type="Script" id=3]
 [ext_resource path="res://source/scenario/map/Transitions.tscn" type="PackedScene" id=4]
