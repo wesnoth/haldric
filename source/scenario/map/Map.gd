@@ -15,7 +15,7 @@ var ZOC_tiles := {}
 
 var village_count := 0
 
-onready var tween := Tween.new()
+onready var tween := $Tween as Tween
 
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
@@ -25,7 +25,6 @@ onready var cover_tile: int = tile_set.find_tile_by_name("Xv")
 onready var transitions := $Transitions as Transitions
 
 func _ready() -> void:
-	add_child(tween)
 	_update_size()
 	_initialize_locations()
 	_initialize_grid()
