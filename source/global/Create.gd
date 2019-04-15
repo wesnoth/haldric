@@ -1,7 +1,7 @@
 extends Node
 
 const Unit = preload("res://source/unit/Unit.tscn")
-const Scenario = preload("res://source/scenario/old/Scenario.tscn")
+const Scenario = preload("res://source/scenario/Scenario.tscn")
 
 func unit() -> Unit:
 	return Unit.instance() as Unit
