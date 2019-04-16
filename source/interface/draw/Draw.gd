@@ -5,6 +5,8 @@ onready var viewport := $Viewport as Viewport
 onready var fog_texture := $Viewport/FogTexture as Node2D
 onready var fog := $Fog as Node2D
 
+onready var outline := $Outline as Node2D
+
 onready var unit_path_display := $UnitPathDisplay as Path2D
 
 onready var hover := $Hover as Sprite
@@ -18,6 +20,7 @@ func _process(delta: float) -> void:
 	viewport.size = size
 	fog_texture.side = side
 	fog.texture = viewport.get_texture()
+	outline.texture = viewport.get_texture()
 
 func update_units(units: Array) -> void:
 	fog_texture.units = units

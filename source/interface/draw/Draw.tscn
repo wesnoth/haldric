@@ -1,12 +1,34 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/interface/draw/Draw.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/draw/FogTexture.gd" type="Script" id=2]
 [ext_resource path="res://graphics/materials/fog.tres" type="Material" id=3]
 [ext_resource path="res://source/interface/draw/Fog.gd" type="Script" id=4]
-[ext_resource path="res://source/interface/draw/UnitPathDisplay.tscn" type="PackedScene" id=5]
-[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=6]
-[ext_resource path="res://source/interface/draw/MapBorder.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/interface/draw/Outline.gd" type="Script" id=5]
+[ext_resource path="res://source/interface/draw/UnitPathDisplay.tscn" type="PackedScene" id=6]
+[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=7]
+[ext_resource path="res://source/interface/draw/MapBorder.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color : hint_color;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	
+	if (tex.r < 1.0 && tex.r > 0.0) {
+		tex.rgba = vec4(color.rgb, tex.r * 0.5);
+	} else {
+		tex.rgba = vec4(0.0, 0.0, 0.0, 0.0);
+	}
+	
+	COLOR = tex;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.305882, 0.752941, 0.658824, 1 )
 
 [node name="Draw" type="Node2D"]
 z_index = 1024
@@ -25,10 +47,15 @@ script = ExtResource( 2 )
 material = ExtResource( 3 )
 script = ExtResource( 4 )
 
-[node name="UnitPathDisplay" parent="." instance=ExtResource( 5 )]
+[node name="Outline" type="Node2D" parent="."]
+visible = false
+material = SubResource( 2 )
+script = ExtResource( 5 )
+
+[node name="UnitPathDisplay" parent="." instance=ExtResource( 6 )]
 
 [node name="Hover" type="Sprite" parent="."]
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
-[node name="MapBorder" parent="." instance=ExtResource( 7 )]
+[node name="MapBorder" parent="." instance=ExtResource( 8 )]
 
