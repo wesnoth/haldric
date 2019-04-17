@@ -14,11 +14,9 @@ func _draw() -> void:
 
 	if units:
 		for unit in units:
-			unit.visible = false
+			unit.visible = unit.side.number == side
 
-		for unit in units:
 			if unit.side.number == side:
-				unit.visible = true
 				for viewable in unit.viewable:
 					draw_texture(void_texture, viewable.position - void_texture_offset)
 					if viewable.unit:
