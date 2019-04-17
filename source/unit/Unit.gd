@@ -26,11 +26,14 @@ onready var states := {}
 onready var tween := $Tween as Tween
 onready var state_label := $StateLabel as Label
 
+onready var life_bar := $LifeBar as Control
+
 func _unhandled_input(event: InputEvent) -> void:
 	current_state.input(self, event)
 
 func _process(delta: float) -> void:
 	current_state.update(self, delta)
+	life_bar.update_unit(self)
 
 func _ready() -> void:
 	_setup_states()
