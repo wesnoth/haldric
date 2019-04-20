@@ -46,5 +46,5 @@ func fade_out(direction: int, time: float) -> void:
 func _enter() -> void:
 	pass
 
-func _leave(time: int) -> void:
+func _leave(time: float) -> void:
 	pass
