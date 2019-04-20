@@ -39,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if selected_unit:
 				if draw.unit_path_display.path.empty() or not draw.unit_path_display.path.back() == loc:
 					_draw_temp_path(selected_unit.find_path(loc))
-			elif loc.unit:
+			elif loc.unit and loc.unit.visible:
 				scenario.map.display_reachable_for(loc.unit.reachable)
 			else:
 				scenario.map.display_reachable_for({})
