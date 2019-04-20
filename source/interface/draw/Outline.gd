@@ -1,8 +1,6 @@
 extends Node2D
-var texture
 
-func _process(delta: float) -> void:
-	update()
+var texture
 
 func _draw() -> void:
 	if texture:

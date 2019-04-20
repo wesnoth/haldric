@@ -6,9 +6,6 @@ var void_texture = preload("res://graphics/images/terrain/fog-uncover.png")
 var units
 var side
 
-func _process(delta: float) -> void:
-	update()
-
 func _draw() -> void:
 	draw_rect(get_viewport_rect(), Color("000000"))
 

@@ -47,7 +47,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_load_map()
 	_load_units()
-	draw.update_units(get_tree().get_nodes_in_group("Unit"))
 
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
@@ -61,10 +60,12 @@ func _load_map() -> void:
 
 		if scenario:
 			scenario_container.add_child(scenario)
+			#warning-ignore:return_value_discarded
 			scenario.connect("unit_moved", self, "_on_unit_moved")
+			#warning-ignore:return_value_discarded
 			scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
 
-			draw.update_map_border(scenario.map.get_pixel_size())
+			draw.set_map_border_size(scenario.map.get_pixel_size())
 		else:
 			print("No .tscn file found for scenario " % Global.scenario_name)
 
@@ -73,16 +74,16 @@ func _load_units() -> void:
 
 func _update_hover(loc: Location) -> void:
 	if loc:
-		draw.update_hover(loc.position)
+		draw.set_hover_position(loc.position)
 
 func _draw_temp_path(path: Array) -> void:
 	if selected_unit:
 		var new_path = path.duplicate(true)
 		new_path.push_front(selected_unit.location)
-		draw.update_path(new_path)
+		draw.set_path(new_path)
 
 func _clear_temp_path() -> void:
-	draw.update_path([])
+	draw.set_path([])
 
 func _set_side(value: Side) -> void:
 
@@ -136,6 +137,7 @@ func _on_unit_move_finished(unit: Unit, location: Location) -> void:
 	_grab_village(unit, location)
 
 func _on_HUD_turn_end_pressed() -> void:
+	print("EVENT STUFF")
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
 	_next_side()
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
