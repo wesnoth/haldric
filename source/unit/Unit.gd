@@ -11,7 +11,7 @@ var health_current := 0
 var moves_current := 0
 var experience_current := 0
 
-var location: Location = null setget _set_location
+var location: Location = null #setget _set_location
 
 var path := []
 var reachable := {} #setget _set_reachable
