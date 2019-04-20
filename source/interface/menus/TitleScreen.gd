@@ -7,7 +7,7 @@ onready var version := $Version
 onready var header := $Header
 
 func _ready() -> void:
-	#Audio.play(Registry.music.return_to_wesnoth)
+	# Audio.play(load(Registry.music.return_to_wesnoth))
 	version.text = Global.version_string
 
 	#warning-ignore:return_value_discarded

@@ -1,10 +1,9 @@
 extends Node
 
-func load_dir(path: String, extentions: Array) -> Array:
-	return _get_directory_data(path, [], extentions)
+func load_dir(path: String, extentions: Array, load_resource := true) -> Array:
+	return _get_directory_data(path, [], extentions, load_resource)
 
-func _get_directory_data(
-		path: String, directory_data: Array, extentions: Array) -> Array:
+func _get_directory_data(path: String, directory_data: Array, extentions: Array, load_resource: bool) -> Array:
 	var directory := Directory.new()
 
 	if not directory.open(path) == OK:
@@ -27,21 +26,19 @@ func _get_directory_data(
 			break
 
 		elif directory.current_is_dir():
-			directory_data = _get_directory_data(directory.get_current_dir() +
-					"/" + sub_path, directory_data, extentions)
+			directory_data = _get_directory_data(directory.get_current_dir() + "/" + sub_path, directory_data, extentions, load_resource)
 		else:
 			if not extentions.has(sub_path.get_extension()):
 				continue
 
-			var file_data: Dictionary = _get_file_data(\
-					directory.get_current_dir() + "/" + sub_path)
+			var file_data: Dictionary = _get_file_data(directory.get_current_dir() + "/" + sub_path, load_resource)
 			directory_data.append(file_data)
 
 	directory.list_dir_end()
 
 	return directory_data
 
-func _get_file_data(path: String) -> Dictionary:
+func _get_file_data(path: String, load_resource: bool) -> Dictionary:
 	var file_name := path.get_file()
 	var file_name_split := file_name.split(".")
 
@@ -50,9 +47,10 @@ func _get_file_data(path: String) -> Dictionary:
 
 	var file_data := {
 		id = file_name_split[0], # Name, no extension
-		base_path = base_path, # Full path, no extension
+		path = path, # full path
+		base_path = base_path, # path, but no extension
 		parent_folder = parent_folder,
-		data = load(path)
+		data = load(path) if load_resource else null
 	}
 
 	if file_data.data:
