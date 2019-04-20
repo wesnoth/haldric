@@ -3,7 +3,9 @@ class_name MenuPage
 
 onready var tween := $Tween as Tween
 
-onready var backgrounds = $Background.get_children()
+onready var backgrounds := $Background.get_children()
+
+onready var menu_bar_hook := $MenuBarHook as Control
 
 func _ready() -> void:
 	visible = false

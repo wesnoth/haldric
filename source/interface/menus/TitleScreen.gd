@@ -1,10 +1,9 @@
 extends Menu
 
-onready var menu_bar := $VMenuBar
-onready var menu_bar_pos_original: Vector2 = menu_bar.rect_position
+onready var menu_bar := $VMenuBar as Control
 
-onready var version := $Version
-onready var header := $Header
+onready var version := $Version as Label
+onready var header := $Header as Label
 
 func _ready() -> void:
 	# Audio.play(load(Registry.music.return_to_wesnoth))
@@ -41,18 +40,21 @@ func _on_Quit_pressed() -> void:
 	get_tree().quit()
 
 func on_page_changed(new_page: MenuPage) -> void:
-	var new_pos: Vector2 = menu_bar.rect_position
+	var new_position = new_page.menu_bar_hook.rect_position
+	var new_size = new_page.menu_bar_hook.rect_size
 
-	# TODO: better method than checking by name
-	if new_page.name == "Home":
-		new_pos.x = menu_bar_pos_original.x
-		header.text = ""
-	else:
-		new_pos.x = 100
-		header.text = new_page.name
+	header.text = "" if new_page.name == "Home" else new_page.name
 
-	if menu_bar.rect_position == new_pos:
+	if menu_bar.rect_position == new_position:
 		return
 
-	tween.interpolate_property(menu_bar, "rect_position", menu_bar.rect_position, new_pos, page_time, Tween.TRANS_SINE, Tween.EASE_OUT)
+	menu_bar.anchor_bottom = new_page.menu_bar_hook.anchor_bottom
+	menu_bar.anchor_top = new_page.menu_bar_hook.anchor_top
+	menu_bar.anchor_left = new_page.menu_bar_hook.anchor_left
+	menu_bar.anchor_right = new_page.menu_bar_hook.anchor_right
+
+	tween.interpolate_property(menu_bar, "rect_position", menu_bar.rect_position, new_position, page_time, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.interpolate_property(menu_bar, "rect_size", menu_bar.rect_size, new_size, page_time, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.interpolate_property(header, "self_modulate", Color("00FFFFFF"), Color("FFFFFFFF"), page_time, Tween.TRANS_SINE, Tween.EASE_IN)
+
 	tween.start()

@@ -1,38 +1,36 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://source/interface/menus/Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
-[ext_resource path="res://source/interface/menus/components/menu_page/MenuPage.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/interface/menus/Campaigns.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/interface/menus/Scenarios.tscn" type="PackedScene" id=5]
-[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://source/interface/menus/components/menu_bar/HMenuBar.tscn" type="PackedScene" id=7]
-[ext_resource path="res://source/interface/menus/components/menu_bar/MenuBarButton.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/interface/menus/components/menu_bar/VMenuBar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/interface/menus/Home.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/menus/components/menu_page/MenuPage.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/menus/Campaigns.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/interface/menus/Scenarios.tscn" type="PackedScene" id=6]
+[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://source/interface/menus/components/menu_bar/HMenuBar.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/menus/components/menu_bar/MenuBarButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/interface/menus/components/menu_bar/VMenuBar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
-font_data = ExtResource( 6 )
+font_data = ExtResource( 7 )
 
-[node name="TitleScreen" instance=ExtResource( 1 )]
+[node name="TitleScreen" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-
-[node name="Pages" parent="." index="1"]
-margin_left = 400.0
 
 [node name="Home" parent="Pages" index="0" instance=ExtResource( 3 )]
 
-[node name="Tutorials" parent="Pages" index="1" instance=ExtResource( 3 )]
+[node name="Tutorials" parent="Pages" index="1" instance=ExtResource( 4 )]
 
-[node name="Campaigns" parent="Pages" index="2" instance=ExtResource( 4 )]
+[node name="Campaigns" parent="Pages" index="2" instance=ExtResource( 5 )]
 
-[node name="Scenarios" parent="Pages" index="3" instance=ExtResource( 5 )]
+[node name="Scenarios" parent="Pages" index="3" instance=ExtResource( 6 )]
 
-[node name="Addons" parent="Pages" index="4" instance=ExtResource( 3 )]
+[node name="Addons" parent="Pages" index="4" instance=ExtResource( 4 )]
 
-[node name="Settings" parent="Pages" index="5" instance=ExtResource( 3 )]
+[node name="Settings" parent="Pages" index="5" instance=ExtResource( 4 )]
 
-[node name="Credits" parent="Pages" index="6" instance=ExtResource( 3 )]
+[node name="Credits" parent="Pages" index="6" instance=ExtResource( 4 )]
 
 [node name="Version" type="Label" parent="." index="2"]
 anchor_top = 1.0
@@ -55,7 +53,7 @@ size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
 uppercase = true
 
-[node name="HMenuBar" parent="." index="4" instance=ExtResource( 7 )]
+[node name="HMenuBar" parent="." index="4" instance=ExtResource( 8 )]
 editor/display_folded = true
 visible = false
 margin_top = 20.0
@@ -68,41 +66,41 @@ margin_right = 440.0
 margin_left = 440.0
 margin_right = 1480.0
 
-[node name="Tutorials" parent="HMenuBar/HBoxContainer/Buttons" index="0" instance=ExtResource( 8 )]
+[node name="Tutorials" parent="HMenuBar/HBoxContainer/Buttons" index="0" instance=ExtResource( 9 )]
 margin_right = 130.0
 margin_bottom = 60.0
 
-[node name="Campaigns" parent="HMenuBar/HBoxContainer/Buttons" index="1" instance=ExtResource( 8 )]
+[node name="Campaigns" parent="HMenuBar/HBoxContainer/Buttons" index="1" instance=ExtResource( 9 )]
 margin_left = 130.0
 margin_right = 260.0
 margin_bottom = 60.0
 
-[node name="Scenarios" parent="HMenuBar/HBoxContainer/Buttons" index="2" instance=ExtResource( 8 )]
+[node name="Scenarios" parent="HMenuBar/HBoxContainer/Buttons" index="2" instance=ExtResource( 9 )]
 margin_left = 260.0
 margin_right = 390.0
 margin_bottom = 60.0
 
-[node name="Editor" parent="HMenuBar/HBoxContainer/Buttons" index="3" instance=ExtResource( 8 )]
+[node name="Editor" parent="HMenuBar/HBoxContainer/Buttons" index="3" instance=ExtResource( 9 )]
 margin_left = 390.0
 margin_right = 520.0
 margin_bottom = 60.0
 
-[node name="Addons" parent="HMenuBar/HBoxContainer/Buttons" index="4" instance=ExtResource( 8 )]
+[node name="Addons" parent="HMenuBar/HBoxContainer/Buttons" index="4" instance=ExtResource( 9 )]
 margin_left = 520.0
 margin_right = 650.0
 margin_bottom = 60.0
 
-[node name="Settings" parent="HMenuBar/HBoxContainer/Buttons" index="5" instance=ExtResource( 8 )]
+[node name="Settings" parent="HMenuBar/HBoxContainer/Buttons" index="5" instance=ExtResource( 9 )]
 margin_left = 650.0
 margin_right = 780.0
 margin_bottom = 60.0
 
-[node name="Credits" parent="HMenuBar/HBoxContainer/Buttons" index="6" instance=ExtResource( 8 )]
+[node name="Credits" parent="HMenuBar/HBoxContainer/Buttons" index="6" instance=ExtResource( 9 )]
 margin_left = 780.0
 margin_right = 910.0
 margin_bottom = 60.0
 
-[node name="Quit" parent="HMenuBar/HBoxContainer/Buttons" index="7" instance=ExtResource( 8 )]
+[node name="Quit" parent="HMenuBar/HBoxContainer/Buttons" index="7" instance=ExtResource( 9 )]
 margin_left = 910.0
 margin_right = 1040.0
 margin_bottom = 60.0
@@ -111,7 +109,7 @@ margin_bottom = 60.0
 margin_left = 1480.0
 margin_right = 1680.0
 
-[node name="VMenuBar" parent="." index="5" instance=ExtResource( 9 )]
+[node name="VMenuBar" parent="." index="5" instance=ExtResource( 10 )]
 editor/display_folded = true
 anchor_left = 1.0
 anchor_right = 1.0
@@ -120,56 +118,57 @@ margin_left = -500.0
 margin_top = 200.0
 margin_right = -200.0
 margin_bottom = -200.0
+rect_min_size = Vector2( 0, 0 )
 
-[node name="Home" parent="VMenuBar/Buttons" index="0" instance=ExtResource( 8 )]
+[node name="Home" parent="VMenuBar/Buttons" index="0" instance=ExtResource( 9 )]
 margin_top = 115.0
 margin_right = 300.0
 margin_bottom = 165.0
 show_background = false
 
-[node name="Tutorials" parent="VMenuBar/Buttons" index="1" instance=ExtResource( 8 )]
+[node name="Tutorials" parent="VMenuBar/Buttons" index="1" instance=ExtResource( 9 )]
 margin_top = 165.0
 margin_right = 300.0
 margin_bottom = 215.0
 show_background = false
 
-[node name="Campaigns" parent="VMenuBar/Buttons" index="2" instance=ExtResource( 8 )]
+[node name="Campaigns" parent="VMenuBar/Buttons" index="2" instance=ExtResource( 9 )]
 margin_top = 215.0
 margin_right = 300.0
 margin_bottom = 265.0
 show_background = false
 
-[node name="Scenarios" parent="VMenuBar/Buttons" index="3" instance=ExtResource( 8 )]
+[node name="Scenarios" parent="VMenuBar/Buttons" index="3" instance=ExtResource( 9 )]
 margin_top = 265.0
 margin_right = 300.0
 margin_bottom = 315.0
 show_background = false
 
-[node name="Editor" parent="VMenuBar/Buttons" index="4" instance=ExtResource( 8 )]
+[node name="Editor" parent="VMenuBar/Buttons" index="4" instance=ExtResource( 9 )]
 margin_top = 315.0
 margin_right = 300.0
 margin_bottom = 365.0
 show_background = false
 
-[node name="Addons" parent="VMenuBar/Buttons" index="5" instance=ExtResource( 8 )]
+[node name="Addons" parent="VMenuBar/Buttons" index="5" instance=ExtResource( 9 )]
 margin_top = 365.0
 margin_right = 300.0
 margin_bottom = 415.0
 show_background = false
 
-[node name="Settings" parent="VMenuBar/Buttons" index="6" instance=ExtResource( 8 )]
+[node name="Settings" parent="VMenuBar/Buttons" index="6" instance=ExtResource( 9 )]
 margin_top = 415.0
 margin_right = 300.0
 margin_bottom = 465.0
 show_background = false
 
-[node name="Credits" parent="VMenuBar/Buttons" index="7" instance=ExtResource( 8 )]
+[node name="Credits" parent="VMenuBar/Buttons" index="7" instance=ExtResource( 9 )]
 margin_top = 465.0
 margin_right = 300.0
 margin_bottom = 515.0
 show_background = false
 
-[node name="Quit" parent="VMenuBar/Buttons" index="8" instance=ExtResource( 8 )]
+[node name="Quit" parent="VMenuBar/Buttons" index="8" instance=ExtResource( 9 )]
 margin_top = 515.0
 margin_right = 300.0
 margin_bottom = 565.0
