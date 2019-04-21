@@ -29,7 +29,6 @@ func _draw() -> void:
 	fog.update()
 	outline.texture = viewport.get_texture()
 	outline.update()
-	print("STUFF")
 
 func set_map_border_size(size) -> void:
 	map_border.rect_size = size

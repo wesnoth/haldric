@@ -137,7 +137,6 @@ func _on_unit_move_finished(unit: Unit, location: Location) -> void:
 	_grab_village(unit, location)
 
 func _on_HUD_turn_end_pressed() -> void:
-	print("EVENT STUFF")
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
 	_next_side()
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
