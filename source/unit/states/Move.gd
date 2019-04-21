@@ -2,7 +2,7 @@ extends State
 
 var host = null
 
-export(float, 0.1, 1.0) var move_time := 0.2
+export(float, 0.1, 1.0) var move_time := 0.15
 
 func _enter(host):
 	if host.type.anim.has_animation("move"):
