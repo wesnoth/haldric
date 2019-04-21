@@ -1,13 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/hud/PauseMenu.gd" type="Script" id=2]
-[ext_resource path="res://graphics/shaders/panel_blur.shader" type="Shader" id=3]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=4]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 3 )
-shader_param/blur = 1.5
+[ext_resource path="res://source/interface/hud/PauseButton.tscn" type="PackedScene" id=3]
 
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
@@ -30,54 +25,33 @@ rect_min_size = Vector2( 200, 300 )
 theme = ExtResource( 1 )
 popup_exclusive = true
 
-[node name="Panel" type="NinePatchRect" parent="Popup"]
-material = SubResource( 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 4 )
-region_rect = Rect2( 20, 0, 20, 20 )
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-
 [node name="CenterContainer" type="CenterContainer" parent="Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Popup/CenterContainer"]
-margin_left = 40.0
-margin_top = 115.0
-margin_right = 160.0
-margin_bottom = 185.0
+margin_top = 66.0
+margin_right = 238.0
+margin_bottom = 234.0
 rect_min_size = Vector2( 120, 0 )
 
-[node name="Resume" type="Button" parent="Popup/CenterContainer/VBoxContainer"]
-margin_right = 120.0
-margin_bottom = 31.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Resume"
+[node name="Resume" parent="Popup/CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_right = 238.0
+margin_bottom = 80.0
 
-[node name="Quit" type="Button" parent="Popup/CenterContainer/VBoxContainer"]
-margin_top = 39.0
-margin_right = 120.0
-margin_bottom = 70.0
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Quit"
+[node name="Quit" parent="Popup/CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 88.0
+margin_right = 238.0
+margin_bottom = 168.0
 
-[node name="PauseButton" type="Button" parent="."]
+[node name="Pause" parent="." instance=ExtResource( 3 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
-margin_top = -47.0
-margin_right = 89.0
+margin_top = -90.0
+margin_right = 238.0
 margin_bottom = -10.0
-text = "Pause"
 
 [connection signal="pressed" from="Popup/CenterContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="Popup/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
+[connection signal="pressed" from="Pause" to="." method="_on_Pause_pressed"]
