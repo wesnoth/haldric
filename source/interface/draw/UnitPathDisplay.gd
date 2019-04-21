@@ -1,8 +1,8 @@
 extends Path2D
 
-const BEND := 0.3
-const COLOR := Color(255, 0, 0, 0.5)
-const WIDTH := 20
+export var bend := 0.3
+export var color := Color(255, 0, 0, 0.5)
+export var width := 20
 
 var path := [] setget _path_updated
 
@@ -33,8 +33,8 @@ func _draw() -> void:
 			var d01 := sqrt(pow(current.x - prev.x, 2) + pow(current.y - prev.y, 2))
 			var d12 := sqrt(pow(next.x - current.x, 2) + pow(next.y - current.y, 2))
 
-			var fa := BEND * d01 / (d01 + d12)
-			var fb := BEND * d12 / (d01 + d12)
+			var fa := bend * d01 / (d01 + d12)
+			var fb := bend * d12 / (d01 + d12)
 
 			cp1 = Vector2(round(current.x - fa * (next.x - prev.x)), round(current.y - fa * (next.y - prev.y)))
 			cp2 = Vector2(round(current.x + fb * (next.x - prev.x)), round(current.y + fb * (next.y - prev.y)))
@@ -46,7 +46,7 @@ func _draw() -> void:
 		# TODO: tweak control points to be bungle a little less on the incurve
 		curve.add_point(current, -cp2, -cp1)
 
-	draw_polyline(curve.tessellate(), COLOR, WIDTH, true)
+	draw_polyline(curve.tessellate(), color, width, true)
 
 func _path_updated(new_val: Array) -> void:
 	path = new_val
