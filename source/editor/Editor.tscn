@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/editor/Editor.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/OffMap.tscn" type="PackedScene" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://source/editor/HUD.gd" type="Script" id=4]
 [ext_resource path="res://source/interface/hud/PauseMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=6]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=7]
-[ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=8]
+[ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=9]
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )
@@ -32,17 +33,8 @@ margin_left = -265.0
 margin_bottom = 1.0
 theme = ExtResource( 6 )
 
-[node name="NinePatchRect" type="NinePatchRect" parent="HUD/TileButtons"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 7 )
-region_rect = Rect2( 0, 0, 20, 20 )
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+[node name="Panel" parent="HUD/TileButtons" instance=ExtResource( 7 )]
+material = ExtResource( 8 )
 
 [node name="GridContainer" type="GridContainer" parent="HUD/TileButtons"]
 anchor_right = 1.0
@@ -58,23 +50,16 @@ custom_constants/hseparation = 12
 columns = 4
 
 [node name="UIButtons" type="Control" parent="HUD"]
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = -55.0
-margin_right = 447.0
+margin_left = -300.0
+margin_top = -90.0
+margin_right = 300.0
+margin_bottom = -10.0
+rect_min_size = Vector2( 600, 80 )
 theme = ExtResource( 6 )
-
-[node name="NinePatchRect" type="NinePatchRect" parent="HUD/UIButtons"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 7 )
-region_rect = Rect2( 0, 0, 20, 20 )
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/UIButtons"]
 anchor_right = 1.0
@@ -86,15 +71,16 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="New" type="Button" parent="HUD/UIButtons/HBoxContainer"]
-margin_left = 33.0
-margin_right = 85.0
-margin_bottom = 44.0
+margin_left = 69.0
+margin_right = 149.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 80, 0 )
 text = "New"
 
 [node name="LineEdit" type="LineEdit" parent="HUD/UIButtons/HBoxContainer"]
-margin_left = 105.0
-margin_right = 265.0
-margin_bottom = 44.0
+margin_left = 169.0
+margin_right = 329.0
+margin_bottom = 69.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
 focus_mode = 1
@@ -102,18 +88,20 @@ context_menu_enabled = false
 placeholder_text = "scenario name"
 
 [node name="Save" type="Button" parent="HUD/UIButtons/HBoxContainer"]
-margin_left = 285.0
-margin_right = 338.0
-margin_bottom = 44.0
+margin_left = 349.0
+margin_right = 429.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 80, 0 )
 text = "Save"
 
 [node name="Load" type="Button" parent="HUD/UIButtons/HBoxContainer"]
-margin_left = 358.0
-margin_right = 412.0
-margin_bottom = 44.0
+margin_left = 449.0
+margin_right = 529.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 80, 0 )
 text = "Load"
 
-[node name="Camera2D" parent="." instance=ExtResource( 8 )]
+[node name="Camera2D" parent="." instance=ExtResource( 9 )]
 
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/New" to="." method="_on_New_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Save" to="." method="_on_Save_pressed"]
