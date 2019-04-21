@@ -26,17 +26,14 @@ func _ready() -> void:
 	var texture = AtlasTexture.new()
 	texture.atlas = preload("res://graphics/images/interface/icons/flags.png")
 	flag_item.texture_rect.texture = texture
+	_update_battery()
 
-func _process(delta) -> void:
+func _process(delta: float) -> void:
 
 	if scenario and side:
 		update_side(scenario, side)
 
 	time_item.set_text(_get_time_string())
-	battery_item.set_text("%d%%" % OS.get_power_percent_left())
-
-	if OS.get_power_percent_left() == -1:
-		battery_item.hide()
 
 func update_side(scenario : Scenario, side : Side) -> void:
 	self.scenario = scenario
@@ -55,8 +52,19 @@ func update_side(scenario : Scenario, side : Side) -> void:
 	villages_item.set_text( "%d/%d" % [side.villages.size(), scenario.get_village_count()] )
 	income_item.set_text(str(side.income))
 
+func _update_battery() -> void:
+	var power_percentage : int = OS.get_power_percent_left()
+
+	if power_percentage == -1:
+		battery_item.hide()
+	else:
+		battery_item.set_text("%d%%" % power_percentage)
+
 func _get_time_string() -> String:
 	var time = OS.get_time()
 	var hour = time.hour
 	var minute = time.minute
 	return "%s : %s" % [str(hour).pad_zeros(2), str(minute).pad_zeros(2)]
+
+func _on_BatteryTimer_timeout() -> void:
+	_update_battery()
