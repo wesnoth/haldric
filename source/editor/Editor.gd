@@ -1,6 +1,6 @@
 extends Node2D
 
-const DEFAULT_USER_PATH = "user://data/scenarios/"
+const DEFAULT_USER_PATH = "user://data/editor/scenarios/"
 const DEFAULT_ROOT_PATH = "res://data/scenarios/"
 const DEFAULT_MAP_SIZE := Vector2(44, 33)
 
@@ -80,7 +80,10 @@ func _save_map(scenario_name: String) -> void:
 	var scn_path: String = DEFAULT_USER_PATH + id + ".tscn"
 	var res_path: String = DEFAULT_USER_PATH + id + ".tres"
 
+	scenario.name = scenario_name
+
 	var packed_scene := PackedScene.new()
+
 	#warning-ignore:return_value_discarded
 	packed_scene.pack(scenario)
 

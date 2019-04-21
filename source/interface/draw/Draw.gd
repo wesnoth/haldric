@@ -19,8 +19,10 @@ func _ready() -> void:
 	Event.connect("turn_end", self, "_on_turn_end")
 
 func _draw() -> void:
+	var side := 0
+	if get_parent().current_side:
+		side = get_parent().current_side.number
 	var size = map_border.rect_size
-	var side = get_parent().current_side.number
 	viewport.size = size
 	fog_texture.side = side
 	fog_texture.units = get_tree().get_nodes_in_group("Unit")

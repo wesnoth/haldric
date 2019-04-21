@@ -11,7 +11,7 @@ export var schedule_id := "default"
 
 onready var map := $Map as Map
 onready var sides := $Sides as Node
-onready var schedule := Schedule.new()
+onready var schedule := $Schedule as Schedule
 
 func _ready() -> void:
 	_load_schedule()
@@ -45,8 +45,6 @@ func cycle_schedule() -> void:
 	map.update_time(schedule.current_time)
 
 func _load_schedule() -> void:
-	add_child(schedule)
-
 	var time_schedule = Registry.schedules[schedule_id]
 	if not time_schedule:
 		time_schedule = Registry.schedules["default"]

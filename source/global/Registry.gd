@@ -35,6 +35,10 @@ func _load_music() -> void:
 func _load_scenarios() -> void:
 	scenarios.clear()
 
+	# load user data first, so core data will overwrite it if there are duplicates
+	for file_data in Loader.load_dir("user://data/editor/scenarios", ["tres", "res"]):
+		scenarios[file_data.id] = file_data # Save all file data
+
 	for file_data in Loader.load_dir("res://data/scenarios", ["tres", "res"]):
 		scenarios[file_data.id] = file_data # Save all file data
 
