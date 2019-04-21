@@ -4,7 +4,8 @@ var texture
 
 func _process(delta: float) -> void:
 	if Global.Camera:
-		material.set_shader_param("offset", Global.Camera.global_position / get_viewport_rect().size)
+		var offset = Global.Camera.global_position / get_viewport_rect().size
+		material.set_shader_param("offset", offset / Global.Camera.zoom)
 
 func _draw() -> void:
 	if texture:
