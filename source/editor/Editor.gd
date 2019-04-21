@@ -1,6 +1,7 @@
 extends Node2D
 
-const DEFAULT_PATH = "res://data/scenarios/"
+const DEFAULT_USER_PATH = "user://data/scenarios/"
+const DEFAULT_ROOT_PATH = "res://data/scenarios/"
 const DEFAULT_MAP_SIZE := Vector2(44, 33)
 
 export var button_size := 60
@@ -60,7 +61,12 @@ func _new_map() -> void:
 	scenario.map.set_size(DEFAULT_MAP_SIZE)
 
 func _load_map(scenario_name: String) -> void:
-	var packed_scene = load(DEFAULT_PATH + scenario_name + ".tscn")
+	var packed_scene = load(DEFAULT_ROOT_PATH + scenario_name + ".tscn")
+
+	if packed_scene == null:
+		return
+
+	packed_scene = load(DEFAULT_USER_PATH + scenario_name + ".tscn")
 
 	if packed_scene == null:
 		return
@@ -71,8 +77,8 @@ func _load_map(scenario_name: String) -> void:
 
 func _save_map(scenario_name: String) -> void:
 	var id = scenario_name.replace(" ", "_").to_lower()
-	var scn_path: String = DEFAULT_PATH + id + ".tscn"
-	var res_path: String = DEFAULT_PATH + id + ".tres"
+	var scn_path: String = DEFAULT_USER_PATH + id + ".tscn"
+	var res_path: String = DEFAULT_USER_PATH + id + ".tres"
 
 	var packed_scene := PackedScene.new()
 	#warning-ignore:return_value_discarded
