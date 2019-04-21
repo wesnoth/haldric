@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/hud/PauseMenu.gd" type="Script" id=2]
 [ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=4]
-[ext_resource path="res://source/interface/hud/PauseButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/interface/hud/PauseButton.tscn" type="PackedScene" id=4]
 
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
@@ -15,7 +14,6 @@ script = ExtResource( 2 )
 
 [node name="Panel" parent="." instance=ExtResource( 3 )]
 visible = false
-material = ExtResource( 4 )
 mouse_filter = 0
 
 [node name="Popup" type="Popup" parent="."]
@@ -42,16 +40,16 @@ margin_right = 238.0
 margin_bottom = 234.0
 rect_min_size = Vector2( 120, 0 )
 
-[node name="Resume" parent="Popup/CenterContainer/VBoxContainer" instance=ExtResource( 5 )]
+[node name="Resume" parent="Popup/CenterContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_right = 238.0
 margin_bottom = 80.0
 
-[node name="Quit" parent="Popup/CenterContainer/VBoxContainer" instance=ExtResource( 5 )]
+[node name="Quit" parent="Popup/CenterContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 88.0
 margin_right = 238.0
 margin_bottom = 168.0
 
-[node name="Pause" parent="." instance=ExtResource( 5 )]
+[node name="Pause" parent="." instance=ExtResource( 4 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
