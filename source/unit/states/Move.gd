@@ -2,7 +2,7 @@ extends State
 
 var host = null
 
-export(float, 0.1, 1.0) var move_time := 0.35
+export(float, 0.1, 1.0) var move_time := 0.2
 
 func _enter(host):
 	if host.type.anim.has_animation("move"):
@@ -26,7 +26,7 @@ func _move():
 		host.location.unit = host
 
 		#warning-ignore:return_value_discarded
-		host.tween.interpolate_property(host, "position", host.position, loc.position, move_time, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		host.tween.interpolate_property(host, "position", host.position, loc.position, move_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 
 		if host.location.map.ZOC_tiles.has(host.location):
 			host.moves_current = 0
