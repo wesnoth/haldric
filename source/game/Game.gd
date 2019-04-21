@@ -13,6 +13,10 @@ onready var draw := $Draw as Node2D
 onready var scenario_container := $ScenarioContainer as Node2D
 
 func _unhandled_input(event: InputEvent) -> void:
+
+	if HUD.is_pause_active():
+		return
+
 	var loc: Location = scenario.map.get_location_from_mouse()
 
 	_update_hover(loc)

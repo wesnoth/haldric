@@ -6,6 +6,8 @@ onready var unit_panel := $UnitPanel as Control
 onready var side_panel := $SidePanel as Control
 onready var tod_panel := $ToDPanel as Control
 
+onready var pause_menu := $PauseMenu as Control
+
 func update_time_info(time: Time) -> void:
 	if not time:
 		return
@@ -19,6 +21,9 @@ func update_side_info(scenario : Scenario, side : Side) -> void:
 
 func clear_unit_info() -> void:
 	unit_panel.clear_unit()
+
+func is_pause_active() -> bool:
+	return pause_menu.is_active()
 
 func _on_Back_pressed() -> void:
 	Scene.change(Scene.TitleScreen)

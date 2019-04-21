@@ -14,6 +14,10 @@ onready var line_edit := $HUD/UIButtons/HBoxContainer/LineEdit as LineEdit
 var current_tile := 0
 
 func _unhandled_input(event: InputEvent) -> void:
+
+	if HUD.is_pause_active():
+		return
+
 	if Input.is_action_pressed("mouse_left"):
 		var mouse_position: Vector2 = get_global_mouse_position()
 		scenario.map.set_tile(mouse_position, current_tile)

@@ -4,10 +4,10 @@
 [ext_resource path="res://source/scenario/OffMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/scenario/Scenario.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/editor/HUD.gd" type="Script" id=4]
-[ext_resource path="res://source/interface/hud/PauseMenu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=6]
-[ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=7]
-[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=8]
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=5]
+[ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=7]
+[ext_resource path="res://source/interface/hud/PauseMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=9]
 
 [node name="Editor" type="Node2D"]
@@ -23,18 +23,17 @@ button_size = 50
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 4 )
 
-[node name="PauseMenu" parent="HUD" instance=ExtResource( 5 )]
-
 [node name="TileButtons" type="Control" parent="HUD"]
+editor/display_folded = true
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -265.0
 margin_bottom = 1.0
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 
-[node name="Panel" parent="HUD/TileButtons" instance=ExtResource( 7 )]
-material = ExtResource( 8 )
+[node name="Panel" parent="HUD/TileButtons" instance=ExtResource( 6 )]
+material = ExtResource( 7 )
 
 [node name="GridContainer" type="GridContainer" parent="HUD/TileButtons"]
 anchor_right = 1.0
@@ -50,6 +49,7 @@ custom_constants/hseparation = 12
 columns = 4
 
 [node name="UIButtons" type="Control" parent="HUD"]
+editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -59,7 +59,7 @@ margin_top = -90.0
 margin_right = 300.0
 margin_bottom = -10.0
 rect_min_size = Vector2( 600, 80 )
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/UIButtons"]
 anchor_right = 1.0
@@ -100,6 +100,8 @@ margin_right = 529.0
 margin_bottom = 69.0
 rect_min_size = Vector2( 80, 0 )
 text = "Load"
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource( 8 )]
 
 [node name="Camera2D" parent="." instance=ExtResource( 9 )]
 
