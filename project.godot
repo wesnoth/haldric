@@ -271,6 +271,7 @@ Audio="*res://source/global/Audio.tscn"
 TeamColor="*res://source/global/TeamColor.gd"
 Event="*res://source/global/Event.gd"
 Create="*res://source/global/Create.gd"
+Settings="*res://source/interface/Settings.gd"
 
 [debug]
 
