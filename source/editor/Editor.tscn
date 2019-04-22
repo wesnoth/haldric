@@ -7,8 +7,10 @@
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=5]
 [ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=7]
-[ext_resource path="res://source/interface/hud/PauseMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/pause_menu/PauseMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=9]
+
+
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )

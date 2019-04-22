@@ -2,9 +2,11 @@
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://graphics/fonts/Lato28.tres" type="DynamicFont" id=2]
-[ext_resource path="res://source/interface/hud/PauseButton.gd" type="Script" id=3]
+[ext_resource path="res://source/interface/pause_menu/PauseButton.gd" type="Script" id=3]
 [ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=5]
+
+
 
 [node name="PauseButton" type="Button"]
 rect_min_size = Vector2( 238, 80 )

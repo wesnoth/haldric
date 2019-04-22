@@ -1,9 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
-[ext_resource path="res://source/interface/hud/PauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://source/interface/pause_menu/PauseMenu.gd" type="Script" id=2]
 [ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/interface/hud/PauseButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/pause_menu/PauseButton.tscn" type="PackedScene" id=4]
+
+
 
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
