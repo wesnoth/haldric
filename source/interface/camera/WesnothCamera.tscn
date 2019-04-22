@@ -11,3 +11,5 @@ smoothing_speed = 10.0
 script = ExtResource( 1 )
 speed = 4000
 
+[node name="Tween" type="Tween" parent="."]
+
