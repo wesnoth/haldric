@@ -24,7 +24,8 @@ func _load_units() -> void:
 	units.clear()
 
 	for file_data in Loader.load_dir("res://data/units", ["tscn", "scn"]):
-		units[file_data.id] = file_data.data
+		var unit_id = file_data.data._bundled.variants[1] # read id variable from packed scene whih inherits UnitType.tscn
+		units[unit_id] = file_data.data
 
 func _load_music() -> void:
 	music.clear()
