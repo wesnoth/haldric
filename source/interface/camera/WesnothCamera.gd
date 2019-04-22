@@ -34,7 +34,7 @@ func _handle_keyboard_scroll(delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
 		new_position.x += speed_adjusted * delta / 2
 
-	set_position(new_position)
+	position = new_position
 
 func _handle_mouse_scroll(event: InputEvent) -> void:
 	var new_position: Vector2 = position
@@ -47,20 +47,13 @@ func _handle_mouse_scroll(event: InputEvent) -> void:
 		zoom.x = clamp(zoom.x + 0.5, 0.5, 4)
 		zoom.y = clamp(zoom.y + 0.5, 0.5, 4)
 
-	set_position(new_position)
+	position = new_position
 
 func _handle_middle_mouse(event: InputEvent) -> void:
 	if not event is InputEventMouseMotion:
 		if Input.is_mouse_button_pressed(BUTTON_MIDDLE):
-			initial_camera_position = Vector2() + position
-			initial_mouse_position =\
-					Vector2() + get_viewport().get_mouse_position()
+			initial_camera_position = position
+			initial_mouse_position = get_viewport().get_mouse_position()
 
-		if Input.is_mouse_button_pressed(BUTTON_MIDDLE):
-			set_position(initial_camera_position +\
-					(get_viewport().get_mouse_position() -
-					initial_mouse_position)*-1*zoom)
-
-func set_position(new_position: Vector2) -> void:
-	position.x = new_position.x
-	position.y = new_position.y
+	if Input.is_mouse_button_pressed(BUTTON_MIDDLE):
+		position = initial_camera_position + (get_viewport().get_mouse_position() - initial_mouse_position) * -1 * zoom
