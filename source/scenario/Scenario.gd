@@ -1,6 +1,7 @@
 extends Node2D
 class_name Scenario
 
+signal unit_experienced(unit)
 signal unit_moved(unit, location)
 signal unit_move_finished(unit, location)
 
@@ -29,6 +30,7 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 	var unit_type := Registry.units[unit_id].instance() as UnitType
 
 	var unit = preload("res://source/unit/Unit.tscn").instance()
+	unit.connect("experienced", self, "_on_unit_experienced")
 	unit.connect("moved", self, "_on_unit_moved")
 	unit.connect("move_finished", self, "_on_unit_move_finished")
 
@@ -58,6 +60,9 @@ func _load_schedule() -> void:
 			schedule.add_child(time)
 			#print("added ", time)
 			time.initialize(res)
+
+func _on_unit_experienced(unit: Unit) -> void:
+	emit_signal("unit_experienced", unit)
 
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	emit_signal("unit_moved", unit, location)

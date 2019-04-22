@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/interface/hud/AdvancementPopup.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=2]
+
+[node name="AdvancementPopup" type="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1520.0
+margin_bottom = -480.0
+popup_exclusive = true
+script = ExtResource( 1 )
+
+[node name="Panel" parent="." instance=ExtResource( 2 )]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="AdvancementButtons" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 380.0
+margin_bottom = 580.0
+alignment = 1
+

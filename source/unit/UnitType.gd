@@ -11,7 +11,7 @@ export var health := 1
 export var moves := 1
 export var experience := 1
 
-export var advances_to := ""
+export(Array, String) var advances_to := []
 
 onready var defense := $Defense as Defense
 onready var movement := $Movement as Movement

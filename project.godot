@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Popup",
+"class": "AdvancementPopup",
+"language": "GDScript",
+"path": "res://source/interface/hud/AdvancementPopup.gd"
+}, {
 "base": "Node",
 "class": "Attack",
 "language": "GDScript",
@@ -205,6 +210,7 @@ _global_script_classes=[ {
 "path": "res://source/interface/menus/components/menu_bar/VMenuBar.gd"
 } ]
 _global_script_class_icons={
+"AdvancementPopup": "",
 "Attack": "",
 "ButtonHover": "",
 "CampaignCard": "",

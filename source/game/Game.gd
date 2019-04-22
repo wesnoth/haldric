@@ -51,6 +51,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_load_map()
 	_load_units()
+	HUD.connect("unit_advancement_selected", self, "_on_unit_advancement_selected")
 
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
@@ -65,6 +66,8 @@ func _load_map() -> void:
 		if scenario:
 			scenario_container.add_child(scenario)
 			#warning-ignore:return_value_discarded
+			scenario.connect("unit_experienced", self, "_on_unit_experienced")
+			#warning-ignore:return_value_discarded
 			scenario.connect("unit_moved", self, "_on_unit_moved")
 			#warning-ignore:return_value_discarded
 			scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
@@ -74,7 +77,7 @@ func _load_map() -> void:
 			print("No .tscn file found for scenario " % Global.scenario_name)
 
 func _load_units() -> void:
-	pass;
+	pass
 
 func _update_hover(loc: Location) -> void:
 	if loc:
@@ -133,6 +136,12 @@ func _grab_village(unit, location) -> void:
 	if location.terrain.gives_income:
 		if unit.side.add_village(location):
 			unit.moves_current = 0
+
+func _on_unit_experienced(unit: Unit) -> void:
+	HUD.show_advancement_popup(unit)
+
+func _on_unit_advancement_selected(unit: Unit, unit_id: String) -> void:
+	unit.advance(Registry.units[unit_id].instance())
 
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)

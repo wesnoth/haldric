@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://source/unit/UnitType.tscn" type="PackedScene" id=1]
+[ext_resource path="res://graphics/images/units/elves-wood/marksman.png" type="Texture" id=2]
+[ext_resource path="res://source/unit/Attack.gd" type="Script" id=3]
+[ext_resource path="res://graphics/images/attacks/sword-elven.png" type="Texture" id=4]
+[ext_resource path="res://graphics/images/attacks/bow-elven.png" type="Texture" id=5]
+
+[node name="ElvishMarksman" instance=ExtResource( 1 )]
+id = "Elvish Marksman"
+race = "elf"
+alignment = "neutral"
+level = 2
+cost = 37
+health = 37
+moves = 6
+experience = 80
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )
+
+[node name="Defense" parent="." index="2"]
+forest = 70
+
+[node name="Resistance" parent="." index="4"]
+arcane = -10
+
+[node name="Sword" type="Node" parent="Attacks" index="0"]
+script = ExtResource( 3 )
+id = "sword"
+reach = "melee"
+damage = 6
+strikes = 2
+icon = ExtResource( 4 )
+
+[node name="Bow" type="Node" parent="Attacks" index="1"]
+script = ExtResource( 3 )
+id = "sword"
+reach = "ranged"
+type = "pierce"
+damage = 9
+strikes = 4
+icon = ExtResource( 5 )
+

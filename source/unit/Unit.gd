@@ -1,6 +1,8 @@
 extends Node2D
 class_name Unit
 
+signal experienced(unit)
+
 signal moved(unit, location)
 signal move_finished(unit, location)
 signal state_changed(new_state)
@@ -9,7 +11,7 @@ var side : Side = null
 
 var health_current := 0
 var moves_current := 0
-var experience_current := 0
+var experience_current := 0 setget _set_experience_current
 
 var location: Location = null #setget _set_location
 
@@ -37,13 +39,23 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	_setup_states()
-	health_current = type.health
-	moves_current = type.moves
 	add_child(type)
 	change_state("idle")
+	reset()
 
 func initialize(unit_type: UnitType) -> void:
 	type = unit_type
+
+func advance(unit_type: UnitType) -> void:
+	remove_child(type)
+	type = unit_type
+	add_child(type)
+	reset()
+
+func reset() -> void:
+	health_current = type.health
+	moves_current = type.moves
+	experience_current = 0
 
 func change_state(new_state):
 	if current_state:
@@ -104,6 +116,19 @@ func set_reachable() -> void:
 func _set_location(value: Location) -> void:
 	location = value
 	set_reachable() # TODO: do we want this?
+
+func _set_experience_current(value: int) -> void:
+	experience_current = value
+	if experience_current >= type.experience:
+		if type.advances_to:
+			emit_signal("experienced", self)
+		else:
+			_amla()
+
+func _amla() -> void:
+	type.health += 3
+	type.experience *= 1.2
+	reset()
 
 func _setup_states():
 	states["idle"] = $States/Idle
