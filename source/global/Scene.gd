@@ -46,3 +46,9 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		anim.play("fade_in")
 		next_scene = ""
 		loader = null
+
+func _on_LoadProgress_value_changed(value: float) -> void:
+	if loading_bar.max_value == value:
+		loading_bar.visible = false
+	elif loading_bar.visible == false:
+		loading_bar.visible = true

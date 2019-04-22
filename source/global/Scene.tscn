@@ -67,3 +67,4 @@ margin_right = -667.0
 margin_bottom = 35.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="value_changed" from="LoadProgress" to="." method="_on_LoadProgress_value_changed"]
