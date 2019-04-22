@@ -39,7 +39,7 @@ func update_side(scenario : Scenario, side : Side) -> void:
 	self.scenario = scenario
 	self.side = side
 	if scenario.turns >= 0:
-		flag_item.set_text(str("%d / %d" % [scenario.turn, scenario.turns]))
+		flag_item.set_text("%d / %d" % [scenario.turn, scenario.turns])
 	else:
 		flag_item.set_text(str(scenario.turn))
 
@@ -49,7 +49,7 @@ func update_side(scenario : Scenario, side : Side) -> void:
 	gold_item.set_text(str(side.gold))
 	units_item.set_text(str(side.units.get_child_count()))
 	upkeep_item.set_text(str(side.upkeep))
-	villages_item.set_text( "%d/%d" % [side.villages.size(), scenario.get_village_count()] )
+	villages_item.set_text("%d/%d" % [side.villages.size(), scenario.get_village_count()])
 	income_item.set_text(str(side.income))
 
 func _update_battery() -> void:
@@ -64,7 +64,7 @@ func _get_time_string() -> String:
 	var time = OS.get_time()
 	var hour = time.hour
 	var minute = time.minute
-	return "%s : %s" % [str(hour).pad_zeros(2), str(minute).pad_zeros(2)]
+	return "%02d : %02d" % [hour, minute]
 
 func _on_BatteryTimer_timeout() -> void:
 	_update_battery()

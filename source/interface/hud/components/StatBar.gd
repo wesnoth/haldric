@@ -11,7 +11,7 @@ func _ready() -> void:
 	bar.tint_progress = bar_color
 
 func update_stat(current: int, maximum: int) -> void:
-	value_label.text = str("%d / %d" % [current, maximum])
+	value_label.text = "%d / %d" % [current, maximum]
 	bar.max_value = maximum
 	bar.value = current
 

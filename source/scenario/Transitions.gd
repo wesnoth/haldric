@@ -3,7 +3,7 @@ class_name Transitions
 
 var map = null
 
-var tile_set = preload("res://graphics/tilesets/transitions.tres")
+const tile_set = preload("res://graphics/tilesets/transitions.tres")
 
 var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
 

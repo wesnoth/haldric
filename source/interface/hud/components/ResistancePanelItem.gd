@@ -13,14 +13,14 @@ func _ready() -> void:
 	tex.atlas = icon_texture
 	tex.region = region
 	texture_rect.texture = tex
-	label.text = str("-")
+	label.text = "-"
 
 func _set_value(value: int) -> void:
 	label.modulate = _get_resistance_color(value)
 	if value > 0:
-		label.text = str("+%d%%" % value)
+		label.text = "+%d%%" % value
 	else:
-		label.text = str("%d%%" % value)
+		label.text = "%d%%" % value
 
 func _get_resistance_color(resistance: int) -> Color:
 	if resistance == 0:
@@ -31,5 +31,3 @@ func _get_resistance_color(resistance: int) -> Color:
 	else:
 		var mod = float(100 + resistance) * 0.01
 		return Color(1.0, mod, mod)
-
-

@@ -50,8 +50,8 @@ func generate_team_shader(team_color: String) -> ShaderMaterial:
 	var color_map = new_color_map(team_data, base_color_map)
 	var i := 1
 	for key in color_map:
-		mat.set_shader_param("base" + str(i), key)
-		mat.set_shader_param("color" + str(i), color_map[key])
+		mat.set_shader_param("base%d" % i, key)
+		mat.set_shader_param("color%d" % i, color_map[key])
 		i += 1
 
 	return mat
@@ -63,8 +63,8 @@ func generate_flag_shader(team_color: String) -> ShaderMaterial:
 	var color_map: Dictionary = new_color_map(team_data, base_flag_color)
 	var i := 1
 	for key in color_map:
-		mat.set_shader_param("base" + str(i), key)
-		mat.set_shader_param("color" + str(i), color_map[key])
+		mat.set_shader_param("base%d" % i, key)
+		mat.set_shader_param("color%d" % i, color_map[key])
 		i += 1
 
 	return mat

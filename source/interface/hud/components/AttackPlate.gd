@@ -6,8 +6,8 @@ onready var details_label := $HBoxContainer/VBoxContainer/Details as Label
 onready var specials_label := $HBoxContainer/VBoxContainer/Specials as Label
 
 func update_attack(attack : Attack) -> void:
-	name_label.text = str("%d x %d - %s" % [attack.damage, attack.strikes, attack.name])
-	details_label.text = str("%s - %s" % [attack.reach, attack.type])
+	name_label.text = "%d x %d - %s" % [attack.damage, attack.strikes, attack.name]
+	details_label.text = "%s - %s" % [attack.reach, attack.type]
 	icon.texture = attack.icon
 
 func clear() -> void:

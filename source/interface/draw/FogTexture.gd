@@ -1,7 +1,7 @@
 extends Node2D
 
 const void_texture_offset = Vector2(108, 108)
-var void_texture = preload("res://graphics/images/terrain/fog-uncover.png")
+const void_texture = preload("res://graphics/images/terrain/fog-uncover.png")
 
 var units
 var side

@@ -18,7 +18,7 @@ onready var fps_label := $FPS as Label
 onready var loading_bar := $LoadProgress as ProgressBar
 
 func _process(delta):
-	fps_label.text = str("%d FPS" % Engine.get_frames_per_second())
+	fps_label.text = "%d FPS" % Engine.get_frames_per_second()
 
 	if loader == null:
 		return

@@ -55,9 +55,9 @@ func update_unit(target: Unit) -> void:
 
 	var tod_bonus = unit.get_time_percentage()
 	if tod_bonus >= 0:
-		alignment.text = str("%s (+%d%%)" % [unit.type.alignment, tod_bonus])
+		alignment.text = "%s (+%d%%)" % [unit.type.alignment, tod_bonus]
 	else:
-		alignment.text = str("%s (%d%%)" % [unit.type.alignment, tod_bonus])
+		alignment.text = "%s (%d%%)" % [unit.type.alignment, tod_bonus]
 
 	resistance.update_resistance(unit.type.resistance)
 
