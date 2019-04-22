@@ -12,4 +12,3 @@ func animate() -> void:
 func initialize(card : RCard) -> void:
 	title.text = card.title
 	card_image.texture = card.card_image
-	#print(card.card_image)

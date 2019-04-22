@@ -53,7 +53,6 @@ func _apply_transition_from_cell(cell : Vector2) -> void:
 			layer += 1
 			continue
 
-		# print(transition)
 		_set_transition_tile(transition.code + "_" + transition.directions, cell, layer)
 		layer += transition.chain
 

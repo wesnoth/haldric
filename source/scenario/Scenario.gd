@@ -51,14 +51,11 @@ func _load_schedule() -> void:
 	if not time_schedule:
 		time_schedule = Registry.schedules["default"]
 
-	#print(time_schedule)
 	for time_id in time_schedule.schedule:
-		#print(time_id)
 		if Registry.times.has(time_id):
 			var res = Registry.times[time_id]
 			var time = Time.new()
 			schedule.add_child(time)
-			#print("added ", time)
 			time.initialize(res)
 
 func _on_unit_experienced(unit: Unit) -> void:

@@ -124,7 +124,7 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 		for val in ZOC_tiles[loc]:
 			grid.unblock_cell(val.cell)
 	ZOC_tiles.clear()
-	#print("cell: " + String(unit.location.cell))
+
 	for y in height:
 		for x in width:
 			var cell := Vector2(x, y)
@@ -162,12 +162,10 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 										grid.astar.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
 								else:
 									grid.astar.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
-							#print("zoc - " + String(current_cell))
 							if ZOC_tiles.has(get_location(neighbor)):
 								ZOC_tiles[get_location(neighbor)].append(location)
 							else:
 								ZOC_tiles[get_location(neighbor)] = [location]
-			#print(cost)
 
 			grid.astar.set_point_weight_scale(id, cost)
 
@@ -310,7 +308,6 @@ func _update_size() -> void:
 
 func _initialize_border() -> void:
 	var size := Vector2(width, height)
-	print(size)
 
 func _initialize_transitions() -> void:
 		transitions.update_transitions(self)

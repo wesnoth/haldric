@@ -104,7 +104,6 @@ func _save_map(scenario_name: String) -> void:
 		Registry.scenarios[id].base_path = scn_path.get_basename()
 
 func _on_button_pressed(id: int) -> void:
-	print(id)
 	current_tile = id
 
 func _on_Save_pressed() -> void:

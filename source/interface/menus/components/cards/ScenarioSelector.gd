@@ -5,7 +5,6 @@ const ScenarioCard = preload("res://source/interface/menus/components/cards/Scen
 
 func _ready() -> void:
 	for scenario in Registry.scenarios:
-		#print(scenario)
 		_add_scenario(scenario)
 
 func _add_scenario(scenario) -> void:
