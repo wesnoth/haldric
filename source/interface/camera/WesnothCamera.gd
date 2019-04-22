@@ -3,10 +3,10 @@ extends Camera2D
 var initial_camera_position := Vector2()
 var initial_mouse_position := Vector2()
 
-export var speed := 2000
+export var speed := 4000
 export var zoom_step := 0.5
-export var zoom_min := 0.5
-export var zoom_max := 4.0
+export var zoom_max_in := 0.5
+export var zoom_max_out := 2.0
 
 onready var tween := $Tween
 
@@ -50,8 +50,8 @@ func _handle_mouse_scroll(event: InputEvent) -> void:
 	var step := zoom_step * -1 if wheel_u else zoom_step
 
 	var new_zoom := Vector2(
-		clamp(zoom.x + step, zoom_min, zoom_max),
-		clamp(zoom.y + step, zoom_min, zoom_max)
+		clamp(zoom.x + step, zoom_max_in, zoom_max_out),
+		clamp(zoom.y + step, zoom_max_in, zoom_max_out)
 	)
 
 	tween.interpolate_property(self, "zoom", null, new_zoom, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
