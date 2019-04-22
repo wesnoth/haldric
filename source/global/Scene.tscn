@@ -59,6 +59,7 @@ custom_fonts/font = ExtResource( 2 )
 text = "120 FPS"
 
 [node name="LoadProgress" type="ProgressBar" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -860.0
