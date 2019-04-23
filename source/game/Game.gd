@@ -13,7 +13,6 @@ onready var draw := $Draw as Node2D
 onready var scenario_container := $ScenarioContainer as Node2D
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	if HUD.is_pause_active():
 		return
 
@@ -49,8 +48,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				scenario.map.display_reachable_for({})
 
 func _ready() -> void:
-	_load_map()
-	_load_units()
+	_load_scenario()
+
 	HUD.connect("unit_advancement_selected", self, "_on_unit_advancement_selected")
 
 	if scenario.sides.get_child_count() > 0:
@@ -58,7 +57,7 @@ func _ready() -> void:
 
 	HUD.update_time_info(scenario.schedule.current_time)
 
-func _load_map() -> void:
+func _load_scenario() -> void:
 	if Registry.scenarios.has(Global.scenario_name):
 		# Look for an accompanying .tscn file
 		scenario = load(Registry.scenarios[Global.scenario_name].base_path + ".tscn").instance()
@@ -75,9 +74,6 @@ func _load_map() -> void:
 			draw.set_map_border_size(scenario.map.get_pixel_size())
 		else:
 			print("No .tscn file found for scenario " % Global.scenario_name)
-
-func _load_units() -> void:
-	pass
 
 func _update_hover(loc: Location) -> void:
 	if loc:
