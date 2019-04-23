@@ -114,6 +114,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/templates/RCard.gd"
 }, {
+"base": "Resource",
+"class": "REra",
+"language": "GDScript",
+"path": "res://source/templates/REra.gd"
+}, {
+"base": "Resource",
+"class": "RFaction",
+"language": "GDScript",
+"path": "res://source/templates/RFaction.gd"
+}, {
 "base": "RCard",
 "class": "RScenario",
 "language": "GDScript",
@@ -231,6 +241,8 @@ _global_script_class_icons={
 "Movement": "",
 "RCampaign": "",
 "RCard": "",
+"REra": "",
+"RFaction": "",
 "RScenario": "",
 "RSchedule": "",
 "RTerrain": "",
