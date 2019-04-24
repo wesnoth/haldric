@@ -18,6 +18,9 @@ func _ready() -> void:
 	_load_schedule()
 	map.update_time(schedule.current_time)
 
+func get_side(side_number: int) -> Node:
+	return sides.get_child(side_number - 1)
+
 func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 	if side_number > sides.get_child_count():
 		return
