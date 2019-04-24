@@ -17,7 +17,6 @@ onready var schedule := $Schedule as Schedule
 func _ready() -> void:
 	_load_schedule()
 	map.update_time(schedule.current_time)
-	TeamColor.initialize_flag_colors()
 
 func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 	if side_number > sides.get_child_count():

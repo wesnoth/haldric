@@ -40,7 +40,7 @@ var team_color_data := {
 }
 
 func _ready() -> void:
-	initialize_flag_colors()
+	_initialize_flag_colors()
 
 func generate_team_shader(team_color: String) -> ShaderMaterial:
 	var team_data = team_color_data[team_color]
@@ -111,7 +111,7 @@ func new_color_map(team_data: Array, base_color: Array) -> Dictionary:
 
 	return color_map
 
-func initialize_flag_colors() -> void:
+func _initialize_flag_colors() -> void:
 	var format_str := "00%02X00"
 
 	for i in 255:
