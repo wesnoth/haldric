@@ -50,10 +50,26 @@ func _ready() -> void:
 	_calculate_income()
 
 # :Unit
-func add_unit(unit) -> void:
+func add_unit(type_id: String, loc: Location) -> void:
+	var unit = Wesnoth.Unit.instance()
+	var type: PackedScene = Registry.units[type_id]
+
+	if type == null:
+		print("Attempting to create a unit with nonexistant type '%s'" % type_id)
+		return
+
+	unit.type = type.instance()
+
+	# Needs to be added before anything
 	units.add_child(unit)
+
 	unit.side = self
-	unit.type.sprite.material = unit_shader
+	unit.place_at(loc)
+
+	unit.connect("experienced", self, "_on_unit_experienced")
+	unit.connect("moved", self, "_on_unit_moved")
+	unit.connect("move_finished", self, "_on_unit_move_finished")
+
 	_calculate_upkeep()
 	_calculate_income()
 

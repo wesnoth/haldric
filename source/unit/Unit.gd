@@ -7,7 +7,7 @@ signal moved(unit, location)
 signal move_finished(unit, location)
 signal state_changed(new_state)
 
-var side : Side = null
+var side : Side = null setget _set_side
 
 var health_current := 0
 var moves_current := 0
@@ -131,3 +131,9 @@ func _setup_states():
 	states["idle"] = $States/Idle
 	states["move"] = $States/Move
 	states["attack"] = $States/Attack
+
+func _set_side(new_side: Side) -> void:
+	side = new_side
+
+	# Grab any info you need from the new side here
+	type.sprite.material = side.unit_shader
