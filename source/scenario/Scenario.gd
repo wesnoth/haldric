@@ -36,7 +36,7 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 	unit.connect("moved", self, "_on_unit_moved")
 	unit.connect("move_finished", self, "_on_unit_move_finished")
 
-	unit.initialize(unit_type)
+	unit.type = unit_type
 
 	side.add_unit(unit)
 	unit.place_at(loc)

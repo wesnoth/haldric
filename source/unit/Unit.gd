@@ -43,9 +43,6 @@ func _ready() -> void:
 	change_state("idle")
 	reset()
 
-func initialize(unit_type: UnitType) -> void:
-	type = unit_type
-
 func advance(unit_type: UnitType) -> void:
 	remove_child(type)
 	type = unit_type
