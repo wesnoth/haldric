@@ -76,9 +76,6 @@ func remove_village(loc: Location) -> void:
 func has_village(loc: Location) -> bool:
 	return villages.has(loc)
 
-func get_villages() -> Array:
-	return villages
-
 # -> Unit
 func get_first_leader():
 	if leaders.size() > 0:
