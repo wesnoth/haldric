@@ -10,7 +10,7 @@ var disadvantage := []
 var bonus := 0
 var malus := 0
 
-func initialize(res: RTime) -> void:
+func _init(res: RTime) -> void:
 	name = res.name
 	advantage = res.advantage
 	disadvantage = res.disadvantage

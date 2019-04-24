@@ -44,9 +44,8 @@ func _load_schedule() -> void:
 	for time_id in time_schedule.schedule:
 		if Registry.times.has(time_id):
 			var res = Registry.times[time_id]
-			var time = Time.new()
+			var time = Time.new(res)
 			schedule.add_child(time)
-			time.initialize(res)
 
 func _on_unit_experienced(unit: Unit) -> void:
 	emit_signal("unit_experienced", unit)
