@@ -112,13 +112,16 @@ func new_color_map(team_data: Array, base_color: Array) -> Dictionary:
 	return color_map
 
 func initialize_flag_colors() -> void:
-	var hex_format := "%X"
+	var format_str := "00%02X00"
+
 	for i in 255:
-		var hex_number = hex_format % [(i + 1)]
-		# Why C8 you ask? Who knows, I hope who ever made this pallete does.
-		if hex_number == "C8":
+		var new_color = format_str % [(i + 1)]
+
+		# Why C8 you ask? Who knows, I hope whoever made this palette does.
+		if new_color == "00C800":
 			continue
-		if hex_number.length() < 2:
-			hex_number = "0" + hex_number
-		base_flag_color.push_front(Color("00" + hex_number + "00"))
-	base_flag_color.push_front(Color("00C800"))
+
+		base_flag_color.push_back(Color(new_color))
+
+	base_flag_color.push_back(Color("00C800"))
+	base_flag_color.invert()
