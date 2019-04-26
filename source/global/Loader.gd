@@ -47,10 +47,9 @@ func _get_file_data(path: String, load_resource: bool) -> Dictionary:
 
 	var file_data := {
 		id = file_name_split[0], # Name, no extension
-		path = path, # full path
 		base_path = base_path, # path, but no extension
 		parent_folder = parent_folder,
-		data = load(path) if load_resource else null
+		data = load(path) if load_resource else path
 	}
 
 	if file_data.data:

@@ -9,6 +9,7 @@ var times := {}
 var schedules := {}
 
 func _ready() -> void:
+	_make_user_dirs()
 	scan()
 
 func scan() -> void:
@@ -31,11 +32,12 @@ func _load_music() -> void:
 	music.clear()
 
 	for file_data in Loader.load_dir("res://audio/music", ["ogg", "wav"], false):
-		music[file_data.id] = file_data.path
+		music[file_data.id] = file_data.data
 
 func _load_scenarios() -> void:
 	scenarios.clear()
 
+	var scenario_path = "user://data/editor/scenarios"
 	# load user data first, so core data will overwrite it if there are duplicates
 	for file_data in Loader.load_dir("user://data/editor/scenarios", ["tres", "res"]):
 		scenarios[file_data.id] = file_data # Save all file data
@@ -67,3 +69,14 @@ func _load_schedules() -> void:
 
 	for file_data in Loader.load_dir("res://data/schedules", ["tres", "res"]):
 		schedules[file_data.id] = file_data.data
+
+func _make_user_dirs() -> void:
+	var user_dir := Directory.new()
+	user_dir.open("user://")
+	_make_scenario_dir(user_dir)
+
+func _make_scenario_dir(user_dir: Directory) -> void:
+	if not user_dir.dir_exists("data/editor/scenarios"):
+		user_dir.make_dir("data")
+		user_dir.make_dir("data/editor")
+		user_dir.make_dir("data/editor/scenarios")
