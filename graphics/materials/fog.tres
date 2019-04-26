@@ -8,14 +8,13 @@ code = "shader_type canvas_item;
 uniform float speed;
 uniform float density : hint_range(0.1, 2.0);
 uniform sampler2D noise : hint_albedo;
-uniform vec2 offset;
 
 void fragment() {
-	vec4 cover = texture(TEXTURE, UV);
-	vec2 coord = SCREEN_UV + vec2(offset.x, -offset.y);
 	
-	vec4 n = texture(noise, coord + TIME * speed);
-	vec4 n2 = texture(noise, vec2(coord.y, coord.x) - TIME * speed);
+	vec4 cover = texture(TEXTURE, UV);
+	
+	vec4 n = texture(noise, UV + TIME * speed);
+	vec4 n2 = texture(noise, vec2(UV.y, UV.x) - TIME * speed);
 	
 	if (cover.r > 0.0) {
 		cover.a = 1.0 - cover.r;
@@ -39,6 +38,5 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/speed = 0.004
 shader_param/density = 1.4
-shader_param/offset = null
 shader_param/noise = ExtResource( 1 )
 
