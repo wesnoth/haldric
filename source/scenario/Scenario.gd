@@ -18,16 +18,28 @@ func _ready() -> void:
 	_load_schedule()
 	map.update_time(schedule.current_time)
 
-func get_side(side_number: int) -> Side:
-	return sides.get_child(side_number - 1) as Side
+func get_side(side_number: int) -> Node:
+	return sides.get_child(side_number - 1)
 
-func add_unit(side_number: int, unit_type: String, position: Vector2) -> void:
-	var side := get_side(side_number)
+func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
+	if side_number > sides.get_child_count():
+		return
 
-	if side:
-		side.add_unit(unit_type, map.get_location(position))
-	else:
-		print("Invalid side number: %d" % side_number)
+	var side: Side = sides.get_child(side_number - 1)
+
+	var loc: Location = map.get_location(Vector2(x, y))
+
+	var unit_type := Registry.units[unit_id].instance() as UnitType
+
+	var unit = preload("res://source/unit/Unit.tscn").instance()
+	unit.connect("experienced", self, "_on_unit_experienced")
+	unit.connect("moved", self, "_on_unit_moved")
+	unit.connect("move_finished", self, "_on_unit_move_finished")
+
+	unit.type = unit_type
+
+	side.add_unit(unit)
+	unit.place_at(loc)
 
 func get_village_count() -> int:
 	return map.village_count
