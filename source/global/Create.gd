@@ -1,10 +1,7 @@
 extends Node
 
-const Unit = preload("res://source/unit/Unit.tscn")
-const Scenario = preload("res://source/scenario/Scenario.tscn")
-
 func unit() -> Unit:
-	return Unit.instance() as Unit
+	return Global.Unit.instance() as Unit
 
 func scenario() -> Scenario:
-	return Scenario.instance() as Scenario
+	return Global.Scenario.instance() as Scenario
