@@ -21,10 +21,9 @@ func _get_version() -> Vector3:
 	)
 
 func _get_version_string() -> String:
-	var new_version := ""
-	new_version += str(version.x, ".")
-	new_version += str(version.y, ".")
-	new_version += str(version.z, "-")
-	new_version += str(ProjectSettings.get("application/version/status"))
-
-	return new_version
+	return "%d.%d.%d-%s" % [
+		version.x,
+		version.y,
+		version.z,
+		ProjectSettings.get("application/version/status")
+	]
