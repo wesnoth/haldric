@@ -48,7 +48,7 @@ func _get_file_data(path: String, load_resource: bool) -> Dictionary:
 		data = load(path) if load_resource else null
 	}
 
-	if file_data.data == null:
+	if load_resource and file_data.data == null:
 		print("Loader: could not load file: ", path)
 
 	return file_data
