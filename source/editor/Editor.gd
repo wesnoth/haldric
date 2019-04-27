@@ -80,6 +80,10 @@ func _load_map(scenario_name: String) -> void:
 	scenario_container.add_child(scenario)
 
 func _save_map(scenario_name: String) -> void:
+	if scenario_name.empty():
+		print("No scenario name set!")
+		return
+
 	var id = scenario_name.replace(" ", "_").to_lower()
 	var scn_path: String = DEFAULT_USER_PATH + id + ".tscn"
 	var res_path: String = DEFAULT_USER_PATH + id + ".tres"
