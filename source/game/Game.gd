@@ -60,7 +60,7 @@ func _ready() -> void:
 func _load_scenario() -> void:
 	if Registry.scenarios.has(Global.scenario_name):
 		# Look for an accompanying .tscn file
-		scenario = load(Registry.scenarios[Global.scenario_name].base_path + ".tscn").instance()
+		scenario = load(Registry.scenarios[Global.scenario_name].path.get_basename() + ".tscn").instance()
 
 		if scenario:
 			scenario_container.add_child(scenario)

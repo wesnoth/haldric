@@ -101,7 +101,7 @@ func _save_map(scenario_name: String) -> void:
 	else:
 		Registry.scenarios[id] = {}
 		Registry.scenarios[id].data = r_scenario
-		Registry.scenarios[id].base_path = scn_path.get_basename()
+		Registry.scenarios[id].path = scn_path
 
 func _on_button_pressed(id: int) -> void:
 	current_tile = id

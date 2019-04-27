@@ -39,23 +39,16 @@ func _get_directory_data(path: String, directory_data: Array, extentions: Array,
 	return directory_data
 
 func _get_file_data(path: String, load_resource: bool) -> Dictionary:
-	var file_name := path.get_file()
-	var file_name_split := file_name.split(".")
-
-	var base_path: String = path.get_basename()
-	var parent_folder: String = base_path.split("/")[base_path.split("/").size() - 2]
+	var parent_folder: String = path.split("/")[path.split("/").size() - 2]
 
 	var file_data := {
-		id = file_name_split[0], # Name, no extension
-		base_path = base_path, # path, but no extension
+		id = path.get_file().get_basename(), # Filename, no extension
+		path = path, # Full path to file (includes extension)
 		parent_folder = parent_folder,
-		data = load(path) if load_resource else path
+		data = load(path) if load_resource else null
 	}
 
-	if file_data.data:
-		#print("Loader: load file: ", path)
-		pass
-	else:
+	if file_data.data == null:
 		print("Loader: could not load file: ", path)
 
 	return file_data
