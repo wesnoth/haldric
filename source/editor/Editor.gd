@@ -60,7 +60,7 @@ func _normalize_region(region : Rect2) -> Rect2:
 
 func _new_map() -> void:
 	scenario.queue_free()
-	scenario = Create.scenario()
+	scenario = Wesnoth.Scenario.instance()
 	scenario_container.add_child(scenario)
 	scenario.map.set_size(DEFAULT_MAP_SIZE)
 
