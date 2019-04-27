@@ -23,7 +23,11 @@ var type : UnitType = null
 
 var current_state : State = null
 
-onready var states := {}
+onready var states := {
+	idle   = $States/Idle,
+	move   = $States/Move,
+	attack = $States/Attack,
+}
 
 onready var tween := $Tween as Tween
 onready var state_label := $StateLabel as Label
@@ -38,7 +42,6 @@ func _process(delta: float) -> void:
 	life_bar.update_unit(self)
 
 func _ready() -> void:
-	_setup_states()
 	add_child(type)
 	change_state("idle")
 	reset()
@@ -126,8 +129,3 @@ func _amla() -> void:
 	type.health += 3
 	type.experience *= 1.2
 	reset()
-
-func _setup_states():
-	states["idle"] = $States/Idle
-	states["move"] = $States/Move
-	states["attack"] = $States/Attack

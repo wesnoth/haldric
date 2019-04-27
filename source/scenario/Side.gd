@@ -11,8 +11,6 @@ const HEAL_ON_REST = 2
 var unit_shader: ShaderMaterial = null
 var flag_shader: ShaderMaterial = null
 
-var number := 0
-
 var income := 0
 var upkeep := 0
 
@@ -32,13 +30,13 @@ export(Array, String) var leader := [""]
 export(Array, String) var random_leader := [""]
 export(Array, String) var recruit := [""]
 
+onready var number := get_index() + 1
+
 onready var units = $Units as Node2D
 onready var flags = $Flags as Node2D
 
 func _ready() -> void:
 	Event.connect("turn_refresh", self, "_on_turn_refresh")
-
-	number = get_index() + 1
 
 	flag_type = flag_type.to_lower()
 	team_color = team_color.to_lower()
