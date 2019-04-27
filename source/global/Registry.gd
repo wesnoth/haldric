@@ -32,7 +32,7 @@ func _load_music() -> void:
 	music.clear()
 
 	for file_data in Loader.load_dir("res://audio/music", ["ogg", "wav"], false):
-		music[file_data.id] = file_data.data
+		music[file_data.id] = file_data.path
 
 func _load_scenarios() -> void:
 	scenarios.clear()
