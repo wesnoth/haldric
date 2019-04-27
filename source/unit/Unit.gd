@@ -82,14 +82,9 @@ func path_cost(unit_path : Array) -> int:
 		cost += get_movement_cost(loc)
 	return cost
 
-func move_to(loc: Location) -> void:
-	path = find_path(loc)
+func move_to(new_path: Array) -> void:
+	path = new_path
 	change_state("move")
-
-func find_path(loc: Location) -> Array:
-	if reachable.has(loc):
-		return reachable[loc]
-	return loc.map.find_path(location, loc)
 
 func get_movement_cost(loc: Location) -> int:
 	var cost =  type.movement.get(loc.terrain.type[0])
