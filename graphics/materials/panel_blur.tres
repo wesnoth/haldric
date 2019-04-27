@@ -5,4 +5,3 @@
 [resource]
 shader = ExtResource( 1 )
 shader_param/Blur = 1.5
-
