@@ -22,24 +22,27 @@ func get_side(side_number: int) -> Side:
 	return sides.get_child(side_number - 1) as Side
 
 func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
-	if side_number > sides.get_child_count():
+	var side: Side = get_side(side_number)
+
+	if side == null:
+		print("Invalid side number %d" % side_number)
 		return
 
-	var side: Side = sides.get_child(side_number - 1)
+	var unit_type: PackedScene = Registry.units[unit_id]
 
-	var loc: Location = map.get_location(Vector2(x, y))
+	if unit_type == null:
+		print("Invalid unit type '%s'" % unit_id)
+		return
 
-	var unit_type := Registry.units[unit_id].instance() as UnitType
-
-	var unit = preload("res://source/unit/Unit.tscn").instance()
+	var unit = Wesnoth.Unit.instance()
 	unit.connect("experienced", self, "_on_unit_experienced")
 	unit.connect("moved", self, "_on_unit_moved")
 	unit.connect("move_finished", self, "_on_unit_move_finished")
 
-	unit.type = unit_type
+	unit.type = unit_type.instance()
 
 	side.add_unit(unit)
-	unit.place_at(loc)
+	unit.place_at(map.get_location(Vector2(x, y)))
 
 func get_village_count() -> int:
 	return map.village_count
