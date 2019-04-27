@@ -1,8 +1,7 @@
 extends Node
 class_name Time
 
-# TODO: use 3 ints?
-var tint = {}
+var tint := Vector3()
 
 var advantage := []
 var disadvantage := []
@@ -16,9 +15,9 @@ func _init(res: RTime) -> void:
 	disadvantage = res.disadvantage
 	bonus = res.bonus
 	malus = res.malus
-	tint.red = res.tint_red
-	tint.green = res.tint_green
-	tint.blue = res.tint_blue
+	tint[0] = res.tint_red
+	tint[1] = res.tint_green
+	tint[2] = res.tint_blue
 
 func get_percentage(alignment: String) -> int:
 	if advantage.has(alignment):

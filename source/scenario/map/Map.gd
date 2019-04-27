@@ -210,7 +210,7 @@ func update_time(time: Time) -> void:
 		loc.terrain.time = time
 
 	var curr_tint: Vector3 = material.get_shader_param("delta")
-	var next_tint: Vector3 = Vector3(time.tint.red, time.tint.green, time.tint.blue)
+	var next_tint: Vector3 = time.tint
 
 	if curr_tint == null or curr_tint == next_tint:
 		material.set_shader_param("delta", next_tint)
