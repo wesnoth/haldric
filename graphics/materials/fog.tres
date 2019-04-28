@@ -5,6 +5,6 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/speed = 0.004
+shader_param/speed = 0.005
 shader_param/density = 1.4
 shader_param/noise = ExtResource( 2 )
