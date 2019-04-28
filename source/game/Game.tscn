@@ -18,5 +18,4 @@ script = ExtResource( 1 )
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
-
 [connection signal="turn_end_pressed" from="HUD" to="." method="_on_HUD_turn_end_pressed"]

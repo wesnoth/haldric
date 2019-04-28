@@ -22,4 +22,3 @@ anchor_bottom = 1.0
 mouse_filter = 2
 texture = SubResource( 2 )
 stretch_mode = 2
-

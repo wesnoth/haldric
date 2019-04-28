@@ -8,4 +8,3 @@ script = ExtResource( 1 )
 [node name="Flags" type="Node2D" parent="."]
 
 [node name="Units" type="Node2D" parent="."]
-

@@ -17,4 +17,3 @@ script = ExtResource( 1 )
 [node name="Follow" type="PathFollow2D" parent="."]
 
 [node name="RemoteControl" type="RemoteTransform2D" parent="Follow"]
-

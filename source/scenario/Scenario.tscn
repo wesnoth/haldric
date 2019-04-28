@@ -13,4 +13,3 @@ script = ExtResource( 2 )
 [node name="Sides" type="Node2D" parent="."]
 
 [node name="Map" parent="." instance=ExtResource( 3 )]
-

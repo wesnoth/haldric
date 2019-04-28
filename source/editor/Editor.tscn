@@ -10,8 +10,6 @@
 [ext_resource path="res://source/interface/pause_menu/PauseMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=9]
 
-
-
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )
 button_size = 50
@@ -106,7 +104,6 @@ text = "Load"
 [node name="PauseMenu" parent="HUD" instance=ExtResource( 8 )]
 
 [node name="Camera2D" parent="." instance=ExtResource( 9 )]
-
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/New" to="." method="_on_New_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Load" to="." method="_on_Load_pressed"]

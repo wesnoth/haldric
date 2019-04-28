@@ -26,4 +26,3 @@ script = ExtResource( 5 )
 [node name="Abilities" type="Node" parent="."]
 
 [node name="Attacks" type="Node" parent="."]
-
