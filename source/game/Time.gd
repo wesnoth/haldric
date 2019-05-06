@@ -25,10 +25,7 @@ func _init(res: RTime) -> void:
 	tint[2] = res.tint_blue
 
 	if res.sound:
-		# TODO: we want to be able to load WAV sounds too... why the hell is
-		# AudioStreamOGGVorbis the only thing with looping controls??? O_O
-		sound = load(res.sound) as AudioStreamOGGVorbis
-		sound.loop = false
+		sound = load(res.sound)
 
 func get_percentage(alignment: String) -> int:
 	if advantage.has(alignment):
