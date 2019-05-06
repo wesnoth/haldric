@@ -1,10 +1,9 @@
 extends Node2D
 class_name Transitions
 
-var map: Map = null
-
 const tile_set = preload("res://graphics/tilesets/transitions.tres")
 
+var map = null
 var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
 
 onready var layers = get_children()
