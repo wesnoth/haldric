@@ -297,12 +297,7 @@ func _initialize_grid() -> void:
 func _update_size() -> void:
 	if get_cell(0, 0) == INVALID_CELL:
 		set_cell(0, 0, tile_set.find_tile_by_name(DEFAULT_TERRAIN))
-	else:
-		# Hack so 'get_used_rect()' returns a correct value when tiles are
-		# removed. It will be fixed by GH-27080.
-		var cell: int = get_cell(0, 0)
-		set_cell(0, 0, 0 if cell == INVALID_CELL else INVALID_CELL)
-		set_cell(0, 0, cell)
+
 	width = int(get_used_rect().size.x)
 	height = int(get_used_rect().size.y)
 
