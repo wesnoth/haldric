@@ -9,14 +9,6 @@ var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
 onready var layers = get_children()
 
 # map: Map - cyclic reference
-func initialize(map) -> void:
-	self.map = map
-	for y in map.height:
-		for x in map.width:
-			var cell = Vector2(x, y)
-			_apply_transition_from_cell(cell)
-
-# map: Map - cyclic reference
 func update_transitions(map) -> void:
 	self.map = map
 	for layer in layers:
