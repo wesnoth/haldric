@@ -183,7 +183,7 @@ func set_tile(global_pos: Vector2, id: int):
 	if not _is_cell_in_map(cell):
 		return
 
-	if id == -1:
+	if id == INVALID_CELL:
 		set_cellv(cell, id)
 		overlay.set_cellv(cell, id)
 		_update_size()
@@ -193,7 +193,7 @@ func set_tile(global_pos: Vector2, id: int):
 	var code: String = tile_set.tile_get_name(id)
 	if code.begins_with("^"):
 		overlay.set_cellv(cell, id)
-		if get_cellv(cell) == -1:
+		if get_cellv(cell) == INVALID_CELL:
 			var grass_id: int = tile_set.find_tile_by_name(DEFAULT_TERRAIN)
 			set_cellv(cell, grass_id)
 	else:
@@ -295,13 +295,13 @@ func _initialize_grid() -> void:
 	grid = Grid.new(self, width, height)
 
 func _update_size() -> void:
-	if get_cell(0, 0) == -1:
+	if get_cell(0, 0) == INVALID_CELL:
 		set_cell(0, 0, tile_set.find_tile_by_name(DEFAULT_TERRAIN))
 	else:
 		# Hack so 'get_used_rect()' returns a correct value when tiles are
 		# removed. It will be fixed by GH-27080.
 		var cell: int = get_cell(0, 0)
-		set_cell(0, 0, 0 if cell == -1 else -1)
+		set_cell(0, 0, 0 if cell == INVALID_CELL else INVALID_CELL)
 		set_cell(0, 0, cell)
 	width = int(get_used_rect().size.x)
 	height = int(get_used_rect().size.y)
@@ -336,6 +336,6 @@ func display_reachable_for(reachable_locs: Dictionary) -> void:
 
 	# Punch out visible area
 	for loc in reachable_locs:
-		cover.set_cellv(loc.cell, -1)
+		cover.set_cellv(loc.cell, INVALID_CELL)
 
 	cover.show()

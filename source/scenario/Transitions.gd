@@ -98,7 +98,7 @@ func _set_transition_tile(transition: String, cell: Vector2, layer: int) -> void
 	layers[layer].set_cellv(cell, tile_id)
 
 func _tile_set_has_tile(tile_name: String):
-	return tile_set.find_tile_by_name(tile_name) != -1
+	return tile_set.find_tile_by_name(tile_name) != TileMap.INVALID_CELL
 
 func _get_direction_string(start_direction: int, current_direction: int) -> String:
 	if start_direction == current_direction:
