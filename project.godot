@@ -197,7 +197,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Transitions",
 "language": "GDScript",
-"path": "res://source/scenario/Transitions.gd"
+"path": "res://source/scenario/map/Transitions.gd"
 }, {
 "base": "Node2D",
 "class": "Unit",
