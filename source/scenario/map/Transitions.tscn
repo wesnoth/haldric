@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://source/scenario/Transitions.gd" type="Script" id=1]
+[ext_resource path="res://source/scenario/map/Transitions.gd" type="Script" id=1]
 [ext_resource path="res://graphics/tilesets/transitions.tres" type="TileSet" id=2]
 
 [node name="Transitions" type="Node2D"]
