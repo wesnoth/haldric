@@ -4,14 +4,24 @@ extends Node
 var images_path := "res://graphics/images/terrain/transitions"
 var save_path := "res://graphics/tilesets/transitions.tres"
 
-var CODE := {}
+var CODE := {
+	"grass-green":           "Gg",
+	"void-void":             "Xv",
+	"grass-dry":             "Gd",
+	"grass-semi-dry":        "Gs",
+	"grass-leaf-litter":     "Gll",
+	"hills-desert":          "Hd",
+	"hills-regular":         "Hh",
+	"hills-dry":             "Hhd",
+	"hills-snow":            "Ha",
+}
+
 var transition_table := {}
 
 export var generate := false setget _set_generate
 
 func _set_generate(value):
 	if Engine.is_editor_hint():
-		_setup_terrain_code_table()
 		_generate_tile_set()
 
 func _generate_tile_set():
@@ -47,14 +57,3 @@ func _generate_tile_set():
 			id += 1
 
 	ResourceSaver.save(save_path, tile_set)
-
-func _setup_terrain_code_table():
-	CODE["grass-green"] = "Gg"
-	CODE["void-void"] = "Xv"
-	CODE["grass-dry"] = "Gd"
-	CODE["grass-semi-dry"] = "Gs"
-	CODE["grass-leaf-litter"] = "Gll"
-	CODE["hills-desert"] = "Hd"
-	CODE["hills-regular"] = "Hh"
-	CODE["hills-dry"] = "Hhd"
-	CODE["hills-snow"] = "Ha"
