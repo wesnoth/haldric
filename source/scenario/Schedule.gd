@@ -13,8 +13,12 @@ func next() -> void:
 
 	if not current_time:
 		current_time = get_child(0)
+
 	var new_index = (current_time.get_index() + 1) % get_child_count()
 	current_time = get_child(new_index)
+
+	if current_time.sound:
+		Audio.play(current_time.sound)
 
 func get_schedule() -> Array:
 	return get_children()

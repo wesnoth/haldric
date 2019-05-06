@@ -12,3 +12,5 @@ export(Array, String) var disadvantage := []
 
 export(int, 0, 100) var bonus := 0
 export(int, 0, 100) var malus := 0
+
+export(String, FILE) var sound := ""

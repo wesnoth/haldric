@@ -12,4 +12,4 @@ advantage = [  ]
 disadvantage = [  ]
 bonus = 0
 malus = 0
-
+sound = "res://audio/sounds/ambient/night.ogg"
