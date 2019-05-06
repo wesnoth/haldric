@@ -58,22 +58,21 @@ func _ready() -> void:
 	HUD.update_time_info(scenario.schedule.current_time)
 
 func _load_scenario() -> void:
-	if Registry.scenarios.has(Global.scenario_name):
-		# Look for an accompanying .tscn file
-		scenario = load(Registry.scenarios[Global.scenario_name].path.get_basename() + ".tscn").instance()
+	scenario = Loader.load_scenario(Global.scenario_name)
 
-		if scenario:
-			scenario_container.add_child(scenario)
-			#warning-ignore:return_value_discarded
-			scenario.connect("unit_experienced", self, "_on_unit_experienced")
-			#warning-ignore:return_value_discarded
-			scenario.connect("unit_moved", self, "_on_unit_moved")
-			#warning-ignore:return_value_discarded
-			scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
+	# TODO: error handling
+	if not scenario:
+		pass
 
-			draw.set_map_border_size(scenario.map.get_pixel_size())
-		else:
-			print("No .tscn file found for scenario " % Global.scenario_name)
+	scenario_container.add_child(scenario)
+	#warning-ignore:return_value_discarded
+	scenario.connect("unit_experienced", self, "_on_unit_experienced")
+	#warning-ignore:return_value_discarded
+	scenario.connect("unit_moved", self, "_on_unit_moved")
+	#warning-ignore:return_value_discarded
+	scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
+
+	draw.set_map_border_size(scenario.map.get_pixel_size())
 
 func _update_hover(loc: Location) -> void:
 	if loc:
