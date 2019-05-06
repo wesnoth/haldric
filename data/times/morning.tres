@@ -12,4 +12,4 @@ advantage = [ "lawful" ]
 disadvantage = [ "chaotic", "liminal" ]
 bonus = 25
 malus = 25
-
+sound = ""
