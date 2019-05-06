@@ -26,7 +26,7 @@ func _generate_tile_set():
 		var name: String = id_str[0]
 		var direction: String = id_str[1]
 
-		var parent_folder: String = path_str[path_str - 2]
+		var parent_folder: String = path_str[path_str.size() - 2]
 
 		transition_table[CODE["%s-%s" % [parent_folder, name]]] = {
 			direction = transition.data
