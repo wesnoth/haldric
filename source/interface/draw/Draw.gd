@@ -24,7 +24,7 @@ func _draw() -> void:
 		side = get_parent().current_side.number
 	var size = map_border.rect_size
 	viewport.size = size
-	fog_texture.side = side
+	fog_texture.side_number = side
 	fog_texture.units = get_tree().get_nodes_in_group("Unit")
 	fog_texture.update()
 	fog.texture = viewport.get_texture()
