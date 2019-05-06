@@ -6,7 +6,7 @@ onready var version := $Version as Label
 onready var header := $Header as Label
 
 func _ready() -> void:
-	# Audio.play(load(Registry.music.return_to_wesnoth))
+	# Audio.play_music(load(Registry.music.return_to_wesnoth))
 	version.text = Global.version_string
 
 	#warning-ignore:return_value_discarded

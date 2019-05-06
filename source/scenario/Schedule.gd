@@ -18,7 +18,7 @@ func next() -> void:
 	current_time = get_child(new_index)
 
 	if current_time.sound:
-		Audio.play(current_time.sound)
+		Audio.play_effect(current_time.sound)
 
 func get_schedule() -> Array:
 	return get_children()
