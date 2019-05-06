@@ -5,17 +5,14 @@
 [ext_resource path="res://graphics/images/interface/progress.png" type="Texture" id=3]
 
 [node name="LifeBar" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -1880.0
-margin_bottom = -1076.0
-rect_min_size = Vector2( 40, 4 )
+margin_right = 40.0
+margin_bottom = 7.0
+rect_min_size = Vector2( 40, 7 )
 script = ExtResource( 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 3.0
 custom_constants/separation = 1
 
 [node name="TeamColorRect" type="ColorRect" parent="HBoxContainer"]
@@ -31,6 +28,7 @@ margin_bottom = 7.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 1
+alignment = 1
 
 [node name="HealthBar" type="TextureProgress" parent="HBoxContainer/VBoxContainer"]
 margin_right = 32.0
@@ -74,4 +72,3 @@ margin_top = -4.0
 margin_right = -33.0
 margin_bottom = -5.0
 color = Color( 1, 0.733333, 0, 1 )
-
