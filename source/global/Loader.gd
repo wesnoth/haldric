@@ -52,12 +52,9 @@ func _get_directory_data(path: String, directory_data: Array, extentions: Array,
 	return directory_data
 
 func _get_file_data(path: String, load_resource: bool) -> Dictionary:
-	var parent_folder: String = path.split("/")[path.split("/").size() - 2]
-
 	var file_data := {
 		id = path.get_file().get_basename(), # Filename, no extension
 		path = path, # Full path to file (includes extension)
-		parent_folder = parent_folder,
 		data = load(path) if load_resource else null
 	}
 

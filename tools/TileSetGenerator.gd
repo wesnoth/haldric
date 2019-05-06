@@ -20,13 +20,17 @@ func _generate_tile_set():
 	var transition_images: Array = Loader.load_dir(images_path, ["png"])
 
 	for transition in transition_images:
-		var name = transition.id.split("_")[0]
-		transition_table[CODE[transition.parent_folder + "-" + name]] = {}
+		var id_str = transition.id.split("_")
+		var path_str = transition.path.split("/")
 
-	for transition in transition_images:
-		var name = transition.id.split("_")[0]
-		var direction = transition.id.split("_")[1]
-		transition_table[CODE[transition.parent_folder + "-" + name]][direction] = (transition.data)
+		var name: String = id_str[0]
+		var direction: String = id_str[1]
+
+		var parent_folder: String = path_str[path_str - 2]
+
+		transition_table[CODE["%s-%s" % [parent_folder, name]]] = {
+			direction = transition.data
+		}
 
 	var tile_set := TileSet.new()
 
