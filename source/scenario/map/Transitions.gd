@@ -5,12 +5,28 @@ const tile_set = preload("res://graphics/tilesets/transitions.tres")
 
 var map = null
 var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
-
-onready var layers = get_children()
+var layers := []
 
 # map: Map - cyclic reference
-func update_transitions(map) -> void:
+func initialize(map) -> void:
 	self.map = map
+
+	for dir in directions:
+		var transition_map = TileMap.new()
+
+		transition_map.tile_set = tile_set
+		transition_map.cell_size = map.cell_size
+		transition_map.cell_half_offset = map.cell_half_offset
+		transition_map.cell_y_sort = map.cell_y_sort
+		transition_map.use_parent_material = true
+
+		add_child(transition_map)
+
+	layers = get_children()
+
+	update_transitions()
+
+func update_transitions() -> void:
 	for layer in layers:
 		layer.clear()
 
@@ -19,7 +35,6 @@ func update_transitions(map) -> void:
 			var cell = Vector2(x, y)
 			_apply_transition_from_cell(cell)
 
-# map: Map - cyclic reference
 func _apply_transition_from_cell(cell : Vector2) -> void:
 	var location: Location = map.get_location(cell)
 	var code: String = location.terrain.get_base_code()

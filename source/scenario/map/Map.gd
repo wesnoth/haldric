@@ -305,7 +305,7 @@ func _initialize_border() -> void:
 	var size := Vector2(width, height)
 
 func _initialize_transitions() -> void:
-		transitions.update_transitions(self)
+	transitions.initialize(self)
 
 func _flatten(cell: Vector2) -> int:
 	return int(cell.y)*int(width) + int(cell.x)

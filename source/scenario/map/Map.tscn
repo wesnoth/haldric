@@ -3,7 +3,7 @@
 [ext_resource path="res://graphics/shaders/color_adjust.shader" type="Shader" id=1]
 [ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=2]
 [ext_resource path="res://source/scenario/map/Map.gd" type="Script" id=3]
-[ext_resource path="res://source/scenario/map/Transitions.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/scenario/map/Transitions.gd" type="Script" id=4]
 [ext_resource path="res://graphics/shaders_visual/cover.tres" type="Shader" id=5]
 [ext_resource path="res://graphics/tilesets/void.tres" type="TileSet" id=6]
 
@@ -29,7 +29,9 @@ script = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="Transitions" parent="." instance=ExtResource( 4 )]
+[node name="Transitions" type="Node2D" parent="."]
+use_parent_material = true
+script = ExtResource( 4 )
 
 [node name="Overlay" type="TileMap" parent="."]
 use_parent_material = true
