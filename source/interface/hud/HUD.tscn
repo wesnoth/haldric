@@ -58,5 +58,4 @@ margin_right = -10.0
 margin_bottom = -10.0
 
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
-
 [connection signal="turn_end_pressed" from="TurnEndPanel" to="." method="_on_TurnEndPanel_turn_end_pressed"]
