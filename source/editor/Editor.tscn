@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/editor/Editor.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/OffMap.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/scenario/Scenario.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/editor/HUD.gd" type="Script" id=4]
-[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=5]
-[ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=6]
-[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=7]
-[ext_resource path="res://source/interface/pause_menu/PauseMenu.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/editor/HUD.gd" type="Script" id=3]
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=4]
+[ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=6]
+[ext_resource path="res://source/interface/pause_menu/PauseMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=8]
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )
@@ -18,10 +17,8 @@ button_size = 50
 
 [node name="ScenarioContainer" type="Node2D" parent="."]
 
-[node name="Scenario" parent="ScenarioContainer" instance=ExtResource( 3 )]
-
 [node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 
 [node name="TileButtons" type="Control" parent="HUD"]
 editor/display_folded = true
@@ -30,10 +27,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -265.0
 margin_bottom = 1.0
-theme = ExtResource( 5 )
+theme = ExtResource( 4 )
 
-[node name="Panel" parent="HUD/TileButtons" instance=ExtResource( 6 )]
-material = ExtResource( 7 )
+[node name="Panel" parent="HUD/TileButtons" instance=ExtResource( 5 )]
+material = ExtResource( 6 )
 
 [node name="GridContainer" type="GridContainer" parent="HUD/TileButtons"]
 anchor_right = 1.0
@@ -59,7 +56,7 @@ margin_top = -90.0
 margin_right = 300.0
 margin_bottom = -10.0
 rect_min_size = Vector2( 600, 80 )
-theme = ExtResource( 5 )
+theme = ExtResource( 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/UIButtons"]
 anchor_right = 1.0
@@ -101,9 +98,9 @@ margin_bottom = 69.0
 rect_min_size = Vector2( 80, 0 )
 text = "Load"
 
-[node name="PauseMenu" parent="HUD" instance=ExtResource( 8 )]
+[node name="PauseMenu" parent="HUD" instance=ExtResource( 7 )]
 
-[node name="Camera2D" parent="." instance=ExtResource( 9 )]
+[node name="Camera2D" parent="." instance=ExtResource( 8 )]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/New" to="." method="_on_New_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Load" to="." method="_on_Load_pressed"]
