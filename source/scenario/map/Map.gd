@@ -4,6 +4,7 @@ class_name Map
 const OFFSET := Vector2(36, 36)
 
 const DEFAULT_TERRAIN := "Gg"
+var default_terrain_tileset_id := tile_set.find_tile_by_name(DEFAULT_TERRAIN)
 
 var width := 0
 var height := 0
