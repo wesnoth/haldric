@@ -4,7 +4,10 @@ class_name Map
 const OFFSET := Vector2(36, 36)
 
 const DEFAULT_TERRAIN := "Gg"
-var default_terrain_tileset_id := tile_set.find_tile_by_name(DEFAULT_TERRAIN)
+const VOID_TERRAIN := "Xv"
+
+var default_tile := tile_set.find_tile_by_name(DEFAULT_TERRAIN)
+var void_tile := tile_set.find_tile_by_name(VOID_TERRAIN)
 
 var width := 0
 var height := 0
@@ -17,12 +20,8 @@ var ZOC_tiles := {}
 var village_count := 0
 
 onready var tween := $Tween as Tween
-
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
-
-onready var cover_tile: int = tile_set.find_tile_by_name("Xv")
-
 onready var transitions := $Transitions as Transitions
 
 func _ready() -> void:
@@ -275,7 +274,7 @@ func _initialize_locations() -> void:
 				if overlay_code == "^Vh":
 					village_count += 1
 
-			cover.set_cellv(cell, cover_tile)
+			cover.set_cellv(cell, void_tile)
 
 			base_code = tile_set.tile_get_name(get_cell(x, y))
 
@@ -302,7 +301,7 @@ func _initialize_transitions() -> void:
 	transitions.initialize(self)
 
 func _flatten(cell: Vector2) -> int:
-	return int(cell.y)*int(width) + int(cell.x)
+	return int(cell.y) * int(width) + int(cell.x)
 
 func _is_cell_in_map(cell: Vector2) -> bool:
 	return cell.x >= 0 and cell.x < width and cell.y >= 0 and cell.y < height
@@ -311,12 +310,10 @@ func get_location_from_mouse() -> Location:
 	return get_location(world_to_map(get_global_mouse_position()))
 
 func display_reachable_for(reachable_locs: Dictionary) -> void:
-	var darken_id: int = tile_set.find_tile_by_name("Xv")
-
 	# "Clear" the cover map by filling in everything with the Void terrain.
 	for y in height:
 		for x in width:
-			cover.set_cellv(Vector2(x, y), darken_id)
+			cover.set_cellv(Vector2(x, y), void_tile)
 
 	# Nothing to show, hide the map and bail.
 	if reachable_locs.empty():
@@ -331,7 +328,7 @@ func display_reachable_for(reachable_locs: Dictionary) -> void:
 
 func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
 	if get_cell(cell.x, cell.y) == INVALID_CELL:
-		set_cell(cell.x, cell.y, default_terrain_tileset_id)
+		set_cell(cell.x, cell.y, default_tile)
 
 		if clear_overlay:
 			overlay.set_cell(cell.x, cell.y, INVALID_CELL)
