@@ -35,5 +35,4 @@ focus_mode = 0
 custom_fonts/font = ExtResource( 5 )
 text = "End Turn"
 flat = true
-
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

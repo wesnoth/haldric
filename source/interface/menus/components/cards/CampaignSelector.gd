@@ -10,6 +10,7 @@ func _ready() -> void:
 func _add_campaign(campaign) -> void:
 	var file_data : Dictionary = Registry.campaigns[campaign]
 	var button := CampaignCard.instance()
+	# warning-ignore:return_value_discarded
 	button.connect("pressed", self, "_on_campaign_card_pressed", [campaign])
 	card_container.add_child(button)
 	button.initialize(file_data.data)

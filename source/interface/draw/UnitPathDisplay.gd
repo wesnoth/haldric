@@ -59,5 +59,7 @@ func move_along_path(obj: Node2D) -> void:
 
 	var time := clamp(path.size() * 0.2, 0.5, 2.5)
 
+	# warning-ignore:return_value_discarded
 	tween.interpolate_property(follow, "unit_offset", 0, 1, time, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	# warning-ignore:return_value_discarded
 	tween.start()

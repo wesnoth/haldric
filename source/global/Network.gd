@@ -22,10 +22,15 @@ var me := {
 
 func _ready() -> void:
 	set_pause_mode(PAUSE_MODE_PROCESS)
+	# warning-ignore:return_value_discarded
 	get_tree().connect("network_peer_connected",self,"_network_peer_connected")
+	# warning-ignore:return_value_discarded
 	get_tree().connect("network_peer_disconnected",self,"_network_peer_disconnected")
+	# warning-ignore:return_value_discarded
 	get_tree().connect("connected_to_server", self, "_connected_ok")
+	# warning-ignore:return_value_discarded
 	get_tree().connect("connection_failed", self, "_connection_failed")
+	# warning-ignore:return_value_discarded
 	get_tree().connect("server_disconnected",self,"_server_disconnected")
 
 # P U B L I C

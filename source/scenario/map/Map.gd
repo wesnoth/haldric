@@ -216,7 +216,9 @@ func update_time(time: Time) -> void:
 		material.set_shader_param("delta", next_tint)
 		return
 
+	# warning-ignore:return_value_discarded
 	tween.interpolate_property(material, "param/delta", curr_tint, next_tint, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	# warning-ignore:return_value_discarded
 	tween.start()
 
 func get_location(cell: Vector2) -> Location:

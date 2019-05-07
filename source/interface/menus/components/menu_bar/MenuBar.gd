@@ -12,12 +12,15 @@ onready var tween := $Tween as Tween
 onready var hover := $ButtonHover as ButtonHover
 
 func _ready() -> void:
+	# warning-ignore:return_value_discarded
 	get_tree().connect("screen_resized", self, "_on_screen_resized")
 	call_deferred("highlight_button", 0)
 	reveal()
 
 func reveal() -> void:
+	# warning-ignore:return_value_discarded
 	tween.interpolate_property(self, "modulate", Color("00FFFFFF"), Color("FFFFFFFF"), 0.4, Tween.TRANS_SINE, Tween.EASE_OUT)
+	# warning-ignore:return_value_discarded
 	tween.start()
 
 func _button_selected(button_id):
@@ -36,6 +39,7 @@ func highlight_button(button_id: int) -> void:
 
 func register_button(button: Button) -> void:
 	_button_register[button.get_index()] = button
+	# warning-ignore:return_value_discarded
 	button.connect("pressed", self, "_on_button_pressed", [button.get_index()])
 
 func next_button():

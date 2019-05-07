@@ -14,8 +14,11 @@ onready var hover := $Hover as Sprite
 onready var map_border := $MapBorder
 
 func _ready() -> void:
+	# warning-ignore:return_value_discarded
 	Event.connect("move_to", self, "_on_move_to")
+	# warning-ignore:return_value_discarded
 	Event.connect("turn_refresh", self, "_on_turn_refresh")
+	# warning-ignore:return_value_discarded
 	Event.connect("turn_end", self, "_on_turn_end")
 
 func _draw() -> void:

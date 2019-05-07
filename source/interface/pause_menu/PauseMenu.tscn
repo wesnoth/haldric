@@ -56,7 +56,6 @@ margin_left = 10.0
 margin_top = -90.0
 margin_right = 238.0
 margin_bottom = -10.0
-
 [connection signal="pressed" from="Popup/CenterContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="Popup/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Pause" to="." method="_on_Pause_pressed"]

@@ -50,6 +50,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_load_scenario()
 
+	# warning-ignore:return_value_discarded
 	HUD.connect("unit_advancement_selected", self, "_on_unit_advancement_selected")
 
 	if scenario.sides.get_child_count() > 0:
