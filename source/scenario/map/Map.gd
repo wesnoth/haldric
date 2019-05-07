@@ -29,7 +29,6 @@ func _ready() -> void:
 	_update_size()
 	_initialize_locations()
 	_initialize_grid()
-	_initialize_border()
 	_initialize_transitions()
 
 	# So the initial size is also correct when first entering the editor.
@@ -177,7 +176,6 @@ func set_size(cell: Vector2) -> void:
 
 	_initialize_locations()
 	_initialize_grid()
-	_initialize_border()
 
 func set_tile(global_pos: Vector2, id: int):
 	var cell: Vector2 = world_to_map(global_pos)
@@ -299,9 +297,6 @@ func _update_size() -> void:
 
 	width = int(get_used_rect().size.x)
 	height = int(get_used_rect().size.y)
-
-func _initialize_border() -> void:
-	var size := Vector2(width, height)
 
 func _initialize_transitions() -> void:
 	transitions.initialize(self)
