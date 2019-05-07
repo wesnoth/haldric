@@ -74,7 +74,7 @@ func _get_chain_tile_data(code: String, cell: Vector2, start_direction: int) -> 
 		chain = 0
 	}
 
-	for direction in range(start_direction, 6):
+	for direction in range(start_direction, neighbors.size()):
 		var n_cell : Vector2 = neighbors[direction]
 		var previous := transition.duplicate(true)
 
