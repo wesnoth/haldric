@@ -195,9 +195,7 @@ func set_tile(global_pos: Vector2, id: int):
 	var code: String = tile_set.tile_get_name(id)
 	if code.begins_with("^"):
 		overlay.set_cellv(cell, id)
-		if get_cellv(cell) == INVALID_CELL:
-			var grass_id: int = tile_set.find_tile_by_name(DEFAULT_TERRAIN)
-			set_cellv(cell, grass_id)
+		reset_if_empty(cell)
 	else:
 		set_cellv(cell, id)
 	_update_size()
@@ -239,10 +237,10 @@ func get_map_string() -> String:
 
 	for y in height:
 		for x in width:
-			var id: int = _flatten(Vector2(x, y))
-			if get_cell(x, y) == TileMap.INVALID_CELL:
-				set_cell(x, y, tile_set.find_tile_by_name(DEFAULT_TERRAIN))
-				overlay.set_cell(x, y, TileMap.INVALID_CELL)
+			var cell := Vector2(x, y)
+			var id: int = _flatten(cell)
+
+			reset_if_empty(cell, true)
 
 			var code: String = tile_set.tile_get_name(get_cell(x, y))
 			var overlay_code := ""
@@ -272,9 +270,7 @@ func _initialize_locations() -> void:
 
 			location.map = self
 
-			if get_cellv(cell) == TileMap.INVALID_CELL:
-				set_cellv(cell, tile_set.find_tile_by_name(DEFAULT_TERRAIN))
-				overlay.set_cellv(cell, TileMap.INVALID_CELL)
+			reset_if_empty(cell, true)
 
 			if overlay.get_cellv(cell) != TileMap.INVALID_CELL:
 				overlay_code = tile_set.tile_get_name(overlay.get_cellv(cell))
@@ -299,8 +295,7 @@ func _initialize_grid() -> void:
 	grid = Grid.new(self, width, height)
 
 func _update_size() -> void:
-	if get_cell(0, 0) == INVALID_CELL:
-		set_cell(0, 0, tile_set.find_tile_by_name(DEFAULT_TERRAIN))
+	reset_if_empty(Vector2(0, 0))
 
 	width = int(get_used_rect().size.x)
 	height = int(get_used_rect().size.y)
@@ -338,3 +333,10 @@ func display_reachable_for(reachable_locs: Dictionary) -> void:
 		cover.set_cellv(loc.cell, INVALID_CELL)
 
 	cover.show()
+
+func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
+	if get_cell(cell.x, cell.y) == INVALID_CELL:
+		set_cell(cell.x, cell.y, default_terrain_tileset_id)
+
+		if clear_overlay:
+			overlay.set_cell(cell.x, cell.y, INVALID_CELL)

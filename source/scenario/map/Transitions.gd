@@ -30,10 +30,8 @@ func update_transitions() -> void:
 	for layer in layers:
 		layer.clear()
 
-	for y in map.height:
-		for x in map.width:
-			var cell = Vector2(x, y)
-			_apply_transition_from_cell(cell)
+	for cell in map.get_used_cells():
+		_apply_transition_from_cell(cell)
 
 func _apply_transition_from_cell(cell : Vector2) -> void:
 	var location: Location = map.get_location(cell)
