@@ -114,9 +114,10 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 	return paths
 
 func update_terrain() -> void:
+	# TODO: no need to update everything. Restrict this to specific rects
 	_initialize_locations()
 	_initialize_grid()
-	_initialize_transitions()
+	transitions.update_transitions()
 
 func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = false) -> void:
 	for loc in ZOC_tiles.keys():
