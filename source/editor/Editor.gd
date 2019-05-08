@@ -24,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if Input.is_action_pressed("mouse_right"):
 		var mouse_position: Vector2 = get_global_mouse_position()
-		scenario.map.set_tile(mouse_position, scenario.map.default_terrain_tileset_id)
+		scenario.map.set_tile(mouse_position, scenario.map.default_tile)
 
 	if Input.is_action_just_released("mouse_left") or Input.is_action_just_released("mouse_right"):
 		_update()
