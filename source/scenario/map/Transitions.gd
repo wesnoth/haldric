@@ -3,12 +3,11 @@ class_name Transitions
 
 const tile_set = preload("res://graphics/tilesets/transitions.tres")
 
-var map = null
+var map: TileMap = null
 var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
 var layers := []
 
-# map: Map - cyclic reference
-func initialize(map) -> void:
+func initialize(map: TileMap) -> void:
 	self.map = map
 
 	for dir in directions:
