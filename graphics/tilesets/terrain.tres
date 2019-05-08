@@ -197,7 +197,7 @@
 18/occluder_offset = Vector2( 0, 0 )
 18/navigation_offset = Vector2( 0, 0 )
 18/shapes = [  ]
-18/z_index = 0
+18/z_index = 1
 19/name = "Kh"
 19/texture = ExtResource( 6 )
 19/tex_offset = Vector2( 0, 0 )
