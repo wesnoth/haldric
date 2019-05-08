@@ -287,7 +287,7 @@ func _initialize_locations() -> void:
 			locations[id] = location
 
 func _initialize_grid() -> void:
-	grid = Grid.new(self, rect.size)
+	grid = Grid.new(self, rect)
 
 func _update_size() -> void:
 	reset_if_empty(Vector2(0, 0))
