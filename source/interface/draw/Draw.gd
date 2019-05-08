@@ -1,9 +1,7 @@
 extends Node2D
 
-onready var viewport := $Viewport as Viewport
-
-onready var fog_texture := $Viewport/FogTexture as Node2D
-onready var fog := $Fog as Node2D
+onready var fog := $Fog
+onready var fog_texture := $Fog/Viewport/FogTexture
 
 onready var outline := $Outline as Node2D
 
@@ -26,12 +24,12 @@ func _draw() -> void:
 	if get_parent().current_side:
 		side = get_parent().current_side.number
 	var size = map_border.rect_size
-	viewport.size = size
+
+	fog.rect_size = size
 	fog_texture.side_number = side
 	fog_texture.units = get_tree().get_nodes_in_group("Unit")
 	fog_texture.update()
-	fog.texture = viewport.get_texture()
-	fog.update()
+
 	# outline.texture = viewport.get_texture()
 	# outline.update()
 
