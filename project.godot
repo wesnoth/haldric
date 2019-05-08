@@ -289,6 +289,7 @@ Audio="*res://source/global/Audio.tscn"
 TeamColor="*res://source/global/TeamColor.gd"
 Event="*res://source/global/Event.gd"
 Settings="*res://source/global/Settings.gd"
+Utils="*res://source/global/Utils.gd"
 
 [debug]
 
@@ -302,7 +303,6 @@ gdscript/warnings/unused_argument=false
 
 window/size/width=1920
 window/size/height=1080
-window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 mouse_cursor/custom_image="res://graphics/images/interface/cursor/normal.png"
 window/stretch/mode="2d"

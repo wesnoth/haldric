@@ -9,8 +9,7 @@ const VOID_TERRAIN := "Xv"
 var default_tile := tile_set.find_tile_by_name(DEFAULT_TERRAIN)
 var void_tile := tile_set.find_tile_by_name(VOID_TERRAIN)
 
-var width := 0
-var height := 0
+var rect = Rect2()
 
 var labels := []
 var locations := {}
@@ -52,7 +51,7 @@ func find_all_viewable_cells(unit: Unit) -> Array:
 	update_weight(unit, false, true)
 	var paths := {}
 	paths[unit.location] = []
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, width, height)
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, rect.size.x, rect.size.y)
 	cells.pop_front()
 	cells.invert()
 	for cell in cells:
@@ -79,7 +78,7 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 	update_weight(unit)
 	var paths := {}
 	paths[unit.location] = []
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.moves_current, width, height)
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.moves_current, rect.size.x, rect.size.y)
 	cells.pop_front()
 	cells.invert()
 	for cell in cells:
@@ -125,8 +124,8 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 			grid.unblock_cell(val.cell)
 	ZOC_tiles.clear()
 
-	for y in height:
-		for x in width:
+	for y in rect.size.y:
+		for x in rect.size.x:
 			var cell := Vector2(x, y)
 			var id: int = _flatten(cell)
 			var location: Location = locations[id]
@@ -169,9 +168,8 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 
 			grid.astar.set_point_weight_scale(id, cost)
 
-func set_size(cell: Vector2) -> void:
-	width = int(cell.x)
-	height = int(cell.y)
+func set_size(size: Vector2) -> void:
+	rect.size = size
 
 	_initialize_locations()
 	_initialize_grid()
@@ -224,16 +222,16 @@ func get_location(cell: Vector2) -> Location:
 	return locations[_flatten(cell)]
 
 func get_pixel_size() -> Vector2:
-	if width % 2 == 0:
-		return map_to_world(Vector2(width, height)) + Vector2(18, 36)
+	if int(rect.size.x) % 2 == 0:
+		return map_to_world(rect.size) + Vector2(18, 36)
 	else:
-		return map_to_world(Vector2(width, height)) + Vector2(18, 0)
+		return map_to_world(rect.size) + Vector2(18, 0)
 
 func get_map_string() -> String:
 	var string := ""
 
-	for y in height:
-		for x in width:
+	for y in rect.size.y:
+		for x in rect.size.x:
 			var cell := Vector2(x, y)
 			var id: int = _flatten(cell)
 
@@ -246,7 +244,7 @@ func get_map_string() -> String:
 
 			if overlay_cell != TileMap.INVALID_CELL:
 				overlay_code = tile_set.tile_get_name(overlay_cell)
-			if x < width - 1 and y < height - 1:
+			if x < rect.size.x - 1 and y < rect.size.y - 1:
 				string += code + overlay_code + ","
 			else:
 				string += code + overlay_code
@@ -255,8 +253,8 @@ func get_map_string() -> String:
 	return string
 
 func _initialize_locations() -> void:
-	for y in height:
-		for x in width:
+	for y in rect.size.y:
+		for x in rect.size.x:
 			var cell := Vector2(x, y)
 			var id: int = _flatten(cell)
 
@@ -289,30 +287,28 @@ func _initialize_locations() -> void:
 			locations[id] = location
 
 func _initialize_grid() -> void:
-	grid = Grid.new(self, width, height)
+	grid = Grid.new(self, rect.size)
 
 func _update_size() -> void:
 	reset_if_empty(Vector2(0, 0))
-
-	width = int(get_used_rect().size.x)
-	height = int(get_used_rect().size.y)
+	rect = get_used_rect()
 
 func _initialize_transitions() -> void:
 	transitions.initialize(self)
 
 func _flatten(cell: Vector2) -> int:
-	return int(cell.y) * int(width) + int(cell.x)
+	return Utils.flatten(cell, int(rect.size.x))
 
 func _is_cell_in_map(cell: Vector2) -> bool:
-	return cell.x >= 0 and cell.x < width and cell.y >= 0 and cell.y < height
+	return rect.has_point(cell)
 
 func get_location_from_mouse() -> Location:
 	return get_location(world_to_map(get_global_mouse_position()))
 
 func display_reachable_for(reachable_locs: Dictionary) -> void:
 	# "Clear" the cover map by filling in everything with the Void terrain.
-	for y in height:
-		for x in width:
+	for y in rect.size.y:
+		for x in rect.size.x:
 			cover.set_cellv(Vector2(x, y), void_tile)
 
 	# Nothing to show, hide the map and bail.

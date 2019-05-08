@@ -1,17 +1,13 @@
 extends Resource
 class_name Grid
 
-var width := 0
-var height := 0
-
+var rect := Rect2()
 var astar := AStar.new()
-
 var map: TileMap = null
 
-func _init(new_map: TileMap, new_width: int, new_height: int) -> void:
+func _init(new_map: TileMap, map_rect: Rect2) -> void:
 	map = new_map
-	width = new_width
-	height = new_height
+	rect = map_rect
 
 	_generate_points()
 	_generate_point_connections()
@@ -24,11 +20,11 @@ func find_path_by_position(start_position: Vector2, end_position: Vector2) -> Ar
 
 func find_path_by_cell(start_cell: Vector2, end_cell: Vector2) -> Array:
 	var path2D := []
-	if _check_boundaries(start_cell) and _check_boundaries(end_cell):
-		var path3D: PoolVector3Array =\
-				astar.get_point_path(_flatten(start_cell), _flatten(end_cell))
+	if rect.has_point(start_cell) and rect.has_point(end_cell):
+		var path3D: PoolVector3Array = astar.get_point_path(_flatten(start_cell), _flatten(end_cell))
 		for point in path3D:
 			path2D.append(Vector2(point.x, point.y))
+
 	return path2D
 
 func make_cell_one_way(cell: Vector2):
@@ -38,7 +34,7 @@ func make_cell_one_way(cell: Vector2):
 	for n in neighbors:
 		var n_id: int = _flatten(n)
 
-		if _check_boundaries(n) and astar.are_points_connected(id, n_id):
+		if rect.has_point(n) and astar.are_points_connected(id, n_id):
 			astar.disconnect_points(id, n_id)
 			astar.connect_points(n_id,id,false)
 
@@ -50,16 +46,16 @@ func unblock_cell(cell: Vector2):
 	_connect_with_neighbors(cell)
 
 func _generate_points() -> void:
-	for y in height:
-		for x in width:
+	for y in rect.size.y:
+		for x in rect.size.x:
 			var cell := Vector2(x, y)
 			var id := _flatten(cell)
 
 			astar.add_point(id, Vector3(x, y, 0))
 
 func _generate_point_connections() -> void:
-	for y in height:
-		for x in width:
+	for y in rect.size.y:
+		for x in rect.size.x:
 			var cell := Vector2(x, y)
 			var id: int = _flatten(cell)
 			var point: Vector3 = astar.get_point_position(id)
@@ -73,7 +69,7 @@ func _connect_with_neighbors(cell: Vector2) -> void:
 	for n in neighbors:
 		var n_id: int = _flatten(n)
 
-		if _check_boundaries(n) and\
+		if rect.has_point(n) and\
 				not astar.are_points_connected(id, n_id) and\
 				not map.locations[id].is_blocked and\
 				not map.locations[n_id].is_blocked:
@@ -86,15 +82,11 @@ func _disconnect_with_neighbors(cell: Vector2) -> void:
 	for n in neighbors:
 		var n_id: int = _flatten(n)
 
-		if _check_boundaries(n):
+		if rect.has_point(n):
 			if astar.are_points_connected(id, n_id):
 				astar.disconnect_points(id, n_id)
 			elif astar.are_points_connected(n_id, id):
 				astar.disconnect_points(n_id, id)
-		
 
 func _flatten(cell: Vector2) -> int:
-	return int(cell.y)*width + int(cell.x)
-
-func _check_boundaries(cell: Vector2) -> bool:
-	return cell.x >= 0 and cell.y >= 0 and cell.x < width and cell.y < height
+	return Utils.flatten(cell, int(rect.size.x))
