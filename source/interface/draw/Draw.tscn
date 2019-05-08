@@ -38,6 +38,7 @@ script = ExtResource( 1 )
 size = Vector2( 1920, 1080 )
 hdr = false
 disable_3d = true
+usage = 0
 render_target_v_flip = true
 
 [node name="FogTexture" type="Node2D" parent="Viewport"]
