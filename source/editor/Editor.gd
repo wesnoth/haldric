@@ -8,9 +8,9 @@ export var button_size := 60
 
 onready var HUD := $HUD as CanvasLayer
 onready var scenario_container := $ScenarioContainer as Node2D
-onready var scenario := $ScenarioContainer/Scenario as Scenario
 onready var line_edit := $HUD/UIButtons/HBoxContainer/LineEdit as LineEdit
 
+var scenario: Scenario = null
 var current_tile := 0
 
 func _unhandled_input(event: InputEvent) -> void:
