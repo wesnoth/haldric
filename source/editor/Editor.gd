@@ -11,20 +11,20 @@ onready var scenario_container := $ScenarioContainer as Node2D
 onready var line_edit := $HUD/UIButtons/HBoxContainer/LineEdit as LineEdit
 
 var scenario: Scenario = null
-var current_tile := 0
+var current_paint_tile := 0
+var current_clear_tile := 0
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	if HUD.is_pause_active():
 		return
 
+	var mouse_position: Vector2 = get_global_mouse_position()
+
 	if Input.is_action_pressed("mouse_left"):
-		var mouse_position: Vector2 = get_global_mouse_position()
-		scenario.map.set_tile(mouse_position, current_tile)
+		scenario.map.set_tile(mouse_position, current_paint_tile)
 
 	if Input.is_action_pressed("mouse_right"):
-		var mouse_position: Vector2 = get_global_mouse_position()
-		scenario.map.set_tile(mouse_position, scenario.map.default_tile)
+		scenario.map.set_tile(mouse_position, current_clear_tile)
 
 	if Input.is_action_just_released("mouse_left") or Input.is_action_just_released("mouse_right"):
 		_update()
@@ -32,6 +32,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_new_map()
 	_setup_scenario()
+
+	current_clear_tile = scenario.map.default_tile
 
 func _update() -> void:
 	scenario.map.update_terrain()
@@ -49,6 +51,7 @@ func _add_terrain_button(id: int) -> void:
 	texture.region = _normalize_region(scenario.map.tile_set.tile_get_region(id))
 	button.texture_normal = texture
 	button.rect_size = Vector2(54, 72)
+	button.button_mask = BUTTON_MASK_LEFT | BUTTON_MASK_RIGHT
 	HUD.add_button(button)
 
 func _normalize_region(region : Rect2) -> Rect2:
@@ -110,7 +113,11 @@ func _save_map(scenario_name: String) -> void:
 		Registry.scenarios[id].path = scn_path
 
 func _on_button_pressed(id: int) -> void:
-	current_tile = id
+	if Input.is_action_just_released("mouse_left"):
+		current_paint_tile = id
+
+	if Input.is_action_just_released("mouse_right"):
+		current_clear_tile = id
 
 func _on_Save_pressed() -> void:
 	_save_map(line_edit.text)
