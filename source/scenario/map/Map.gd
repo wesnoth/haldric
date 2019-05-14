@@ -212,6 +212,9 @@ func update_time(time: Time) -> void:
 	# warning-ignore:return_value_discarded
 	tween.start()
 
+func get_village_count() -> int:
+	return overlay.get_used_cells_by_id(overlay.tile_set.find_tile_by_name("^Vh")).size()
+	
 func get_location(cell: Vector2) -> Location:
 	if not _is_cell_in_map(cell):
 		return null

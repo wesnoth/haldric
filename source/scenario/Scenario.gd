@@ -45,7 +45,7 @@ func add_unit(side_number: int, unit_id: String, x: int, y: int) -> void:
 	unit.place_at(map.get_location(Vector2(x, y)))
 
 func get_village_count() -> int:
-	return map.overlay.get_used_cells_by_id(map.overlay.tile_set.find_tile_by_name("^Vh")).size()
+	return map.get_village_count()
 
 func cycle_schedule() -> void:
 	schedule.next()
