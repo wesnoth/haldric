@@ -21,12 +21,18 @@ onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
 onready var transitions := $Transitions as Transitions
 
+onready var border := $MapBorder
+onready var hover := $Hover
+
 func _ready() -> void:
 	_update_size()
 
 	_initialize_locations()
 	_initialize_grid()
 	_initialize_transitions()
+
+func _process(delta: float) -> void:
+	hover.position = world_to_world_centered(get_global_mouse_position())
 
 func map_to_world_centered(cell: Vector2) -> Vector2:
 	return map_to_world(cell) + OFFSET
@@ -214,7 +220,7 @@ func update_time(time: Time) -> void:
 
 func get_village_count() -> int:
 	return overlay.get_used_cells_by_id(overlay.tile_set.find_tile_by_name("^Vh")).size()
-	
+
 func get_location(cell: Vector2) -> Location:
 	if not _is_cell_in_map(cell):
 		return null
@@ -277,6 +283,8 @@ func _initialize_locations() -> void:
 
 			locations[id] = location
 
+	_initialize_border()
+
 func _update_locations() -> void:
 	for y in rect.size.y:
 		for x in rect.size.x:
@@ -298,6 +306,9 @@ func _update_terrain_record_from_map(loc: Location) -> void:
 
 func _initialize_grid() -> void:
 	grid = Grid.new(self, rect)
+
+func _initialize_border() -> void:
+	border.rect_size = get_pixel_size()
 
 func _update_size() -> void:
 	reset_if_empty(Vector2(0, 0))

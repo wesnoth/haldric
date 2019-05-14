@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/interface/draw/Draw.gd" type="Script" id=1]
 [ext_resource path="res://graphics/materials/fog.tres" type="Material" id=2]
 [ext_resource path="res://source/interface/draw/FogTexture.gd" type="Script" id=3]
 [ext_resource path="res://source/interface/draw/Outline.gd" type="Script" id=4]
 [ext_resource path="res://source/interface/draw/UnitPathDisplay.tscn" type="PackedScene" id=5]
-[ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=6]
-[ext_resource path="res://source/interface/draw/MapBorder.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -44,6 +42,7 @@ stretch = true
 
 [node name="Viewport" type="Viewport" parent="Fog"]
 size = Vector2( 1920, 1080 )
+handle_input_locally = false
 hdr = false
 disable_3d = true
 usage = 0
@@ -59,15 +58,3 @@ material = SubResource( 2 )
 script = ExtResource( 4 )
 
 [node name="UnitPathDisplay" parent="." instance=ExtResource( 5 )]
-
-[node name="Hover" type="Sprite" parent="."]
-texture = ExtResource( 6 )
-
-[node name="MapBorder" parent="." instance=ExtResource( 7 )]
-region_rect = Rect2( 0, 0, 216, 216 )
-patch_margin_left = 37
-patch_margin_top = 37
-patch_margin_right = 37
-patch_margin_bottom = 37
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1

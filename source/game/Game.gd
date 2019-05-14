@@ -18,8 +18,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	var loc: Location = scenario.map.get_location_from_mouse()
 
-	_update_hover(loc)
-
 	if event.is_action_pressed("mouse_left"):
 		if loc:
 			# Select a unit
@@ -73,11 +71,7 @@ func _load_scenario() -> void:
 	#warning-ignore:return_value_discarded
 	scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
 
-	draw.set_map_border_size(scenario.map.get_pixel_size())
-
-func _update_hover(loc: Location) -> void:
-	if loc:
-		draw.set_hover_position(loc.position)
+	draw.map_area = scenario.map.get_pixel_size()
 
 func _draw_temp_path(path: Array) -> void:
 	if selected_unit:
