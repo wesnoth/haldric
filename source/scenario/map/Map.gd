@@ -9,14 +9,12 @@ const VOID_TERRAIN := "Xv"
 var default_tile := tile_set.find_tile_by_name(DEFAULT_TERRAIN)
 var void_tile := tile_set.find_tile_by_name(VOID_TERRAIN)
 
-var rect = Rect2()
+var rect := Rect2()
 
 var labels := []
-var locations := {}
+var locations := []
 var grid: Grid = null
 var ZOC_tiles := {}
-
-var village_count := 0
 
 onready var tween := $Tween as Tween
 onready var overlay := $Overlay as TileMap
@@ -25,12 +23,10 @@ onready var transitions := $Transitions as Transitions
 
 func _ready() -> void:
 	_update_size()
+
 	_initialize_locations()
 	_initialize_grid()
 	_initialize_transitions()
-
-	# So the initial size is also correct when first entering the editor.
-	call_deferred("_update_size")
 
 func map_to_world_centered(cell: Vector2) -> Vector2:
 	return map_to_world(cell) + OFFSET
@@ -113,8 +109,7 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 
 func update_terrain() -> void:
 	# TODO: no need to update everything. Restrict this to specific rects
-	_initialize_locations()
-	_initialize_grid()
+	_update_locations()
 	transitions.update_transitions()
 
 func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = false) -> void:
@@ -174,34 +169,35 @@ func set_size(size: Vector2) -> void:
 	_initialize_locations()
 	_initialize_grid()
 
-func set_tile(global_pos: Vector2, id: int):
+func set_tile(global_pos: Vector2, id: int) -> void:
 	var cell: Vector2 = world_to_map(global_pos)
 
 	if not _is_cell_in_map(cell):
 		return
 
+	var code: String = tile_set.tile_get_name(id)
+
+	# If an invalid tile ID was given, clear both base and overlay.
+	# If an valid overlay tile was given, reset base to default if empty and set overlay.
+	# If a valid base tile was given, simply set the base and leave the overlay alone.
 	if id == INVALID_CELL:
 		set_cellv(cell, id)
 		overlay.set_cellv(cell, id)
-		_update_size()
-
-		return
-
-	var code: String = tile_set.tile_get_name(id)
-	if code.begins_with("^"):
-		overlay.set_cellv(cell, id)
+	elif code.begins_with("^"):
 		reset_if_empty(cell)
+		overlay.set_cellv(cell, id)
 	else:
 		set_cellv(cell, id)
+
 	_update_size()
 
 func update_time(time: Time) -> void:
-	# TODO: handl better
+	# TODO: handle better
 	if time == null:
 		return
 
 	# TODO: global shader not taking individual time areas into account...
-	for loc in locations.values():
+	for loc in locations:
 		loc.terrain.time = time
 
 	var curr_tint: Vector3 = material.get_shader_param("delta")
@@ -212,7 +208,7 @@ func update_time(time: Time) -> void:
 		return
 
 	# warning-ignore:return_value_discarded
-	tween.interpolate_property(material, "param/delta", curr_tint, next_tint, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(material, "param/delta", null, next_tint, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	# warning-ignore:return_value_discarded
 	tween.start()
 
@@ -237,10 +233,10 @@ func get_map_string() -> String:
 
 			reset_if_empty(cell, true)
 
-			var code: String = tile_set.tile_get_name(get_cell(x, y))
+			var code: String = tile_set.tile_get_name(get_cellv(cell))
 			var overlay_code := ""
 
-			var overlay_cell: int = overlay.get_cell(x, y)
+			var overlay_cell: int = overlay.get_cellv(cell)
 
 			if overlay_cell != TileMap.INVALID_CELL:
 				overlay_code = tile_set.tile_get_name(overlay_cell)
@@ -253,38 +249,49 @@ func get_map_string() -> String:
 	return string
 
 func _initialize_locations() -> void:
+	locations.clear()
+	locations.resize(rect.size.x * rect.size.y)
+
 	for y in rect.size.y:
 		for x in rect.size.x:
 			var cell := Vector2(x, y)
-			var id: int = _flatten(cell)
+			var id := _flatten(cell)
 
-			var base_code := ""
-			var overlay_code := ""
+			# Reset to default terrain if no terrain is specified
+			reset_if_empty(cell, true)
+
+			cover.set_cellv(cell, void_tile)
 
 			var location := Location.new()
 
 			location.map = self
-
-			reset_if_empty(cell, true)
-
-			if overlay.get_cellv(cell) != TileMap.INVALID_CELL:
-				overlay_code = tile_set.tile_get_name(overlay.get_cellv(cell))
-				if overlay_code == "^Vh":
-					village_count += 1
-
-			cover.set_cellv(cell, void_tile)
-
-			base_code = tile_set.tile_get_name(get_cell(x, y))
-
-			if overlay_code == "":
-				location.terrain = Terrain.new([Registry.terrain[base_code]])
-			else:
-				location.terrain = Terrain.new([Registry.terrain[base_code], Registry.terrain[overlay_code]])
-
 			location.id = id
-			location.cell = Vector2(x, y)
+			location.cell = cell
 			location.position = map_to_world_centered(cell)
+
+			# Do this *after* setting `cell` member
+			_update_terrain_record_from_map(location)
+
 			locations[id] = location
+
+func _update_locations() -> void:
+	for y in rect.size.y:
+		for x in rect.size.x:
+			_update_terrain_record_from_map(get_location(Vector2(x, y)))
+
+func _update_terrain_record_from_map(loc: Location) -> void:
+	# Find the tileset tile on both layers (base and overlay)
+	var b_tile := get_cellv(loc.cell)
+	var o_tile := overlay.get_cellv(loc.cell)
+
+	# Get tile names
+	var b_code := tile_set.tile_get_name(b_tile)
+	var o_code := tile_set.tile_get_name(o_tile) if overlay.get_cellv(loc.cell) != INVALID_CELL else ""
+
+	if o_code.empty():
+		loc.terrain = Terrain.new([Registry.terrain[b_code]])
+	else:
+		loc.terrain = Terrain.new([Registry.terrain[b_code], Registry.terrain[o_code]])
 
 func _initialize_grid() -> void:
 	grid = Grid.new(self, rect)
@@ -309,7 +316,7 @@ func display_reachable_for(reachable_locs: Dictionary) -> void:
 	# "Clear" the cover map by filling in everything with the Void terrain.
 	for y in rect.size.y:
 		for x in rect.size.x:
-			cover.set_cellv(Vector2(x, y), void_tile)
+			cover.set_cell(x, y, void_tile)
 
 	# Nothing to show, hide the map and bail.
 	if reachable_locs.empty():
@@ -323,8 +330,8 @@ func display_reachable_for(reachable_locs: Dictionary) -> void:
 	cover.show()
 
 func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
-	if get_cell(cell.x, cell.y) == INVALID_CELL:
-		set_cell(cell.x, cell.y, default_tile)
+	if get_cellv(cell) == INVALID_CELL:
+		set_cellv(cell, default_tile)
 
 		if clear_overlay:
-			overlay.set_cell(cell.x, cell.y, INVALID_CELL)
+			overlay.set_cellv(cell, INVALID_CELL)
