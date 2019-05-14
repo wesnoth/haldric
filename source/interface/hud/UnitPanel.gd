@@ -2,8 +2,13 @@ extends Control
 
 const AttackPlate = preload("res://source/interface/hud/components/AttackPlate.tscn")
 
+var unit: Unit = null
+
+onready var unit_window := $NinePatchRect/CenterContainer/VBoxContainer/Image/UnitWindow as ViewportContainer
+onready var unit_viewport := $NinePatchRect/CenterContainer/VBoxContainer/Image/UnitWindow/Viewport as Viewport
+onready var unit_camera := $NinePatchRect/CenterContainer/VBoxContainer/Image/UnitWindow/Viewport/Camera2D as Camera2D
+
 onready var unit_name := $NinePatchRect/CenterContainer/VBoxContainer/Name as Label
-onready var image := $NinePatchRect/CenterContainer/VBoxContainer/Image/Unit as TextureRect
 onready var level := $NinePatchRect/CenterContainer/VBoxContainer/General/Level as Label
 onready var type := $NinePatchRect/CenterContainer/VBoxContainer/General/Type as Label
 onready var race := $NinePatchRect/CenterContainer/VBoxContainer/General/Race as Label
@@ -18,7 +23,7 @@ onready var resistance := $NinePatchRect/CenterContainer/VBoxContainer/Resistanc
 onready var attacks := $NinePatchRect/CenterContainer/VBoxContainer/Attacks as VBoxContainer
 
 onready var tween := $Tween as Tween
-var unit: Unit = null
+
 
 func _ready() -> void:
 	clear_unit()
@@ -35,16 +40,18 @@ func update_unit(target: Unit) -> void:
 	unit = target
 
 	unit_name.text = unit.name
-
-	image.texture = unit.type.sprite.texture
-	image.set_material(unit.type.sprite.get_material())
-
+	
+	unit_camera.position = unit.position
+	
 	level.text = str("L", unit.type.level)
 	type.text = str(unit.type.id)
 	race.text = str(unit.type.race)
 
 	defense.text = str(unit.get_defense())  + "%"
-	defense.modulate = _get_red_to_green_color(unit.get_defense())
+	defense.add_color_override("font_color", _get_red_to_green_color(unit.get_defense()))
+	
+	if not unit_window.visible:
+		unit_window.visible = true
 
 	hp.update_stat(unit.health_current, unit.type.health)
 	hp.bar.tint_progress = _get_red_to_green_color((100 * unit.health_current) / unit.type.health)
@@ -66,8 +73,6 @@ func update_unit(target: Unit) -> void:
 
 func clear_unit() -> void:
 	unit = null
-
-	image.texture = null
 
 	# _fade_out()
 	unit_name.text = "-"

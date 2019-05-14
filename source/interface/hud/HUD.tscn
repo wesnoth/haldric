@@ -2,8 +2,8 @@
 
 [ext_resource path="res://source/interface/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/hud/AdvancementPopup.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/interface/hud/UnitPanel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/hud/UnitPanel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/interface/hud/ToDPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://source/interface/hud/TurnEndPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://source/interface/pause_menu/PauseMenu.tscn" type="PackedScene" id=7]
@@ -22,29 +22,27 @@ margin_top = -300.0
 margin_right = 200.0
 margin_bottom = 300.0
 
-[node name="UnitPanel" parent="." instance=ExtResource( 3 )]
+[node name="SidePanel" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -722.0
+margin_right = 720.0
+
+[node name="UnitPanel" parent="." instance=ExtResource( 4 )]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -249.0
-margin_top = 100.0
-margin_right = -10.0
-margin_bottom = -100.0
+margin_left = -240.0
+margin_top = 90.0
+margin_right = 0.0
+margin_bottom = -80.0
 mouse_filter = 2
-
-[node name="SidePanel" parent="." instance=ExtResource( 4 )]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -960.0
-margin_top = 10.0
-margin_right = 960.0
 
 [node name="ToDPanel" parent="." instance=ExtResource( 5 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -248.0
-margin_top = 10.0
-margin_right = -10.0
+margin_left = -240.0
+margin_right = 0.0
 margin_bottom = 90.0
 
 [node name="TurnEndPanel" parent="." instance=ExtResource( 6 )]
@@ -52,9 +50,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -249.0
-margin_top = -90.0
-margin_right = -10.0
+margin_left = -240.0
+margin_top = -80.0
+margin_right = 0.0
 margin_bottom = -10.0
 
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]

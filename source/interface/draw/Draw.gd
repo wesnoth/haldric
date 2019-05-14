@@ -17,8 +17,9 @@ func _ready() -> void:
 
 func _draw() -> void:
 	var side := 0
-	if get_parent().current_side:
-		side = get_parent().current_side.number
+	var game = get_node("../../../..")
+	if game.current_side:
+		side = game.current_side.number
 
 	fog_texture.side_number = side
 	fog_texture.units = get_tree().get_nodes_in_group("Unit")
