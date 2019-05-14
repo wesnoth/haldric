@@ -32,7 +32,14 @@ func _ready() -> void:
 	_initialize_transitions()
 
 func _process(delta: float) -> void:
-	hover.position = world_to_world_centered(get_global_mouse_position())
+	var cell := world_to_map(get_global_mouse_position())
+
+	# TODO: also hide on borders
+	if not rect.has_point(cell):
+		hover.hide()
+	else:
+		hover.show()
+		hover.position = map_to_world_centered(cell)
 
 func map_to_world_centered(cell: Vector2) -> Vector2:
 	return map_to_world(cell) + OFFSET
