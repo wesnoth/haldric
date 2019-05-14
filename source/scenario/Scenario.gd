@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name Scenario
 
 signal unit_experienced(unit)
@@ -16,6 +16,7 @@ onready var schedule := $Schedule as Schedule
 
 func _ready() -> void:
 	_load_schedule()
+	_update_size()
 	map.update_time(schedule.current_time)
 
 func get_side(side_number: int) -> Side:
@@ -61,6 +62,9 @@ func _load_schedule() -> void:
 			var res = Registry.times[time_id]
 			var time = Time.new(res)
 			schedule.add_child(time)
+
+func _update_size():
+	rect_size = map.border.rect_size
 
 func _on_unit_experienced(unit: Unit) -> void:
 	emit_signal("unit_experienced", unit)
