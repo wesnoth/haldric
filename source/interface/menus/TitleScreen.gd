@@ -10,7 +10,7 @@ func _ready() -> void:
 	version.text = Global.version_string
 
 	#warning-ignore:return_value_discarded
-	connect("page_changed", self, "on_page_changed")
+	connect("page_changed", self, "_on_page_changed")
 
 func _on_Home_pressed() -> void:
 	open_page("Home")
@@ -39,7 +39,7 @@ func _on_Editor_pressed() -> void:
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
 
-func on_page_changed(new_page: MenuPage) -> void:
+func _on_page_changed(new_page: MenuPage) -> void:
 	var new_position = new_page.menu_bar_hook.rect_position
 	var new_size = new_page.menu_bar_hook.rect_size
 
