@@ -50,8 +50,12 @@ margin_right = 238.0
 margin_bottom = 168.0
 
 [node name="Pause" parent="." instance=ExtResource( 4 )]
-margin_right = 238.0
-margin_bottom = 50.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -60.0
+margin_right = 248.0
+margin_bottom = -10.0
 rect_min_size = Vector2( 238, 50 )
 [connection signal="pressed" from="Popup/CenterContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="Popup/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
