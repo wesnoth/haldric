@@ -16,8 +16,6 @@ onready var scenario_viewport := $ViewportContainer/Viewport as Viewport
 func _unhandled_input(event: InputEvent) -> void:
 	var loc: Location = scenario.map.get_location_from_mouse()
 
-	print("event")
-	
 	if event.is_action_pressed("mouse_left"):
 		if loc:
 			# Select a unit
