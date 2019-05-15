@@ -5,21 +5,17 @@
 [ext_resource path="res://graphics/shaders/panel_blur.shader" type="Shader" id=3]
 [ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=4]
 [ext_resource path="res://graphics/fonts/Lato18.tres" type="DynamicFont" id=5]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
-[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://graphics/fonts/Lato12.tres" type="DynamicFont" id=8]
-[ext_resource path="res://graphics/fonts/Lato14.tres" type="DynamicFont" id=9]
-[ext_resource path="res://source/interface/hud/components/StatBar.tscn" type="PackedScene" id=10]
-[ext_resource path="res://source/interface/hud/components/ResistancePlate.tscn" type="PackedScene" id=11]
+[ext_resource path="res://graphics/materials/custom_blur.tres" type="Material" id=6]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=7]
+[ext_resource path="res://graphics/fonts/Lato16.tres" type="DynamicFont" id=8]
+[ext_resource path="res://graphics/fonts/Lato12.tres" type="DynamicFont" id=9]
+[ext_resource path="res://graphics/fonts/Lato14.tres" type="DynamicFont" id=10]
+[ext_resource path="res://source/interface/hud/components/StatBar.tscn" type="PackedScene" id=11]
+[ext_resource path="res://source/interface/hud/components/ResistancePlate.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 shader_param/blur = 1.5
-
-[sub_resource type="DynamicFont" id=2]
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
 
 [node name="UnitPanel" type="Control"]
 margin_right = 236.0
@@ -63,7 +59,7 @@ margin_bottom = 174.0
 rect_min_size = Vector2( 180, 144 )
 
 [node name="UnitWindow" type="ViewportContainer" parent="NinePatchRect/CenterContainer/VBoxContainer/Image"]
-visible = false
+material = ExtResource( 6 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 stretch = true
@@ -74,19 +70,30 @@ transparent_bg = true
 handle_input_locally = false
 hdr = false
 disable_3d = true
-usage = 0
-render_target_update_mode = 0
+usage = 1
+render_target_update_mode = 3
 gui_disable_input = true
 
 [node name="Camera2D" type="Camera2D" parent="NinePatchRect/CenterContainer/VBoxContainer/Image/UnitWindow/Viewport"]
 current = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
+smoothing_enabled = true
+smoothing_speed = 8.0
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/CenterContainer/VBoxContainer/Image"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+rect_min_size = Vector2( 40, 0 )
+texture = ExtResource( 4 )
+expand = true
 
 [node name="Border" type="NinePatchRect" parent="NinePatchRect/CenterContainer/VBoxContainer/Image"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 region_rect = Rect2( 60, 0, 20, 20 )
 patch_margin_left = 4
 patch_margin_top = 4
@@ -101,7 +108,7 @@ margin_left = 4.0
 margin_top = -24.0
 margin_right = -4.0
 margin_bottom = -4.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 8 )
 text = "60%"
 align = 2
 
@@ -117,7 +124,7 @@ margin_top = 1.0
 margin_right = 52.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 9 )
 text = "L1"
 align = 1
 valign = 1
@@ -127,7 +134,7 @@ margin_left = 60.0
 margin_right = 140.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 text = "Elvish Archer"
 align = 1
 valign = 1
@@ -138,7 +145,7 @@ margin_top = 1.0
 margin_right = 178.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 9 )
 text = "Elf"
 align = 1
 valign = 1
@@ -150,7 +157,7 @@ margin_bottom = 222.0
 text = "neutral (+0%)"
 align = 1
 
-[node name="Health" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 10 )]
+[node name="Health" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 230.0
@@ -158,7 +165,7 @@ margin_right = 200.0
 margin_bottom = 273.0
 bar_color = Color( 0.403922, 0.780392, 0.254902, 1 )
 
-[node name="Moves" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 10 )]
+[node name="Moves" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 281.0
@@ -166,7 +173,7 @@ margin_right = 200.0
 margin_bottom = 324.0
 bar_color = Color( 0.482353, 0.403922, 0.352941, 1 )
 
-[node name="Experience" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 10 )]
+[node name="Experience" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 332.0
@@ -174,7 +181,7 @@ margin_right = 200.0
 margin_bottom = 375.0
 bar_color = Color( 0.458824, 0.780392, 0.713726, 1 )
 
-[node name="ResistancePlate" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 11 )]
+[node name="ResistancePlate" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 12 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 383.0
@@ -189,7 +196,7 @@ margin_bottom = 471.0
 [node name="Border" type="NinePatchRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 draw_center = false
 region_rect = Rect2( 40, 0, 20, 20 )
 patch_margin_left = 4

@@ -26,6 +26,7 @@ onready var tween := $Tween as Tween
 
 
 func _ready() -> void:
+	unit_camera.position = Vector2(200, 200)
 	clear_unit()
 
 # TODO: maybe find a better way to do this
@@ -50,8 +51,7 @@ func update_unit(target: Unit) -> void:
 	defense.text = str(unit.get_defense())  + "%"
 	defense.add_color_override("font_color", _get_red_to_green_color(unit.get_defense()))
 
-	if not unit_window.visible:
-		unit_window.visible = true
+	unit_window.material.set_shader_param("radius", 0)
 
 	hp.update_stat(unit.health_current, unit.type.health)
 	hp.bar.tint_progress = _get_red_to_green_color((100 * unit.health_current) / unit.type.health)
@@ -73,7 +73,8 @@ func update_unit(target: Unit) -> void:
 
 func clear_unit() -> void:
 	unit = null
-
+	
+	unit_window.material.set_shader_param("radius", 3)
 	# _fade_out()
 	unit_name.text = "-"
 
