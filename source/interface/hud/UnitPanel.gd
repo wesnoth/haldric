@@ -40,16 +40,16 @@ func update_unit(target: Unit) -> void:
 	unit = target
 
 	unit_name.text = unit.name
-	
+
 	unit_camera.position = unit.position
-	
+
 	level.text = str("L", unit.type.level)
 	type.text = str(unit.type.id)
 	race.text = str(unit.type.race)
 
 	defense.text = str(unit.get_defense())  + "%"
 	defense.add_color_override("font_color", _get_red_to_green_color(unit.get_defense()))
-	
+
 	if not unit_window.visible:
 		unit_window.visible = true
 

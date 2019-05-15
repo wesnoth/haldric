@@ -144,7 +144,7 @@ margin_right = 300.0
 margin_bottom = 310.0
 show_background = false
 
-[node name="Editor" parent="VMenuBar/Buttons" index="4" instance=ExtResource( 9 )]
+[node name="Map Editor" parent="VMenuBar/Buttons" index="4" instance=ExtResource( 9 )]
 margin_top = 310.0
 margin_right = 300.0
 margin_bottom = 370.0
@@ -185,7 +185,7 @@ show_background = false
 [connection signal="pressed" from="VMenuBar/Buttons/Tutorials" to="." method="_on_Tutorials_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Campaigns" to="." method="_on_Campaigns_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Scenarios" to="." method="_on_Scenarios_pressed"]
-[connection signal="pressed" from="VMenuBar/Buttons/Editor" to="." method="_on_Editor_pressed"]
+[connection signal="pressed" from="VMenuBar/Buttons/Map Editor" to="." method="_on_Editor_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Addons" to="." method="_on_Addons_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="VMenuBar/Buttons/Credits" to="." method="_on_Credits_pressed"]
