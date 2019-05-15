@@ -3,7 +3,5 @@
 [ext_resource path="res://source/interface/menus/components/cards/MenuCard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/interface/menus/components/cards/CampaignCard.gd" type="Script" id=2]
 
-
 [node name="CampaignCard" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-
