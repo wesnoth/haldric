@@ -27,16 +27,15 @@ func _move():
 
 		#warning-ignore:return_value_discarded
 		host.tween.interpolate_property(host, "position", host.position, loc.position, move_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		#warning-ignore:return_value_discarded
+		host.tween.start()
 
 		if host.location.map.ZOC_tiles.has(host.location):
 			host.moves_current = 0
 		else:
 			host.moves_current -= cost
-		host.viewable = host.location.map.find_all_viewable_cells(host)
 		host.set_reachable() # TODO: do we want this?
 		host.path.remove(0)
-		#warning-ignore:return_value_discarded
-		host.tween.start()
 
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
 	host.emit_signal("moved", host, host.location)

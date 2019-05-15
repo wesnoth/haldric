@@ -1,6 +1,8 @@
 extends Node2D
 class_name Unit
 
+var thread = Thread.new()
+
 signal experienced(unit)
 
 signal moved(unit, location)
@@ -13,10 +15,10 @@ var health_current := 0
 var moves_current := 0
 var experience_current := 0 setget _set_experience_current
 
-var location: Location = null #setget _set_location
+var location: Location = null
 
 var path := []
-var reachable := {} #setget _set_reachable
+var reachable := {}
 var viewable := []
 
 var type : UnitType = null
@@ -104,13 +106,11 @@ func get_time_percentage() -> int:
 	return location.terrain.time.get_percentage(type.alignment)
 
 func set_reachable() -> void:
-	if viewable.empty():
-		viewable = location.map.find_all_viewable_cells(self)
-	reachable = location.map.find_all_reachable_cells(self)
 
-func _set_location(value: Location) -> void:
-	location = value
-	set_reachable() # TODO: do we want this?
+	thread.start(location.map, "find_all_viewable_cells", self)
+	viewable = thread.wait_to_finish()
+	thread.start(location.map, "find_all_reachable_cells", self)
+	reachable = thread.wait_to_finish()
 
 func _set_experience_current(value: int) -> void:
 	experience_current = value
