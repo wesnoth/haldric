@@ -16,7 +16,7 @@ onready var schedule := $Schedule as Schedule
 
 func _ready() -> void:
 	_load_schedule()
-	_update_size()
+	update_size()
 	map.update_time(schedule.current_time)
 
 func get_side(side_number: int) -> Side:
@@ -63,7 +63,7 @@ func _load_schedule() -> void:
 			var time = Time.new(res)
 			schedule.add_child(time)
 
-func _update_size():
+func update_size():
 	rect_size = map.border.rect_size
 
 func _on_unit_experienced(unit: Unit) -> void:
