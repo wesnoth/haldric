@@ -24,8 +24,8 @@ var type : UnitType = null
 var current_state : State = null
 
 onready var states := {
-	idle   = $States/Idle,
-	move   = $States/Move,
+	idle = $States/Idle,
+	move = $States/Move,
 	attack = $States/Attack,
 }
 
