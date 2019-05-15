@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://source/interface/menus/components/menu_page/MenuPage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/interface/menus/Scenarios.gd" type="Script" id=2]
 [ext_resource path="res://source/interface/menus/components/cards/ScenarioSelector.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/interface/menus/components/cards/MenuCard.tscn" type="PackedScene" id=4]
-[ext_resource path="res://graphics/images/maps/titlescreen.png" type="Texture" id=5]
 
 [node name="Scenarios" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -16,22 +14,7 @@ margin_left = 550.0
 margin_right = 1320.0
 
 [node name="CardContainer" parent="ScenarioSelector/CenterContainer" index="0"]
-margin_left = 505.0
-margin_top = 265.0
-margin_right = 815.0
-margin_bottom = 715.0
-
-[node name="MapEditor" parent="ScenarioSelector/CenterContainer/CardContainer" index="0" instance=ExtResource( 4 )]
-editor/display_folded = true
-
-[node name="CardImage" parent="ScenarioSelector/CenterContainer/CardContainer/MapEditor" index="1"]
-texture = ExtResource( 5 )
-
-[node name="Title" parent="ScenarioSelector/CenterContainer/CardContainer/MapEditor" index="4"]
-text = "Map Editor"
-
-[connection signal="pressed" from="ScenarioSelector/CenterContainer/CardContainer/MapEditor" to="." method="_on_MapEditor_pressed"]
+margin_left = 660.0
+margin_right = 660.0
 
 [editable path="ScenarioSelector"]
-
-[editable path="ScenarioSelector/CenterContainer/CardContainer/MapEditor"]
