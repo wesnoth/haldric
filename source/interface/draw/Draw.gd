@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	var side := 0
-	var game = get_node("../../../..")
+	var game = get_node("../../..")
 	if game.current_side:
 		side = game.current_side.number
 

@@ -5,17 +5,47 @@ var schedule := []
 var scenario: Scenario = null
 
 var current_side: Side = null setget _set_side
+var current_unit: Unit = null setget _set_current_unit
 
 onready var HUD := $HUD as CanvasLayer
-onready var draw := $ViewportContainer/Viewport/Controller/Draw as Node2D
+onready var draw := $ViewportContainer/Viewport/Draw as Node2D
 
-onready var scenario_container := $ViewportContainer/Viewport/Controller/ScenarioContainer as Node2D
+onready var scenario_container := $ViewportContainer/Viewport/ScenarioContainer as Node2D
 onready var scenario_viewport := $ViewportContainer/Viewport as Viewport
 
-onready var controller := $ViewportContainer/Viewport/Controller as Node
+func _unhandled_input(event: InputEvent) -> void:
+	var loc: Location = scenario.map.get_location_from_mouse()
+
+	print("event")
+	
+	if event.is_action_pressed("mouse_left"):
+		if loc:
+			# Select a unit
+			if loc.unit and loc.unit.side.number == current_side.number:
+				_set_current_unit(loc.unit)
+
+			# Move the selected unit
+			elif current_unit and not loc.unit:
+				current_unit.move_to(_get_path_for_unit(current_unit, loc))
+				_set_current_unit(null)
+
+	# Deselect a unit
+	elif event.is_action_pressed("mouse_right"):
+		_set_current_unit(null)
+
+	# TODO: should not be handled by mouse move
+	elif event is InputEventMouseMotion:
+		if loc:
+			# Display selected unit's path to hovered location
+			if current_unit:
+				if draw.unit_path_display.path.empty() or not draw.unit_path_display.path.back() == loc:
+					_draw_temp_path(_get_path_for_unit(current_unit, loc))
+			elif loc.unit and loc.unit.visible:
+				scenario.map.display_reachable_for(loc.unit.reachable)
+			else:
+				scenario.map.display_reachable_for({})
 
 func _ready() -> void:
-	controller.connect("unit_selected", self, "_on_unit_selected")
 	HUD.unit_panel.unit_viewport.world_2d = scenario_viewport.world_2d
 	_load_scenario()
 
@@ -29,7 +59,6 @@ func _ready() -> void:
 
 func _load_scenario() -> void:
 	scenario = Loader.load_scenario(Global.scenario_name)
-	controller.scenario = scenario
 
 	# TODO: error handling
 	if not scenario:
@@ -45,13 +74,37 @@ func _load_scenario() -> void:
 
 	draw.map_area = scenario.map.get_pixel_size()
 
+func _draw_temp_path(path: Array) -> void:
+	if current_unit:
+		var new_path = path.duplicate(true)
+		new_path.push_front(current_unit.location)
+		draw.set_path(new_path)
+
+func _clear_temp_path() -> void:
+	draw.set_path([])
+
+func _set_current_unit(value: Unit) -> void:
+	current_unit = value
+
+	if current_unit:
+		HUD.update_unit_info(current_unit)
+		scenario.map.display_reachable_for(current_unit.reachable)
+	else:
+		# HUD.clear_unit_info()
+		_clear_temp_path()
+
+func _get_path_for_unit(unit: Unit, new_loc: Location) -> Array:
+	if unit.reachable.has(new_loc):
+		return unit.reachable[new_loc]
+
+	return scenario.map.find_path(unit.location, new_loc)
+
 func _set_side(value: Side) -> void:
 
 	if current_side == value:
 		return
 
 	current_side = value
-	controller.current_side = current_side
 
 	if not current_side:
 		return
@@ -80,15 +133,6 @@ func _grab_village(unit, location) -> void:
 	if location.terrain.gives_income:
 		if unit.side.add_village(location):
 			unit.moves_current = 0
-
-func _get_path_for_unit(unit: Unit, new_loc: Location) -> Array:
-	if unit.reachable.has(new_loc):
-		return unit.reachable[new_loc]
-
-	return scenario.map.find_path(unit.location, new_loc)
-
-func _on_unit_selected(unit: Unit) -> void:
-	HUD.update_unit_info(unit)
 
 func _on_unit_experienced(unit: Unit) -> void:
 	HUD.show_advancement_popup(unit)
