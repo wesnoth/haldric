@@ -135,6 +135,7 @@ func _grab_village(unit, location) -> void:
 	if location.terrain.gives_income:
 		if unit.side.add_village(location):
 			unit.moves_current = 0
+			unit.set_reachable()
 
 func _on_unit_experienced(unit: Unit) -> void:
 	HUD.show_advancement_popup(unit)
