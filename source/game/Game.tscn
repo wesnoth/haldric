@@ -32,5 +32,9 @@ render_target_update_mode = 3
 
 [node name="Camera2D" parent="ViewportContainer/Viewport" instance=ExtResource( 4 )]
 
+[node name="BackBufferCopy" type="BackBufferCopy" parent="ViewportContainer/Viewport"]
+z_index = 20
+copy_mode = 2
+
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 [connection signal="turn_end_pressed" from="HUD" to="." method="_on_HUD_turn_end_pressed"]
