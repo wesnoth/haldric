@@ -70,8 +70,7 @@ transparent_bg = true
 handle_input_locally = false
 hdr = false
 disable_3d = true
-usage = 1
-render_target_update_mode = 3
+usage = 0
 gui_disable_input = true
 
 [node name="Camera2D" type="Camera2D" parent="NinePatchRect/CenterContainer/VBoxContainer/Image/UnitWindow/Viewport"]
