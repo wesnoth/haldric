@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-layer = 7
+layer = 20
 code = "Ch"
 name = "Castle (Human)"
 type = "castle"
@@ -13,4 +13,3 @@ recruit_from = false
 heals = false
 gives_income = false
 submerge = false
-
