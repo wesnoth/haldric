@@ -73,7 +73,7 @@ func update_unit(target: Unit) -> void:
 
 func clear_unit() -> void:
 	unit = null
-	
+
 	unit_window.material.set_shader_param("radius", 3)
 	# _fade_out()
 	unit_name.text = "-"

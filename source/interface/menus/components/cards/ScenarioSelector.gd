@@ -21,7 +21,7 @@ func _on_scenario_card_pressed(card: MenuCard, id: String) -> void:
 	else:
 		card.expand(Rect2(rect_global_position, rect_size))
 		_on_expand(card)
-	
+
 	Global.scenario_name = id
 	Scene.change(Scene.Game)
 

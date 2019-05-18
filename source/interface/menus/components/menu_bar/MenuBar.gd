@@ -15,7 +15,7 @@ onready var tween := $Tween as Tween
 onready var hover := $ButtonHover as ButtonHover
 
 func _ready() -> void:
-	
+
 	# warning-ignore:return_value_discarded
 	get_tree().connect("screen_resized", self, "_on_screen_resized")
 	call_deferred("highlight_button", 0)
@@ -33,7 +33,7 @@ func slide_out() -> void:
 	tween.interpolate_property(self, "rect_global_position:x", rect_global_position.x, off_screen_position.x, 0.4, Tween.TRANS_SINE, Tween.EASE_OUT)
 	# warning-ignore:return_value_discarded
 	tween.start()
-	
+
 func slide_in() -> void:
 	# warning-ignore:return_value_discarded
 	tween.interpolate_property(self, "rect_global_position:x", rect_global_position.x, origin.x, 0.4, Tween.TRANS_SINE, Tween.EASE_OUT)
