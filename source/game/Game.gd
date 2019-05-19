@@ -62,7 +62,7 @@ func _ready() -> void:
 	HUD.update_time_info(scenario.schedule.current_time)
 
 func _load_scenario() -> void:
-	scenario = Loader.load_scenario(Global.scenario_name)
+	scenario = Loader.load_scenario(Global.state.scenario_name)
 
 	# TODO: error handling
 	if not scenario:
@@ -108,6 +108,7 @@ func _set_side(value: Side) -> void:
 		return
 
 	current_side = value
+	Global.state.current_side = current_side
 
 	if not current_side:
 		return

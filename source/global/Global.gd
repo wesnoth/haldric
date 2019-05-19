@@ -6,7 +6,10 @@ var Camera = null
 var version: Vector3 = _get_version()
 var version_string: String = _get_version_string()
 
-var scenario_name := ""
+var state := {
+	scenario_name = "",
+	current_side = null,
+}
 
 # Toggle Fullscreen
 func _input(event: InputEvent) -> void:
