@@ -31,9 +31,6 @@ func update_side_info(scenario : Scenario, side : Side) -> void:
 func clear_unit_info() -> void:
 	unit_panel.clear_unit()
 
-func is_pause_active() -> bool:
-	return pause_menu.is_active()
-
 func _on_advancement_selected(unit: Unit, unit_id: String) -> void:
 	emit_signal("unit_advancement_selected", unit, unit_id)
 

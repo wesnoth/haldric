@@ -15,9 +15,6 @@ var current_paint_tile := 0
 var current_clear_tile := 0
 
 func _unhandled_input(event: InputEvent) -> void:
-	if HUD.is_pause_active():
-		return
-
 	var mouse_position: Vector2 = get_global_mouse_position()
 
 	if Input.is_action_pressed("mouse_left"):

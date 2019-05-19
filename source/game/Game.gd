@@ -17,9 +17,6 @@ onready var scenario_viewport := $ViewportContainer/Viewport as Viewport
 onready var scenario_container := $ViewportContainer/Viewport/ScenarioContainer as Node2D
 
 func _unhandled_input(event: InputEvent) -> void:
-	if HUD.is_pause_active():
-		return
-
 	var loc: Location = scenario.map.get_location_from_mouse()
 
 	if event.is_action_pressed("mouse_left"):
