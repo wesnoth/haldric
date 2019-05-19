@@ -17,7 +17,6 @@ onready var schedule := $Schedule as Schedule
 func _ready() -> void:
 	_load_schedule()
 	update_size()
-	map.update_time(schedule.current_time)
 
 func get_side(side_number: int) -> Side:
 	return sides.get_child(side_number - 1) as Side
@@ -50,7 +49,6 @@ func get_village_count() -> int:
 
 func cycle_schedule() -> void:
 	schedule.next()
-	map.update_time(schedule.current_time)
 
 func _load_schedule() -> void:
 	var time_schedule = Registry.schedules[schedule_id]

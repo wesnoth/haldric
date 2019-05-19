@@ -7,14 +7,16 @@ var scenario: Scenario = null
 var current_side: Side = null setget _set_side
 var current_unit: Unit = null setget _set_current_unit
 
+onready var tween = $Tween
+
 onready var HUD := $HUD as CanvasLayer
 onready var draw := $ViewportContainer/Viewport/Draw as Node2D
 
-onready var scenario_container := $ViewportContainer/Viewport/ScenarioContainer as Node2D
+onready var viewport_container = $ViewportContainer
 onready var scenario_viewport := $ViewportContainer/Viewport as Viewport
+onready var scenario_container := $ViewportContainer/Viewport/ScenarioContainer as Node2D
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	if HUD.is_pause_active():
 		return
 
@@ -102,7 +104,6 @@ func _get_path_for_unit(unit: Unit, new_loc: Location) -> Array:
 	return scenario.map.find_path(unit.location, new_loc)
 
 func _set_side(value: Side) -> void:
-
 	if current_side == value:
 		return
 
@@ -114,6 +115,7 @@ func _set_side(value: Side) -> void:
 	if current_side.get_index() % scenario.sides.get_child_count() == 0:
 		scenario.turn += 1
 		scenario.cycle_schedule()
+		_update_time(scenario.schedule.current_time)
 		HUD.update_time_info(scenario.schedule.current_time)
 
 	HUD.update_side_info(scenario, current_side)
@@ -124,12 +126,32 @@ func _set_side(value: Side) -> void:
 		unit.reachable = scenario.map.find_all_reachable_cells(unit)
 
 func _next_side() -> void:
-
 	if scenario.turns >= 0 and scenario.turn > scenario.turns:
 		pass # turn over
 
 	var new_index = (current_side.get_index() + 1) % scenario.sides.get_child_count()
 	_set_side(scenario.sides.get_child(new_index))
+
+func _update_time(time: Time) -> void:
+	# TODO: handle better
+	if time == null:
+		return
+
+	# TODO: global shader not taking individual time areas into account...
+	for loc in scenario.map.locations:
+		loc.terrain.time = time
+
+	var curr_tint: Vector3 = viewport_container.material.get_shader_param("delta")
+	var next_tint: Vector3 = time.tint
+
+	if curr_tint == null or curr_tint == next_tint:
+		viewport_container.material.set_shader_param("delta", next_tint)
+		return
+
+	# warning-ignore:return_value_discarded
+	tween.interpolate_property(viewport_container.material, "param/delta", null, next_tint, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	# warning-ignore:return_value_discarded
+	tween.start()
 
 func _grab_village(unit, location) -> void:
 	if location.terrain.gives_income:

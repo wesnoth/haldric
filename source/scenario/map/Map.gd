@@ -16,7 +16,6 @@ var locations := []
 var grid: Grid = null
 var ZOC_tiles := {}
 
-onready var tween := $Tween as Tween
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
 onready var transitions := $Transitions as Transitions
@@ -203,27 +202,6 @@ func set_tile(global_pos: Vector2, id: int) -> void:
 		set_cellv(cell, id)
 
 	_update_size()
-
-func update_time(time: Time) -> void:
-	# TODO: handle better
-	if time == null:
-		return
-
-	# TODO: global shader not taking individual time areas into account...
-	for loc in locations:
-		loc.terrain.time = time
-
-	var curr_tint: Vector3 = material.get_shader_param("delta")
-	var next_tint: Vector3 = time.tint
-
-	if curr_tint == null or curr_tint == next_tint:
-		material.set_shader_param("delta", next_tint)
-		return
-
-	# warning-ignore:return_value_discarded
-	tween.interpolate_property(material, "param/delta", null, next_tint, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	# warning-ignore:return_value_discarded
-	tween.start()
 
 func get_village_count() -> int:
 	return overlay.get_used_cells_by_id(overlay.tile_set.find_tile_by_name("^Vh")).size()
