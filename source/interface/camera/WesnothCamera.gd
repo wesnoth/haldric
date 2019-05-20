@@ -54,7 +54,9 @@ func _handle_mouse_scroll(event: InputEvent) -> void:
 		clamp(zoom.y + step, zoom_max_in, zoom_max_out)
 	)
 
+	# warning-ignore:return_value_discarded
 	tween.interpolate_property(self, "zoom", null, new_zoom, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	# warning-ignore:return_value_discarded
 	tween.start()
 
 func _handle_middle_mouse(event: InputEvent) -> void:
@@ -67,3 +69,9 @@ func _handle_middle_mouse(event: InputEvent) -> void:
 
 		# We multiply by -1 in order move the camera in the direction of the mouse.
 		position = initial_camera_position + (mouse_pos - initial_mouse_position) * -1 * zoom
+
+func focus_on(new_position: Vector2) -> void:
+	# warning-ignore:return_value_discarded
+	tween.interpolate_property(self, "position", null, new_position, 0.4, Tween.TRANS_SINE, Tween.EASE_OUT)
+	# warning-ignore:return_value_discarded
+	tween.start()

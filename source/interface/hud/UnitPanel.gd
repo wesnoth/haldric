@@ -24,8 +24,8 @@ onready var attacks := $NinePatchRect/CenterContainer/VBoxContainer/Attacks as V
 
 onready var tween := $Tween as Tween
 
-
 func _ready() -> void:
+	unit_window.connect("request_scroll_to_uint", self, "_focus_camera_on_selected_unit")
 	unit_camera.position = Vector2(200, 200)
 	clear_unit()
 
@@ -92,12 +92,20 @@ func clear_unit() -> void:
 	for plate in attacks.get_children():
 		plate.clear()
 
+func _focus_camera_on_selected_unit() -> void:
+	if unit:
+		Global.Camera.focus_on(unit.position)
+
 func _fade_in() -> void:
+	# warning-ignore:return_value_discarded
 	tween.interpolate_property(self, "modulate", modulate, Color("ffffffff"), 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	# warning-ignore:return_value_discarded
 	tween.start()
 
 func _fade_out() -> void:
+	# warning-ignore:return_value_discarded
 	tween.interpolate_property(self, "modulate", modulate, Color("00ffffff"), 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	# warning-ignore:return_value_discarded
 	tween.start()
 
 func _add_attack_plate(attack: Attack) -> void:

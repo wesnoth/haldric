@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/hud/UnitPanel.gd" type="Script" id=2]
@@ -6,12 +6,13 @@
 [ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=4]
 [ext_resource path="res://graphics/fonts/Lato18.tres" type="DynamicFont" id=5]
 [ext_resource path="res://graphics/materials/custom_blur.tres" type="Material" id=6]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=7]
-[ext_resource path="res://graphics/fonts/Lato16.tres" type="DynamicFont" id=8]
-[ext_resource path="res://graphics/fonts/Lato12.tres" type="DynamicFont" id=9]
-[ext_resource path="res://graphics/fonts/Lato14.tres" type="DynamicFont" id=10]
-[ext_resource path="res://source/interface/hud/components/StatBar.tscn" type="PackedScene" id=11]
-[ext_resource path="res://source/interface/hud/components/ResistancePlate.tscn" type="PackedScene" id=12]
+[ext_resource path="res://source/interface/hud/UnitWindow.gd" type="Script" id=7]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=8]
+[ext_resource path="res://graphics/fonts/Lato16.tres" type="DynamicFont" id=9]
+[ext_resource path="res://graphics/fonts/Lato12.tres" type="DynamicFont" id=10]
+[ext_resource path="res://graphics/fonts/Lato14.tres" type="DynamicFont" id=11]
+[ext_resource path="res://source/interface/hud/components/StatBar.tscn" type="PackedScene" id=12]
+[ext_resource path="res://source/interface/hud/components/ResistancePlate.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -62,7 +63,9 @@ rect_min_size = Vector2( 180, 144 )
 material = ExtResource( 6 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_default_cursor_shape = 2
 stretch = true
+script = ExtResource( 7 )
 
 [node name="Viewport" type="Viewport" parent="NinePatchRect/CenterContainer/VBoxContainer/Image/UnitWindow"]
 size = Vector2( 200, 144 )
@@ -92,7 +95,7 @@ expand = true
 [node name="Border" type="NinePatchRect" parent="NinePatchRect/CenterContainer/VBoxContainer/Image"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 region_rect = Rect2( 60, 0, 20, 20 )
 patch_margin_left = 4
 patch_margin_top = 4
@@ -107,7 +110,7 @@ margin_left = 4.0
 margin_top = -24.0
 margin_right = -4.0
 margin_bottom = -4.0
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 9 )
 text = "60%"
 align = 2
 
@@ -123,7 +126,7 @@ margin_top = 1.0
 margin_right = 52.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 text = "L1"
 align = 1
 valign = 1
@@ -133,7 +136,7 @@ margin_left = 60.0
 margin_right = 140.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 11 )
 text = "Elvish Archer"
 align = 1
 valign = 1
@@ -144,7 +147,7 @@ margin_top = 1.0
 margin_right = 178.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 text = "Elf"
 align = 1
 valign = 1
@@ -156,7 +159,7 @@ margin_bottom = 222.0
 text = "neutral (+0%)"
 align = 1
 
-[node name="Health" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Health" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 12 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 230.0
@@ -164,7 +167,7 @@ margin_right = 200.0
 margin_bottom = 273.0
 bar_color = Color( 0.403922, 0.780392, 0.254902, 1 )
 
-[node name="Moves" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Moves" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 12 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 281.0
@@ -172,7 +175,7 @@ margin_right = 200.0
 margin_bottom = 324.0
 bar_color = Color( 0.482353, 0.403922, 0.352941, 1 )
 
-[node name="Experience" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Experience" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 12 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 332.0
@@ -180,7 +183,7 @@ margin_right = 200.0
 margin_bottom = 375.0
 bar_color = Color( 0.458824, 0.780392, 0.713726, 1 )
 
-[node name="ResistancePlate" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 12 )]
+[node name="ResistancePlate" parent="NinePatchRect/CenterContainer/VBoxContainer" instance=ExtResource( 13 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 383.0
@@ -195,7 +198,7 @@ margin_bottom = 471.0
 [node name="Border" type="NinePatchRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 draw_center = false
 region_rect = Rect2( 40, 0, 20, 20 )
 patch_margin_left = 4
