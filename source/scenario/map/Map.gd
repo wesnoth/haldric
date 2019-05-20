@@ -59,7 +59,7 @@ func find_all_viewable_cells(unit: Unit) -> Array:
 	update_weight(unit, false, true)
 	var paths := {}
 	paths[unit.location] = []
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, rect.size.x, rect.size.y)
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, rect.size)
 	cells.pop_front()
 	cells.invert()
 	for cell in cells:
@@ -86,7 +86,7 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 	update_weight(unit)
 	var paths := {}
 	paths[unit.location] = []
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.moves_current, rect.size.x, rect.size.y)
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.moves_current, rect.size)
 	cells.pop_front()
 	cells.invert()
 	for cell in cells:
