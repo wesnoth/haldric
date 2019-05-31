@@ -14,7 +14,7 @@ onready var draw := $ViewportContainer/Viewport/Draw as Node2D
 
 onready var viewport_container = $ViewportContainer
 onready var scenario_viewport := $ViewportContainer/Viewport as Viewport
-onready var scenario_container := $ViewportContainer/Viewport/ScenarioContainer as Node2D
+onready var scenario_placeholder := $ViewportContainer/Viewport/Scenario as InstancePlaceholder
 
 func _unhandled_input(event: InputEvent) -> void:
 	var loc: Location = scenario.map.get_location_from_mouse()
@@ -59,13 +59,16 @@ func _ready() -> void:
 	HUD.update_time_info(scenario.schedule.current_time)
 
 func _load_scenario() -> void:
-	scenario = Loader.load_scenario(Global.state.scenario_name)
+	# Instantiant the plain scenario scene with our desired scenario
+	scenario_placeholder.replace_by_instance(Loader.load_scenario(Global.state.scenario_name))
+
+	# Grab a reference to the instanced scene
+	scenario = $ViewportContainer/Viewport/Scenario as Scenario
 
 	# TODO: error handling
 	if not scenario:
 		pass
 
-	scenario_container.add_child(scenario)
 	#warning-ignore:return_value_discarded
 	scenario.connect("unit_experienced", self, "_on_unit_experienced")
 	#warning-ignore:return_value_discarded

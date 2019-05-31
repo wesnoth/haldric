@@ -3,18 +3,18 @@ extends Node
 func load_dir(path: String, extentions: Array, load_resource := true) -> Array:
 	return _get_directory_data(path, [], extentions, load_resource)
 
-func load_scenario(name: String) -> Scenario:
+func load_scenario(name: String) -> PackedScene:
 	if not Registry.scenarios.has(name):
 		return null
 
 	# Look for an accompanying .tscn file
-	var scenario = load(Registry.scenarios[name].path.get_basename() + ".tscn").instance()
+	var scenario = load(Registry.scenarios[name].path.get_basename() + ".tscn")
 
 	if not scenario:
 		print("No .tscn file found for scenario " % name)
 		return null
 
-	return scenario as Scenario
+	return scenario as PackedScene
 
 func _get_directory_data(path: String, directory_data: Array, extentions: Array, load_resource: bool) -> Array:
 	var directory := Directory.new()
