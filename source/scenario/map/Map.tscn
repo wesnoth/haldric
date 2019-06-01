@@ -14,7 +14,7 @@ shader_param/BlendColor = Color( 0.3, 0.59, 0.11, 1 )
 shader_param/Blur = 0.2
 shader_param/Saturation = 0.2
 shader_param/Contrast = 1.2
-shader_param/Brightness = 0.8
+shader_param/Brightness = 0.75
 
 [node name="Map" type="TileMap"]
 tile_set = ExtResource( 1 )
