@@ -26,6 +26,9 @@ export var base_income := 2
 
 export var start_position := Vector2()
 
+export var fog := false
+export var shroud := false
+
 export(Array, String) var leader := [""]
 export(Array, String) var random_leader := [""]
 export(Array, String) var recruit := [""]

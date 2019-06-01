@@ -17,6 +17,7 @@ script = ExtResource( 2 )
 team_color = "Teal"
 flag_type = "Ragged"
 gold = 125
+fog = true
 
 [node name="Custom2" parent="Sides" instance=ExtResource( 3 )]
 team_color = "Purple"
