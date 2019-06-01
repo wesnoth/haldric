@@ -110,6 +110,8 @@ func _set_side(value: Side) -> void:
 	if not current_side:
 		return
 
+	draw.fog.visible = current_side.fog
+
 	if current_side.get_index() % scenario.sides.get_child_count() == 0:
 		scenario.turn += 1
 		scenario.cycle_schedule()
