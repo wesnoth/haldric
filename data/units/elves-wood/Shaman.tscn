@@ -6,7 +6,7 @@
 [ext_resource path="res://graphics/images/attacks/druidstaff.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/attacks/entangle.png" type="Texture" id=5]
 
-[node name="Shaman" index="0" instance=ExtResource( 1 )]
+[node name="Shaman" instance=ExtResource( 1 )]
 id = "Elvish Shaman"
 race = "elf"
 alignment = "neutral"
@@ -41,4 +41,3 @@ type = "impact"
 damage = 3
 strikes = 2
 icon = ExtResource( 5 )
-

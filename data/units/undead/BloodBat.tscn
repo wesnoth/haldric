@@ -64,4 +64,3 @@ type = "blade"
 damage = 5
 strikes = 3
 icon = ExtResource( 8 )
-

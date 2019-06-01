@@ -37,7 +37,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0.705882 ), Color( 1, 1, 1, 0.470588 ), Color( 1, 1, 1, 0.627451 ), Color( 1, 1, 1, 0.509804 ), Color( 1, 1, 1, 0.705882 ) ]
 }
 
-[node name="Ghost" index="0" instance=ExtResource( 1 )]
+[node name="Ghost" instance=ExtResource( 1 )]
 id = "Ghost"
 race = "undead"
 alignment = "chaotic"
@@ -85,4 +85,3 @@ type = "cold"
 damage = 3
 strikes = 3
 icon = ExtResource( 7 )
-

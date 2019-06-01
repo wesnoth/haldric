@@ -6,7 +6,7 @@
 [ext_resource path="res://graphics/images/attacks/sword-elven.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/attacks/bow-elven.png" type="Texture" id=5]
 
-[node name="ElvishArcher" index="0" instance=ExtResource( 1 )]
+[node name="ElvishArcher" instance=ExtResource( 1 )]
 id = "Elvish Archer"
 race = "elf"
 alignment = "neutral"
@@ -41,4 +41,3 @@ type = "pierce"
 damage = 5
 strikes = 4
 icon = ExtResource( 5 )
-

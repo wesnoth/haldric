@@ -6,7 +6,7 @@
 [ext_resource path="res://graphics/images/attacks/sword-elven.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/attacks/bow-elven.png" type="Texture" id=5]
 
-[node name="Scout" index="0" instance=ExtResource( 1 )]
+[node name="Scout" instance=ExtResource( 1 )]
 id = "Elvish Scout"
 race = "elf"
 alignment = "neutral"
@@ -42,4 +42,3 @@ type = "pierce"
 damage = 6
 strikes = 2
 icon = ExtResource( 5 )
-

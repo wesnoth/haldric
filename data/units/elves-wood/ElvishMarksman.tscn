@@ -41,4 +41,3 @@ type = "pierce"
 damage = 9
 strikes = 4
 icon = ExtResource( 5 )
-
