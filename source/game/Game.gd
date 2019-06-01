@@ -14,7 +14,7 @@ onready var draw := $ViewportContainer/Viewport/Draw as Node2D
 
 onready var viewport_container = $ViewportContainer
 onready var scenario_viewport := $ViewportContainer/Viewport as Viewport
-onready var scenario_container := $ViewportContainer/Viewport/ScenarioContainer as Node2D
+onready var scenario_placeholder := $ViewportContainer/Viewport/ScenarioPlaceholder as Node
 
 func _unhandled_input(event: InputEvent) -> void:
 	var loc: Location = scenario.map.get_location_from_mouse()
@@ -65,7 +65,7 @@ func _load_scenario() -> void:
 	if not scenario:
 		pass
 
-	scenario_container.add_child(scenario)
+	scenario_placeholder.replace_by(scenario)
 	#warning-ignore:return_value_discarded
 	scenario.connect("unit_experienced", self, "_on_unit_experienced")
 	#warning-ignore:return_value_discarded
