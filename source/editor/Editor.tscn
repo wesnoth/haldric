@@ -15,7 +15,7 @@ button_size = 50
 
 [node name="OffMap" parent="." instance=ExtResource( 2 )]
 
-[node name="ScenarioContainer" type="Node2D" parent="."]
+[node name="ScenarioPlaceholder" type="Node" parent="."]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 3 )

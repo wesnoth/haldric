@@ -7,7 +7,7 @@ const DEFAULT_MAP_SIZE := Vector2(44, 33)
 export var button_size := 60
 
 onready var HUD := $HUD as CanvasLayer
-onready var scenario_container := $ScenarioContainer as Node2D
+onready var scenario_placeholder := $ScenarioPlaceholder as Node
 onready var line_edit := $HUD/UIButtons/HBoxContainer/LineEdit as LineEdit
 
 var scenario: Scenario = null
@@ -63,7 +63,7 @@ func _new_map() -> void:
 		scenario.queue_free()
 
 	scenario = Wesnoth.Scenario.instance()
-	scenario_container.add_child(scenario)
+	scenario_placeholder.replace_by(scenario)
 	scenario.map.set_size(DEFAULT_MAP_SIZE)
 	scenario.update_size()
 
@@ -80,7 +80,7 @@ func _load_map(scenario_name: String) -> void:
 
 	scenario.queue_free()
 	scenario = packed_scene.instance()
-	scenario_container.add_child(scenario)
+	scenario_placeholder.replace_by(scenario)
 
 func _save_map(scenario_name: String) -> void:
 	if scenario_name.empty():
