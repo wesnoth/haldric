@@ -6,14 +6,14 @@
 [ext_resource path="res://source/interface/menus/components/menu_page/MenuPage.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/interface/menus/Campaigns.tscn" type="PackedScene" id=5]
 [ext_resource path="res://source/interface/menus/Scenarios.tscn" type="PackedScene" id=6]
-[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://source/interface/menus/components/menu_bar/HMenuBar.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/interface/menus/components/menu_bar/MenuBarButton.tscn" type="PackedScene" id=9]
-[ext_resource path="res://source/interface/menus/components/menu_bar/VMenuBar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://source/interface/menus/components/menu_bar/HMenuBar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/interface/menus/components/menu_bar/MenuBarButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/menus/components/menu_bar/VMenuBar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://graphics/fonts/Lato-Regular.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
-font_data = ExtResource( 7 )
+font_data = ExtResource( 10 )
 
 [node name="TitleScreen" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -32,28 +32,7 @@ script = ExtResource( 2 )
 
 [node name="Credits" parent="Pages" index="6" instance=ExtResource( 4 )]
 
-[node name="Version" type="Label" parent="." index="2"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = -25.0
-margin_right = 146.0
-margin_bottom = -10.0
-size_flags_horizontal = 9
-text = "Major.Minor.Patch-Status"
-
-[node name="Header" type="Label" parent="." index="3"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -860.0
-margin_top = 60.0
-margin_right = -860.0
-margin_bottom = 157.0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 1 )
-uppercase = true
-
-[node name="HMenuBar" parent="." index="4" instance=ExtResource( 8 )]
+[node name="HMenuBar" parent="." index="2" instance=ExtResource( 7 )]
 editor/display_folded = true
 visible = false
 margin_top = 20.0
@@ -66,41 +45,41 @@ margin_right = 440.0
 margin_left = 440.0
 margin_right = 1480.0
 
-[node name="Tutorials" parent="HMenuBar/HBoxContainer/Buttons" index="0" instance=ExtResource( 9 )]
+[node name="Tutorials" parent="HMenuBar/HBoxContainer/Buttons" index="0" instance=ExtResource( 8 )]
 margin_right = 130.0
 margin_bottom = 60.0
 
-[node name="Campaigns" parent="HMenuBar/HBoxContainer/Buttons" index="1" instance=ExtResource( 9 )]
+[node name="Campaigns" parent="HMenuBar/HBoxContainer/Buttons" index="1" instance=ExtResource( 8 )]
 margin_left = 130.0
 margin_right = 260.0
 margin_bottom = 60.0
 
-[node name="Scenarios" parent="HMenuBar/HBoxContainer/Buttons" index="2" instance=ExtResource( 9 )]
+[node name="Scenarios" parent="HMenuBar/HBoxContainer/Buttons" index="2" instance=ExtResource( 8 )]
 margin_left = 260.0
 margin_right = 390.0
 margin_bottom = 60.0
 
-[node name="Editor" parent="HMenuBar/HBoxContainer/Buttons" index="3" instance=ExtResource( 9 )]
+[node name="Editor" parent="HMenuBar/HBoxContainer/Buttons" index="3" instance=ExtResource( 8 )]
 margin_left = 390.0
 margin_right = 520.0
 margin_bottom = 60.0
 
-[node name="Addons" parent="HMenuBar/HBoxContainer/Buttons" index="4" instance=ExtResource( 9 )]
+[node name="Addons" parent="HMenuBar/HBoxContainer/Buttons" index="4" instance=ExtResource( 8 )]
 margin_left = 520.0
 margin_right = 650.0
 margin_bottom = 60.0
 
-[node name="Settings" parent="HMenuBar/HBoxContainer/Buttons" index="5" instance=ExtResource( 9 )]
+[node name="Settings" parent="HMenuBar/HBoxContainer/Buttons" index="5" instance=ExtResource( 8 )]
 margin_left = 650.0
 margin_right = 780.0
 margin_bottom = 60.0
 
-[node name="Credits" parent="HMenuBar/HBoxContainer/Buttons" index="6" instance=ExtResource( 9 )]
+[node name="Credits" parent="HMenuBar/HBoxContainer/Buttons" index="6" instance=ExtResource( 8 )]
 margin_left = 780.0
 margin_right = 910.0
 margin_bottom = 60.0
 
-[node name="Quit" parent="HMenuBar/HBoxContainer/Buttons" index="7" instance=ExtResource( 9 )]
+[node name="Quit" parent="HMenuBar/HBoxContainer/Buttons" index="7" instance=ExtResource( 8 )]
 margin_left = 910.0
 margin_right = 1040.0
 margin_bottom = 60.0
@@ -109,70 +88,97 @@ margin_bottom = 60.0
 margin_left = 1480.0
 margin_right = 1680.0
 
-[node name="VMenuBar" parent="." index="5" instance=ExtResource( 10 )]
+[node name="VMenuBar" parent="." index="3" instance=ExtResource( 9 )]
 editor/display_folded = true
 anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 margin_left = -500.0
-margin_top = 200.0
+margin_top = -420.0
 margin_right = -200.0
-margin_bottom = -200.0
+margin_bottom = 420.0
 rect_min_size = Vector2( 0, 0 )
 
-[node name="Home" parent="VMenuBar/Buttons" index="0" instance=ExtResource( 9 )]
-margin_top = 70.0
-margin_right = 300.0
-margin_bottom = 130.0
+[node name="Buttons" parent="VMenuBar" index="1"]
+margin_bottom = 690.0
+
+[node name="Home" parent="VMenuBar/Buttons" index="0" instance=ExtResource( 8 )]
+margin_right = 296.0
+margin_bottom = 60.0
 show_background = false
 
-[node name="Tutorials" parent="VMenuBar/Buttons" index="1" instance=ExtResource( 9 )]
-margin_top = 130.0
-margin_right = 300.0
-margin_bottom = 190.0
+[node name="Tutorials" parent="VMenuBar/Buttons" index="1" instance=ExtResource( 8 )]
+margin_top = 60.0
+margin_right = 296.0
+margin_bottom = 120.0
 show_background = false
 
-[node name="Campaigns" parent="VMenuBar/Buttons" index="2" instance=ExtResource( 9 )]
-margin_top = 190.0
-margin_right = 300.0
-margin_bottom = 250.0
+[node name="Campaigns" parent="VMenuBar/Buttons" index="2" instance=ExtResource( 8 )]
+margin_top = 120.0
+margin_right = 296.0
+margin_bottom = 180.0
 show_background = false
 
-[node name="Scenarios" parent="VMenuBar/Buttons" index="3" instance=ExtResource( 9 )]
-margin_top = 250.0
-margin_right = 300.0
-margin_bottom = 310.0
+[node name="Scenarios" parent="VMenuBar/Buttons" index="3" instance=ExtResource( 8 )]
+margin_top = 180.0
+margin_right = 296.0
+margin_bottom = 240.0
 show_background = false
 
-[node name="Map Editor" parent="VMenuBar/Buttons" index="4" instance=ExtResource( 9 )]
-margin_top = 310.0
-margin_right = 300.0
-margin_bottom = 370.0
+[node name="Map Editor" parent="VMenuBar/Buttons" index="4" instance=ExtResource( 8 )]
+margin_top = 240.0
+margin_right = 296.0
+margin_bottom = 300.0
 show_background = false
 
-[node name="Addons" parent="VMenuBar/Buttons" index="5" instance=ExtResource( 9 )]
-margin_top = 370.0
-margin_right = 300.0
-margin_bottom = 430.0
+[node name="Addons" parent="VMenuBar/Buttons" index="5" instance=ExtResource( 8 )]
+margin_top = 300.0
+margin_right = 296.0
+margin_bottom = 360.0
 show_background = false
 
-[node name="Settings" parent="VMenuBar/Buttons" index="6" instance=ExtResource( 9 )]
-margin_top = 430.0
-margin_right = 300.0
-margin_bottom = 490.0
+[node name="Settings" parent="VMenuBar/Buttons" index="6" instance=ExtResource( 8 )]
+margin_top = 360.0
+margin_right = 296.0
+margin_bottom = 420.0
 show_background = false
 
-[node name="Credits" parent="VMenuBar/Buttons" index="7" instance=ExtResource( 9 )]
-margin_top = 490.0
-margin_right = 300.0
-margin_bottom = 550.0
+[node name="Credits" parent="VMenuBar/Buttons" index="7" instance=ExtResource( 8 )]
+margin_top = 420.0
+margin_right = 296.0
+margin_bottom = 480.0
 show_background = false
 
-[node name="Quit" parent="VMenuBar/Buttons" index="8" instance=ExtResource( 9 )]
-margin_top = 550.0
-margin_right = 300.0
-margin_bottom = 610.0
+[node name="Quit" parent="VMenuBar/Buttons" index="8" instance=ExtResource( 8 )]
+margin_top = 480.0
+margin_right = 296.0
+margin_bottom = 540.0
 show_background = false
+
+[node name="ButtonHover" parent="VMenuBar" index="2"]
+margin_bottom = 690.0
+
+[node name="Version" type="Label" parent="." index="4"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -25.0
+margin_right = 146.0
+margin_bottom = -10.0
+size_flags_horizontal = 9
+text = "Major.Minor.Patch-Status"
+
+[node name="Header" type="Label" parent="." index="5"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -860.0
+margin_top = 60.0
+margin_right = -860.0
+margin_bottom = 157.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+uppercase = true
 [connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Tutorials" to="." method="_on_Tutorials_pressed"]
 [connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Campaigns" to="." method="_on_Campaigns_pressed"]
 [connection signal="pressed" from="HMenuBar/HBoxContainer/Buttons/Scenarios" to="." method="_on_Scenarios_pressed"]

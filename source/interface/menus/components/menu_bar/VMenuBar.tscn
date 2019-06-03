@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://source/interface/menus/components/menu_bar/MenuBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://graphics/themes/panel_stylebox_main_menu.tres" type="StyleBox" id=1]
 [ext_resource path="res://source/interface/menus/components/menu_bar/VMenuBar.gd" type="Script" id=2]
-[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=3]
-[ext_resource path="res://graphics/images/interface/panel.png" type="Texture" id=4]
-[ext_resource path="res://source/interface/menus/components/menu_bar/VButtonHover.gd" type="Script" id=5]
-[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=6]
+[ext_resource path="res://source/interface/menus/components/menu_bar/ButtonHover.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/menus/components/menu_bar/VButtonHover.gd" type="Script" id=4]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 0.392157, 1, 1, 1, 0.0627451 )
@@ -21,29 +19,31 @@ colors = PoolColorArray( 1, 1, 1, 0.784314, 1, 1, 1, 0.235294, 1, 1, 1, 0.062745
 [sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
 
-[node name="VMenuBar" instance=ExtResource( 1 )]
-anchor_right = 0.0
+[node name="VMenuBar" type="PanelContainer"]
+margin_right = 300.0
+margin_bottom = 300.0
 rect_min_size = Vector2( 300, 60 )
+custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="Background" type="TextureRect" parent="." index="1"]
-material = ExtResource( 3 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 4 )
-expand = true
+[node name="Tween" type="Tween" parent="."]
 
-[node name="Buttons" type="VBoxContainer" parent="." index="2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Buttons" type="VBoxContainer" parent="."]
+margin_left = 2.0
+margin_top = 150.0
+margin_right = 298.0
+margin_bottom = 150.0
 custom_constants/separation = 0
 alignment = 1
 
-[node name="ButtonHover" parent="." index="3"]
-margin_right = 300.0
-script = ExtResource( 5 )
+[node name="ButtonHover" parent="." instance=ExtResource( 3 )]
+margin_left = 2.0
+margin_top = 150.0
+margin_right = 298.0
+margin_bottom = 150.0
+script = ExtResource( 4 )
 
-[node name="Gradient" type="TextureRect" parent="ButtonHover" index="1"]
+[node name="Gradient" type="TextureRect" parent="ButtonHover"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -51,7 +51,7 @@ size_flags_vertical = 3
 texture = SubResource( 2 )
 expand = true
 
-[node name="BorderTop" type="TextureRect" parent="ButtonHover/Gradient" index="0"]
+[node name="BorderTop" type="TextureRect" parent="ButtonHover/Gradient"]
 anchor_right = 1.0
 margin_bottom = 1.0
 rect_min_size = Vector2( 0, 1 )
@@ -60,7 +60,7 @@ size_flags_vertical = 3
 texture = SubResource( 4 )
 expand = true
 
-[node name="BorderBottom" type="TextureRect" parent="ButtonHover/Gradient" index="1"]
+[node name="BorderBottom" type="TextureRect" parent="ButtonHover/Gradient"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -70,13 +70,3 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource( 4 )
 expand = true
-
-[node name="Border" type="NinePatchRect" parent="." index="4"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 6 )
-region_rect = Rect2( 60, 0, 20, 20 )
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
