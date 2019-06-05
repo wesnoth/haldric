@@ -106,11 +106,20 @@ func get_time_percentage() -> int:
 	return location.terrain.time.get_percentage(type.alignment)
 
 func set_reachable() -> void:
+	if side.fog:
+		if viewable.empty():
+			thread.start(location.map, "threadable_find_all_reachable_cells", [self,true,true])
+			var temp = thread.wait_to_finish()
+			if temp:
+				viewable = temp.keys()
+				for loc in viewable:
+					side.viewable[loc] = 1
+		else:
+			location.map.extend_viewable(self) #do not thread, causes a lot of issues when threaded for some reason
 
-	thread.start(location.map, "find_all_viewable_cells", self)
-	viewable = thread.wait_to_finish()
-	thread.start(location.map, "find_all_reachable_cells", self)
+	thread.start(location.map, "threadable_find_all_reachable_cells", [self])
 	reachable = thread.wait_to_finish()
+	#TODO only update reachable after a unit has finished moving?
 
 func _set_experience_current(value: int) -> void:
 	experience_current = value

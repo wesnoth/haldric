@@ -55,11 +55,53 @@ func find_path(start_loc: Location, end_loc: Location) -> Array:
 
 	return loc_path
 
-func find_all_viewable_cells(unit: Unit) -> Array:
+func extend_viewable(unit: Unit) -> void:
 	update_weight(unit, false, true)
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, Vector2(rect.size.x, rect.size.y))
+	cells.pop_front()
+	cells.invert()
+	var cur_index = 0
+	var check_radius = unit.type.moves
+	var no_change = true
+	var next_cutoff = check_radius * 6
+	for cell in cells:
+		var loc = get_location(cell)
+		if not unit.side.viewable.has(loc):
+			no_change = false
+			var path: Array = find_path(unit.location, get_location(cell))
+			var cost := 0
+			for path_cell in path:
+				var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
+				if cost + cell_cost > unit.type.moves:
+					break
+				cost += cell_cost
+				#dont bother checking if it exists, end result will be the same anyway and checking will just take up time
+				unit.side.viewable[path_cell] = 1
+				if cost == unit.type.moves:
+					break
+		cur_index += 1
+		if cur_index == next_cutoff:
+			if no_change:
+				break
+			check_radius -= 1
+			next_cutoff += check_radius * 6
+			no_change = true
+
+#seprate wrapper function for "find_all_reachable_cells" since threads can only handle 1 argument being passed for some reason
+func threadable_find_all_reachable_cells(arg_array: Array) -> Dictionary:
+	if arg_array.size() == 0:
+		return {}
+	var unit = arg_array[0]
+	var ignore_units = false if arg_array.size()  <= 1 else arg_array[1]
+	var ignore_moves = false if arg_array.size()  <= 2 else arg_array[2]
+	return find_all_reachable_cells(unit,ignore_units,ignore_moves)
+
+func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_moves: bool = false) -> Dictionary:
+	update_weight(unit, false, ignore_units)
 	var paths := {}
 	paths[unit.location] = []
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, rect.size)
+	var radius = (unit.type.moves if ignore_moves else unit.moves_current)
+	var cells := Hex.get_cells_in_range(unit.location.cell, radius, Vector2(rect.size.x, rect.size.y))
 	cells.pop_front()
 	cells.invert()
 	for cell in cells:
@@ -72,42 +114,15 @@ func find_all_viewable_cells(unit: Unit) -> Array:
 		var cost := 0
 		for path_cell in path:
 			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
-			if cost + cell_cost > unit.type.moves:
-				break
-
-			cost += cell_cost
-			new_path.append(path_cell)
-			paths[path_cell] = []
-			if cost == unit.type.moves:
-				break
-	return paths.keys()
-
-func find_all_reachable_cells(unit: Unit) -> Dictionary:
-	update_weight(unit)
-	var paths := {}
-	paths[unit.location] = []
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.moves_current, rect.size)
-	cells.pop_front()
-	cells.invert()
-	for cell in cells:
-		if paths.has(cell):
-			continue
-		var path: Array = find_path(unit.location, get_location(cell))
-		if path.empty():
-			continue
-		var new_path := []
-		var cost := 0
-		for path_cell in path:
-			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
-			if ZOC_tiles.has(path_cell):
+			if ZOC_tiles.has(path_cell) and not ignore_units:
 				cell_cost = 1
-			if cost + cell_cost > unit.moves_current:
+			if cost + cell_cost > radius:
 				break
 
 			cost += cell_cost
 			new_path.append(path_cell)
 			paths[path_cell] = new_path.duplicate(true)
-			if ZOC_tiles.has(path_cell):
+			if ZOC_tiles.has(path_cell) and not ignore_units:
 				var attack_path = new_path.duplicate(true)
 				for enemey_cell in ZOC_tiles[path_cell]:
 					if not paths.has(enemey_cell):
@@ -115,7 +130,7 @@ func find_all_reachable_cells(unit: Unit) -> Dictionary:
 						paths[enemey_cell] = attack_path.duplicate(true)
 						attack_path.pop_back()
 				break
-			if cost == unit.moves_current:
+			if cost == radius:
 				break
 	return paths
 

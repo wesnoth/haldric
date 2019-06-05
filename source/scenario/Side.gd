@@ -18,6 +18,8 @@ var villages := []
 
 var leaders := []
 
+var viewable := {}
+
 export(String, "Red", "Blue", "Green", "Purple", "Black", "White", "Brown", "Orange", "Teal") var team_color := "Red"
 export(String, "Standard", "Knalgan", "Long", "Ragged", "Undead", "Wood-Elvish") var flag_type := "Standard"
 

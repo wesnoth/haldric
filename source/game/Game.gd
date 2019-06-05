@@ -119,11 +119,13 @@ func _set_side(value: Side) -> void:
 		HUD.update_time_info(scenario.schedule.current_time)
 
 	HUD.update_side_info(scenario, current_side)
+	
+	current_side.viewable.clear()
 
 	for unit in current_side.units.get_children():
 		unit.moves_current = unit.type.moves
-		unit.viewable = scenario.map.find_all_viewable_cells(unit)
-		unit.reachable = scenario.map.find_all_reachable_cells(unit)
+		unit.viewable.clear()
+		unit.set_reachable()
 
 func _next_side() -> void:
 	if scenario.turns >= 0 and scenario.turn > scenario.turns:

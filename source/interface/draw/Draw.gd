@@ -20,7 +20,7 @@ func _draw() -> void:
 
 	if Global.state.current_side:
 		side = Global.state.current_side.number
-
+		fog_texture.side = Global.state.current_side
 	fog_texture.side_number = side
 	fog_texture.units = get_tree().get_nodes_in_group("Unit")
 	fog_texture.update()
