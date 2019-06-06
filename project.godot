@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/menus/components/menu_page/MenuPage.gd"
 }, {
+"base": "State",
+"class": "Move",
+"language": "GDScript",
+"path": "res://source/unit/states/Move.gd"
+}, {
 "base": "Node",
 "class": "Movement",
 "language": "GDScript",
@@ -204,6 +209,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/Unit.gd"
 }, {
+"base": "Path2D",
+"class": "UnitPathDisplay",
+"language": "GDScript",
+"path": "res://source/interface/draw/UnitPathDisplay.gd"
+}, {
 "base": "Node2D",
 "class": "UnitType",
 "language": "GDScript",
@@ -238,6 +248,7 @@ _global_script_class_icons={
 "MenuBar": "",
 "MenuCard": "",
 "MenuPage": "",
+"Move": "",
 "Movement": "",
 "RCampaign": "",
 "RCard": "",
@@ -259,6 +270,7 @@ _global_script_class_icons={
 "Time": "",
 "Transitions": "",
 "Unit": "",
+"UnitPathDisplay": "",
 "UnitType": "",
 "VButtonHover": "",
 "VMenuBar": ""

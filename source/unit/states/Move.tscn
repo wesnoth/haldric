@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/unit/states/Move.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/draw/UnitPathDisplay.tscn" type="PackedScene" id=2]
+
+[node name="Move" type="Node"]
+script = ExtResource( 1 )
+
+[node name="UnitPathDisplay" parent="." instance=ExtResource( 2 )]

@@ -1,20 +1,20 @@
 extends Path2D
+class_name UnitPathDisplay
 
 export var bend := 0.3
-export var color := Color(255, 0, 0, 0.5)
-export var width := 20
 
 var path := [] setget _path_updated
+var callback = null
 
 onready var follow := $Follow as PathFollow2D
 onready var tween := $Tween as Tween
 onready var remote_control := $Follow/RemoteControl as RemoteTransform2D
 
-func _draw() -> void:
+func _update_interp() -> void:
+	curve.clear_points()
+
 	if path.size() < 2:
 		return
-
-	curve.clear_points()
 
 	for i in path.size():
 		# Control points
@@ -46,20 +46,13 @@ func _draw() -> void:
 		# TODO: tweak control points to be bungle a little less on the incurve
 		curve.add_point(current, -cp2, -cp1)
 
-	draw_polyline(curve.tessellate(), color, width, true)
 
 func _path_updated(new_val: Array) -> void:
 	path = new_val
-
+	_update_interp()
 	# Redraw
 	update()
 
-func move_along_path(obj: Node2D) -> void:
-	remote_control.remote_path = obj.get_path()
-
-	var time := clamp(path.size() * 0.2, 0.5, 2.5)
-
-	# warning-ignore:return_value_discarded
-	tween.interpolate_property(follow, "unit_offset", 0, 1, time, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	# warning-ignore:return_value_discarded
-	tween.start()
+func _draw():
+	if callback:
+		callback.invoke(self)
