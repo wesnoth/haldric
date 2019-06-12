@@ -8,13 +8,13 @@ func load_scenario(name: String) -> Scenario:
 		return null
 
 	# Look for an accompanying .tscn file
-	var scenario = load(Registry.scenarios[name].path.get_basename() + ".tscn").instance()
+	var scenario = load(Registry.scenarios[name].path.get_basename() + ".tscn")
 
 	if not scenario:
-		print("No .tscn file found for scenario " % name)
+		print("No .tscn file found for scenario %s (or it's corrupted)" % name)
 		return null
 
-	return scenario as Scenario
+	return scenario.instance() as Scenario
 
 func _get_directory_data(path: String, directory_data: Array, extentions: Array, load_resource: bool) -> Array:
 	var directory := Directory.new()

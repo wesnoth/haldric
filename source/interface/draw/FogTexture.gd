@@ -17,11 +17,11 @@ func _draw() -> void:
 		for unit in units:
 			unit.visible = true
 		return
-	# Since the map is fogged, start by hiding all units.
+	# Since the map is fogged, start by hiding all units on all sides except current.
 	for unit in units:
-		unit.visible = false
+		unit.visible = unit.side.number == side_number
 
-	# Then, iterate over all ox the viewable hexes beloning to the current side (TODO: handle allied vision)
+	# Then, iterate over all of the viewable hexes beloning to the current side (TODO: handle allied vision)
 	for viewable in side.viewable:
 		draw_texture(void_texture, viewable.position - void_texture_offset)
 		if viewable.unit:

@@ -172,6 +172,7 @@ func _on_unit_moved(unit: Unit, location: Location) -> void:
 
 func _on_unit_move_finished(unit: Unit, location: Location) -> void:
 	_grab_village(unit, location)
+	unit.set_reachable()
 
 func _on_HUD_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
