@@ -121,6 +121,7 @@ func _set_side(value: Side) -> void:
 	HUD.update_side_info(scenario, current_side)
 	
 	current_side.viewable.clear()
+	current_side.viewable_units.clear()
 
 	for unit in current_side.units.get_children():
 		unit.moves_current = unit.type.moves

@@ -20,6 +20,8 @@ var leaders := []
 
 var viewable := {}
 
+var viewable_units := {} #dont know if we need this, but just in case
+
 export(String, "Red", "Blue", "Green", "Purple", "Black", "White", "Brown", "Orange", "Teal") var team_color := "Red"
 export(String, "Standard", "Knalgan", "Long", "Ragged", "Undead", "Wood-Elvish") var flag_type := "Standard"
 

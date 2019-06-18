@@ -55,7 +55,8 @@ func find_path(start_loc: Location, end_loc: Location) -> Array:
 
 	return loc_path
 
-func extend_viewable(unit: Unit) -> void:
+func extend_viewable(unit: Unit) -> Array:
+	var extend_hexes := []
 	update_weight(unit, false, true)
 	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, Vector2(rect.size.x, rect.size.y))
 	cells.pop_front()
@@ -75,8 +76,9 @@ func extend_viewable(unit: Unit) -> void:
 				if cost + cell_cost > unit.type.moves:
 					break
 				cost += cell_cost
-				#dont bother checking if it exists, end result will be the same anyway and checking will just take up time
-				unit.side.viewable[path_cell] = 1
+				if not unit.side.viewable.has(path_cell):
+					unit.side.viewable[path_cell] = 1
+					extend_hexes.append(path_cell)
 				if cost == unit.type.moves:
 					break
 		cur_index += 1
@@ -86,6 +88,8 @@ func extend_viewable(unit: Unit) -> void:
 			check_radius -= 1
 			next_cutoff += check_radius * 6
 			no_change = true
+	
+	return extend_hexes
 
 #seprate wrapper function for "find_all_reachable_cells" since threads can only handle 1 argument being passed for some reason
 func threadable_find_all_reachable_cells(arg_array: Array) -> Dictionary:
