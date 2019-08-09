@@ -119,7 +119,7 @@ func _set_side(value: Side) -> void:
 		HUD.update_time_info(scenario.schedule.current_time)
 
 	HUD.update_side_info(scenario, current_side)
-	
+
 	current_side.viewable.clear()
 	current_side.viewable_units.clear()
 

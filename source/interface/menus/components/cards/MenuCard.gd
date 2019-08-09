@@ -9,8 +9,8 @@ onready var tween = $Tween as Tween
 onready var title = $Title as Label
 onready var card_image = $CardImage as TextureRect
 
-func animate() -> void:
-	tween.interpolate_property(self, "modulate", Color("00FFFFFF"), Color("FFFFFFFF"), 0.4, Tween.TRANS_SINE, Tween.EASE_OUT)
+func animate(delay := 0.0) -> void:
+	tween.interpolate_property(self, "modulate", Color("00FFFFFF"), Color("FFFFFFFF"), 0.4, Tween.TRANS_SINE, Tween.EASE_OUT, delay)
 	tween.start()
 
 func initialize(card : RCard) -> void:
