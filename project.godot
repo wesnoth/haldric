@@ -372,6 +372,7 @@ scroll_down={
 
 [rendering]
 
+quality/driver/fallback_to_gles2=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
