@@ -59,11 +59,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/menus/components/menu_bar/HButtonHover.gd"
 }, {
-"base": "MenuBar",
-"class": "HMenuBar",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/HMenuBar.gd"
-}, {
 "base": "Reference",
 "class": "Hex",
 "language": "GDScript",
@@ -230,7 +225,6 @@ _global_script_class_icons={
 "Defense": "",
 "Grid": "",
 "HButtonHover": "",
-"HMenuBar": "",
 "Hex": "",
 "Location": "",
 "Map": "",
