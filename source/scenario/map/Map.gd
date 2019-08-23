@@ -48,8 +48,8 @@ func world_to_world_centered(cell: Vector2) -> Vector2:
 
 func find_path(start_loc: Location, end_loc: Location) -> Array:
 	var loc_path := []
-	var cell_path: Array = grid.find_path_by_cell(start_loc.cell, end_loc.cell)
-	cell_path.pop_front()
+	var cell_path: PoolVector2Array = grid.find_path_by_cell(start_loc.cell, end_loc.cell)
+	cell_path.remove(0)
 	for cell in cell_path:
 		loc_path.append(get_location(cell))
 
