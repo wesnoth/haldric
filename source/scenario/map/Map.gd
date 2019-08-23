@@ -58,8 +58,7 @@ func find_path(start_loc: Location, end_loc: Location) -> Array:
 func extend_viewable(unit: Unit) -> Array:
 	var extend_hexes := []
 	update_weight(unit, false, true)
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, Vector2(rect.size.x, rect.size.y))
-	cells.pop_front()
+	var cells := Hex.get_cells_around(unit.location.cell, unit.type.moves, Vector2(rect.size.x, rect.size.y))
 	cells.invert()
 	var cur_index = 0
 	var check_radius = unit.type.moves
@@ -105,8 +104,7 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 	var paths := {}
 	paths[unit.location] = []
 	var radius = (unit.type.moves if ignore_moves else unit.moves_current)
-	var cells := Hex.get_cells_in_range(unit.location.cell, radius, Vector2(rect.size.x, rect.size.y))
-	cells.pop_front()
+	var cells := Hex.get_cells_around(unit.location.cell, radius, Vector2(rect.size.x, rect.size.y))
 	cells.invert()
 	for cell in cells:
 		if paths.has(cell):
