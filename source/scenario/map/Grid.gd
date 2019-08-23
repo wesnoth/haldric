@@ -12,14 +12,8 @@ func _init(new_map: TileMap, map_rect: Rect2) -> void:
 	_generate_points()
 	_generate_point_connections()
 
-func find_path_by_position(start_position: Vector2, end_position: Vector2) -> Array:
-	var start_cell := map.world_to_map(start_position)
-	var end_cell := map.world_to_map(end_position)
-
-	return find_path_by_cell(start_cell, end_cell)
-
-func find_path_by_cell(start_cell: Vector2, end_cell: Vector2) -> Array:
-	var path2D := []
+func find_path_by_cell(start_cell: Vector2, end_cell: Vector2) -> PoolVector2Array:
+	var path2D := PoolVector2Array()
 	if rect.has_point(start_cell) and rect.has_point(end_cell):
 		var path3D: PoolVector3Array = astar.get_point_path(_flatten(start_cell), _flatten(end_cell))
 		for point in path3D:
