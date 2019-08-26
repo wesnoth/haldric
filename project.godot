@@ -364,6 +364,10 @@ scroll_down={
  ]
 }
 
+[network]
+
+limits/debugger_stdout/max_chars_per_second=20000
+
 [rendering]
 
 quality/driver/fallback_to_gles2=true
