@@ -14,11 +14,11 @@ func _init(new_map: TileMap, map_rect: Rect2) -> void:
 
 func find_path_by_cell(start_cell: Vector2, end_cell: Vector2) -> PoolVector2Array:
 	var path2D := PoolVector2Array()
-	if rect.has_point(start_cell) and rect.has_point(end_cell):
-		var path3D: PoolVector3Array = astar.get_point_path(_flatten(start_cell), _flatten(end_cell))
-		for point in path3D:
-			path2D.append(Vector2(point.x, point.y))
-
+	
+	var path3D: PoolVector3Array = astar.get_point_path(_flatten(start_cell), _flatten(end_cell))
+	for point in path3D:
+		path2D.append(Vector2(point.x, point.y))
+	
 	return path2D
 
 func make_cell_one_way(cell: Vector2):
