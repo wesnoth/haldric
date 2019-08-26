@@ -19,7 +19,8 @@ func initialize(card : RCard) -> void:
 
 func expand(rect: Rect2) -> void:
 	expanded = true
-	origin = Rect2(rect_global_position, rect_size)
+	if not tween.is_active():
+		origin = Rect2(rect_global_position, rect_size)
 	_transform(rect)
 
 func shrink() -> void:
