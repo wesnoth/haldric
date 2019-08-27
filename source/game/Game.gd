@@ -134,6 +134,7 @@ func _next_side() -> void:
 
 	var new_index = (current_side.get_index() + 1) % scenario.sides.get_child_count()
 	_set_side(scenario.sides.get_child(new_index))
+	_set_current_unit(null)
 
 func _update_time(time: Time) -> void:
 	# TODO: handle better
