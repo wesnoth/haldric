@@ -32,7 +32,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			elif current_unit and loc.unit and loc.unit.side.number != current_side.number:
 				current_unit.move_to(_get_path_for_unit(current_unit, loc))
-				loc.unit.receive_attack(current_unit.type.get_attacks()[0])
+				current_unit.execute_attack(loc.unit, current_unit.type.get_attacks()[0])
+				
 				_set_current_unit(null)
 
 	# Deselect a unit

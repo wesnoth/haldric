@@ -88,9 +88,14 @@ func move_to(new_path: Array) -> void:
 	path = new_path
 	change_state("move")
 
-func receive_attack(att: Attack) -> void:
-	for i in range(att.strikes):
-		health_current -= att.damage
+func receive_attack(attack: Attack) -> void:
+	health_current -= attack.damage
+	print("receive damage: %d" % attack.damage)
+
+func execute_attack(target: Unit, attack: Attack) -> void:
+	print("total number of strikes: %d" % attack.strikes)
+	for i in range(attack.strikes):
+		target.receive_attack(attack)
 
 func get_movement_cost(loc: Location) -> int:
 	var cost =  type.movement.get(loc.terrain.type[0])
