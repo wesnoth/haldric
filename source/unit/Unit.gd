@@ -88,6 +88,10 @@ func move_to(new_path: Array) -> void:
 	path = new_path
 	change_state("move")
 
+func receive_attack(att: Attack) -> void:
+	for i in range(att.strikes):
+		health_current -= att.damage
+
 func get_movement_cost(loc: Location) -> int:
 	var cost =  type.movement.get(loc.terrain.type[0])
 	if (loc.terrain.type.size() > 1):
