@@ -120,8 +120,9 @@ func set_reachable() -> void:
 	thread.start(location.map, "threadable_find_all_reachable_cells", [self])
 	reachable = thread.wait_to_finish()
 
-func update_viewable() -> void:
+func update_viewable() -> bool:
 	if side.fog:
+		var new_unit_found = false
 		if viewable.empty():
 			thread.start(location.map, "threadable_find_all_reachable_cells", [self,true,true])
 			var temp = thread.wait_to_finish()
@@ -131,18 +132,17 @@ func update_viewable() -> void:
 					side.viewable[loc] = 1
 					if loc.unit:
 						if not loc.unit.side == side:
+							new_unit_found = true
 							side.viewable_units[loc.unit] = 1
 		else:
 			var new_hexes = location.map.extend_viewable(self) #do not thread, causes a lot of issues when threaded for some reason
-			var new_unit_found = false
 			for loc in new_hexes:
 				if loc.unit:
 					if not loc.unit.side == side:
 						new_unit_found = true
 						side.viewable_units[loc.unit] = 1
-			if new_unit_found and path: #halt path if new unit found (keeps the first element so that it doesnt break the move script)
-				path = [path[0]]
-
+		return new_unit_found
+	return false
 func _set_experience_current(value: int) -> void:
 	experience_current = value
 	if experience_current >= type.experience:
