@@ -25,7 +25,6 @@ const NEIGHBOUR_TABLE = [
 
 static func get_cells_around(cell: Vector2, _range: int, size: Vector2) -> PoolVector2Array:
 	var cells := PoolVector2Array()
-	cells.append(cell)
 	for n in range(1, _range + 1):
 		var current_cell := Vector2(cell.x, cell.y + n)
 		for j in 6:

@@ -71,7 +71,7 @@ func extend_viewable(unit: Unit) -> Array:
 			var path: Array = find_path(unit.location, get_location(cell))
 			var cost := 0
 			for path_cell in path:
-				var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
+				var cell_cost = grid.get_point_weight_scale(_flatten(path_cell.cell))
 				if cost + cell_cost > unit.type.moves:
 					break
 				cost += cell_cost
@@ -115,7 +115,7 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 		var new_path := []
 		var cost := 0
 		for path_cell in path:
-			var cell_cost = grid.astar.get_point_weight_scale(_flatten(path_cell.cell))
+			var cell_cost = grid.get_point_weight_scale(_flatten(path_cell.cell))
 			if ZOC_tiles.has(path_cell) and not ignore_units:
 				cell_cost = 1
 			if cost + cell_cost > radius:
@@ -179,18 +179,18 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 								if new_neighbor in neighbors and not unit.location.cell == new_neighbor:
 									continue
 								if new_neighbor == location.cell:
-									grid.astar.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
+									grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
 								elif get_location(new_neighbor) in ZOC_tiles.keys():
-									if grid.astar.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
-										grid.astar.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
+									if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
+										grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
 								else:
-									grid.astar.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
+									grid.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
 							if ZOC_tiles.has(get_location(neighbor)):
 								ZOC_tiles[get_location(neighbor)].append(location)
 							else:
 								ZOC_tiles[get_location(neighbor)] = [location]
 
-			grid.astar.set_point_weight_scale(id, cost)
+			grid.set_point_weight_scale(id, cost)
 
 func set_size(size: Vector2) -> void:
 	rect.size = size
@@ -351,3 +351,14 @@ func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
 
 		if clear_overlay:
 			overlay.set_cellv(cell, INVALID_CELL)
+func debug():
+	for y in rect.size.y:
+		for x in rect.size.x:
+			var cell := Vector2(x, y)
+			var id: int = _flatten(cell)
+			var location: Location = locations[id]
+			var label: Label = Label.new()
+			label.text = str(id)
+			label.set_position(location.position)
+			labels.append(label)
+			add_child(label)

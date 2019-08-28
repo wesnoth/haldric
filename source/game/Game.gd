@@ -45,7 +45,12 @@ func _unhandled_input(event: InputEvent) -> void:
 				scenario.map.display_reachable_for(loc.unit.reachable)
 			else:
 				scenario.map.display_reachable_for({})
-
+	elif event is InputEventKey: #for debug purposes, will be removed later
+		if event.scancode == KEY_J and event.pressed:
+			if loc:
+				print(loc.map.grid.get_neighbors(loc.cell))
+		if event.scancode == KEY_L and event.pressed:
+			loc.map.debug()
 func _ready() -> void:
 	HUD.unit_panel.unit_viewport.world_2d = scenario_viewport.world_2d
 	_load_scenario()
@@ -95,8 +100,8 @@ func _set_current_unit(value: Unit) -> void:
 		_clear_temp_path()
 
 func _get_path_for_unit(unit: Unit, new_loc: Location) -> Array:
-	if unit.reachable.has(new_loc):
-		return unit.reachable[new_loc]
+	#if unit.reachable.has(new_loc):
+	#	return unit.reachable[new_loc]
 
 	return scenario.map.find_path(unit.location, new_loc)
 
