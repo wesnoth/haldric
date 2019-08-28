@@ -100,8 +100,8 @@ func _set_current_unit(value: Unit) -> void:
 		_clear_temp_path()
 
 func _get_path_for_unit(unit: Unit, new_loc: Location) -> Array:
-	#if unit.reachable.has(new_loc):
-	#	return unit.reachable[new_loc]
+	if unit.reachable.has(new_loc):
+		return unit.reachable[new_loc]
 
 	return scenario.map.find_path(unit.location, new_loc)
 
