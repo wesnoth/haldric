@@ -34,6 +34,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				  and current_unit.reachable.has(loc)):
 				
 				current_unit.move_to(_get_path_for_unit(current_unit, loc))
+				yield(scenario, "unit_move_finished")
 				current_unit.execute_attack(loc.unit, current_unit.type.get_attacks()[0])
 				
 				_set_current_unit(null)
@@ -181,6 +182,7 @@ func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)
 
 func _on_unit_move_finished(unit: Unit, location: Location) -> void:
+	print("move finished")
 	_grab_village(unit, location)
 	unit.set_reachable()
 
