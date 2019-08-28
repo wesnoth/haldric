@@ -19,6 +19,8 @@ func _move():
 		var cost = host.get_movement_cost(loc)
 		var ignore_halt = false
 		if cost > host.moves_current:
+			host.emit_signal("move_finished", host, host.location)
+			host.change_state("idle")
 			return
 	
 		if host.location.unit == host: #checks to make sure its not overriding existing units
