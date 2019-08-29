@@ -11,6 +11,8 @@ export var zoom_max_out := 2.0
 onready var tween := $Tween
 
 func _input(event: InputEvent) -> void:
+	_handle_pitch_to_zoom(event)
+	_handle_pan_gesture(event)
 	_handle_mouse_scroll(event)
 	_handle_middle_mouse(event)
 
@@ -39,16 +41,22 @@ func _handle_keyboard_scroll(delta: float) -> void:
 
 	position = new_position
 
+func _handle_pitch_to_zoom(event: InputEvent):
+	if event is InputEventMagnifyGesture:
+		_zoom(zoom_step * (event.factor - 1) * -10)
+
+func _handle_pan_gesture(event: InputEvent):
+	if event is InputEventPanGesture:
+		if abs(event.delta.y) > 0.1:
+			_zoom(zoom_step * event.delta.y)
+
 func _handle_mouse_scroll(event: InputEvent) -> void:
-	# TODO: handle pinch-to-zoom
-	var wheel_u := Input.is_action_just_pressed("scroll_up")
-	var wheel_d := Input.is_action_just_pressed("scroll_down")
+	if Input.is_action_just_pressed("scroll_up"):
+		_zoom(zoom_step * -1)
+	elif Input.is_action_just_pressed("scroll_down"):
+		_zoom(zoom_step)
 
-	if not (wheel_u or wheel_d):
-		return
-
-	var step := zoom_step * -1 if wheel_u else zoom_step
-
+func _zoom(step: float) -> void:
 	var new_zoom := Vector2(
 		clamp(zoom.x + step, zoom_max_in, zoom_max_out),
 		clamp(zoom.y + step, zoom_max_in, zoom_max_out)
