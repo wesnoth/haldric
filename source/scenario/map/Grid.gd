@@ -79,10 +79,12 @@ func _disconnect_with_neighbors(cell: Vector2) -> void:
 
 func _flatten(cell: Vector2) -> int:
 	return Utils.flatten(cell, int(rect.size.x))
-	
+#override the _estimate_cost and _compute_cost for astar
+#_estimate_cost is just taking the floor of what the original cost was, might not need
 func _estimate_cost(from_id, to_id):
 	return floor(get_point_position(from_id).distance_to(get_point_position(to_id)))
-	
+#since compute cost is always called on adjacent hexes, the value should always be base of 1 (weights get calcualted in by the algorithim)
+#by defauly 2 of the 6 neighbors would instead have had sqrt(2), hences the override function
 func _compute_cost(from_id: int, to_id: int) -> float:
 	return 1.0
 #for debug purposes, may remove later
