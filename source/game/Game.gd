@@ -177,10 +177,11 @@ func _on_unit_advancement_selected(unit: Unit, unit_id: String) -> void:
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)
 
-func _on_unit_move_finished(unit: Unit, location: Location) -> void:
+func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> void:
 	_grab_village(unit, location)
 	unit.set_reachable()
-
+	if halted:
+		_set_current_unit(unit)
 func _on_HUD_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
 	_next_side()
