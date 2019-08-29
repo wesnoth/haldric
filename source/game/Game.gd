@@ -194,12 +194,7 @@ func _on_attack_selected(attack: Attack) -> void:
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)
 
-<<<<<<< HEAD
-func _on_unit_move_finished(unit: Unit, location: Location) -> void:
-	print("move finished")
-=======
 func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> void:
->>>>>>> e8e5bfdd9c26aafeb8bc41b49f7eb7505cd5fa3a
 	_grab_village(unit, location)
 	unit.set_reachable()
 	if halted:
