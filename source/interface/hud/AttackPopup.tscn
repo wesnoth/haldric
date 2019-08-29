@@ -14,6 +14,7 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="AttackButton" type="VBoxContainer" parent="MarginContainer"]
+[node name="AttackButtons" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 400.0
 margin_bottom = 600.0
+alignment = 1

@@ -1,4 +1,5 @@
 extends Control
+class_name AttackPlate
 
 onready var icon := $HBoxContainer/TextureRect
 onready var name_label := $HBoxContainer/VBoxContainer/Name as Label

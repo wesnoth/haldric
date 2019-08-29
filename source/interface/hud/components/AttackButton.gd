@@ -1,6 +1,6 @@
 extends Control
 
-onready var attackPlate := $AttackPlate
+onready var attackPlate := $AttackPlate as AttackPlate
 var attack_value: Attack = null
 
 signal attack_button_pressed(attack)

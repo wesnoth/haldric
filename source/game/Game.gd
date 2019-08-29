@@ -38,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				yield(scenario, "unit_move_finished")
 				HUD.show_attack_popup(current_unit)
 				yield(HUD, "attack_selected")
-				current_unit.execute_attack(loc.unit, current_unit.type.get_attacks()[0])
+				current_unit.execute_attack(loc.unit, current_attack)
 				
 				_set_current_unit(null)
 

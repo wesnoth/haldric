@@ -16,8 +16,9 @@ func popup_attack(unit: Unit) -> void:
 
 	for attack in attacks:
 		var button = AttackButton.instance()
-		button.connect("attack_button_pressed", self, "_on_button_pressed")
 		attack_buttons.add_child(button)
+		button.connect("attack_button_pressed", self, "_on_button_pressed")
+		button.update_attack(attack)
 
 	popup_centered()
 
