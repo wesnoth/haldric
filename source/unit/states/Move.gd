@@ -2,12 +2,14 @@ extends State
 
 var host = null
 var need_to_halt = false
+var halted = false
 export(float, 0.1, 1.0) var move_time := 0.15
 
 func _enter(host):
 	if host.type.anim.has_animation("move"):
 		host.type.anim.play("move")
 	self.host = host
+	halted = false
 	_move()
 
 func _exit(host):
@@ -19,7 +21,7 @@ func _move():
 		var cost = host.get_movement_cost(loc)
 		var ignore_halt = false
 		if cost > host.moves_current:
-			host.emit_signal("move_finished", host, host.location)
+			host.emit_signal("move_finished", host, host.location, false)
 			host.change_state("idle")
 			return
 	
@@ -44,13 +46,17 @@ func _move():
 			host.moves_current -= cost
 		var new_unit_found = host.update_viewable()
 		if need_to_halt:
-			host.path=[host.path[0]]
-			need_to_halt = false
+			if host.path.size() > 1:
+				host.path=[host.path[0]]
+				need_to_halt = false
+				halted = true
 		if new_unit_found:
 			if ignore_halt:
 				need_to_halt = true
 			else:
-				host.path = [host.path[0]]
+				if host.path.size() > 1:
+					host.path = [host.path[0]]
+					halted = true
 		host.path.remove(0)
 
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
@@ -58,5 +64,5 @@ func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
 	if host.path:
 		_move()
 	else:
-		host.emit_signal("move_finished", host, host.location)
+		host.emit_signal("move_finished", host, host.location, halted)
 		host.change_state("idle")

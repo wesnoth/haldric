@@ -70,5 +70,5 @@ func _on_unit_experienced(unit: Unit) -> void:
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	emit_signal("unit_moved", unit, location)
 
-func _on_unit_move_finished(unit: Unit, location: Location) -> void:
-	emit_signal("unit_move_finished", unit, location)
+func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> void:
+	emit_signal("unit_move_finished", unit, location, halted)

@@ -194,11 +194,16 @@ func _on_attack_selected(attack: Attack) -> void:
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)
 
+<<<<<<< HEAD
 func _on_unit_move_finished(unit: Unit, location: Location) -> void:
 	print("move finished")
+=======
+func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> void:
+>>>>>>> e8e5bfdd9c26aafeb8bc41b49f7eb7505cd5fa3a
 	_grab_village(unit, location)
 	unit.set_reachable()
-
+	if halted:
+		_set_current_unit(unit)
 func _on_HUD_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
 	_next_side()

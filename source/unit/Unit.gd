@@ -6,7 +6,7 @@ var thread = Thread.new()
 signal experienced(unit)
 
 signal moved(unit, location)
-signal move_finished(unit, location)
+signal move_finished(unit, location, halt)
 signal state_changed(new_state)
 
 var side : Side = null
