@@ -6,6 +6,7 @@ var scenario: Scenario = null
 
 var current_side: Side = null setget _set_side
 var current_unit: Unit = null setget _set_current_unit
+var current_attack: Attack = null
 
 onready var tween = $Tween
 
@@ -35,6 +36,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 				current_unit.move_to(_get_path_for_unit(current_unit, loc))
 				yield(scenario, "unit_move_finished")
+				HUD.show_attack_popup(current_unit)
+				yield(HUD, "attack_selected")
 				current_unit.execute_attack(loc.unit, current_unit.type.get_attacks()[0])
 				
 				_set_current_unit(null)
@@ -66,6 +69,8 @@ func _ready() -> void:
 
 	# warning-ignore:return_value_discarded
 	HUD.connect("unit_advancement_selected", self, "_on_unit_advancement_selected")
+	# warning-ignore:return_value_discarded
+	HUD.connect("attack_selected", self, "_on_attack_selected")
 
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
@@ -182,6 +187,9 @@ func _on_unit_experienced(unit: Unit) -> void:
 
 func _on_unit_advancement_selected(unit: Unit, unit_id: String) -> void:
 	unit.advance(Registry.units[unit_id].instance())
+
+func _on_attack_selected(attack: Attack) -> void:
+	current_attack = attack
 
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)
