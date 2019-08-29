@@ -43,19 +43,17 @@ func _handle_keyboard_scroll(delta: float) -> void:
 
 func _handle_pitch_to_zoom(event: InputEvent):
 	if event is InputEventMagnifyGesture:
-		print("InputEventMagnifyGesture:", event.factor)
 		_zoom(zoom_step * (event.factor - 1) * -10)
 
 func _handle_pan_gesture(event: InputEvent):
 	if event is InputEventPanGesture:
-		print("InputEventPanGesture:", event.delta)
 		if abs(event.delta.y) > 0.1:
 			_zoom(zoom_step * event.delta.y)
 
 func _handle_mouse_scroll(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("scroll_up"):
 		_zoom(zoom_step * -1)
-	if Input.is_action_just_pressed("scroll_down"):
+	elif Input.is_action_just_pressed("scroll_down"):
 		_zoom(zoom_step)
 
 func _zoom(step: float) -> void:
