@@ -10,6 +10,7 @@ func _enter(host):
 		host.type.anim.play("move")
 	self.host = host
 	halted = false
+	host.location.map.update_weight(host, false, true)
 	_move()
 
 func _exit(host):

@@ -56,9 +56,10 @@ func find_path(start_loc: Location, end_loc: Location) -> Array:
 
 	return loc_path
 
-func extend_viewable(unit: Unit) -> Array:
-	var extend_hexes := []
-	update_weight(unit, false, true)
+func extend_viewable(unit: Unit) -> bool:
+	var new_unit_found  = false
+	#var extend_hexes := []
+	#update_weight(unit, false, true)
 	var cells := Hex.get_cells_around(unit.location.cell, unit.type.moves, Vector2(rect.size.x, rect.size.y))
 	cells.invert()
 	var cur_index = 0
@@ -69,7 +70,7 @@ func extend_viewable(unit: Unit) -> Array:
 		var loc = get_location(cell)
 		if not unit.side.viewable.has(loc):
 			no_change = false
-			var path: Array = find_path(unit.location, get_location(cell))
+			var path: Array = find_path(unit.location, loc)
 			var cost := 0
 			for path_cell in path:
 				var cell_cost = grid.get_point_weight_scale(_flatten(path_cell.cell))
@@ -78,7 +79,11 @@ func extend_viewable(unit: Unit) -> Array:
 				cost += cell_cost
 				if not unit.side.viewable.has(path_cell):
 					unit.side.viewable[path_cell] = 1
-					extend_hexes.append(path_cell)
+					if path_cell.unit:
+						if not path_cell.unit.side == unit.side:
+							new_unit_found = true
+							unit.side.viewable_units[path_cell.unit] = 1
+					#extend_hexes.append(path_cell)
 				if cost == unit.type.moves:
 					break
 		cur_index += 1
@@ -89,7 +94,8 @@ func extend_viewable(unit: Unit) -> Array:
 			next_cutoff += check_radius * 6
 			no_change = true
 	
-	return extend_hexes
+	#return extend_hexes
+	return new_unit_found		
 
 #seprate wrapper function for "find_all_reachable_cells" since threads can only handle 1 argument being passed for some reason
 func threadable_find_all_reachable_cells(arg_array: Array) -> Dictionary:
