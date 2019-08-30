@@ -16,7 +16,7 @@ func find_path_by_cell(start_cell: Vector2, end_cell: Vector2) -> PoolVector2Arr
 	var path3D: PoolVector3Array = get_point_path(_flatten(start_cell), _flatten(end_cell))
 	for point in path3D:
 		path2D.append(Vector2(point.x, point.y))
-	
+
 	return path2D
 
 func make_cell_one_way(cell: Vector2):
