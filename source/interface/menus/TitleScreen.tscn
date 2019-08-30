@@ -107,9 +107,9 @@ margin_bottom = 690.0
 
 [node name="Logo" parent="." index="3" instance=ExtResource( 9 )]
 margin_left = 350.0
-margin_top = 140.0
+margin_top = 155.0
 margin_right = 350.0
-margin_bottom = 140.0
+margin_bottom = 155.0
 
 [node name="Version" type="Label" parent="." index="4"]
 anchor_top = 1.0
