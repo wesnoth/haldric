@@ -49,7 +49,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/Defense.gd"
 }, {
-"base": "Resource",
+"base": "AStar",
 "class": "Grid",
 "language": "GDScript",
 "path": "res://source/scenario/map/Grid.gd"
@@ -208,11 +208,6 @@ _global_script_classes=[ {
 "class": "VButtonHover",
 "language": "GDScript",
 "path": "res://source/interface/menus/components/menu_bar/VButtonHover.gd"
-}, {
-"base": "MenuBar",
-"class": "VMenuBar",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/VMenuBar.gd"
 } ]
 _global_script_class_icons={
 "AdvancementPopup": "",
@@ -254,8 +249,7 @@ _global_script_class_icons={
 "Transitions": "",
 "Unit": "",
 "UnitType": "",
-"VButtonHover": "",
-"VMenuBar": ""
+"VButtonHover": ""
 }
 
 [application]
