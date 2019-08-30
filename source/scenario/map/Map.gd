@@ -161,8 +161,8 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 					cost = 1
 					#var current_cell := Vector2(cell.x, cell.y + 1)
 					#var next_cell := Vector2(cell.x, cell.y + 1)
+					grid.make_cell_one_way(location.cell)
 					if ignore_ZOC:
-						Hex.make_cell_one_way(location.cell)
 						ZOC_tiles[location]=[]
 					else:
 						var neighbors: Array = Hex.get_neighbors(location.cell)
@@ -176,10 +176,8 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 							for new_neighbor in new_neighbors:
 								if not _is_cell_in_map(new_neighbor):
 									continue
-								if new_neighbor in neighbors and not unit.location.cell == new_neighbor:
+								if (new_neighbor in neighbors and not unit.location.cell == new_neighbor) or new_neighbor == location.cell:
 									continue
-								if new_neighbor == location.cell:
-									grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
 								elif get_location(new_neighbor) in ZOC_tiles.keys():
 									if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
 										grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
