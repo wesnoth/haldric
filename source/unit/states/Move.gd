@@ -24,7 +24,7 @@ func _move():
 			host.emit_signal("move_finished", host, host.location, false)
 			host.change_state("idle")
 			return
-	
+
 		if host.location.unit == host: #checks to make sure its not overriding existing units
 			host.location.unit = null
 		host.location = loc
