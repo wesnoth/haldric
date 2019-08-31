@@ -93,9 +93,9 @@ func extend_viewable(unit: Unit) -> bool:
 			check_radius -= 1
 			next_cutoff += check_radius * 6
 			no_change = true
-	
+
 	#return extend_hexes
-	return new_unit_found		
+	return new_unit_found
 
 #seprate wrapper function for "find_all_reachable_cells" since threads can only handle 1 argument being passed for some reason
 func threadable_find_all_reachable_cells(arg_array: Array) -> Dictionary:
