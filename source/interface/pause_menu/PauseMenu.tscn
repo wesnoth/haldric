@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/pause_menu/PauseMenu.gd" type="Script" id=2]
 [ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/pause_menu/PauseButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://graphics/images/interface/misc/pause.png" type="Texture" id=5]
 
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
@@ -49,14 +50,10 @@ margin_top = 88.0
 margin_right = 238.0
 margin_bottom = 168.0
 
-[node name="Pause" parent="." instance=ExtResource( 4 )]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = -60.0
-margin_right = 248.0
-margin_bottom = -10.0
-rect_min_size = Vector2( 238, 50 )
+[node name="Pause" type="TouchScreenButton" parent="."]
+position = Vector2( 30, 940 )
+normal = ExtResource( 5 )
+action = "ui_cancel"
+visibility_mode = 1
 [connection signal="pressed" from="Popup/CenterContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="Popup/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="Pause" to="." method="_on_Pause_pressed"]

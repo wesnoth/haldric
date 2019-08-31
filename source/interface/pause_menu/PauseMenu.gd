@@ -2,7 +2,7 @@ extends Control
 
 onready var popup := $Popup as Popup
 onready var panel := $Panel as TextureRect
-onready var button := $Pause as Button
+onready var button := $Pause as TouchScreenButton
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -36,9 +36,6 @@ func _on_Resume_pressed() -> void:
 
 func _on_Quit_pressed() -> void:
 	Scene.change(Scene.TitleScreen)
-
-func _on_Pause_pressed() -> void:
-	_popup()
 
 func is_active() -> bool:
 	return popup.visible
