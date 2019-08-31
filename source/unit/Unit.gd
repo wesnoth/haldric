@@ -135,12 +135,7 @@ func update_viewable() -> bool:
 							new_unit_found = true
 							side.viewable_units[loc.unit] = 1
 		else:
-			var new_hexes = location.map.extend_viewable(self) #do not thread, causes a lot of issues when threaded for some reason
-			for loc in new_hexes:
-				if loc.unit:
-					if not loc.unit.side == side:
-						new_unit_found = true
-						side.viewable_units[loc.unit] = 1
+			return location.map.extend_viewable(self) #do not thread, causes a lot of issues when threaded for some reason
 		return new_unit_found
 	return false
 func _set_experience_current(value: int) -> void:

@@ -47,22 +47,30 @@ func _unhandled_input(event: InputEvent) -> void:
 		_set_current_unit(null)
 
 	# TODO: should not be handled by mouse move
-	elif event is InputEventMouseMotion:
-		if loc:
-			# Display selected unit's path to hovered location
-			if current_unit:
-				if draw.unit_path_display.path.empty() or not draw.unit_path_display.path.back() == loc:
-					_draw_temp_path(_get_path_for_unit(current_unit, loc))
-			elif loc.unit and loc.unit.visible:
-				scenario.map.display_reachable_for(loc.unit.reachable)
-			else:
-				scenario.map.display_reachable_for({})
+	elif event is InputEventMouseMotion and loc:
+		# Show the hovered unit in the sidebar.
+		# If no unit is at the hovered location, display the currently selected unit, if any.
+		if loc.unit:
+			HUD.update_unit_info(loc.unit)
+		elif current_unit:
+			HUD.update_unit_info(current_unit)
+
+		# Display selected unit's path to hovered location
+		if current_unit:
+			if draw.unit_path_display.path.empty() or not draw.unit_path_display.path.back() == loc:
+				_draw_temp_path(_get_path_for_unit(current_unit, loc))
+		elif loc.unit and loc.unit.visible:
+			scenario.map.display_reachable_for(loc.unit.reachable)
+		else:
+			scenario.map.display_reachable_for({})
+
 	elif event is InputEventKey: #for debug purposes, will be removed later
 		if event.scancode == KEY_J and event.pressed:
 			if loc:
 				print(loc.map.grid.get_neighbors(loc.cell))
 		if event.scancode == KEY_L and event.pressed:
 			loc.map.debug()
+
 func _ready() -> void:
 	HUD.unit_panel.unit_viewport.world_2d = scenario_viewport.world_2d
 	_load_scenario()
@@ -107,7 +115,7 @@ func _set_current_unit(value: Unit) -> void:
 	current_unit = value
 
 	if current_unit:
-		HUD.update_unit_info(current_unit)
+		#HUD.update_unit_info(current_unit)
 		scenario.map.display_reachable_for(current_unit.reachable)
 	else:
 		# HUD.clear_unit_info()

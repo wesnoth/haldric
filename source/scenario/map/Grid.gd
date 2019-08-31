@@ -16,7 +16,7 @@ func find_path_by_cell(start_cell: Vector2, end_cell: Vector2) -> PoolVector2Arr
 	var path3D: PoolVector3Array = get_point_path(_flatten(start_cell), _flatten(end_cell))
 	for point in path3D:
 		path2D.append(Vector2(point.x, point.y))
-	
+
 	return path2D
 
 func make_cell_one_way(cell: Vector2):
@@ -79,10 +79,7 @@ func _disconnect_with_neighbors(cell: Vector2) -> void:
 
 func _flatten(cell: Vector2) -> int:
 	return Utils.flatten(cell, int(rect.size.x))
-#override the _estimate_cost and _compute_cost for astar
-#_estimate_cost is just taking the floor of what the original cost was, might not need
-func _estimate_cost(from_id, to_id):
-	return floor(get_point_position(from_id).distance_to(get_point_position(to_id)))
+#override the _compute_cost for astar
 #since compute cost is always called on adjacent hexes, the value should always be base of 1 (weights get calcualted in by the algorithim)
 #by defauly 2 of the 6 neighbors would instead have had sqrt(2), hences the override function
 func _compute_cost(from_id: int, to_id: int) -> float:

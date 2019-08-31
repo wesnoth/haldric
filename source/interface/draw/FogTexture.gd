@@ -12,7 +12,7 @@ func _draw() -> void:
 
 	if not units:
 		return
-	
+
 	if not side.fog:
 		for unit in units:
 			unit.visible = true

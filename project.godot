@@ -49,7 +49,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/Defense.gd"
 }, {
-"base": "Resource",
+"base": "AStar",
 "class": "Grid",
 "language": "GDScript",
 "path": "res://source/scenario/map/Grid.gd"
@@ -208,11 +208,6 @@ _global_script_classes=[ {
 "class": "VButtonHover",
 "language": "GDScript",
 "path": "res://source/interface/menus/components/menu_bar/VButtonHover.gd"
-}, {
-"base": "MenuBar",
-"class": "VMenuBar",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/VMenuBar.gd"
 } ]
 _global_script_class_icons={
 "AdvancementPopup": "",
@@ -254,8 +249,7 @@ _global_script_class_icons={
 "Transitions": "",
 "Unit": "",
 "UnitType": "",
-"VButtonHover": "",
-"VMenuBar": ""
+"VButtonHover": ""
 }
 
 [application]
@@ -299,6 +293,7 @@ window/size/width=1920
 window/size/height=1080
 window/dpi/allow_hidpi=true
 mouse_cursor/custom_image="res://graphics/images/interface/cursor/normal.png"
+window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
 [gui]
@@ -339,7 +334,7 @@ ui_accept={
 }
 toggle_fullscreen={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":true,"command":true,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777254,"unicode":0,"echo":false,"script":null)
  ]
 }

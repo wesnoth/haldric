@@ -49,15 +49,17 @@ func world_to_world_centered(cell: Vector2) -> Vector2:
 func find_path(start_loc: Location, end_loc: Location) -> Array:
 	var loc_path := []
 	var cell_path: PoolVector2Array = grid.find_path_by_cell(start_loc.cell, end_loc.cell)
-	cell_path.remove(0)
-	for cell in cell_path:
-		loc_path.append(get_location(cell))
+	if cell_path.size() > 0:
+		cell_path.remove(0)
+		for cell in cell_path:
+			loc_path.append(get_location(cell))
 
 	return loc_path
 
-func extend_viewable(unit: Unit) -> Array:
-	var extend_hexes := []
-	update_weight(unit, false, true)
+func extend_viewable(unit: Unit) -> bool:
+	var new_unit_found  = false
+	#var extend_hexes := []
+	#update_weight(unit, false, true)
 	var cells := Hex.get_cells_around(unit.location.cell, unit.type.moves, Vector2(rect.size.x, rect.size.y))
 	cells.invert()
 	var cur_index = 0
@@ -68,7 +70,7 @@ func extend_viewable(unit: Unit) -> Array:
 		var loc = get_location(cell)
 		if not unit.side.viewable.has(loc):
 			no_change = false
-			var path: Array = find_path(unit.location, get_location(cell))
+			var path: Array = find_path(unit.location, loc)
 			var cost := 0
 			for path_cell in path:
 				var cell_cost = grid.get_point_weight_scale(_flatten(path_cell.cell))
@@ -77,7 +79,11 @@ func extend_viewable(unit: Unit) -> Array:
 				cost += cell_cost
 				if not unit.side.viewable.has(path_cell):
 					unit.side.viewable[path_cell] = 1
-					extend_hexes.append(path_cell)
+					if path_cell.unit:
+						if not path_cell.unit.side == unit.side:
+							new_unit_found = true
+							unit.side.viewable_units[path_cell.unit] = 1
+					#extend_hexes.append(path_cell)
 				if cost == unit.type.moves:
 					break
 		cur_index += 1
@@ -87,8 +93,9 @@ func extend_viewable(unit: Unit) -> Array:
 			check_radius -= 1
 			next_cutoff += check_radius * 6
 			no_change = true
-	
-	return extend_hexes
+
+	#return extend_hexes
+	return new_unit_found
 
 #seprate wrapper function for "find_all_reachable_cells" since threads can only handle 1 argument being passed for some reason
 func threadable_find_all_reachable_cells(arg_array: Array) -> Dictionary:
@@ -161,8 +168,8 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 					cost = 1
 					#var current_cell := Vector2(cell.x, cell.y + 1)
 					#var next_cell := Vector2(cell.x, cell.y + 1)
+					grid.make_cell_one_way(location.cell)
 					if ignore_ZOC:
-						Hex.make_cell_one_way(location.cell)
 						ZOC_tiles[location]=[]
 					else:
 						var neighbors: Array = Hex.get_neighbors(location.cell)
@@ -176,10 +183,8 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 							for new_neighbor in new_neighbors:
 								if not _is_cell_in_map(new_neighbor):
 									continue
-								if new_neighbor in neighbors and not unit.location.cell == new_neighbor:
+								if (new_neighbor in neighbors and not unit.location.cell == new_neighbor) or new_neighbor == location.cell:
 									continue
-								if new_neighbor == location.cell:
-									grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
 								elif get_location(new_neighbor) in ZOC_tiles.keys():
 									if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
 										grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
