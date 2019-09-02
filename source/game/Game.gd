@@ -33,8 +33,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			elif (current_unit and loc.unit and loc.unit.side.number != current_side.number  
 				  and current_unit.reachable.has(loc)):
 				
-				current_unit.move_to(_get_path_for_unit(current_unit, loc))
-				yield(scenario, "unit_move_finished")
+				var loc_before_unit = _get_path_for_unit(current_unit, loc)
+				
+				# move only if there is distance between the current unit and the taget
+				if loc_before_unit.size() > 1:
+					loc_before_unit.remove(loc_before_unit.size()-1)
+					current_unit.move_to(loc_before_unit)
+					yield(scenario, "unit_move_finished")
+				
 				HUD.show_attack_popup(current_unit, loc.unit)
 
 	# Deselect a unit
