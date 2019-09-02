@@ -1,15 +1,17 @@
 extends Popup
 class_name AttackPopup
 
-signal attack_selected(attack)
+signal attack_selected(attack, target)
 
 const AttackButton = preload("res://source/interface/hud/components/AttackButton.tscn")
 
 onready var attack_buttons := $MarginContainer/AttackButtons as VBoxContainer
+var target_unit: Unit = null
 
-func popup_attack(unit: Unit) -> void:
+func popup_attack(unit: Unit, target: Unit) -> void:
 	_clear()
 	var attacks = unit.type.get_attacks()
+	target_unit = target
 
 	if not attacks:
 		return
@@ -27,5 +29,5 @@ func _clear() -> void:
 		attack_buttons.remove_child(button)
 
 func _on_button_pressed(attack: Attack) -> void:
-	emit_signal("attack_selected", attack)
+	emit_signal("attack_selected", attack, target_unit)
 	hide()

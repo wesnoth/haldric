@@ -2,7 +2,7 @@ extends CanvasLayer
 
 signal turn_end_pressed
 signal unit_advancement_selected(unit, unit_id)
-signal attack_selected(attack)
+signal attack_selected(attack, target)
 
 onready var advancement_popup := $AdvancementPopup as AdvancementPopup
 onready var attack_popup := $AttackPopup as AttackPopup
@@ -20,8 +20,8 @@ func _ready() -> void:
 func show_advancement_popup(unit: Unit) -> void:
 	advancement_popup.popup_unit(unit)
 
-func show_attack_popup(unit: Unit) -> void:
-	attack_popup.popup_attack(unit)
+func show_attack_popup(unit: Unit, target: Unit) -> void:
+	attack_popup.popup_attack(unit, target)
 
 func update_time_info(time: Time) -> void:
 	if not time:
@@ -40,8 +40,8 @@ func clear_unit_info() -> void:
 func _on_advancement_selected(unit: Unit, unit_id: String) -> void:
 	emit_signal("unit_advancement_selected", unit, unit_id)
 
-func _on_attack_selected(attack: Attack) -> void:
-	emit_signal("attack_selected", attack)
+func _on_attack_selected(attack: Attack, target: Unit) -> void:
+	emit_signal("attack_selected", attack, target)
 
 func _on_Back_pressed() -> void:
 	Scene.change(Scene.TitleScreen)

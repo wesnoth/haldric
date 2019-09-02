@@ -6,7 +6,6 @@ var scenario: Scenario = null
 
 var current_side: Side = null setget _set_side
 var current_unit: Unit = null setget _set_current_unit
-var current_attack: Attack = null
 
 onready var tween = $Tween
 
@@ -36,11 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 				current_unit.move_to(_get_path_for_unit(current_unit, loc))
 				yield(scenario, "unit_move_finished")
-				HUD.show_attack_popup(current_unit)
-				yield(HUD, "attack_selected")
-				current_unit.execute_attack(loc.unit, current_attack)
-				
-				_set_current_unit(null)
+				HUD.show_attack_popup(current_unit, loc.unit)
 
 	# Deselect a unit
 	elif event.is_action_pressed("mouse_right"):
@@ -196,8 +191,9 @@ func _on_unit_experienced(unit: Unit) -> void:
 func _on_unit_advancement_selected(unit: Unit, unit_id: String) -> void:
 	unit.advance(Registry.units[unit_id].instance())
 
-func _on_attack_selected(attack: Attack) -> void:
-	current_attack = attack
+func _on_attack_selected(attack: Attack, target: Unit) -> void:
+	current_unit.execute_attack(target, attack)
+	_set_current_unit(null)
 
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)
@@ -207,6 +203,7 @@ func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> voi
 	unit.set_reachable()
 	if halted:
 		_set_current_unit(unit)
+
 func _on_HUD_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
 	_next_side()
