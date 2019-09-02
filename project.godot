@@ -20,6 +20,16 @@ _global_script_classes=[ {
 "path": "res://source/unit/Attack.gd"
 }, {
 "base": "Control",
+"class": "AttackPlate",
+"language": "GDScript",
+"path": "res://source/interface/hud/components/AttackPlate.gd"
+}, {
+"base": "Popup",
+"class": "AttackPopup",
+"language": "GDScript",
+"path": "res://source/interface/hud/AttackPopup.gd"
+}, {
+"base": "Control",
 "class": "ButtonHover",
 "language": "GDScript",
 "path": "res://source/interface/menus/components/menu_bar/ButtonHover.gd"
@@ -208,10 +218,17 @@ _global_script_classes=[ {
 "class": "VButtonHover",
 "language": "GDScript",
 "path": "res://source/interface/menus/components/menu_bar/VButtonHover.gd"
+}, {
+"base": "MenuBar",
+"class": "VMenuBar",
+"language": "GDScript",
+"path": "res://source/interface/menus/components/menu_bar/VMenuBar.gd"
 } ]
 _global_script_class_icons={
 "AdvancementPopup": "",
 "Attack": "",
+"AttackPlate": "",
+"AttackPopup": "",
 "ButtonHover": "",
 "CampaignCard": "",
 "CampaignSelector": "",
@@ -249,7 +266,8 @@ _global_script_class_icons={
 "Transitions": "",
 "Unit": "",
 "UnitType": "",
-"VButtonHover": ""
+"VButtonHover": "",
+"VMenuBar": ""
 }
 
 [application]

@@ -9,6 +9,7 @@ onready var attack_buttons := $MarginContainer/AttackButtons as VBoxContainer
 var target_unit: Unit = null
 
 func popup_attack(unit: Unit, target: Unit) -> void:
+	get_tree().call_group("UnitPathDisplay", "hide")
 	_clear()
 	var attacks = unit.type.get_attacks()
 	target_unit = target
@@ -29,5 +30,6 @@ func _clear() -> void:
 		attack_buttons.remove_child(button)
 
 func _on_button_pressed(attack: Attack) -> void:
+	get_tree().call_group("UnitPathDisplay", "show")
 	emit_signal("attack_selected", attack, target_unit)
 	hide()

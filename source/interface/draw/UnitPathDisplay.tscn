@@ -7,7 +7,9 @@ _data = {
 "points": PoolVector2Array(  )
 }
 
-[node name="UnitPathDisplay" type="Path2D"]
+[node name="UnitPathDisplay" type="Path2D" groups=[
+"UnitPathDisplay",
+]]
 z_index = 500
 curve = SubResource( 1 )
 script = ExtResource( 1 )
