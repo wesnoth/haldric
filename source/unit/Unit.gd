@@ -96,7 +96,7 @@ func found_matching_attack(target: Unit, attack: Attack) -> Attack:
 	for ennemy_attack in target.type.get_attacks():
 		if(ennemy_attack.reach == attack.reach):
 			return ennemy_attack
-	
+
 	#return an empty attack if no matching attack is found
 	var empty_attack = Attack.new()
 	return empty_attack
@@ -104,11 +104,11 @@ func found_matching_attack(target: Unit, attack: Attack) -> Attack:
 func execute_attack(target: Unit, attack: Attack) -> void:
 	var attacker_attack = attack
 	var defender_attack = found_matching_attack(target, attack)
-	
+
 	var attacker_strikes = attacker_attack.strikes
 	var defender_strikes = defender_attack.strikes
 	while attacker_strikes > 0 or defender_strikes > 0:
-		if attacker_strikes> 0:
+		if attacker_strikes > 0:
 			target.receive_attack(attacker_attack)
 			attacker_strikes -= 1
 		if defender_strikes > 0:
@@ -117,7 +117,7 @@ func execute_attack(target: Unit, attack: Attack) -> void:
 
 func get_movement_cost(loc: Location) -> int:
 	var cost =  type.movement.get(loc.terrain.type[0])
-	if (loc.terrain.type.size() > 1):
+	if loc.terrain.type.size() > 1:
 		var cost_overlay = type.movement.get(loc.terrain.type[1])
 		cost = max(cost_overlay, cost)
 	return cost
@@ -156,6 +156,7 @@ func update_viewable() -> bool:
 			return location.map.extend_viewable(self) #do not thread, causes a lot of issues when threaded for some reason
 		return new_unit_found
 	return false
+
 func _set_experience_current(value: int) -> void:
 	experience_current = value
 	if experience_current >= type.experience:
