@@ -41,6 +41,8 @@ func _move():
 
 		if host.location.map.ZOC_tiles.has(host.location):
 			host.moves_current = 0
+			host.path = []
+			host.tween.stop(host, "positon")
 		else:
 			host.moves_current -= cost
 		var new_unit_found = host.update_viewable()

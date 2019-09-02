@@ -29,6 +29,19 @@ func _unhandled_input(event: InputEvent) -> void:
 			elif current_unit and not loc.unit:
 				current_unit.move_to(_get_path_for_unit(current_unit, loc))
 				_set_current_unit(null)
+			
+			elif (current_unit and loc.unit and loc.unit.side.number != current_side.number  
+				  and current_unit.reachable.has(loc)):
+				
+				var loc_before_unit = _get_path_for_unit(current_unit, loc)
+				
+				# move only if there is distance between the current unit and the taget
+				if loc_before_unit.size() > 1:
+					loc_before_unit.remove(loc_before_unit.size()-1)
+					current_unit.move_to(loc_before_unit)
+					yield(scenario, "unit_move_finished")
+				
+				HUD.show_attack_popup(current_unit, loc.unit)
 
 	# Deselect a unit
 	elif event.is_action_pressed("mouse_right"):
@@ -65,6 +78,8 @@ func _ready() -> void:
 
 	# warning-ignore:return_value_discarded
 	HUD.connect("unit_advancement_selected", self, "_on_unit_advancement_selected")
+	# warning-ignore:return_value_discarded
+	HUD.connect("attack_selected", self, "_on_attack_selected")
 
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
@@ -182,6 +197,10 @@ func _on_unit_experienced(unit: Unit) -> void:
 func _on_unit_advancement_selected(unit: Unit, unit_id: String) -> void:
 	unit.advance(Registry.units[unit_id].instance())
 
+func _on_attack_selected(attack: Attack, target: Unit) -> void:
+	current_unit.execute_attack(target, attack)
+	_set_current_unit(null)
+
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)
 
@@ -190,6 +209,7 @@ func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> voi
 	unit.set_reachable()
 	if halted:
 		_set_current_unit(unit)
+
 func _on_HUD_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
 	_next_side()

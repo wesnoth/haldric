@@ -88,6 +88,33 @@ func move_to(new_path: Array) -> void:
 	path = new_path
 	change_state("move")
 
+func receive_attack(attack: Attack) -> void:
+	health_current -= attack.damage
+	print("receive damage: %d" % attack.damage)
+
+func found_matching_attack(target: Unit, attack: Attack) -> Attack:
+	for ennemy_attack in target.type.get_attacks():
+		if(ennemy_attack.reach == attack.reach):
+			return ennemy_attack
+	
+	#return an empty attack if no matching attack is found
+	var empty_attack = Attack.new()
+	return empty_attack
+
+func execute_attack(target: Unit, attack: Attack) -> void:
+	var attacker_attack = attack
+	var defender_attack = found_matching_attack(target, attack)
+	
+	var attacker_strikes = attacker_attack.strikes
+	var defender_strikes = defender_attack.strikes
+	while attacker_strikes > 0 or defender_strikes > 0:
+		if attacker_strikes> 0:
+			target.receive_attack(attacker_attack)
+			attacker_strikes -= 1
+		if defender_strikes > 0:
+			self.receive_attack(defender_attack)
+			defender_strikes -= 1
+
 func get_movement_cost(loc: Location) -> int:
 	var cost =  type.movement.get(loc.terrain.type[0])
 	if (loc.terrain.type.size() > 1):
