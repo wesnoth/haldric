@@ -112,6 +112,10 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 	paths[unit.location] = []
 	var radius = (unit.type.moves if ignore_moves else unit.moves_current)
 	var cells := Hex.get_cells_around(unit.location.cell, radius, Vector2(rect.size.x, rect.size.y))
+	if cells.size() == 0:
+		if ZOC_tiles.has(unit.location):
+			for enemey_cell in ZOC_tiles[unit.location]:
+				paths[enemey_cell] = [enemey_cell]
 	cells.invert()
 	for cell in cells:
 		if paths.has(cell):
@@ -123,23 +127,22 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 		var cost := 0
 		for path_cell in path:
 			var cell_cost = grid.get_point_weight_scale(_flatten(path_cell.cell))
-			if ZOC_tiles.has(path_cell) and not ignore_units:
-				cell_cost = 1
+			#if ZOC_tiles.has(path_cell) and not ignore_units:
+			#	cell_cost = 1
 			if cost + cell_cost > radius:
 				break
 
 			cost += cell_cost
 			new_path.append(path_cell)
 			paths[path_cell] = new_path.duplicate(true)
-			if ZOC_tiles.has(path_cell) and not ignore_units:
-				var attack_path = new_path.duplicate(true)
-				for enemey_cell in ZOC_tiles[path_cell]:
-					if not paths.has(enemey_cell):
-						attack_path.append(enemey_cell)
-						paths[enemey_cell] = attack_path.duplicate(true)
-						attack_path.pop_back()
-				break
 			if cost == radius:
+				if ZOC_tiles.has(path_cell) and not ignore_units:
+					var attack_path = new_path.duplicate(true)
+					for enemey_cell in ZOC_tiles[path_cell]:
+						if not paths.has(enemey_cell):
+							attack_path.append(enemey_cell)
+							paths[enemey_cell] = attack_path.duplicate(true)
+							attack_path.pop_back()
 				break
 	return paths
 
@@ -153,7 +156,8 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 		grid.unblock_cell(loc.cell)
 		for val in ZOC_tiles[loc]:
 			grid.unblock_cell(val.cell)
-	ZOC_tiles.clear()
+	if not ignore_units:
+		ZOC_tiles.clear()
 
 	for y in rect.size.y:
 		for x in rect.size.x:
@@ -183,8 +187,10 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 							for new_neighbor in new_neighbors:
 								if not _is_cell_in_map(new_neighbor):
 									continue
-								if (new_neighbor in neighbors and not unit.location.cell == new_neighbor) or new_neighbor == location.cell:
+								if (new_neighbor in neighbors and not unit.location.cell == new_neighbor):
 									continue
+								elif new_neighbor == location.cell:
+									grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
 								elif get_location(new_neighbor) in ZOC_tiles.keys():
 									if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
 										grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
