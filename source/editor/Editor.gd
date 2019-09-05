@@ -99,7 +99,7 @@ func _save_map(scenario_name: String) -> void:
 	#warning-ignore:return_value_discarded
 	packed_scene.pack(scenario)
 
-	var r_scenario = RScenario.new();
+	var r_scenario := RScenario.new()
 	r_scenario.title = scenario_name
 
 	if ResourceSaver.save(scn_path, packed_scene) != OK:
@@ -107,9 +107,7 @@ func _save_map(scenario_name: String) -> void:
 	elif ResourceSaver.save(res_path, r_scenario) != OK:
 		print("Failed to save map resource", res_path)
 	else:
-		Registry.scenarios[id] = {}
-		Registry.scenarios[id].data = r_scenario
-		Registry.scenarios[id].path = scn_path
+		Registry.register_scenario(id, r_scenario, scn_path)
 
 func _on_button_pressed(id: int) -> void:
 	if Input.is_action_just_released("mouse_left"):

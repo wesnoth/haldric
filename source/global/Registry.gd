@@ -21,6 +21,11 @@ func scan() -> void:
 	_load_times()
 	_load_schedules()
 
+func register_scenario(scenario_id: String, scneario_resource: RScenario, scn_path: String) -> void:
+	scenarios[scenario_id] = {}
+	scenarios[scenario_id].data = scneario_resource
+	scenarios[scenario_id].path = scn_path
+
 func _load_units() -> void:
 	units.clear()
 
