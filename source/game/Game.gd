@@ -28,7 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			# Move the selected unit
 			elif current_unit and (not loc.unit or loc.unit.side.number != current_side.number and current_unit.reachable.has(loc)):
 				current_unit.move_to(_get_path_for_unit(current_unit, loc))
-				if loc.unit:
+				if loc.unit and loc.unit != current_unit:
 					HUD.show_attack_popup(current_unit, loc.unit)
 				else:
 					_set_current_unit(null)
