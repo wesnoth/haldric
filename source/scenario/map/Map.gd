@@ -180,23 +180,22 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 						for neighbor in neighbors:
 							if not _is_cell_in_map(neighbor):
 								continue
-							if unit.location.cell == neighbor:
-								continue
-							grid.block_cell(neighbor)
-							var new_neighbors = Hex.get_neighbors(neighbor)
-							for new_neighbor in new_neighbors:
-								if not _is_cell_in_map(new_neighbor):
-									continue
-								if (new_neighbor in neighbors and not unit.location.cell == new_neighbor):
-									continue
-								elif new_neighbor == location.cell:
-									if not locations[_flatten(neighbor)].unit:
-										grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
-								elif get_location(new_neighbor) in ZOC_tiles.keys():
-									if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
-										grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
-								else:
-									grid.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
+							if unit.location.cell != neighbor:
+								grid.block_cell(neighbor)
+								var new_neighbors = Hex.get_neighbors(neighbor)
+								for new_neighbor in new_neighbors:
+									if not _is_cell_in_map(new_neighbor):
+										continue
+									if (new_neighbor in neighbors and not unit.location.cell == new_neighbor):
+										continue
+									elif new_neighbor == location.cell:
+										if not locations[_flatten(neighbor)].unit:
+											grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
+									elif get_location(new_neighbor) in ZOC_tiles.keys():
+										if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
+											grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
+									else:
+										grid.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
 							if ZOC_tiles.has(get_location(neighbor)):
 								ZOC_tiles[get_location(neighbor)].append(location)
 							else:

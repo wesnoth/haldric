@@ -21,7 +21,7 @@ func _move():
 		var loc: Location = host.path[0]
 		var cost = host.get_movement_cost(loc)
 		var ignore_halt = false
-		if cost > host.moves_current:
+		if cost > host.moves_current or loc.unit and loc.unit.side != host.side:
 			host.emit_signal("move_finished", host, host.location, false)
 			host.change_state("idle")
 			return
