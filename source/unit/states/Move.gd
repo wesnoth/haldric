@@ -42,6 +42,7 @@ func _move():
 		if host.location.map.ZOC_tiles.has(host.location):
 			host.moves_current = 0
 			host.path = [loc]
+			host.side.set_unit_reachables(true)
 			host.tween.stop(host, "positon")
 		else:
 			host.moves_current -= cost

@@ -30,9 +30,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				current_unit.move_to(_get_path_for_unit(current_unit, loc))
 				_set_current_unit(null)
 
-			elif (current_unit and loc.unit and loc.unit.side.number != current_side.number
-				  and current_unit.reachable.has(loc)):
-
+			elif (current_unit and loc.unit and loc.unit.side.number != current_side.number and current_unit.reachable.has(loc)):
 				var loc_before_unit = _get_path_for_unit(current_unit, loc)
 
 				# move only if there is distance between the current unit and the taget
@@ -147,14 +145,8 @@ func _set_side(value: Side) -> void:
 		HUD.update_time_info(scenario.schedule.current_time)
 
 	HUD.update_side_info(scenario, current_side)
-
-	current_side.viewable.clear()
-	current_side.viewable_units.clear()
-
-	for unit in current_side.units.get_children():
-		unit.moves_current = unit.type.moves
-		unit.viewable.clear()
-		unit.set_reachable()
+	
+	current_side.set_unit_reachables()
 
 func _next_side() -> void:
 	if scenario.turns >= 0 and scenario.turn > scenario.turns:

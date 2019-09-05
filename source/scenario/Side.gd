@@ -62,6 +62,17 @@ func add_unit(unit) -> void:
 	_calculate_upkeep()
 	_calculate_income()
 
+func set_unit_reachables(update: bool = false) -> void:
+	if fog and not update:
+		viewable.clear()
+		viewable_units.clear()
+
+	for unit in units.get_children():
+		if not update:
+			unit.moves_current = unit.type.moves
+			unit.viewable.clear()
+		unit.set_reachable(not update)
+
 func add_village(loc: Location) -> bool:
 	if not villages.has(loc):
 		villages.append(loc)
