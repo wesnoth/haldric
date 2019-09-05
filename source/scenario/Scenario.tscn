@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://source/scenario/Scenario.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/Schedule.gd" type="Script" id=2]
-[ext_resource path="res://source/scenario/map/Map.tscn" type="PackedScene" id=3]
 
 [node name="Scenario" type="Control"]
 rect_clip_content = true
@@ -13,5 +12,3 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Sides" type="Node2D" parent="."]
-
-[node name="Map" parent="." instance=ExtResource( 3 )]

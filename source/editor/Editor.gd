@@ -101,6 +101,7 @@ func _save_map(scenario_name: String) -> void:
 
 	var r_scenario := RScenario.new()
 	r_scenario.title = scenario_name
+	r_scenario.map_data = scenario.map.get_map_data()
 
 	if ResourceSaver.save(scn_path, packed_scene) != OK:
 		print("Failed to save map scene ", scn_path)

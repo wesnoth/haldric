@@ -76,13 +76,16 @@ func _ready() -> void:
 	HUD.update_time_info(scenario.schedule.current_time)
 
 func _load_scenario() -> void:
-	scenario = Loader.load_scenario(Global.state.scenario_name)
+	scenario = Loader.load_scenario(Global.state.scenario.id)
 
 	# TODO: error handling
 	if not scenario:
 		pass
 
 	scenario_placeholder.replace_by(scenario)
+	scenario.map.map_data = Global.state.scenario.data.map_data
+	scenario.initialize()
+
 	#warning-ignore:return_value_discarded
 	scenario.connect("unit_experienced", self, "_on_unit_experienced")
 	#warning-ignore:return_value_discarded
@@ -136,7 +139,7 @@ func _set_side(value: Side) -> void:
 		HUD.update_time_info(scenario.schedule.current_time)
 
 	HUD.update_side_info(scenario, current_side)
-	
+
 	current_side.set_unit_reachables()
 
 func _next_side() -> void:

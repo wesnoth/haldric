@@ -70,6 +70,7 @@ func change_state(new_state):
 func place_at(loc: Location) -> void:
 	if location:
 		location.unit = null
+
 	location = loc
 	position = location.position
 	location.unit = self

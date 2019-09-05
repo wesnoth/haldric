@@ -7,7 +7,7 @@ var version: Vector3 = _get_version()
 var version_string: String = _get_version_string()
 
 var state := {
-	scenario_name = "",
+	scenario = {},
 	current_side = null,
 }
 

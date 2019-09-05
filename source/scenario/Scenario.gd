@@ -1,6 +1,7 @@
 extends Control
 class_name Scenario
 
+const Map = preload("res://source/scenario/map/Map.tscn")
 signal unit_experienced(unit)
 signal unit_moved(unit, location)
 signal unit_move_finished(unit, location)
@@ -10,13 +11,22 @@ var turns := -1
 
 export var schedule_id := "default"
 
-onready var map := $Map as Map
+onready var map := Map.instance() as Map
 onready var sides := $Sides as Node
 onready var schedule := $Schedule as Schedule
 
 func _ready() -> void:
+	add_child(map)
+
+func _start() -> void:
+	pass
+
+func initialize() -> void:
+	map.initialize()
+
 	_load_schedule()
 	update_size()
+	_start()
 
 func get_side(side_number: int) -> Side:
 	return sides.get_child(side_number - 1) as Side

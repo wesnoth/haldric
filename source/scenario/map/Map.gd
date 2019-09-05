@@ -11,10 +11,13 @@ var void_tile := tile_set.find_tile_by_name(VOID_TERRAIN)
 
 var rect := Rect2()
 
+var map_data := {}
+
 var labels := []
 var locations := []
 var grid: Grid = null
 var ZOC_tiles := {}
+
 
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
@@ -23,7 +26,11 @@ onready var transitions := $Transitions as Transitions
 onready var border := $MapBorder
 onready var hover := $Hover
 
-func _ready() -> void:
+func initialize() -> void:
+	clear()
+
+	_initialize_terrain()
+
 	_update_size()
 
 	_initialize_locations()
@@ -146,6 +153,9 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 				break
 	return paths
 
+func update_terrain_from_map_data(map_data: Dictionary) -> void:
+	pass
+
 func update_terrain() -> void:
 	# TODO: no need to update everything. Restrict this to specific rects
 	_update_locations()
@@ -245,6 +255,21 @@ func get_pixel_size() -> Vector2:
 	else:
 		return map_to_world(rect.size) + Vector2(18, 0)
 
+func get_map_data() -> Dictionary:
+	var map_data := {}
+
+	for y in rect.size.y:
+		for x in rect.size.x:
+			var cell := Vector2(x, y)
+			var id := _flatten(cell)
+
+			map_data[id] = {}
+			map_data[id].cell = cell
+			map_data[id].code = get_location(cell).terrain.code
+
+	return map_data
+
+# deprecated
 func get_map_string() -> String:
 	var string := ""
 
@@ -269,6 +294,14 @@ func get_map_string() -> String:
 		string += "\n"
 
 	return string
+
+func _initialize_terrain() -> void:
+
+	for terrain in map_data.values():
+		set_cellv(terrain.cell, tile_set.find_tile_by_name(terrain.code[0]))
+
+		if terrain.code.size() > 1:
+			overlay.set_cellv(terrain.cell, tile_set.find_tile_by_name(terrain.code[1]))
 
 func _initialize_locations() -> void:
 	locations.clear()
