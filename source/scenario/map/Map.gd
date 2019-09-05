@@ -27,8 +27,6 @@ onready var border := $MapBorder
 onready var hover := $Hover
 
 func initialize() -> void:
-	clear()
-
 	_initialize_terrain()
 
 	_update_size()
