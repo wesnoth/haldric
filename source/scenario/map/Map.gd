@@ -194,16 +194,20 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 								for new_neighbor in new_neighbors:
 									if not _is_cell_in_map(new_neighbor):
 										continue
-									if (new_neighbor in neighbors and not unit.location.cell == new_neighbor):
-										continue
+									#if (new_neighbor in neighbors and unit.location.cell == new_neighbor):
+									#	continue
 									elif new_neighbor == location.cell:
-										if not locations[_flatten(neighbor)].unit:
+										var temp_unit = locations[_flatten(neighbor)].unit
+										if not temp_unit or temp_unit == unit:
 											grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
-									elif get_location(new_neighbor) in ZOC_tiles.keys():
+									elif not unit.location.cell == new_neighbor and get_location(new_neighbor) in ZOC_tiles.keys():
 										if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
 											grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
 									else:
 										grid.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
+							else:
+								if not grid.are_points_connected(_flatten(neighbor),_flatten(location.cell)):
+									grid.connect_points(_flatten(neighbor),_flatten(location.cell),false)
 							if ZOC_tiles.has(get_location(neighbor)):
 								ZOC_tiles[get_location(neighbor)].append(location)
 							else:
