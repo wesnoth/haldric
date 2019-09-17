@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var schedule := []
 
@@ -10,11 +10,11 @@ var current_unit: Unit = null setget _set_current_unit
 onready var tween = $Tween
 
 onready var HUD := $HUD as CanvasLayer
-onready var draw := $ViewportContainer/Viewport/Draw as Node2D
+onready var draw := $ScenarioLayer/ViewportContainer/Viewport/Draw as Node2D
 
-onready var viewport_container = $ViewportContainer
-onready var scenario_viewport := $ViewportContainer/Viewport as Viewport
-onready var scenario_placeholder := $ViewportContainer/Viewport/ScenarioPlaceholder as Node
+onready var viewport_container = $ScenarioLayer/ViewportContainer
+onready var scenario_viewport := $ScenarioLayer/ViewportContainer/Viewport as Viewport
+onready var scenario_placeholder := $ScenarioLayer/ViewportContainer/Viewport/ScenarioPlaceholder as Node
 
 func _unhandled_input(event: InputEvent) -> void:
 	var loc: Location = scenario.map.get_location_from_mouse()
