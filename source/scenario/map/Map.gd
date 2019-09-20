@@ -1,7 +1,7 @@
 extends TileMap
 class_name Map
 
-const OFFSET := Vector2(36, 36)
+const OFFSET := Vector2(36, 36) # Half the size of the tilemap size, so that the highlight display is centered on the hex
 
 const DEFAULT_TERRAIN := "Gg"
 const VOID_TERRAIN := "Xv"
