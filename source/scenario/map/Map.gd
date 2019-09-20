@@ -43,7 +43,6 @@ func _input(event) -> void:
 		else:
 			offset_position = get_local_mouse_position()
 		var cell := world_to_map(offset_position)
-		#var cell := world_to_map(get_local_mouse_position())
 	
 		# TODO: also hide on borders
 		if not rect.has_point(cell):
