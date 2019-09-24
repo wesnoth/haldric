@@ -1,7 +1,7 @@
 extends TileMap
 class_name Map
 
-const OFFSET := Vector2(36, 36)
+const OFFSET := Vector2(36, 36) # Half the size of the tilemap cell size, so that the highlight display is centered on the hex
 
 const DEFAULT_TERRAIN := "Gg"
 const VOID_TERRAIN := "Xv"
@@ -36,20 +36,33 @@ func initialize() -> void:
 	_initialize_grid()
 	_initialize_transitions()
 
-func _process(delta: float) -> void:
-	var cell := world_to_map(get_global_mouse_position())
+func _input(event) -> void: 
+	if event is InputEventMouseMotion:  # If the mouse is moving, we update the highlight position on the map.
+		var offset_position := Vector2()
+		if get_tree().current_scene.name == 'Game': # Workaround for bug https://github.com/godotengine/godot/issues/32222
+			offset_position = get_tree().current_scene.get_global_mouse_position() - get_viewport_transform().origin
+		else:
+			offset_position = get_local_mouse_position()
+		var cell := world_to_map(offset_position)
+	
+		# TODO: also hide on borders
+		if not rect.has_point(cell):
+			hover.hide()
+		else:
+			hover.show()
+			hover.position = map_to_world_centered(cell)
 
-	# TODO: also hide on borders
-	if not rect.has_point(cell):
-		hover.hide()
-	else:
-		hover.show()
-		hover.position = map_to_world_centered(cell)
+func map_to_world_centered(cell: Vector2) -> Vector2: 
+	"""
+	Function to get the center of the hex
+	It maps the provided Vector2 position to the tilemap, then offsets it by half the size of the cell.
+	"""
+	return map_to_world(cell) + OFFSET 
 
-func map_to_world_centered(cell: Vector2) -> Vector2:
-	return map_to_world(cell) + OFFSET
-
-func world_to_world_centered(cell: Vector2) -> Vector2:
+func world_to_world_centered(cell: Vector2) -> Vector2: 
+	"""
+	Function to get the center position of a given hexcell.
+	"""
 	return map_to_world_centered(world_to_map(cell))
 
 func find_path(start_loc: Location, end_loc: Location) -> Array:
