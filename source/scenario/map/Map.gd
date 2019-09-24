@@ -15,6 +15,7 @@ var map_data := {}
 
 var labels := []
 var locations := []
+var locations_dict := {}
 var grid: Grid = null
 var ZOC_tiles := {}
 
@@ -330,6 +331,7 @@ func _initialize_locations() -> void:
 			_update_terrain_record_from_map(location)
 
 			locations[id] = location
+			
 
 	_initialize_border()
 
