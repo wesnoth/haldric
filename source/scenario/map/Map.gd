@@ -71,7 +71,7 @@ func map_to_world_centered(cell: Vector2) -> Vector2:
 
 func world_to_world_centered(cell: Vector2) -> Vector2: 
 	"""
-	Function to get the world (i.e. mouse) position of the hexcell over which the mouse is currently positioned on.
+	Function to get the world (i.e. mouse) position of the center of the hexcell over which the mouse is currently positioned on.
 	"""
 	return map_to_world_centered(world_to_map(cell))
 
@@ -191,53 +191,49 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 	if not ignore_units:
 		ZOC_tiles.clear()
 
-	for y in rect.size.y: # We iterare over each tile of the map
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id: int = _flatten(cell)
-			var location: Location = get_location(cell)
-			var cost: int = unit.get_movement_cost(location)
+	for location in locations_dict.values():
+		var cell: Vector2 = location.cell
+		var id: int = location.id
+		var cost: int = unit.get_movement_cost(location)		
+		var other_unit = location.unit
+		if not ignore_units and other_unit:
+			if not other_unit.side.number == unit.side.number:
+				cost = 1
+				#var current_cell := Vector2(cell.x, cell.y + 1)
+				#var next_cell := Vector2(cell.x, cell.y + 1)
+				grid.make_cell_one_way(location.cell)
+				if ignore_ZOC:
+					ZOC_tiles[location]=[]
+				else:
+					for neighbor in location.get_neighbors():
+						if not _is_cell_in_map(neighbor):
+							continue
+						if unit.location.cell != neighbor:
+							grid.block_cell(neighbor)
+							var new_neighbors = Hex.get_neighbors(neighbor)
+							for new_neighbor in new_neighbors:
+								if not _is_cell_in_map(new_neighbor):
+									continue
+								#if (new_neighbor in neighbors and unit.location.cell == new_neighbor):
+								#	continue
+								elif new_neighbor == location.cell:
+									var temp_unit = locations[_flatten(neighbor)].unit
+									if not temp_unit or temp_unit == unit:
+										grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
+								elif not unit.location.cell == new_neighbor and get_location(new_neighbor) in ZOC_tiles.keys():
+									if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
+										grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
+								else:
+									grid.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
+						else:
+							if not grid.are_points_connected(_flatten(neighbor),_flatten(location.cell)):
+								grid.connect_points(_flatten(neighbor),_flatten(location.cell),false)
+						if ZOC_tiles.has(get_location(neighbor)):
+							ZOC_tiles[get_location(neighbor)].append(location)
+						else:
+							ZOC_tiles[get_location(neighbor)] = [location]
 
-			var other_unit = location.unit
-			if not ignore_units and other_unit:
-				if not other_unit.side.number == unit.side.number:
-					cost = 1
-					#var current_cell := Vector2(cell.x, cell.y + 1)
-					#var next_cell := Vector2(cell.x, cell.y + 1)
-					grid.make_cell_one_way(location.cell)
-					if ignore_ZOC:
-						ZOC_tiles[location]=[]
-					else:
-						var neighbors: Array = Hex.get_neighbors(location.cell)
-						for neighbor in neighbors:
-							if not _is_cell_in_map(neighbor):
-								continue
-							if unit.location.cell != neighbor:
-								grid.block_cell(neighbor)
-								var new_neighbors = Hex.get_neighbors(neighbor)
-								for new_neighbor in new_neighbors:
-									if not _is_cell_in_map(new_neighbor):
-										continue
-									#if (new_neighbor in neighbors and unit.location.cell == new_neighbor):
-									#	continue
-									elif new_neighbor == location.cell:
-										var temp_unit = locations[_flatten(neighbor)].unit
-										if not temp_unit or temp_unit == unit:
-											grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
-									elif not unit.location.cell == new_neighbor and get_location(new_neighbor) in ZOC_tiles.keys():
-										if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
-											grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
-									else:
-										grid.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
-							else:
-								if not grid.are_points_connected(_flatten(neighbor),_flatten(location.cell)):
-									grid.connect_points(_flatten(neighbor),_flatten(location.cell),false)
-							if ZOC_tiles.has(get_location(neighbor)):
-								ZOC_tiles[get_location(neighbor)].append(location)
-							else:
-								ZOC_tiles[get_location(neighbor)] = [location]
-
-			grid.set_point_weight_scale(id, cost)
+		grid.set_point_weight_scale(id, cost)
 
 func set_size(size: Vector2) -> void:
 	rect.size = size
