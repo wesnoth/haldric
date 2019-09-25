@@ -330,6 +330,7 @@ func _initialize_terrain() -> void:
 
 func _initialize_locations() -> void:
 	locations.clear()
+	locations_dict.clear()
 	locations.resize(rect.size.x * rect.size.y)
 	
 	
@@ -351,9 +352,8 @@ func _initialize_locations() -> void:
 	_initialize_border()
 
 func _update_locations() -> void:
-	for y in rect.size.y:
-		for x in rect.size.x:
-			_update_terrain_record_from_map(get_location(Vector2(x, y)))
+	for location in locations_dict.values():
+		_update_terrain_record_from_map(location)
 
 func _update_terrain_record_from_map(loc: Location) -> void:
 	# Find the tileset tile on both layers (base and overlay)
