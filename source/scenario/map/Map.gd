@@ -205,33 +205,32 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 				if ignore_ZOC:
 					ZOC_tiles[location]=[]
 				else:
-					for neighbor in location.get_neighbors():
-						if not _is_cell_in_map(neighbor):
+					for adjacent_location in location.get_adjacent_locations():
+						if not _is_cell_in_map(adjacent_location.cell):
 							continue
-						if unit.location.cell != neighbor:
-							grid.block_cell(neighbor)
-							var new_neighbors = Hex.get_neighbors(neighbor)
-							for new_neighbor in new_neighbors:
-								if not _is_cell_in_map(new_neighbor):
+						if unit.location != adjacent_location:
+							grid.block_cell(adjacent_location.cell)
+							for neighbor_location in adjacent_location.get_adjacent_locations():
+								if not _is_cell_in_map(neighbor_location.cell):
 									continue
 								#if (new_neighbor in neighbors and unit.location.cell == new_neighbor):
 								#	continue
-								elif new_neighbor == location.cell:
-									var temp_unit = locations[_flatten(neighbor)].unit
+								elif neighbor_location == location:
+									var temp_unit = locations_dict[adjacent_location.cube_coords].unit
 									if not temp_unit or temp_unit == unit:
-										grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
-								elif not unit.location.cell == new_neighbor and get_location(new_neighbor) in ZOC_tiles.keys():
-									if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
-										grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
+										grid.connect_points(adjacent_location.id,neighbor_location.id,false)
+								elif not unit.location == neighbor_location and neighbor_location in ZOC_tiles.keys():
+									if grid.are_points_connected(neighbor_location.id,adjacent_location.id):
+										grid.disconnect_points(neighbor_location.id,adjacent_location.id)
 								else:
-									grid.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
+									grid.connect_points(neighbor_location.id,adjacent_location.id,false)
 						else:
-							if not grid.are_points_connected(_flatten(neighbor),_flatten(location.cell)):
-								grid.connect_points(_flatten(neighbor),_flatten(location.cell),false)
-						if ZOC_tiles.has(get_location(neighbor)):
-							ZOC_tiles[get_location(neighbor)].append(location)
+							if not grid.are_points_connected(adjacent_location.id,location.id):
+								grid.connect_points(adjacent_location.id,location.id,false)
+						if ZOC_tiles.has(adjacent_location):
+							ZOC_tiles[adjacent_location].append(location)
 						else:
-							ZOC_tiles[get_location(neighbor)] = [location]
+							ZOC_tiles[adjacent_location] = [location]
 
 		grid.set_point_weight_scale(id, cost)
 
