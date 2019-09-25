@@ -15,7 +15,7 @@ var map_data := {}
 
 var labels := []
 var locations := []
-var locations_dict := {}
+var locations_dict := {} # A dictionary which stores all the locations objects of this scenario.
 var grid: Grid = null
 var ZOC_tiles := {}
 
@@ -51,17 +51,19 @@ func _input(event) -> void:
 		else:
 			hover.show()
 			hover.position = map_to_world_centered(cell)
+			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[Hex.quad_to_hex(cell)].id)
 
 func map_to_world_centered(cell: Vector2) -> Vector2: 
 	"""
 	Function to get the center of the hex
-	It maps the provided Vector2 position to the tilemap, then offsets it by half the size of the cell.
+	It maps the provided tilemap (Vector2) position to the world (i.e mouse position), 
+	then it offsets it by half the size of the cell so that the position falls where the hex is expected to exist.
 	"""
 	return map_to_world(cell) + OFFSET 
 
 func world_to_world_centered(cell: Vector2) -> Vector2: 
 	"""
-	Function to get the center position of a given hexcell.
+	Function to get the world (i.e. mouse) position of the hexcell over which the mouse is currently positioned on.
 	"""
 	return map_to_world_centered(world_to_map(cell))
 
@@ -326,6 +328,7 @@ func _initialize_locations() -> void:
 	for y in rect.size.y:
 		for x in rect.size.x:
 			var cell := Vector2(x, y)
+			var cube_location = Hex.quad_to_hex(cell)
 			var id := _flatten(cell)
 
 			# Reset to default terrain if no terrain is specified
@@ -338,12 +341,14 @@ func _initialize_locations() -> void:
 			location.map = self
 			location.id = id
 			location.cell = cell
+			location.hex = cube_location # We store the hex position in cube coordinates
 			location.position = map_to_world_centered(cell)
 
 			# Do this *after* setting `cell` member
 			_update_terrain_record_from_map(location)
 
 			locations[id] = location
+			locations_dict[cube_location] = location
 			
 
 	_initialize_border()

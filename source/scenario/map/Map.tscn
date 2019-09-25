@@ -54,3 +54,22 @@ axis_stretch_vertical = 1
 
 [node name="Hover" type="Sprite" parent="."]
 texture = ExtResource( 7 )
+
+[node name="HexDebug" type="HBoxContainer" parent="Hover"]
+margin_left = 34.7766
+margin_top = -10.4554
+margin_right = 84.7766
+margin_bottom = 14.5446
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HexCubeLabel" type="Label" parent="Hover/HexDebug"]
+margin_right = 42.0
+margin_bottom = 25.0
+text = "Hex"
+
+[node name="HexCubeLoc" type="Label" parent="Hover/HexDebug"]
+margin_left = 50.0
+margin_right = 50.0
+margin_bottom = 25.0
