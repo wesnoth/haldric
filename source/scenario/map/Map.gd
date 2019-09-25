@@ -44,6 +44,7 @@ func _input(event) -> void:
 		else:
 			offset_position = get_local_mouse_position()
 		var cell := world_to_map(offset_position)
+		var hex_coords = Hex.quad_to_hex(cell)
 	
 		# TODO: also hide on borders
 		if not rect.has_point(cell):
@@ -51,13 +52,13 @@ func _input(event) -> void:
 		else:
 			hover.show()
 			hover.position = map_to_world_centered(cell)
-			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[Hex.quad_to_hex(cell)].id)
+			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[hex_coords].id)
 
 func map_to_world_centered(cell: Vector2) -> Vector2: 
 	"""
 	Function to get the center of the hex
 	It maps the provided tilemap (Vector2) position to the world (i.e mouse position), 
-	then it offsets it by half the size of the cell so that the position falls where the hex is expected to exist.
+	then it offsets it by half the size of the cell so that the mouse position falls where the hex is expected to start.
 	"""
 	return map_to_world(cell) + OFFSET 
 
