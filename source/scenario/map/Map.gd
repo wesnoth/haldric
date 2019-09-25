@@ -36,14 +36,17 @@ func initialize() -> void:
 	_initialize_grid()
 	_initialize_transitions()
 
+func get_viewport_mouse_position() -> Vector2:
+	var offset_position := Vector2()
+	if get_tree().current_scene.name == 'Game': # Workaround for bug https://github.com/godotengine/godot/issues/32222
+		offset_position = get_tree().current_scene.get_global_mouse_position() - get_viewport_transform().origin
+	else:
+		offset_position = get_local_mouse_position()
+	return offset_position
+		
 func _input(event) -> void: 
 	if event is InputEventMouseMotion:  # If the mouse is moving, we update the highlight position on the map.
-		var offset_position := Vector2()
-		if get_tree().current_scene.name == 'Game': # Workaround for bug https://github.com/godotengine/godot/issues/32222
-			offset_position = get_tree().current_scene.get_global_mouse_position() - get_viewport_transform().origin
-		else:
-			offset_position = get_local_mouse_position()
-		var cell := world_to_map(offset_position)
+		var cell := world_to_map(get_viewport_mouse_position())
 		var hex_coords = Hex.quad_to_hex(cell)
 	
 		# TODO: also hide on borders
@@ -393,7 +396,7 @@ func _is_cell_in_map(cell: Vector2) -> bool:
 	return rect.has_point(cell)
 
 func get_location_from_mouse() -> Location:
-	return get_location(world_to_map(get_global_mouse_position()))
+	return get_location(world_to_map(get_viewport_mouse_position()))
 
 func display_reachable_for(reachable_locs: Dictionary) -> void:
 	# "Clear" the cover map by filling in everything with the Void terrain.
