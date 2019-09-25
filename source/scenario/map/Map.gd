@@ -37,8 +37,12 @@ func initialize() -> void:
 	_initialize_transitions()
 
 func get_viewport_mouse_position() -> Vector2:
+	"""
+	Function to catch the internal viewport mouse position
+	Workaround for bug https://github.com/godotengine/godot/issues/32222
+	"""
 	var offset_position := Vector2()
-	if get_tree().current_scene.name == 'Game': # Workaround for bug https://github.com/godotengine/godot/issues/32222
+	if get_tree().current_scene.name == 'Game': 
 		offset_position = get_tree().current_scene.get_global_mouse_position() - get_viewport_transform().origin
 	else:
 		offset_position = get_local_mouse_position()
@@ -187,11 +191,11 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 	if not ignore_units:
 		ZOC_tiles.clear()
 
-	for y in rect.size.y:
+	for y in rect.size.y: # We iterare over each tile of the map
 		for x in rect.size.x:
 			var cell := Vector2(x, y)
 			var id: int = _flatten(cell)
-			var location: Location = locations[id]
+			var location: Location = get_location(cell)
 			var cost: int = unit.get_movement_cost(location)
 
 			var other_unit = location.unit
@@ -267,10 +271,14 @@ func get_village_count() -> int:
 	return overlay.get_used_cells_by_id(overlay.tile_set.find_tile_by_name("^Vh")).size()
 
 func get_location(cell: Vector2) -> Location:
+	"""
+	Returns the location object corresponding to a tilemap cell
+	"""
 	if not _is_cell_in_map(cell):
 		return null
-	return locations[_flatten(cell)]
-
+	var hex_coords := Hex.quad_to_hex(cell)
+	return locations_dict[hex_coords]
+	
 func get_pixel_size() -> Vector2:
 	if int(rect.size.x) % 2 == 0:
 		return map_to_world(rect.size) + Vector2(18, 36)
@@ -328,31 +336,21 @@ func _initialize_terrain() -> void:
 func _initialize_locations() -> void:
 	locations.clear()
 	locations.resize(rect.size.x * rect.size.y)
-
+	
+	
 	for y in rect.size.y:
 		for x in rect.size.x:
 			var cell := Vector2(x, y)
-			var cube_location = Hex.quad_to_hex(cell)
-			var id := _flatten(cell)
-
 			# Reset to default terrain if no terrain is specified
 			reset_if_empty(cell, true)
-
 			cover.set_cellv(cell, void_tile)
 
-			var location := Location.new()
-
-			location.map = self
-			location.id = id
-			location.cell = cell
-			location.hex = cube_location # We store the hex position in cube coordinates
-			location.position = map_to_world_centered(cell)
-
+			var location := Location.new(cell, self)
 			# Do this *after* setting `cell` member
 			_update_terrain_record_from_map(location)
 
-			locations[id] = location
-			locations_dict[cube_location] = location
+			locations[location.id] = location
+			locations_dict[location.cube_coords] = location
 			
 
 	_initialize_border()
