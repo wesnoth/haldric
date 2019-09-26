@@ -67,10 +67,8 @@ static func _generate_id(vec: Vector2, magnitude: int) -> int:
 
 func get_adjacent_locations() -> Array:
 	var neighbor_locations := []
-	var neighbor_hexes := Hex.get_neighbors(cell)
-	for hex in neighbor_hexes:
-		var cube_coords: Vector3 = Hex.quad_to_hex(hex)		
-		var neighbor = map.locations_dict.get(cube_coords, null)
+	for hex in Hex.get_neighbors(cell):
+		var neighbor = map.locdict.get(hex, null)
 		if neighbor:
 			neighbor_locations.append(neighbor)
 	return neighbor_locations

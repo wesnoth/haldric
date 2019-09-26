@@ -51,7 +51,6 @@ func get_viewport_mouse_position() -> Vector2:
 func _input(event) -> void: 
 	if event is InputEventMouseMotion:  # If the mouse is moving, we update the highlight position on the map.
 		var cell := world_to_map(get_viewport_mouse_position())
-		var hex_coords = Hex.quad_to_hex(cell)
 	
 		# TODO: also hide on borders
 		if not rect.has_point(cell):
@@ -59,7 +58,7 @@ func _input(event) -> void:
 		else:
 			hover.show()
 			hover.position = map_to_world_centered(cell)
-			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[hex_coords].id)
+			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[cell].cube_coords)
 
 func map_to_world_centered(cell: Vector2) -> Vector2: 
 	"""
@@ -216,8 +215,7 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 								#if (new_neighbor in neighbors and unit.location.cell == new_neighbor):
 								#	continue
 								elif neighbor_location == location:
-									var temp_unit = adjacent_location.unit
-									if not temp_unit or temp_unit == unit:
+									if not adjacent_location.unit or adjacent_location.unit == unit:
 										grid.connect_points(adjacent_location.id,neighbor_location.id,false)
 								elif not unit.location == neighbor_location and neighbor_location in ZOC_tiles.keys():
 									if grid.are_points_connected(neighbor_location.id,adjacent_location.id):
@@ -271,8 +269,7 @@ func get_location(cell: Vector2) -> Location:
 	"""
 	if not _is_cell_in_map(cell):
 		return null
-	var hex_coords := Hex.quad_to_hex(cell)
-	return locations_dict[hex_coords]
+	return locations_dict[cell]
 	
 func get_pixel_size() -> Vector2:
 	if int(rect.size.x) % 2 == 0:
@@ -346,7 +343,7 @@ func _initialize_locations() -> void:
 			_update_terrain_record_from_map(location)
 
 			locations[location.id] = location
-			locations_dict[location.cube_coords] = location
+			locations_dict[cell] = location
 			
 
 	_initialize_border()
