@@ -18,9 +18,9 @@ func _init(new_map: TileMap, map_rect: Rect2) -> void:
 
 
 
-func find_path_by_cell(start_cell: Vector2, end_cell: Vector2) -> PoolVector2Array:
+func find_path_by_location(start_loc: Location, end_loc: Location) -> PoolVector2Array:
 	var path2D := PoolVector2Array()
-	var path3D: PoolVector3Array = get_point_path(_flatten(start_cell), _flatten(end_cell))
+	var path3D: PoolVector3Array = get_point_path(start_loc.id, end_loc.id)
 	for point in path3D:
 		path2D.append(Vector2(point.x, point.y))
 
