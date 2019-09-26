@@ -14,7 +14,6 @@ var rect := Rect2()
 var map_data := {}
 
 var labels := []
-var locations := []
 var locations_dict := {} # A dictionary which stores all the locations objects of this scenario.
 var grid: Grid = null
 var ZOC_tiles := {}
@@ -295,9 +294,7 @@ func _initialize_terrain() -> void:
 			overlay.set_cellv(terrain.cell, tile_set.find_tile_by_name(terrain.code[1]))
 
 func _initialize_locations() -> void:
-	locations.clear()
 	locations_dict.clear()
-	locations.resize(rect.size.x * rect.size.y)
 	
 	
 	for y in rect.size.y:
@@ -311,7 +308,6 @@ func _initialize_locations() -> void:
 			# Do this *after* setting `cell` member
 			_update_terrain_record_from_map(location)
 
-			locations[location.id] = location
 			locations_dict[cell] = location
 			
 

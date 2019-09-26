@@ -51,8 +51,8 @@ func _connect_with_neighbors(location: Location) -> void:
 	for adjacent_location in location.get_adjacent_locations():
 		if rect.has_point(location.cell) and\
 			not are_points_connected(location.id, adjacent_location.id) and\
-			not map.locations[location.id].is_blocked and\
-			not map.locations[adjacent_location.id].is_blocked:
+			not location.is_blocked and\
+			not adjacent_location.is_blocked:
 			connect_points(location.id, adjacent_location.id)
 
 func _disconnect_with_neighbors(location: Location) -> void:
