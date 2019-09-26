@@ -31,13 +31,14 @@ func _init(tilemap_cell_coords: Vector2, map_instance) -> void:
 	It can even be another location instance.
 	This function also needs the size of the map
 	"""
-	if tilemap_cell_coords:
-		map = map_instance
-		cell = tilemap_cell_coords
-		cube_coords = Hex.quad_to_hex(cell)
-		var rect = map.get_used_rect()
-		id = _generate_id(cell, int(rect.size.x))
-		position = map.map_to_world_centered(cell)
+	map = map_instance
+	cell = tilemap_cell_coords
+	cube_coords = Hex.quad_to_hex(cell)
+	var rect = map.get_used_rect()
+	id = _generate_id(cell, int(rect.size.x))
+	position = map.map_to_world_centered(cell)
+			
+			
 
 #func get_position_centered() -> Vector2:
 	#return position + OFFSET
@@ -68,6 +69,8 @@ func get_adjacent_locations() -> Array:
 	var neighbor_locations := []
 	var neighbor_hexes := Hex.get_neighbors(cell)
 	for hex in neighbor_hexes:
-		var neighbor = map.locations_dict[Hex.quad_to_hex(hex)]
-		neighbor_locations.append(neighbor)
+		var cube_coords: Vector3 = Hex.quad_to_hex(hex)		
+		var neighbor = map.locations_dict.get(cube_coords, null)
+		if neighbor:
+			neighbor_locations.append(neighbor)
 	return neighbor_locations
