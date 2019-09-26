@@ -286,34 +286,6 @@ func get_map_data() -> Dictionary:
 	return map_data
 	
 
-func get_map_string() -> String:
-	"""
-	deprecated
-	"""
-	var string := ""
-
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id: int = _flatten(cell)
-
-			reset_if_empty(cell, true)
-
-			var code: String = tile_set.tile_get_name(get_cellv(cell))
-			var overlay_code := ""
-
-			var overlay_cell: int = overlay.get_cellv(cell)
-
-			if overlay_cell != TileMap.INVALID_CELL:
-				overlay_code = tile_set.tile_get_name(overlay_cell)
-			if x < rect.size.x - 1 and y < rect.size.y - 1:
-				string += code + overlay_code + ","
-			else:
-				string += code + overlay_code
-		string += "\n"
-
-	return string
-
 func _initialize_terrain() -> void:
 
 	for terrain in map_data.values():
@@ -375,9 +347,6 @@ func _update_size() -> void:
 
 func _initialize_transitions() -> void:
 	transitions.initialize(self)
-
-func _flatten(cell: Vector2) -> int:
-	return Utils.flatten(cell, int(rect.size.x))
 
 func _is_cell_in_map(cell: Vector2) -> bool:
 	return rect.has_point(cell)
