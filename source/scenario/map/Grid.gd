@@ -26,18 +26,18 @@ func find_path_by_location(start_loc: Location, end_loc: Location) -> PoolVector
 
 	return path2D
 
-func make_location_one_way(location: Location):
+func make_location_one_way(location: Location) -> void:
 	for adjacent_location in location.get_adjacent_locations():
 		if rect.has_point(adjacent_location.cell) and are_points_connected(location.id, adjacent_location.id):
 			disconnect_points(location.id, adjacent_location.id)
 			connect_points(adjacent_location.id,adjacent_location.id,false)
 
-func block_cell(cell: Vector2):
-	_disconnect_with_neighbors(cell)
+func block_location(location: Location) -> void:
+	_disconnect_with_neighbors(location)
 
-func unblock_cell(cell: Vector2):
-	_disconnect_with_neighbors(cell)
-	_connect_with_neighbors(cell)
+func unblock_location(location: Location) -> void:
+	_disconnect_with_neighbors(location)
+	_connect_with_neighbors(location)
 
 func _generate_points() -> void:
 	for y in rect.size.y:
@@ -48,37 +48,24 @@ func _generate_points() -> void:
 			add_point(id, Vector3(x, y, 0))
 
 func _generate_point_connections() -> void:
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id: int = _flatten(cell)
-			var point: Vector3 = get_point_position(id)
+	for location in map.locations_dict.values():
+		_connect_with_neighbors(location)
 
-			_connect_with_neighbors(cell)
+func _connect_with_neighbors(location: Location) -> void:
+	for adjacent_location in location.get_adjacent_locations():
+		if rect.has_point(location.cell) and\
+			not are_points_connected(location.id, adjacent_location.id) and\
+			not map.locations[location.id].is_blocked and\
+			not map.locations[adjacent_location.id].is_blocked:
+			connect_points(location.id, adjacent_location.id)
 
-func _connect_with_neighbors(cell: Vector2) -> void:
-	var id: int = _flatten(cell)
-	var neighbors: Array = Hex.get_neighbors(cell)
-
-	for n in neighbors:
-		var n_id: int = _flatten(n)
-		if rect.has_point(n) and\
-				not are_points_connected(id, n_id) and\
-				not map.locations[id].is_blocked and\
-				not map.locations[n_id].is_blocked:
-			connect_points(id, n_id)
-
-func _disconnect_with_neighbors(cell: Vector2) -> void:
-	var id: int = _flatten(cell)
-	var neighbors = Hex.get_neighbors(cell)
-
-	for n in neighbors:
-		var n_id: int = _flatten(n)
-		if rect.has_point(n):
-			if are_points_connected(id, n_id):
-				disconnect_points(id, n_id)
-			elif are_points_connected(n_id, id):
-				disconnect_points(n_id, id)
+func _disconnect_with_neighbors(location: Location) -> void:
+	for adjacent_location in location.get_adjacent_locations():
+		if rect.has_point(adjacent_location.cell):
+			if are_points_connected(location.id, adjacent_location.id):
+				disconnect_points(location.id, adjacent_location.id)
+			elif are_points_connected(adjacent_location.id, location.id):
+				disconnect_points(adjacent_location.id, location.id)
 
 func _flatten(cell: Vector2) -> int:
 	return Utils.flatten(cell, int(rect.size.x))

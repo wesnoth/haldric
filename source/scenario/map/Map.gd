@@ -184,9 +184,9 @@ func update_terrain() -> void:
 
 func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = false) -> void:
 	for loc in ZOC_tiles.keys():
-		grid.unblock_cell(loc.cell)
+		grid.unblock_location(loc)
 		for val in ZOC_tiles[loc]:
-			grid.unblock_cell(val.cell)
+			grid.unblock_location(val)
 	if not ignore_units:
 		ZOC_tiles.clear()
 
@@ -208,7 +208,7 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 						if not _is_cell_in_map(adjacent_location.cell):
 							continue
 						if unit.location != adjacent_location:
-							grid.block_cell(adjacent_location.cell)
+							grid.block_location(adjacent_location)
 							for neighbor_location in adjacent_location.get_adjacent_locations():
 								if not _is_cell_in_map(neighbor_location.cell):
 									continue
