@@ -101,7 +101,7 @@ func extend_viewable(unit: Unit) -> bool:
 			var path: Array = find_path(unit.location, loc)
 			var cost := 0
 			for path_cell in path:
-				var cell_cost = grid.get_point_weight_scale(_flatten(path_cell.cell))
+				var cell_cost = grid.get_point_weight_scale(locations_dict[path_cell.cell].id)
 				if cost + cell_cost > unit.type.moves:
 					break
 				cost += cell_cost
@@ -154,7 +154,7 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 		var new_path := []
 		var cost := 0
 		for path_cell in path:
-			var cell_cost = grid.get_point_weight_scale(_flatten(path_cell.cell))
+			var cell_cost = grid.get_point_weight_scale(locations_dict[path_cell.cell].id)
 			#if ZOC_tiles.has(path_cell) and not ignore_units:
 			#	cell_cost = 1
 			if cost + cell_cost > radius:
@@ -279,20 +279,17 @@ func get_pixel_size() -> Vector2:
 
 func get_map_data() -> Dictionary:
 	var map_data := {}
-
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id := _flatten(cell)
-
-			map_data[id] = {}
-			map_data[id].cell = cell
-			map_data[id].code = get_location(cell).terrain.code
-
+	for location in locations_dict.values():
+		map_data[location.id] = {}
+		map_data[location.id].cell = location.cell
+		map_data[location.id].code = location.terrain.code
 	return map_data
+	
 
-# deprecated
 func get_map_string() -> String:
+	"""
+	deprecated
+	"""
 	var string := ""
 
 	for y in rect.size.y:
@@ -412,13 +409,9 @@ func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
 		if clear_overlay:
 			overlay.set_cellv(cell, INVALID_CELL)
 func debug():
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id: int = _flatten(cell)
-			var location: Location = locations[id]
-			var label: Label = Label.new()
-			label.text = str(id)
-			label.set_position(location.position)
-			labels.append(label)
-			add_child(label)
+	for location in locations_dict.values():
+		var label: Label = Label.new()
+		label.text = str(location.id)
+		label.set_position(location.position)
+		labels.append(label)
+		add_child(label)
