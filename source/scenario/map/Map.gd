@@ -378,11 +378,12 @@ func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
 		if clear_overlay:
 			overlay.set_cellv(cell, INVALID_CELL)
 func debug():
-	for location in locations_dict.values():
-		var label: Label = Label.new()
-		label.text = str(location.id)
-		label.set_position(location.position)
-		labels.append(label)
-		add_child(label)
-		$Hover/HexDebug.modulate = Color(1,1,1,1)
+	$Hover/HexDebug.visible = not $Hover/HexDebug.visible
+	
+	#for location in locations_dict.values():
+		#var label: Label = Label.new()
+		#label.text = str(location.id)
+		#label.set_position(location.position)
+		#labels.append(label)
+		#add_child(label)
 		
