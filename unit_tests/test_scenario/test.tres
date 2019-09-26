@@ -1,0 +1,2112 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://graphics/images/interface/backgrounds/titlescreen.jpg" type="Texture" id=1]
+[ext_resource path="res://source/templates/RScenario.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+title = "Test Scenario"
+card_image = ExtResource( 1 )
+turns = 99
+map_data = {
+0: {
+"cell": Vector2( 0, 0 ),
+"code": [ "Gs", "^Fmf" ]
+},
+1: {
+"cell": Vector2( 1, 0 ),
+"code": [ "Gd" ]
+},
+2: {
+"cell": Vector2( 2, 0 ),
+"code": [ "Gs" ]
+},
+3: {
+"cell": Vector2( 3, 0 ),
+"code": [ "Gs" ]
+},
+4: {
+"cell": Vector2( 4, 0 ),
+"code": [ "Gs" ]
+},
+5: {
+"cell": Vector2( 5, 0 ),
+"code": [ "Gd", "^Fmf" ]
+},
+6: {
+"cell": Vector2( 6, 0 ),
+"code": [ "Gd" ]
+},
+7: {
+"cell": Vector2( 7, 0 ),
+"code": [ "Gd" ]
+},
+8: {
+"cell": Vector2( 8, 0 ),
+"code": [ "Gd" ]
+},
+9: {
+"cell": Vector2( 9, 0 ),
+"code": [ "Md" ]
+},
+10: {
+"cell": Vector2( 10, 0 ),
+"code": [ "Hhd" ]
+},
+11: {
+"cell": Vector2( 11, 0 ),
+"code": [ "Md" ]
+},
+12: {
+"cell": Vector2( 12, 0 ),
+"code": [ "Hhd" ]
+},
+13: {
+"cell": Vector2( 13, 0 ),
+"code": [ "Md" ]
+},
+14: {
+"cell": Vector2( 14, 0 ),
+"code": [ "Gs", "^Fp" ]
+},
+15: {
+"cell": Vector2( 15, 0 ),
+"code": [ "Gs", "^Fp" ]
+},
+16: {
+"cell": Vector2( 16, 0 ),
+"code": [ "Gd", "^Fp" ]
+},
+17: {
+"cell": Vector2( 17, 0 ),
+"code": [ "Gs" ]
+},
+18: {
+"cell": Vector2( 18, 0 ),
+"code": [ "Gs" ]
+},
+19: {
+"cell": Vector2( 19, 0 ),
+"code": [ "Gs", "^Fds" ]
+},
+20: {
+"cell": Vector2( 20, 0 ),
+"code": [ "Gg" ]
+},
+21: {
+"cell": Vector2( 21, 0 ),
+"code": [ "Gg", "^Fds" ]
+},
+22: {
+"cell": Vector2( 22, 0 ),
+"code": [ "Gg", "^Fds" ]
+},
+23: {
+"cell": Vector2( 23, 0 ),
+"code": [ "Gg", "^Fds" ]
+},
+24: {
+"cell": Vector2( 24, 0 ),
+"code": [ "Gg" ]
+},
+25: {
+"cell": Vector2( 25, 0 ),
+"code": [ "Gg" ]
+},
+26: {
+"cell": Vector2( 26, 0 ),
+"code": [ "Gg" ]
+},
+27: {
+"cell": Vector2( 27, 0 ),
+"code": [ "Gg" ]
+},
+28: {
+"cell": Vector2( 28, 0 ),
+"code": [ "Gg" ]
+},
+29: {
+"cell": Vector2( 29, 0 ),
+"code": [ "Gg" ]
+},
+30: {
+"cell": Vector2( 30, 0 ),
+"code": [ "Gg", "^Fp" ]
+},
+31: {
+"cell": Vector2( 31, 0 ),
+"code": [ "Gg", "^Fp" ]
+},
+32: {
+"cell": Vector2( 32, 0 ),
+"code": [ "Gg", "^Fp" ]
+},
+33: {
+"cell": Vector2( 33, 0 ),
+"code": [ "Gg", "^Fp" ]
+},
+34: {
+"cell": Vector2( 34, 0 ),
+"code": [ "Gg", "^Fp" ]
+},
+35: {
+"cell": Vector2( 0, 1 ),
+"code": [ "Gd" ]
+},
+36: {
+"cell": Vector2( 1, 1 ),
+"code": [ "Hhd" ]
+},
+37: {
+"cell": Vector2( 2, 1 ),
+"code": [ "Gs" ]
+},
+38: {
+"cell": Vector2( 3, 1 ),
+"code": [ "Ch" ]
+},
+39: {
+"cell": Vector2( 4, 1 ),
+"code": [ "Gs" ]
+},
+40: {
+"cell": Vector2( 5, 1 ),
+"code": [ "Gs" ]
+},
+41: {
+"cell": Vector2( 6, 1 ),
+"code": [ "Gs", "^Fmf" ]
+},
+42: {
+"cell": Vector2( 7, 1 ),
+"code": [ "Hhd", "^Fmf" ]
+},
+43: {
+"cell": Vector2( 8, 1 ),
+"code": [ "Gd", "^Vh" ]
+},
+44: {
+"cell": Vector2( 9, 1 ),
+"code": [ "Hhd" ]
+},
+45: {
+"cell": Vector2( 10, 1 ),
+"code": [ "Md" ]
+},
+46: {
+"cell": Vector2( 11, 1 ),
+"code": [ "Md", "^Fmw" ]
+},
+47: {
+"cell": Vector2( 12, 1 ),
+"code": [ "Md" ]
+},
+48: {
+"cell": Vector2( 13, 1 ),
+"code": [ "Md" ]
+},
+49: {
+"cell": Vector2( 14, 1 ),
+"code": [ "Md" ]
+},
+50: {
+"cell": Vector2( 15, 1 ),
+"code": [ "Md" ]
+},
+51: {
+"cell": Vector2( 16, 1 ),
+"code": [ "Gd" ]
+},
+52: {
+"cell": Vector2( 17, 1 ),
+"code": [ "Gs" ]
+},
+53: {
+"cell": Vector2( 18, 1 ),
+"code": [ "Gs" ]
+},
+54: {
+"cell": Vector2( 19, 1 ),
+"code": [ "Hh", "^Fds" ]
+},
+55: {
+"cell": Vector2( 20, 1 ),
+"code": [ "Gg", "^Fds" ]
+},
+56: {
+"cell": Vector2( 21, 1 ),
+"code": [ "Gg", "^Fds" ]
+},
+57: {
+"cell": Vector2( 22, 1 ),
+"code": [ "Gg", "^Fds" ]
+},
+58: {
+"cell": Vector2( 23, 1 ),
+"code": [ "Gg", "^Fds" ]
+},
+59: {
+"cell": Vector2( 24, 1 ),
+"code": [ "Gg" ]
+},
+60: {
+"cell": Vector2( 25, 1 ),
+"code": [ "Gg", "^Fds" ]
+},
+61: {
+"cell": Vector2( 26, 1 ),
+"code": [ "Gg" ]
+},
+62: {
+"cell": Vector2( 27, 1 ),
+"code": [ "Gg" ]
+},
+63: {
+"cell": Vector2( 28, 1 ),
+"code": [ "Gg" ]
+},
+64: {
+"cell": Vector2( 29, 1 ),
+"code": [ "Gg", "^Fp" ]
+},
+65: {
+"cell": Vector2( 30, 1 ),
+"code": [ "Gg", "^Fp" ]
+},
+66: {
+"cell": Vector2( 31, 1 ),
+"code": [ "Gs" ]
+},
+67: {
+"cell": Vector2( 32, 1 ),
+"code": [ "Gg", "^Fp" ]
+},
+68: {
+"cell": Vector2( 33, 1 ),
+"code": [ "Gg", "^Fp" ]
+},
+69: {
+"cell": Vector2( 34, 1 ),
+"code": [ "Gg", "^Fp" ]
+},
+70: {
+"cell": Vector2( 0, 2 ),
+"code": [ "Gd" ]
+},
+71: {
+"cell": Vector2( 1, 2 ),
+"code": [ "Md" ]
+},
+72: {
+"cell": Vector2( 2, 2 ),
+"code": [ "Ch" ]
+},
+73: {
+"cell": Vector2( 3, 2 ),
+"code": [ "Kh" ]
+},
+74: {
+"cell": Vector2( 4, 2 ),
+"code": [ "Ch" ]
+},
+75: {
+"cell": Vector2( 5, 2 ),
+"code": [ "Hhd" ]
+},
+76: {
+"cell": Vector2( 6, 2 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+77: {
+"cell": Vector2( 7, 2 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+78: {
+"cell": Vector2( 8, 2 ),
+"code": [ "Hhd" ]
+},
+79: {
+"cell": Vector2( 9, 2 ),
+"code": [ "Hhd" ]
+},
+80: {
+"cell": Vector2( 10, 2 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+81: {
+"cell": Vector2( 11, 2 ),
+"code": [ "Md", "^Fmw" ]
+},
+82: {
+"cell": Vector2( 12, 2 ),
+"code": [ "Md" ]
+},
+83: {
+"cell": Vector2( 13, 2 ),
+"code": [ "Md" ]
+},
+84: {
+"cell": Vector2( 14, 2 ),
+"code": [ "Md" ]
+},
+85: {
+"cell": Vector2( 15, 2 ),
+"code": [ "Md" ]
+},
+86: {
+"cell": Vector2( 16, 2 ),
+"code": [ "Hhd" ]
+},
+87: {
+"cell": Vector2( 17, 2 ),
+"code": [ "Hh" ]
+},
+88: {
+"cell": Vector2( 18, 2 ),
+"code": [ "Hh" ]
+},
+89: {
+"cell": Vector2( 19, 2 ),
+"code": [ "Hh" ]
+},
+90: {
+"cell": Vector2( 20, 2 ),
+"code": [ "Hh", "^Fds" ]
+},
+91: {
+"cell": Vector2( 21, 2 ),
+"code": [ "Hh" ]
+},
+92: {
+"cell": Vector2( 22, 2 ),
+"code": [ "Hh", "^Fds" ]
+},
+93: {
+"cell": Vector2( 23, 2 ),
+"code": [ "Gg", "^Fds" ]
+},
+94: {
+"cell": Vector2( 24, 2 ),
+"code": [ "Gg", "^Fds" ]
+},
+95: {
+"cell": Vector2( 25, 2 ),
+"code": [ "Gg", "^Fds" ]
+},
+96: {
+"cell": Vector2( 26, 2 ),
+"code": [ "Gg", "^Fds" ]
+},
+97: {
+"cell": Vector2( 27, 2 ),
+"code": [ "Gll", "^Fds" ]
+},
+98: {
+"cell": Vector2( 28, 2 ),
+"code": [ "Gg" ]
+},
+99: {
+"cell": Vector2( 29, 2 ),
+"code": [ "Gg", "^Fp" ]
+},
+100: {
+"cell": Vector2( 30, 2 ),
+"code": [ "Gs" ]
+},
+101: {
+"cell": Vector2( 31, 2 ),
+"code": [ "Gs", "^Fp" ]
+},
+102: {
+"cell": Vector2( 32, 2 ),
+"code": [ "Gg", "^Fp" ]
+},
+103: {
+"cell": Vector2( 33, 2 ),
+"code": [ "Gg", "^Fp" ]
+},
+104: {
+"cell": Vector2( 34, 2 ),
+"code": [ "Gg" ]
+},
+105: {
+"cell": Vector2( 0, 3 ),
+"code": [ "Md" ]
+},
+106: {
+"cell": Vector2( 1, 3 ),
+"code": [ "Md" ]
+},
+107: {
+"cell": Vector2( 2, 3 ),
+"code": [ "Md" ]
+},
+108: {
+"cell": Vector2( 3, 3 ),
+"code": [ "Ch" ]
+},
+109: {
+"cell": Vector2( 4, 3 ),
+"code": [ "Ch" ]
+},
+110: {
+"cell": Vector2( 5, 3 ),
+"code": [ "Hhd" ]
+},
+111: {
+"cell": Vector2( 6, 3 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+112: {
+"cell": Vector2( 7, 3 ),
+"code": [ "Hhd", "^Fp" ]
+},
+113: {
+"cell": Vector2( 8, 3 ),
+"code": [ "Hhd", "^Fp" ]
+},
+114: {
+"cell": Vector2( 9, 3 ),
+"code": [ "Hhd" ]
+},
+115: {
+"cell": Vector2( 10, 3 ),
+"code": [ "Md", "^Fmw" ]
+},
+116: {
+"cell": Vector2( 11, 3 ),
+"code": [ "Md" ]
+},
+117: {
+"cell": Vector2( 12, 3 ),
+"code": [ "Md" ]
+},
+118: {
+"cell": Vector2( 13, 3 ),
+"code": [ "Md" ]
+},
+119: {
+"cell": Vector2( 14, 3 ),
+"code": [ "Md" ]
+},
+120: {
+"cell": Vector2( 15, 3 ),
+"code": [ "Ch" ]
+},
+121: {
+"cell": Vector2( 16, 3 ),
+"code": [ "Hhd" ]
+},
+122: {
+"cell": Vector2( 17, 3 ),
+"code": [ "Hhd" ]
+},
+123: {
+"cell": Vector2( 18, 3 ),
+"code": [ "Hh" ]
+},
+124: {
+"cell": Vector2( 19, 3 ),
+"code": [ "Hhd", "^Vh" ]
+},
+125: {
+"cell": Vector2( 20, 3 ),
+"code": [ "Hh" ]
+},
+126: {
+"cell": Vector2( 21, 3 ),
+"code": [ "Hhd" ]
+},
+127: {
+"cell": Vector2( 22, 3 ),
+"code": [ "Hh" ]
+},
+128: {
+"cell": Vector2( 23, 3 ),
+"code": [ "Gg", "^Fds" ]
+},
+129: {
+"cell": Vector2( 24, 3 ),
+"code": [ "Gll", "^Fds" ]
+},
+130: {
+"cell": Vector2( 25, 3 ),
+"code": [ "Gll", "^Fds" ]
+},
+131: {
+"cell": Vector2( 26, 3 ),
+"code": [ "Gll", "^Fds" ]
+},
+132: {
+"cell": Vector2( 27, 3 ),
+"code": [ "Gll", "^Fds" ]
+},
+133: {
+"cell": Vector2( 28, 3 ),
+"code": [ "Gs" ]
+},
+134: {
+"cell": Vector2( 29, 3 ),
+"code": [ "Gs" ]
+},
+135: {
+"cell": Vector2( 30, 3 ),
+"code": [ "Gs", "^Fp" ]
+},
+136: {
+"cell": Vector2( 31, 3 ),
+"code": [ "Gs" ]
+},
+137: {
+"cell": Vector2( 32, 3 ),
+"code": [ "Gg" ]
+},
+138: {
+"cell": Vector2( 33, 3 ),
+"code": [ "Gg" ]
+},
+139: {
+"cell": Vector2( 34, 3 ),
+"code": [ "Gg" ]
+},
+140: {
+"cell": Vector2( 0, 4 ),
+"code": [ "Md" ]
+},
+141: {
+"cell": Vector2( 1, 4 ),
+"code": [ "Hhd" ]
+},
+142: {
+"cell": Vector2( 2, 4 ),
+"code": [ "Md" ]
+},
+143: {
+"cell": Vector2( 3, 4 ),
+"code": [ "Hhd" ]
+},
+144: {
+"cell": Vector2( 4, 4 ),
+"code": [ "Hhd" ]
+},
+145: {
+"cell": Vector2( 5, 4 ),
+"code": [ "Hhd", "^Fp" ]
+},
+146: {
+"cell": Vector2( 6, 4 ),
+"code": [ "Hhd", "^Fp" ]
+},
+147: {
+"cell": Vector2( 7, 4 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+148: {
+"cell": Vector2( 8, 4 ),
+"code": [ "Hhd", "^Fp" ]
+},
+149: {
+"cell": Vector2( 9, 4 ),
+"code": [ "Hd" ]
+},
+150: {
+"cell": Vector2( 10, 4 ),
+"code": [ "Md" ]
+},
+151: {
+"cell": Vector2( 11, 4 ),
+"code": [ "Md" ]
+},
+152: {
+"cell": Vector2( 12, 4 ),
+"code": [ "Md" ]
+},
+153: {
+"cell": Vector2( 13, 4 ),
+"code": [ "Md" ]
+},
+154: {
+"cell": Vector2( 14, 4 ),
+"code": [ "Md" ]
+},
+155: {
+"cell": Vector2( 15, 4 ),
+"code": [ "Ch" ]
+},
+156: {
+"cell": Vector2( 16, 4 ),
+"code": [ "Ch" ]
+},
+157: {
+"cell": Vector2( 17, 4 ),
+"code": [ "Hhd" ]
+},
+158: {
+"cell": Vector2( 18, 4 ),
+"code": [ "Hhd" ]
+},
+159: {
+"cell": Vector2( 19, 4 ),
+"code": [ "Hhd" ]
+},
+160: {
+"cell": Vector2( 20, 4 ),
+"code": [ "Hhd" ]
+},
+161: {
+"cell": Vector2( 21, 4 ),
+"code": [ "Hh", "^Fmw" ]
+},
+162: {
+"cell": Vector2( 22, 4 ),
+"code": [ "Hhd" ]
+},
+163: {
+"cell": Vector2( 23, 4 ),
+"code": [ "Ch" ]
+},
+164: {
+"cell": Vector2( 24, 4 ),
+"code": [ "Gll", "^Fds" ]
+},
+165: {
+"cell": Vector2( 25, 4 ),
+"code": [ "Ch" ]
+},
+166: {
+"cell": Vector2( 26, 4 ),
+"code": [ "Ch" ]
+},
+167: {
+"cell": Vector2( 27, 4 ),
+"code": [ "Gs" ]
+},
+168: {
+"cell": Vector2( 28, 4 ),
+"code": [ "Gs" ]
+},
+169: {
+"cell": Vector2( 29, 4 ),
+"code": [ "Gs" ]
+},
+170: {
+"cell": Vector2( 30, 4 ),
+"code": [ "Gs" ]
+},
+171: {
+"cell": Vector2( 31, 4 ),
+"code": [ "Gs" ]
+},
+172: {
+"cell": Vector2( 32, 4 ),
+"code": [ "Gs" ]
+},
+173: {
+"cell": Vector2( 33, 4 ),
+"code": [ "Gg" ]
+},
+174: {
+"cell": Vector2( 34, 4 ),
+"code": [ "Gg" ]
+},
+175: {
+"cell": Vector2( 0, 5 ),
+"code": [ "Md" ]
+},
+176: {
+"cell": Vector2( 1, 5 ),
+"code": [ "Hhd" ]
+},
+177: {
+"cell": Vector2( 2, 5 ),
+"code": [ "Hhd" ]
+},
+178: {
+"cell": Vector2( 3, 5 ),
+"code": [ "Hhd" ]
+},
+179: {
+"cell": Vector2( 4, 5 ),
+"code": [ "Gd" ]
+},
+180: {
+"cell": Vector2( 5, 5 ),
+"code": [ "Gd" ]
+},
+181: {
+"cell": Vector2( 6, 5 ),
+"code": [ "Hhd", "^Fp" ]
+},
+182: {
+"cell": Vector2( 7, 5 ),
+"code": [ "Gd", "^Fmf" ]
+},
+183: {
+"cell": Vector2( 8, 5 ),
+"code": [ "Hhd", "^Vh" ]
+},
+184: {
+"cell": Vector2( 9, 5 ),
+"code": [ "Hd", "^Fmw" ]
+},
+185: {
+"cell": Vector2( 10, 5 ),
+"code": [ "Hd" ]
+},
+186: {
+"cell": Vector2( 11, 5 ),
+"code": [ "Hd" ]
+},
+187: {
+"cell": Vector2( 12, 5 ),
+"code": [ "Hhd" ]
+},
+188: {
+"cell": Vector2( 13, 5 ),
+"code": [ "Hd" ]
+},
+189: {
+"cell": Vector2( 14, 5 ),
+"code": [ "Ch" ]
+},
+190: {
+"cell": Vector2( 15, 5 ),
+"code": [ "Ch" ]
+},
+191: {
+"cell": Vector2( 16, 5 ),
+"code": [ "Ch" ]
+},
+192: {
+"cell": Vector2( 17, 5 ),
+"code": [ "Gd" ]
+},
+193: {
+"cell": Vector2( 18, 5 ),
+"code": [ "Hhd" ]
+},
+194: {
+"cell": Vector2( 19, 5 ),
+"code": [ "Hhd" ]
+},
+195: {
+"cell": Vector2( 20, 5 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+196: {
+"cell": Vector2( 21, 5 ),
+"code": [ "Hh", "^Fdf" ]
+},
+197: {
+"cell": Vector2( 22, 5 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+198: {
+"cell": Vector2( 23, 5 ),
+"code": [ "Ch" ]
+},
+199: {
+"cell": Vector2( 24, 5 ),
+"code": [ "Ch" ]
+},
+200: {
+"cell": Vector2( 25, 5 ),
+"code": [ "Ch" ]
+},
+201: {
+"cell": Vector2( 26, 5 ),
+"code": [ "Gll" ]
+},
+202: {
+"cell": Vector2( 27, 5 ),
+"code": [ "Gll" ]
+},
+203: {
+"cell": Vector2( 28, 5 ),
+"code": [ "Gs" ]
+},
+204: {
+"cell": Vector2( 29, 5 ),
+"code": [ "Gs" ]
+},
+205: {
+"cell": Vector2( 30, 5 ),
+"code": [ "Gs" ]
+},
+206: {
+"cell": Vector2( 31, 5 ),
+"code": [ "Gg" ]
+},
+207: {
+"cell": Vector2( 32, 5 ),
+"code": [ "Gs" ]
+},
+208: {
+"cell": Vector2( 33, 5 ),
+"code": [ "Gg", "^Fp" ]
+},
+209: {
+"cell": Vector2( 34, 5 ),
+"code": [ "Gg" ]
+},
+210: {
+"cell": Vector2( 0, 6 ),
+"code": [ "Gs" ]
+},
+211: {
+"cell": Vector2( 1, 6 ),
+"code": [ "Hhd" ]
+},
+212: {
+"cell": Vector2( 2, 6 ),
+"code": [ "Hhd" ]
+},
+213: {
+"cell": Vector2( 3, 6 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+214: {
+"cell": Vector2( 4, 6 ),
+"code": [ "Gd", "^Fmf" ]
+},
+215: {
+"cell": Vector2( 5, 6 ),
+"code": [ "Gd", "^Fmf" ]
+},
+216: {
+"cell": Vector2( 6, 6 ),
+"code": [ "Gd", "^Fmf" ]
+},
+217: {
+"cell": Vector2( 7, 6 ),
+"code": [ "Gs", "^Fmf" ]
+},
+218: {
+"cell": Vector2( 8, 6 ),
+"code": [ "Gs", "^Fmf" ]
+},
+219: {
+"cell": Vector2( 9, 6 ),
+"code": [ "Hd", "^Fmw" ]
+},
+220: {
+"cell": Vector2( 10, 6 ),
+"code": [ "Hd" ]
+},
+221: {
+"cell": Vector2( 11, 6 ),
+"code": [ "Hd", "^Fmw" ]
+},
+222: {
+"cell": Vector2( 12, 6 ),
+"code": [ "Hd" ]
+},
+223: {
+"cell": Vector2( 13, 6 ),
+"code": [ "Hd" ]
+},
+224: {
+"cell": Vector2( 14, 6 ),
+"code": [ "Gd" ]
+},
+225: {
+"cell": Vector2( 15, 6 ),
+"code": [ "Hd" ]
+},
+226: {
+"cell": Vector2( 16, 6 ),
+"code": [ "Hhd" ]
+},
+227: {
+"cell": Vector2( 17, 6 ),
+"code": [ "Gd" ]
+},
+228: {
+"cell": Vector2( 18, 6 ),
+"code": [ "Gd" ]
+},
+229: {
+"cell": Vector2( 19, 6 ),
+"code": [ "Hhd" ]
+},
+230: {
+"cell": Vector2( 20, 6 ),
+"code": [ "Hh", "^Fmw" ]
+},
+231: {
+"cell": Vector2( 21, 6 ),
+"code": [ "Hh", "^Fdf" ]
+},
+232: {
+"cell": Vector2( 22, 6 ),
+"code": [ "Hh", "^Fdf" ]
+},
+233: {
+"cell": Vector2( 23, 6 ),
+"code": [ "Hh", "^Fmw" ]
+},
+234: {
+"cell": Vector2( 24, 6 ),
+"code": [ "Ch" ]
+},
+235: {
+"cell": Vector2( 25, 6 ),
+"code": [ "Ch" ]
+},
+236: {
+"cell": Vector2( 26, 6 ),
+"code": [ "Ch" ]
+},
+237: {
+"cell": Vector2( 27, 6 ),
+"code": [ "Hh" ]
+},
+238: {
+"cell": Vector2( 28, 6 ),
+"code": [ "Hh" ]
+},
+239: {
+"cell": Vector2( 29, 6 ),
+"code": [ "Hh" ]
+},
+240: {
+"cell": Vector2( 30, 6 ),
+"code": [ "Hh" ]
+},
+241: {
+"cell": Vector2( 31, 6 ),
+"code": [ "Gs" ]
+},
+242: {
+"cell": Vector2( 32, 6 ),
+"code": [ "Gs" ]
+},
+243: {
+"cell": Vector2( 33, 6 ),
+"code": [ "Gg", "^Fp" ]
+},
+244: {
+"cell": Vector2( 34, 6 ),
+"code": [ "Gg" ]
+},
+245: {
+"cell": Vector2( 0, 7 ),
+"code": [ "Hhd", "^Vh" ]
+},
+246: {
+"cell": Vector2( 1, 7 ),
+"code": [ "Gs" ]
+},
+247: {
+"cell": Vector2( 2, 7 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+248: {
+"cell": Vector2( 3, 7 ),
+"code": [ "Hhd" ]
+},
+249: {
+"cell": Vector2( 4, 7 ),
+"code": [ "Hhd" ]
+},
+250: {
+"cell": Vector2( 5, 7 ),
+"code": [ "Hd" ]
+},
+251: {
+"cell": Vector2( 6, 7 ),
+"code": [ "Gs", "^Fmw" ]
+},
+252: {
+"cell": Vector2( 7, 7 ),
+"code": [ "Gs", "^Fmf" ]
+},
+253: {
+"cell": Vector2( 8, 7 ),
+"code": [ "Gs", "^Fmf" ]
+},
+254: {
+"cell": Vector2( 9, 7 ),
+"code": [ "Hd", "^Fmw" ]
+},
+255: {
+"cell": Vector2( 10, 7 ),
+"code": [ "Hd", "^Fmw" ]
+},
+256: {
+"cell": Vector2( 11, 7 ),
+"code": [ "Gd", "^Fmw" ]
+},
+257: {
+"cell": Vector2( 12, 7 ),
+"code": [ "Gd" ]
+},
+258: {
+"cell": Vector2( 13, 7 ),
+"code": [ "Gd" ]
+},
+259: {
+"cell": Vector2( 14, 7 ),
+"code": [ "Gd" ]
+},
+260: {
+"cell": Vector2( 15, 7 ),
+"code": [ "Hhd" ]
+},
+261: {
+"cell": Vector2( 16, 7 ),
+"code": [ "Hhd" ]
+},
+262: {
+"cell": Vector2( 17, 7 ),
+"code": [ "Hhd" ]
+},
+263: {
+"cell": Vector2( 18, 7 ),
+"code": [ "Hhd" ]
+},
+264: {
+"cell": Vector2( 19, 7 ),
+"code": [ "Mm" ]
+},
+265: {
+"cell": Vector2( 20, 7 ),
+"code": [ "Gs", "^Fdf" ]
+},
+266: {
+"cell": Vector2( 21, 7 ),
+"code": [ "Gs" ]
+},
+267: {
+"cell": Vector2( 22, 7 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+268: {
+"cell": Vector2( 23, 7 ),
+"code": [ "Hh" ]
+},
+269: {
+"cell": Vector2( 24, 7 ),
+"code": [ "Ch" ]
+},
+270: {
+"cell": Vector2( 25, 7 ),
+"code": [ "Ch" ]
+},
+271: {
+"cell": Vector2( 26, 7 ),
+"code": [ "Hh" ]
+},
+272: {
+"cell": Vector2( 27, 7 ),
+"code": [ "Hh" ]
+},
+273: {
+"cell": Vector2( 28, 7 ),
+"code": [ "Gs", "^Fmf" ]
+},
+274: {
+"cell": Vector2( 29, 7 ),
+"code": [ "Gg", "^Fmf" ]
+},
+275: {
+"cell": Vector2( 30, 7 ),
+"code": [ "Gg", "^Fmf" ]
+},
+276: {
+"cell": Vector2( 31, 7 ),
+"code": [ "Gs", "^Fmf" ]
+},
+277: {
+"cell": Vector2( 32, 7 ),
+"code": [ "Gs", "^Fp" ]
+},
+278: {
+"cell": Vector2( 33, 7 ),
+"code": [ "Gs" ]
+},
+279: {
+"cell": Vector2( 34, 7 ),
+"code": [ "Gg" ]
+},
+280: {
+"cell": Vector2( 0, 8 ),
+"code": [ "Hhd" ]
+},
+281: {
+"cell": Vector2( 1, 8 ),
+"code": [ "Gs" ]
+},
+282: {
+"cell": Vector2( 2, 8 ),
+"code": [ "Hhd", "^Fmw" ]
+},
+283: {
+"cell": Vector2( 3, 8 ),
+"code": [ "Hh", "^Fmw" ]
+},
+284: {
+"cell": Vector2( 4, 8 ),
+"code": [ "Hh", "^Fmw" ]
+},
+285: {
+"cell": Vector2( 5, 8 ),
+"code": [ "Hd", "^Fmw" ]
+},
+286: {
+"cell": Vector2( 6, 8 ),
+"code": [ "Gs", "^Fmw" ]
+},
+287: {
+"cell": Vector2( 7, 8 ),
+"code": [ "Gs" ]
+},
+288: {
+"cell": Vector2( 8, 8 ),
+"code": [ "Hd" ]
+},
+289: {
+"cell": Vector2( 9, 8 ),
+"code": [ "Hd" ]
+},
+290: {
+"cell": Vector2( 10, 8 ),
+"code": [ "Gd", "^Fmw" ]
+},
+291: {
+"cell": Vector2( 11, 8 ),
+"code": [ "Hd", "^Fmw" ]
+},
+292: {
+"cell": Vector2( 12, 8 ),
+"code": [ "Hd" ]
+},
+293: {
+"cell": Vector2( 13, 8 ),
+"code": [ "Hd" ]
+},
+294: {
+"cell": Vector2( 14, 8 ),
+"code": [ "Hhd" ]
+},
+295: {
+"cell": Vector2( 15, 8 ),
+"code": [ "Hhd", "^Fmf" ]
+},
+296: {
+"cell": Vector2( 16, 8 ),
+"code": [ "Hhd" ]
+},
+297: {
+"cell": Vector2( 17, 8 ),
+"code": [ "Hhd" ]
+},
+298: {
+"cell": Vector2( 18, 8 ),
+"code": [ "Mm" ]
+},
+299: {
+"cell": Vector2( 19, 8 ),
+"code": [ "Mm" ]
+},
+300: {
+"cell": Vector2( 20, 8 ),
+"code": [ "Gs", "^Vh" ]
+},
+301: {
+"cell": Vector2( 21, 8 ),
+"code": [ "Hh" ]
+},
+302: {
+"cell": Vector2( 22, 8 ),
+"code": [ "Hh", "^Vh" ]
+},
+303: {
+"cell": Vector2( 23, 8 ),
+"code": [ "Hh" ]
+},
+304: {
+"cell": Vector2( 24, 8 ),
+"code": [ "Hh" ]
+},
+305: {
+"cell": Vector2( 25, 8 ),
+"code": [ "Hh" ]
+},
+306: {
+"cell": Vector2( 26, 8 ),
+"code": [ "Hh" ]
+},
+307: {
+"cell": Vector2( 27, 8 ),
+"code": [ "Hh" ]
+},
+308: {
+"cell": Vector2( 28, 8 ),
+"code": [ "Hh", "^Fmf" ]
+},
+309: {
+"cell": Vector2( 29, 8 ),
+"code": [ "Hh" ]
+},
+310: {
+"cell": Vector2( 30, 8 ),
+"code": [ "Hh", "^Fmf" ]
+},
+311: {
+"cell": Vector2( 31, 8 ),
+"code": [ "Gs", "^Fp" ]
+},
+312: {
+"cell": Vector2( 32, 8 ),
+"code": [ "Gs", "^Fmf" ]
+},
+313: {
+"cell": Vector2( 33, 8 ),
+"code": [ "Gs" ]
+},
+314: {
+"cell": Vector2( 34, 8 ),
+"code": [ "Gs" ]
+},
+315: {
+"cell": Vector2( 0, 9 ),
+"code": [ "Gd" ]
+},
+316: {
+"cell": Vector2( 1, 9 ),
+"code": [ "Gd", "^Fp" ]
+},
+317: {
+"cell": Vector2( 2, 9 ),
+"code": [ "Gd", "^Fp" ]
+},
+318: {
+"cell": Vector2( 3, 9 ),
+"code": [ "Hh", "^Fp" ]
+},
+319: {
+"cell": Vector2( 4, 9 ),
+"code": [ "Hh" ]
+},
+320: {
+"cell": Vector2( 5, 9 ),
+"code": [ "Hh" ]
+},
+321: {
+"cell": Vector2( 6, 9 ),
+"code": [ "Ch" ]
+},
+322: {
+"cell": Vector2( 7, 9 ),
+"code": [ "Ch" ]
+},
+323: {
+"cell": Vector2( 8, 9 ),
+"code": [ "Ch" ]
+},
+324: {
+"cell": Vector2( 9, 9 ),
+"code": [ "Hd" ]
+},
+325: {
+"cell": Vector2( 10, 9 ),
+"code": [ "Hd" ]
+},
+326: {
+"cell": Vector2( 11, 9 ),
+"code": [ "Hd" ]
+},
+327: {
+"cell": Vector2( 12, 9 ),
+"code": [ "Md" ]
+},
+328: {
+"cell": Vector2( 13, 9 ),
+"code": [ "Md" ]
+},
+329: {
+"cell": Vector2( 14, 9 ),
+"code": [ "Hhd" ]
+},
+330: {
+"cell": Vector2( 15, 9 ),
+"code": [ "Gd", "^Fmf" ]
+},
+331: {
+"cell": Vector2( 16, 9 ),
+"code": [ "Gd", "^Fmf" ]
+},
+332: {
+"cell": Vector2( 17, 9 ),
+"code": [ "Gs" ]
+},
+333: {
+"cell": Vector2( 18, 9 ),
+"code": [ "Mm" ]
+},
+334: {
+"cell": Vector2( 19, 9 ),
+"code": [ "Mm" ]
+},
+335: {
+"cell": Vector2( 20, 9 ),
+"code": [ "Mm" ]
+},
+336: {
+"cell": Vector2( 21, 9 ),
+"code": [ "Mm" ]
+},
+337: {
+"cell": Vector2( 22, 9 ),
+"code": [ "Hh" ]
+},
+338: {
+"cell": Vector2( 23, 9 ),
+"code": [ "Md" ]
+},
+339: {
+"cell": Vector2( 24, 9 ),
+"code": [ "Hh" ]
+},
+340: {
+"cell": Vector2( 25, 9 ),
+"code": [ "Gs" ]
+},
+341: {
+"cell": Vector2( 26, 9 ),
+"code": [ "Hh" ]
+},
+342: {
+"cell": Vector2( 27, 9 ),
+"code": [ "Hh" ]
+},
+343: {
+"cell": Vector2( 28, 9 ),
+"code": [ "Hh" ]
+},
+344: {
+"cell": Vector2( 29, 9 ),
+"code": [ "Gg" ]
+},
+345: {
+"cell": Vector2( 30, 9 ),
+"code": [ "Gs", "^Fmf" ]
+},
+346: {
+"cell": Vector2( 31, 9 ),
+"code": [ "Gg", "^Fmf" ]
+},
+347: {
+"cell": Vector2( 32, 9 ),
+"code": [ "Gg", "^Fp" ]
+},
+348: {
+"cell": Vector2( 33, 9 ),
+"code": [ "Gg" ]
+},
+349: {
+"cell": Vector2( 34, 9 ),
+"code": [ "Gs" ]
+},
+350: {
+"cell": Vector2( 0, 10 ),
+"code": [ "Gd" ]
+},
+351: {
+"cell": Vector2( 1, 10 ),
+"code": [ "Gs", "^Fp" ]
+},
+352: {
+"cell": Vector2( 2, 10 ),
+"code": [ "Gs", "^Fp" ]
+},
+353: {
+"cell": Vector2( 3, 10 ),
+"code": [ "Gs", "^Fp" ]
+},
+354: {
+"cell": Vector2( 4, 10 ),
+"code": [ "Hh", "^Fp" ]
+},
+355: {
+"cell": Vector2( 5, 10 ),
+"code": [ "Hh", "^Fp" ]
+},
+356: {
+"cell": Vector2( 6, 10 ),
+"code": [ "Hh" ]
+},
+357: {
+"cell": Vector2( 7, 10 ),
+"code": [ "Hh" ]
+},
+358: {
+"cell": Vector2( 8, 10 ),
+"code": [ "Hd" ]
+},
+359: {
+"cell": Vector2( 9, 10 ),
+"code": [ "Hd" ]
+},
+360: {
+"cell": Vector2( 10, 10 ),
+"code": [ "Md" ]
+},
+361: {
+"cell": Vector2( 11, 10 ),
+"code": [ "Gd" ]
+},
+362: {
+"cell": Vector2( 12, 10 ),
+"code": [ "Gd" ]
+},
+363: {
+"cell": Vector2( 13, 10 ),
+"code": [ "Gd" ]
+},
+364: {
+"cell": Vector2( 14, 10 ),
+"code": [ "Gd" ]
+},
+365: {
+"cell": Vector2( 15, 10 ),
+"code": [ "Gd" ]
+},
+366: {
+"cell": Vector2( 16, 10 ),
+"code": [ "Gs" ]
+},
+367: {
+"cell": Vector2( 17, 10 ),
+"code": [ "Gg" ]
+},
+368: {
+"cell": Vector2( 18, 10 ),
+"code": [ "Mm" ]
+},
+369: {
+"cell": Vector2( 19, 10 ),
+"code": [ "Ms" ]
+},
+370: {
+"cell": Vector2( 20, 10 ),
+"code": [ "Ms" ]
+},
+371: {
+"cell": Vector2( 21, 10 ),
+"code": [ "Ms" ]
+},
+372: {
+"cell": Vector2( 22, 10 ),
+"code": [ "Mm" ]
+},
+373: {
+"cell": Vector2( 23, 10 ),
+"code": [ "Md" ]
+},
+374: {
+"cell": Vector2( 24, 10 ),
+"code": [ "Md" ]
+},
+375: {
+"cell": Vector2( 25, 10 ),
+"code": [ "Gs" ]
+},
+376: {
+"cell": Vector2( 26, 10 ),
+"code": [ "Gs" ]
+},
+377: {
+"cell": Vector2( 27, 10 ),
+"code": [ "Gg" ]
+},
+378: {
+"cell": Vector2( 28, 10 ),
+"code": [ "Gg" ]
+},
+379: {
+"cell": Vector2( 29, 10 ),
+"code": [ "Gg" ]
+},
+380: {
+"cell": Vector2( 30, 10 ),
+"code": [ "Gg" ]
+},
+381: {
+"cell": Vector2( 31, 10 ),
+"code": [ "Gll", "^Fp" ]
+},
+382: {
+"cell": Vector2( 32, 10 ),
+"code": [ "Gg" ]
+},
+383: {
+"cell": Vector2( 33, 10 ),
+"code": [ "Gs" ]
+},
+384: {
+"cell": Vector2( 34, 10 ),
+"code": [ "Gg" ]
+},
+385: {
+"cell": Vector2( 0, 11 ),
+"code": [ "Gd" ]
+},
+386: {
+"cell": Vector2( 1, 11 ),
+"code": [ "Gs" ]
+},
+387: {
+"cell": Vector2( 2, 11 ),
+"code": [ "Gd" ]
+},
+388: {
+"cell": Vector2( 3, 11 ),
+"code": [ "Gd" ]
+},
+389: {
+"cell": Vector2( 4, 11 ),
+"code": [ "Gs" ]
+},
+390: {
+"cell": Vector2( 5, 11 ),
+"code": [ "Gs" ]
+},
+391: {
+"cell": Vector2( 6, 11 ),
+"code": [ "Hh" ]
+},
+392: {
+"cell": Vector2( 7, 11 ),
+"code": [ "Hh" ]
+},
+393: {
+"cell": Vector2( 8, 11 ),
+"code": [ "Gd" ]
+},
+394: {
+"cell": Vector2( 9, 11 ),
+"code": [ "Gd" ]
+},
+395: {
+"cell": Vector2( 10, 11 ),
+"code": [ "Gd" ]
+},
+396: {
+"cell": Vector2( 11, 11 ),
+"code": [ "Gs", "^Vh" ]
+},
+397: {
+"cell": Vector2( 12, 11 ),
+"code": [ "Gs" ]
+},
+398: {
+"cell": Vector2( 13, 11 ),
+"code": [ "Hh" ]
+},
+399: {
+"cell": Vector2( 14, 11 ),
+"code": [ "Gs" ]
+},
+400: {
+"cell": Vector2( 15, 11 ),
+"code": [ "Gs" ]
+},
+401: {
+"cell": Vector2( 16, 11 ),
+"code": [ "Gs" ]
+},
+402: {
+"cell": Vector2( 17, 11 ),
+"code": [ "Gg" ]
+},
+403: {
+"cell": Vector2( 18, 11 ),
+"code": [ "Mm" ]
+},
+404: {
+"cell": Vector2( 19, 11 ),
+"code": [ "Mm" ]
+},
+405: {
+"cell": Vector2( 20, 11 ),
+"code": [ "Ms" ]
+},
+406: {
+"cell": Vector2( 21, 11 ),
+"code": [ "Ms" ]
+},
+407: {
+"cell": Vector2( 22, 11 ),
+"code": [ "Ms" ]
+},
+408: {
+"cell": Vector2( 23, 11 ),
+"code": [ "Md" ]
+},
+409: {
+"cell": Vector2( 24, 11 ),
+"code": [ "Md" ]
+},
+410: {
+"cell": Vector2( 25, 11 ),
+"code": [ "Hh" ]
+},
+411: {
+"cell": Vector2( 26, 11 ),
+"code": [ "Gs" ]
+},
+412: {
+"cell": Vector2( 27, 11 ),
+"code": [ "Gg" ]
+},
+413: {
+"cell": Vector2( 28, 11 ),
+"code": [ "Gg" ]
+},
+414: {
+"cell": Vector2( 29, 11 ),
+"code": [ "Gg" ]
+},
+415: {
+"cell": Vector2( 30, 11 ),
+"code": [ "Gg" ]
+},
+416: {
+"cell": Vector2( 31, 11 ),
+"code": [ "Gll" ]
+},
+417: {
+"cell": Vector2( 32, 11 ),
+"code": [ "Gg" ]
+},
+418: {
+"cell": Vector2( 33, 11 ),
+"code": [ "Gs" ]
+},
+419: {
+"cell": Vector2( 34, 11 ),
+"code": [ "Gg" ]
+},
+420: {
+"cell": Vector2( 0, 12 ),
+"code": [ "Gd" ]
+},
+421: {
+"cell": Vector2( 1, 12 ),
+"code": [ "Kh" ]
+},
+422: {
+"cell": Vector2( 2, 12 ),
+"code": [ "Gs" ]
+},
+423: {
+"cell": Vector2( 3, 12 ),
+"code": [ "Gs" ]
+},
+424: {
+"cell": Vector2( 4, 12 ),
+"code": [ "Gs" ]
+},
+425: {
+"cell": Vector2( 5, 12 ),
+"code": [ "Hh" ]
+},
+426: {
+"cell": Vector2( 6, 12 ),
+"code": [ "Hh" ]
+},
+427: {
+"cell": Vector2( 7, 12 ),
+"code": [ "Hh" ]
+},
+428: {
+"cell": Vector2( 8, 12 ),
+"code": [ "Hh" ]
+},
+429: {
+"cell": Vector2( 9, 12 ),
+"code": [ "Hh" ]
+},
+430: {
+"cell": Vector2( 10, 12 ),
+"code": [ "Gd" ]
+},
+431: {
+"cell": Vector2( 11, 12 ),
+"code": [ "Gs" ]
+},
+432: {
+"cell": Vector2( 12, 12 ),
+"code": [ "Gs" ]
+},
+433: {
+"cell": Vector2( 13, 12 ),
+"code": [ "Gs" ]
+},
+434: {
+"cell": Vector2( 14, 12 ),
+"code": [ "Hh" ]
+},
+435: {
+"cell": Vector2( 15, 12 ),
+"code": [ "Gd" ]
+},
+436: {
+"cell": Vector2( 16, 12 ),
+"code": [ "Gs" ]
+},
+437: {
+"cell": Vector2( 17, 12 ),
+"code": [ "Ms" ]
+},
+438: {
+"cell": Vector2( 18, 12 ),
+"code": [ "Ms" ]
+},
+439: {
+"cell": Vector2( 19, 12 ),
+"code": [ "Ha" ]
+},
+440: {
+"cell": Vector2( 20, 12 ),
+"code": [ "Ha" ]
+},
+441: {
+"cell": Vector2( 21, 12 ),
+"code": [ "Ha" ]
+},
+442: {
+"cell": Vector2( 22, 12 ),
+"code": [ "Ms" ]
+},
+443: {
+"cell": Vector2( 23, 12 ),
+"code": [ "Ms" ]
+},
+444: {
+"cell": Vector2( 24, 12 ),
+"code": [ "Hhd" ]
+},
+445: {
+"cell": Vector2( 25, 12 ),
+"code": [ "Hh" ]
+},
+446: {
+"cell": Vector2( 26, 12 ),
+"code": [ "Hh" ]
+},
+447: {
+"cell": Vector2( 27, 12 ),
+"code": [ "Hh" ]
+},
+448: {
+"cell": Vector2( 28, 12 ),
+"code": [ "Hh" ]
+},
+449: {
+"cell": Vector2( 29, 12 ),
+"code": [ "Gll" ]
+},
+450: {
+"cell": Vector2( 30, 12 ),
+"code": [ "Gll" ]
+},
+451: {
+"cell": Vector2( 31, 12 ),
+"code": [ "Gll" ]
+},
+452: {
+"cell": Vector2( 32, 12 ),
+"code": [ "Gg" ]
+},
+453: {
+"cell": Vector2( 33, 12 ),
+"code": [ "Gg" ]
+},
+454: {
+"cell": Vector2( 34, 12 ),
+"code": [ "Gg" ]
+},
+455: {
+"cell": Vector2( 0, 13 ),
+"code": [ "Gd" ]
+},
+456: {
+"cell": Vector2( 1, 13 ),
+"code": [ "Gd" ]
+},
+457: {
+"cell": Vector2( 2, 13 ),
+"code": [ "Gd" ]
+},
+458: {
+"cell": Vector2( 3, 13 ),
+"code": [ "Gd" ]
+},
+459: {
+"cell": Vector2( 4, 13 ),
+"code": [ "Gd" ]
+},
+460: {
+"cell": Vector2( 5, 13 ),
+"code": [ "Gd" ]
+},
+461: {
+"cell": Vector2( 6, 13 ),
+"code": [ "Gd" ]
+},
+462: {
+"cell": Vector2( 7, 13 ),
+"code": [ "Gd" ]
+},
+463: {
+"cell": Vector2( 8, 13 ),
+"code": [ "Gd" ]
+},
+464: {
+"cell": Vector2( 9, 13 ),
+"code": [ "Gd" ]
+},
+465: {
+"cell": Vector2( 10, 13 ),
+"code": [ "Gd" ]
+},
+466: {
+"cell": Vector2( 11, 13 ),
+"code": [ "Gd" ]
+},
+467: {
+"cell": Vector2( 12, 13 ),
+"code": [ "Gd" ]
+},
+468: {
+"cell": Vector2( 13, 13 ),
+"code": [ "Gd" ]
+},
+469: {
+"cell": Vector2( 14, 13 ),
+"code": [ "Hh" ]
+},
+470: {
+"cell": Vector2( 15, 13 ),
+"code": [ "Gd" ]
+},
+471: {
+"cell": Vector2( 16, 13 ),
+"code": [ "Gd" ]
+},
+472: {
+"cell": Vector2( 17, 13 ),
+"code": [ "Gd" ]
+},
+473: {
+"cell": Vector2( 18, 13 ),
+"code": [ "Ms" ]
+},
+474: {
+"cell": Vector2( 19, 13 ),
+"code": [ "Ha" ]
+},
+475: {
+"cell": Vector2( 20, 13 ),
+"code": [ "Ha" ]
+},
+476: {
+"cell": Vector2( 21, 13 ),
+"code": [ "Ha" ]
+},
+477: {
+"cell": Vector2( 22, 13 ),
+"code": [ "Ms" ]
+},
+478: {
+"cell": Vector2( 23, 13 ),
+"code": [ "Ms" ]
+},
+479: {
+"cell": Vector2( 24, 13 ),
+"code": [ "Ms" ]
+},
+480: {
+"cell": Vector2( 25, 13 ),
+"code": [ "Hhd" ]
+},
+481: {
+"cell": Vector2( 26, 13 ),
+"code": [ "Hhd" ]
+},
+482: {
+"cell": Vector2( 27, 13 ),
+"code": [ "Hh" ]
+},
+483: {
+"cell": Vector2( 28, 13 ),
+"code": [ "Hh" ]
+},
+484: {
+"cell": Vector2( 29, 13 ),
+"code": [ "Hh" ]
+},
+485: {
+"cell": Vector2( 30, 13 ),
+"code": [ "Hh" ]
+},
+486: {
+"cell": Vector2( 31, 13 ),
+"code": [ "Hh" ]
+},
+487: {
+"cell": Vector2( 32, 13 ),
+"code": [ "Gll" ]
+},
+488: {
+"cell": Vector2( 33, 13 ),
+"code": [ "Gll" ]
+},
+489: {
+"cell": Vector2( 34, 13 ),
+"code": [ "Gg" ]
+},
+490: {
+"cell": Vector2( 0, 14 ),
+"code": [ "Gd" ]
+},
+491: {
+"cell": Vector2( 1, 14 ),
+"code": [ "Gg" ]
+},
+492: {
+"cell": Vector2( 2, 14 ),
+"code": [ "Gd" ]
+},
+493: {
+"cell": Vector2( 3, 14 ),
+"code": [ "Gg" ]
+},
+494: {
+"cell": Vector2( 4, 14 ),
+"code": [ "Gd" ]
+},
+495: {
+"cell": Vector2( 5, 14 ),
+"code": [ "Gg" ]
+},
+496: {
+"cell": Vector2( 6, 14 ),
+"code": [ "Gd" ]
+},
+497: {
+"cell": Vector2( 7, 14 ),
+"code": [ "Gg" ]
+},
+498: {
+"cell": Vector2( 8, 14 ),
+"code": [ "Gd" ]
+},
+499: {
+"cell": Vector2( 9, 14 ),
+"code": [ "Gg" ]
+},
+500: {
+"cell": Vector2( 10, 14 ),
+"code": [ "Gd" ]
+},
+501: {
+"cell": Vector2( 11, 14 ),
+"code": [ "Gg" ]
+},
+502: {
+"cell": Vector2( 12, 14 ),
+"code": [ "Gd" ]
+},
+503: {
+"cell": Vector2( 13, 14 ),
+"code": [ "Gg" ]
+},
+504: {
+"cell": Vector2( 14, 14 ),
+"code": [ "Gd" ]
+},
+505: {
+"cell": Vector2( 15, 14 ),
+"code": [ "Gg" ]
+},
+506: {
+"cell": Vector2( 16, 14 ),
+"code": [ "Gd" ]
+},
+507: {
+"cell": Vector2( 17, 14 ),
+"code": [ "Gg" ]
+},
+508: {
+"cell": Vector2( 18, 14 ),
+"code": [ "Gd" ]
+},
+509: {
+"cell": Vector2( 19, 14 ),
+"code": [ "Gg" ]
+},
+510: {
+"cell": Vector2( 20, 14 ),
+"code": [ "Ha" ]
+},
+511: {
+"cell": Vector2( 21, 14 ),
+"code": [ "Gg" ]
+},
+512: {
+"cell": Vector2( 22, 14 ),
+"code": [ "Ms" ]
+},
+513: {
+"cell": Vector2( 23, 14 ),
+"code": [ "Gg" ]
+},
+514: {
+"cell": Vector2( 24, 14 ),
+"code": [ "Hhd" ]
+},
+515: {
+"cell": Vector2( 25, 14 ),
+"code": [ "Gg" ]
+},
+516: {
+"cell": Vector2( 26, 14 ),
+"code": [ "Hhd" ]
+},
+517: {
+"cell": Vector2( 27, 14 ),
+"code": [ "Gg" ]
+},
+518: {
+"cell": Vector2( 28, 14 ),
+"code": [ "Hh" ]
+},
+519: {
+"cell": Vector2( 29, 14 ),
+"code": [ "Gg" ]
+},
+520: {
+"cell": Vector2( 30, 14 ),
+"code": [ "Hh" ]
+},
+521: {
+"cell": Vector2( 31, 14 ),
+"code": [ "Gg" ]
+},
+522: {
+"cell": Vector2( 32, 14 ),
+"code": [ "Gll" ]
+},
+523: {
+"cell": Vector2( 33, 14 ),
+"code": [ "Gg" ]
+},
+524: {
+"cell": Vector2( 34, 14 ),
+"code": [ "Gg" ]
+}
+}
