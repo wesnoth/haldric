@@ -26,15 +26,11 @@ func find_path_by_location(start_loc: Location, end_loc: Location) -> PoolVector
 
 	return path2D
 
-func make_cell_one_way(cell: Vector2):
-	var id: int = _flatten(cell)
-	var neighbors = Hex.get_neighbors(cell)
-
-	for n in neighbors:
-		var n_id: int = _flatten(n)
-		if rect.has_point(n) and are_points_connected(id, n_id):
-			disconnect_points(id, n_id)
-			connect_points(n_id,id,false)
+func make_location_one_way(location: Location):
+	for adjacent_location in location.get_adjacent_locations():
+		if rect.has_point(adjacent_location.cell) and are_points_connected(location.id, adjacent_location.id):
+			disconnect_points(location.id, adjacent_location.id)
+			connect_points(adjacent_location.id,adjacent_location.id,false)
 
 func block_cell(cell: Vector2):
 	_disconnect_with_neighbors(cell)

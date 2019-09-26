@@ -200,7 +200,7 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 				cost = 1
 				#var current_cell := Vector2(cell.x, cell.y + 1)
 				#var next_cell := Vector2(cell.x, cell.y + 1)
-				grid.make_cell_one_way(location.cell)
+				grid.make_location_one_way(location)
 				if ignore_ZOC:
 					ZOC_tiles[location]=[]
 				else:
