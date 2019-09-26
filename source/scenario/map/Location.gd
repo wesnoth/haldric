@@ -38,7 +38,6 @@ func _init(tilemap_cell_coords: Vector2, map_instance) -> void:
 	id = _generate_id(cell, int(rect.size.x))
 	position = map.map_to_world_centered(cell)
 			
-			
 
 #func get_position_centered() -> Vector2:
 	#return position + OFFSET

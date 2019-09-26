@@ -40,12 +40,8 @@ func unblock_location(location: Location) -> void:
 	_connect_with_neighbors(location)
 
 func _generate_points() -> void:
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id := _flatten(cell)
-
-			add_point(id, Vector3(x, y, 0))
+	for location in map.locations_dict.values():
+		add_point(location.id, Vector3(location.cell.x, location.cell.y, 0))
 
 func _generate_point_connections() -> void:
 	for location in map.locations_dict.values():
