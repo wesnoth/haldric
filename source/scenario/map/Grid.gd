@@ -63,27 +63,22 @@ func _disconnect_with_neighbors(location: Location) -> void:
 			elif are_points_connected(adjacent_location.id, location.id):
 				disconnect_points(adjacent_location.id, location.id)
 
-func _flatten(cell: Vector2) -> int:
-	return Utils.flatten(cell, int(rect.size.x))
 #override the _compute_cost for astar
 #since compute cost is always called on adjacent hexes, the value should always be base of 1 (weights get calcualted in by the algorithim)
 #by defauly 2 of the 6 neighbors would instead have had sqrt(2), hences the override function
+
 func _compute_cost(from_id: int, to_id: int) -> float:
 	return 1.0
+	
 #for debug purposes, may remove later
-func num_neighbors(cell: Vector2) -> int:
-	var id: int = _flatten(cell)
-	var neighbors: Array = Hex.get_neighbors(cell)
+func enum_connected_points(location: Location) -> int:
 	var ret: int = 0
-	for n in neighbors:
-		var n_id: int = _flatten(n)
-		if not rect.has_point(n):
+	for adjacent_location in location.get_adjacent_locations():
+		if not rect.has_point(adjacent_location.cell):
 			continue
-		if are_points_connected(id, n_id):
+		if are_points_connected(location.id, adjacent_location.id):
 			ret+=1
 	return ret
 
-func get_neighbors(cell: Vector2) -> PoolIntArray:
-	var id: int = _flatten(cell)
-	var neighbors: Array = Hex.get_neighbors(cell)
-	return get_point_connections(id)
+func get_connected_points(location: Location) -> PoolIntArray:
+	return get_point_connections(location.id)

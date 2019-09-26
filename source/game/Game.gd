@@ -57,7 +57,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventKey: #for debug purposes, will be removed later
 		if event.scancode == KEY_J and event.pressed:
 			if loc:
-				print(loc.map.grid.get_neighbors(loc.cell))
+				print(loc.map.grid.get_connected_points(loc))
 		if event.scancode == KEY_L and event.pressed:
 			loc.map.debug()
 
