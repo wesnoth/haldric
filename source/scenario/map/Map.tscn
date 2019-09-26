@@ -56,6 +56,7 @@ axis_stretch_vertical = 1
 texture = ExtResource( 7 )
 
 [node name="HexDebug" type="HBoxContainer" parent="Hover"]
+visible = false
 margin_left = 34.7766
 margin_top = -10.4554
 margin_right = 84.7766

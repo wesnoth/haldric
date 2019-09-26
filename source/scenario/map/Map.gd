@@ -384,3 +384,5 @@ func debug():
 		label.set_position(location.position)
 		labels.append(label)
 		add_child(label)
+		$Hover/HexDebug.modulate = Color(1,1,1,1)
+		
