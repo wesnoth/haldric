@@ -17,37 +17,6 @@ func _init(new_map: TileMap, map_rect: Rect2) -> void:
 	_generate_point_connections()
 
 
-"""
-	Converting between hex-grid and 2D spatial coordinates
-"""
-func get_hex_center(hex):
-	# Returns hex's centre position on the projection plane
-	hex = Hex.new(hex)
-	return hex_transform * hex.axial_coords	
-	
-func get_offset_hex_center(hex):
-	# Returns hex's centre position on the projection plane including the offset I've added to match the tileset.
-	hex = Hex.new(hex)
-	return hex_transform * hex.axial_coords + Vector2(32,30)
-	
-func get_hex_at(coords) -> Hex:
-	# Returns a HexCell at the given Vector2/3 on the projection plane
-	# If the given value is a Vector3, its x,z coords will be used
-	if typeof(coords) == TYPE_VECTOR3:
-		coords = Vector2(coords.x, coords.z)
-	return Hex.new(Hex.hex_to_quad(coords))
-	
-func get_hex_center3(hex, y=0):
-	# Returns hex's centre position as a Vector3
-	var coords = get_hex_center(hex)
-	return Vector3(coords.x, y, coords.y)
-	
-	
-	
-	
-	
-
-
 
 func find_path_by_cell(start_cell: Vector2, end_cell: Vector2) -> PoolVector2Array:
 	var path2D := PoolVector2Array()

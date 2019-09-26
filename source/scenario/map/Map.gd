@@ -216,7 +216,7 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 								#if (new_neighbor in neighbors and unit.location.cell == new_neighbor):
 								#	continue
 								elif neighbor_location == location:
-									var temp_unit = locations_dict[adjacent_location.cube_coords].unit
+									var temp_unit = adjacent_location.unit
 									if not temp_unit or temp_unit == unit:
 										grid.connect_points(adjacent_location.id,neighbor_location.id,false)
 								elif not unit.location == neighbor_location and neighbor_location in ZOC_tiles.keys():
