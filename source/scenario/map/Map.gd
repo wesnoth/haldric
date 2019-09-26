@@ -142,8 +142,8 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 	var cells := Hex.get_cells_around(unit.location.cell, radius, Vector2(rect.size.x, rect.size.y))
 	if cells.size() == 0:
 		if ZOC_tiles.has(unit.location):
-			for enemey_cell in ZOC_tiles[unit.location]:
-				paths[enemey_cell] = [enemey_cell]
+			for enemy_cell in ZOC_tiles[unit.location]:
+				paths[enemy_cell] = [enemy_cell]
 	cells.invert()
 	for cell in cells:
 		if paths.has(cell):
@@ -166,10 +166,10 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 			if cost == radius:
 				if ZOC_tiles.has(path_cell) and not ignore_units:
 					var attack_path = new_path.duplicate(true)
-					for enemey_cell in ZOC_tiles[path_cell]:
-						if not paths.has(enemey_cell):
-							attack_path.append(enemey_cell)
-							paths[enemey_cell] = attack_path.duplicate(true)
+					for enemy_cell in ZOC_tiles[path_cell]:
+						if not paths.has(enemy_cell):
+							attack_path.append(enemy_cell)
+							paths[enemy_cell] = attack_path.duplicate(true)
 							attack_path.pop_back()
 				break
 	return paths
