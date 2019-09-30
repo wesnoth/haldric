@@ -91,7 +91,7 @@ func move_to(new_path: Array) -> void:
 
 func receive_attack(attack: Attack) -> void:
 	health_current -= attack.damage
-	print("receive damage: %d" % attack.damage)
+	print("{name} received {dmg} damage".format({'name':type.id,'dmg':attack.damage}))
 
 func found_matching_attack(target: Unit, attack: Attack) -> Attack:
 	for ennemy_attack in target.type.get_attacks():
@@ -172,3 +172,24 @@ func _amla() -> void:
 	type.health += 3
 	type.experience *= 1.2
 	reset()
+
+func refresh_unit() -> void:
+	"""
+	Refreshes unit state at turn start
+	* Resets unit movement
+	* Heals unit as per leftover movement
+	* Does damage if poisoned 
+	* etc
+	"""
+	if health_current < type.health:
+		var heal = 0
+		if moves_current == type.moves:
+			heal += 2 # If the unit did not move last turn, it recovers 2 HP
+		if location in side.villages:
+			heal += 8 # If the unit is in a village, it recovers 8 HP 
+		if heal + health_current > type.health:
+			heal = type.health - health_current
+		health_current += heal
+		print("{name} healed {heal} HP for resting".format({'name':type.id, 'heal':heal}))
+	moves_current = type.moves # If the unit moved last turn, it recovers to its max move
+	viewable.clear()
