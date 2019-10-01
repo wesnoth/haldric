@@ -4,11 +4,6 @@ class_name Grid
 var rect := Rect2()
 var map: TileMap = null
 
-var base_hex_size = Vector2(1, sqrt(3)/2)
-var hex_size
-var hex_transform
-var hex_transform_inv
-
 func _init(new_map: TileMap, map_rect: Rect2) -> void:
 	map = new_map
 	rect = map_rect
