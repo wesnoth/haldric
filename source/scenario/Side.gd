@@ -68,8 +68,6 @@ func set_unit_reachables(update: bool = false) -> void:
 		viewable_units.clear()
 
 	for unit in units.get_children():
-		if not update:
-			unit.refresh_unit()
 		unit.set_reachable(not update)
 
 func add_village(loc: Location) -> bool:
@@ -98,17 +96,28 @@ func get_first_leader():
 	return null
 
 func _calculate_upkeep() -> void:
+	"""
+	Calculates how much gold costs the player will have.
+	The default calculation is 1 per unit level they control.
+	Units with loyal traits do not cost anything.
+	""" 
 	upkeep = 0
 	for unit in units.get_children():
 		upkeep += unit.type.level
 
 func _calculate_income() -> void:
-	income = base_income + INCOME_PER_VILLAGE * villages.size() - upkeep
+	"""
+	Calculates how much incoming gold the player will have.
+	The default calculation is 2 + 1 per village
+	""" 
+	income = base_income + INCOME_PER_VILLAGE * villages.size()
 
 func _turn_refresh() -> void:
 	_calculate_upkeep()
 	_calculate_income()
-	gold += income
+	gold += income - upkeep
+	for unit in units.get_children():
+		unit.refresh_unit()
 
 func _add_flag(loc: Location) -> void:
 
