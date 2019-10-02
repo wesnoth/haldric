@@ -3,7 +3,7 @@ class_name Side
 
 const Flag = preload("res://source/game/Flag.tscn")
 
-const INCOME_PER_VILLAGE = 2
+const INCOME_PER_VILLAGE = 1
 
 const HEAL_ON_VILLAGE = 8
 const HEAL_ON_REST = 2
