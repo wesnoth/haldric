@@ -57,7 +57,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventKey: #for debug purposes, will be removed later
 		if event.scancode == KEY_J and event.pressed:
 			if loc:
-				print(loc.map.grid.get_neighbors(loc.cell))
+				print(loc.map.grid.get_connected_points(loc))
 		if event.scancode == KEY_L and event.pressed:
 			loc.map.debug()
 
@@ -156,7 +156,7 @@ func _update_time(time: Time) -> void:
 		return
 
 	# TODO: global shader not taking individual time areas into account...
-	for loc in scenario.map.locations:
+	for loc in scenario.map.locations_dict.values():
 		loc.terrain.time = time
 
 	var curr_tint: Vector3 = viewport_container.material.get_shader_param("delta")

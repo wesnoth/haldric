@@ -139,6 +139,7 @@ func set_reachable(viewable: bool = true) -> void:
 
 	thread.start(location.map, "threadable_find_all_reachable_cells", [self])
 	reachable = thread.wait_to_finish()
+	#reachable = location.map.threadable_find_all_reachable_cells([self]) #Debug
 
 func update_viewable() -> bool:
 	if side.fog:

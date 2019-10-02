@@ -11,93 +11,69 @@ func _init(new_map: TileMap, map_rect: Rect2) -> void:
 	_generate_points()
 	_generate_point_connections()
 
-func find_path_by_cell(start_cell: Vector2, end_cell: Vector2) -> PoolVector2Array:
+
+
+func find_path_by_location(start_loc: Location, end_loc: Location) -> PoolVector2Array:
 	var path2D := PoolVector2Array()
-	var path3D: PoolVector3Array = get_point_path(_flatten(start_cell), _flatten(end_cell))
+	var path3D: PoolVector3Array = get_point_path(start_loc.id, end_loc.id)
 	for point in path3D:
 		path2D.append(Vector2(point.x, point.y))
 
 	return path2D
 
-func make_cell_one_way(cell: Vector2):
-	var id: int = _flatten(cell)
-	var neighbors = Hex.get_neighbors(cell)
+func make_location_one_way(location: Location) -> void:
+	for adjacent_location in location.get_adjacent_locations():
+		if rect.has_point(adjacent_location.cell) and are_points_connected(location.id, adjacent_location.id):
+			disconnect_points(location.id, adjacent_location.id)
+			connect_points(adjacent_location.id,adjacent_location.id,false)
 
-	for n in neighbors:
-		var n_id: int = _flatten(n)
-		if rect.has_point(n) and are_points_connected(id, n_id):
-			disconnect_points(id, n_id)
-			connect_points(n_id,id,false)
+func block_location(location: Location) -> void:
+	_disconnect_with_neighbors(location)
 
-func block_cell(cell: Vector2):
-	_disconnect_with_neighbors(cell)
-
-func unblock_cell(cell: Vector2):
-	_disconnect_with_neighbors(cell)
-	_connect_with_neighbors(cell)
+func unblock_location(location: Location) -> void:
+	_disconnect_with_neighbors(location)
+	_connect_with_neighbors(location)
 
 func _generate_points() -> void:
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id := _flatten(cell)
-
-			add_point(id, Vector3(x, y, 0))
+	for location in map.locations_dict.values():
+		add_point(location.id, Vector3(location.cell.x, location.cell.y, 0))
 
 func _generate_point_connections() -> void:
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id: int = _flatten(cell)
-			var point: Vector3 = get_point_position(id)
+	for location in map.locations_dict.values():
+		_connect_with_neighbors(location)
 
-			_connect_with_neighbors(cell)
+func _connect_with_neighbors(location: Location) -> void:
+	for adjacent_location in location.get_adjacent_locations():
+		if rect.has_point(location.cell) and\
+			not are_points_connected(location.id, adjacent_location.id) and\
+			not location.is_blocked and\
+			not adjacent_location.is_blocked:
+			connect_points(location.id, adjacent_location.id)
 
-func _connect_with_neighbors(cell: Vector2) -> void:
-	var id: int = _flatten(cell)
-	var neighbors: Array = Hex.get_neighbors(cell)
+func _disconnect_with_neighbors(location: Location) -> void:
+	for adjacent_location in location.get_adjacent_locations():
+		if rect.has_point(adjacent_location.cell):
+			if are_points_connected(location.id, adjacent_location.id):
+				disconnect_points(location.id, adjacent_location.id)
+			elif are_points_connected(adjacent_location.id, location.id):
+				disconnect_points(adjacent_location.id, location.id)
 
-	for n in neighbors:
-		var n_id: int = _flatten(n)
-		if rect.has_point(n) and\
-				not are_points_connected(id, n_id) and\
-				not map.locations[id].is_blocked and\
-				not map.locations[n_id].is_blocked:
-			connect_points(id, n_id)
-
-func _disconnect_with_neighbors(cell: Vector2) -> void:
-	var id: int = _flatten(cell)
-	var neighbors = Hex.get_neighbors(cell)
-
-	for n in neighbors:
-		var n_id: int = _flatten(n)
-		if rect.has_point(n):
-			if are_points_connected(id, n_id):
-				disconnect_points(id, n_id)
-			elif are_points_connected(n_id, id):
-				disconnect_points(n_id, id)
-
-func _flatten(cell: Vector2) -> int:
-	return Utils.flatten(cell, int(rect.size.x))
 #override the _compute_cost for astar
 #since compute cost is always called on adjacent hexes, the value should always be base of 1 (weights get calcualted in by the algorithim)
 #by defauly 2 of the 6 neighbors would instead have had sqrt(2), hences the override function
+
 func _compute_cost(from_id: int, to_id: int) -> float:
 	return 1.0
+	
 #for debug purposes, may remove later
-func num_neighbors(cell: Vector2) -> int:
-	var id: int = _flatten(cell)
-	var neighbors: Array = Hex.get_neighbors(cell)
+func enum_connected_points(location: Location) -> int:
 	var ret: int = 0
-	for n in neighbors:
-		var n_id: int = _flatten(n)
-		if not rect.has_point(n):
+	for adjacent_location in location.get_adjacent_locations():
+		if not rect.has_point(adjacent_location.cell):
 			continue
-		if are_points_connected(id, n_id):
+		if are_points_connected(location.id, adjacent_location.id):
 			ret+=1
 	return ret
 
-func get_neighbors(cell: Vector2) -> PoolIntArray:
-	var id: int = _flatten(cell)
-	var neighbors: Array = Hex.get_neighbors(cell)
-	return get_point_connections(id)
+func get_connected_points(location: Location) -> PoolIntArray:
+	return get_point_connections(location.id)

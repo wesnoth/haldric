@@ -14,7 +14,7 @@ var rect := Rect2()
 var map_data := {}
 
 var labels := []
-var locations := []
+var locations_dict := {} # A dictionary which stores all the locations objects of this scenario.
 var grid: Grid = null
 var ZOC_tiles := {}
 
@@ -35,14 +35,21 @@ func initialize() -> void:
 	_initialize_grid()
 	_initialize_transitions()
 
+func get_viewport_mouse_position() -> Vector2:
+	"""
+	Function to catch the internal viewport mouse position
+	Workaround for bug https://github.com/godotengine/godot/issues/32222
+	"""
+	var offset_position := Vector2()
+	if get_tree().current_scene.name == 'Game': 
+		offset_position = get_tree().current_scene.get_global_mouse_position() - get_viewport_transform().origin
+	else:
+		offset_position = get_local_mouse_position()
+	return offset_position
+		
 func _input(event) -> void: 
 	if event is InputEventMouseMotion:  # If the mouse is moving, we update the highlight position on the map.
-		var offset_position := Vector2()
-		if get_tree().current_scene.name == 'Game': # Workaround for bug https://github.com/godotengine/godot/issues/32222
-			offset_position = get_tree().current_scene.get_global_mouse_position() - get_viewport_transform().origin
-		else:
-			offset_position = get_local_mouse_position()
-		var cell := world_to_map(offset_position)
+		var cell := world_to_map(get_viewport_mouse_position())
 	
 		# TODO: also hide on borders
 		if not rect.has_point(cell):
@@ -50,23 +57,25 @@ func _input(event) -> void:
 		else:
 			hover.show()
 			hover.position = map_to_world_centered(cell)
+			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[cell].cube_coords)
 
 func map_to_world_centered(cell: Vector2) -> Vector2: 
 	"""
 	Function to get the center of the hex
-	It maps the provided Vector2 position to the tilemap, then offsets it by half the size of the cell.
+	It maps the provided tilemap (Vector2) position to the world (i.e mouse position), 
+	then it offsets it by half the size of the cell so that the mouse position falls where the hex is expected to start.
 	"""
 	return map_to_world(cell) + OFFSET 
 
 func world_to_world_centered(cell: Vector2) -> Vector2: 
 	"""
-	Function to get the center position of a given hexcell.
+	Function to get the world (i.e. mouse) position of the center of the hexcell over which the mouse is currently positioned on.
 	"""
 	return map_to_world_centered(world_to_map(cell))
 
 func find_path(start_loc: Location, end_loc: Location) -> Array:
 	var loc_path := []
-	var cell_path: PoolVector2Array = grid.find_path_by_cell(start_loc.cell, end_loc.cell)
+	var cell_path: PoolVector2Array = grid.find_path_by_location(start_loc, end_loc)
 	if cell_path.size() > 0:
 		cell_path.remove(0)
 		for cell in cell_path:
@@ -91,7 +100,7 @@ func extend_viewable(unit: Unit) -> bool:
 			var path: Array = find_path(unit.location, loc)
 			var cost := 0
 			for path_cell in path:
-				var cell_cost = grid.get_point_weight_scale(_flatten(path_cell.cell))
+				var cell_cost = grid.get_point_weight_scale(locations_dict[path_cell.cell].id)
 				if cost + cell_cost > unit.type.moves:
 					break
 				cost += cell_cost
@@ -132,8 +141,8 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 	var cells := Hex.get_cells_around(unit.location.cell, radius, Vector2(rect.size.x, rect.size.y))
 	if cells.size() == 0:
 		if ZOC_tiles.has(unit.location):
-			for enemey_cell in ZOC_tiles[unit.location]:
-				paths[enemey_cell] = [enemey_cell]
+			for enemy_cell in ZOC_tiles[unit.location]:
+				paths[enemy_cell] = [enemy_cell]
 	cells.invert()
 	for cell in cells:
 		if paths.has(cell):
@@ -144,7 +153,7 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 		var new_path := []
 		var cost := 0
 		for path_cell in path:
-			var cell_cost = grid.get_point_weight_scale(_flatten(path_cell.cell))
+			var cell_cost = grid.get_point_weight_scale(locations_dict[path_cell.cell].id)
 			#if ZOC_tiles.has(path_cell) and not ignore_units:
 			#	cell_cost = 1
 			if cost + cell_cost > radius:
@@ -156,10 +165,10 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 			if cost == radius:
 				if ZOC_tiles.has(path_cell) and not ignore_units:
 					var attack_path = new_path.duplicate(true)
-					for enemey_cell in ZOC_tiles[path_cell]:
-						if not paths.has(enemey_cell):
-							attack_path.append(enemey_cell)
-							paths[enemey_cell] = attack_path.duplicate(true)
+					for enemy_cell in ZOC_tiles[path_cell]:
+						if not paths.has(enemy_cell):
+							attack_path.append(enemy_cell)
+							paths[enemy_cell] = attack_path.duplicate(true)
 							attack_path.pop_back()
 				break
 	return paths
@@ -174,59 +183,53 @@ func update_terrain() -> void:
 
 func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = false) -> void:
 	for loc in ZOC_tiles.keys():
-		grid.unblock_cell(loc.cell)
+		grid.unblock_location(loc)
 		for val in ZOC_tiles[loc]:
-			grid.unblock_cell(val.cell)
+			grid.unblock_location(val)
 	if not ignore_units:
 		ZOC_tiles.clear()
 
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id: int = _flatten(cell)
-			var location: Location = locations[id]
-			var cost: int = unit.get_movement_cost(location)
+	for location in locations_dict.values():
+		var cell: Vector2 = location.cell
+		var id: int = location.id
+		var cost: int = unit.get_movement_cost(location)		
+		var other_unit = location.unit
+		if not ignore_units and other_unit:
+			if not other_unit.side.number == unit.side.number:
+				cost = 1
+				#var current_cell := Vector2(cell.x, cell.y + 1)
+				#var next_cell := Vector2(cell.x, cell.y + 1)
+				grid.make_location_one_way(location)
+				if ignore_ZOC:
+					ZOC_tiles[location]=[]
+				else:
+					for adjacent_location in location.get_adjacent_locations():
+						if not _is_cell_in_map(adjacent_location.cell):
+							continue
+						if unit.location != adjacent_location:
+							grid.block_location(adjacent_location)
+							for neighbor_location in adjacent_location.get_adjacent_locations():
+								if not _is_cell_in_map(neighbor_location.cell):
+									continue
+								#if (new_neighbor in neighbors and unit.location.cell == new_neighbor):
+								#	continue
+								elif neighbor_location == location:
+									if not adjacent_location.unit or adjacent_location.unit == unit:
+										grid.connect_points(adjacent_location.id,neighbor_location.id,false)
+								elif not unit.location == neighbor_location and neighbor_location in ZOC_tiles.keys():
+									if grid.are_points_connected(neighbor_location.id,adjacent_location.id):
+										grid.disconnect_points(neighbor_location.id,adjacent_location.id)
+								else:
+									grid.connect_points(neighbor_location.id,adjacent_location.id,false)
+						else:
+							if not grid.are_points_connected(adjacent_location.id,location.id):
+								grid.connect_points(adjacent_location.id,location.id,false)
+						if ZOC_tiles.has(adjacent_location):
+							ZOC_tiles[adjacent_location].append(location)
+						else:
+							ZOC_tiles[adjacent_location] = [location]
 
-			var other_unit = location.unit
-			if not ignore_units and other_unit:
-				if not other_unit.side.number == unit.side.number:
-					cost = 1
-					#var current_cell := Vector2(cell.x, cell.y + 1)
-					#var next_cell := Vector2(cell.x, cell.y + 1)
-					grid.make_cell_one_way(location.cell)
-					if ignore_ZOC:
-						ZOC_tiles[location]=[]
-					else:
-						var neighbors: Array = Hex.get_neighbors(location.cell)
-						for neighbor in neighbors:
-							if not _is_cell_in_map(neighbor):
-								continue
-							if unit.location.cell != neighbor:
-								grid.block_cell(neighbor)
-								var new_neighbors = Hex.get_neighbors(neighbor)
-								for new_neighbor in new_neighbors:
-									if not _is_cell_in_map(new_neighbor):
-										continue
-									#if (new_neighbor in neighbors and unit.location.cell == new_neighbor):
-									#	continue
-									elif new_neighbor == location.cell:
-										var temp_unit = locations[_flatten(neighbor)].unit
-										if not temp_unit or temp_unit == unit:
-											grid.connect_points(_flatten(neighbor),_flatten(new_neighbor),false)
-									elif not unit.location.cell == new_neighbor and get_location(new_neighbor) in ZOC_tiles.keys():
-										if grid.are_points_connected(_flatten(new_neighbor),_flatten(neighbor)):
-											grid.disconnect_points(_flatten(new_neighbor),_flatten(neighbor))
-									else:
-										grid.connect_points(_flatten(new_neighbor),_flatten(neighbor),false)
-							else:
-								if not grid.are_points_connected(_flatten(neighbor),_flatten(location.cell)):
-									grid.connect_points(_flatten(neighbor),_flatten(location.cell),false)
-							if ZOC_tiles.has(get_location(neighbor)):
-								ZOC_tiles[get_location(neighbor)].append(location)
-							else:
-								ZOC_tiles[get_location(neighbor)] = [location]
-
-			grid.set_point_weight_scale(id, cost)
+		grid.set_point_weight_scale(id, cost)
 
 func set_size(size: Vector2) -> void:
 	rect.size = size
@@ -260,10 +263,13 @@ func get_village_count() -> int:
 	return overlay.get_used_cells_by_id(overlay.tile_set.find_tile_by_name("^Vh")).size()
 
 func get_location(cell: Vector2) -> Location:
+	"""
+	Returns the location object corresponding to a tilemap cell
+	"""
 	if not _is_cell_in_map(cell):
 		return null
-	return locations[_flatten(cell)]
-
+	return locations_dict[cell]
+	
 func get_pixel_size() -> Vector2:
 	if int(rect.size.x) % 2 == 0:
 		return map_to_world(rect.size) + Vector2(18, 36)
@@ -272,43 +278,12 @@ func get_pixel_size() -> Vector2:
 
 func get_map_data() -> Dictionary:
 	var map_data := {}
-
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id := _flatten(cell)
-
-			map_data[id] = {}
-			map_data[id].cell = cell
-			map_data[id].code = get_location(cell).terrain.code
-
+	for location in locations_dict.values():
+		map_data[location.id] = {}
+		map_data[location.id].cell = location.cell
+		map_data[location.id].code = location.terrain.code
 	return map_data
-
-# deprecated
-func get_map_string() -> String:
-	var string := ""
-
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id: int = _flatten(cell)
-
-			reset_if_empty(cell, true)
-
-			var code: String = tile_set.tile_get_name(get_cellv(cell))
-			var overlay_code := ""
-
-			var overlay_cell: int = overlay.get_cellv(cell)
-
-			if overlay_cell != TileMap.INVALID_CELL:
-				overlay_code = tile_set.tile_get_name(overlay_cell)
-			if x < rect.size.x - 1 and y < rect.size.y - 1:
-				string += code + overlay_code + ","
-			else:
-				string += code + overlay_code
-		string += "\n"
-
-	return string
+	
 
 func _initialize_terrain() -> void:
 
@@ -319,37 +294,28 @@ func _initialize_terrain() -> void:
 			overlay.set_cellv(terrain.cell, tile_set.find_tile_by_name(terrain.code[1]))
 
 func _initialize_locations() -> void:
-	locations.clear()
-	locations.resize(rect.size.x * rect.size.y)
-
+	locations_dict.clear()
+	
+	
 	for y in rect.size.y:
 		for x in rect.size.x:
 			var cell := Vector2(x, y)
-			var id := _flatten(cell)
-
 			# Reset to default terrain if no terrain is specified
 			reset_if_empty(cell, true)
-
 			cover.set_cellv(cell, void_tile)
 
-			var location := Location.new()
-
-			location.map = self
-			location.id = id
-			location.cell = cell
-			location.position = map_to_world_centered(cell)
-
+			var location := Location.new(cell, self)
 			# Do this *after* setting `cell` member
 			_update_terrain_record_from_map(location)
 
-			locations[id] = location
+			locations_dict[cell] = location
+			
 
 	_initialize_border()
 
 func _update_locations() -> void:
-	for y in rect.size.y:
-		for x in rect.size.x:
-			_update_terrain_record_from_map(get_location(Vector2(x, y)))
+	for location in locations_dict.values():
+		_update_terrain_record_from_map(location)
 
 func _update_terrain_record_from_map(loc: Location) -> void:
 	# Find the tileset tile on both layers (base and overlay)
@@ -378,14 +344,11 @@ func _update_size() -> void:
 func _initialize_transitions() -> void:
 	transitions.initialize(self)
 
-func _flatten(cell: Vector2) -> int:
-	return Utils.flatten(cell, int(rect.size.x))
-
 func _is_cell_in_map(cell: Vector2) -> bool:
 	return rect.has_point(cell)
 
 func get_location_from_mouse() -> Location:
-	return get_location(world_to_map(get_global_mouse_position()))
+	return get_location(world_to_map(get_viewport_mouse_position()))
 
 func display_reachable_for(reachable_locs: Dictionary) -> void:
 	# "Clear" the cover map by filling in everything with the Void terrain.
@@ -411,13 +374,12 @@ func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
 		if clear_overlay:
 			overlay.set_cellv(cell, INVALID_CELL)
 func debug():
-	for y in rect.size.y:
-		for x in rect.size.x:
-			var cell := Vector2(x, y)
-			var id: int = _flatten(cell)
-			var location: Location = locations[id]
-			var label: Label = Label.new()
-			label.text = str(id)
-			label.set_position(location.position)
-			labels.append(label)
-			add_child(label)
+	$Hover/HexDebug.visible = not $Hover/HexDebug.visible
+	
+	#for location in locations_dict.values():
+		#var label: Label = Label.new()
+		#label.text = str(location.id)
+		#label.set_position(location.position)
+		#labels.append(label)
+		#add_child(label)
+		
