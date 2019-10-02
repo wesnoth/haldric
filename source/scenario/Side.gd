@@ -69,8 +69,7 @@ func set_unit_reachables(update: bool = false) -> void:
 
 	for unit in units.get_children():
 		if not update:
-			unit.moves_current = unit.type.moves
-			unit.viewable.clear()
+			unit.refresh_unit()
 		unit.set_reachable(not update)
 
 func add_village(loc: Location) -> bool:
