@@ -117,7 +117,7 @@ func execute_attack(target: Unit, attack: Attack) -> void:
 			defender_strikes -= 1
 
 func get_movement_cost(loc: Location) -> int:
-	var cost =  type.movement.get(loc.terrain.type[0])
+	var cost = type.movement.get(loc.terrain.type[0])
 	if loc.terrain.type.size() > 1:
 		var cost_overlay = type.movement.get(loc.terrain.type[1])
 		cost = max(cost_overlay, cost)

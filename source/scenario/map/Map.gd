@@ -1,6 +1,11 @@
 extends TileMap
 class_name Map
-
+"""
+An object for the map itself
+Its primary location is to contain and prepare the relationaship of locations to each other
+It is also the primary viewport on which the mouse is moving, so some it's responsible for 
+  translating mouse position to hex position and vice-versa.
+"""
 const OFFSET := Vector2(36, 36) # Half the size of the tilemap cell size, so that the highlight display is centered on the hex
 
 const DEFAULT_TERRAIN := "Gg"
@@ -9,22 +14,24 @@ const VOID_TERRAIN := "Xv"
 var default_tile := tile_set.find_tile_by_name(DEFAULT_TERRAIN)
 var void_tile := tile_set.find_tile_by_name(VOID_TERRAIN)
 
-var rect := Rect2()
+var rect := Rect2() # Used to store the x*y size of the map in square tiles
 
-var map_data := {}
+var map_data := {} 
 
 var labels := []
 var locations_dict := {} # A dictionary which stores all the locations objects of this scenario.
-var grid: Grid = null
-var ZOC_tiles := {}
+var grid: Grid = null # An object which holds the astar connections
+var ZOC_tiles := {} # Hexes exert a Zone of Control (because a unit is on them)
+					# Each key is a location instance
+					# Each value is the location objects (typically all adjacent hexes) which are under this location's ZoC
 
 
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
 onready var transitions := $Transitions as Transitions
 
-onready var border := $MapBorder
-onready var hover := $Hover
+onready var border := $MapBorder # The hexes which are renderred but not playable
+onready var hover := $Hover # The highlight hex sprite to see which hex your mouse is over.
 
 func initialize() -> void:
 	_initialize_terrain()
@@ -55,9 +62,9 @@ func _input(event) -> void:
 		if not rect.has_point(cell):
 			hover.hide()
 		else:
-			hover.show()
+			hover.show() # If the hex is over a playable hex, show the hex highlight
 			hover.position = map_to_world_centered(cell)
-			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[cell].cube_coords)
+			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[cell].cube_coords) # Debug
 
 func map_to_world_centered(cell: Vector2) -> Vector2: 
 	"""
@@ -84,6 +91,9 @@ func find_path(start_loc: Location, end_loc: Location) -> Array:
 	return loc_path
 
 func extend_viewable(unit: Unit) -> bool:
+	"""
+	Description WiP
+	"""
 	var new_unit_found  = false
 	#var extend_hexes := []
 	#update_weight(unit, false, true)
@@ -126,6 +136,9 @@ func extend_viewable(unit: Unit) -> bool:
 
 #seprate wrapper function for "find_all_reachable_cells" since threads can only handle 1 argument being passed for some reason
 func threadable_find_all_reachable_cells(arg_array: Array) -> Dictionary:
+	"""
+	Method which to call find_all_reachable_cells() in a spawned thread.
+	"""
 	if arg_array.size() == 0:
 		return {}
 	var unit = arg_array[0]
@@ -134,38 +147,49 @@ func threadable_find_all_reachable_cells(arg_array: Array) -> Dictionary:
 	return find_all_reachable_cells(unit,ignore_units,ignore_moves)
 
 func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_moves: bool = false) -> Dictionary:
-	update_weight(unit, false, ignore_units)
-	var paths := {}
-	paths[unit.location] = []
-	var radius = (unit.type.moves if ignore_moves else unit.moves_current)
-	var cells := Hex.get_cells_around(unit.location.cell, radius, Vector2(rect.size.x, rect.size.y))
-	if cells.size() == 0:
+	"""
+	Method to return all hexes which are in range to a unit's movement
+	* unit holds the unit instance we're checking for
+	* ignore_units and ignore_moves are set to true when we only want to check the line of sight.
+	* Setting them to true makes the calculations here ignore stopping due to having units on the way or less movement than max.
+	"""
+	update_weight(unit, false, ignore_units) # We update how much each hex costs to move for this unit
+	var paths := {} # A dictionary of possible paths. 
+					# Each key is a location object. 
+					# Each value is an array of locations that this unit's would have to move through to reach the location at the key
+	paths[unit.location] = [] 
+	var radius = (unit.type.moves if ignore_moves else unit.moves_current) # Figure out how many hexes around this unit can reach.
+	var cells := Hex.get_cells_around(unit.location.cell, radius, Vector2(rect.size.x, rect.size.y)) # Figure out which exact hexes are in this radius
+	if cells.size() == 0: 
+	# if our radius was 0, it means that our unit might be in surrounded by Zones of Control
+	# In that case, we add each enemy unit which set out possible path to only the units which are in this units ZoC
 		if ZOC_tiles.has(unit.location):
 			for enemy_cell in ZOC_tiles[unit.location]:
 				paths[enemy_cell] = [enemy_cell]
 	cells.invert()
-	for cell in cells:
-		if paths.has(cell):
+	for cell in cells: # We start finding paths for each of the possible hexes our unit could reach.
+		if paths.has(cell): # To avoid duplicates
 			continue
-		var path: Array = find_path(unit.location, get_location(cell))
+		var path: Array = find_path(unit.location, get_location(cell)) # Find the optimal path between our unit and the current hex we're checking
 		if path.empty():
 			continue
-		var new_path := []
-		var cost := 0
-		for path_cell in path:
-			var cell_cost = grid.get_point_weight_scale(locations_dict[path_cell.cell].id)
+		var actual_path := [] # It will hold how many of the locations in this potential path, this unit is actually able to traverse with its available movement.
+		var cost := 0 # Holds how much movement points it will cost in total to move through this path
+		for path_location in path: # For each potential hex in this path, we calculate its difficulty
+			var cell_cost = grid.get_point_weight_scale(locations_dict[path_location.cell].id)
 			#if ZOC_tiles.has(path_cell) and not ignore_units:
 			#	cell_cost = 1
-			if cost + cell_cost > radius:
+			if cost + cell_cost > radius: # If the cost to move to the next hex in the path would exceed this unit's movement radius, we stop.
 				break
-
-			cost += cell_cost
-			new_path.append(path_cell)
-			paths[path_cell] = new_path.duplicate(true)
-			if cost == radius:
-				if ZOC_tiles.has(path_cell) and not ignore_units:
-					var attack_path = new_path.duplicate(true)
-					for enemy_cell in ZOC_tiles[path_cell]:
+			cost += cell_cost # We increment how many movement points we've spent until now to reach this hex in the path.
+			actual_path.append(path_location) # If the cost to move to the next location in the path is still within this unit's movement points, 
+											  # we add this location to the actually available locations in that path
+			paths[path_location] = actual_path.duplicate(true) # We keep resetting the actual distance we calculated this unit will reach towards this location.
+			if cost == radius: # If the movement points we've used are exactly equal to our movement range
+							   # Then we still want to allow the unit to be able to attack any adjacent enemy at the end of its range
+				if ZOC_tiles.has(path_location) and not ignore_units:
+					var attack_path = actual_path.duplicate(true)
+					for enemy_cell in ZOC_tiles[path_location]:
 						if not paths.has(enemy_cell):
 							attack_path.append(enemy_cell)
 							paths[enemy_cell] = attack_path.duplicate(true)
@@ -182,31 +206,34 @@ func update_terrain() -> void:
 	transitions.update_transitions()
 
 func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = false) -> void:
+	"""
+	This method takes as arguments a unit object
+	then it calculates how many movement points each hex on the max requires for this unit to move into it
+	If ignore_ZOC is true, then this unit will ignore Zones of Control of enemy units when calculating movement costs
+	If ignore_units is true, then this unit will be considered able to pass through other units (useful for checking line of sight)
+	"""
 	for loc in ZOC_tiles.keys():
 		grid.unblock_location(loc)
 		for val in ZOC_tiles[loc]:
 			grid.unblock_location(val)
-	if not ignore_units:
-		ZOC_tiles.clear()
+	if not ignore_units: # When we're not checking line of sight
+						 # we're going to use this opportunity of going through each map location,
+						 # to update our Zones of Control dictionary
+		ZOC_tiles.clear() 
 
-	for location in locations_dict.values():
-		var cell: Vector2 = location.cell
-		var id: int = location.id
-		var cost: int = unit.get_movement_cost(location)		
-		var other_unit = location.unit
-		if not ignore_units and other_unit:
-			if not other_unit.side.number == unit.side.number:
-				cost = 1
-				#var current_cell := Vector2(cell.x, cell.y + 1)
-				#var next_cell := Vector2(cell.x, cell.y + 1)
-				grid.make_location_one_way(location)
+	for location in locations_dict.values(): # We start going through all the location objects on the map
+		var cost: int = unit.get_movement_cost(location) # We get the cost to move into a specific terrain based on the unit type
+		if not ignore_units and location.unit: # If the current location we're checking has a unit...
+			if not location.unit.side.number == unit.side.number: # ...And that unit is hostile...
+				cost = 1 # ...Then this location is always considered to cost 1 to move to (i.e. terrain costs are ignored on attacks)
+				grid.make_location_one_way(location) # For pathfinding purposes, enemy unit's locations allow you to move in (i.e. attack), but not out of.
 				if ignore_ZOC:
 					ZOC_tiles[location]=[]
-				else:
-					for adjacent_location in location.get_adjacent_locations():
+				else: # If there's no units in the location we're checking then we take the opportunity to refresh grid connection
+					for adjacent_location in location.get_adjacent_locations(): # We iterate through each location around the current location we're checking
 						if not _is_cell_in_map(adjacent_location.cell):
 							continue
-						if unit.location != adjacent_location:
+						if unit.location != adjacent_location: # If that adjacent location does not contain our unit, then we refresh all connections to it
 							grid.block_location(adjacent_location)
 							for neighbor_location in adjacent_location.get_adjacent_locations():
 								if not _is_cell_in_map(neighbor_location.cell):
@@ -229,7 +256,7 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 						else:
 							ZOC_tiles[adjacent_location] = [location]
 
-		grid.set_point_weight_scale(id, cost)
+		grid.set_point_weight_scale(location.id, cost)
 
 func set_size(size: Vector2) -> void:
 	rect.size = size
