@@ -18,9 +18,6 @@ font_data = ExtResource( 10 )
 [node name="TitleScreen" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Pages" parent="." index="1"]
-editor/display_folded = true
-
 [node name="Home" parent="Pages" index="0" instance=ExtResource( 3 )]
 
 [node name="Tutorials" parent="Pages" index="1" instance=ExtResource( 4 )]
@@ -34,6 +31,8 @@ editor/display_folded = true
 [node name="Settings" parent="Pages" index="5" instance=ExtResource( 4 )]
 
 [node name="Credits" parent="Pages" index="6" instance=ExtResource( 4 )]
+margin_left = -1.0
+margin_right = -1.0
 
 [node name="VMenuBar" parent="." index="2" instance=ExtResource( 7 )]
 anchor_left = 1.0
