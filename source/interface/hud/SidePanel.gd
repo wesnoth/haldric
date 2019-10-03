@@ -48,9 +48,10 @@ func update_side(scenario : Scenario, side : Side) -> void:
 
 	gold_item.set_text(str(side.gold))
 	units_item.set_text(str(side.units.get_child_count()))
-	upkeep_item.set_text(str(side.upkeep))
+	upkeep_item.set_text(str(side.upkeep - side.villages.size()))
+	upkeep_item.set_extra_text('(' + str(side.upkeep) + ')')
 	villages_item.set_text("%d/%d" % [side.villages.size(), scenario.get_village_count()])
-	income_item.set_text(str(side.income))
+	income_item.set_text(str(side.income - side.upkeep))
 
 func _update_battery() -> void:
 	var power_percentage : int = OS.get_power_percent_left()

@@ -184,9 +184,9 @@ func refresh_unit() -> void:
 	if health_current < type.health:
 		var heal = 0
 		if moves_current == type.moves:
-			heal += 2 # If the unit did not move last turn, it recovers 2 HP
+			heal += side.HEAL_ON_REST # If the unit did not move last turn, it recovers 2 HP
 		if location in side.villages:
-			heal += 8 # If the unit is in a village, it recovers 8 HP 
+			heal += side.HEAL_ON_VILLAGE # If the unit is in a village, it recovers 8 HP 
 		if heal + health_current > type.health:
 			heal = type.health - health_current
 		health_current += heal
