@@ -94,9 +94,9 @@ func receive_attack(attack: Attack) -> void:
 	print("{name} received {dmg} damage".format({'name':type.id,'dmg':attack.damage}))
 
 func found_matching_attack(target: Unit, attack: Attack) -> Attack:
-	for ennemy_attack in target.type.get_attacks():
-		if(ennemy_attack.reach == attack.reach):
-			return ennemy_attack
+	for enemy_attack in target.type.get_attacks():
+		if(enemy_attack.reach == attack.reach):
+			return enemy_attack
 
 	#return an empty attack if no matching attack is found
 	var empty_attack = Attack.new()
