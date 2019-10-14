@@ -93,27 +93,20 @@ func receive_attack(attack: Attack) -> void:
 	health_current -= attack.damage
 	print("{name} received {dmg} damage".format({'name':type.id,'dmg':attack.damage}))
 
-func found_matching_attack(target: Unit, attack: Attack) -> Attack:
-	for enemy_attack in target.type.get_attacks():
-		if(enemy_attack.reach == attack.reach):
-			return enemy_attack
-
-	#return an empty attack if no matching attack is found
-	var empty_attack = Attack.new()
-	return empty_attack
-
-func execute_attack(target: Unit, attack: Attack) -> void:
-	var attacker_attack = attack
-	var defender_attack = found_matching_attack(target, attack)
-
-	var attacker_strikes = attacker_attack.strikes
-	var defender_strikes = defender_attack.strikes
+func execute_attack(target: Unit, combatChoices: Dictionary) -> void:
+	"""
+	Very simple function to exchange blows
+	combatChoices is a dictionary holding the selected attack/defense combination for the battling units
+	This choice was already made during the button press
+	"""
+	var attacker_strikes = combatChoices['attack'].strikes
+	var defender_strikes = combatChoices['defense'].strikes
 	while attacker_strikes > 0 or defender_strikes > 0:
 		if attacker_strikes > 0:
-			target.receive_attack(attacker_attack)
+			target.receive_attack(combatChoices['attack'])
 			attacker_strikes -= 1
 		if defender_strikes > 0:
-			self.receive_attack(defender_attack)
+			self.receive_attack(combatChoices['defense'])
 			defender_strikes -= 1
 
 func get_movement_cost(loc: Location) -> int:
