@@ -49,7 +49,9 @@ func get_viewport_mouse_position() -> Vector2:
 	"""
 	var offset_position := Vector2()
 	if get_tree().current_scene.name == 'Game': 
+		var zoom = get_parent().get_parent().get_node("Camera2D").zoom # We need to adjust the mouse cursor further by the camera's zoom level
 		offset_position = get_tree().current_scene.get_global_mouse_position() - get_viewport_transform().origin
+		offset_position *= zoom
 	else:
 		offset_position = get_local_mouse_position()
 	return offset_position
