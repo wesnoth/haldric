@@ -3,7 +3,7 @@ class_name Map
 """
 An object for the map itself
 Its primary location is to contain and prepare the relationaship of locations to each other
-It is also the primary viewport on which the mouse is moving, so some it's responsible for 
+It is also the primary viewport on which the mouse is moving, so some it's responsible for
   translating mouse position to hex position and vice-versa.
 """
 const OFFSET := Vector2(36, 36) # Half the size of the tilemap cell size, so that the highlight display is centered on the hex
@@ -16,7 +16,7 @@ var void_tile := tile_set.find_tile_by_name(VOID_TERRAIN)
 
 var rect := Rect2() # Used to store the x*y size of the map in square tiles
 
-var map_data := {} 
+var map_data := {}
 
 var labels := []
 var locations_dict := {} # A dictionary which stores all the locations objects of this scenario.
@@ -48,18 +48,18 @@ func get_viewport_mouse_position() -> Vector2:
 	Workaround for bug https://github.com/godotengine/godot/issues/32222
 	"""
 	var offset_position := Vector2()
-	if get_tree().current_scene.name == 'Game': 
+	if get_tree().current_scene.name == 'Game':
 		var zoom = get_parent().get_parent().get_node("Camera2D").zoom # We need to adjust the mouse cursor further by the camera's zoom level
 		offset_position = get_tree().current_scene.get_global_mouse_position() - get_viewport_transform().origin
 		offset_position *= zoom
 	else:
 		offset_position = get_local_mouse_position()
 	return offset_position
-		
-func _input(event) -> void: 
+
+func _input(event) -> void:
 	if event is InputEventMouseMotion:  # If the mouse is moving, we update the highlight position on the map.
 		var cell := world_to_map(get_viewport_mouse_position())
-	
+
 		# TODO: also hide on borders
 		if not rect.has_point(cell):
 			hover.hide()
@@ -68,15 +68,15 @@ func _input(event) -> void:
 			hover.position = map_to_world_centered(cell)
 			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[cell].cube_coords) # Debug
 
-func map_to_world_centered(cell: Vector2) -> Vector2: 
+func map_to_world_centered(cell: Vector2) -> Vector2:
 	"""
 	Function to get the center of the hex
-	It maps the provided tilemap (Vector2) position to the world (i.e mouse position), 
+	It maps the provided tilemap (Vector2) position to the world (i.e mouse position),
 	then it offsets it by half the size of the cell so that the mouse position falls where the hex is expected to start.
 	"""
-	return map_to_world(cell) + OFFSET 
+	return map_to_world(cell) + OFFSET
 
-func world_to_world_centered(cell: Vector2) -> Vector2: 
+func world_to_world_centered(cell: Vector2) -> Vector2:
 	"""
 	Function to get the world (i.e. mouse) position of the center of the hexcell over which the mouse is currently positioned on.
 	"""
@@ -156,13 +156,13 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 	* Setting them to true makes the calculations here ignore stopping due to having units on the way or less movement than max.
 	"""
 	update_weight(unit, false, ignore_units) # We update how much each hex costs to move for this unit
-	var paths := {} # A dictionary of possible paths. 
-					# Each key is a location object. 
+	var paths := {} # A dictionary of possible paths.
+					# Each key is a location object.
 					# Each value is an array of locations that this unit's would have to move through to reach the location at the key
-	paths[unit.location] = [] 
+	paths[unit.location] = []
 	var radius = (unit.type.moves if ignore_moves else unit.moves_current) # Figure out how many hexes around this unit can reach.
 	var cells := Hex.get_cells_around(unit.location.cell, radius, Vector2(rect.size.x, rect.size.y)) # Figure out which exact hexes are in this radius
-	if cells.size() == 0: 
+	if cells.size() == 0:
 	# if our radius was 0, it means that our unit might be in surrounded by Zones of Control
 	# In that case, we add each enemy unit which set out possible path to only the units which are in this units ZoC
 		if ZOC_tiles.has(unit.location):
@@ -184,11 +184,11 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 			if cost + cell_cost > radius: # If the cost to move to the next hex in the path would exceed this unit's movement radius, we stop.
 				break
 			cost += cell_cost # We increment how many movement points we've spent until now to reach this hex in the path.
-			actual_path.append(path_location) # If the cost to move to the next location in the path is still within this unit's movement points, 
-											  # we add this location to the actually available locations in that path
+			actual_path.append(path_location) # If the cost to move to the next location in the path is still within this unit's movement points
+			# we add this location to the actually available locations in that path
 			paths[path_location] = actual_path.duplicate(true) # We keep resetting the actual distance we calculated this unit will reach towards this location.
 			if cost == radius: # If the movement points we've used are exactly equal to our movement range
-							   # Then we still want to allow the unit to be able to attack any adjacent enemy at the end of its range
+				# Then we still want to allow the unit to be able to attack any adjacent enemy at the end of its range
 				if ZOC_tiles.has(path_location) and not ignore_units:
 					var attack_path = actual_path.duplicate(true)
 					for enemy_cell in ZOC_tiles[path_location]:
@@ -218,10 +218,10 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 		grid.unblock_location(loc)
 		for val in ZOC_tiles[loc]:
 			grid.unblock_location(val)
-	if not ignore_units: # When we're not checking line of sight
-						 # we're going to use this opportunity of going through each map location,
-						 # to update our Zones of Control dictionary
-		ZOC_tiles.clear() 
+	if not ignore_units: 	# When we're not checking line of sight
+							# we're going to use this opportunity of going through each map location,
+							# to update our Zones of Control dictionary
+		ZOC_tiles.clear()
 
 	for location in locations_dict.values(): # We start going through all the location objects on the map
 		var cost: int = unit.get_movement_cost(location) # We get the cost to move into a specific terrain based on the unit type
@@ -298,7 +298,7 @@ func get_location(cell: Vector2) -> Location:
 	if not _is_cell_in_map(cell):
 		return null
 	return locations_dict[cell]
-	
+
 func get_pixel_size() -> Vector2:
 	if int(rect.size.x) % 2 == 0:
 		return map_to_world(rect.size) + Vector2(18, 36)
@@ -312,7 +312,7 @@ func get_map_data() -> Dictionary:
 		map_data[location.id].cell = location.cell
 		map_data[location.id].code = location.terrain.code
 	return map_data
-	
+
 
 func _initialize_terrain() -> void:
 
@@ -324,8 +324,8 @@ func _initialize_terrain() -> void:
 
 func _initialize_locations() -> void:
 	locations_dict.clear()
-	
-	
+
+
 	for y in rect.size.y:
 		for x in rect.size.x:
 			var cell := Vector2(x, y)
@@ -338,7 +338,7 @@ func _initialize_locations() -> void:
 			_update_terrain_record_from_map(location)
 
 			locations_dict[cell] = location
-			
+
 
 	_initialize_border()
 
@@ -404,11 +404,10 @@ func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
 			overlay.set_cellv(cell, INVALID_CELL)
 func debug():
 	$Hover/HexDebug.visible = not $Hover/HexDebug.visible
-	
+
 	#for location in locations_dict.values():
 		#var label: Label = Label.new()
 		#label.text = str(location.id)
 		#label.set_position(location.position)
 		#labels.append(label)
 		#add_child(label)
-		
