@@ -37,31 +37,24 @@ stretch_mode = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 68.0
-margin_right = 94.0
+margin_right = 92.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 custom_constants/separation = 0
 alignment = 1
 
 [node name="Name" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_top = 9.0
-margin_right = 26.0
-margin_bottom = 24.0
+margin_top = 17.0
+margin_right = 24.0
+margin_bottom = 32.0
 custom_fonts/font = ExtResource( 4 )
 text = "Bow"
 
-[node name="Damage" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 26.0
-margin_bottom = 39.0
-custom_fonts/font = ExtResource( 4 )
-text = "5 x 4"
-
 [node name="Details" type="Label" parent="HBoxContainer/VBoxContainer"]
 modulate = Color( 0.670588, 0.670588, 0.670588, 1 )
-margin_top = 39.0
-margin_right = 26.0
-margin_bottom = 54.0
+margin_top = 32.0
+margin_right = 24.0
+margin_bottom = 47.0
 custom_fonts/font = ExtResource( 4 )
 text = "fire"
 

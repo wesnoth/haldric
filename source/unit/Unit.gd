@@ -99,11 +99,11 @@ func execute_attack(target: Unit, combatChoices: Dictionary) -> void:
 	combatChoices is a dictionary holding the selected attack/defense combination for the battling units
 	This choice was already made during the button press
 	"""
-	var attacker_strikes = combatChoices['attack'].strikes
+	var attacker_strikes = combatChoices['offense'].strikes
 	var defender_strikes = combatChoices['defense'].strikes
 	while attacker_strikes > 0 or defender_strikes > 0:
 		if attacker_strikes > 0:
-			target.receive_attack(combatChoices['attack'])
+			target.receive_attack(combatChoices['offense'])
 			attacker_strikes -= 1
 		if defender_strikes > 0:
 			self.receive_attack(combatChoices['defense'])
