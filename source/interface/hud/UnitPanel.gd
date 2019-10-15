@@ -111,7 +111,7 @@ func _fade_out() -> void:
 func _add_attack_plate(attack: Attack) -> void:
 	var plate = AttackPlate.instance()
 	attacks.add_child(plate)
-	plate.update_attack(attack)
+	plate.update_attack_details(attack)
 
 func _clear_attack_plates() -> void:
 	for plate in attacks.get_children():

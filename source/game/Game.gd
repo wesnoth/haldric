@@ -183,8 +183,8 @@ func _on_unit_experienced(unit: Unit) -> void:
 func _on_unit_advancement_selected(unit: Unit, unit_id: String) -> void:
 	unit.advance(Registry.units[unit_id].instance())
 
-func _on_attack_selected(attack: Attack, target: Unit) -> void:
-	current_unit.execute_attack(target, attack)
+func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
+	current_unit.execute_attack(target, combatChoices)
 	_set_current_unit(null)
 
 func _on_unit_moved(unit: Unit, location: Location) -> void:

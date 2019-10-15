@@ -40,8 +40,8 @@ func clear_unit_info() -> void:
 func _on_advancement_selected(unit: Unit, unit_id: String) -> void:
 	emit_signal("unit_advancement_selected", unit, unit_id)
 
-func _on_attack_selected(attack: Attack, target: Unit) -> void:
-	emit_signal("attack_selected", attack, target)
+func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
+	emit_signal("attack_selected", combatChoices, target)
 
 func _on_Back_pressed() -> void:
 	Scene.change(Scene.TitleScreen)
