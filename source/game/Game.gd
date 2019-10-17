@@ -24,6 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			# Select a unit
 			if loc.unit and loc.unit.side.number == current_side.number:
 				_set_current_unit(loc.unit)
+				loc.unit.set_reachable()
 
 			# Move the selected unit
 			elif current_unit and (not loc.unit or loc.unit.side.number != current_side.number and current_unit.reachable.has(loc)):
