@@ -25,7 +25,7 @@ func make_location_one_way(location: Location) -> void:
 	for adjacent_location in location.get_adjacent_locations():
 		if rect.has_point(adjacent_location.cell) and are_points_connected(location.id, adjacent_location.id):
 			disconnect_points(location.id, adjacent_location.id)
-			connect_points(adjacent_location.id,adjacent_location.id,false)
+			connect_points(adjacent_location.id,location.id,false)
 
 func block_location(location: Location) -> void:
 	_disconnect_with_neighbors(location)

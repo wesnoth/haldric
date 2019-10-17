@@ -19,7 +19,6 @@ var location: Location = null
 
 var path := []
 var reachable := {}
-var viewable := []
 
 var type : UnitType = null
 
@@ -128,7 +127,8 @@ func get_time_percentage() -> int:
 
 func set_reachable(viewable: bool = true) -> void:
 	if viewable:
-		update_viewable()
+		#update_viewable()
+		pass
 
 	thread.start(location.map, "threadable_find_all_reachable_cells", [self])
 	reachable = thread.wait_to_finish()
@@ -136,21 +136,7 @@ func set_reachable(viewable: bool = true) -> void:
 
 func update_viewable() -> bool:
 	if side.fog:
-		var new_unit_found = false
-		if viewable.empty():
-			thread.start(location.map, "threadable_find_all_reachable_cells", [self,true,true])
-			var temp = thread.wait_to_finish()
-			if temp:
-				viewable = temp.keys()
-				for loc in viewable:
-					side.viewable[loc] = 1
-					if loc.unit:
-						if not loc.unit.side == side:
-							new_unit_found = true
-							side.viewable_units[loc.unit] = 1
-		else:
-			return location.map.extend_viewable(self) #do not thread, causes a lot of issues when threaded for some reason
-		return new_unit_found
+		return location.map.extend_viewable(self) #do not thread, causes a lot of issues when threaded for some reason
 	return false
 
 func _set_experience_current(value: int) -> void:
@@ -185,4 +171,3 @@ func refresh_unit() -> void:
 		health_current += heal
 		print("{name} healed {heal} HP for resting".format({'name':type.id, 'heal':heal}))
 	moves_current = type.moves # If the unit moved last turn, it recovers to its max move
-	viewable.clear()

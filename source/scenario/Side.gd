@@ -64,19 +64,7 @@ func add_unit(unit) -> void:
 	unit.side = self
 	unit.type.sprite.material = unit_shader
 	_calculate_upkeep()
-	_calculate_income()
-
-func set_unit_reachables(update: bool = false) -> void:
-	"""
-	Calulates which hexes each of this side's units can reach
-	The update bool signifies if we want to modify the map's state or not
-	"""
-	if fog and not update:
-		viewable.clear()
-		viewable_units.clear()
-
-	for unit in units.get_children():
-		unit.set_reachable(not update)
+	_calculate_income()	
 
 func add_village(loc: Location) -> bool:
 	"""
@@ -131,18 +119,33 @@ func _calculate_income() -> void:
 	""" 
 	income = base_income + INCOME_PER_VILLAGE * villages.size()
 
-func _turn_refresh() -> void:
+func _turn_refresh(first_turn: bool) -> void:
 	"""
 	Internal method called when this side's turn is starting.
 	It makes sure the side's gold totals are correct.
 	Then it modifies its gold.
 	Finally it calls each units refresh function for MP and HP.
 	"""
-	_calculate_upkeep()
-	_calculate_income()
-	gold += income - upkeep
+	if not first_turn:
+		_calculate_upkeep()
+		_calculate_income()
+		gold += income - upkeep
+	#viewable refresh section
+	viewable.clear()
+	if fog:
+		for unit in units.get_children():
+			unit.thread.start(unit.location.map, "threadable_find_all_reachable_cells", [unit,true,true])
+			var temp = unit.thread.wait_to_finish()
+			if temp:
+				for loc in temp.keys():
+					viewable[loc] = 1
+					if loc.unit and not loc.unit.side == self:
+						viewable_units[loc.unit] = 1
+	
 	for unit in units.get_children():
-		unit.refresh_unit()
+		if not first_turn:
+			unit.refresh_unit()
+		unit.set_reachable()
 
 func _add_flag(loc: Location) -> void:
 
@@ -163,5 +166,5 @@ func _on_turn_refresh(turn: int, side: int) -> void:
 	signal hook function which triggers when a side's turn is starting
     It calls the function to refresh the side's gold and units
 	"""
-	if self.number == side and not turn == 1:
-		_turn_refresh()
+	if self.number == side:
+		_turn_refresh(turn == 1)

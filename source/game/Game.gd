@@ -69,10 +69,10 @@ func _ready() -> void:
 	HUD.connect("unit_advancement_selected", self, "_on_unit_advancement_selected")
 	# warning-ignore:return_value_discarded
 	HUD.connect("attack_selected", self, "_on_attack_selected")
-
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
-
+	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
+	
 	HUD.update_time_info(scenario.schedule.current_time)
 
 func _load_scenario() -> void:
@@ -139,8 +139,6 @@ func _set_side(value: Side) -> void:
 		HUD.update_time_info(scenario.schedule.current_time)
 
 	HUD.update_side_info(scenario, current_side)
-
-	current_side.set_unit_reachables()
 
 func _next_side() -> void:
 	if scenario.turns >= 0 and scenario.turn > scenario.turns:
