@@ -182,8 +182,10 @@ func _on_unit_advancement_selected(unit: Unit, unit_id: String) -> void:
 	unit.advance(Registry.units[unit_id].instance())
 
 func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
-	current_unit.execute_attack(target, combatChoices)
+	var temp_current = current_unit
 	_set_current_unit(null)
+	HUD.unit_panel.clear_unit()
+	temp_current.execute_attack(target, combatChoices)
 
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)

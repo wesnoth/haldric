@@ -88,9 +88,10 @@ func move_to(new_path: Array) -> void:
 	path = new_path
 	change_state("move")
 
-func receive_attack(attack: Attack) -> void:
+func receive_attack(attack: Attack) -> bool:
 	health_current -= attack.damage
 	print("{name} received {dmg} damage".format({'name':type.id,'dmg':attack.damage}))
+	return health_current < 0
 
 func execute_attack(target: Unit, combatChoices: Dictionary) -> void:
 	"""
@@ -98,16 +99,29 @@ func execute_attack(target: Unit, combatChoices: Dictionary) -> void:
 	combatChoices is a dictionary holding the selected attack/defense combination for the battling units
 	This choice was already made during the button press
 	"""
+	moves_current = 0
 	var attacker_strikes = combatChoices['offense'].strikes
 	var defender_strikes = combatChoices['defense'].strikes
 	while attacker_strikes > 0 or defender_strikes > 0:
 		if attacker_strikes > 0:
-			target.receive_attack(combatChoices['offense'])
+			if target.receive_attack(combatChoices['offense']):
+				target.kill(false,self)
+				return
 			attacker_strikes -= 1
 		if defender_strikes > 0:
-			self.receive_attack(combatChoices['defense'])
+			if self.receive_attack(combatChoices['defense']):
+				kill(true,target)
+				return
 			defender_strikes -= 1
 
+func kill(active_side: bool, unit: Unit) -> void:
+	location.unit = null
+	location.map.update_weight(unit)
+	if unit.side.viewable_units.has(unit):
+		unit.side.viewable_units.erase(unit)
+	unit.set_reachable()
+	queue_free()
+		
 func get_movement_cost(loc: Location) -> int:
 	var cost = type.movement.get(loc.terrain.type[0])
 	if loc.terrain.type.size() > 1:
