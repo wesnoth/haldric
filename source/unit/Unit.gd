@@ -93,27 +93,6 @@ func receive_attack(attack: Attack) -> bool:
 	print("{name} received {dmg} damage".format({'name':type.id,'dmg':attack.damage}))
 	return health_current < 0
 
-func execute_attack(target: Unit, combatChoices: Dictionary) -> void:
-	"""
-	Very simple function to exchange blows
-	combatChoices is a dictionary holding the selected attack/defense combination for the battling units
-	This choice was already made during the button press
-	"""
-	moves_current = 0
-	var attacker_strikes = combatChoices['offense'].strikes
-	var defender_strikes = combatChoices['defense'].strikes
-	while attacker_strikes > 0 or defender_strikes > 0:
-		if attacker_strikes > 0:
-			if target.receive_attack(combatChoices['offense']):
-				target.kill(false,self)
-				return
-			attacker_strikes -= 1
-		if defender_strikes > 0:
-			if self.receive_attack(combatChoices['defense']):
-				kill(true,target)
-				return
-			defender_strikes -= 1
-
 func kill(active_side: bool, unit: Unit) -> void:
 	location.unit = null
 	location.map.update_weight(unit)

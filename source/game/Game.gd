@@ -62,6 +62,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			loc.map.debug()
 
 func _ready() -> void:
+	randomize()
 	HUD.unit_panel.unit_viewport.world_2d = scenario_viewport.world_2d
 	_load_scenario()
 
@@ -185,7 +186,22 @@ func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
 	var temp_current = current_unit
 	_set_current_unit(null)
 	HUD.unit_panel.clear_unit()
-	temp_current.execute_attack(target, combatChoices)
+	temp_current.moves_current = 0
+	var attacker_strikes = combatChoices['offense'].strikes
+	var defender_strikes = combatChoices['defense'].strikes
+	while attacker_strikes > 0 or defender_strikes > 0:
+		if attacker_strikes > 0:
+			if randi() % 100 > target.get_defense():
+				if target.receive_attack(combatChoices['offense']):
+					target.kill(false,temp_current)
+					break
+			attacker_strikes -= 1
+		if defender_strikes > 0:
+			if randi() % 100 > temp_current.get_defense():
+				if temp_current.receive_attack(combatChoices['defense']):
+					temp_current.kill(true,target)
+					break
+			defender_strikes -= 1
 
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)
