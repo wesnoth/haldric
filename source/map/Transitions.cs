@@ -56,7 +56,7 @@ public class Transitions : Node2D
         // for (int i = layer; i < neighbors.Count; i++) might be enough.
         for (int i = layer; i < layer + neighbors.Count; i++)
         {
-            var n_loc = neighbors[i % 6];
+            var n_loc = neighbors[i % neighbors.Count];
 
             if (n_loc == null)
             {
@@ -70,7 +70,7 @@ public class Transitions : Node2D
 
             var prev = transitionName;
 
-            transitionName += "-" + Hex.Directions[(Hex.Direction) (i % 6)];
+            transitionName += "-" + Hex.Directions[(Hex.Direction) (i % neighbors.Count)];
 
             if (tileSet.FindTileByName(transitionName) == TileMap.InvalidCell)
             {
