@@ -30,14 +30,8 @@ public class Transitions : Node2D
         {
             var n_loc = neighbors[i];
 
-            if (n_loc == null) 
+            if (n_loc == null || loc.Terrain.Layer >= n_loc.Terrain.Layer || !TileSetBuilder.HasTerrainTransition(n_loc.Terrain)) 
             { 
-                i++;
-                continue;
-            }
-
-            if (loc.Terrain.Layer >= n_loc.Terrain.Layer)
-            {
                 i++;
                 continue;
             }

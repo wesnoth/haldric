@@ -151,6 +151,11 @@ public class TileSetBuilder : Node
         terrain.transitions[variation].Add(directions, terrainTransition);
     }
 
+    public static bool HasTerrainTransition(Terrain t)
+    {
+        return terrainGraphics[t.BaseCode].transitions.Count > 0;
+    }
+
     public static int GetVariationCount(string code)
     {
         if (!terrainGraphics.ContainsKey(code)) 
