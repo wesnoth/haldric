@@ -5,6 +5,7 @@ using System;
 public class Hex : Node
 {
     public enum Direction { N, NE, SE, S, SW, NW }
+    // public enum Direction { S, SW, NW, N, NE, SE }
     
     public static Dictionary<Direction, string> Directions = new Dictionary<Direction, string>() 
     {
@@ -19,20 +20,20 @@ public class Hex : Node
     private static Vector2[][] neighborTable = {
         // ODD COL
         new Vector2[] {
-            new Vector2(0, -1),
-            new Vector2(1, 0),
-            new Vector2(1, 1),
-            new Vector2(0, 1),
-            new Vector2(-1, 1),
-            new Vector2(-1, 0),
+            new Vector2(0, -1), // N
+            new Vector2(1, 0), // NE
+            new Vector2(1, 1), // SW
+            new Vector2(0, 1), // S
+            new Vector2(-1, 1), // SW
+            new Vector2(-1, 0), // NW
         },
         new Vector2[] {
-            new Vector2(0, -1),
-            new Vector2(1, -1),
-            new Vector2(1, 0),
-            new Vector2(0, 1),
-            new Vector2(-1, 0),
-            new Vector2(-1, -1),
+            new Vector2(0, -1), // N
+            new Vector2(1, -1), // NE
+            new Vector2(1, 0), // SE
+            new Vector2(0, 1), // S
+            new Vector2(-1, 0), // SW
+            new Vector2(-1, -1), // NW
         },
         // EVEN COL
     };
