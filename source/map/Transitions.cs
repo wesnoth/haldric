@@ -52,6 +52,8 @@ public class Transitions : Node2D
     {
         var transitionName = code;
 
+        // depending on how we go forward with this we might not need to go all around here.
+        // for (int i = layer; i < neighbors.Count; i++) might be enough.
         for (int i = layer; i < layer + neighbors.Count; i++)
         {
             var n_loc = neighbors[i % 6];
