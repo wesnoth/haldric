@@ -79,9 +79,8 @@ public class Editor : Node2D
 
     private void Save(MapData mapData)
     {
-        GD.Print(mapData.data);
-        mapData.width = 10;
-        ResourceSaver.Save("res://data/maps/test.tres", mapData);
+        // GD.Print(mapData.data);
+        ResourceSaver.Save("res://data/maps/transitions.tres", mapData);
         GD.Print("Map Saved");
     }
 

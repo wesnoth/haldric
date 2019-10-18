@@ -4,12 +4,12 @@ using System;
 
 public class Terrain : Godot.Object
 {
-
+    public int Layer { get { return layer; } }
+ 
     public string BaseCode { get { return code[0]; }  }
     public string OverlayCode { get { return code[1]; } }
-
     public Array<string> Code { get { return code; } }
-        
+
     private int layer = 0;
     private Array<string> code = new Array<string>();
     private Array<string> type = new Array<string>();

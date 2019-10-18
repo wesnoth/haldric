@@ -4,11 +4,21 @@ using System;
 
 public class TileSetBuilder : Node
 {
+    class TerrainTransitionGraphic : Godot.Object
+    {
+        public int id;
+        public string variation;
+        public string directions;
+        public Texture texture;
+        public Vector2 offset;
+    }
+ 
     class TerrainGraphic : Godot.Object
     {
         public int id;
         public string code;
         public Array<TerrainGraphic> variations = new Array<TerrainGraphic>();
+        public Dictionary<string, Dictionary<string, TerrainTransitionGraphic>> transitions = new Dictionary<string, Dictionary<string, TerrainTransitionGraphic>>();
         public Texture texture;
     }
 
@@ -17,23 +27,23 @@ public class TileSetBuilder : Node
 
     public static void AddSpriteSheet(string name, string path)
     {
-        Texture sheet = GD.Load(path) as Texture;
+        var sheet = GD.Load(path) as Texture;
 
         spriteSheets.Add(name, sheet);
     }
 
     public static TileSet Build()
     {
-        TileSet tileSet = new TileSet();
+        var tileSet = new TileSet();
 
         foreach (var key in terrainGraphics.Keys)
         {
-            TerrainGraphic t = terrainGraphics[key];
+            var t = terrainGraphics[key];
             t.id = AddTile(tileSet, t.code, t.texture);
 
             for (int i = 0; i < t.variations.Count; i++)
             {
-                TerrainGraphic tv = t.variations[i];
+                var tv = t.variations[i];
                 tv.id = AddTile(tileSet, tv.code + i + 1, tv.texture);
             }
         }
@@ -41,18 +51,53 @@ public class TileSetBuilder : Node
         return tileSet;
     }
 
+    public static TileSet BuildTransitions()
+    {
+        var tileSet = new TileSet();
+        
+        foreach (var terrain in terrainGraphics.Keys)
+        {
+            var t = terrainGraphics[terrain];
+            
+            foreach (var variation in t.transitions.Keys)
+            {
+                var dict = t.transitions[variation];
+
+                foreach (var directions in dict.Keys)
+                {
+                    var tt = dict[directions];
+
+                    if (variation.Empty())
+                    {
+                        AddTile(tileSet, t.code + "-" + directions, tt.texture, tt.offset);
+                    }
+                    else
+                    {
+                        AddTile(tileSet, t.code + "-" + variation + "-" + directions, tt.texture, tt.offset);
+                    }
+                }
+            }
+        }
+        return tileSet;
+    }
+
     public static void CreateTerrainGraphic(string code, string sheetName, Rect2 region)
     {
+        if (!spriteSheets.ContainsKey(sheetName)) 
+        {
+            GD.Print("TilSetBuilder: cannot add transition, no " + sheetName + " has been added yet!");
+            return;
+        }
 
-        AtlasTexture tex = new AtlasTexture();
+        var tex = new AtlasTexture();
 
         tex.Atlas = spriteSheets[sheetName];
         tex.Region = region;
 
         if (terrainGraphics.ContainsKey(code))
         {
-            TerrainGraphic terrainGraphic = terrainGraphics[code];
-            TerrainGraphic variation = new TerrainGraphic();
+            var terrainGraphic = terrainGraphics[code];
+            var variation = new TerrainGraphic();
 
             variation.texture = tex;
             variation.code = code;
@@ -61,7 +106,7 @@ public class TileSetBuilder : Node
         }
         else
         {
-            TerrainGraphic terrainGraphic = new TerrainGraphic();
+            var terrainGraphic = new TerrainGraphic();
 
             terrainGraphic.texture = tex;
             terrainGraphic.code = code;
@@ -70,20 +115,72 @@ public class TileSetBuilder : Node
         }
     }
 
+    public static void CreateTerrainTransitionGraphic(string code, string sheetName, Rect2 region, Vector2 offset, string variation, string directions)
+    {
+        if (!terrainGraphics.ContainsKey(code)) 
+        {
+            GD.Print("TilSetBuilder: cannot add transition, no " + code + " has been added yet!");
+            return;
+        }
+
+        if (!spriteSheets.ContainsKey(sheetName)) 
+        {
+            GD.Print("TilSetBuilder: cannot add transition, no " + sheetName + " has been added yet!");
+            return;
+        }
+
+        var tex = new AtlasTexture();
+        
+        tex.Atlas = spriteSheets[sheetName];
+        tex.Region = region;
+
+        var terrainTransition = new TerrainTransitionGraphic();
+
+        terrainTransition.directions = directions;
+        terrainTransition.variation = variation;
+        terrainTransition.texture = tex;
+        terrainTransition.offset = offset;
+
+        var terrain = terrainGraphics[code];
+        
+        if (!terrain.transitions.ContainsKey(variation))
+        {
+            terrain.transitions.Add(variation, new Dictionary<string, TerrainTransitionGraphic>());
+        }
+
+        terrain.transitions[variation].Add(directions, terrainTransition);
+    }
+
     public static int GetVariationCount(string code)
     {
+        if (!terrainGraphics.ContainsKey(code)) 
+        {
+            GD.Print("TilSetBuilder: Key " + code + " not found.");
+            return 0;
+        }
         return terrainGraphics[code].variations.Count;
     }
 
     public static bool HasVariation(string code)
     {
+        if (!terrainGraphics.ContainsKey(code)) 
+        {
+            GD.Print("TilSetBuilder: Key " + code + " not found.");
+            return false;
+        }
         return terrainGraphics[code].variations.Count > 0;
     }
 
     public static Array<string> GetVariationArray(string code)
     {
-        Array<string> variations = new Array<string> {code};
-        TerrainGraphic t = terrainGraphics[code];
+        if (!terrainGraphics.ContainsKey(code)) 
+        {
+            GD.Print("TilSetBuilder: Key " + code + " not found.");
+            return new Array<string>();
+        }
+
+        var variations = new Array<string> {code};
+        var t = terrainGraphics[code];
 
         for (int i = 0; i < t.variations.Count; i++)
         {
@@ -93,12 +190,13 @@ public class TileSetBuilder : Node
         return variations;
     }
 
-    private static int AddTile(TileSet tileSet, string code, Texture texture)
+    private static int AddTile(TileSet tileSet, string code, Texture texture, Vector2 offset = new Vector2())
     {
-        int tileId = tileSet.GetTilesIds().Count;
+        var tileId = tileSet.GetTilesIds().Count;
         tileSet.CreateTile(tileId);
         tileSet.TileSetName(tileId, code);
         tileSet.TileSetTexture(tileId, texture);
+        tileSet.TileSetTextureOffset(tileId, offset);
         return tileId;
     }
 }
