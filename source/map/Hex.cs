@@ -4,36 +4,36 @@ using System;
 
 public class Hex : Node
 {
-    public enum Direction { N, NE, SE, S, SW, NW }
-    // public enum Direction { S, SW, NW, N, NE, SE }
+    // public enum Direction { N, NE, SE, S, SW, NW }
+    public enum Direction { S, SW, NW, N, NE, SE }
     
     public static Dictionary<Direction, string> Directions = new Dictionary<Direction, string>() 
     {
-        {Direction.N, "n"},
-        {Direction.NE, "ne"},
-        {Direction.SE, "se"},
         {Direction.S, "s"},
         {Direction.SW, "sw"},
         {Direction.NW, "nw"},
+        {Direction.N, "n"},
+        {Direction.NE, "ne"},
+        {Direction.SE, "se"},
     };
 
     private static Vector2[][] neighborTable = {
         // ODD COL
         new Vector2[] {
-            new Vector2(0, -1), // N
-            new Vector2(1, 0), // NE
-            new Vector2(1, 1), // SW
             new Vector2(0, 1), // S
             new Vector2(-1, 1), // SW
             new Vector2(-1, 0), // NW
+            new Vector2(0, -1), // N
+            new Vector2(1, 0), // NE
+            new Vector2(1, 1), // SW
         },
         new Vector2[] {
-            new Vector2(0, -1), // N
-            new Vector2(1, -1), // NE
-            new Vector2(1, 0), // SE
             new Vector2(0, 1), // S
             new Vector2(-1, 0), // SW
             new Vector2(-1, -1), // NW
+            new Vector2(0, -1), // N
+            new Vector2(1, -1), // NE
+            new Vector2(1, 0), // SE
         },
         // EVEN COL
     };
