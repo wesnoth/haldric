@@ -1,4 +1,4 @@
-extends "res://source/unit/WeaponSpecial.gd"
+extends WeaponSpecial
 
 func execute_each_turn_to_user(user : Unit):
 	print("the unit heal!")
