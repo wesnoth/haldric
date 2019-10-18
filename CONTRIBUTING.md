@@ -20,8 +20,11 @@
     - (3.1) [Intro to GDScript for Programming Beginners](https://www.youtube.com/watch?v=UcdwP1Q2UlU&t=) - by [GDQuest](https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ)
     - (3.1) [Intro to C# in Godot 3.1](https://www.youtube.com/watch?v=hRuUHxOCYz0&t) - by [GDQuest](https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ)
 
-Note: 
+### Note: 
 
 Some Tutorials are for Godot 3.0 and some for 3.1. There are a few differences in the API, but the general concept has not changed.
 
 However we do not reccomend watching tutorials for Godot 2.1, as the jump from 2.1 to 3.0 was quite big.
+
+### Download Godot
+Godot can be downloaded on their official [Download Page](https://godotengine.org/download) or on [Steam](https://store.steampowered.com/app/404790/Godot_Engine/)!
