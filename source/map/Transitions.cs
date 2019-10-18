@@ -42,10 +42,7 @@ public class Transitions : Node2D
 
             SetTile(loc.QuadCell, transitionName, i);
 
-            if (chain > 3)
-            {
-                GD.Print(transitionName, "/", chain);
-            }
+            GD.Print(transitionName, "/", chain);
 
             i += chain;
         }
@@ -55,9 +52,9 @@ public class Transitions : Node2D
     {
         var transitionName = code;
 
-        for (int i = layer; i < neighbors.Count; i++)
+        for (int i = layer; i < layer + neighbors.Count; i++)
         {
-            var n_loc = neighbors[i];
+            var n_loc = neighbors[i % 6];
 
             if (n_loc == null)
             {
@@ -71,10 +68,11 @@ public class Transitions : Node2D
 
             var prev = transitionName;
 
-            transitionName += "-" + Hex.Directions[(Hex.Direction) i];
+            transitionName += "-" + Hex.Directions[(Hex.Direction) (i % 6)];
 
             if (tileSet.FindTileByName(transitionName) == TileMap.InvalidCell)
             {
+                // right now this prevents the transitions with 4 or greater directions to be used as the 4-direction transition tiles are missing as it seems
                 return prev;
             }
         }
