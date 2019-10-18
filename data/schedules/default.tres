@@ -1,8 +1,7 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://source/templates/RSchedule.gd" type="Script" id=1]
+[ext_resource path="res://addons/wesnoth_sdk/scenario/TODSchedule.cs" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
 schedule = [ "dawn", "morning", "afternoon", "dusk", "first_watch", "second_watch" ]
-

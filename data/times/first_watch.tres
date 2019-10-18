@@ -1,15 +1,14 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://source/templates/RTime.gd" type="Script" id=1]
+[ext_resource path="res://addons/wesnoth_sdk/scenario/TODPeriod.cs" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
 name = "First Watch"
-tint_red = -75
-tint_green = -45
-tint_blue = -13
+tintRed = 0
+tintGreen = 0
+tintBlue = 0
 advantage = [ "chaotic" ]
 disadvantage = [ "lawful", "liminal" ]
 bonus = 25
 malus = 25
-sound = ""

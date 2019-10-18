@@ -1,15 +1,14 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://source/templates/RTime.gd" type="Script" id=1]
+[ext_resource path="res://addons/wesnoth_sdk/scenario/TODPeriod.cs" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
 name = "Dusk"
-tint_red = 10
-tint_green = -20
-tint_blue = -35
+tintRed = 0
+tintGreen = 0
+tintBlue = 0
 advantage = [  ]
 disadvantage = [  ]
 bonus = 0
 malus = 0
-sound = "res://audio/sounds/ambient/night.ogg"

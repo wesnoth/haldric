@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/map/Map.cs" type="Script" id=1]
+
+[node name="Map" type="TileMap"]
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 4
+cell_tile_origin = 1
+cell_y_sort = true
+format = 1
+script = ExtResource( 1 )

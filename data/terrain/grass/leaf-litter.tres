@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://addons/wesnoth_sdk/terrain/TerrainType.cs" type="Script" id=1]
+[ext_resource path="res://graphics/images/terrain/grass.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 1080, 0, 72, 72 )
+
+[resource]
+script = ExtResource( 1 )
+layer = 0
+code = "Gll"
+name = "Leaf Litter Grass"
+type = "flat"
+recruitOnto = false
+recruitFrom = false
+heals = false
+givesIncome = false
+submerge = false
+symbolImage = SubResource( 1 )

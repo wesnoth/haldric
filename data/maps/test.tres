@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/map/MapData.cs" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+width = 40
+height = 40
+data = {
+
+}

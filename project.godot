@@ -8,278 +8,15 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Popup",
-"class": "AdvancementPopup",
-"language": "GDScript",
-"path": "res://source/interface/hud/AdvancementPopup.gd"
-}, {
-"base": "Node",
-"class": "Attack",
-"language": "GDScript",
-"path": "res://source/unit/Attack.gd"
-}, {
-"base": "Control",
-"class": "AttackPlate",
-"language": "GDScript",
-"path": "res://source/interface/hud/components/AttackPlate.gd"
-}, {
-"base": "Popup",
-"class": "AttackPopup",
-"language": "GDScript",
-"path": "res://source/interface/hud/AttackPopup.gd"
-}, {
-"base": "Control",
-"class": "ButtonHover",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/ButtonHover.gd"
-}, {
-"base": "MenuCard",
-"class": "CampaignCard",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/CampaignCard.gd"
-}, {
-"base": "CardSelector",
-"class": "CampaignSelector",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/CampaignSelector.gd"
-}, {
-"base": "ScrollContainer",
-"class": "CardSelector",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/CardSelector.gd"
-}, {
-"base": "Control",
-"class": "CombatPlate",
-"language": "GDScript",
-"path": "res://source/interface/hud/components/CombatPlate.gd"
-}, {
-"base": "Node",
-"class": "Controller",
-"language": "GDScript",
-"path": "res://source/controller/Controller.gd"
-}, {
-"base": "Node",
-"class": "Defense",
-"language": "GDScript",
-"path": "res://source/unit/Defense.gd"
-}, {
-"base": "AStar",
-"class": "Grid",
-"language": "GDScript",
-"path": "res://source/scenario/map/Grid.gd"
-}, {
-"base": "ButtonHover",
-"class": "HButtonHover",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/HButtonHover.gd"
-}, {
-"base": "Reference",
-"class": "Hex",
-"language": "GDScript",
-"path": "res://source/scenario/map/Hex.gd"
-}, {
-"base": "Reference",
-"class": "Location",
-"language": "GDScript",
-"path": "res://source/scenario/map/Location.gd"
-}, {
-"base": "TileMap",
-"class": "Map",
-"language": "GDScript",
-"path": "res://source/scenario/map/Map.gd"
-}, {
-"base": "Control",
-"class": "Menu",
-"language": "GDScript",
-"path": "res://source/interface/menus/Menu.gd"
-}, {
-"base": "Control",
-"class": "MenuBar",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/MenuBar.gd"
-}, {
-"base": "Button",
-"class": "MenuCard",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/MenuCard.gd"
-}, {
-"base": "Control",
-"class": "MenuPage",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_page/MenuPage.gd"
-}, {
-"base": "Node",
-"class": "Movement",
-"language": "GDScript",
-"path": "res://source/unit/Movement.gd"
-}, {
-"base": "RCard",
-"class": "RCampaign",
-"language": "GDScript",
-"path": "res://source/templates/RCampaign.gd"
-}, {
-"base": "Resource",
-"class": "RCard",
-"language": "GDScript",
-"path": "res://source/templates/RCard.gd"
-}, {
-"base": "Resource",
-"class": "REra",
-"language": "GDScript",
-"path": "res://source/templates/REra.gd"
-}, {
-"base": "Resource",
-"class": "RFaction",
-"language": "GDScript",
-"path": "res://source/templates/RFaction.gd"
-}, {
-"base": "RCard",
-"class": "RScenario",
-"language": "GDScript",
-"path": "res://source/templates/RScenario.gd"
-}, {
-"base": "Resource",
-"class": "RSchedule",
-"language": "GDScript",
-"path": "res://source/templates/RSchedule.gd"
-}, {
-"base": "Resource",
-"class": "RTerrain",
-"language": "GDScript",
-"path": "res://source/templates/RTerrain.gd"
-}, {
-"base": "Resource",
-"class": "RTime",
-"language": "GDScript",
-"path": "res://source/templates/RTime.gd"
-}, {
-"base": "Node",
-"class": "Resistance",
-"language": "GDScript",
-"path": "res://source/unit/Resistance.gd"
-}, {
-"base": "Control",
-"class": "Scenario",
-"language": "GDScript",
-"path": "res://source/scenario/Scenario.gd"
-}, {
-"base": "MenuCard",
-"class": "ScenarioCard",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/ScenarioCard.gd"
-}, {
-"base": "CardSelector",
-"class": "ScenarioSelector",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/ScenarioSelector.gd"
-}, {
-"base": "Node",
-"class": "Schedule",
-"language": "GDScript",
-"path": "res://source/scenario/Schedule.gd"
-}, {
-"base": "Node",
-"class": "Side",
-"language": "GDScript",
-"path": "res://source/scenario/Side.gd"
-}, {
-"base": "Control",
-"class": "SidePanelItem",
-"language": "GDScript",
-"path": "res://source/interface/hud/components/SidePanelItem.gd"
-}, {
-"base": "Node",
-"class": "State",
-"language": "GDScript",
-"path": "res://source/unit/State.gd"
-}, {
-"base": "Resource",
-"class": "Terrain",
-"language": "GDScript",
-"path": "res://source/scenario/map/Terrain.gd"
-}, {
-"base": "Node",
-"class": "Time",
-"language": "GDScript",
-"path": "res://source/game/Time.gd"
-}, {
-"base": "Node2D",
-"class": "Transitions",
-"language": "GDScript",
-"path": "res://source/scenario/map/Transitions.gd"
-}, {
-"base": "Node2D",
-"class": "Unit",
-"language": "GDScript",
-"path": "res://source/unit/Unit.gd"
-}, {
-"base": "Node2D",
-"class": "UnitType",
-"language": "GDScript",
-"path": "res://source/unit/UnitType.gd"
-}, {
-"base": "ButtonHover",
-"class": "VButtonHover",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/VButtonHover.gd"
-}, {
-"base": "MenuBar",
-"class": "VMenuBar",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/VMenuBar.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"AdvancementPopup": "",
-"Attack": "",
-"AttackPlate": "",
-"AttackPopup": "",
-"ButtonHover": "",
-"CampaignCard": "",
-"CampaignSelector": "",
-"CardSelector": "",
-"CombatPlate": "",
-"Controller": "",
-"Defense": "",
-"Grid": "",
-"HButtonHover": "",
-"Hex": "",
-"Location": "",
-"Map": "",
-"Menu": "",
-"MenuBar": "",
-"MenuCard": "",
-"MenuPage": "",
-"Movement": "",
-"RCampaign": "",
-"RCard": "",
-"REra": "",
-"RFaction": "",
-"RScenario": "",
-"RSchedule": "",
-"RTerrain": "",
-"RTime": "",
-"Resistance": "",
-"Scenario": "",
-"ScenarioCard": "",
-"ScenarioSelector": "",
-"Schedule": "",
-"Side": "",
-"SidePanelItem": "",
-"State": "",
-"Terrain": "",
-"Time": "",
-"Transitions": "",
-"Unit": "",
-"UnitType": "",
-"VButtonHover": "",
-"VMenuBar": ""
+
 }
 
 [application]
 
 config/name="Haldric"
-run/main_scene="res://source/interface/menus/TitleScreen.tscn"
+run/main_scene="res://source/menu/TitleScreen.tscn"
 boot_splash/image="res://graphics/images/interface/logo/logo-bg.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
@@ -291,17 +28,8 @@ version/status="dev"
 
 [autoload]
 
-Wesnoth="*res://source/global/Wesnoth.gd"
-Network="*res://source/global/Network.gd"
-Scene="*res://source/global/Scene.tscn"
-Global="*res://source/global/Global.gd"
-Loader="*res://source/global/Loader.gd"
-Registry="*res://source/global/Registry.gd"
-Audio="*res://source/global/Audio.tscn"
-TeamColor="*res://source/global/TeamColor.gd"
-Event="*res://source/global/Event.gd"
-Settings="*res://source/global/Settings.gd"
-Utils="*res://source/global/Utils.gd"
+Registry="*res://source/global/Registry.cs"
+Main="*res://source/global/Main.cs"
 
 [debug]
 
@@ -322,7 +50,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "gut" )
+enabled=PoolStringArray( "wesnoth_sdk" )
 
 [gui]
 
