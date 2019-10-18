@@ -9,7 +9,7 @@ region = Rect2( 216, 0, 72, 72 )
 
 [resource]
 script = ExtResource( 1 )
-layer = 0
+layer = 3
 code = "Gg"
 name = "Green Grass"
 type = "flat"
