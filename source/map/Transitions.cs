@@ -42,7 +42,7 @@ public class Transitions : Node2D
 
             SetTile(loc.QuadCell, transitionName, i);
 
-            GD.Print(transitionName, "/", chain);
+            // GD.Print(transitionName, "/", chain);
 
             i += chain;
         }
