@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/match/hud/MatchHUD.cs" type="Script" id=1]
+
+[node name="MatchHUD" type="CanvasLayer"]
+script = ExtResource( 1 )
