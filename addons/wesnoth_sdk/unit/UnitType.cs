@@ -24,25 +24,38 @@ public class UnitType : Node2D
     [Export] private string[] advancesTo = {""};
 
 
-    AnimationPlayer animationPlayer = new AnimationPlayer();
-    Sprite sprite = new Sprite();
+    AnimationPlayer animationPlayer;
+    Sprite sprite;
 
-    Defense defense = new Defense();
-    Movement movement = new Movement();
-    Resistance resistance = new Resistance();
+    Defense defense;
+    Movement movement;
+    Resistance resistance;
 
-    Node traits = new Node();
-    Node abilities = new Node();
-    Node attacks = new Node();
+    Node traits;
+    Node abilities;
+    Node attacks;
 
     public int Health { get { return health; }}
     public int Moves { get { return moves; }}
     public int Experience { get { return experience; }}
 
+    public override void _Ready()
+    {
+        animationPlayer = GetNode("AnimationPlayer") as AnimationPlayer;
+        sprite = GetNode("Sprite") as Sprite;
+        defense = GetNode("Defense") as Defense;
+        movement = GetNode("Movement") as Movement;
+        resistance = GetNode("Resistance") as Resistance;
+        traits = GetNode("Traits") as Node;
+        abilities = GetNode("Abilities") as Node;
+        attacks = GetNode("Attacks") as Node;
+    }
+
     public override void _EnterTree()
     {
         if (GetNode("AnimationPlayer") as AnimationPlayer == null)
         {
+            animationPlayer = new AnimationPlayer();
             animationPlayer.Name = "AnimationPlayer";
             GD.Print("Node added: " + animationPlayer.Name);
             AddChild(animationPlayer);
@@ -50,6 +63,7 @@ public class UnitType : Node2D
         }
         if (GetNode("Sprite") as Sprite == null)
         {
+            sprite = new Sprite();
             sprite.Name = "Sprite";
             GD.Print("Node added: " + sprite.Name);
             AddChild(sprite);
@@ -57,6 +71,7 @@ public class UnitType : Node2D
         }
         if (GetNode("Defense") as Node == null)
         {
+            defense = Defense.New();
             defense.Name = "Defense";
             GD.Print("Node added: " + defense.Name);
             AddChild(defense);
@@ -65,6 +80,7 @@ public class UnitType : Node2D
         }
         if (GetNode("Movement") as Node == null)
         {
+            movement = Movement.New();
             movement.Name = "Movement";
             GD.Print("Node added: " + movement.Name);
             AddChild(movement);
@@ -73,6 +89,7 @@ public class UnitType : Node2D
         }
         if (GetNode("Resistance") as Node == null)
         {
+            resistance = Resistance.New();
             resistance.Name = "Resistance";
             GD.Print("Node added: " + resistance.Name);
             AddChild(resistance);
@@ -81,6 +98,7 @@ public class UnitType : Node2D
         }
         if (GetNode("Traits") as Node == null)
         {
+            traits = new Node();
             traits.Name = "Traits";
             GD.Print("Node added: " + traits.Name);
             AddChild(traits);
@@ -88,6 +106,7 @@ public class UnitType : Node2D
         }
         if (GetNode("Abilities") as Node == null)
         {
+            abilities = new Node();
             abilities.Name = "Abilities";
             GD.Print("Node added: " + abilities.Name);
             AddChild(abilities);
@@ -95,6 +114,7 @@ public class UnitType : Node2D
         }
         if (GetNode("Attacks") as Node == null)
         {
+            attacks = new Node();
             attacks.Name = "Attacks";
             GD.Print("Node added: " + attacks.Name);
             AddChild(attacks);
