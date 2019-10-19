@@ -1,6 +1,9 @@
 extends Control
 
+
 const DEFAULT_DIR := "res://tools/spritesheet_generator"
+
+const SheetData := preload("res://tools/spritesheet_generator/source/SheetData.gd")
 
 var image_size := Vector2()
 
@@ -49,22 +52,23 @@ func _on_Button_pressed() -> void:
 
 		var image = file.data.get_data()
 
+		image.lock()
+
 		# make dict entry
 		sheet_info.data[id] = {}
 		sheet_info.data[id].id = file.id
 		sheet_info.data[id].rect = Rect2(Vector2(x * image_size.x, y * image_size.y), image.get_size())
 		sheet_info.data[id].offset = image.get_used_rect().position
 
-		# image.lock()
-
 		var rect = image.get_used_rect()
 
 		for p_y in rect.size.y:
 			for p_x in rect.size.x:
-				var color = image.get_pixel(p_x + rect.position.x, p_y + rect.position.y)
-#				var color = Color("FFFFFF")
+				# FOLLOWING LINE CURRENTLY BREAKS THE PROGRAM.
+				# var color = image.get_pixel(p_x + rect.position.x, p_y + rect.position.y)
+				var color = Color("FFFFFF")
 				sheet_image.set_pixel(x * image_size.x + p_x, y * image_size.y + p_y, color)
-
+				pass
 		id += 1
 		x += 1
 		if x == width:

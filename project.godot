@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "Loader",
 "language": "GDScript",
 "path": "res://tools/spritesheet_generator/source/Loader.gd"
-}, {
-"base": "Resource",
-"class": "SheetData",
-"language": "GDScript",
-"path": "res://tools/spritesheet_generator/source/SheetData.gd"
 } ]
 _global_script_class_icons={
-"Loader": "",
-"SheetData": ""
+"Loader": ""
 }
 
 [application]

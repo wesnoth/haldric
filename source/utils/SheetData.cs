@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Godot.Collections;
 
-public class RDict : Resource
+public class SheetData : Resource
 {
-    [Export] public Dictionary<int, Dictionary<string, Godot.Object>> data = null;
+    [Export] public Dictionary<Godot.Object, Dictionary<string, Godot.Object>> data = new Dictionary<Godot.Object, Dictionary<string, Godot.Object>>();
 }
