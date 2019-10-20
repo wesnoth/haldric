@@ -46,6 +46,8 @@ public class Scenario : Node2D
 
     public override void _Ready()
     {
-        
+        schedule = GetNode("Schedule") as Node;
+        mapContainer = GetNode("MapContainer") as Node2D;
+        unitContainer = GetNode("UnitContainer") as Node2D;
     }
 }
