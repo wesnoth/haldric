@@ -4,9 +4,10 @@ using Godot.Collections;
 
 public class Registry : Node
 {
-    static public Dictionary<string, TerrainType> terrain = new Dictionary<string, TerrainType>();
-    static public Dictionary<string, SheetData> terrainSheets = new Dictionary<string, SheetData>();
-    static public Dictionary<string, AudioStream> music = new Dictionary<string, AudioStream>();
+    public static Dictionary<string, PackedScene> units = new Dictionary<string, PackedScene>();
+    public static Dictionary<string, TerrainType> terrain = new Dictionary<string, TerrainType>();
+    public static Dictionary<string, SheetData> terrainSheets = new Dictionary<string, SheetData>();
+    public static Dictionary<string, AudioStream> music = new Dictionary<string, AudioStream>();
 
 
     public override void _Ready()
@@ -15,11 +16,28 @@ public class Registry : Node
         Scan();
     }
 
+    public static bool HasUnit(string unitId)
+    {
+        return units.ContainsKey(unitId);
+    }
+
     private void Scan()
     {
         LoadTerrain();
         LoadTerrainGraphics();
+        LoadUnits();
         LoadMusic();
+    }
+
+    private void LoadUnits()
+    {
+        units.Clear();
+
+        foreach (var fileData in FileLoader.LoadDirectory("res://data/units", new string[] {"tscn"}, true))
+        {
+            PackedScene unitType = fileData.data as PackedScene;
+            units.Add(((UnitType)unitType.Instance()).Id, unitType);
+        }
     }
 
     private void LoadMusic()

@@ -30,7 +30,7 @@ public class Scenario : Node2D
 
     public override void _Ready()
     {
-        sides = GetNode("Sides") as Node2D;
+        sides = GetNode("Sides") as Node;
         
         if (mapData == null)
         {
@@ -39,5 +39,25 @@ public class Scenario : Node2D
 
         map.MapData = mapData;
         AddChild(map);
+    }
+
+    protected void AddUnit(int sideNumber, string unitId, int x, int y)
+    {
+        var unit = Unit.Instance();
+
+        if (!Registry.HasUnit(unitId))
+        {
+            GD.Print("UnitType ", unitId, " not found!");
+            return;
+        }
+
+        PackedScene unitType = Registry.units[unitId];
+        unit.Type = unitType.Instance() as UnitType;
+
+        var side = sides.GetChild(sideNumber - 1) as Side;
+
+        side.AssignUnit(unit);
+        
+        map.PlaceUnit(unit, x, y);
     }
 }

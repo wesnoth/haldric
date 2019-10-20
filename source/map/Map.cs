@@ -9,12 +9,15 @@ public class Map : TileMap
     public static Vector2 OFFSET = new Vector2(36, 36);
 
     const string DEFAULT_TERRAIN = "Gs";
+    
     private MapData mapData = new MapData();
 
     private Dictionary<Vector3, Location> locations = new Dictionary<Vector3, Location>();
 
     // Child Nodes
     private Transitions transitions;
+
+    private Node2D units;
 
     public Transitions Transitions { get { return transitions; } }
 
@@ -25,6 +28,7 @@ public class Map : TileMap
         InitializeLocations();
 
         transitions = GetNode<Transitions>("Transitions");
+        units = GetNode("Units") as Node2D;
 
         TileSet = TileSetBuilder.BuildTerrainTileSet();
         transitions.SetTileSet(TileSetBuilder.BuildTransitionTileSet());
@@ -55,6 +59,13 @@ public class Map : TileMap
 
         Location loc = locations[cubeCell];
         loc.Terrain = new Terrain(terrainType);
+    }
+
+    public void PlaceUnit(Unit unit, int x, int y)
+    {
+        unit.GlobalPosition = MapToWorldCentered(new Vector2(x, y));
+        units.AddChild(unit);
+        unit.Owner = this;
     }
 
     public Array<Location> GetNeighborLocations(Location loc)

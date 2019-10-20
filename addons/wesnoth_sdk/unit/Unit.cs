@@ -3,7 +3,7 @@ using System;
 
 public class Unit : Node2D
 {
-    private static PackedScene packedScene = GD.Load<PackedScene>("res://source/unit/Unit.tscn");
+    private static PackedScene packedScene = GD.Load<PackedScene>("res://addons/wesnoth_sdk/unit/Unit.tscn");
     public static Unit Instance() { return packedScene.Instance() as Unit; }
 
     private int health = 0;
@@ -13,9 +13,10 @@ public class Unit : Node2D
     // Child Nodes
     private UnitType type;
 
-    public Unit(UnitType type) 
-    {
-        this.type = type;
+    public UnitType Type
+    { 
+        get { return type; }
+        set { type = value; }
     }
 
     public override void _Ready()

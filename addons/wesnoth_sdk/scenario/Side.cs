@@ -18,21 +18,16 @@ public class Side : Node
     [Export] private Array<string> randomLeader = new Array<string>();
     [Export] private Array<string> recruit = new Array<string>();
 
-    private Node2D units;
-    private Node2D flags;
+    // Should probably be a dictionary with a unique ID as key
+    private Array<Unit> units = new Array<Unit>();
 
     public override void _Ready()
     {
         id = GetIndex() + 1;
+    }
 
-        units = new Node2D();
-        units.Name = "Units";
-        AddChild(units);
-        units.Owner = this;
-
-        flags = new Node2D();
-        flags.Name = "Flags";
-        AddChild(flags);
-        flags.Owner = this;
+    public void AssignUnit(Unit unit)
+    {
+        units.Add(unit);
     }
 }

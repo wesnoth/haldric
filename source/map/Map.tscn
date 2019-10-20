@@ -41,3 +41,5 @@ format = 1
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 4
 format = 1
+
+[node name="Units" type="Node2D" parent="."]

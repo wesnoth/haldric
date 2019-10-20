@@ -1,11 +1,12 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 [Tool]
 public class UnitType : Node2D
 {
     [Export] private string id = "";
-    [Export] private string name = "";
+    [Export] private string alias = "";
 
     [Export] private string race = "";
     [Export] private string alignment = "";
@@ -20,23 +21,37 @@ public class UnitType : Node2D
     [Export] private int moves = 0;
     [Export] private int experience = 0;
 
-    [Export] private string[] advancesTo = {""};
+    [Export] private Array<string> advancesTo = new Array<string>() {""};
 
+    private AnimationPlayer animationPlayer;
+    private Sprite sprite;
 
-    AnimationPlayer animationPlayer;
-    Sprite sprite;
+    private Defense defense;
+    private Movement movement;
+    private Resistance resistance;
 
-    Defense defense;
-    Movement movement;
-    Resistance resistance;
+    private Node traits;
+    private Node abilities;
+    private Node attacks;
 
-    Node traits;
-    Node abilities;
-    Node attacks;
+    public string Id { get { return id; } }
+    public string Alias { get { return alias; } }
+    public string Race { get { return race; } }
+    public string Alignment { get { return alignment; } }
 
-    public int Health { get { return health; }}
-    public int Moves { get { return moves; }}
-    public int Experience { get { return experience; }}
+    public string Description { get { return description; } }
+
+    public int Cost { get { return cost; } }
+    public int Level { get { return level; } }
+    public int Health { get { return health; } }
+    public int Moves { get { return moves; } }
+    public int Experience { get { return experience; } }
+
+    public Defense Defense { get { return defense; } }
+    public Movement Movement { get { return movement; } }
+    public Resistance Resistance { get { return resistance; } }
+
+    public Array<string> AdvancesTo { get { return advancesTo; } }
 
     public override void _Ready()
     {
