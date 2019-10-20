@@ -6,9 +6,9 @@ public class Scenario : Node2D
 {
     // Child Nodes
     private Node schedule;
+    private Node2D sides;
     
-    private Node2D mapContainer;
-    private Node2D unitContainer;
+    private Map map = new Map();
 
     public override void _EnterTree()
     {
@@ -23,22 +23,13 @@ public class Scenario : Node2D
                 schedule.Owner = this;
             }
 
-            if (GetNode("MapContainer") as Node2D == null)
+            if (GetNode("Sides") as Node2D == null)
             {
-                mapContainer = new Node2D();
-                mapContainer.Name = "MapContainer";
-                GD.Print("Node added: ", mapContainer.Name);
-                AddChild(mapContainer);
-                mapContainer.Owner = this;
-            }
-
-            if (GetNode("Units") as Node2D == null)
-            {
-                unitContainer = new Node2D();
-                unitContainer.Name = "Units";
-                GD.Print("Node added: ", unitContainer.Name);
-                AddChild(unitContainer);
-                unitContainer.Owner = this;
+                sides = new Node2D();
+                sides.Name = "Units";
+                GD.Print("Node added: ", sides.Name);
+                AddChild(sides);
+                sides.Owner = this;
             }
 
         }
@@ -47,7 +38,9 @@ public class Scenario : Node2D
     public override void _Ready()
     {
         schedule = GetNode("Schedule") as Node;
-        mapContainer = GetNode("MapContainer") as Node2D;
-        unitContainer = GetNode("UnitContainer") as Node2D;
+        sides = GetNode("Sides") as Node2D;
+        
+        AddChild(map);
+        map.Owner = this;
     }
 }
