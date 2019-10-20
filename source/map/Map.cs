@@ -26,11 +26,10 @@ public class Map : TileMap
 
         transitions = GetNode<Transitions>("Transitions");
 
-        TileSet = TileSetBuilder.Build();
-        transitions.SetTileSet(TileSetBuilder.BuildTransitions());
+        TileSet = TileSetBuilder.BuildTerrainTileSet();
+        transitions.SetTileSet(TileSetBuilder.BuildTransitionTileSet());
         
-        TerrainBuilder.BuildTerrain(this);
-        // TerrainBuilder.BuildTransitions(this);
+        TerrainBuilder.Build(this);
     }
 
     public MapData MapData 

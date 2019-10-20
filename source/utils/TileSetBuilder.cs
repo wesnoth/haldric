@@ -32,7 +32,7 @@ public class TileSetBuilder : Node
         spriteSheets.Add(name, sheet);
     }
 
-    public static TileSet Build()
+    public static TileSet BuildTerrainTileSet()
     {
         var tileSet = new TileSet();
 
@@ -51,7 +51,7 @@ public class TileSetBuilder : Node
         return tileSet;
     }
 
-    public static TileSet BuildTransitions()
+    public static TileSet BuildTransitionTileSet()
     {
         var tileSet = new TileSet();
         

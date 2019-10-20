@@ -26,13 +26,18 @@ public class Editor : Node2D
             Vector2 cell = map.WorldToMap(GetGlobalMousePosition());
             map.SetLocationTerrain(cell, new Array<TerrainType> {Registry.terrain[currentTile1]});
             
-            TerrainBuilder.BuildTerrain(map);
-        }
-        else if (Input.IsActionJustReleased("mouse_left"))
-        {
-            // TerrainBuilder.BuildTransitions(map);
+            if (hud.BrushSize == 2)
+            {
+                foreach (var n_cell in Hex.GetNeighbors(cell))
+                {
+                    map.SetLocationTerrain(n_cell, new Array<TerrainType> {Registry.terrain[currentTile1]});
+                }
+            }
+
+            TerrainBuilder.Build(map);
         }
     }
+
     public override void _Ready()
     {
         hud = GetNode("HUD") as EditorHUD;

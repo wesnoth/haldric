@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class TileButtonPanel : Panel
+public class TileButtonPanel : Control
 {
     [Signal] delegate void Pressed(string buttonName);
 

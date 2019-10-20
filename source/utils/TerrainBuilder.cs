@@ -4,7 +4,7 @@ using System;
 
 public class TerrainBuilder : Node
 {
-    public static void BuildTerrain(Map map)
+    public static void Build(Map map)
     {
 
         map.Transitions.Clear();
@@ -18,11 +18,6 @@ public class TerrainBuilder : Node
             SetTileBase(map, rnd, cell, code);
             SetTileTransitions(map, loc);
         }
-    }
-
-    public static void BuildTransitions(Map map)
-    {
-        throw new NotImplementedException();
     }
 
     private static void SetTileBase(Map map, Random rnd, Vector2 cell, string code)

@@ -7,9 +7,12 @@ public class EditorHUD : CanvasLayer
 
     [Export] Vector2 buttonSize = new Vector2(50, 50);
 
+    private int brushSize = 1;
+    public int BrushSize { get { return brushSize; } }
+
     public override void _Ready()
     {
-        tileButtonPanel = GetNode("TileButtonPanel") as TileButtonPanel;
+        tileButtonPanel = GetNode("SidePanel/TileButtonPanel") as TileButtonPanel;
         tileButtonPanel.Connect("Pressed", this, "_OnButtonPressed");
         tileButtonPanel.ButtonSize = buttonSize;
         AddButtons();
@@ -40,5 +43,10 @@ public class EditorHUD : CanvasLayer
     {
         GetTree().CallGroup("Editor", "SetTile1", buttonName);
         GD.Print("Editor set to ", buttonName);
+    }
+
+    private void _OnBrushSizeChanged(string text)
+    {
+        brushSize = text.ToInt();
     }
 }
