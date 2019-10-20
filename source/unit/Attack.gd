@@ -13,7 +13,7 @@ onready var specials := get_children()
 func execute_before_turn(user, target):
 	if not specials.empty():
 		for child in specials:
-			if child.has_method("execute_before_turn_to_ennemy"):
+			if child.has_method("execute_before_turn_to_enemy"):
 				child.execute_before_turn_to_enemy(target)
 			if child.has_method("execute_before_turn_to_user"):
 				child.execute_before_turn_to_user(user)
@@ -23,7 +23,7 @@ func execute_before_turn(user, target):
 func execute_each_turn(user, target):
 	if not specials.empty():
 		for child in specials:
-			if child.has_method("execute_each_turn_to_ennemy"):
+			if child.has_method("execute_each_turn_to_enemy"):
 				child.execute_each_turn_to_enemy(target)
 			if child.has_method("execute_each_turn_to_user"):
 				child.execute_each_turn_to_user(user)
@@ -33,7 +33,7 @@ func execute_each_turn(user, target):
 func execute_end_turn(user, target):
 	if not specials.empty():
 		for child in specials:
-			if child.has_method("execute_end_turn_to_ennemy"):
+			if child.has_method("execute_end_turn_to_enemy"):
 				child.execute_end_turn_to_enemy(target)
 			if child.has_method("execute_end_turn_to_user"):
 				child.execute_end_turn_to_user(user)
