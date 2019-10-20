@@ -25,10 +25,12 @@ public class Editor : Node2D
         {
             Vector2 cell = map.WorldToMap(GetGlobalMousePosition());
             map.SetLocationTerrain(cell, new Array<TerrainType> {Registry.terrain[currentTile1]});
-            map.BuildTerrain();
+            
+            TerrainBuilder.BuildTerrain(map);
         }
         else if (Input.IsActionJustReleased("mouse_left"))
         {
+            // TerrainBuilder.BuildTransitions(map);
         }
     }
     public override void _Ready()

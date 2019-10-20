@@ -82,7 +82,7 @@ public class Transitions : Node2D
         return transitionName;
     }
 
-    private void SetTile(Vector2 cell, string tileName, int layer)
+    public void SetTile(Vector2 cell, string tileName, int layer)
     {
         var map = GetChildren()[layer] as TileMap;
         var tileId = map.TileSet.FindTileByName(tileName);

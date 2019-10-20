@@ -74,6 +74,7 @@
     <Compile Include="source\utils\FileData.cs" />
     <Compile Include="source\utils\FileLoader.cs" />
     <Compile Include="source\utils\SheetData.cs" />
+    <Compile Include="source\utils\TerrainBuilder.cs" />
     <Compile Include="source\utils\TileSetBuilder.cs" />
     <Compile Include="source\editor\hud\EditorHUD.cs" />
     <Compile Include="source\editor\Editor.cs" />

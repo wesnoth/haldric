@@ -16,6 +16,10 @@ public class Map : TileMap
     // Child Nodes
     private Transitions transitions;
 
+    public Transitions Transitions { get { return transitions; } }
+
+    public Dictionary<Vector3, Location> Locations { get { return locations; } }
+
     public override void _Ready()
     {
         InitializeLocations();
@@ -25,7 +29,8 @@ public class Map : TileMap
         TileSet = TileSetBuilder.Build();
         transitions.SetTileSet(TileSetBuilder.BuildTransitions());
         
-        BuildTerrain();
+        TerrainBuilder.BuildTerrain(this);
+        // TerrainBuilder.BuildTransitions(this);
     }
 
     public MapData MapData 
@@ -53,48 +58,12 @@ public class Map : TileMap
         loc.Terrain = new Terrain(terrainType);
     }
 
-    public void BuildTerrain()
-    {
-        transitions.Clear();
-
-        Random rnd = new Random(0);
-
-        foreach (var loc in locations.Values)
-        {
-            Vector2 cell = loc.QuadCell;
-            string code = loc.Terrain.BaseCode;
-            SetTileBase(rnd, cell, code);
-            SetTileTransitions(loc);
-        }
-    }
-
-    private void SetTileBase(Random rnd, Vector2 cell, string code)
-    {
-        if (TileSetBuilder.HasVariation(code))
-        {
-            Array<string> variations = TileSetBuilder.GetVariationArray(code);
-            int rand = rnd.Next(0, variations.Count);
-            string tileName = variations[rand];
-            SetCellv(cell, TileSet.FindTileByName(tileName));
-        }
-        else
-        {
-            rnd.Next();
-            SetCellv(cell, TileSet.FindTileByName(code));
-        }
-    }
-
-    private void SetTileTransitions(Location loc)
-    {
-        transitions.BuildTransitionsForLocation(loc, GetNeighborLocations(loc));
-    }
-
-    private Array<Location> GetNeighborLocations(Location loc)
+    public Array<Location> GetNeighborLocations(Location loc)
     {
         return GetNeighborLocations(loc.QuadCell);
     }
 
-        private Array<Location> GetNeighborLocations(Vector2 cell)
+    public Array<Location> GetNeighborLocations(Vector2 cell)
     {
         var n_locs = new Array<Location>();
 
@@ -108,12 +77,12 @@ public class Map : TileMap
         return n_locs;
     }
 
-    private Location GetLocation(Vector2 cell)
+    public Location GetLocation(Vector2 cell)
     {
         return GetLocation(Hex.Quad2Cube(cell));
     }
 
-    private Location GetLocation(Vector3 cube)
+    public Location GetLocation(Vector3 cube)
     {
         if (!locations.ContainsKey(cube))
         {
