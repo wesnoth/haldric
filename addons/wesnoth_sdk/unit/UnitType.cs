@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using Wesnoth.SDK;
 
 [Tool]
 public class UnitType : Node2D
@@ -76,7 +75,6 @@ public class UnitType : Node2D
             GD.Print("Node added: " + defense.Name);
             AddChild(defense);
             defense.Owner = GetTree().EditedSceneRoot;
-            defense.SetScript(GD.Load<Script>(Scripts.Defense));
         }
         if (GetNode("Movement") as Node == null)
         {
@@ -85,7 +83,6 @@ public class UnitType : Node2D
             GD.Print("Node added: " + movement.Name);
             AddChild(movement);
             movement.Owner = GetTree().EditedSceneRoot;
-            movement.SetScript(GD.Load<Script>(Scripts.Movement));
         }
         if (GetNode("Resistance") as Node == null)
         {
@@ -94,7 +91,6 @@ public class UnitType : Node2D
             GD.Print("Node added: " + resistance.Name);
             AddChild(resistance);
             resistance.Owner = GetTree().EditedSceneRoot;
-            resistance.SetScript(GD.Load<Script>(Scripts.Resistance));
         }
         if (GetNode("Traits") as Node == null)
         {
