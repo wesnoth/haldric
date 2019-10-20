@@ -9,7 +9,8 @@ public class WesnothSDK : EditorPlugin
     {
 
         AddCustomType("Scenario", "Node2D", GD.Load<Script>("res://addons/wesnoth_sdk/scenario/Scenario.cs"), null);
-
+        AddCustomType("Side", "Node", GD.Load<Script>("res://addons/wesnoth_sdk/scenario/Side.cs"), null);
+        
         AddCustomType("UnitType", "Node2D", GD.Load<Script>("res://addons/wesnoth_sdk/unit/UnitType.cs"), null);
 
         AddCustomType("Defense", "Node", GD.Load<Script>("res://addons/wesnoth_sdk/unit/Defense.cs"), null);
@@ -22,6 +23,7 @@ public class WesnothSDK : EditorPlugin
     public override void _ExitTree()
     {
         RemoveCustomType("Scenario");
+        RemoveCustomType("Side");
 
         RemoveCustomType("UnitType");
 

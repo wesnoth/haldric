@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addons\wesnoth_sdk\scenario\Scenario.cs" />
+    <Compile Include="addons\wesnoth_sdk\scenario\Side.cs" />
     <Compile Include="addons\wesnoth_sdk\scenario\TODPeriod.cs" />
     <Compile Include="addons\wesnoth_sdk\scenario\TODSchedule.cs" />
     <Compile Include="addons\wesnoth_sdk\terrain\TerrainType.cs" />
@@ -63,7 +64,9 @@
     <Compile Include="addons\wesnoth_sdk\unit\UnitType.cs" />
     <Compile Include="addons\wesnoth_sdk\unit\Unit.cs" />
     <Compile Include="addons\wesnoth_sdk\WesnothSDK.cs" />
+    <Compile Include="data\scenarios\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="source\controller\Controller.cs" />
     <Compile Include="source\editor\hud\TileButton.cs" />
     <Compile Include="source\editor\hud\TileButtonPanel.cs" />
     <Compile Include="source\global\Main.cs" />

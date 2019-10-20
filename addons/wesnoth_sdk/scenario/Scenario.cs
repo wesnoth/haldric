@@ -3,44 +3,41 @@ using System;
 
 [Tool]
 public class Scenario : Node2D
-{
+{  
+    private Map map = Map.Instance();
+
+    [Export] string schedule = "default";
+
+    [Export] MapData mapData;
+
     // Child Nodes
-    private Node schedule;
-    private Node2D sides;
-    
-    private Map map = new Map();
+    private Node sides;
 
     public override void _EnterTree()
     {
         if(Engine.EditorHint)
         {
-            if (GetNode("Schedule") as Node == null)
+            if (GetNode("Sides") as Node == null)
             {
-                schedule = new Node();
-                schedule.Name = "Schedule";
-                GD.Print("Node added: ", schedule.Name);
-                AddChild(schedule);
-                schedule.Owner = this;
-            }
-
-            if (GetNode("Sides") as Node2D == null)
-            {
-                sides = new Node2D();
-                sides.Name = "Units";
+                sides = new Node();
+                sides.Name = "Sides";
                 GD.Print("Node added: ", sides.Name);
                 AddChild(sides);
                 sides.Owner = this;
             }
-
         }
     }
 
     public override void _Ready()
     {
-        schedule = GetNode("Schedule") as Node;
         sides = GetNode("Sides") as Node2D;
         
+        if (mapData == null)
+        {
+            mapData = MapData.New();
+        }
+
+        map.MapData = mapData;
         AddChild(map);
-        map.Owner = this;
     }
 }
