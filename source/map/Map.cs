@@ -63,9 +63,19 @@ public class Map : TileMap
 
     public void PlaceUnit(Unit unit, int x, int y)
     {
+        var loc = GetLocation(new Vector2(x, y));
+
         unit.GlobalPosition = MapToWorldCentered(new Vector2(x, y));
         units.AddChild(unit);
         unit.Owner = this;
+
+        loc.Unit = unit;
+    }
+
+    public Unit GetUnitAt(Vector2 worldPosition)
+    {
+        var loc = GetLocation(WorldToMap(worldPosition));
+        return loc.Unit;
     }
 
     public Array<Location> GetNeighborLocations(Location loc)

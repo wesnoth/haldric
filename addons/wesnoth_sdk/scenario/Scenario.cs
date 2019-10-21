@@ -41,6 +41,11 @@ public class Scenario : Node2D
         AddChild(map);
     }
 
+    public Unit GetUnitAt(Vector2 worldPosition)
+    {
+        return map.GetUnitAt(worldPosition);
+    }
+
     protected void AddUnit(int sideNumber, string unitId, int x, int y)
     {
         var unit = Unit.Instance();

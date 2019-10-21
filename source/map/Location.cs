@@ -3,13 +3,6 @@ using System;
 
 public class Location : Godot.Object
 {
-    private Vector2 quadCell;
-    private Vector3 cubeCell;
-
-    private Vector2 position;
-    
-    private Terrain terrain;
-
     public Vector2 QuadCell {
         get { return quadCell; }
         set { quadCell = value; }
@@ -29,4 +22,18 @@ public class Location : Godot.Object
         get { return terrain; }
         set { terrain = value; }
     }
+
+    public Unit Unit {
+        get { return unit; }
+        set { unit = value; }
+    }
+
+    private Vector2 quadCell;
+    private Vector3 cubeCell;
+
+    private Vector2 position;
+    
+    private Terrain terrain;
+
+    private Unit unit;
 }
