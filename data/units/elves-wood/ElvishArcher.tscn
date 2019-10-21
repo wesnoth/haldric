@@ -9,15 +9,16 @@
 
 [node name="ElvishArcher" type="Node2D"]
 script = ExtResource( 2 )
+alias = "Elvish Archer"
+race = "elf"
+cost = 17
+advancesTo = [ "Elvish Ranger", "Elvish Marksman" ]
+health = 29
+moves = 6
+experience = 44
 id = "Elvish Archer"
 alignment = "neutral"
 level = 1
-race = "elf"
-alias = "Elvish Archer"
-cost = 17
-moves = 6
-experience = 44
-advancesTo = [ "Elvish Ranger", "Elvish Marksman" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
