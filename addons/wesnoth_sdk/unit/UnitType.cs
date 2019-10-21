@@ -5,35 +5,6 @@ using System;
 [Tool]
 public class UnitType : Node2D
 {
-    [Export] private string id = "";
-    [Export] private string alias = "";
-
-    [Export] private string race = "";
-    [Export] private string alignment = "";
-
-
-    [Export(PropertyHint.MultilineText)] private string description = "";
-
-    [Export] private int cost = 0;
-    [Export] private int level = 0;
-    
-    [Export] private int health = 0;
-    [Export] private int moves = 0;
-    [Export] private int experience = 0;
-
-    [Export] private Array<string> advancesTo = new Array<string>() {""};
-
-    private AnimationPlayer animationPlayer;
-    private Sprite sprite;
-
-    private Defense defense;
-    private Movement movement;
-    private Resistance resistance;
-
-    private Node traits;
-    private Node abilities;
-    private Node attacks;
-
     public string Id { get { return id; } }
     public string Alias { get { return alias; } }
     public string Race { get { return race; } }
@@ -52,6 +23,38 @@ public class UnitType : Node2D
     public Resistance Resistance { get { return resistance; } }
 
     public Array<string> AdvancesTo { get { return advancesTo; } }
+
+    public Texture Texture { get { return sprite.Texture; } }
+    
+    private AnimationPlayer animationPlayer;
+    private Sprite sprite;
+
+    private Defense defense;
+    private Movement movement;
+    private Resistance resistance;
+
+    private Node traits;
+    private Node abilities;
+    private Node attacks;
+
+    [Export] private string id = "";
+    [Export] private string alias = "";
+
+    [Export] private string race = "";
+    [Export] private string alignment = "";
+
+
+    [Export(PropertyHint.MultilineText)] private string description = "";
+
+    [Export] private int cost = 0;
+    [Export] private int level = 0;
+    
+    [Export] private int health = 0;
+    [Export] private int moves = 0;
+    [Export] private int experience = 0;
+
+    [Export] private Array<string> advancesTo = new Array<string>() {""};
+
 
     public override void _Ready()
     {
