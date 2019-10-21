@@ -6,6 +6,10 @@ public class Unit : Node2D
     private static PackedScene packedScene = GD.Load<PackedScene>("res://addons/wesnoth_sdk/unit/Unit.tscn");
     public static Unit Instance() { return packedScene.Instance() as Unit; }
 
+    public int Health { get => health; }
+    public int Experience { get => experience; }
+    public int Moves { get => moves; }
+
     private int health = 0;
     private int experience = 0;
     private int moves = 0;
@@ -18,6 +22,7 @@ public class Unit : Node2D
         get { return type; }
         set { type = value; }
     }
+
 
     public override void _Ready()
     {
