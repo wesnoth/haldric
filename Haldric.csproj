@@ -73,6 +73,7 @@
     <Compile Include="source\map\MapData.cs" />
     <Compile Include="source\map\Transitions.cs" />
     <Compile Include="source\match\hud\MatchHUD.cs" />
+    <Compile Include="source\match\hud\UnitPanel.cs" />
     <Compile Include="source\utils\FileData.cs" />
     <Compile Include="source\utils\FileLoader.cs" />
     <Compile Include="source\utils\SheetData.cs" />

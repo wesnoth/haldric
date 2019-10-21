@@ -24,7 +24,7 @@ public class Controller : Node2D
 
             if (unit == null) { return; }
             
-            GD.Print(unit.Name);
+            GetTree().CallGroup("UnitPanel", "UpdateUnit", unit);
         }
 
         if (@event.IsActionPressed("mouse_right"))
