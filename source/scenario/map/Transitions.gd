@@ -7,6 +7,8 @@ var map: TileMap = null
 var directions = [ "n", "ne", "se", "s", "sw", "nw" ]
 var layers := []
 
+var changed_tiles := []
+
 func initialize(map: TileMap) -> void:
 	self.map = map
 
@@ -26,27 +28,33 @@ func initialize(map: TileMap) -> void:
 	update_transitions()
 
 func update_transitions() -> void:
-	for layer in layers:
-		layer.clear()
+	for cell in changed_tiles:
+		_apply_transition_from_cell(cell, true)
+	
+	changed_tiles.clear()
 
-	for cell in map.get_used_cells():
-		_apply_transition_from_cell(cell)
+func add_changed_tile(cell : Vector2):
+	changed_tiles.append(cell) 
 
-func _apply_transition_from_cell(cell : Vector2) -> void:
+func _apply_transition_from_cell(cell : Vector2, update_neighbors : bool) -> void:
 	var location: Location = map.get_location(cell)
 	var code: String = location.terrain.get_base_code()
 	var neighbors := Hex.get_neighbors(cell)
 
 	var layer = 0
 	while layer < layers.size():
+		layers[layer].set_cellv(cell, -1)
 		var n_cell: Vector2 = neighbors[layer]
 		var n_location: Location = map.get_location(n_cell)
-
+		
 		if not n_location:
 			layer += 1
 			continue
-
+		
 		if location.terrain.layer >= n_location.terrain.layer:
+			if(update_neighbors):
+				layers[layer].set_cellv(n_cell, -1)
+				_apply_transition_from_cell(n_cell, false)
 			layer += 1
 			continue
 
@@ -61,7 +69,6 @@ func _apply_transition_from_cell(cell : Vector2) -> void:
 
 func _get_chain_tile_data(code: String, cell: Vector2, start_direction: int) -> Dictionary:
 	var neighbors := Hex.get_neighbors(cell)
-
 	var start_cell : Vector2 = neighbors[start_direction]
 	var start_code := _get_base_terrain_code_from_cell(start_cell)
 

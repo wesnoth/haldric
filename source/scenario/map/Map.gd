@@ -203,7 +203,6 @@ func update_terrain_from_map_data(map_data: Dictionary) -> void:
 	pass
 
 func update_terrain() -> void:
-	# TODO: no need to update everything. Restrict this to specific rects
 	_update_locations()
 	transitions.update_transitions()
 
@@ -287,6 +286,7 @@ func set_tile(global_pos: Vector2, id: int) -> void:
 		set_cellv(cell, id)
 
 	_update_size()
+	transitions.add_changed_tile(cell)
 
 func get_village_count() -> int:
 	return overlay.get_used_cells_by_id(overlay.tile_set.find_tile_by_name("^Vh")).size()
