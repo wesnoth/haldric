@@ -67,6 +67,7 @@ func _new_map() -> void:
 	scenario_container.add_child(scenario)
 	scenario.map.set_size(DEFAULT_MAP_SIZE)
 	scenario.update_size()
+	scenario.map.initialize()
 
 func _load_map(scenario_name: String) -> void:
 	var packed_scene = load(DEFAULT_ROOT_PATH + scenario_name + ".tscn")
