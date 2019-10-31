@@ -12,13 +12,13 @@ var origin
 var off_screen_position = Vector2(-rect_size.x, rect_position.y)
 
 onready var tween := $Tween as Tween
-onready var hover := $ButtonHover as ButtonHover
+onready var selected_button_hover := $SelectedButtonHover as ButtonHover
 
 func _ready() -> void:
 
 	# warning-ignore:return_value_discarded
 	get_tree().connect("screen_resized", self, "_on_screen_resized")
-	call_deferred("highlight_button", 0)
+	call_deferred("highligh_selected_button", 0)
 	reveal()
 
 func reveal() -> void:
@@ -47,12 +47,12 @@ func _button_selected(button_id):
 
 	_button_register[button_id].emit_signal("pressed")
 
-func highlight_button(button_id: int) -> void:
+func highligh_selected_button(button_id: int) -> void:
 
 	if not _button_register.has(button_id):
 		return
 
-	hover.highlight_button(_button_register[button_id], 0.4)
+	selected_button_hover.highlight_button(_button_register[button_id], 0.4)
 
 func register_button(button: Button) -> void:
 	_button_register[button.get_index()] = button
@@ -85,7 +85,7 @@ func to_button(new_index):
 		return
 
 	current_button = new_index
-	highlight_button(current_button)
+	highligh_selected_button(current_button)
 	emit_signal("button_focused", current_button)
 
 func _register_buttons() -> void:
@@ -93,8 +93,8 @@ func _register_buttons() -> void:
 		register_button(button)
 
 func _on_button_pressed(id: int) -> void:
-	highlight_button(id)
+	highligh_selected_button(id)
 	emit_signal("button_focused", id)
 
 func _on_screen_resized():
-	highlight_button(current_button)
+	highligh_selected_button(current_button)

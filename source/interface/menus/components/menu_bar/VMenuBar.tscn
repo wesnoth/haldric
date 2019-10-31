@@ -13,8 +13,8 @@ gradient = SubResource( 1 )
 width = 200
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.165049, 0.572816, 1 )
-colors = PoolColorArray( 1, 1, 1, 0.784314, 1, 1, 1, 0.235294, 1, 1, 1, 0.0627451, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0, 0.165049, 0.171617, 0.572816, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.784314, 1, 1, 1, 0.235294, 1, 1, 1, 0.696488, 1, 1, 1, 0.0627451, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
@@ -25,6 +25,9 @@ margin_bottom = 300.0
 rect_min_size = Vector2( 300, 60 )
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -36,14 +39,14 @@ margin_bottom = 150.0
 custom_constants/separation = 0
 alignment = 1
 
-[node name="ButtonHover" parent="." instance=ExtResource( 3 )]
+[node name="SelectedButtonHover" parent="." instance=ExtResource( 3 )]
 margin_left = 2.0
 margin_top = 150.0
 margin_right = 298.0
 margin_bottom = 150.0
 script = ExtResource( 4 )
 
-[node name="Gradient" type="TextureRect" parent="ButtonHover"]
+[node name="Gradient" type="TextureRect" parent="SelectedButtonHover"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -51,7 +54,7 @@ size_flags_vertical = 3
 texture = SubResource( 2 )
 expand = true
 
-[node name="BorderTop" type="TextureRect" parent="ButtonHover/Gradient"]
+[node name="BorderTop" type="TextureRect" parent="SelectedButtonHover/Gradient"]
 anchor_right = 1.0
 margin_bottom = 1.0
 rect_min_size = Vector2( 0, 1 )
@@ -59,8 +62,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource( 4 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="BorderBottom" type="TextureRect" parent="ButtonHover/Gradient"]
+[node name="BorderBottom" type="TextureRect" parent="SelectedButtonHover/Gradient"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
