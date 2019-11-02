@@ -1,17 +1,40 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://graphics/images/units/elves-wood/archer.png" type="Texture" id=1]
 [ext_resource path="res://source/match/hud/UnitPanel.cs" type="Script" id=2]
 
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.211765, 0.156863, 0.156863, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.686275, 0.592157, 0.537255, 1 )
+corner_detail = 16
+shadow_size = 1
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.211765, 0.156863, 0.156863, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.686275, 0.592157, 0.537255, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 16
+shadow_size = 1
+shadow_offset = Vector2( 2, 2 )
+
 [node name="UnitPanel" type="Panel" groups=[
 "UnitPanel",
 ]]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -300.0
-margin_top = -300.0
+margin_right = 300.0
+margin_bottom = 300.0
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -23,9 +46,9 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 50.0
-margin_top = 48.0
+margin_top = 12.0
 margin_right = 250.0
-margin_bottom = 252.0
+margin_bottom = 288.0
 
 [node name="Name" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_right = 200.0
@@ -33,18 +56,30 @@ margin_bottom = 25.0
 text = "Name"
 align = 1
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+[node name="Portrait" type="Panel" parent="CenterContainer/VBoxContainer"]
 margin_top = 33.0
 margin_right = 200.0
-margin_bottom = 105.0
-rect_min_size = Vector2( 72, 72 )
+margin_bottom = 177.0
+rect_min_size = Vector2( 144, 144 )
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Image" type="TextureRect" parent="CenterContainer/VBoxContainer/Portrait"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 144, 144 )
 texture = ExtResource( 1 )
 stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HP" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 113.0
+margin_top = 185.0
 margin_right = 200.0
-margin_bottom = 138.0
+margin_bottom = 210.0
 rect_min_size = Vector2( 200, 0 )
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HP"]
@@ -62,9 +97,9 @@ text = "100 / 100"
 align = 1
 
 [node name="MP" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 146.0
+margin_top = 218.0
 margin_right = 200.0
-margin_bottom = 171.0
+margin_bottom = 243.0
 rect_min_size = Vector2( 200, 0 )
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/MP"]
@@ -82,9 +117,9 @@ text = "100 / 100"
 align = 1
 
 [node name="XP" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 179.0
+margin_top = 251.0
 margin_right = 200.0
-margin_bottom = 204.0
+margin_bottom = 276.0
 rect_min_size = Vector2( 200, 0 )
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/XP"]
@@ -100,3 +135,12 @@ margin_bottom = 25.0
 size_flags_horizontal = 3
 text = "100 / 100"
 align = 1
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+custom_styles/normal = SubResource( 2 )

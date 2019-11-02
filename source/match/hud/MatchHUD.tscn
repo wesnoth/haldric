@@ -7,3 +7,11 @@
 script = ExtResource( 1 )
 
 [node name="UnitPanel" parent="." instance=ExtResource( 2 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -310.0
+margin_top = -310.0
+margin_right = -9.99988
+margin_bottom = -10.0

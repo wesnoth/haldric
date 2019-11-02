@@ -16,7 +16,7 @@ public class UnitPanel : Panel
         hp = GetNode("CenterContainer/VBoxContainer/HP/Value") as Label;
         mp = GetNode("CenterContainer/VBoxContainer/MP/Value") as Label;
         xp = GetNode("CenterContainer/VBoxContainer/XP/Value") as Label;
-        image = GetNode("CenterContainer/VBoxContainer/TextureRect") as TextureRect;
+        image = GetNode("CenterContainer/VBoxContainer/Portrait/Image") as TextureRect;
     }
 
     public void UpdateUnit(Unit unit)
