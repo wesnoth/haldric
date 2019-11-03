@@ -114,7 +114,7 @@ void fragment() {
 	float n_out33p0;
 	n_out33p0 = Saturation;
 
-// VectorInterp:28
+// VectorMix:28
 	vec3 n_out28p0;
 	n_out28p0 = mix( n_out31p0 , n_out3p0 , vec3(n_out33p0) );
 

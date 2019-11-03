@@ -30,11 +30,11 @@ func initialize(map: TileMap) -> void:
 func update_transitions() -> void:
 	for cell in changed_tiles:
 		_apply_transition_from_cell(cell, true)
-	
+
 	changed_tiles.clear()
 
 func add_changed_tile(cell : Vector2):
-	changed_tiles.append(cell) 
+	changed_tiles.append(cell)
 
 func _apply_transition_from_cell(cell : Vector2, update_neighbors : bool) -> void:
 	var location: Location = map.get_location(cell)
@@ -46,11 +46,11 @@ func _apply_transition_from_cell(cell : Vector2, update_neighbors : bool) -> voi
 		layers[layer].set_cellv(cell, -1)
 		var n_cell: Vector2 = neighbors[layer]
 		var n_location: Location = map.get_location(n_cell)
-		
+
 		if not n_location:
 			layer += 1
 			continue
-		
+
 		if location.terrain.layer >= n_location.terrain.layer:
 			if(update_neighbors):
 				layers[layer].set_cellv(n_cell, -1)
