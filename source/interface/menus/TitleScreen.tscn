@@ -15,7 +15,7 @@
 size = 80
 font_data = ExtResource( 10 )
 
-[node name="TitleScreen" index="0" instance=ExtResource( 1 )]
+[node name="TitleScreen" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Home" parent="Pages" index="0" instance=ExtResource( 3 )]
@@ -101,8 +101,12 @@ margin_right = 296.0
 margin_bottom = 540.0
 show_background = false
 
-[node name="ButtonHover" parent="VMenuBar" index="2"]
+[node name="SelectedButtonHover" parent="VMenuBar" index="2"]
 margin_bottom = 690.0
+
+[node name="HoverButtonHover" parent="VMenuBar" index="3"]
+margin_bottom = 690.0
+mouse_filter = 2
 
 [node name="Logo" parent="." index="3" instance=ExtResource( 9 )]
 margin_left = 350.0
