@@ -12,13 +12,14 @@ onready var tween = $Tween
 onready var HUD := $HUD as CanvasLayer
 onready var draw := $ScenarioLayer/ViewportContainer/Viewport/Draw as Node2D
 
-onready var viewport_container = $ScenarioLayer/ViewportContainer
+onready var viewport_container := $ScenarioLayer/ViewportContainer as ViewportContainer
 onready var scenario_viewport := $ScenarioLayer/ViewportContainer/Viewport as Viewport
 onready var scenario_placeholder := $ScenarioLayer/ViewportContainer/Viewport/ScenarioPlaceholder as Node
+onready var camera := $ScenarioLayer/ViewportContainer/Viewport/Camera2D as Camera2D
 
 func _unhandled_input(event: InputEvent) -> void:
-	var loc: Location = scenario.map.get_location_from_mouse()
 
+	var loc: Location = scenario.map.get_location_from_mouse()
 	if event.is_action_pressed("mouse_left"):
 		if loc:
 			# Select a unit
@@ -65,7 +66,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	randomize()
 	HUD.unit_panel.unit_viewport.world_2d = scenario_viewport.world_2d
+	
 	_load_scenario()
+	
+	$HUD/Minimap.initialize(scenario_viewport.world_2d, scenario.map.get_pixel_size(), camera)
+	$HUD/Minimap.connect("map_position_change_requested", self, "_on_map_position_change_requested")
 
 	# warning-ignore:return_value_discarded
 	HUD.connect("unit_advancement_selected", self, "_on_unit_advancement_selected")
@@ -76,6 +81,9 @@ func _ready() -> void:
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
 	
 	HUD.update_time_info(scenario.schedule.current_time)
+
+func _on_map_position_change_requested(new_position: Vector2) -> void:
+	camera.focus_on(new_position)
 
 func _load_scenario() -> void:
 	scenario = Loader.load_scenario(Global.state.scenario.id)
