@@ -10,6 +10,9 @@ export var zoom_max_out := 2.0
 
 onready var tween := $Tween
 
+signal position_changed
+signal zoom_changed
+
 func _input(event: InputEvent) -> void:
 	_handle_pitch_to_zoom(event)
 	_handle_pan_gesture(event)
@@ -38,7 +41,12 @@ func _handle_keyboard_scroll(delta: float) -> void:
 
 	if Input.is_action_pressed("ui_right"):
 		new_position.x += speed_adjusted * delta / 2
+	
+	if(new_position != position):
+		_set_position(new_position)
 
+func _set_position(new_position : Vector2):
+	emit_signal("position_changed", new_position)
 	position = new_position
 
 func _handle_pitch_to_zoom(event: InputEvent):
@@ -61,7 +69,8 @@ func _zoom(step: float) -> void:
 		clamp(zoom.x + step, zoom_max_in, zoom_max_out),
 		clamp(zoom.y + step, zoom_max_in, zoom_max_out)
 	)
-
+	
+	emit_signal("zoom_changed", new_zoom)
 	# warning-ignore:return_value_discarded
 	tween.interpolate_property(self, "zoom", null, new_zoom, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	# warning-ignore:return_value_discarded
@@ -76,10 +85,10 @@ func _handle_middle_mouse(event: InputEvent) -> void:
 			initial_mouse_position = mouse_pos
 
 		# We multiply by -1 in order move the camera in the direction of the mouse.
-		position = initial_camera_position + (mouse_pos - initial_mouse_position) * -1 * zoom
+		_set_position(initial_camera_position + (mouse_pos - initial_mouse_position) * -1 * zoom)
 
 func focus_on(new_position: Vector2) -> void:
 	# warning-ignore:return_value_discarded
-	tween.interpolate_property(self, "position", null, new_position, 0.4, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.interpolate_method(self, "_set_position", position, new_position, 0.4, Tween.TRANS_SINE, Tween.EASE_OUT)
 	# warning-ignore:return_value_discarded
 	tween.start()
