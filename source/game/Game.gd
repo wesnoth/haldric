@@ -41,7 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion and loc:
 		# Show the hovered unit in the sidebar.
 		# If no unit is at the hovered location, display the currently selected unit, if any.
-		if loc.unit:
+		if loc.unit and loc.unit.visible:
 			HUD.update_unit_info(loc.unit)
 		elif current_unit:
 			HUD.update_unit_info(current_unit)
