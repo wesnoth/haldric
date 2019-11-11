@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/editor/Editor.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/OffMap.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=6]
 [ext_resource path="res://source/interface/pause_menu/PauseMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/hud/Minimap.tscn" type="PackedScene" id=9]
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,8 +22,8 @@ layer = 0
 [node name="ViewportContainer" type="ViewportContainer" parent="ScenarioLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.00012207
 mouse_filter = 2
+stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -31,20 +32,34 @@ __meta__ = {
 size = Vector2( 1920, 1080 )
 transparent_bg = true
 handle_input_locally = false
+hdr = false
+disable_3d = true
+usage = 0
 render_target_update_mode = 3
 
 [node name="ScenarioContainer" type="Node" parent="ScenarioLayer/ViewportContainer/Viewport"]
 
 [node name="Camera2D" parent="ScenarioLayer/ViewportContainer/Viewport" instance=ExtResource( 8 )]
+position = Vector2( 960, 540 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 3 )
+
+[node name="Minimap" parent="HUD" instance=ExtResource( 9 )]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -256.0
+margin_top = 25.0
+margin_right = -17.0
+margin_bottom = -875.0
 
 [node name="TileButtons" type="Control" parent="HUD"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -265.0
+margin_top = 250.0
 margin_bottom = 1.0
 theme = ExtResource( 4 )
 __meta__ = {
@@ -66,6 +81,9 @@ size_flags_vertical = 3
 custom_constants/vseparation = 12
 custom_constants/hseparation = 12
 columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="UIButtons" type="Control" parent="HUD"]
 anchor_left = 0.5
@@ -90,6 +108,9 @@ margin_right = -1.0
 margin_bottom = -5.0
 custom_constants/separation = 20
 alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="New" type="Button" parent="HUD/UIButtons/HBoxContainer"]
 margin_left = 69.0
@@ -122,6 +143,7 @@ rect_min_size = Vector2( 80, 0 )
 text = "Load"
 
 [node name="PauseMenu" parent="HUD" instance=ExtResource( 7 )]
+visible = false
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/New" to="." method="_on_New_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Load" to="." method="_on_Load_pressed"]

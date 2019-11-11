@@ -10,6 +10,8 @@ onready var HUD := $HUD as CanvasLayer
 onready var scenario_container := $ScenarioLayer/ViewportContainer/Viewport/ScenarioContainer as Node
 onready var line_edit := $HUD/UIButtons/HBoxContainer/LineEdit as LineEdit
 onready var camera := $ScenarioLayer/ViewportContainer/Viewport/Camera2D
+onready var scenario_viewport := $ScenarioLayer/ViewportContainer/Viewport as Viewport
+onready var minimap := $HUD/Minimap as Control
 
 var scenario: Scenario = null
 var current_paint_tile := 0
@@ -28,6 +30,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_new_map()
 	_setup_scenario()
+	
+	minimap.initialize(scenario_viewport, scenario.map.get_pixel_size(), camera)
+	minimap.connect("map_position_change_requested", self, "_on_map_position_change_requested")
 
 	current_clear_tile = scenario.map.default_tile
 
@@ -130,3 +135,7 @@ func _on_Load_pressed() -> void:
 
 func _on_New_pressed() -> void:
 	_new_map()
+
+func _on_map_position_change_requested(new_position: Vector2) -> void:
+	camera.focus_on(new_position)
+

@@ -69,7 +69,7 @@ func _ready() -> void:
 	
 	_load_scenario()
 	
-	$HUD/Minimap.initialize(scenario_viewport.world_2d, scenario.map.get_pixel_size(), camera)
+	$HUD/Minimap.initialize(scenario_viewport, scenario.map.get_pixel_size(), camera)
 	$HUD/Minimap.connect("map_position_change_requested", self, "_on_map_position_change_requested")
 
 	# warning-ignore:return_value_discarded
