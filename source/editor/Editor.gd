@@ -7,21 +7,20 @@ const DEFAULT_MAP_SIZE := Vector2(44, 33)
 export var button_size := 60
 
 onready var HUD := $HUD as CanvasLayer
-onready var scenario_container := $ScenarioContainer as Node
+onready var scenario_container := $ScenarioLayer/ViewportContainer/Viewport/ScenarioContainer as Node
 onready var line_edit := $HUD/UIButtons/HBoxContainer/LineEdit as LineEdit
+onready var camera := $ScenarioLayer/ViewportContainer/Viewport/Camera2D
 
 var scenario: Scenario = null
 var current_paint_tile := 0
 var current_clear_tile := 0
 
 func _unhandled_input(event: InputEvent) -> void:
-	var mouse_position: Vector2 = get_global_mouse_position()
-
 	if Input.is_action_pressed("mouse_left"):
-		scenario.map.set_tile(mouse_position, current_paint_tile)
+		scenario.map.set_tile(current_paint_tile)
 
 	if Input.is_action_pressed("mouse_right"):
-		scenario.map.set_tile(mouse_position, current_clear_tile)
+		scenario.map.set_tile(current_clear_tile)
 
 	if Input.is_action_just_released("mouse_left") or Input.is_action_just_released("mouse_right"):
 		_update()
@@ -35,6 +34,9 @@ func _ready() -> void:
 func _update() -> void:
 	scenario.map.update_terrain()
 
+func get_camera_zoom() -> Vector2:
+	return camera.zoom
+	
 func _setup_scenario() -> void:
 	for id in scenario.map.tile_set.get_tiles_ids():
 		_add_terrain_button(id)
@@ -68,6 +70,7 @@ func _new_map() -> void:
 	scenario.map.set_size(DEFAULT_MAP_SIZE)
 	scenario.update_size()
 	scenario.map.initialize()
+	
 
 func _load_map(scenario_name: String) -> void:
 	var packed_scene = load(DEFAULT_ROOT_PATH + scenario_name + ".tscn")
@@ -83,6 +86,7 @@ func _load_map(scenario_name: String) -> void:
 
 	scenario = packed_scene.instance()
 	scenario_container.add_child(scenario)
+	
 
 func _save_map(scenario_name: String) -> void:
 	if scenario_name.empty():

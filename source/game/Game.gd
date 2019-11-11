@@ -105,6 +105,10 @@ func _load_scenario() -> void:
 
 	draw.map_area = scenario.map.get_pixel_size()
 
+# used in map for workaround on nested viewports issue
+func get_camera_zoom() -> Vector2:
+	return camera.zoom
+
 func _draw_temp_path(path: Array) -> void:
 	if current_unit:
 		var new_path = path.duplicate(true)

@@ -48,8 +48,8 @@ func get_viewport_mouse_position() -> Vector2:
 	Workaround for bug https://github.com/godotengine/godot/issues/32222
 	"""
 	var offset_position := Vector2()
-	if get_tree().current_scene.name == 'Game':
-		var zoom = get_parent().get_parent().get_node("Camera2D").zoom # We need to adjust the mouse cursor further by the camera's zoom level
+	if get_tree().current_scene.name == 'Game' || get_tree().current_scene.name == 'Editor':
+		var zoom = get_tree().current_scene.get_camera_zoom() # We need to adjust the mouse cursor further by the camera's zoom level
 		offset_position = get_tree().current_scene.get_global_mouse_position() - get_viewport_transform().origin
 		offset_position *= zoom
 	else:
@@ -265,8 +265,13 @@ func set_size(size: Vector2) -> void:
 	_initialize_locations()
 	_initialize_grid()
 
-func set_tile(global_pos: Vector2, id: int) -> void:
-	var cell: Vector2 = world_to_map(global_pos)
+
+func set_tile(id: int) -> void:
+	"""
+	Sets tile in current mouse position
+	"""
+	
+	var cell: Vector2 = world_to_map(get_viewport_mouse_position())
 
 	if not _is_cell_in_map(cell):
 		return

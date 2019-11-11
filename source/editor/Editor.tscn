@@ -15,19 +15,41 @@ button_size = 50
 
 [node name="OffMap" parent="." instance=ExtResource( 2 )]
 
-[node name="ScenarioContainer" type="Node" parent="."]
+[node name="ScenarioLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ViewportContainer" type="ViewportContainer" parent="ScenarioLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.00012207
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ScenarioLayer/ViewportContainer"]
+size = Vector2( 1920, 1080 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="ScenarioContainer" type="Node" parent="ScenarioLayer/ViewportContainer/Viewport"]
+
+[node name="Camera2D" parent="ScenarioLayer/ViewportContainer/Viewport" instance=ExtResource( 8 )]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 3 )
 
 [node name="TileButtons" type="Control" parent="HUD"]
-editor/display_folded = true
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -265.0
 margin_bottom = 1.0
 theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" parent="HUD/TileButtons" instance=ExtResource( 5 )]
 material = ExtResource( 6 )
@@ -46,7 +68,6 @@ custom_constants/hseparation = 12
 columns = 4
 
 [node name="UIButtons" type="Control" parent="HUD"]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -57,6 +78,9 @@ margin_right = 300.0
 margin_bottom = -10.0
 rect_min_size = Vector2( 600, 80 )
 theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/UIButtons"]
 anchor_right = 1.0
@@ -80,7 +104,6 @@ margin_right = 329.0
 margin_bottom = 69.0
 rect_min_size = Vector2( 160, 0 )
 focus_mode = 1
-focus_mode = 1
 context_menu_enabled = false
 placeholder_text = "scenario name"
 
@@ -99,8 +122,6 @@ rect_min_size = Vector2( 80, 0 )
 text = "Load"
 
 [node name="PauseMenu" parent="HUD" instance=ExtResource( 7 )]
-
-[node name="Camera2D" parent="." instance=ExtResource( 8 )]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/New" to="." method="_on_New_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Load" to="." method="_on_Load_pressed"]
