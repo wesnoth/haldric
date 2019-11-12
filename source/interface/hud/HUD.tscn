@@ -25,18 +25,13 @@ margin_right = 200.0
 margin_bottom = 300.0
 
 [node name="SidePanel" parent="." instance=ExtResource( 3 )]
-margin_left = -1.75806
-margin_top = 11.7581
-margin_right = -1.75806
-margin_bottom = 61.7581
+margin_bottom = 50.0
 
 [node name="Minimap" parent="." instance=ExtResource( 9 )]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -249.0
-margin_top = 106.0
-margin_right = -10.0
-margin_bottom = 286.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -240.0
+margin_bottom = 0.0
 rect_min_size = Vector2( 180, 180 )
 
 [node name="UnitPanel" parent="." instance=ExtResource( 4 )]

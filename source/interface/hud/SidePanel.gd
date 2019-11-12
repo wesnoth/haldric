@@ -1,4 +1,4 @@
-extends Control
+extends Panel
 
 var flags := {
 	"standard": Vector2(24*0, 0),
