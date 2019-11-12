@@ -38,10 +38,10 @@ rect_min_size = Vector2( 180, 180 )
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -249.098
-margin_top = 301.903
-margin_right = -9.09766
-margin_bottom = -99.0975
+margin_left = -250.0
+margin_top = 200.0
+margin_right = -9.99988
+margin_bottom = -280.0
 mouse_filter = 2
 
 [node name="ToDPanel" parent="." instance=ExtResource( 5 )]
@@ -52,15 +52,15 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 90.0
 
-[node name="TurnEndPanel" parent="." instance=ExtResource( 6 )]
+[node name="TurnEndWidget" parent="." instance=ExtResource( 6 )]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -247.544
-margin_top = -90.0
-margin_right = -7.54443
-margin_bottom = -10.0
+margin_left = -245.0
+margin_top = -245.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
 visible = false
@@ -79,4 +79,4 @@ margin_left = -200.0
 margin_top = -300.0
 margin_right = 200.0
 margin_bottom = 300.0
-[connection signal="turn_end_pressed" from="TurnEndPanel" to="." method="_on_TurnEndPanel_turn_end_pressed"]
+[connection signal="turn_end_pressed" from="TurnEndWidget" to="." method="_on_TurnEndPanel_turn_end_pressed"]
