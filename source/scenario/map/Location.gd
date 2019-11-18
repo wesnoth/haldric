@@ -71,3 +71,15 @@ func get_adjacent_locations() -> Array:
 		if neighbor:
 			neighbor_locations.append(neighbor)
 	return neighbor_locations
+
+func can_recruit_from():
+	return terrain.recruit_from && get_adjacent_free_recruitment_location() != null
+
+func get_adjacent_free_recruitment_location() -> Location:
+	for target_location in get_adjacent_locations():
+		if target_location._can_recruit_to():
+			return target_location
+	return null
+
+func _can_recruit_to():
+	return terrain.recruit_onto && unit == null

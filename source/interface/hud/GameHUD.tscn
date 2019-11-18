@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/interface/hud/UnitPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/interface/hud/AttackPopup.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://source/interface/hud/AdvancementPopup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/interface/hud/GameHUD.gd" type="Script" id=9]
+[ext_resource path="res://source/interface/hud/RecruitmentPopup.tscn" type="PackedScene" id=10]
 
 [node name="HUD" type="CanvasLayer"]
 layer = 2
@@ -77,4 +78,10 @@ margin_left = -3.0
 margin_top = -3.0
 margin_right = 3.0
 margin_bottom = 3.0
+
+[node name="RecruitmentPopup" parent="." instance=ExtResource( 10 )]
+margin_left = 760.0
+margin_top = 240.0
+margin_right = -760.0
+margin_bottom = -240.0
 [connection signal="turn_end_pressed" from="TurnEndWidget" to="." method="_on_TurnEndPanel_turn_end_pressed"]

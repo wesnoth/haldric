@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://graphics/images/units/undead/ghost-s-2.png" type="Texture" id=1]
+[ext_resource path="res://graphics/images/interface/panels.png" type="Texture" id=2]
+[ext_resource path="res://source/interface/hud/UnitRecruitmentCard.gd" type="Script" id=3]
+[ext_resource path="res://graphics/images/interface/icons/gold.png" type="Texture" id=4]
+[ext_resource path="res://graphics/fonts/Lato18.tres" type="DynamicFont" id=5]
+
+[node name="UnitRecruitmentCard" type="Control"]
+margin_left = -1.0
+margin_right = 199.0
+margin_bottom = 80.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnitRecruitmentCardHbox" type="HBoxContainer" parent="."]
+margin_right = 200.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar" type="TextureRect" parent="UnitRecruitmentCardHbox"]
+margin_right = 72.0
+margin_bottom = 80.0
+mouse_filter = 2
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UnitRecruitmentCardHbox"]
+margin_left = 80.0
+margin_right = 200.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NameLabel" type="Label" parent="UnitRecruitmentCardHbox/VBoxContainer"]
+margin_right = 120.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+custom_fonts/font = ExtResource( 5 )
+text = "unit_name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UnitRecruitmentCardHbox/VBoxContainer"]
+margin_top = 35.0
+margin_right = 120.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GoldIcon" type="TextureRect" parent="UnitRecruitmentCardHbox/VBoxContainer/HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 45.0
+rect_scale = Vector2( 1.5, 1.5 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CostLabel" type="Label" parent="UnitRecruitmentCardHbox/VBoxContainer/HBoxContainer"]
+margin_left = 33.0
+margin_right = 120.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "cost"
+
+[node name="Border" type="NinePatchRect" parent="."]
+margin_right = 200.0
+margin_bottom = 80.0
+texture = ExtResource( 2 )
+region_rect = Rect2( 40, 0, 20, 20 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}

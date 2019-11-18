@@ -81,6 +81,9 @@ func _ready() -> void:
 	HUD.connect("attack_selected", self, "_on_attack_selected")
 	# warning-ignore:return_value_discarded
 	HUD.connect("turn_end_pressed", self, "_on_turn_end_pressed")
+	# warning-ignore:return_value_discarded
+	HUD.connect("unit_recruitment_requested", self, "_on_unit_recruitment_requested")
+
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
@@ -129,11 +132,11 @@ func _set_current_unit(value: Unit) -> void:
 	current_unit = value
 
 	if current_unit:
-		#HUD.update_unit_info(current_unit)
 		scenario.map.display_reachable_for(current_unit.reachable)
+		HUD.set_recruitment_allowed(current_unit.location.can_recruit_from())
 	else:
-		# HUD.clear_unit_info()
 		_clear_temp_path()
+		HUD.set_recruitment_allowed(false)
 
 func _get_path_for_unit(unit: Unit, new_loc: Location) -> Array:
 	if unit.reachable.has(new_loc):
@@ -246,3 +249,14 @@ func _on_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
 	_next_side()
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
+
+func _on_unit_recruitment_requested(unit_type : UnitType) -> void:
+	var target_location := current_unit.location.get_adjacent_free_recruitment_location()
+	if target_location != null:
+		if(current_side.try_spending_gold(unit_type.cost)):
+			var unit := scenario.add_unit_with_loaded_data(current_unit.side, unit_type, target_location)
+	else:
+		# should not happen as recruitment button should be hidden in the first place if there is
+		# no possibility to recruit to surronding locations
+		print("[WARN] Recruitment was attmepted but there were no allowed spots for it")
+	HUD.set_recruitment_allowed(current_unit.location.can_recruit_from())

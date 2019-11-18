@@ -168,3 +168,9 @@ func _on_turn_refresh(turn: int, side: int) -> void:
 	"""
 	if self.number == side:
 		_turn_refresh(turn == 1)
+
+func try_spending_gold(amount : int) -> bool:
+	if amount > gold || amount < 0:
+		return false
+	gold -= amount
+	return true
