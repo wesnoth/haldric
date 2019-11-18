@@ -69,7 +69,7 @@ func _ready() -> void:
 	
 	_load_scenario()
 	
-	$HUD/Minimap.initialize(scenario_viewport.world_2d, scenario.map.get_pixel_size(), camera)
+	$HUD/Minimap.initialize(scenario_viewport, scenario.map.get_pixel_size(), camera)
 	$HUD/Minimap.connect("map_position_change_requested", self, "_on_map_position_change_requested")
 
 	# warning-ignore:return_value_discarded
@@ -104,6 +104,10 @@ func _load_scenario() -> void:
 	scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
 
 	draw.map_area = scenario.map.get_pixel_size()
+
+# used in map for workaround on nested viewports issue
+func get_camera_zoom() -> Vector2:
+	return camera.zoom
 
 func _draw_temp_path(path: Array) -> void:
 	if current_unit:
