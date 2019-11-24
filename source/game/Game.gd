@@ -231,6 +231,7 @@ func _on_unit_moved(unit: Unit, location: Location) -> void:
 func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> void:
 	_grab_village(unit, location)
 	unit.set_reachable()
+	scenario.map.display_reachable_for(unit.reachable)
 	if halted:
 		_set_current_unit(unit)
 
