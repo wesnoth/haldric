@@ -100,7 +100,7 @@ func kill(active_side: bool, unit: Unit) -> void:
 		unit.side.viewable_units.erase(unit)
 	unit.set_reachable()
 	queue_free()
-		
+
 func get_movement_cost(loc: Location) -> int:
 	var cost = type.movement.get(loc.terrain.type[0])
 	if loc.terrain.type.size() > 1:
@@ -150,7 +150,7 @@ func refresh_unit() -> void:
 	Refreshes unit state at turn start
 	* Resets unit movement
 	* Heals unit as per leftover movement
-	* Does damage if poisoned 
+	* Does damage if poisoned
 	* etc
 	"""
 	if health_current < type.health:
@@ -158,7 +158,7 @@ func refresh_unit() -> void:
 		if moves_current == type.moves:
 			heal += side.HEAL_ON_REST # If the unit did not move last turn, it recovers 2 HP
 		if location in side.villages:
-			heal += side.HEAL_ON_VILLAGE # If the unit is in a village, it recovers 8 HP 
+			heal += side.HEAL_ON_VILLAGE # If the unit is in a village, it recovers 8 HP
 		if heal + health_current > type.health:
 			heal = type.health - health_current
 		health_current += heal
