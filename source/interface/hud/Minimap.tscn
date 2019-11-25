@@ -8,6 +8,7 @@
 [node name="Minimap" type="Control"]
 margin_right = 240.0
 margin_bottom = 180.0
+rect_clip_content = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
