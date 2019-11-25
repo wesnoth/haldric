@@ -25,7 +25,7 @@ onready var attacks := $NinePatchRect/CenterContainer/VBoxContainer/Attacks as V
 onready var tween := $Tween as Tween
 
 func _ready() -> void:
-	unit_window.connect("request_scroll_to_uint", self, "_focus_camera_on_selected_unit")
+	unit_window.connect("request_scroll_to_unit", self, "_focus_camera_on_selected_unit")
 	unit_camera.position = Vector2(200, 200)
 	clear_unit()
 
