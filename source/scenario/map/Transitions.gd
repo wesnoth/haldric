@@ -24,8 +24,13 @@ func initialize(map: TileMap) -> void:
 		add_child(transition_map)
 
 	layers = get_children()
-
-	update_transitions()
+	_update_all_transitions()
+	
+func _update_all_transitions():
+	for layer in layers:
+		layer.clear()
+	for cell in map.get_used_cells():
+		_apply_transition_from_cell(cell, true)
 
 func update_transitions() -> void:
 	for cell in changed_tiles:

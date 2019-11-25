@@ -66,10 +66,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	randomize()
 	HUD.unit_panel.unit_viewport.world_2d = scenario_viewport.world_2d
-	
+
 	_load_scenario()
-	
-	$HUD/Minimap.initialize(scenario_viewport.world_2d, scenario.map.get_pixel_size(), camera)
+
+	$HUD/Minimap.initialize(scenario_viewport, scenario.map.get_pixel_size(), camera)
 	$HUD/Minimap.connect("map_position_change_requested", self, "_on_map_position_change_requested")
 
 	# warning-ignore:return_value_discarded
@@ -79,7 +79,7 @@ func _ready() -> void:
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
-	
+
 	HUD.update_time_info(scenario.schedule.current_time)
 
 func _on_map_position_change_requested(new_position: Vector2) -> void:
@@ -104,6 +104,10 @@ func _load_scenario() -> void:
 	scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
 
 	draw.map_area = scenario.map.get_pixel_size()
+
+# used in map for workaround on nested viewports issue
+func get_camera_zoom() -> Vector2:
+	return camera.zoom
 
 func _draw_temp_path(path: Array) -> void:
 	if current_unit:
@@ -196,12 +200,12 @@ func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
 	_set_current_unit(null)
 	HUD.unit_panel.clear_unit()
 	temp_current.moves_current = 0
-	
+
 	combatChoices['offense'].execute_before_turn(temp_current, target)
 	combatChoices['defense'].execute_before_turn(target, temp_current)
 	var attacker_strikes = combatChoices['offense'].strikes
 	var defender_strikes = combatChoices['defense'].strikes
-	
+
 	while attacker_strikes > 0 or defender_strikes > 0:
 		if attacker_strikes > 0:
 			combatChoices['offense'].execute_each_turn(temp_current, target)
@@ -217,7 +221,7 @@ func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
 					temp_current.kill(true,target)
 					break
 			defender_strikes -= 1
-	
+
 	combatChoices['offense'].execute_end_turn(temp_current, target)
 	combatChoices['defense'].execute_end_turn(target, temp_current)
 
@@ -227,6 +231,7 @@ func _on_unit_moved(unit: Unit, location: Location) -> void:
 func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> void:
 	_grab_village(unit, location)
 	unit.set_reachable()
+	scenario.map.display_reachable_for(unit.reachable)
 	if halted:
 		_set_current_unit(unit)
 
