@@ -55,9 +55,9 @@ static func cube2quad(cube: Vector3) -> Vector2:
 
 	return Vector2(x, y)
 
-static func quad2cube(cube: Vector2) -> Vector3:
-	var x := cube.x
-	var z := cube.y - (cube.x - (int(cube.x) & 1)) / 2
+static func quad2cube(quad: Vector2) -> Vector3:
+	var x := quad.x
+	var z := quad.y - (quad.x - (int(quad.x) & 1)) / 2
 	var y := -x - z
 
 	return Vector3(x, y, z)
