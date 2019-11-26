@@ -4,7 +4,7 @@
 [ext_resource path="res://source/interface/hud/AdvancementPopup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/hud/UnitPanel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/interface/hud/ToDPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/interface/hud/ToDWidget.tscn" type="PackedScene" id=5]
 [ext_resource path="res://source/interface/hud/TurnEndPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://source/interface/pause_menu/PauseMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/interface/hud/AttackPopup.tscn" type="PackedScene" id=8]
@@ -44,7 +44,7 @@ margin_right = -9.99988
 margin_bottom = -280.0
 mouse_filter = 2
 
-[node name="ToDPanel" parent="." instance=ExtResource( 5 )]
+[node name="ToDWidget" parent="." instance=ExtResource( 5 )]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -249.0
