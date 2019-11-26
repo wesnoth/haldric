@@ -1,8 +1,8 @@
-extends Panel
+extends PanelContainer
 
-onready var minimap_camera := $MarginContainer/MinimapViewportContainer/Viewport/Camera2D as Camera2D
-onready var minimap_viewport_container := $MarginContainer/MinimapViewportContainer
-onready var viewport := $MarginContainer/MinimapViewportContainer/Viewport as Viewport
+onready var minimap_camera := $MinimapViewportContainer/Viewport/Camera2D as Camera2D
+onready var minimap_viewport_container := $MinimapViewportContainer
+onready var viewport := $MinimapViewportContainer/Viewport as Viewport
 onready var area_of_view := $MinimapAreaOfView as Control
 
 signal map_position_change_requested

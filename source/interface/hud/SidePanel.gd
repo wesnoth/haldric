@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 
 var flags := {
 	"standard": Vector2(24*0, 0),
