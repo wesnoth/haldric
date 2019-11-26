@@ -33,7 +33,7 @@ func _init(tilemap_cell_coords: Vector2, map_instance) -> void:
 	"""
 	map = map_instance
 	cell = tilemap_cell_coords
-	cube_coords = Hex.quad_to_hex(cell)
+	cube_coords = Hex.quad2cube(cell)
 	var rect = map.get_used_rect()
 	id = _generate_id(cell, int(rect.size.x))
 	position = map.map_to_world_centered(cell)

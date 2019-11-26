@@ -49,15 +49,15 @@ static func get_neighbor(cell: Vector2, direction: int) -> Vector2:
 
 	return Vector2(cell.x + neighbor.x, cell.y + neighbor.y)
 
-static func hex_to_quad(hex: Vector3) -> Vector2:
-	var col := hex.x
-	var row := hex.z + (hex.x - (int(hex.x) & 1)) / 2
+static func cube2quad(cube: Vector3) -> Vector2:
+	var x := cube.x
+	var y := cube.z + (cube.x - (int(cube.x) & 1)) / 2
 
-	return Vector2(col, row)
+	return Vector2(x, y)
 
-static func quad_to_hex(hex: Vector2) -> Vector3:
-	var x := hex.x
-	var z := hex.y - (hex.x - (int(hex.x) & 1)) / 2
+static func quad2cube(cube: Vector2) -> Vector3:
+	var x := cube.x
+	var z := cube.y - (cube.x - (int(cube.x) & 1)) / 2
 	var y := -x - z
 
 	return Vector3(x, y, z)
