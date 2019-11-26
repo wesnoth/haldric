@@ -89,8 +89,8 @@ func clear_unit() -> void:
 	alignment.text = "-"
 
 	defense.text = "-"
-	for plate in attacks.get_children():
-		plate.clear()
+
+	_clear_attack_plates()
 
 func _focus_camera_on_selected_unit() -> void:
 	if unit:
@@ -115,6 +115,7 @@ func _add_attack_plate(attack: Attack) -> void:
 
 func _clear_attack_plates() -> void:
 	for plate in attacks.get_children():
+		attacks.remove_child(plate)
 		plate.queue_free()
 
 func _get_red_to_green_color(defense: int) -> Color:
