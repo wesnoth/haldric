@@ -91,16 +91,17 @@ func move_to(new_path: Array) -> void:
 func receive_attack(attack: Attack) -> bool:
 	health_current -= attack.damage
 	print("{name} received {dmg} damage".format({'name':type.id,'dmg':attack.damage}))
-	return health_current < 0
+	return health_current <= 0
 
-func kill(active_side: bool, unit: Unit) -> void:
+func kill(active_side: bool, attacker: Unit) -> void:
 	location.unit = null
-	location.map.update_weight(unit)
-	if unit.side.viewable_units.has(unit):
-		unit.side.viewable_units.erase(unit)
-	unit.set_reachable()
+	location.map.update_weight(attacker)
+	if attacker.side.viewable_units.has(attacker):
+		attacker.side.viewable_units.erase(attacker)
+	attacker.set_reachable()
+	attacker.experience_current = type.level * 8
 	queue_free()
-		
+
 func get_movement_cost(loc: Location) -> int:
 	var cost = type.movement.get(loc.terrain.type[0])
 	if loc.terrain.type.size() > 1:
@@ -119,13 +120,8 @@ func get_time_percentage() -> int:
 	return location.terrain.time.get_percentage(type.alignment)
 
 func set_reachable(viewable: bool = true) -> void:
-	if viewable:
-		#update_viewable()
-		pass
-
 	thread.start(location.map, "threadable_find_all_reachable_cells", [self])
 	reachable = thread.wait_to_finish()
-	#reachable = location.map.threadable_find_all_reachable_cells([self]) #Debug
 
 func update_viewable() -> bool:
 	if side.fog:
@@ -150,7 +146,7 @@ func refresh_unit() -> void:
 	Refreshes unit state at turn start
 	* Resets unit movement
 	* Heals unit as per leftover movement
-	* Does damage if poisoned 
+	* Does damage if poisoned
 	* etc
 	"""
 	if health_current < type.health:
@@ -158,7 +154,7 @@ func refresh_unit() -> void:
 		if moves_current == type.moves:
 			heal += side.HEAL_ON_REST # If the unit did not move last turn, it recovers 2 HP
 		if location in side.villages:
-			heal += side.HEAL_ON_VILLAGE # If the unit is in a village, it recovers 8 HP 
+			heal += side.HEAL_ON_VILLAGE # If the unit is in a village, it recovers 8 HP
 		if heal + health_current > type.health:
 			heal = type.health - health_current
 		health_current += heal
