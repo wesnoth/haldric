@@ -106,7 +106,6 @@ margin_bottom = 690.0
 
 [node name="HoverButtonHover" parent="VMenuBar" index="3"]
 margin_bottom = 690.0
-mouse_filter = 2
 
 [node name="Logo" parent="." index="3" instance=ExtResource( 9 )]
 margin_left = 350.0
