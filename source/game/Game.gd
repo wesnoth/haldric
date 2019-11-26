@@ -83,6 +83,8 @@ func _ready() -> void:
 	HUD.connect("turn_end_pressed", self, "_on_turn_end_pressed")
 	# warning-ignore:return_value_discarded
 	HUD.connect("unit_recruitment_requested", self, "_on_unit_recruitment_requested")
+	# warning-ignore:return_value_discarded
+	HUD.connect("unit_recruitment_menu_requested", self, "_on_unit_recruitment_menu_requested")
 
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
@@ -260,3 +262,6 @@ func _on_unit_recruitment_requested(unit_type : UnitType) -> void:
 		# no possibility to recruit to surronding locations
 		print("[WARN] Recruitment was attmepted but there were no allowed spots for it")
 	HUD.set_recruitment_allowed(current_unit.location.can_recruit_from())
+
+func _on_unit_recruitment_menu_requested():
+	HUD.open_recruitment_menu(current_side.recruitable_unit_types)
