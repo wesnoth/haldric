@@ -30,7 +30,6 @@ tracks/0/keys = {
 id = "Vampire Bat"
 race = "bat"
 alignment = "chaotic"
-level = 0
 cost = 13
 health = 16
 moves = 9
