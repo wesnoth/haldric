@@ -39,6 +39,9 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 mouse_filter = 2
 stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Viewport" type="Viewport" parent="Fog"]
 size = Vector2( 1920, 1080 )
