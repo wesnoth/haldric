@@ -91,14 +91,15 @@ func move_to(new_path: Array) -> void:
 func receive_attack(attack: Attack) -> bool:
 	health_current -= attack.damage
 	print("{name} received {dmg} damage".format({'name':type.id,'dmg':attack.damage}))
-	return health_current < 0
+	return health_current <= 0
 
-func kill(active_side: bool, unit: Unit) -> void:
+func kill(active_side: bool, attacker: Unit) -> void:
 	location.unit = null
-	location.map.update_weight(unit)
-	if unit.side.viewable_units.has(unit):
-		unit.side.viewable_units.erase(unit)
-	unit.set_reachable()
+	location.map.update_weight(attacker)
+	if attacker.side.viewable_units.has(attacker):
+		attacker.side.viewable_units.erase(attacker)
+	attacker.set_reachable()
+	attacker.experience_current = type.level * 8
 	queue_free()
 
 func get_movement_cost(loc: Location) -> int:
@@ -119,13 +120,8 @@ func get_time_percentage() -> int:
 	return location.terrain.time.get_percentage(type.alignment)
 
 func set_reachable(viewable: bool = true) -> void:
-	if viewable:
-		#update_viewable()
-		pass
-
 	thread.start(location.map, "threadable_find_all_reachable_cells", [self])
 	reachable = thread.wait_to_finish()
-	#reachable = location.map.threadable_find_all_reachable_cells([self]) #Debug
 
 func update_viewable() -> bool:
 	if side.fog:
