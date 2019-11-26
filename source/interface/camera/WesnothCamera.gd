@@ -41,7 +41,7 @@ func _handle_keyboard_scroll(delta: float) -> void:
 
 	if Input.is_action_pressed("ui_right"):
 		new_position.x += speed_adjusted * delta / 2
-	
+
 	if(new_position != position):
 		_set_position(new_position)
 
@@ -69,7 +69,7 @@ func _zoom(step: float) -> void:
 		clamp(zoom.x + step, zoom_max_in, zoom_max_out),
 		clamp(zoom.y + step, zoom_max_in, zoom_max_out)
 	)
-	
+
 	emit_signal("zoom_changed", new_zoom)
 	# warning-ignore:return_value_discarded
 	tween.interpolate_property(self, "zoom", null, new_zoom, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
