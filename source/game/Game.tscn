@@ -5,8 +5,7 @@
 [ext_resource path="res://graphics/shaders/color_adjust.shader" type="Shader" id=3]
 [ext_resource path="res://source/interface/draw/Draw.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/camera/WesnothCamera.tscn" type="PackedScene" id=5]
-[ext_resource path="res://source/interface/hud/HUD.tscn" type="PackedScene" id=6]
-
+[ext_resource path="res://source/game/ui/GameUI.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -51,5 +50,4 @@ render_target_update_mode = 3
 z_index = 20
 copy_mode = 2
 
-[node name="HUD" parent="." instance=ExtResource( 6 )]
-[connection signal="turn_end_pressed" from="HUD" to="." method="_on_HUD_turn_end_pressed"]
+[node name="UI" parent="." instance=ExtResource( 6 )]

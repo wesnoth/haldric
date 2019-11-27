@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://source/interface/hud/UnitPanel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/interface/hud/AttackPopup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/interface/hud/ToDWidget.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/hud/TurnEndPanel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/hud/Minimap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/menu/PauseMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/interface/hud/AdvancementPopup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/hud/GameHUD.gd" type="Script" id=9]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 2
+script = ExtResource( 9 )
+
+[node name="AdvancementPopup" parent="." instance=ExtResource( 7 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -300.0
+margin_right = 200.0
+margin_bottom = 300.0
+
+[node name="SidePanel" parent="." instance=ExtResource( 8 )]
+margin_bottom = 50.0
+
+[node name="Minimap" parent="." instance=ExtResource( 5 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -240.0
+margin_bottom = 0.0
+rect_min_size = Vector2( 180, 180 )
+
+[node name="UnitPanel" parent="." instance=ExtResource( 1 )]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -250.0
+margin_top = 200.0
+margin_right = -9.99988
+margin_bottom = -280.0
+mouse_filter = 2
+
+[node name="ToDWidget" parent="." instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -140.0
+margin_top = 10.0
+margin_right = -9.99988
+margin_bottom = 140.0
+
+[node name="TurnEndWidget" parent="." instance=ExtResource( 4 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -245.0
+margin_top = -245.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="PauseMenu" parent="." instance=ExtResource( 6 )]
+margin_left = 2.86401
+margin_top = 1.43198
+margin_right = 2.86401
+margin_bottom = 1.43201
+
+[node name="AttackPopup" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -3.0
+margin_top = -3.0
+margin_right = 3.0
+margin_bottom = 3.0
+[connection signal="turn_end_pressed" from="TurnEndWidget" to="." method="_on_TurnEndPanel_turn_end_pressed"]

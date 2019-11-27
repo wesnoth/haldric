@@ -9,9 +9,12 @@ var current_unit: Unit = null setget _set_current_unit
 
 onready var tween = $Tween
 
-onready var HUD := $HUD as CanvasLayer
-onready var draw := $ScenarioLayer/ViewportContainer/Viewport/Draw as Node2D
+onready var UI := $UI as CanvasLayer
+onready var HUD := $UI/HUD as CanvasLayer
 
+onready var minimap := $UI/HUD/Minimap
+
+onready var draw := $ScenarioLayer/ViewportContainer/Viewport/Draw as Node2D
 onready var viewport_container := $ScenarioLayer/ViewportContainer as ViewportContainer
 onready var scenario_viewport := $ScenarioLayer/ViewportContainer/Viewport as Viewport
 onready var scenario_placeholder := $ScenarioLayer/ViewportContainer/Viewport/ScenarioPlaceholder as Node
@@ -69,13 +72,15 @@ func _ready() -> void:
 
 	_load_scenario()
 
-	$HUD/Minimap.initialize(scenario_viewport, scenario.map.get_pixel_size(), camera)
-	$HUD/Minimap.connect("map_position_change_requested", self, "_on_map_position_change_requested")
+	minimap.initialize(scenario_viewport, scenario.map.get_pixel_size(), camera)
+	minimap.connect("map_position_change_requested", self, "_on_map_position_change_requested")
 
 	# warning-ignore:return_value_discarded
 	HUD.connect("unit_advancement_selected", self, "_on_unit_advancement_selected")
 	# warning-ignore:return_value_discarded
 	HUD.connect("attack_selected", self, "_on_attack_selected")
+	# warning-ignore:return_value_discarded
+	HUD.connect("turn_end_pressed", self, "_on_turn_end_pressed")
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
@@ -237,7 +242,7 @@ func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> voi
 	if halted:
 		_set_current_unit(unit)
 
-func _on_HUD_turn_end_pressed() -> void:
+func _on_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
 	_next_side()
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
