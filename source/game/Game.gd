@@ -80,6 +80,8 @@ func _ready() -> void:
 		_set_side(scenario.sides.get_child(0))
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
 
+	get_tree().call_group("ToDWidget", "initialize", scenario.schedule.get_schedule())
+
 	HUD.update_time_info(scenario.schedule.current_time)
 
 func _on_map_position_change_requested(new_position: Vector2) -> void:

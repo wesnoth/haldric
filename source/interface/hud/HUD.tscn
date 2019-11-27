@@ -4,7 +4,7 @@
 [ext_resource path="res://source/interface/hud/AdvancementPopup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/interface/hud/SidePanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/hud/UnitPanel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/interface/hud/ToDPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/interface/hud/ToDWidget.tscn" type="PackedScene" id=5]
 [ext_resource path="res://source/interface/hud/TurnEndPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://source/interface/pause_menu/PauseMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/interface/hud/AttackPopup.tscn" type="PackedScene" id=8]
@@ -25,47 +25,42 @@ margin_right = 200.0
 margin_bottom = 300.0
 
 [node name="SidePanel" parent="." instance=ExtResource( 3 )]
-margin_left = -1.75806
-margin_top = 11.7581
-margin_right = -1.75806
-margin_bottom = 61.7581
+margin_bottom = 50.0
 
 [node name="Minimap" parent="." instance=ExtResource( 9 )]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -249.0
-margin_top = 106.0
-margin_right = -10.0
-margin_bottom = 286.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -240.0
+margin_bottom = 0.0
 rect_min_size = Vector2( 180, 180 )
 
 [node name="UnitPanel" parent="." instance=ExtResource( 4 )]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -249.098
-margin_top = 301.903
-margin_right = -9.09766
-margin_bottom = -99.0975
+margin_left = -250.0
+margin_top = 200.0
+margin_right = -9.99988
+margin_bottom = -280.0
 mouse_filter = 2
 
-[node name="ToDPanel" parent="." instance=ExtResource( 5 )]
+[node name="ToDWidget" parent="." instance=ExtResource( 5 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -249.0
+margin_left = -140.0
 margin_top = 10.0
-margin_right = -10.0
-margin_bottom = 90.0
+margin_right = -9.99988
+margin_bottom = 140.0
 
-[node name="TurnEndPanel" parent="." instance=ExtResource( 6 )]
+[node name="TurnEndWidget" parent="." instance=ExtResource( 6 )]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -247.544
-margin_top = -90.0
-margin_right = -7.54443
-margin_bottom = -10.0
+margin_left = -245.0
+margin_top = -245.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
 visible = false
@@ -84,4 +79,4 @@ margin_left = -200.0
 margin_top = -300.0
 margin_right = 200.0
 margin_bottom = 300.0
-[connection signal="turn_end_pressed" from="TurnEndPanel" to="." method="_on_TurnEndPanel_turn_end_pressed"]
+[connection signal="turn_end_pressed" from="TurnEndWidget" to="." method="_on_TurnEndPanel_turn_end_pressed"]

@@ -42,4 +42,3 @@ margin_top = -2.0
 margin_bottom = -1.0
 rect_min_size = Vector2( 0, 1 )
 color = Color( 0.494118, 0.360784, 0.243137, 1 )
-

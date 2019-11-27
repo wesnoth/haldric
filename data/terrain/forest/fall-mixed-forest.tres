@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+layer = 0
 code = "^Fmf"
 name = "Fall Mixed Forest"
 type = "forest"
@@ -12,4 +13,3 @@ recruit_from = false
 heals = false
 gives_income = false
 submerge = false
-

@@ -5,8 +5,6 @@
 [node name="Camera2D" type="Camera2D"]
 position = Vector2( 960, 540 )
 current = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
 smoothing_speed = 10.0
 script = ExtResource( 1 )
 

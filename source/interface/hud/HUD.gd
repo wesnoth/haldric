@@ -9,7 +9,7 @@ onready var attack_popup := $AttackPopup as AttackPopup
 
 onready var unit_panel := $UnitPanel as Control
 onready var side_panel := $SidePanel as Control
-onready var tod_panel := $ToDPanel as Control
+onready var tod_widget := $ToDWidget as Control
 
 onready var pause_menu := $PauseMenu as Control
 
@@ -26,7 +26,7 @@ func show_attack_popup(unit: Unit, target: Unit) -> void:
 func update_time_info(time: Time) -> void:
 	if not time:
 		return
-	tod_panel.update_time(time)
+	tod_widget.update_time(time)
 
 func update_unit_info(unit : Unit) -> void:
 	unit_panel.update_unit(unit)

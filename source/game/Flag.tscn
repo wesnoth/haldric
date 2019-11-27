@@ -142,4 +142,3 @@ anims/ragged = SubResource( 4 )
 anims/standard = SubResource( 5 )
 anims/undead = SubResource( 6 )
 anims/wood-elvish = SubResource( 7 )
-

@@ -63,7 +63,7 @@ func get_call_parameters(variant, method_name, index=-1):
 			to_return = _calls[variant][method_name][get_index]
 		else:
 			_lgr.error(str('Specified index ', index, ' is outside range of the number of registered calls:  ', call_size))
-			
+
 	return to_return
 
 func call_count(instance, method_name, parameters=null):
