@@ -1,0 +1,115 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tools/spritesheet_generator/Generator.gd" type="Script" id=1]
+
+[node name="Generator" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+margin_bottom = -1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 717.0
+margin_top = 440.0
+margin_right = 1203.0
+margin_bottom = 639.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 486.0
+margin_bottom = 45.0
+
+[node name="Width" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 235.0
+margin_bottom = 45.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/Width"]
+margin_top = 10.0
+margin_right = 63.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 50, 0 )
+text = "Width"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/HBoxContainer/Width"]
+margin_left = 71.0
+margin_right = 235.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 50, 0 )
+
+[node name="Height" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 243.0
+margin_right = 486.0
+margin_bottom = 45.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/Height"]
+margin_top = 10.0
+margin_right = 71.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 50, 0 )
+text = "Height"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/HBoxContainer/Height"]
+margin_left = 79.0
+margin_right = 243.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 50, 0 )
+
+[node name="SheetWidth" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 53.0
+margin_right = 486.0
+margin_bottom = 98.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/SheetWidth"]
+margin_top = 10.0
+margin_right = 239.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+text = "Sheet Width"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/SheetWidth"]
+margin_left = 247.0
+margin_right = 486.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+
+[node name="Name" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 106.0
+margin_right = 486.0
+margin_bottom = 151.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Name"]
+margin_top = 10.0
+margin_right = 239.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/Name"]
+margin_left = 247.0
+margin_right = 486.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 159.0
+margin_right = 486.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 100, 40 )
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Generate"
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]
