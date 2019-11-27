@@ -38,22 +38,60 @@ const NEIGHBOR_TABLE := [
 	Vector3(-1, 1, 0), # NW
 ]
 
-static func get_cells_around(cell: Vector2, _range: int, size: Vector2) -> PoolVector2Array:
+"""
+static func get_cells_around(cell: Vector2, radius: int, rect: Rect2) -> PoolVector2Array:
+	var cells : PoolVector2Array = []
+	var cubes = get_cube_spiral(quad2cube(cell), radius)
+	for cube in cubes:
+		var n_cell = cube2quad(cube)
+		if rect.has_point(n_cell):
+			cells.append(n_cell)
+	return cells
+"""
+
+static func get_cells_around(cell: Vector2, radius: int, rect: Rect2) -> PoolVector2Array:
 	var cells := PoolVector2Array()
-	for n in range(1, _range + 1):
+	for n in range(1, radius + 1):
 		var current_cell := Vector2(cell.x, cell.y + n)
 		for j in 6:
 			for i in n:
 				var parity := int(current_cell.x) & 1
 				var temp: Vector2 = NEIGHBOUR_TABLE_OLD[parity][(j + 5) % 6]
 				current_cell += temp
-				if current_cell.x >= 0 and current_cell.x < size.x and current_cell.y >= 0 and current_cell.y < size.y:
+				if rect.has_point(current_cell):
 					cells.append(current_cell)
 	return cells
 
+static func get_cubes_in_range(cube: Vector3, radius: int) -> PoolVector3Array:
+	var cubes : PoolVector3Array = []
+	for x in range(-radius, radius):
+		for y in range(min(radius, radius - x)):
+			var z = -x - y
+			cubes.append(cube + Vector3(x, y, z))
+	return cubes
 
-static func get_neighbors(cell: Vector2) -> Array:
-	var neighbors := []
+static func get_cube_spiral(cube: Vector3, radius) -> PoolVector3Array:
+	var spiral : PoolVector3Array = [ cube ]
+	for i in range(1, radius + 1):
+		spiral = spiral + get_cube_ring(cube, i)
+	return spiral
+
+static func get_cube_ring(cube: Vector3, radius: int) -> PoolVector3Array:
+	if not radius:
+		return PoolVector3Array()
+
+	var ring : PoolVector3Array = []
+	var start_cube = cube + (get_cube_neighbor(cube, 0) * radius)
+
+	for direction in DIRECTIONS:
+		for i in radius:
+			ring.append(start_cube)
+			start_cube = get_cube_neighbor(start_cube, DIRECTIONS[direction])
+
+	return ring
+
+static func get_neighbors(cell: Vector2) -> PoolVector2Array:
+	var neighbors : PoolVector2Array = []
 	var cube_neighbors := get_cube_neighbors(quad2cube(cell))
 	for n_cube in cube_neighbors:
 		neighbors.append(cube2quad(n_cube))
@@ -62,8 +100,8 @@ static func get_neighbors(cell: Vector2) -> Array:
 static func get_neighbor(cell: Vector2, direction: int) -> Vector2:
 	return cube2quad(get_cube_neighbor(quad2cube(cell), direction))
 
-static func get_cube_neighbors(cube: Vector3) -> Array:
-	var neighbors := []
+static func get_cube_neighbors(cube: Vector3) -> PoolVector3Array:
+	var neighbors : PoolVector3Array = []
 	for direction in DIRECTIONS:
 		neighbors.append(get_cube_neighbor(cube, DIRECTIONS[direction]))
 	return neighbors
@@ -71,7 +109,7 @@ static func get_cube_neighbors(cube: Vector3) -> Array:
 static func get_cube_neighbor(cube: Vector3, direction: int) -> Vector3:
 	return cube + NEIGHBOR_TABLE[direction]
 
-static func cube_distance(a: Vector3, b: Vector3):
+static func get_cube_distance(a: Vector3, b: Vector3):
 	return max(abs(a.x - b.x), max(abs(a.y - b.y), abs(a.z - b.z)))
 
 static func cube2quad(cube: Vector3) -> Vector2:
