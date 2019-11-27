@@ -47,10 +47,10 @@ mouse_filter = 2
 [node name="ToDWidget" parent="." instance=ExtResource( 5 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -249.0
+margin_left = -140.0
 margin_top = 10.0
-margin_right = -10.0
-margin_bottom = 90.0
+margin_right = -9.99988
+margin_bottom = 140.0
 
 [node name="TurnEndWidget" parent="." instance=ExtResource( 6 )]
 anchor_left = 1.0

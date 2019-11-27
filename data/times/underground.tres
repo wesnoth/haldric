@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "Underground"
+color = Color( 0.247059, 0.160784, 0.027451, 1 )
 tint_red = -75
 tint_green = -45
 tint_blue = -13

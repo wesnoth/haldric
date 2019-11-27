@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/menus/components/cards/CardSelector.gd"
 }, {
+"base": "Control",
+"class": "Circle",
+"language": "GDScript",
+"path": "res://source/interface/hud/components/Circle.gd"
+}, {
 "base": "Button",
 "class": "CircleButton",
 "language": "GDScript",
@@ -219,6 +224,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/game/Time.gd"
 }, {
+"base": "Control",
+"class": "ToDWheel",
+"language": "GDScript",
+"path": "res://source/interface/hud/ToDWheel.gd"
+}, {
 "base": "Node2D",
 "class": "Transitions",
 "language": "GDScript",
@@ -258,6 +268,7 @@ _global_script_class_icons={
 "CampaignCard": "",
 "CampaignSelector": "",
 "CardSelector": "",
+"Circle": "",
 "CircleButton": "",
 "CombatPlate": "",
 "Controller": "",
@@ -292,6 +303,7 @@ _global_script_class_icons={
 "State": "",
 "Terrain": "",
 "Time": "",
+"ToDWheel": "",
 "Transitions": "",
 "Unit": "",
 "UnitType": "",
