@@ -71,6 +71,9 @@ static func get_cube_neighbors(cube: Vector3) -> Array:
 static func get_cube_neighbor(cube: Vector3, direction: int) -> Vector3:
 	return cube + NEIGHBOR_TABLE[direction]
 
+static func cube_distance(a: Vector3, b: Vector3):
+	return max(abs(a.x - b.x), max(abs(a.y - b.y), abs(a.z - b.z)))
+
 static func cube2quad(cube: Vector3) -> Vector2:
 	var x := cube.x
 	var y := cube.z + (cube.x - (int(cube.x) & 1)) / 2
