@@ -44,7 +44,8 @@ margin_right = 65.0
 margin_bottom = 65.0
 custom_fonts/font = ExtResource( 2 )
 text = "End Turn"
-border_color = Color( 0.45098, 0.45098, 0.45098, 1 )
+color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+border_color = Color( 0.866667, 0.866667, 0.866667, 1 )
 border_width = 10
 
 [node name="M1" parent="OuterRing" instance=ExtResource( 4 )]
@@ -56,7 +57,8 @@ margin_top = -95.0
 margin_right = 26.0
 margin_bottom = -35.0
 text = "M1"
-border_color = Color( 0.34902, 0.34902, 0.34902, 1 )
+color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+border_color = Color( 0.866667, 0.866667, 0.866667, 1 )
 border_width = 6
 
 [node name="M2" parent="OuterRing" instance=ExtResource( 4 )]
@@ -68,7 +70,8 @@ margin_top = -30.0
 margin_right = 5.0
 margin_bottom = 30.0
 text = "M2"
-border_color = Color( 0.34902, 0.34902, 0.34902, 1 )
+color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+border_color = Color( 0.866667, 0.866667, 0.866667, 1 )
 border_width = 6
 
 [node name="M3" parent="OuterRing" instance=ExtResource( 4 )]
@@ -80,6 +83,7 @@ margin_top = 35.0
 margin_right = 26.0
 margin_bottom = 95.0
 text = "M3"
-border_color = Color( 0.34902, 0.34902, 0.34902, 1 )
+color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+border_color = Color( 0.866667, 0.866667, 0.866667, 1 )
 border_width = 6
 [connection signal="pressed" from="OuterRing/EndTurn" to="." method="_on_EndTurn_pressed"]

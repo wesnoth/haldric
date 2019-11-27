@@ -16,6 +16,12 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_fullscreen"):
 		OS.window_fullscreen = not OS.window_fullscreen
 
+func _ready() -> void:
+	Scene.register_scene("TitleScreen", "res://source/menu/TitleScreen.tscn")
+	Scene.register_scene("Game", "res://source/game/Game.tscn")
+	Scene.register_scene("Editor", "res://source/editor/Editor.tscn")
+	Scene.register_scene("Scenarios", "res://source/menu/Scenarios.tscn")
+
 func _get_version() -> Vector3:
 	return Vector3(
 		ProjectSettings.get("application/version/major"),

@@ -9,6 +9,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 visible = false
@@ -99,7 +102,7 @@ text = "Leave"
 
 [node name="Back" type="Button" parent="Setup/VBoxContainer"]
 visible = false
-margin_top = 1028.0
+margin_top = 1033.0
 margin_right = 242.0
 margin_bottom = 1064.0
 rect_min_size = Vector2( 100, 0 )

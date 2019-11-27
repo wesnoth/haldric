@@ -4,8 +4,9 @@
 [ext_resource path="res://source/scenario/OffMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://graphics/shaders/color_adjust.shader" type="Shader" id=3]
 [ext_resource path="res://source/interface/draw/Draw.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/camera/WesnothCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://source/interface/hud/HUD.tscn" type="PackedScene" id=6]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )

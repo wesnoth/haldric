@@ -30,26 +30,6 @@ _global_script_classes=[ {
 "path": "res://source/interface/hud/AttackPopup.gd"
 }, {
 "base": "Control",
-"class": "ButtonHover",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/ButtonHover.gd"
-}, {
-"base": "MenuCard",
-"class": "CampaignCard",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/CampaignCard.gd"
-}, {
-"base": "CardSelector",
-"class": "CampaignSelector",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/CampaignSelector.gd"
-}, {
-"base": "ScrollContainer",
-"class": "CardSelector",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/CardSelector.gd"
-}, {
-"base": "Control",
 "class": "Circle",
 "language": "GDScript",
 "path": "res://source/interface/hud/components/circles/Circle.gd"
@@ -79,20 +59,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/map/Grid.gd"
 }, {
-"base": "ButtonHover",
-"class": "HButtonHover",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/HButtonHover.gd"
-}, {
 "base": "Reference",
 "class": "Hex",
 "language": "GDScript",
 "path": "res://source/scenario/map/Hex.gd"
-}, {
-"base": "ButtonHover",
-"class": "HoverVButtonHover",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/HoverVButtonHover.gd"
 }, {
 "base": "Reference",
 "class": "Location",
@@ -103,26 +73,6 @@ _global_script_classes=[ {
 "class": "Map",
 "language": "GDScript",
 "path": "res://source/scenario/map/Map.gd"
-}, {
-"base": "Control",
-"class": "Menu",
-"language": "GDScript",
-"path": "res://source/interface/menus/Menu.gd"
-}, {
-"base": "Control",
-"class": "MenuBar",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/MenuBar.gd"
-}, {
-"base": "Button",
-"class": "MenuCard",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/MenuCard.gd"
-}, {
-"base": "Control",
-"class": "MenuPage",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_page/MenuPage.gd"
 }, {
 "base": "Node",
 "class": "Movement",
@@ -179,25 +129,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/Scenario.gd"
 }, {
-"base": "MenuCard",
-"class": "ScenarioCard",
+"base": "Node",
+"class": "SceneLoader",
 "language": "GDScript",
-"path": "res://source/interface/menus/components/cards/ScenarioCard.gd"
-}, {
-"base": "CardSelector",
-"class": "ScenarioSelector",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/cards/ScenarioSelector.gd"
+"path": "res://addons/scene_manager/source/SceneLoader.gd"
 }, {
 "base": "Node",
 "class": "Schedule",
 "language": "GDScript",
 "path": "res://source/scenario/Schedule.gd"
-}, {
-"base": "ButtonHover",
-"class": "SelectVButtonHover",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/SelectVButtonHover.gd"
 }, {
 "base": "Node",
 "class": "Side",
@@ -244,16 +184,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/UnitType.gd"
 }, {
-"base": "ButtonHover",
-"class": "VButtonHover",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/VButtonHover.gd"
-}, {
-"base": "MenuBar",
-"class": "VMenuBar",
-"language": "GDScript",
-"path": "res://source/interface/menus/components/menu_bar/VMenuBar.gd"
-}, {
 "base": "Node",
 "class": "WeaponSpecial",
 "language": "GDScript",
@@ -264,25 +194,15 @@ _global_script_class_icons={
 "Attack": "",
 "AttackPlate": "",
 "AttackPopup": "",
-"ButtonHover": "",
-"CampaignCard": "",
-"CampaignSelector": "",
-"CardSelector": "",
 "Circle": "",
 "CircleButton": "",
 "CombatPlate": "",
 "Controller": "",
 "Defense": "",
 "Grid": "",
-"HButtonHover": "",
 "Hex": "",
-"HoverVButtonHover": "",
 "Location": "",
 "Map": "",
-"Menu": "",
-"MenuBar": "",
-"MenuCard": "",
-"MenuPage": "",
 "Movement": "",
 "RCampaign": "",
 "RCard": "",
@@ -294,10 +214,8 @@ _global_script_class_icons={
 "RTime": "",
 "Resistance": "",
 "Scenario": "",
-"ScenarioCard": "",
-"ScenarioSelector": "",
+"SceneLoader": "",
 "Schedule": "",
-"SelectVButtonHover": "",
 "Side": "",
 "SidePanelItem": "",
 "State": "",
@@ -307,15 +225,13 @@ _global_script_class_icons={
 "Transitions": "",
 "Unit": "",
 "UnitType": "",
-"VButtonHover": "",
-"VMenuBar": "",
 "WeaponSpecial": ""
 }
 
 [application]
 
 config/name="Haldric"
-run/main_scene="res://source/interface/menus/TitleScreen.tscn"
+run/main_scene="res://source/menu/TitleScreen.tscn"
 boot_splash/image="res://graphics/images/interface/logo/logo-bg.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
@@ -329,7 +245,6 @@ version/status="dev"
 
 Wesnoth="*res://source/global/Wesnoth.gd"
 Network="*res://source/global/Network.gd"
-Scene="*res://source/global/Scene.tscn"
 Global="*res://source/global/Global.gd"
 Loader="*res://source/global/Loader.gd"
 Registry="*res://source/global/Registry.gd"
@@ -338,6 +253,7 @@ TeamColor="*res://source/global/TeamColor.gd"
 Event="*res://source/global/Event.gd"
 Settings="*res://source/global/Settings.gd"
 Utils="*res://source/global/Utils.gd"
+Scene="*res://addons/scene_manager/source/Scene.tscn"
 
 [debug]
 
@@ -358,7 +274,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "gut" )
+enabled=PoolStringArray( "gut", "scene_manager" )
 
 [gui]
 

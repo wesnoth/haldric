@@ -44,7 +44,7 @@ func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
 	emit_signal("attack_selected", combatChoices, target)
 
 func _on_Back_pressed() -> void:
-	Scene.change(Scene.TitleScreen)
+	Scene.change("TitleScreen")
 
 func _on_TurnEndPanel_turn_end_pressed() -> void:
 	emit_signal("turn_end_pressed")

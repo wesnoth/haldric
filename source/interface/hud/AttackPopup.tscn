@@ -4,8 +4,9 @@
 [ext_resource path="res://graphics/styles/panel.tres" type="StyleBox" id=2]
 
 [node name="AttackPopup" type="PopupPanel"]
-margin_right = 6.0
-margin_bottom = 6.0
+visible = true
+margin_right = 129.0
+margin_bottom = 57.0
 size_flags_vertical = 5
 custom_styles/panel = ExtResource( 2 )
 popup_exclusive = true
@@ -17,6 +18,6 @@ __meta__ = {
 [node name="AttackButtons" type="VBoxContainer" parent="."]
 margin_left = 3.0
 margin_top = 3.0
-margin_right = 3.0
-margin_bottom = 3.0
+margin_right = 126.0
+margin_bottom = 54.0
 alignment = 1
