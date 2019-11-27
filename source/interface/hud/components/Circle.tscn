@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/interface/hud/components/Circle.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/interface/circle_white.svg" type="Texture" id=2]
+
+[node name="Circle" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1790.0
+margin_bottom = -950.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OuterCircle" type="TextureRect" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 1
+custom_constants/margin_top = 1
+custom_constants/margin_left = 1
+custom_constants/margin_bottom = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InnerCircle" type="TextureRect" parent="MarginContainer"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 129.0
+margin_bottom = 129.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -2,6 +2,7 @@ extends Node
 class_name Time
 
 var tint := Vector3()
+var color := Color("FFFFFF")
 
 var advantage := []
 var disadvantage := []
@@ -23,6 +24,8 @@ func _init(res: RTime) -> void:
 	tint[0] = res.tint_red
 	tint[1] = res.tint_green
 	tint[2] = res.tint_blue
+
+	color = res.color
 
 	if res.sound:
 		sound = load(res.sound)

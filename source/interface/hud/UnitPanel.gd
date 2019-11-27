@@ -4,23 +4,23 @@ const AttackPlate = preload("res://source/interface/hud/components/AttackPlate.t
 
 var unit: Unit = null
 
-onready var unit_window := $NinePatchRect/CenterContainer/VBoxContainer/Image/UnitWindow as ViewportContainer
-onready var unit_viewport := $NinePatchRect/CenterContainer/VBoxContainer/Image/UnitWindow/Viewport as Viewport
-onready var unit_camera := $NinePatchRect/CenterContainer/VBoxContainer/Image/UnitWindow/Viewport/Camera2D as Camera2D
+onready var unit_window := $MarginContainer/VBoxContainer/Image/UnitWindow as ViewportContainer
+onready var unit_viewport := $MarginContainer/VBoxContainer/Image/UnitWindow/Viewport as Viewport
+onready var unit_camera := $MarginContainer/VBoxContainer/Image/UnitWindow/Viewport/Camera2D as Camera2D
 
-onready var unit_name := $NinePatchRect/CenterContainer/VBoxContainer/Name as Label
-onready var level := $NinePatchRect/CenterContainer/VBoxContainer/General/Level as Label
-onready var type := $NinePatchRect/CenterContainer/VBoxContainer/General/Type as Label
-onready var race := $NinePatchRect/CenterContainer/VBoxContainer/General/Race as Label
-onready var hp := $NinePatchRect/CenterContainer/VBoxContainer/Health as VBoxContainer
-onready var xp := $NinePatchRect/CenterContainer/VBoxContainer/Experience as VBoxContainer
-onready var mp := $NinePatchRect/CenterContainer/VBoxContainer/Moves as VBoxContainer
-onready var defense := $NinePatchRect/CenterContainer/VBoxContainer/Image/Defense
-onready var alignment := $NinePatchRect/CenterContainer/VBoxContainer/Aligment
+onready var unit_name := $MarginContainer/VBoxContainer/Name as Label
+onready var level := $MarginContainer/VBoxContainer/General/Level as Label
+onready var type := $MarginContainer/VBoxContainer/General/Type as Label
+onready var race := $MarginContainer/VBoxContainer/General/Race as Label
+onready var hp := $MarginContainer/VBoxContainer/Health as VBoxContainer
+onready var xp := $MarginContainer/VBoxContainer/Experience as VBoxContainer
+onready var mp := $MarginContainer/VBoxContainer/Moves as VBoxContainer
+onready var defense := $MarginContainer/VBoxContainer/Image/HBoxContainer/Backdrop/Defense
+onready var alignment := $MarginContainer/VBoxContainer/Aligment
 
-onready var resistance := $NinePatchRect/CenterContainer/VBoxContainer/ResistancePlate as Control
+onready var resistance := $MarginContainer/VBoxContainer/ResistancePlate as Control
 
-onready var attacks := $NinePatchRect/CenterContainer/VBoxContainer/Attacks as VBoxContainer
+onready var attacks := $MarginContainer/VBoxContainer/Attacks as VBoxContainer
 
 onready var tween := $Tween as Tween
 
@@ -89,8 +89,8 @@ func clear_unit() -> void:
 	alignment.text = "-"
 
 	defense.text = "-"
-	for plate in attacks.get_children():
-		plate.clear()
+
+	_clear_attack_plates()
 
 func _focus_camera_on_selected_unit() -> void:
 	if unit:
@@ -115,6 +115,7 @@ func _add_attack_plate(attack: Attack) -> void:
 
 func _clear_attack_plates() -> void:
 	for plate in attacks.get_children():
+		attacks.remove_child(plate)
 		plate.queue_free()
 
 func _get_red_to_green_color(defense: int) -> Color:

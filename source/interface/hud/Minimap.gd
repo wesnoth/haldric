@@ -1,4 +1,4 @@
-extends Control
+extends PanelContainer
 
 onready var minimap_camera := $MinimapViewportContainer/Viewport/Camera2D as Camera2D
 onready var minimap_viewport_container := $MinimapViewportContainer
