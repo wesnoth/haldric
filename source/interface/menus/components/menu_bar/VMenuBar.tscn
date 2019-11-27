@@ -1,10 +1,11 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://graphics/themes/panel_stylebox_main_menu.tres" type="StyleBox" id=1]
+[ext_resource path="res://graphics/styles/panel_stylebox_main_menu.tres" type="StyleBox" id=1]
 [ext_resource path="res://source/interface/menus/components/menu_bar/VMenuBar.gd" type="Script" id=2]
 [ext_resource path="res://source/interface/menus/components/menu_bar/ButtonHover.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/menus/components/menu_bar/SelectVButtonHover.gd" type="Script" id=4]
 [ext_resource path="res://source/interface/menus/components/menu_bar/HoverVButtonHover.tscn" type="PackedScene" id=5]
+
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 0.392157, 1, 1, 1, 0.0627451 )

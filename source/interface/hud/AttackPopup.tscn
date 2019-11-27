@@ -1,20 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://source/interface/hud/AttackPopup.gd" type="Script" id=1]
+[ext_resource path="res://graphics/styles/panel.tres" type="StyleBox" id=2]
 
-[node name="AttackPopup" type="Popup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -1520.0
-margin_bottom = -480.0
+[node name="AttackPopup" type="PopupPanel"]
+margin_right = 6.0
+margin_bottom = 6.0
+size_flags_vertical = 5
+custom_styles/panel = ExtResource( 2 )
 popup_exclusive = true
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="AttackButtons" type="VBoxContainer" parent="MarginContainer"]
-margin_right = 400.0
-margin_bottom = 600.0
+[node name="AttackButtons" type="VBoxContainer" parent="."]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 3.0
+margin_bottom = 3.0
 alignment = 1

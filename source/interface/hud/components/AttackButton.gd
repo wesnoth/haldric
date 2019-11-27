@@ -1,4 +1,4 @@
-extends Control
+extends Button
 
 onready var combatPlate := $CombatPlate #as AttackPlate
 var combatChoices = {} # A dictionary which holds the attack/defense pair for this combat

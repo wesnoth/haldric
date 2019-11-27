@@ -1,7 +1,6 @@
 extends Control
 
 onready var popup := $Popup as Popup
-onready var panel := $Panel as TextureRect
 onready var button := $Pause as TouchScreenButton
 
 func _input(event: InputEvent) -> void:
@@ -16,21 +15,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_active():
 		get_tree().set_input_as_handled()
 
-func _ready() -> void:
-	panel.hide()
-
 func _popup() -> void:
 	if popup.visible:
-		panel.hide()
 		popup.hide()
 		button.show()
 	else:
-		panel.show()
 		popup.popup()
 		button.hide()
 
 func _on_Resume_pressed() -> void:
-	panel.hide()
 	popup.hide()
 	button.show()
 

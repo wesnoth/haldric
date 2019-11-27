@@ -5,7 +5,7 @@ signal attack_selected(attack, target)
 
 const AttackButton = preload("res://source/interface/hud/components/AttackButton.tscn")
 
-onready var attack_buttons := $MarginContainer/AttackButtons as VBoxContainer
+onready var attack_buttons := $AttackButtons as VBoxContainer
 var target_unit: Unit = null
 
 func popup_attack(unit: Unit, target: Unit) -> void:
@@ -14,6 +14,7 @@ func popup_attack(unit: Unit, target: Unit) -> void:
 	"""
 	get_tree().call_group("UnitPathDisplay", "hide")
 	_clear()
+
 	var attacks = unit.type.get_attacks()
 	target_unit = target
 
@@ -42,6 +43,7 @@ func _find_matching_defense(target: Unit, attack: Attack) -> Attack:
 func _clear() -> void:
 	for button in attack_buttons.get_children():
 		attack_buttons.remove_child(button)
+		button.queue_free()
 
 func _on_button_pressed(combatChoices: Dictionary) -> void:
 	get_tree().call_group("UnitPathDisplay", "show")

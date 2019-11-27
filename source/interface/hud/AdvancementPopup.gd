@@ -7,7 +7,7 @@ const AdvancementButton = preload("res://source/interface/hud/components/Advance
 
 var unit : Unit = null
 
-onready var advancement_buttons := $MarginContainer/AdvancementButtons as VBoxContainer
+onready var advancement_buttons := $PanelContainer/AdvancementButtons as VBoxContainer
 
 func popup_unit(unit: Unit) -> void:
 	_clear()

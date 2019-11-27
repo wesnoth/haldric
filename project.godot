@@ -52,14 +52,14 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "Circle",
 "language": "GDScript",
-"path": "res://source/interface/hud/components/Circle.gd"
+"path": "res://source/interface/hud/components/circles/Circle.gd"
 }, {
 "base": "Button",
 "class": "CircleButton",
 "language": "GDScript",
 "path": "res://source/interface/hud/components/buttons/CircleButton.gd"
 }, {
-"base": "Control",
+"base": "PanelContainer",
 "class": "CombatPlate",
 "language": "GDScript",
 "path": "res://source/interface/hud/components/CombatPlate.gd"

@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://source/interface/hud/components/Circle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/interface/hud/components/circles/Circle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/interface/hud/ToDWidget.gd" type="Script" id=2]
 [ext_resource path="res://graphics/styles/panel.tres" type="StyleBox" id=3]
 [ext_resource path="res://source/interface/hud/ToDWheel.gd" type="Script" id=4]
+
 
 [node name="ToDWidget" type="Control" groups=[
 "ToDWidget",
