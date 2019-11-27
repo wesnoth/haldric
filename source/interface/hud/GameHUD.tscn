@@ -84,4 +84,14 @@ margin_left = 760.0
 margin_top = 240.0
 margin_right = -760.0
 margin_bottom = -240.0
+
+[node name="RecruitmentButton" type="Button" parent="."]
+margin_left = 105.233
+margin_top = 35.8749
+margin_right = 332.233
+margin_bottom = 141.875
+text = "Recruit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="turn_end_pressed" from="TurnEndWidget" to="." method="_on_TurnEndPanel_turn_end_pressed"]

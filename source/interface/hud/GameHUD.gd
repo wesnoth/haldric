@@ -9,6 +9,7 @@ signal unit_recruitment_menu_requested
 onready var advancement_popup := $AdvancementPopup as AdvancementPopup
 onready var attack_popup := $AttackPopup as AttackPopup
 onready var recruitment_popup := $RecruitmentPopup as Popup
+onready var recruitment_button := $RecruitmentButton as Button
 
 onready var unit_panel := $UnitPanel as Control
 onready var side_panel := $SidePanel as Control
@@ -19,7 +20,7 @@ onready var pause_menu := $PauseMenu as Control
 func _ready() -> void:
 	advancement_popup.connect("advancement_selected", self, "_on_advancement_selected")
 	attack_popup.connect("attack_selected", self, "_on_attack_selected")
-	unit_panel.connect("recruitment_popup_requested", self, "_on_recruitment_popup_requested")
+	recruitment_button.connect("pressed", self, "_on_recruitment_popup_requested")
 	recruitment_popup.connect("unit_recruitment_requested", self, "_on_unit_recruitment_requested")
 
 func show_advancement_popup(unit: Unit) -> void:
@@ -37,7 +38,7 @@ func update_unit_info(unit : Unit) -> void:
 	unit_panel.update_unit(unit)
 
 func set_recruitment_allowed(is_allowed : bool) -> void:
-	unit_panel.set_recruitment_allowed(is_allowed)
+	recruitment_button.visible = is_allowed
 
 func update_side_info(scenario : Scenario, side : Side) -> void:
 	side_panel.update_side(scenario, side)
