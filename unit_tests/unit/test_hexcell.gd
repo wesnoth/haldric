@@ -32,8 +32,8 @@ class TestNearby:
 		var offset_coords = Vector2(0, -2)
 		var radius = 5
 		var rect = Rect2(0, 0, 10,10)
-		var cells_list = Hex.get_cells_around(offset_coords, radius, rect)
+		var cells_list = Hex.get_cells_in_range(offset_coords, radius, rect)
 		assert_eq(cells_list.size(), 15, "Check correct amount of hexes collected in radius")
 		rect.size = Vector2(4,4)
-		cells_list = Hex.get_cells_around(offset_coords, radius, rect)
+		cells_list = Hex.get_cells_in_range(offset_coords, radius, rect)
 		assert_eq(cells_list.size(), 12, "Check correct amount of hexes collected in a smaller grid")

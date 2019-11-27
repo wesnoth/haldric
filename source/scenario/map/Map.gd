@@ -99,7 +99,7 @@ func extend_viewable(unit: Unit) -> bool:
 	var new_unit_found  = false
 	#var extend_hexes := []
 	#update_weight(unit, false, true)
-	var cells := Hex.get_cells_around(unit.location.cell, unit.type.moves, rect)
+	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, rect)
 	cells.invert()
 	var cur_index = 0
 	var check_radius = unit.type.moves
@@ -161,7 +161,7 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 					# Each value is an array of locations that this unit's would have to move through to reach the location at the key
 	paths[unit.location] = []
 	var radius = (unit.type.moves if ignore_moves else unit.moves_current) # Figure out how many hexes around this unit can reach.
-	var cells := Hex.get_cells_around(unit.location.cell, radius, rect) # Figure out which exact hexes are in this radius
+	var cells := Hex.get_cells_in_range(unit.location.cell, radius, rect) # Figure out which exact hexes are in this radius
 	if cells.size() == 0:
 	# if our radius was 0, it means that our unit might be in surrounded by Zones of Control
 	# In that case, we add each enemy unit which set out possible path to only the units which are in this units ZoC

@@ -1,33 +1,7 @@
 class_name Hex
 
 enum DIRECTIONS { N, NE, SE, S, SW, NW }
-
-const NEIGHBOUR_TABLE_OLD = [
-	# EVEN col, ALL rows
-	[
-		Vector2(0, -1), # N
-		Vector2(1, -1), # NE
-		Vector2(1, 0), # SE
-		Vector2(0, 1), # S
-		Vector2(-1, 0), # SW
-		Vector2(-1, -1) # NW
-	],
-	# ODD col, ALL rows
-	[
-		Vector2(0, -1), # N
-		Vector2(1, 0), # NE
-		Vector2(1, 1), # SE
-		Vector2(0, 1), # S
-		Vector2(-1, 1), # SW
-		Vector2(-1,  0) # NW
-	]
-]
-
-"""
-
-
-enum DIRECTIONS { S, SW, NW, N, NE, SE }
-"""
+# enum DIRECTIONS { S, SW, NW, N, NE, SE }
 
 const NEIGHBOR_TABLE := [
 	Vector3(0, 1, -1), # N
@@ -38,34 +12,19 @@ const NEIGHBOR_TABLE := [
 	Vector3(-1, 1, 0), # NW
 ]
 
-"""
-static func get_cells_around(cell: Vector2, radius: int, rect: Rect2) -> PoolVector2Array:
+static func get_cells_in_range(cell: Vector2, radius: int, rect: Rect2) -> PoolVector2Array:
 	var cells : PoolVector2Array = []
-	var cubes = get_cube_spiral(quad2cube(cell), radius)
+	var cubes = get_cubes_in_range(quad2cube(cell), radius)
 	for cube in cubes:
 		var n_cell = cube2quad(cube)
 		if rect.has_point(n_cell):
 			cells.append(n_cell)
 	return cells
-"""
-
-static func get_cells_around(cell: Vector2, radius: int, rect: Rect2) -> PoolVector2Array:
-	var cells := PoolVector2Array()
-	for n in range(1, radius + 1):
-		var current_cell := Vector2(cell.x, cell.y + n)
-		for j in 6:
-			for i in n:
-				var parity := int(current_cell.x) & 1
-				var temp: Vector2 = NEIGHBOUR_TABLE_OLD[parity][(j + 5) % 6]
-				current_cell += temp
-				if rect.has_point(current_cell):
-					cells.append(current_cell)
-	return cells
 
 static func get_cubes_in_range(cube: Vector3, radius: int) -> PoolVector3Array:
 	var cubes : PoolVector3Array = []
-	for x in range(-radius, radius):
-		for y in range(min(radius, radius - x)):
+	for x in range(-radius, radius + 1):
+		for y in range(max(-radius, -x - radius), min(radius, -x + radius)):
 			var z = -x - y
 			cubes.append(cube + Vector3(x, y, z))
 	return cubes
