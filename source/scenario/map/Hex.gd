@@ -2,7 +2,7 @@ class_name Hex
 
 enum DIRECTIONS { N, NE, SE, S, SW, NW }
 
-const NEIGHBOUR_TABLE = [
+const NEIGHBOUR_TABLE_OLD = [
 	# EVEN col, ALL rows
 	[
 		Vector2(0, -1), # N
@@ -23,6 +23,21 @@ const NEIGHBOUR_TABLE = [
 	]
 ]
 
+"""
+
+
+enum DIRECTIONS { S, SW, NW, N, NE, SE }
+"""
+
+const NEIGHBOR_TABLE := [
+	Vector3(0, 1, -1), # N
+	Vector3(1, 0, -1), # NE
+	Vector3(1, -1, 0), # SE
+	Vector3(0, -1, 1), # S
+	Vector3(-1, 0, 1), # SW
+	Vector3(-1, 1, 0), # NW
+]
+
 static func get_cells_around(cell: Vector2, _range: int, size: Vector2) -> PoolVector2Array:
 	var cells := PoolVector2Array()
 	for n in range(1, _range + 1):
@@ -30,24 +45,31 @@ static func get_cells_around(cell: Vector2, _range: int, size: Vector2) -> PoolV
 		for j in 6:
 			for i in n:
 				var parity := int(current_cell.x) & 1
-				var temp: Vector2 = NEIGHBOUR_TABLE[parity][(j + 5) % 6]
+				var temp: Vector2 = NEIGHBOUR_TABLE_OLD[parity][(j + 5) % 6]
 				current_cell += temp
 				if current_cell.x >= 0 and current_cell.x < size.x and current_cell.y >= 0 and current_cell.y < size.y:
 					cells.append(current_cell)
 	return cells
 
+
 static func get_neighbors(cell: Vector2) -> Array:
 	var neighbors := []
-	for direction in DIRECTIONS:
-		neighbors.append(get_neighbor(cell, DIRECTIONS[direction]))
-
+	var cube_neighbors := get_cube_neighbors(quad2cube(cell))
+	for n_cube in cube_neighbors:
+		neighbors.append(cube2quad(n_cube))
 	return neighbors
 
 static func get_neighbor(cell: Vector2, direction: int) -> Vector2:
-	var parity := int(cell.x) & 1
-	var neighbor : Vector2 = NEIGHBOUR_TABLE[parity][direction]
+	return cube2quad(get_cube_neighbor(quad2cube(cell), direction))
 
-	return Vector2(cell.x + neighbor.x, cell.y + neighbor.y)
+static func get_cube_neighbors(cube: Vector3) -> Array:
+	var neighbors := []
+	for direction in DIRECTIONS:
+		neighbors.append(get_cube_neighbor(cube, DIRECTIONS[direction]))
+	return neighbors
+
+static func get_cube_neighbor(cube: Vector3, direction: int) -> Vector3:
+	return cube + NEIGHBOR_TABLE[direction]
 
 static func cube2quad(cube: Vector3) -> Vector2:
 	var x := cube.x
