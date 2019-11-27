@@ -25,7 +25,7 @@ func initialize(map: TileMap) -> void:
 
 	layers = get_children()
 	_update_all_transitions()
-	
+
 func _update_all_transitions():
 	for layer in layers:
 		layer.clear()

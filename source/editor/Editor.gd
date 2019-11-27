@@ -30,7 +30,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_new_map()
 	_setup_scenario()
-	
+
 	minimap.initialize(scenario_viewport, scenario.map.get_pixel_size(), camera)
 	minimap.connect("map_position_change_requested", self, "_on_map_position_change_requested")
 
@@ -41,7 +41,7 @@ func _update() -> void:
 
 func get_camera_zoom() -> Vector2:
 	return camera.zoom
-	
+
 func _setup_scenario() -> void:
 	for id in scenario.map.tile_set.get_tiles_ids():
 		_add_terrain_button(id)
@@ -75,7 +75,7 @@ func _new_map() -> void:
 	scenario.map.set_size(DEFAULT_MAP_SIZE)
 	scenario.update_size()
 	scenario.map.initialize()
-	
+
 
 func _load_map(scenario_name: String) -> void:
 	var packed_scene = load(DEFAULT_ROOT_PATH + scenario_name + ".tscn")
@@ -91,7 +91,7 @@ func _load_map(scenario_name: String) -> void:
 
 	scenario = packed_scene.instance()
 	scenario_container.add_child(scenario)
-	
+
 
 func _save_map(scenario_name: String) -> void:
 	if scenario_name.empty():

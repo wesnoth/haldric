@@ -52,7 +52,7 @@ func highligh_selected_button(button_id: int) -> void:
 	if not _button_register.has(button_id):
 		return
 	selected_button_hover.highlight_button(_button_register[button_id], 0.4)
-	
+
 func _highlight_hovered_button(button_id) -> void:
 	if not _button_register.has(button_id):
 		return
@@ -64,7 +64,7 @@ func register_button(button: Button) -> void:
 	button.connect("pressed", self, "_on_button_pressed", [button.get_index()])
 	button.connect("mouse_entered", self, "_on_mouse_entered_button", [button.get_index()])
 	button.connect("mouse_exited", self, "_on_mouse_exited_button", [button.get_index()])
-	
+
 func next_button():
 	if not buttons:
 		return
@@ -103,7 +103,7 @@ func _on_button_pressed(id: int) -> void:
 
 func _on_screen_resized():
 	highligh_selected_button(current_button)
-	
+
 func _on_mouse_entered_button(id: int) -> void:
 	current_button = id
 	_highlight_hovered_button(id)

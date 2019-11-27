@@ -4,4 +4,3 @@
 
 [node name="Play" instance=ExtResource( 1 )]
 mouse_filter = 2
-

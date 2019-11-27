@@ -64,7 +64,7 @@ func add_unit(unit) -> void:
 	unit.side = self
 	unit.type.sprite.material = unit_shader
 	_calculate_upkeep()
-	_calculate_income()	
+	_calculate_income()
 
 func add_village(loc: Location) -> bool:
 	"""
@@ -107,7 +107,7 @@ func _calculate_upkeep() -> void:
 	Calculates how much gold costs the player will have.
 	The default calculation is 1 per unit level they control.
 	Units with loyal traits do not cost anything.
-	""" 
+	"""
 	upkeep = 0
 	for unit in units.get_children():
 		upkeep += unit.type.level
@@ -116,7 +116,7 @@ func _calculate_income() -> void:
 	"""
 	Calculates how much incoming gold the player will have.
 	The default calculation is 2 + 1 per village
-	""" 
+	"""
 	income = base_income + INCOME_PER_VILLAGE * villages.size()
 
 func _turn_refresh(first_turn: bool) -> void:
@@ -141,7 +141,7 @@ func _turn_refresh(first_turn: bool) -> void:
 					viewable[loc] = 1
 					if loc.unit and not loc.unit.side == self:
 						viewable_units[loc.unit] = 1
-	
+
 	for unit in units.get_children():
 		if not first_turn:
 			unit.refresh_unit()
@@ -164,7 +164,7 @@ func _add_flag(loc: Location) -> void:
 func _on_turn_refresh(turn: int, side: int) -> void:
 	"""
 	signal hook function which triggers when a side's turn is starting
-    It calls the function to refresh the side's gold and units
+	It calls the function to refresh the side's gold and units
 	"""
 	if self.number == side:
 		_turn_refresh(turn == 1)

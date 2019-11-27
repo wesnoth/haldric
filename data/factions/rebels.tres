@@ -9,4 +9,3 @@ name = "Rebels"
 leader = [  ]
 random = [  ]
 recruit = [ "Elvish Archer", "Elvish Fighter", "Evlish Scout", "Evlish Shaman" ]
-

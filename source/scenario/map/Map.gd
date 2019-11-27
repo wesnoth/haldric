@@ -270,7 +270,7 @@ func set_tile(id: int) -> void:
 	"""
 	Sets tile in current mouse position
 	"""
-	
+
 	var cell: Vector2 = world_to_map(get_viewport_mouse_position())
 
 	if not _is_cell_in_map(cell):

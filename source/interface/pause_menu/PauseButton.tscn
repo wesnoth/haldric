@@ -6,8 +6,6 @@
 [ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=5]
 
-
-
 [node name="PauseButton" type="Button"]
 rect_min_size = Vector2( 238, 80 )
 focus_mode = 0
@@ -25,4 +23,3 @@ __meta__ = {
 show_behind_parent = true
 material = ExtResource( 5 )
 mouse_filter = 2
-

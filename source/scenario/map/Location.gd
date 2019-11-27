@@ -1,6 +1,6 @@
 class_name Location
 """
-This is an object which contains information about a given hex on the map. 
+This is an object which contains information about a given hex on the map.
 It contains information such as its coordinates on a hex grid, its terrain and any current units in it
 """
 
@@ -33,11 +33,11 @@ func _init(tilemap_cell_coords: Vector2, map_instance) -> void:
 	"""
 	map = map_instance
 	cell = tilemap_cell_coords
-	cube_coords = Hex.quad_to_hex(cell)
+	cube_coords = Hex.quad2cube(cell)
 	var rect = map.get_used_rect()
 	id = _generate_id(cell, int(rect.size.x))
 	position = map.map_to_world_centered(cell)
-			
+
 
 #func get_position_centered() -> Vector2:
 	#return position + OFFSET
@@ -46,7 +46,7 @@ func _init(tilemap_cell_coords: Vector2, map_instance) -> void:
 func _get_cube_coords() -> Vector3:
 	# Returns a Vector3 of the cube coordinates
 	return cube_coords
-	
+
 func _set_cube_coords(val: Vector3) -> void:
 	# Sets the position from a Vector3 of cube coordinates
 	if val.x + val.y + val.z != 0:
@@ -60,7 +60,7 @@ static func _generate_id(vec: Vector2, magnitude: int) -> int:
 	This is  used for AStar pathfinding
 	The unique ID for each cell in the tilemap is:
 		y.position of the cell * the total width of the tilemap + x.position of the cell
-	E.g. cell in position (3,5) of a 10x10 map, will have ID = 53 
+	E.g. cell in position (3,5) of a 10x10 map, will have ID = 53
 	"""
 	return int(vec.y) * magnitude + int(vec.x)
 

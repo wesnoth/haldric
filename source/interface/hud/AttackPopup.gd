@@ -20,7 +20,7 @@ func popup_attack(unit: Unit, target: Unit) -> void:
 	if not attacks:
 		return
 
-	for attack in attacks: 
+	for attack in attacks:
 		var button = AttackButton.instance()
 		attack_buttons.add_child(button)
 		button.connect("attack_button_pressed", self, "_on_button_pressed")
