@@ -64,7 +64,7 @@ func _disconnect_with_neighbors(location: Location) -> void:
 
 func _compute_cost(from_id: int, to_id: int) -> float:
 	return 1.0
-	
+
 #for debug purposes, may remove later
 func enum_connected_points(location: Location) -> int:
 	var ret: int = 0
