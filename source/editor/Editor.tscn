@@ -40,7 +40,6 @@ render_target_update_mode = 3
 [node name="ScenarioContainer" type="Node" parent="ScenarioLayer/ViewportContainer/Viewport"]
 
 [node name="Camera2D" parent="ScenarioLayer/ViewportContainer/Viewport" instance=ExtResource( 8 )]
-position = Vector2( 960, 540 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 3 )
