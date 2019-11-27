@@ -32,15 +32,14 @@ static func get_cubes_in_range(cube: Vector3, radius: int) -> PoolVector3Array:
 static func get_cube_spiral(cube: Vector3, radius) -> PoolVector3Array:
 	var spiral : PoolVector3Array = [ cube ]
 	for i in range(1, radius + 1):
-		spiral = spiral + get_cube_ring(cube, i)
+		spiral += get_cube_ring(cube, i)
 	return spiral
 
 static func get_cube_ring(cube: Vector3, radius: int) -> PoolVector3Array:
-	if not radius:
-		return PoolVector3Array()
-
 	var ring : PoolVector3Array = []
-	var start_cube = cube + (get_cube_neighbor(cube, 0) * radius)
+	var start_cube = get_cube_neighbor(cube, 0, radius)
+
+	print("Cube: ", cube, ", Radius: ", radius, ", Start Cube: ", start_cube - cube)
 
 	for direction in DIRECTIONS:
 		for i in radius:
@@ -65,8 +64,8 @@ static func get_cube_neighbors(cube: Vector3) -> PoolVector3Array:
 		neighbors.append(get_cube_neighbor(cube, DIRECTIONS[direction]))
 	return neighbors
 
-static func get_cube_neighbor(cube: Vector3, direction: int) -> Vector3:
-	return cube + NEIGHBOR_TABLE[direction]
+static func get_cube_neighbor(cube: Vector3, direction: int, scale := 1) -> Vector3:
+	return cube + (NEIGHBOR_TABLE[direction] * scale)
 
 static func get_cube_distance(a: Vector3, b: Vector3):
 	return max(abs(a.x - b.x), max(abs(a.y - b.y), abs(a.z - b.z)))
