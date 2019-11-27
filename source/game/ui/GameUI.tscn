@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/game/ui/GameUI.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/hud/GameHUD.tscn" type="PackedScene" id=2]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="UnitPlateContainer" type="Control" parent="."]
+mouse_filter = 2
+
+[node name="HUD" parent="." instance=ExtResource( 2 )]

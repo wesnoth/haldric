@@ -4,18 +4,20 @@ const DEFAULT_USER_PATH = "user://data/editor/scenarios/"
 const DEFAULT_ROOT_PATH = "res://data/scenarios/"
 const DEFAULT_MAP_SIZE := Vector2(44, 33)
 
-export var button_size := 60
-
-onready var HUD := $HUD as CanvasLayer
-onready var scenario_container := $ScenarioLayer/ViewportContainer/Viewport/ScenarioContainer as Node
-onready var line_edit := $HUD/UIButtons/HBoxContainer/LineEdit as LineEdit
-onready var camera := $ScenarioLayer/ViewportContainer/Viewport/Camera2D
-onready var scenario_viewport := $ScenarioLayer/ViewportContainer/Viewport as Viewport
-onready var minimap := $HUD/Minimap as Control
-
 var scenario: Scenario = null
 var current_paint_tile := 0
 var current_clear_tile := 0
+
+export var button_size := 60
+
+onready var scenario_container := $ScenarioLayer/ViewportContainer/Viewport/ScenarioContainer as Node
+onready var camera := $ScenarioLayer/ViewportContainer/Viewport/Camera2D
+onready var scenario_viewport := $ScenarioLayer/ViewportContainer/Viewport as Viewport
+
+onready var HUD := $UI/HUD as CanvasLayer
+
+onready var line_edit := $UI/HUD/UIButtons/HBoxContainer/LineEdit as LineEdit
+onready var minimap := $UI/HUD/Minimap as Control
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("mouse_left"):

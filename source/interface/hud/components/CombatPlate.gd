@@ -1,4 +1,4 @@
-extends Control
+extends PanelContainer
 class_name CombatPlate
 
 onready var combat = {'offense': {}, 'defense': {}} # A dictionary which holds a map to our various nodes for each access

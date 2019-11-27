@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://source/interface/hud/components/Circle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/interface/hud/components/circles/Circle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/interface/hud/ToDWidget.gd" type="Script" id=2]
-[ext_resource path="res://graphics/styles/panel.tres" type="StyleBox" id=3]
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=3]
 [ext_resource path="res://source/interface/hud/ToDWheel.gd" type="Script" id=4]
 
 [node name="ToDWidget" type="Control" groups=[
@@ -11,6 +11,7 @@
 margin_right = 130.0
 margin_bottom = 130.0
 rect_min_size = Vector2( 130, 130 )
+theme = ExtResource( 3 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -48,6 +49,7 @@ margin_top = -45.0
 margin_right = 45.0
 margin_bottom = 45.0
 rect_pivot_offset = Vector2( 45, 45 )
+color = Color( 0, 0, 0, 1 )
 border_color = Color( 0.67451, 0.67451, 0.67451, 1 )
 border_width = 5
 
@@ -59,4 +61,3 @@ anchor_right = 0.5
 anchor_bottom = 0.3
 margin_left = -175.0
 margin_bottom = 110.0
-custom_styles/panel = ExtResource( 3 )

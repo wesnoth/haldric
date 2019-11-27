@@ -1,14 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://source/editor/Editor.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/OffMap.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/editor/HUD.gd" type="Script" id=3]
-[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=4]
-[ext_resource path="res://source/interface/menus/components/Panel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://graphics/materials/panel_blur.tres" type="Material" id=6]
-[ext_resource path="res://source/interface/pause_menu/PauseMenu.tscn" type="PackedScene" id=7]
-[ext_resource path="res://source/interface/camera/WesnothCamera.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/interface/hud/Minimap.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/editor/EditorHUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/camera/WesnothCamera.tscn" type="PackedScene" id=8]
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )
@@ -41,108 +36,7 @@ render_target_update_mode = 3
 
 [node name="Camera2D" parent="ScenarioLayer/ViewportContainer/Viewport" instance=ExtResource( 8 )]
 
-[node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource( 3 )
+[node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
 
-[node name="Minimap" parent="HUD" instance=ExtResource( 9 )]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -256.0
-margin_top = 25.0
-margin_right = -17.0
-margin_bottom = -875.0
-
-[node name="TileButtons" type="Control" parent="HUD"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -265.0
-margin_top = 250.0
-margin_bottom = 1.0
-theme = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" parent="HUD/TileButtons" instance=ExtResource( 5 )]
-material = ExtResource( 6 )
-
-[node name="GridContainer" type="GridContainer" parent="HUD/TileButtons"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 12.0
-margin_top = 12.0
-margin_right = -12.0
-margin_bottom = -50.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/vseparation = 12
-custom_constants/hseparation = 12
-columns = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="UIButtons" type="Control" parent="HUD"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -300.0
-margin_top = -90.0
-margin_right = 300.0
-margin_bottom = -10.0
-rect_min_size = Vector2( 600, 80 )
-theme = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/UIButtons"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 6.0
-margin_right = -1.0
-margin_bottom = -5.0
-custom_constants/separation = 20
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="New" type="Button" parent="HUD/UIButtons/HBoxContainer"]
-margin_left = 69.0
-margin_right = 149.0
-margin_bottom = 69.0
-rect_min_size = Vector2( 80, 0 )
-text = "New"
-
-[node name="LineEdit" type="LineEdit" parent="HUD/UIButtons/HBoxContainer"]
-margin_left = 169.0
-margin_right = 329.0
-margin_bottom = 69.0
-rect_min_size = Vector2( 160, 0 )
-focus_mode = 1
-context_menu_enabled = false
-placeholder_text = "scenario name"
-
-[node name="Save" type="Button" parent="HUD/UIButtons/HBoxContainer"]
-margin_left = 349.0
-margin_right = 429.0
-margin_bottom = 69.0
-rect_min_size = Vector2( 80, 0 )
-text = "Save"
-
-[node name="Load" type="Button" parent="HUD/UIButtons/HBoxContainer"]
-margin_left = 449.0
-margin_right = 529.0
-margin_bottom = 69.0
-rect_min_size = Vector2( 80, 0 )
-text = "Load"
-
-[node name="PauseMenu" parent="HUD" instance=ExtResource( 7 )]
-visible = false
-[connection signal="pressed" from="HUD/UIButtons/HBoxContainer/New" to="." method="_on_New_pressed"]
-[connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Save" to="." method="_on_Save_pressed"]
-[connection signal="pressed" from="HUD/UIButtons/HBoxContainer/Load" to="." method="_on_Load_pressed"]
+[node name="HUD" parent="UI" instance=ExtResource( 3 )]
