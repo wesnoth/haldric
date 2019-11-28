@@ -5,6 +5,7 @@
 [ext_resource path="res://source/scenario/Side.tscn" type="PackedScene" id=3]
 
 [node name="test" type="Control"]
+rect_clip_content = true
 mouse_filter = 2
 script = ExtResource( 1 )
 
