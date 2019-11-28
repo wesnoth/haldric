@@ -139,11 +139,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/Schedule.gd"
 }, {
-"base": "Resource",
-"class": "SheetInfo",
-"language": "GDScript",
-"path": "res://tools/spritesheet_generator/SheetInfo.gd"
-}, {
 "base": "Node",
 "class": "Side",
 "language": "GDScript",
@@ -231,7 +226,6 @@ _global_script_class_icons={
 "Scenario": "",
 "SceneLoader": "",
 "Schedule": "",
-"SheetInfo": "",
 "Side": "",
 "SidePanelItem": "",
 "State": "",
