@@ -28,7 +28,7 @@ func _on_Resume_pressed() -> void:
 	button.show()
 
 func _on_Quit_pressed() -> void:
-	Scene.change("TitleScreen")
+	Scene.change("TitleScreen", true)
 
 func is_active() -> bool:
 	return popup.visible

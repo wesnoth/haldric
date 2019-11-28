@@ -10,7 +10,7 @@ func _on_Play_pressed() -> void:
 		return
 
 	Global.state.scenario = Registry.scenarios[scenario]
-	Scene.change("Game")
+	Scene.change("Game", true, true)
 
 func _on_Back_pressed() -> void:
 	Scene.change("TitleScreen")
