@@ -72,13 +72,13 @@ static func get_cube_distance(a: Vector3, b: Vector3):
 
 static func cube2quad(cube: Vector3) -> Vector2:
 	var x := cube.x
-	var y := cube.z + (cube.x - (int(cube.x) & 1)) / 2
+	var y := cube.z + (cube.x + (int(cube.x) & 1)) / 2
 
 	return Vector2(x, y)
 
 static func quad2cube(quad: Vector2) -> Vector3:
 	var x := quad.x
-	var z := quad.y - (quad.x - (int(quad.x) & 1)) / 2
+	var z := quad.y - (quad.x + (int(quad.x) & 1)) / 2
 	var y := -x - z
 
 	return Vector3(x, y, z)

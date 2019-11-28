@@ -19,7 +19,7 @@ shader_param/Brightness = 0.75
 [node name="Map" type="TileMap"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 54, 72 )
-cell_half_offset = 1
+cell_half_offset = 4
 format = 1
 script = ExtResource( 2 )
 
@@ -31,7 +31,7 @@ script = ExtResource( 3 )
 use_parent_material = true
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 54, 72 )
-cell_half_offset = 1
+cell_half_offset = 4
 format = 1
 
 [node name="Cover" type="TileMap" parent="."]
@@ -40,7 +40,7 @@ material = SubResource( 1 )
 z_index = 100
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 54, 72 )
-cell_half_offset = 1
+cell_half_offset = 4
 format = 1
 
 [node name="MapBorder" parent="." instance=ExtResource( 6 )]
