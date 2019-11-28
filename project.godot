@@ -264,7 +264,6 @@ Audio="*res://source/global/Audio.tscn"
 TeamColor="*res://source/global/TeamColor.gd"
 Event="*res://source/global/Event.gd"
 Settings="*res://source/global/Settings.gd"
-Utils="*res://source/global/Utils.gd"
 Scene="*res://addons/scene_manager/source/Scene.tscn"
 
 [debug]
