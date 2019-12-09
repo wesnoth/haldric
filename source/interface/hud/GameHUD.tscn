@@ -86,6 +86,7 @@ margin_right = -760.0
 margin_bottom = -240.0
 
 [node name="RecruitmentButton" type="Button" parent="."]
+visible = false
 margin_left = 105.233
 margin_top = 35.8749
 margin_right = 332.233

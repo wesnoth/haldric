@@ -46,7 +46,7 @@ onready var number := get_index() + 1
 onready var units = $Units as Node2D
 onready var flags = $Flags as Node2D
 
-var recruitable_unit_types : Array
+var recruitable_unit_type_scenes : Array
 
 func _ready() -> void:
 	Event.connect("turn_refresh", self, "_on_turn_refresh")
@@ -59,9 +59,8 @@ func _ready() -> void:
 
 	_calculate_upkeep()
 	_calculate_income()
-	recruitable_unit_types = [Archer.instance(), Ranger.instance(), Scout.instance()]
+	recruitable_unit_type_scenes = [Archer, Ranger, Scout]
 
-# :Unit
 func add_unit(unit) -> void:
 	"""
 	Adds the specified unit object and sets it to belong to this side

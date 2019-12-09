@@ -7,6 +7,10 @@ var scenario: Scenario = null
 var current_side: Side = null setget _set_side
 var current_unit: Unit = null setget _set_current_unit
 
+var location_choice_mode := false
+var available_locations := []
+var unit_type_to_recruit : PackedScene
+
 onready var tween = $Tween
 
 onready var UI := $UI as CanvasLayer
@@ -21,8 +25,14 @@ onready var scenario_placeholder := $ScenarioLayer/ViewportContainer/Viewport/Sc
 onready var camera := $ScenarioLayer/ViewportContainer/Viewport/Camera2D as Camera2D
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	var loc: Location = scenario.map.get_location_from_mouse()
+	if location_choice_mode:
+		_handle_input_in_location_choice_mode(event, loc)
+	else:
+		_handle_input_in_normal_mode(event, loc)
+
+
+func _handle_input_in_normal_mode(event: InputEvent, loc: Location) -> void:
 	if event.is_action_pressed("mouse_left"):
 		if loc:
 			# Select a unit
@@ -65,6 +75,17 @@ func _unhandled_input(event: InputEvent) -> void:
 				print(loc.map.grid.get_connected_points(loc))
 		if event.scancode == KEY_L and event.pressed:
 			loc.map.debug()
+
+func _handle_input_in_location_choice_mode(event: InputEvent, mouse_location: Location) -> void:
+	if event.is_action_pressed("mouse_right"):
+		_cancel_location_choice_mode()
+		unit_type_to_recruit = null
+	if event.is_action_pressed("mouse_left") and mouse_location and available_locations.find(mouse_location) >= 0:
+		var unit_type = unit_type_to_recruit.instance()
+		if current_side.try_spending_gold(unit_type.cost):
+			scenario.add_unit_with_loaded_data(current_unit.side, unit_type, mouse_location)
+		_cancel_location_choice_mode()
+		unit_type_to_recruit = null
 
 func _ready() -> void:
 	randomize()
@@ -252,16 +273,22 @@ func _on_turn_end_pressed() -> void:
 	_next_side()
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
 
-func _on_unit_recruitment_requested(unit_type : UnitType) -> void:
-	var target_location := current_unit.location.get_adjacent_free_recruitment_location()
-	if target_location != null:
-		if(current_side.try_spending_gold(unit_type.cost)):
-			var unit := scenario.add_unit_with_loaded_data(current_unit.side, unit_type, target_location)
-	else:
-		# should not happen as recruitment button should be hidden in the first place if there is
-		# no possibility to recruit to surronding locations
-		print("[WARN] Recruitment was attmepted but there were no allowed spots for it")
-	HUD.set_recruitment_allowed(current_unit.location.can_recruit_from())
+func _on_unit_recruitment_requested(unit_type_scene : PackedScene) -> void:
+	var target_locations := current_unit.location.get_adjacent_free_recruitment_locations()
+	_enter_location_choice_mode(target_locations)
+	HUD.set_recruitment_allowed(false)
+	unit_type_to_recruit = unit_type_scene
+	_clear_temp_path()
 
 func _on_unit_recruitment_menu_requested():
-	HUD.open_recruitment_menu(current_side.recruitable_unit_types)
+	HUD.open_recruitment_menu(current_side.recruitable_unit_type_scenes)
+
+func _cancel_location_choice_mode() -> void:
+	location_choice_mode = false
+	available_locations.clear()
+	scenario.map.clear_highlight()
+
+func _enter_location_choice_mode(locations : Array) -> void:
+	location_choice_mode = true
+	available_locations = locations
+	scenario.map.update_highlight(locations)

@@ -64,5 +64,5 @@ func _on_recruitment_popup_requested() -> void:
 func open_recruitment_menu(unit_types : Array) -> void:
 	recruitment_popup.show_popup(unit_types)
 
-func _on_unit_recruitment_requested(unit_type : UnitType) -> void:
-	emit_signal("unit_recruitment_requested", unit_type)
+func _on_unit_recruitment_requested(unit_type_scene : PackedScene) -> void:
+	emit_signal("unit_recruitment_requested", unit_type_scene)
