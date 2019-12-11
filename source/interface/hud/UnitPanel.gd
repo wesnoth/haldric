@@ -24,6 +24,8 @@ onready var attacks := $MarginContainer/VBoxContainer/Attacks as VBoxContainer
 
 onready var tween := $Tween as Tween
 
+signal recruitment_popup_requested
+
 func _ready() -> void:
 	unit_window.connect("request_scroll_to_unit", self, "_focus_camera_on_selected_unit")
 	unit_camera.position = Vector2(200, 200)
@@ -132,3 +134,6 @@ func _get_cyan_to_white_color(value: int) -> Color:
 func _get_light_to_dark_brown(value: int) -> Color:
 	var mod = float(value) * 0.01
 	return Color(0.48 * mod + 0.1, 0.4 * mod + 0.1, 0.35 * mod + 0.1)
+
+func _on_recruitment_button_up() -> void:
+	emit_signal("recruitment_popup_requested")

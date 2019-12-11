@@ -28,6 +28,7 @@ var ZOC_tiles := {} # Hexes exert a Zone of Control (because a unit is on them)
 
 onready var overlay := $Overlay as TileMap
 onready var cover := $Cover as TileMap
+onready var highlight := $Highlight as TileMap
 onready var transitions := $Transitions as Transitions
 
 onready var border := $MapBorder # The hexes which are renderred but not playable
@@ -393,7 +394,7 @@ func display_reachable_for(reachable_locs: Dictionary) -> void:
 	# Nothing to show, hide the map and bail.
 	if reachable_locs.empty():
 		cover.hide()
-		return;
+		return
 
 	# Punch out visible area
 	for loc in reachable_locs:
@@ -401,12 +402,31 @@ func display_reachable_for(reachable_locs: Dictionary) -> void:
 
 	cover.show()
 
+func update_highlight(location_to_highlight : Array) -> void:
+	# clear any previous highlight
+	clear_highlight()
+
+	if location_to_highlight.empty():
+		return
+
+	for location in location_to_highlight:
+		highlight.set_cellv(location.cell, void_tile)
+
+	highlight.show()
+
+func clear_highlight() -> void:
+	for y in rect.size.y:
+		for x in rect.size.x:
+			highlight.set_cell(x, y, -1)
+	highlight.hide()
+
 func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
 	if get_cellv(cell) == INVALID_CELL:
 		set_cellv(cell, default_tile)
 
 		if clear_overlay:
 			overlay.set_cellv(cell, INVALID_CELL)
+
 func debug():
 	$Hover/HexDebug.visible = not $Hover/HexDebug.visible
 

@@ -3,6 +3,10 @@ class_name Side
 
 const Flag = preload("res://source/game/Flag.tscn")
 
+const Archer := preload("res://data/units/elves-wood/ElvishArcher.tscn")
+const Ranger := preload("res://data/units/elves-wood/ElvishRanger.tscn")
+const Scout := preload("res://data/units/elves-wood/Scout.tscn")
+
 const INCOME_PER_VILLAGE = 1 # How much gold extra each village provides
 
 const HEAL_ON_VILLAGE = 8 # Each unit starting its turn in a village heals this amount per turn
@@ -42,6 +46,8 @@ onready var number := get_index() + 1
 onready var units = $Units as Node2D
 onready var flags = $Flags as Node2D
 
+var recruitable_unit_type_scenes : Array
+
 func _ready() -> void:
 	Event.connect("turn_refresh", self, "_on_turn_refresh")
 
@@ -53,8 +59,8 @@ func _ready() -> void:
 
 	_calculate_upkeep()
 	_calculate_income()
+	recruitable_unit_type_scenes = [Archer, Ranger, Scout]
 
-# :Unit
 func add_unit(unit) -> void:
 	"""
 	Adds the specified unit object and sets it to belong to this side
@@ -168,3 +174,9 @@ func _on_turn_refresh(turn: int, side: int) -> void:
 	"""
 	if self.number == side:
 		_turn_refresh(turn == 1)
+
+func try_spending_gold(amount : int) -> bool:
+	if amount > gold || amount < 0:
+		return false
+	gold -= amount
+	return true

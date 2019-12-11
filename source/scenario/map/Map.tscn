@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=1]
 [ext_resource path="res://source/scenario/map/Map.gd" type="Script" id=2]
@@ -7,8 +7,13 @@
 [ext_resource path="res://graphics/tilesets/void.tres" type="TileSet" id=5]
 [ext_resource path="res://source/interface/draw/MapBorder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://graphics/images/interface/misc/hover-hex.png" type="Texture" id=7]
+[ext_resource path="res://graphics/shaders_visual/cell_highlight.tres" type="Shader" id=8]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 8 )
+shader_param/BlendColor2 = Color( 0.054902, 0.976471, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
 shader_param/BlendColor = Color( 0.3, 0.59, 0.11, 1 )
 shader_param/Blur = 0.2
@@ -34,9 +39,16 @@ cell_size = Vector2( 54, 72 )
 cell_half_offset = 1
 format = 1
 
+[node name="Highlight" type="TileMap" parent="."]
+material = SubResource( 2 )
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 1
+format = 1
+
 [node name="Cover" type="TileMap" parent="."]
 visible = false
-material = SubResource( 1 )
+material = SubResource( 3 )
 z_index = 100
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 54, 72 )
@@ -62,7 +74,8 @@ margin_top = -10.4554
 margin_right = 84.7766
 margin_bottom = 14.5446
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="HexCubeLabel" type="Label" parent="Hover/HexDebug"]

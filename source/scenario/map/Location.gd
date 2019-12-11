@@ -6,8 +6,6 @@ It contains information such as its coordinates on a hex grid, its terrain and a
 
 const OFFSET = Vector2(36, 36)
 
-
-
 var id := 0
 
 var position := Vector2() # Centered position of cell on the tilemap in Axial coordinates
@@ -71,3 +69,16 @@ func get_adjacent_locations() -> Array:
 		if neighbor:
 			neighbor_locations.append(neighbor)
 	return neighbor_locations
+
+func can_recruit_from() -> bool:
+	return terrain.recruit_from && !get_adjacent_free_recruitment_locations().empty()
+
+func get_adjacent_free_recruitment_locations() -> Array:
+	var locations := []
+	for target_location in get_adjacent_locations():
+		if target_location._can_recruit_to():
+			locations.append(target_location)
+	return locations
+
+func _can_recruit_to():
+	return terrain.recruit_onto && unit == null
