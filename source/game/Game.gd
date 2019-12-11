@@ -156,10 +156,13 @@ func _set_current_unit(value: Unit) -> void:
 
 	if current_unit:
 		scenario.map.display_reachable_for(current_unit.reachable)
-		HUD.set_recruitment_allowed(current_unit.location.can_recruit_from())
+		HUD.set_recruitment_allowed(_can_current_unit_recruit())
 	else:
 		_clear_temp_path()
 		HUD.set_recruitment_allowed(false)
+
+func _can_current_unit_recruit() -> bool:
+	return current_side.is_leader(current_unit) and current_unit.location.can_recruit_from()
 
 func _get_path_for_unit(unit: Unit, new_loc: Location) -> Array:
 	if unit.reachable.has(new_loc):

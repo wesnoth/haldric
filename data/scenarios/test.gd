@@ -2,7 +2,7 @@ extends Scenario
 
 func _start() -> void:
 	add_unit(1, "Elvish Archer", 4, 4)
-	add_unit(1, "Elvish Scout", 5, 4)
+	add_unit(1, "Elvish Scout", 5, 4, true)
 	add_unit(1, "Elvish Fighter", 6, 4)
 	add_unit(1, "Elvish Shaman", 7, 4)
 
