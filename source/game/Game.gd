@@ -267,6 +267,7 @@ func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> voi
 	scenario.map.display_reachable_for(unit.reachable)
 	if halted:
 		_set_current_unit(unit)
+		_draw_temp_path(_get_path_for_unit(current_unit, scenario.map.get_location_from_mouse()))
 
 func _on_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
