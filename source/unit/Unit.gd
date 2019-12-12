@@ -8,6 +8,7 @@ signal experienced(unit)
 signal moved(unit, location)
 signal move_finished(unit, location, halt)
 signal state_changed(new_state)
+signal died(unit)
 
 var side : Side = null
 
@@ -100,7 +101,7 @@ func kill(active_side: bool, attacker: Unit) -> void:
 		attacker.side.viewable_units.erase(attacker)
 	attacker.set_reachable()
 	attacker.experience_current = type.level * 8
-	queue_free()
+	emit_signal("died", self)
 
 func get_movement_cost(loc: Location) -> int:
 	var cost = type.movement.get(loc.terrain.type[0])

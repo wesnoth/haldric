@@ -61,7 +61,7 @@ func _ready() -> void:
 	_calculate_income()
 	recruitable_unit_type_scenes = [Archer, Ranger, Scout]
 
-func add_unit(unit) -> void:
+func add_unit(unit, is_leader := false) -> void:
 	"""
 	Adds the specified unit object and sets it to belong to this side
 	Also updates gold production (for the GUI)
@@ -69,8 +69,13 @@ func add_unit(unit) -> void:
 	units.add_child(unit)
 	unit.side = self
 	unit.type.sprite.material = unit_shader
+	unit.connect("died", self, "_on_unit_died")
+
 	_calculate_upkeep()
 	_calculate_income()
+
+	if is_leader:
+		leaders.append(unit)
 
 func add_village(loc: Location) -> bool:
 	"""
@@ -101,12 +106,6 @@ func has_village(loc: Location) -> bool:
 	Checks if the side's villages list contains the provided location object
 	"""
 	return villages.has(loc)
-
-# -> Unit
-func get_first_leader():
-	if leaders.size() > 0:
-		return leaders[0]
-	return null
 
 func _calculate_upkeep() -> void:
 	"""
@@ -180,3 +179,12 @@ func try_spending_gold(amount : int) -> bool:
 		return false
 	gold -= amount
 	return true
+
+func is_leader(unit) -> bool:
+	return leaders.find(unit) >= 0
+
+func _on_unit_died(unit : Node) -> void:
+	var idx = leaders.find(unit)
+	if idx >= 0:
+		leaders.remove(idx)
+	unit.queue_free()
