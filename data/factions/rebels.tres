@@ -8,4 +8,4 @@ id = "rebels"
 name = "Rebels"
 leader = [  ]
 random = [  ]
-recruit = [ "Elvish Archer", "Elvish Fighter", "Evlish Scout", "Evlish Shaman" ]
+recruit = [ "Elvish Archer", "Elvish Fighter", "Elvish Scout", "Elvish Shaman" ]

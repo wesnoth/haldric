@@ -61,8 +61,8 @@ func _on_TurnEndPanel_turn_end_pressed() -> void:
 func _on_recruitment_popup_requested() -> void:
 	emit_signal("unit_recruitment_menu_requested")
 
-func open_recruitment_menu(unit_types : Array) -> void:
-	recruitment_popup.show_popup(unit_types)
+func open_recruitment_menu(unit_types_ids : Array) -> void:
+	recruitment_popup.show_popup(unit_types_ids)
 
-func _on_unit_recruitment_requested(unit_type_scene : PackedScene) -> void:
-	emit_signal("unit_recruitment_requested", unit_type_scene)
+func _on_unit_recruitment_requested(unit_type_id : String) -> void:
+	emit_signal("unit_recruitment_requested", unit_type_id)

@@ -9,7 +9,7 @@ var current_unit: Unit = null setget _set_current_unit
 
 var location_choice_mode := false
 var available_locations := []
-var unit_type_to_recruit : PackedScene
+var unit_type_to_recruit : String
 
 onready var tween = $Tween
 
@@ -79,13 +79,13 @@ func _handle_input_in_normal_mode(event: InputEvent, loc: Location) -> void:
 func _handle_input_in_location_choice_mode(event: InputEvent, mouse_location: Location) -> void:
 	if event.is_action_pressed("mouse_right"):
 		_cancel_location_choice_mode()
-		unit_type_to_recruit = null
+		unit_type_to_recruit = ""
 	if event.is_action_pressed("mouse_left") and mouse_location and available_locations.find(mouse_location) >= 0:
-		var unit_type = unit_type_to_recruit.instance()
+		var unit_type: UnitType = Registry.units[unit_type_to_recruit].instance()
 		if current_side.try_spending_gold(unit_type.cost):
 			scenario.add_unit_with_loaded_data(current_unit.side, unit_type, mouse_location)
 		_cancel_location_choice_mode()
-		unit_type_to_recruit = null
+		unit_type_to_recruit = ""
 
 func _ready() -> void:
 	randomize()
@@ -277,15 +277,15 @@ func _on_turn_end_pressed() -> void:
 	_next_side()
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
 
-func _on_unit_recruitment_requested(unit_type_scene : PackedScene) -> void:
+func _on_unit_recruitment_requested(unit_type_id: String) -> void:
 	var target_locations := current_unit.location.get_adjacent_free_recruitment_locations()
 	_enter_location_choice_mode(target_locations)
 	HUD.set_recruitment_allowed(false)
-	unit_type_to_recruit = unit_type_scene
+	unit_type_to_recruit = unit_type_id
 	_clear_temp_path()
 
 func _on_unit_recruitment_menu_requested():
-	HUD.open_recruitment_menu(current_side.recruitable_unit_type_scenes)
+	HUD.open_recruitment_menu(current_side.recruit)
 
 func _cancel_location_choice_mode() -> void:
 	location_choice_mode = false
