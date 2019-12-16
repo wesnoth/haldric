@@ -1,12 +1,12 @@
 [gd_resource type="VisualShader" load_steps=4 format=2]
 
-[sub_resource type="VisualShaderNodeInput" id=2]
+[sub_resource type="VisualShaderNodeInput" id=1]
 input_name = "uv"
 
-[sub_resource type="VisualShaderNodeTexture" id=3]
+[sub_resource type="VisualShaderNodeTexture" id=2]
 source = 2
 
-[sub_resource type="VisualShaderNodeColorUniform" id=20]
+[sub_resource type="VisualShaderNodeColorUniform" id=3]
 uniform_name = "BlendColor2"
 
 [resource]
@@ -58,10 +58,10 @@ mode = 1
 flags/light_only = false
 flags/unshaded = true
 nodes/fragment/0/position = Vector2( 1100, 400 )
-nodes/fragment/21/node = SubResource( 2 )
+nodes/fragment/21/node = SubResource( 1 )
 nodes/fragment/21/position = Vector2( 180, 600 )
-nodes/fragment/22/node = SubResource( 3 )
+nodes/fragment/22/node = SubResource( 2 )
 nodes/fragment/22/position = Vector2( 400, 580 )
-nodes/fragment/49/node = SubResource( 20 )
+nodes/fragment/49/node = SubResource( 3 )
 nodes/fragment/49/position = Vector2( 840, 260 )
 nodes/fragment/connections = PoolIntArray( 21, 0, 22, 0, 22, 1, 0, 1, 49, 0, 0, 0 )

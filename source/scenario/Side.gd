@@ -3,10 +3,6 @@ class_name Side
 
 const Flag = preload("res://source/game/Flag.tscn")
 
-const Archer := preload("res://data/units/elves-wood/ElvishArcher.tscn")
-const Ranger := preload("res://data/units/elves-wood/ElvishRanger.tscn")
-const Scout := preload("res://data/units/elves-wood/Scout.tscn")
-
 const INCOME_PER_VILLAGE = 1 # How much gold extra each village provides
 
 const HEAL_ON_VILLAGE = 8 # Each unit starting its turn in a village heals this amount per turn
@@ -25,6 +21,8 @@ var leaders := []
 var viewable := {}
 
 var viewable_units := {} #dont know if we need this, but just in case
+
+export var faction := ""
 
 export(String, "Red", "Blue", "Green", "Purple", "Black", "White", "Brown", "Orange", "Teal") var team_color := "Red"
 export(String, "Standard", "Knalgan", "Long", "Ragged", "Undead", "Wood-Elvish") var flag_type := "Standard"
@@ -46,8 +44,6 @@ onready var number := get_index() + 1
 onready var units = $Units as Node2D
 onready var flags = $Flags as Node2D
 
-var recruitable_unit_type_scenes : Array
-
 func _ready() -> void:
 	Event.connect("turn_refresh", self, "_on_turn_refresh")
 
@@ -59,7 +55,7 @@ func _ready() -> void:
 
 	_calculate_upkeep()
 	_calculate_income()
-	recruitable_unit_type_scenes = [Archer, Ranger, Scout]
+	_initialize_faction_data()
 
 func add_unit(unit, is_leader := false) -> void:
 	"""
@@ -123,6 +119,10 @@ func _calculate_income() -> void:
 	The default calculation is 2 + 1 per village
 	"""
 	income = base_income + INCOME_PER_VILLAGE * villages.size()
+
+func _initialize_faction_data():
+	var factionResource = Registry.factions[faction]
+	recruit = factionResource.recruit
 
 func _turn_refresh(first_turn: bool) -> void:
 	"""
