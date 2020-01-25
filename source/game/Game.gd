@@ -207,7 +207,8 @@ func _update_time(time: Time) -> void:
 	for loc in scenario.map.locations_dict.values():
 		loc.terrain.time = time
 
-	var curr_tint: Vector3 = viewport_container.material.get_shader_param("delta")
+
+	var curr_tint = viewport_container.material.get_shader_param("delta")
 	var next_tint: Vector3 = time.tint
 
 	if curr_tint == null or curr_tint == next_tint:
