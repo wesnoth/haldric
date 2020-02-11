@@ -74,14 +74,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="New" type="Button" parent="UIButtons/HBoxContainer"]
+[node name="NewMapButton" type="Button" parent="UIButtons/HBoxContainer"]
 margin_left = 69.0
 margin_right = 149.0
 margin_bottom = 69.0
 rect_min_size = Vector2( 80, 0 )
 text = "New"
 
-[node name="LineEdit" type="LineEdit" parent="UIButtons/HBoxContainer"]
+[node name="MapNameLineEdit" type="LineEdit" parent="UIButtons/HBoxContainer"]
 margin_left = 169.0
 margin_right = 329.0
 margin_bottom = 69.0
@@ -90,14 +90,14 @@ focus_mode = 1
 context_menu_enabled = false
 placeholder_text = "scenario name"
 
-[node name="Save" type="Button" parent="UIButtons/HBoxContainer"]
+[node name="SaveButton" type="Button" parent="UIButtons/HBoxContainer"]
 margin_left = 349.0
 margin_right = 429.0
 margin_bottom = 69.0
 rect_min_size = Vector2( 80, 0 )
 text = "Save"
 
-[node name="Load" type="Button" parent="UIButtons/HBoxContainer"]
+[node name="LoadMapButton" type="Button" parent="UIButtons/HBoxContainer"]
 margin_left = 449.0
 margin_right = 529.0
 margin_bottom = 69.0
