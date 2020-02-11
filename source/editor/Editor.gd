@@ -14,9 +14,7 @@ onready var scenario_container := $ScenarioLayer/ViewportContainer/Viewport/Scen
 onready var camera := $ScenarioLayer/ViewportContainer/Viewport/Camera2D
 onready var scenario_viewport := $ScenarioLayer/ViewportContainer/Viewport as Viewport
 
-onready var HUD := $UI/HUD as CanvasLayer
-
-onready var line_edit := $UI/HUD/UIButtons/HBoxContainer/LineEdit as LineEdit
+onready var HUD := $UI/HUD as EditorHUD
 onready var minimap := $UI/HUD/Minimap as Control
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -37,6 +35,10 @@ func _ready() -> void:
 	minimap.connect("map_position_change_requested", self, "_on_map_position_change_requested")
 
 	current_clear_tile = scenario.map.default_tile
+
+	HUD.save_button.connect("button_down", self, "_on_save_button_down")
+	HUD.load_button.connect("button_down", self, "_on_load_button_down")
+	HUD.new_map_button.connect("button_down", self, "_on_new_map_button_down")
 
 func _update() -> void:
 	scenario.map.update_terrain()
@@ -120,6 +122,7 @@ func _save_map(scenario_name: String) -> void:
 	elif ResourceSaver.save(res_path, r_scenario) != OK:
 		print("Failed to save map resource", res_path)
 	else:
+		print("Saved scenario " + scenario_name)
 		Registry.register_scenario(id, r_scenario, scn_path)
 
 func _on_button_pressed(id: int) -> void:
@@ -129,13 +132,13 @@ func _on_button_pressed(id: int) -> void:
 	if Input.is_action_just_released("mouse_right"):
 		current_clear_tile = id
 
-func _on_Save_pressed() -> void:
-	_save_map(line_edit.text)
+func _on_save_button_down() -> void:
+	_save_map(HUD.get_map_name())
 
-func _on_Load_pressed() -> void:
-	_load_map(line_edit.text)
+func _on_load_button_down() -> void:
+	_load_map(HUD.get_map_name())
 
-func _on_New_pressed() -> void:
+func _on_new_map_button_down() -> void:
 	_new_map()
 
 func _on_map_position_change_requested(new_position: Vector2) -> void:

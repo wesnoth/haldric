@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/Defense.gd"
 }, {
+"base": "CanvasLayer",
+"class": "EditorHUD",
+"language": "GDScript",
+"path": "res://source/editor/EditorHUD.gd"
+}, {
 "base": "AStar",
 "class": "Grid",
 "language": "GDScript",
@@ -199,6 +204,7 @@ _global_script_class_icons={
 "CombatPlate": "",
 "Controller": "",
 "Defense": "",
+"EditorHUD": "",
 "Grid": "",
 "Hex": "",
 "Location": "",
@@ -259,7 +265,6 @@ Scene="*res://addons/scene_manager/source/Scene.tscn"
 gdscript/warnings/unassigned_variable=false
 gdscript/warnings/unassigned_variable_op_assign=false
 gdscript/warnings/unused_variable=false
-gdscript/warnings/unused_class_variable=false
 gdscript/warnings/unused_argument=false
 
 [display]
