@@ -9,7 +9,7 @@ var unit_type_id: String
 
 func initialize(unit_type_id: String) -> void:
 	self.unit_type_id = unit_type_id
-	var unit_type: PackedScene = Registry.units[unit_type_id].instance()
+	var unit_type := Registry.units[unit_type_id].instance() as UnitType
 	avatar.texture = unit_type.find_node("Sprite").texture
 	name_label.text = unit_type.name
 	cost_label.text = str(unit_type.cost)
