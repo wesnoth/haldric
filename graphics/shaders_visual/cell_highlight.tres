@@ -24,20 +24,17 @@ void vertex() {
 
 void fragment() {
 // ColorUniform:49
-	vec3 n_out49p0;
-	float n_out49p1;
-	n_out49p0 = BlendColor2.rgb;
-	n_out49p1 = BlendColor2.a;
+	vec3 n_out49p0 = BlendColor2.rgb;
+	float n_out49p1 = BlendColor2.a;
 
 // Input:21
-	vec3 n_out21p0;
-	n_out21p0 = vec3(UV,0.0);
+	vec3 n_out21p0 = vec3(UV, 0.0);
 
 // Texture:22
 	vec3 n_out22p0;
 	float n_out22p1;
 	{
-		vec4 _tex_read = texture( TEXTURE , n_out21p0.xy );
+		vec4 _tex_read = texture(TEXTURE, n_out21p0.xy);
 		n_out22p0 = _tex_read.rgb;
 		n_out22p1 = _tex_read.a;
 	}
