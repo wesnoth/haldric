@@ -7,6 +7,10 @@ var scenario: Scenario = null
 var current_side: Side = null setget _set_side
 var current_unit: Unit = null setget _set_current_unit
 
+var location_choice_mode := false
+var available_locations := []
+var unit_type_to_recruit : String
+
 onready var tween = $Tween
 
 onready var UI := $UI as CanvasLayer
@@ -21,8 +25,14 @@ onready var scenario_placeholder := $ScenarioLayer/ViewportContainer/Viewport/Sc
 onready var camera := $ScenarioLayer/ViewportContainer/Viewport/Camera2D as Camera2D
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	var loc: Location = scenario.map.get_location_from_mouse()
+	if location_choice_mode:
+		_handle_input_in_location_choice_mode(event, loc)
+	else:
+		_handle_input_in_normal_mode(event, loc)
+
+
+func _handle_input_in_normal_mode(event: InputEvent, loc: Location) -> void:
 	if event.is_action_pressed("mouse_left"):
 		if loc:
 			# Select a unit
@@ -66,6 +76,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.scancode == KEY_L and event.pressed:
 			loc.map.debug()
 
+func _handle_input_in_location_choice_mode(event: InputEvent, mouse_location: Location) -> void:
+	if event.is_action_pressed("mouse_right"):
+		_cancel_location_choice_mode()
+		unit_type_to_recruit = ""
+	if event.is_action_pressed("mouse_left") and mouse_location and available_locations.find(mouse_location) >= 0:
+		var unit_type: UnitType = Registry.units[unit_type_to_recruit].instance()
+		if current_side.try_spending_gold(unit_type.cost):
+			scenario.add_unit_with_loaded_data(current_unit.side, unit_type, mouse_location)
+		_cancel_location_choice_mode()
+		unit_type_to_recruit = ""
+
 func _ready() -> void:
 	randomize()
 	HUD.unit_panel.unit_viewport.world_2d = scenario_viewport.world_2d
@@ -81,6 +102,11 @@ func _ready() -> void:
 	HUD.connect("attack_selected", self, "_on_attack_selected")
 	# warning-ignore:return_value_discarded
 	HUD.connect("turn_end_pressed", self, "_on_turn_end_pressed")
+	# warning-ignore:return_value_discarded
+	HUD.connect("unit_recruitment_requested", self, "_on_unit_recruitment_requested")
+	# warning-ignore:return_value_discarded
+	HUD.connect("unit_recruitment_menu_requested", self, "_on_unit_recruitment_menu_requested")
+
 	if scenario.sides.get_child_count() > 0:
 		_set_side(scenario.sides.get_child(0))
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
@@ -129,11 +155,14 @@ func _set_current_unit(value: Unit) -> void:
 	current_unit = value
 
 	if current_unit:
-		#HUD.update_unit_info(current_unit)
 		scenario.map.display_reachable_for(current_unit.reachable)
+		HUD.set_recruitment_allowed(_can_current_unit_recruit())
 	else:
-		# HUD.clear_unit_info()
 		_clear_temp_path()
+		HUD.set_recruitment_allowed(false)
+
+func _can_current_unit_recruit() -> bool:
+	return current_side.is_leader(current_unit) and current_unit.location.can_recruit_from()
 
 func _get_path_for_unit(unit: Unit, new_loc: Location) -> Array:
 	if unit.reachable.has(new_loc):
@@ -178,7 +207,8 @@ func _update_time(time: Time) -> void:
 	for loc in scenario.map.locations_dict.values():
 		loc.terrain.time = time
 
-	var curr_tint: Vector3 = viewport_container.material.get_shader_param("delta")
+
+	var curr_tint = viewport_container.material.get_shader_param("delta")
 	var next_tint: Vector3 = time.tint
 
 	if curr_tint == null or curr_tint == next_tint:
@@ -241,8 +271,29 @@ func _on_unit_move_finished(unit: Unit, location: Location, halted: bool) -> voi
 	scenario.map.display_reachable_for(unit.reachable)
 	if halted:
 		_set_current_unit(unit)
+		_draw_temp_path(_get_path_for_unit(current_unit, scenario.map.get_location_from_mouse()))
 
 func _on_turn_end_pressed() -> void:
 	Event.emit_signal("turn_end", scenario.turn, current_side.number)
 	_next_side()
 	Event.emit_signal("turn_refresh", scenario.turn, current_side.number)
+
+func _on_unit_recruitment_requested(unit_type_id: String) -> void:
+	var target_locations := current_unit.location.get_adjacent_free_recruitment_locations()
+	_enter_location_choice_mode(target_locations)
+	HUD.set_recruitment_allowed(false)
+	unit_type_to_recruit = unit_type_id
+	_clear_temp_path()
+
+func _on_unit_recruitment_menu_requested():
+	HUD.open_recruitment_menu(current_side.recruit)
+
+func _cancel_location_choice_mode() -> void:
+	location_choice_mode = false
+	available_locations.clear()
+	scenario.map.clear_highlight()
+
+func _enter_location_choice_mode(locations : Array) -> void:
+	location_choice_mode = true
+	available_locations = locations
+	scenario.map.update_highlight(locations)

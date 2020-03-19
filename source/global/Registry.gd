@@ -7,6 +7,7 @@ var campaigns := {}
 var terrain := {}
 var times := {}
 var schedules := {}
+var factions := {}
 
 func _ready() -> void:
 	_make_user_dirs()
@@ -19,6 +20,7 @@ func scan() -> void:
 	_load_campaigns()
 	_load_terrain()
 	_load_times()
+	_load_factions()
 	_load_schedules()
 
 func register_scenario(scenario_id: String, scneario_resource: RScenario, scn_path: String) -> void:
@@ -73,6 +75,12 @@ func _load_schedules() -> void:
 
 	for file_data in Loader.load_dir("res://data/schedules", ["tres", "res"]):
 		schedules[file_data.id] = file_data.data
+
+func _load_factions() -> void:
+	factions.clear()
+
+	for file_data in Loader.load_dir("res://data/factions", ["tres", "res"]):
+		factions[file_data.id] = file_data.data
 
 func _make_user_dirs() -> void:
 	var user_dir := Directory.new()

@@ -8,6 +8,9 @@
 rect_clip_content = true
 mouse_filter = 2
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Schedule" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -15,12 +18,14 @@ script = ExtResource( 2 )
 [node name="Sides" type="Node2D" parent="."]
 
 [node name="Custom1" parent="Sides" instance=ExtResource( 3 )]
+faction = "rebels"
 team_color = "Teal"
 flag_type = "Ragged"
 gold = 125
 fog = true
 
 [node name="Custom2" parent="Sides" instance=ExtResource( 3 )]
+faction = "undead"
 team_color = "Purple"
 flag_type = "Long"
 gold = 125

@@ -22,6 +22,8 @@ var viewable := {}
 
 var viewable_units := {} #dont know if we need this, but just in case
 
+export var faction := ""
+
 export(String, "Red", "Blue", "Green", "Purple", "Black", "White", "Brown", "Orange", "Teal") var team_color := "Red"
 export(String, "Standard", "Knalgan", "Long", "Ragged", "Undead", "Wood-Elvish") var flag_type := "Standard"
 
@@ -53,9 +55,9 @@ func _ready() -> void:
 
 	_calculate_upkeep()
 	_calculate_income()
+	_initialize_faction_data()
 
-# :Unit
-func add_unit(unit) -> void:
+func add_unit(unit, is_leader := false) -> void:
 	"""
 	Adds the specified unit object and sets it to belong to this side
 	Also updates gold production (for the GUI)
@@ -63,8 +65,13 @@ func add_unit(unit) -> void:
 	units.add_child(unit)
 	unit.side = self
 	unit.type.sprite.material = unit_shader
+	unit.connect("died", self, "_on_unit_died")
+
 	_calculate_upkeep()
 	_calculate_income()
+
+	if is_leader:
+		leaders.append(unit)
 
 func add_village(loc: Location) -> bool:
 	"""
@@ -96,12 +103,6 @@ func has_village(loc: Location) -> bool:
 	"""
 	return villages.has(loc)
 
-# -> Unit
-func get_first_leader():
-	if leaders.size() > 0:
-		return leaders[0]
-	return null
-
 func _calculate_upkeep() -> void:
 	"""
 	Calculates how much gold costs the player will have.
@@ -118,6 +119,10 @@ func _calculate_income() -> void:
 	The default calculation is 2 + 1 per village
 	"""
 	income = base_income + INCOME_PER_VILLAGE * villages.size()
+
+func _initialize_faction_data():
+	var factionResource = Registry.factions[faction]
+	recruit = factionResource.recruit
 
 func _turn_refresh(first_turn: bool) -> void:
 	"""
@@ -168,3 +173,18 @@ func _on_turn_refresh(turn: int, side: int) -> void:
 	"""
 	if self.number == side:
 		_turn_refresh(turn == 1)
+
+func try_spending_gold(amount : int) -> bool:
+	if amount > gold || amount < 0:
+		return false
+	gold -= amount
+	return true
+
+func is_leader(unit) -> bool:
+	return leaders.find(unit) >= 0
+
+func _on_unit_died(unit : Node) -> void:
+	var idx = leaders.find(unit)
+	if idx >= 0:
+		leaders.remove(idx)
+	unit.queue_free()
