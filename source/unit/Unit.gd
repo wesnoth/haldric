@@ -100,7 +100,7 @@ func kill(active_side: bool, attacker: Unit) -> void:
 	if attacker.side.viewable_units.has(attacker):
 		attacker.side.viewable_units.erase(attacker)
 	attacker.set_reachable()
-	attacker.experience_current = type.level * 8
+	attacker.experience_current += type.level * 8
 	emit_signal("died", self)
 
 func get_movement_cost(loc: Location) -> int:
