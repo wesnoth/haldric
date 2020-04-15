@@ -259,6 +259,11 @@ func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
 					break
 			defender_strikes -= 1
 
+	target.experience_current += temp_current.type.level
+	temp_current.experience_current += target.type.level
+
+	temp_current.has_attacked = true
+
 	combatChoices['offense'].execute_end_turn(temp_current, target)
 	combatChoices['defense'].execute_end_turn(target, temp_current)
 
