@@ -9,9 +9,10 @@ func _ready() -> void:
 		for label in ['name', 'damage', 'details', 'specials']:
 			combat[type][label] = $CombatHBox.get_node(type.capitalize() + 'Details/' + label.capitalize()) as Label
 
-func update_attack_label(attack : Attack, type : String) -> void:
+func update_attack_label(unit: Unit, attack : Attack, type : String) -> void:
 	combat[type]['name'].text = attack.name
-	combat[type]['damage'].text = "%d x %d" % [attack.damage, attack.strikes]
+	print("TYPE: ", type, " DAMAGE: ", unit.get_attack_damage(attack))
+	combat[type]['damage'].text = "%d x %d" % [unit.get_attack_damage(attack), attack.strikes]
 	combat[type]['details'].text = attack.type
 	combat[type]['icon'].texture = attack.icon
 

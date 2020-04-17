@@ -93,6 +93,7 @@ func move_to(new_path: Array) -> void:
 
 func get_attack_damage(attack: Attack) -> int:
 	var resistance = type.resistance[attack.type]
+	print("DAMAGE: ", attack.damage, " TIME:", get_time_percentage(), " RESIST: ", resistance)
 	return attack.damage * (1 + get_time_percentage()/100) * (1 - resistance/100)
 
 func receive_attack(attack: Attack) -> bool:
