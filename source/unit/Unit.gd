@@ -91,9 +91,14 @@ func move_to(new_path: Array) -> void:
 	path = new_path
 	change_state("move")
 
+func get_attack_damage(attack: Attack) -> int:
+	var resistance = type.resistance[attack.type]
+	print("DAMAGE: ", attack.damage, " TIME:", get_time_percentage(), " RESIST: ", resistance)
+	return attack.damage * (1 + get_time_percentage()/100) * (1 - resistance/100)
+
 func receive_attack(attack: Attack) -> bool:
-	health_current -= attack.damage
-	print("{name} received {dmg} damage".format({'name':type.id,'dmg':attack.damage}))
+	health_current -= get_attack_damage(attack)
+	print("{name} received {dmg} damage".format({'name':type.id,'dmg':get_attack_damage(attack)}))
 	return health_current <= 0
 
 func kill(active_side: bool, attacker: Unit) -> void:
