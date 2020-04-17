@@ -14,6 +14,7 @@ var side : Side = null
 
 var health_current := 0
 var moves_current := 0
+var has_attacked := false
 var experience_current := 0 setget _set_experience_current
 
 var location: Location = null
@@ -57,6 +58,7 @@ func advance(unit_type: UnitType) -> void:
 func reset() -> void:
 	health_current = type.health
 	moves_current = type.moves
+	has_attacked = false
 	experience_current = 0
 
 func change_state(new_state):
@@ -100,7 +102,7 @@ func kill(active_side: bool, attacker: Unit) -> void:
 	if attacker.side.viewable_units.has(attacker):
 		attacker.side.viewable_units.erase(attacker)
 	attacker.set_reachable()
-	attacker.experience_current += type.level * 8
+	attacker.experience_current += type.level * 7 # It's multiplied by 7 as there is already xp for surviving
 	emit_signal("died", self)
 
 func get_movement_cost(loc: Location) -> int:
@@ -152,7 +154,7 @@ func refresh_unit() -> void:
 	"""
 	if health_current < type.health:
 		var heal = 0
-		if moves_current == type.moves:
+		if moves_current == type.moves and not has_attacked:
 			heal += side.HEAL_ON_REST # If the unit did not move last turn, it recovers 2 HP
 		if location in side.villages:
 			heal += side.HEAL_ON_VILLAGE # If the unit is in a village, it recovers 8 HP
@@ -160,4 +162,5 @@ func refresh_unit() -> void:
 			heal = type.health - health_current
 		health_current += heal
 		print("{name} healed {heal} HP for resting".format({'name':type.id, 'heal':heal}))
+	has_attacked = false
 	moves_current = type.moves # If the unit moved last turn, it recovers to its max move
