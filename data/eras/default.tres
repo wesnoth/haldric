@@ -7,4 +7,3 @@ script = ExtResource( 1 )
 id = "default"
 name = "Default"
 factions = [ "Rebels", "Undead" ]
-

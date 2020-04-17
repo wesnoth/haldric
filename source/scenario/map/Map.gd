@@ -156,6 +156,7 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 	* ignore_units and ignore_moves are set to true when we only want to check the line of sight.
 	* Setting them to true makes the calculations here ignore stopping due to having units on the way or less movement than max.
 	"""
+
 	update_weight(unit, false, ignore_units) # We update how much each hex costs to move for this unit
 	var paths := {} # A dictionary of possible paths.
 					# Each key is a location object.
@@ -192,16 +193,17 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 			actual_path.append(path_location) # If the cost to move to the next location in the path is still within this unit's movement points
 			# we add this location to the actually available locations in that path
 			paths[path_location] = actual_path.duplicate(true) # We keep resetting the actual distance we calculated this unit will reach towards this location.
-			if cost == radius: # If the movement points we've used are exactly equal to our movement range
-				# Then we still want to allow the unit to be able to attack any adjacent enemy at the end of its range
-				if ZOC_tiles.has(path_location) and not ignore_units:
-					var attack_path = actual_path.duplicate(true)
-					for enemy_cell in ZOC_tiles[path_location]:
-						if not paths.has(enemy_cell):
-							attack_path.append(enemy_cell)
-							paths[enemy_cell] = attack_path.duplicate(true)
-							attack_path.pop_back()
-				break
+
+			# Then we still want to allow the unit to be able to attack any adjacent enemy at the end of its range
+#			var path_location = actual_path[-1]
+			if ZOC_tiles.has(path_location) and not ignore_units:
+				var attack_path = actual_path.duplicate(true)
+				for enemy_cell in ZOC_tiles[path_location]:
+					if not paths.has(enemy_cell):
+						attack_path.append(enemy_cell)
+						paths[enemy_cell] = attack_path.duplicate(true)
+						attack_path.pop_back()
+
 	return paths
 
 func update_terrain_from_map_data(map_data: Dictionary) -> void:
