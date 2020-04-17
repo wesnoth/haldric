@@ -25,7 +25,7 @@ func popup_attack(unit: Unit, target: Unit) -> void:
 		var button = AttackButton.instance()
 		attack_buttons.add_child(button)
 		button.connect("attack_button_pressed", self, "_on_button_pressed")
-		button.update_options(attack, _find_matching_defense(target, attack))
+		button.update_options(unit, target, attack, _find_matching_defense(target, attack))
 
 	popup_centered()
 
