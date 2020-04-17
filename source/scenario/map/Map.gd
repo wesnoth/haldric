@@ -195,8 +195,7 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 			paths[path_location] = actual_path.duplicate(true) # We keep resetting the actual distance we calculated this unit will reach towards this location.
 
 			# Then we still want to allow the unit to be able to attack any adjacent enemy at the end of its range
-#			var path_location = actual_path[-1]
-			if ZOC_tiles.has(path_location) and not ignore_units:
+			if ZOC_tiles.has(path_location) and not ignore_units and path_location.unit == null:
 				var attack_path = actual_path.duplicate(true)
 				for enemy_cell in ZOC_tiles[path_location]:
 					if not paths.has(enemy_cell):
