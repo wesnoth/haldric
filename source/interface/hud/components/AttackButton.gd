@@ -8,9 +8,9 @@ signal attack_button_pressed(attack)
 func _ready():
 	pass
 
-func update_options(offense : Attack, defense: Attack) -> void:
-	combatPlate.update_attack_label(offense, 'offense')
-	combatPlate.update_attack_label(defense, 'defense')
+func update_options(unit: Unit, target: Unit, offense : Attack, defense: Attack) -> void:
+	combatPlate.update_attack_label(target, offense, 'offense')
+	combatPlate.update_attack_label(unit, defense, 'defense')
 	combatPlate.update_attack_type(offense)
 	combatChoices['offense'] = offense
 	combatChoices['defense'] = defense
