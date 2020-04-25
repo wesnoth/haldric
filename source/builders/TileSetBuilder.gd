@@ -4,7 +4,7 @@ var sheets := {}
 var graphics := {}
 var transitions := {}
 
-func load_sprite_sheet(name: String, path: String) -> void:
+func load_spritesheet(name: String, path: String) -> void:
 	var sheet = load(path) as Texture
 	sheets[name] = sheet
 
