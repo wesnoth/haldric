@@ -163,7 +163,7 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 					# Each value is an array of locations that this unit's would have to move through to reach the location at the key
 	paths[unit.location] = []
 
-	if unit.has_attacked:
+	if unit.has_attacked and not ignore_moves:
 		return paths
 
 	var radius = (unit.type.moves if ignore_moves else unit.moves_current) # Figure out how many hexes around this unit can reach.
