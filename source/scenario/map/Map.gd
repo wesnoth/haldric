@@ -67,7 +67,7 @@ func _input(event) -> void:
 		else:
 			hover.show() # If the hex is over a playable hex, show the hex highlight
 			hover.position = map_to_world_centered(cell)
-			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[cell].cube_coords) # Debug
+			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[cell].cube_cell) # Debug
 
 func map_to_world_centered(cell: Vector2) -> Vector2:
 	"""
@@ -100,7 +100,7 @@ func extend_viewable(unit: Unit) -> bool:
 	var new_unit_found  = false
 	#var extend_hexes := []
 	#update_weight(unit, false, true)
-	var cells := Hex.get_cells_in_range(unit.location.cell, unit.type.moves, rect)
+	var cells := Hex.get_cells_in_range(unit.location.quad_cell, unit.type.moves, rect)
 	cells.invert()
 	var cur_index = 0
 	var check_radius = unit.type.moves
@@ -113,7 +113,7 @@ func extend_viewable(unit: Unit) -> bool:
 			var path: Array = find_path(unit.location, loc)
 			var cost := 0
 			for path_cell in path:
-				var cell_cost = grid.get_point_weight_scale(locations_dict[path_cell.cell].id)
+				var cell_cost = grid.get_point_weight_scale(locations_dict[path_cell.quad_cell].id)
 				if cost + cell_cost > unit.type.moves:
 					break
 				cost += cell_cost
@@ -167,7 +167,7 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 		return paths
 
 	var radius = (unit.type.moves if ignore_moves else unit.moves_current) # Figure out how many hexes around this unit can reach.
-	var cells := Hex.get_cells_in_range(unit.location.cell, radius, rect) # Figure out which exact hexes are in this radius
+	var cells := Hex.get_cells_in_range(unit.location.quad_cell, radius, rect) # Figure out which exact hexes are in this radius
 	if cells.size() == 0:
 	# if our radius was 0, it means that our unit might be in surrounded by Zones of Control
 	# In that case, we add each enemy unit which set out possible path to only the units which are in this units ZoC
@@ -184,7 +184,7 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 		var actual_path := [] # It will hold how many of the locations in this potential path, this unit is actually able to traverse with its available movement.
 		var cost := 0 # Holds how much movement points it will cost in total to move through this path
 		for path_location in path: # For each potential hex in this path, we calculate its difficulty
-			var cell_cost = grid.get_point_weight_scale(locations_dict[path_location.cell].id)
+			var cell_cost = grid.get_point_weight_scale(locations_dict[path_location.quad_cell].id)
 			#if ZOC_tiles.has(path_cell) and not ignore_units:
 			#	cell_cost = 1
 			if cost + cell_cost > radius: # If the cost to move to the next hex in the path would exceed this unit's movement radius, we stop.
@@ -238,12 +238,12 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 					ZOC_tiles[location]=[]
 				else: # If there's no units in the location we're checking then we take the opportunity to refresh grid connection
 					for adjacent_location in location.get_adjacent_locations(): # We iterate through each location around the current location we're checking
-						if not _is_cell_in_map(adjacent_location.cell):
+						if not _is_cell_in_map(adjacent_location.quad_cell):
 							continue
 						if unit.location != adjacent_location: # If that adjacent location does not contain our unit, then we refresh all connections to it
 							grid.block_location(adjacent_location)
 							for neighbor_location in adjacent_location.get_adjacent_locations():
-								if not _is_cell_in_map(neighbor_location.cell):
+								if not _is_cell_in_map(neighbor_location.quad_cell):
 									continue
 								#if (new_neighbor in neighbors and unit.location.cell == new_neighbor):
 								#	continue
@@ -320,7 +320,7 @@ func get_map_data() -> Dictionary:
 	var map_data := {}
 	for location in locations_dict.values():
 		map_data[location.id] = {}
-		map_data[location.id].cell = location.cell
+		map_data[location.id].quad_cell = location.quad_cell
 		map_data[location.id].code = location.terrain.code
 	return map_data
 
@@ -359,12 +359,12 @@ func _update_locations() -> void:
 
 func _update_terrain_record_from_map(loc: Location) -> void:
 	# Find the tileset tile on both layers (base and overlay)
-	var b_tile := get_cellv(loc.cell)
-	var o_tile := overlay.get_cellv(loc.cell)
+	var b_tile := get_cellv(loc.quad_cell)
+	var o_tile := overlay.get_cellv(loc.quad_cell)
 
 	# Get tile names
 	var b_code := tile_set.tile_get_name(b_tile)
-	var o_code := tile_set.tile_get_name(o_tile) if overlay.get_cellv(loc.cell) != INVALID_CELL else ""
+	var o_code := tile_set.tile_get_name(o_tile) if overlay.get_cellv(loc.quad_cell) != INVALID_CELL else ""
 
 	if o_code.empty():
 		loc.terrain = Terrain.new([Registry.terrain[b_code]])
@@ -403,7 +403,7 @@ func display_reachable_for(reachable_locs: Dictionary) -> void:
 
 	# Punch out visible area
 	for loc in reachable_locs:
-		cover.set_cellv(loc.cell, INVALID_CELL)
+		cover.set_cellv(loc.quad_cell, INVALID_CELL)
 
 	cover.show()
 
@@ -415,7 +415,7 @@ func update_highlight(location_to_highlight : Array) -> void:
 		return
 
 	for location in location_to_highlight:
-		highlight.set_cellv(location.cell, void_tile)
+		highlight.set_cellv(location.quad_cell, void_tile)
 
 	highlight.show()
 

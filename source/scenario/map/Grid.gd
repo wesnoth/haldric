@@ -23,7 +23,7 @@ func find_path_by_location(start_loc: Location, end_loc: Location) -> PoolVector
 
 func make_location_one_way(location: Location) -> void:
 	for adjacent_location in location.get_adjacent_locations():
-		if rect.has_point(adjacent_location.cell) and are_points_connected(location.id, adjacent_location.id):
+		if rect.has_point(adjacent_location.quad_cell) and are_points_connected(location.id, adjacent_location.id):
 			disconnect_points(location.id, adjacent_location.id)
 			connect_points(adjacent_location.id,location.id,false)
 
@@ -36,7 +36,7 @@ func unblock_location(location: Location) -> void:
 
 func _generate_points() -> void:
 	for location in map.locations_dict.values():
-		add_point(location.id, Vector3(location.cell.x, location.cell.y, 0))
+		add_point(location.id, Vector3(location.quad_cell.x, location.quad_cell.y, 0))
 
 func _generate_point_connections() -> void:
 	for location in map.locations_dict.values():
@@ -44,7 +44,7 @@ func _generate_point_connections() -> void:
 
 func _connect_with_neighbors(location: Location) -> void:
 	for adjacent_location in location.get_adjacent_locations():
-		if rect.has_point(location.cell) and\
+		if rect.has_point(location.quad_cell) and\
 			not are_points_connected(location.id, adjacent_location.id) and\
 			not location.is_blocked and\
 			not adjacent_location.is_blocked:
@@ -52,7 +52,7 @@ func _connect_with_neighbors(location: Location) -> void:
 
 func _disconnect_with_neighbors(location: Location) -> void:
 	for adjacent_location in location.get_adjacent_locations():
-		if rect.has_point(adjacent_location.cell):
+		if rect.has_point(adjacent_location.quad_cell):
 			if are_points_connected(location.id, adjacent_location.id):
 				disconnect_points(location.id, adjacent_location.id)
 			elif are_points_connected(adjacent_location.id, location.id):
@@ -69,7 +69,7 @@ func _compute_cost(from_id: int, to_id: int) -> float:
 func enum_connected_points(location: Location) -> int:
 	var ret: int = 0
 	for adjacent_location in location.get_adjacent_locations():
-		if not rect.has_point(adjacent_location.cell):
+		if not rect.has_point(adjacent_location.quad_cell):
 			continue
 		if are_points_connected(location.id, adjacent_location.id):
 			ret+=1

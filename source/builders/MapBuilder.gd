@@ -6,6 +6,7 @@ func build(res: RScenario):
 	var map := Map.instance() as Map
 
 	for loc in res.map_data.values():
+
 		pass
 
 	pass

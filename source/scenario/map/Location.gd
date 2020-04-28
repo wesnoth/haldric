@@ -9,8 +9,8 @@ const OFFSET = Vector2(36, 36)
 var id := 0
 
 var position := Vector2() # Centered position of cell on the tilemap in Axial coordinates
-var cell := Vector2() # Position of cell on the tilemap in Axial coordinates
-var cube_coords := Vector3() setget _set_cube_coords, _get_cube_coords # Position of cell on the tilemap in Cube coordinates
+var quad_cell := Vector2() # Position of cell on the tilemap in Axial coordinates
+var cube_cell := Vector3() setget _set_cube_cell, _get_cube_cell # Position of cell on the tilemap in Cube coordinates
 
 var flag : Sprite = null
 
@@ -30,27 +30,27 @@ func _init(tilemap_cell_coords: Vector2, map_instance) -> void:
 	This function also needs the size of the map
 	"""
 	map = map_instance
-	cell = tilemap_cell_coords
-	cube_coords = Hex.quad2cube(cell)
+	quad_cell = tilemap_cell_coords
+	cube_cell = Hex.quad2cube(quad_cell)
 	var rect = map.get_used_rect()
-	id = _generate_id(cell, int(rect.size.x))
-	position = map.map_to_world_centered(cell)
+	id = _generate_id(quad_cell, int(rect.size.x))
+	position = map.map_to_world_centered(quad_cell)
 
 
 #func get_position_centered() -> Vector2:
 	#return position + OFFSET
 
 
-func _get_cube_coords() -> Vector3:
+func _get_cube_cell() -> Vector3:
 	# Returns a Vector3 of the cube coordinates
-	return cube_coords
+	return cube_cell
 
-func _set_cube_coords(val: Vector3) -> void:
+func _set_cube_cell(val: Vector3) -> void:
 	# Sets the position from a Vector3 of cube coordinates
 	if val.x + val.y + val.z != 0:
 		print("WARNING: Invalid cube coordinates for hex (x+y+z!=0): ", val)
 		return
-	cube_coords = val
+	cube_cell = val
 
 static func _generate_id(vec: Vector2, magnitude: int) -> int:
 	"""
@@ -64,7 +64,7 @@ static func _generate_id(vec: Vector2, magnitude: int) -> int:
 
 func get_adjacent_locations() -> Array:
 	var neighbor_locations := []
-	for hex in Hex.get_neighbors(cell):
+	for hex in Hex.get_neighbors(quad_cell):
 		var neighbor = map.locations_dict.get(hex, null)
 		if neighbor:
 			neighbor_locations.append(neighbor)

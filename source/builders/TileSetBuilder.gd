@@ -38,9 +38,10 @@ func build_transitions_tile_set() -> TileSet:
 	return TileSet.new()
 """
 
-func _add_tile(tile_set: TileSet, code: String, tex: Texture, offset: Vector2) -> void:
+func _add_tile(tile_set: TileSet, code: String, tex: Texture, offset: Vector2) -> int:
 	var tile_id := tile_set.get_tiles_ids().size()
 	tile_set.create_tile(tile_id)
 	tile_set.tile_set_name(tile_id, code)
 	tile_set.tile_set_texture(tile_id, tex)
 	tile_set.tile_set_texture_offset(tile_id, offset)
+	return tile_id
