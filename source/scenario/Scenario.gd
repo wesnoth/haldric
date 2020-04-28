@@ -6,6 +6,7 @@ const Map = preload("res://source/scenario/map/Map.tscn")
 signal unit_experienced(unit)
 signal unit_moved(unit, location)
 signal unit_move_finished(unit, location)
+signal unit_added(unit)
 
 var turn := 0
 var turns := -1
@@ -42,6 +43,7 @@ func add_unit_with_loaded_data(side: Side, unit_type: UnitType, target_location 
 
 	side.add_unit(unit, is_leader)
 	unit.place_at(target_location)
+	emit_signal("unit_added", unit)
 
 func add_unit(side_number: int, unit_id: String, x: int, y: int, is_leader := false) -> void:
 	var unit_type: PackedScene = Registry.units[unit_id]

@@ -185,6 +185,11 @@ _global_script_classes=[ {
 "path": "res://source/unit/Unit.gd"
 }, {
 "base": "Node2D",
+"class": "UnitPlate",
+"language": "GDScript",
+"path": "res://source/interface/hud/UnitPlate.gd"
+}, {
+"base": "Node2D",
 "class": "UnitType",
 "language": "GDScript",
 "path": "res://source/unit/UnitType.gd"
@@ -230,6 +235,7 @@ _global_script_class_icons={
 "ToDWheel": "",
 "Transitions": "",
 "Unit": "",
+"UnitPlate": "",
 "UnitType": "",
 "WeaponSpecial": ""
 }

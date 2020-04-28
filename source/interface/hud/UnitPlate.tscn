@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/interface/hud/UnitPlate.gd" type="Script" id=1]
+[ext_resource path="res://graphics/fonts/Lato12.tres" type="DynamicFont" id=2]
+[ext_resource path="res://source/interface/hud/LifeBar.tscn" type="PackedScene" id=3]
+
+[node name="UnitPlate" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="StateLabel" type="Label" parent="."]
+visible = false
+margin_left = -20.0
+margin_top = 30.0
+margin_right = 20.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 2 )
+text = "idle"
+align = 1
+valign = 1
+
+[node name="LifeBar" parent="." instance=ExtResource( 3 )]
+margin_left = -20.0
+margin_top = -40.0
+margin_right = 20.0
+margin_bottom = -33.0

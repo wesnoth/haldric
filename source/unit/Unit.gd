@@ -9,6 +9,8 @@ signal moved(unit, location)
 signal move_finished(unit, location, halt)
 signal state_changed(new_state)
 signal died(unit)
+signal health_changed(current_health, max_health)
+signal unhide
 
 var side : Side = null
 
@@ -26,28 +28,32 @@ var type : UnitType = null
 
 var current_state : State = null
 
+
 onready var states := {
 	idle = $States/Idle,
 	move = $States/Move,
 	attack = $States/Attack,
 }
 
+onready var unit_hud_transform = $UnitHUDTransform as RemoteTransform2D
 onready var tween := $Tween as Tween
-onready var state_label := $StateLabel as Label
 
-onready var life_bar := $LifeBar as Control
 
 func _unhandled_input(event: InputEvent) -> void:
 	current_state.input(self, event)
 
 func _process(delta: float) -> void:
 	current_state.update(self, delta)
-	life_bar.update_unit(self)
 
 func _ready() -> void:
 	add_child(type)
 	change_state("idle")
 	reset()
+	self.connect("visibility_changed", self, "_on_visibility_changed")
+	
+func _on_visibility_changed():
+	if(visible):
+		emit_signal("unhide")
 
 func advance(unit_type: UnitType) -> void:
 	remove_child(type)
@@ -65,7 +71,6 @@ func change_state(new_state):
 	if current_state:
 		current_state._exit(self)
 	current_state = states[new_state]
-	state_label.text = current_state.name
 	current_state._enter(self)
 	emit_signal("state_changed", current_state.name)
 
@@ -97,7 +102,7 @@ func get_attack_damage(attack: Attack) -> int:
 	return attack.damage * (1 + get_time_percentage()/100) * (1 - resistance/100)
 
 func receive_attack(attack: Attack) -> bool:
-	health_current -= get_attack_damage(attack)
+	_change_health(-get_attack_damage(attack))
 	print("{name} received {dmg} damage".format({'name':type.id,'dmg':get_attack_damage(attack)}))
 	return health_current <= 0
 
@@ -109,6 +114,7 @@ func kill(active_side: bool, attacker: Unit) -> void:
 	attacker.set_reachable()
 	attacker.experience_current += type.level * 7 # It's multiplied by 7 as there is already xp for surviving
 	emit_signal("died", self)
+	get_tree().call_group("UI", "remove_unit_plate", self)
 
 func get_movement_cost(loc: Location) -> int:
 	var cost = type.movement.get(loc.terrain.type[0])
@@ -135,6 +141,9 @@ func update_viewable() -> bool:
 	if side.fog:
 		return location.map.extend_viewable(self) #do not thread, causes a lot of issues when threaded for some reason
 	return false
+
+func attach_ui(plate: UnitPlate):
+	unit_hud_transform.remote_path = plate.get_path()
 
 func _set_experience_current(value: int) -> void:
 	experience_current = value
@@ -165,7 +174,11 @@ func refresh_unit() -> void:
 			heal += side.HEAL_ON_VILLAGE # If the unit is in a village, it recovers 8 HP
 		if heal + health_current > type.health:
 			heal = type.health - health_current
-		health_current += heal
+		_change_health(heal)
 		print("{name} healed {heal} HP for resting".format({'name':type.id, 'heal':heal}))
 	has_attacked = false
 	moves_current = type.moves # If the unit moved last turn, it recovers to its max move
+
+func _change_health(value):
+	health_current += value
+	emit_signal("health_changed", self)

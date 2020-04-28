@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var schedule := []
 
 var scenario: Scenario = null
@@ -13,10 +14,10 @@ var unit_type_to_recruit : String
 
 onready var tween = $Tween
 
-onready var UI := $UI as CanvasLayer
-onready var HUD := $UI/HUD as CanvasLayer
+onready var UI := $ScenarioLayer/ViewportContainer/Viewport/UI as CanvasLayer
 
-onready var minimap := $UI/HUD/Minimap
+onready var HUD := $HUD as CanvasLayer
+onready var minimap := $HUD/Minimap
 
 onready var draw := $ScenarioLayer/ViewportContainer/Viewport/Draw as Node2D
 onready var viewport_container := $ScenarioLayer/ViewportContainer as ViewportContainer
@@ -127,6 +128,9 @@ func _load_scenario() -> void:
 
 	scenario_placeholder.replace_by(scenario)
 	scenario.map.map_data = Global.state.scenario.data.map_data
+	# this has to happen before initialization since we need to react to units
+	# that are added to scenario at initialization
+	scenario.connect("unit_added", self, "_on_new_unit_added")
 	scenario.initialize()
 
 	#warning-ignore:return_value_discarded
@@ -135,9 +139,11 @@ func _load_scenario() -> void:
 	scenario.connect("unit_moved", self, "_on_unit_moved")
 	#warning-ignore:return_value_discarded
 	scenario.connect("unit_move_finished", self, "_on_unit_move_finished")
-
 	draw.map_area = scenario.map.get_pixel_size()
-
+	
+func _on_new_unit_added(unit):
+	UI.add_unit_plate(unit)
+	
 # used in map for workaround on nested viewports issue
 func get_camera_zoom() -> Vector2:
 	return camera.zoom
