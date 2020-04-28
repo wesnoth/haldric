@@ -34,6 +34,7 @@ onready var transitions := $Transitions as Transitions
 onready var border := $MapBorder # The hexes which are renderred but not playable
 onready var hover := $Hover # The highlight hex sprite to see which hex your mouse is over.
 
+
 func initialize() -> void:
 	_initialize_terrain()
 
@@ -42,6 +43,7 @@ func initialize() -> void:
 	_initialize_locations()
 	_initialize_grid()
 	_initialize_transitions()
+
 
 func get_viewport_mouse_position() -> Vector2:
 	"""
@@ -57,6 +59,7 @@ func get_viewport_mouse_position() -> Vector2:
 		offset_position = get_local_mouse_position()
 	return offset_position
 
+
 func _input(event) -> void:
 	if event is InputEventMouseMotion:  # If the mouse is moving, we update the highlight position on the map.
 		var cell := world_to_map(get_viewport_mouse_position())
@@ -69,6 +72,7 @@ func _input(event) -> void:
 			hover.position = map_to_world_centered(cell)
 			$Hover/HexDebug/HexCubeLoc.text = str(locations_dict[cell].cube_cell) # Debug
 
+
 func map_to_world_centered(cell: Vector2) -> Vector2:
 	"""
 	Function to get the center of the hex
@@ -77,11 +81,13 @@ func map_to_world_centered(cell: Vector2) -> Vector2:
 	"""
 	return map_to_world(cell) + OFFSET
 
+
 func world_to_world_centered(cell: Vector2) -> Vector2:
 	"""
 	Function to get the world (i.e. mouse) position of the center of the hexcell over which the mouse is currently positioned on.
 	"""
 	return map_to_world_centered(world_to_map(cell))
+
 
 func find_path(start_loc: Location, end_loc: Location) -> Array:
 	var loc_path := []
@@ -92,6 +98,7 @@ func find_path(start_loc: Location, end_loc: Location) -> Array:
 			loc_path.append(get_location(cell))
 
 	return loc_path
+
 
 func extend_viewable(unit: Unit) -> bool:
 	"""
@@ -137,6 +144,7 @@ func extend_viewable(unit: Unit) -> bool:
 	#return extend_hexes
 	return new_unit_found
 
+
 #seprate wrapper function for "find_all_reachable_cells" since threads can only handle 1 argument being passed for some reason
 func threadable_find_all_reachable_cells(arg_array: Array) -> Dictionary:
 	"""
@@ -148,6 +156,7 @@ func threadable_find_all_reachable_cells(arg_array: Array) -> Dictionary:
 	var ignore_units = false if arg_array.size()  <= 1 else arg_array[1]
 	var ignore_moves = false if arg_array.size()  <= 2 else arg_array[2]
 	return find_all_reachable_cells(unit,ignore_units,ignore_moves)
+
 
 func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_moves: bool = false) -> Dictionary:
 	"""
@@ -205,12 +214,22 @@ func find_all_reachable_cells(unit: Unit, ignore_units: bool = false, ignore_mov
 
 	return paths
 
+
 func update_terrain_from_map_data(map_data: Dictionary) -> void:
 	pass
+
 
 func update_terrain() -> void:
 	_update_locations()
 	transitions.update_transitions()
+
+
+func update_cell_base_terrain(cell: Vector2, code: Array) -> void:
+	set_cellv(cell, tile_set.find_tile_by_name(code[0]))
+
+	if code.size() > 1:
+		overlay.set_cellv(cell, tile_set.find_tile_by_name(code[1]))
+
 
 func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = false) -> void:
 	"""
@@ -265,6 +284,7 @@ func update_weight(unit: Unit, ignore_ZOC: bool = false, ignore_units: bool = fa
 
 		grid.set_point_weight_scale(location.id, cost)
 
+
 func set_size(size: Vector2) -> void:
 	rect.size = size
 
@@ -299,8 +319,10 @@ func set_tile(id: int) -> void:
 	_update_size()
 	transitions.add_changed_tile(cell)
 
+
 func get_village_count() -> int:
 	return overlay.get_used_cells_by_id(overlay.tile_set.find_tile_by_name("^Vh")).size()
+
 
 func get_location(cell: Vector2) -> Location:
 	"""
@@ -310,11 +332,13 @@ func get_location(cell: Vector2) -> Location:
 		return null
 	return locations_dict[cell]
 
+
 func get_pixel_size() -> Vector2:
 	if int(rect.size.x) % 2 == 0:
 		return map_to_world(rect.size) + Vector2(18, 36)
 	else:
 		return map_to_world(rect.size) + Vector2(18, 0)
+
 
 func get_map_data() -> Dictionary:
 	var map_data := {}
@@ -333,9 +357,9 @@ func _initialize_terrain() -> void:
 		if terrain.code.size() > 1:
 			overlay.set_cellv(terrain.cell, tile_set.find_tile_by_name(terrain.code[1]))
 
+
 func _initialize_locations() -> void:
 	locations_dict.clear()
-
 
 	for y in rect.size.y:
 		for x in rect.size.x:
@@ -353,9 +377,11 @@ func _initialize_locations() -> void:
 
 	_initialize_border()
 
+
 func _update_locations() -> void:
 	for location in locations_dict.values():
 		_update_terrain_record_from_map(location)
+
 
 func _update_terrain_record_from_map(loc: Location) -> void:
 	# Find the tileset tile on both layers (base and overlay)
@@ -371,24 +397,31 @@ func _update_terrain_record_from_map(loc: Location) -> void:
 	else:
 		loc.terrain = Terrain.new([Registry.terrain[b_code], Registry.terrain[o_code]])
 
+
 func _initialize_grid() -> void:
 	grid = Grid.new(self, rect)
 
+
 func _initialize_border() -> void:
 	border.rect_size = get_pixel_size()
+
 
 func _update_size() -> void:
 	reset_if_empty(Vector2(0, 0))
 	rect = get_used_rect()
 
+
 func _initialize_transitions() -> void:
 	transitions.initialize(self)
+
 
 func _is_cell_in_map(cell: Vector2) -> bool:
 	return rect.has_point(cell)
 
+
 func get_location_from_mouse() -> Location:
 	return get_location(world_to_map(get_viewport_mouse_position()))
+
 
 func display_reachable_for(reachable_locs: Dictionary) -> void:
 	# "Clear" the cover map by filling in everything with the Void terrain.
@@ -407,6 +440,7 @@ func display_reachable_for(reachable_locs: Dictionary) -> void:
 
 	cover.show()
 
+
 func update_highlight(location_to_highlight : Array) -> void:
 	# clear any previous highlight
 	clear_highlight()
@@ -419,11 +453,13 @@ func update_highlight(location_to_highlight : Array) -> void:
 
 	highlight.show()
 
+
 func clear_highlight() -> void:
 	for y in rect.size.y:
 		for x in rect.size.x:
 			highlight.set_cell(x, y, -1)
 	highlight.hide()
+
 
 func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
 	if get_cellv(cell) == INVALID_CELL:
@@ -431,6 +467,7 @@ func reset_if_empty(cell: Vector2, clear_overlay: bool = false) -> void:
 
 		if clear_overlay:
 			overlay.set_cellv(cell, INVALID_CELL)
+
 
 func debug():
 	$Hover/HexDebug.visible = not $Hover/HexDebug.visible
