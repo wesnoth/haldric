@@ -11,7 +11,7 @@
 
 ## New to Godot?
 
-- If you never worked with the Godot Engine before, the [Official Godot Docs](https://docs.godotengine.org/en/3.1/index.html#sec-learn) will guide you through your first steps in Godot.
+- If you never worked with the Godot Engine before, the [Official Godot Docs](https://docs.godotengine.org/en/3.2/index.html) will guide you through your first steps in Godot.
 
 - If you are more a video type person, here are a few links:
 
@@ -19,10 +19,13 @@
     - (3.0) [Learning Godot 3.0](https://www.youtube.com/watch?v=uPoLKQG0gmw&list=PLsk-HSGFjnaFutTDzgik2KMRl6W1JxFgD) - by [KidsCanCode](https://www.youtube.com/channel/UCNaPQ5uLX5iIEHUCLmfAgKg)
     - (3.1) [Intro to GDScript for Programming Beginners](https://www.youtube.com/watch?v=UcdwP1Q2UlU&t=) - by [GDQuest](https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ)
     - (3.1) [Intro to C# in Godot 3.1](https://www.youtube.com/watch?v=hRuUHxOCYz0&t) - by [GDQuest](https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ)
+    - (3.2) [Godot Action RPG Series](https://www.youtube.com/playlist?list=PL9FzW-m48fn2SlrW0KoLT4n5egNdX-W9a)
 
 ### Note: 
 
-Some Tutorials are for Godot 3.0 and some for 3.1. There are a few differences in the API, but the general concept has not changed.
+Haldric uses the latest stable build of the Godot Engine, currently that is 3.2.1
+
+The Tutorials are for different 3.X versions. While there are a few differences in the API, the general concept has not changed.
 
 However we do not reccomend watching tutorials for Godot 2.1, as the jump from 2.1 to 3.0 was quite big.
 
