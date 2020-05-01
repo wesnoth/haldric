@@ -10,7 +10,7 @@ var id := 0
 
 var position := Vector2() # Centered position of cell on the tilemap in Axial coordinates
 var quad_cell := Vector2() # Position of cell on the tilemap in Axial coordinates
-var cube_cell := Vector3() setget _set_cube_cell, _get_cube_cell # Position of cell on the tilemap in Cube coordinates
+var cube_cell := Vector3() setget _set_cube_cell # Position of cell on the tilemap in Cube coordinates
 
 var flag : Sprite = null
 
@@ -35,15 +35,6 @@ func _init(tilemap_cell_coords: Vector2, map_instance) -> void:
 	var rect = map.get_used_rect()
 	id = _generate_id(quad_cell, int(rect.size.x))
 	position = map.map_to_world_centered(quad_cell)
-
-
-#func get_position_centered() -> Vector2:
-	#return position + OFFSET
-
-
-func _get_cube_cell() -> Vector3:
-	# Returns a Vector3 of the cube coordinates
-	return cube_cell
 
 func _set_cube_cell(val: Vector3) -> void:
 	# Sets the position from a Vector3 of cube coordinates
