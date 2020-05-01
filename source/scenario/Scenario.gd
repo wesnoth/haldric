@@ -2,6 +2,7 @@ extends Control
 class_name Scenario
 
 const Map = preload("res://source/scenario/map/Map.tscn")
+
 signal unit_experienced(unit)
 signal unit_moved(unit, location)
 signal unit_move_finished(unit, location)
