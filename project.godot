@@ -79,11 +79,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/map/Map.gd"
 }, {
-"base": "Reference",
-"class": "MapBuilder",
-"language": "GDScript",
-"path": "res://source/builders/MapBuilder.gd"
-}, {
 "base": "Node",
 "class": "Movement",
 "language": "GDScript",
@@ -164,15 +159,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/State.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "Terrain",
 "language": "GDScript",
 "path": "res://source/scenario/map/Terrain.gd"
-}, {
-"base": "Reference",
-"class": "TileSetBuilder",
-"language": "GDScript",
-"path": "res://source/builders/TileSetBuilder.gd"
 }, {
 "base": "Node",
 "class": "Time",
@@ -219,7 +209,6 @@ _global_script_class_icons={
 "Hex": "",
 "Location": "",
 "Map": "",
-"MapBuilder": "",
 "Movement": "",
 "RCampaign": "",
 "RCard": "",
@@ -237,7 +226,6 @@ _global_script_class_icons={
 "SidePanelItem": "",
 "State": "",
 "Terrain": "",
-"TileSetBuilder": "",
 "Time": "",
 "ToDWheel": "",
 "Transitions": "",
