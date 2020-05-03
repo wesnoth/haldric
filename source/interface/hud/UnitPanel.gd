@@ -51,12 +51,12 @@ func update_unit(target: Unit) -> void:
 	race.text = str(unit.type.race)
 
 	defense.text = str(unit.get_defense())  + "%"
-	defense.add_color_override("font_color", _get_red_to_green_color(unit.get_defense()))
+	defense.add_color_override("font_color", _get_red_to_green_color(unit.get_defense(), 70, 30))
 
 	unit_window.material.set_shader_param("radius", 0)
 
 	hp.update_stat(unit.health_current, unit.type.health)
-	hp.bar.tint_progress = _get_red_to_green_color((100 * unit.health_current) / unit.type.health)
+	hp.bar.tint_progress = _get_red_to_green_color(unit.health_current, unit.type.health)
 	xp.update_stat(unit.experience_current, unit.type.experience)
 	xp.bar.tint_progress = _get_cyan_to_white_color((100 * unit.experience_current) / unit.type.experience)
 	mp.update_stat(unit.moves_current, unit.type.moves)
@@ -120,10 +120,29 @@ func _clear_attack_plates() -> void:
 		attacks.remove_child(plate)
 		plate.queue_free()
 
-func _get_red_to_green_color(defense: int) -> Color:
-	var mod = float(defense) * 0.01
-	var r = 1.0 - (1.0 * mod)
-	var g = 1.0 * mod
+func _get_red_to_green_color(current_value: int, max_value: int, min_value:= 0) -> Color:
+	# raise if min == max (division by zero)
+	if max_value - min_value == 0:
+		push_error("Division by zero (max_value and min_value must be different)")
+	# this is a relative percentage calculation
+	var ratio = float(current_value - min_value) / float(max_value - min_value)
+	var r: float
+	var g: float
+	if ratio > 0.8: # green
+		r = 0.0
+		g = 1.0
+	elif ratio > 0.6: # light green
+		r = 0.5
+		g = 1.0
+	elif ratio > 0.4: # yellow
+		r = 1.0
+		g = 1.0
+	elif ratio > 0.2: # orange
+		r = 1.0
+		g = 0.5
+	else: # red
+		r = 1.0
+		g = 0.0
 	return Color(r, g, 0.0)
 
 func _get_cyan_to_white_color(value: int) -> Color:
