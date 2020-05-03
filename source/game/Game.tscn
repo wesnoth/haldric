@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/game/Game.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/OffMap.tscn" type="PackedScene" id=2]
@@ -6,10 +6,13 @@
 [ext_resource path="res://source/interface/draw/Draw.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/camera/WesnothCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://source/game/ui/GameUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/interface/hud/GameHUD.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 shader_param/delta = null
+
+[sub_resource type="World2D" id=2]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -34,6 +37,7 @@ __meta__ = {
 
 [node name="Viewport" type="Viewport" parent="ScenarioLayer/ViewportContainer"]
 size = Vector2( 1920, 1080 )
+world_2d = SubResource( 2 )
 transparent_bg = true
 handle_input_locally = false
 hdr = false
@@ -51,4 +55,6 @@ render_target_update_mode = 3
 z_index = 20
 copy_mode = 2
 
-[node name="UI" parent="." instance=ExtResource( 6 )]
+[node name="UI" parent="ScenarioLayer/ViewportContainer/Viewport" instance=ExtResource( 6 )]
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
