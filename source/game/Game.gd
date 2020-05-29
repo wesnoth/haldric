@@ -238,21 +238,21 @@ func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
 	HUD.unit_panel.clear_unit()
 	temp_current.moves_current = 0
 
-	combatChoices['offense'].execute_before_turn(temp_current, target)
-	combatChoices['defense'].execute_before_turn(target, temp_current)
+	combatChoices['offense'].execute_before_turn(temp_current, target, true)
+	combatChoices['defense'].execute_before_turn(target, temp_current, false)
 	var attacker_strikes = combatChoices['offense'].strikes
 	var defender_strikes = combatChoices['defense'].strikes
 
 	while attacker_strikes > 0 or defender_strikes > 0:
 		if attacker_strikes > 0:
-			combatChoices['offense'].execute_each_turn(temp_current, target)
+			combatChoices['offense'].execute_each_turn(temp_current, target, true)
 			if randi() % 100 > target.get_defense():
 				if target.receive_attack(combatChoices['offense']):
 					target.kill(false,temp_current)
 					break
 			attacker_strikes -= 1
 		if defender_strikes > 0:
-			combatChoices['defense'].execute_each_turn(target, temp_current)
+			combatChoices['defense'].execute_each_turn(target, temp_current, false)
 			if randi() % 100 > temp_current.get_defense():
 				if temp_current.receive_attack(combatChoices['defense']):
 					temp_current.kill(true,target)
@@ -264,8 +264,8 @@ func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
 
 	temp_current.has_attacked = true
 
-	combatChoices['offense'].execute_end_turn(temp_current, target)
-	combatChoices['defense'].execute_end_turn(target, temp_current)
+	combatChoices['offense'].execute_end_turn(temp_current, target, true)
+	combatChoices['defense'].execute_end_turn(target, temp_current, false)
 
 func _on_unit_moved(unit: Unit, location: Location) -> void:
 	Event.emit_signal("move_to", unit, location)
