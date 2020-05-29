@@ -5,7 +5,6 @@
 [ext_resource path="res://source/unit/Attack.gd" type="Script" id=3]
 [ext_resource path="res://graphics/images/attacks/druidstaff.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/attacks/entangle.png" type="Texture" id=5]
-[ext_resource path="res://data/weapon_special/Heal_test.gd" type="Script" id=6]
 
 [node name="Shaman" instance=ExtResource( 1 )]
 id = "Elvish Shaman"
@@ -42,6 +41,3 @@ type = "impact"
 damage = 3
 strikes = 2
 icon = ExtResource( 5 )
-
-[node name="Node" type="Node" parent="Attacks/Entangle" index="0"]
-script = ExtResource( 6 )
