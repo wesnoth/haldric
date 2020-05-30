@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/unit/UnitType.tscn" type="PackedScene" id=1]
 [ext_resource path="res://graphics/images/units/elves-wood/shaman.png" type="Texture" id=2]
