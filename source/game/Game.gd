@@ -247,16 +247,26 @@ func _on_attack_selected(combatChoices: Dictionary, target: Unit) -> void:
 		if attacker_strikes > 0:
 			combatChoices['offense'].execute_each_turn(temp_current, target, true)
 			if randi() % 100 > target.get_defense():
+				combatChoices["offense"].execute_user_hit(temp_current, target, true)
+				combatChoices["defense"].execute_enemy_hit(target, temp_current, false)
 				if target.receive_attack(combatChoices['offense']):
 					target.kill(false,temp_current)
 					break
+			else:
+				combatChoices["offense"].execute_user_miss(temp_current, target, true)
+				combatChoices["defense"].execute_enemy_miss(target, temp_current, false)
 			attacker_strikes -= 1
 		if defender_strikes > 0:
 			combatChoices['defense'].execute_each_turn(target, temp_current, false)
 			if randi() % 100 > temp_current.get_defense():
+				combatChoices["defense"].execute_user_hit(temp_current, target, false)
+				combatChoices["offense"].execute_enemy_hit(target, temp_current, true)
 				if temp_current.receive_attack(combatChoices['defense']):
 					temp_current.kill(true,target)
 					break
+			else:
+				combatChoices["defense"].execute_user_miss(temp_current, target, false)
+				combatChoices["offense"].execute_enemy_miss(target, temp_current, true)
 			defender_strikes -= 1
 
 	target.experience_current += temp_current.type.level
