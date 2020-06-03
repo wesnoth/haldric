@@ -1,24 +1,23 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://source/interface/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/misc/Selector.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/interface/LocationUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/UnitUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/interface/combat/CombatDialogue.tscn" type="PackedScene" id=5]
-[ext_resource path="res://graphics/images/interface/cover.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/interface/darken.png" type="Texture" id=6]
 [ext_resource path="res://source/interface/SideUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/interface/recruit/RecruitDialogue.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/interface/PathUI.gd" type="Script" id=9]
-[ext_resource path="res://assets/terrain/hex/alpha.png" type="Texture" id=10]
 [ext_resource path="res://source/interface/action/ActionDialogue.tscn" type="PackedScene" id=11]
 [ext_resource path="res://source/interface/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
 
 [sub_resource type="TileSet" id=1]
-0/name = "cover"
+0/name = "darken"
 0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 96, 96 )
+0/region = Rect2( 0, 0, 72, 72 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
@@ -28,20 +27,6 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-1/name = "alpha"
-1/texture = ExtResource( 10 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 0, 96, 96 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
 
 [node name="GameUI" type="CanvasLayer" groups=[
 "GameUI",
@@ -54,7 +39,7 @@ script = ExtResource( 9 )
 
 [node name="Cover" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
-cell_size = Vector2( 72, 96 )
+cell_size = Vector2( 54, 72 )
 cell_quadrant_size = 32
 cell_half_offset = 4
 cell_tile_origin = 1

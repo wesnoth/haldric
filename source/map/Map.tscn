@@ -3,7 +3,7 @@
 [ext_resource path="res://source/map/Map.gd" type="Script" id=3]
 
 [node name="Map" type="TileMap"]
-cell_size = Vector2( 72, 96 )
+cell_size = Vector2( 54, 72 )
 cell_quadrant_size = 32
 cell_half_offset = 4
 cell_tile_origin = 1
@@ -11,7 +11,7 @@ format = 1
 script = ExtResource( 3 )
 
 [node name="Overlay" type="TileMap" parent="."]
-cell_size = Vector2( 72, 96 )
+cell_size = Vector2( 54, 72 )
 cell_half_offset = 4
 cell_tile_origin = 1
 cell_y_sort = true
