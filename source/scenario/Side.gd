@@ -1,7 +1,7 @@
 extends Node
 class_name Side
 
-const HEAL_ON_TOWN = 8
+const HEAL_ON_VILLAGE = 8
 const HEAL_ON_REST = 2
 
 var number := 0
@@ -11,7 +11,7 @@ var upkeep := 0
 
 var leaders := []
 var units := []
-var towns := []
+var villages := []
 
 export var start_position := Vector2()
 
@@ -57,48 +57,48 @@ func add_unit(unit: Unit, is_leader := false) -> void:
 	update_income()
 
 
-func add_town(loc: Location) -> void:
+func add_village(loc: Location) -> void:
 	loc.side_number = number
-	towns.append(loc)
+	villages.append(loc)
 
 	update_income()
-	Console.write("added town to side %d" % number)
+	Console.write("added village to side %d" % number)
 
 
-func remove_town(loc: Location) -> void:
-	if not towns.has(loc):
+func remove_village(loc: Location) -> void:
+	if not villages.has(loc):
 		return
 
-	towns.erase(loc)
+	villages.erase(loc)
 	update_income()
-	Console.write("removed town from side %d" % number)
+	Console.write("removed village from side %d" % number)
 
 
-func has_town(loc: Location) -> bool:
-	return towns.has(loc)
+func has_village(loc: Location) -> bool:
+	return villages.has(loc)
 
 
 func can_recruit() -> bool:
-	return has_leader_in_town() and find_recruit_location() != null
+	return has_leader_in_village() and find_recruit_location() != null
 
 
-func has_leader_in_town() -> bool:
-	for town in towns:
-		if leaders.has(town.unit):
+func has_leader_in_village() -> bool:
+	for village in villages:
+		if leaders.has(village.unit):
 			return true
-	Console.warn("side %d cannot recruit (no leader in town)" % (number + 1))
+	Console.warn("side %d cannot recruit (no leader in village)" % (number + 1))
 	return false
 
 
 func find_recruit_location() -> Location:
-	for town in towns:
-		if not leaders.has(town.unit):
+	for village in villages:
+		if not leaders.has(village.unit):
 			continue
 
-		for loc in town.town:
+		for loc in village.village:
 			if not loc.unit:
 				return loc
-	Console.warn("side %d cannot recruit (no free space in town)" % (number + 1))
+	Console.warn("side %d cannot recruit (no free space in village)" % (number + 1))
 	return null
 
 
@@ -114,13 +114,13 @@ func _calculate_upkeep() -> void:
 
 
 func _calculate_income() -> void:
-	var town_income := 0
+	var village_income := 0
 
-	for loc in towns:
-		town_income += loc.town.size()
+	for loc in villages:
+		village_income += loc.village.size()
 
-	income = base_income + town_income
-	print("town income: ", town_income)
+	income = base_income + village_income
+	print("village income: ", village_income)
 
 
 func _on_unit_died(unit : Unit) -> void:

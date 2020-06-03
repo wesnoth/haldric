@@ -13,5 +13,5 @@ func update_info(side: Side) -> void:
 	side_label.text = "Side: %d" % (side.number + 1)
 	gold_label.text = "Gold: %d" % side.gold
 	income_label.text = "Income: %d (-%d)" % [ side.income, side.upkeep ]
-	towns_label.text = "Towns: %d" % side.towns.size()
+	towns_label.text = "Towns: %d" % side.villages.size()
 	units_label.text = "Units: %d" % side.units.size()
