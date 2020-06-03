@@ -1,60 +1,66 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/game/Game.gd" type="Script" id=1]
-[ext_resource path="res://source/scenario/OffMap.tscn" type="PackedScene" id=2]
-[ext_resource path="res://graphics/shaders/color_adjust.shader" type="Shader" id=3]
-[ext_resource path="res://source/interface/draw/Draw.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/camera/WesnothCamera.tscn" type="PackedScene" id=5]
-[ext_resource path="res://source/game/ui/GameUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://source/interface/hud/GameHUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=2]
+[ext_resource path="res://source/interface/GameUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/camera/GameCam.tscn" type="PackedScene" id=4]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 3 )
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform vec3 delta;
+
+/*
+TODO: decide if we want individual uniforms for the hint range
+uniform int delta_r : hint_range(-510, 510);
+uniform int delta_g : hint_range(-510, 510);
+uniform int delta_b : hint_range(-510, 510);
+*/
+
+void fragment() {
+	vec4 final = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec3 normalized = delta / 255.0;
+
+	final.r = clamp(final.r + normalized.x, 0, 1);
+	final.g = clamp(final.g + normalized.y, 0, 1);
+	final.b = clamp(final.b + normalized.z, 0, 1);
+
+	COLOR = final;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/delta = null
-
-[sub_resource type="World2D" id=2]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="ScenarioContainer" type="Node2D" parent="."]
 
-[node name="OffMap" parent="." instance=ExtResource( 2 )]
+[node name="Node" type="CanvasLayer" parent="."]
 
-[node name="ScenarioLayer" type="CanvasLayer" parent="."]
-layer = 0
-
-[node name="ViewportContainer" type="ViewportContainer" parent="ScenarioLayer"]
-material = SubResource( 1 )
+[node name="TimeShader" type="TextureRect" parent="Node"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_clip_content = true
 mouse_filter = 2
-stretch = true
+texture = ExtResource( 2 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="ScenarioLayer/ViewportContainer"]
-size = Vector2( 1920, 1080 )
-world_2d = SubResource( 2 )
-transparent_bg = true
-handle_input_locally = false
-hdr = false
-disable_3d = true
-usage = 0
-render_target_update_mode = 3
+[node name="GameUI" parent="." instance=ExtResource( 3 )]
 
-[node name="ScenarioPlaceholder" type="Node" parent="ScenarioLayer/ViewportContainer/Viewport"]
-
-[node name="Draw" parent="ScenarioLayer/ViewportContainer/Viewport" instance=ExtResource( 4 )]
-
-[node name="Camera2D" parent="ScenarioLayer/ViewportContainer/Viewport" instance=ExtResource( 5 )]
-
-[node name="BackBufferCopy" type="BackBufferCopy" parent="ScenarioLayer/ViewportContainer/Viewport"]
-z_index = 20
-copy_mode = 2
-
-[node name="UI" parent="ScenarioLayer/ViewportContainer/Viewport" instance=ExtResource( 6 )]
-
-[node name="HUD" parent="." instance=ExtResource( 7 )]
+[node name="Camera2D" parent="." groups=[
+"GameCam",
+] instance=ExtResource( 4 )]
+position = Vector2( 960, 540 )
+anchor_mode = 1
+[connection signal="combat_option_selected" from="GameUI" to="." method="_on_GameUI_combat_option_selected"]
+[connection signal="end_turn_pressed" from="GameUI" to="." method="_on_GameUI_end_turn_pressed"]
+[connection signal="move_selected" from="GameUI" to="." method="_on_GameUI_move_selected"]
+[connection signal="recruit_option_selected" from="GameUI" to="." method="_on_GameUI_recruit_option_selected"]
+[connection signal="recruit_selected" from="GameUI" to="." method="_on_GameUI_recruit_selected"]
+[connection signal="skill_selected" from="GameUI" to="." method="_on_GameUI_skill_selected"]

@@ -6,12 +6,4 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
-.vs/
-obj/
-
-# Visual Studio Code - specific ignores
-.vscode
-
-# Linux-specific ignores (Dolphin)
-.directory
-
+data_*/

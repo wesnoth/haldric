@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/units/elvish/elfvish-captain.png" type="Texture" id=2]
+[ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
+[ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
+[ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
+[ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
+
+[node name="ElvishCaptain" type="Node2D"]
+script = ExtResource( 1 )
+alias = "Elvish Captain"
+race = "elf"
+level = 2
+cost = 30
+health = 51
+moves = 5
+experience = 95
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Defense" type="Node" parent="."]
+script = ExtResource( 3 )
+flat = 40
+forest = 60
+hills = 50
+water = 20
+mountains = 60
+town = 60
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource( 4 )
+forest = 1
+
+[node name="Resistance" type="Node" parent="."]
+script = ExtResource( 5 )
+nature = 10
+arcane = 10
+chaos = -20
+
+[node name="Skills" type="Node" parent="."]
+
+[node name="Traits" type="Node" parent="."]
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="Attacks" type="Node" parent="."]
+
+[node name="Spear" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Spear"
+damage_type = 3
+damage = 7
+strikes = 4
+
+[node name="Javelin" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Javelin"
+category = "ranged"
+damage_type = 2
+damage = 8
+strikes = 2

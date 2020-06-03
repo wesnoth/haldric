@@ -1,0 +1,10 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://graphics/fonts/source-code-pro/source-code-pro-2.010R-ro-1.030R-it/TTF/SourceCodePro-Regular.ttf" type="DynamicFontData" id=1]
+
+
+[resource]
+
+size = 32
+font_data = ExtResource( 1 )
+

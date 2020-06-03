@@ -1,0 +1,153 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://source/interface/GameUI.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/misc/Selector.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/interface/LocationUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/UnitUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/combat/CombatDialogue.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/images/interface/cover.png" type="Texture" id=6]
+[ext_resource path="res://source/interface/SideUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/interface/recruit/RecruitDialogue.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/PathUI.gd" type="Script" id=9]
+[ext_resource path="res://assets/terrain/hex/alpha.png" type="Texture" id=10]
+[ext_resource path="res://source/interface/action/ActionDialogue.tscn" type="PackedScene" id=11]
+[ext_resource path="res://source/interface/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
+
+[sub_resource type="TileSet" id=1]
+0/name = "cover"
+0/texture = ExtResource( 6 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 96 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "alpha"
+1/texture = ExtResource( 10 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 96, 96 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+
+[node name="GameUI" type="CanvasLayer" groups=[
+"GameUI",
+]]
+follow_viewport_enable = true
+script = ExtResource( 1 )
+
+[node name="PathUI" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="Cover" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 72, 96 )
+cell_quadrant_size = 32
+cell_half_offset = 4
+cell_tile_origin = 1
+format = 1
+
+[node name="UnitPlateContainer" type="Control" parent="."]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionDialogue" parent="." instance=ExtResource( 11 )]
+
+[node name="PopupLabelContainer" type="Control" parent="."]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selector" parent="." instance=ExtResource( 2 )]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="SideUI" parent="HUD" instance=ExtResource( 7 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -960.0
+margin_right = 718.0
+margin_bottom = 39.0
+
+[node name="CombatDialogue" parent="HUD" instance=ExtResource( 5 )]
+
+[node name="RecruitDialogue" parent="HUD" instance=ExtResource( 8 )]
+margin_top = 0.0
+margin_bottom = 0.0
+
+[node name="AdvancementDialogue" parent="HUD" instance=ExtResource( 12 )]
+margin_top = -2.0
+margin_bottom = -2.0
+
+[node name="SidePanel" type="Panel" parent="HUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -242.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/SidePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeOfDay" type="Label" parent="HUD/SidePanel/VBoxContainer"]
+margin_right = 242.0
+margin_bottom = 14.0
+text = "Dawn"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LocationUI" parent="HUD/SidePanel/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 18.0
+margin_right = 242.0
+margin_bottom = 140.0
+mouse_filter = 2
+
+[node name="UnitUI" parent="HUD/SidePanel/VBoxContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 144.0
+margin_right = 242.0
+margin_bottom = 144.0
+
+[node name="EndTurn" type="Button" parent="HUD/SidePanel"]
+margin_left = 27.0
+margin_top = 1008.0
+margin_right = 214.0
+margin_bottom = 1063.0
+text = "End Turn"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="move_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_move_selected"]
+[connection signal="recruit_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recruit_selected"]
+[connection signal="skill_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_skill_selected"]
+[connection signal="cancelled" from="HUD/CombatDialogue" to="." method="_on_CombatDialogue_cancelled"]
+[connection signal="option_selected" from="HUD/CombatDialogue" to="." method="_on_CombatDialogue_option_selected"]
+[connection signal="cancelled" from="HUD/RecruitDialogue" to="." method="_on_RecruitDialogue_cancelled"]
+[connection signal="option_selected" from="HUD/RecruitDialogue" to="." method="_on_RecruitDialogue_option_selected"]
+[connection signal="skill_selected" from="HUD/SidePanel/VBoxContainer/UnitUI" to="." method="_on_UnitUI_skill_selected"]
+[connection signal="pressed" from="HUD/SidePanel/EndTurn" to="." method="_on_EndTurn_pressed"]

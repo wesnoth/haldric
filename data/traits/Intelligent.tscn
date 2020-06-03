@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/unit/traits/TraitIntelligent.gd" type="Script" id=1]
+
+[node name="Intelligent" type="Node"]
+script = ExtResource( 1 )
+alias = "Intelligent"
+description = "-10% HP, -20% XP"

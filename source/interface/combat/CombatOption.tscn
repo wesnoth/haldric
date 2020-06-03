@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/interface/combat/CombatAttackInfo.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/interface/combat/CombatOption.gd" type="Script" id=2]
+
+[node name="CombatOption" type="Button"]
+margin_right = 582.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 60 )
+focus_mode = 0
+toggle_mode = true
+enabled_focus_mode = 0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 577.0
+margin_bottom = 39.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 567.0
+margin_bottom = 47.0
+mouse_filter = 2
+
+[node name="Attacker" parent="MarginContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_right = 276.0
+margin_bottom = 42.0
+mouse_filter = 2
+
+[node name="AttackCategory" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_left = 280.0
+margin_top = 14.0
+margin_right = 282.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 2, 0 )
+
+[node name="Defender" parent="MarginContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 286.0
+margin_right = 562.0
+margin_bottom = 42.0
+mouse_filter = 2

@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/units/treefolk/bark-guise.png" type="Texture" id=2]
+[ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
+[ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
+[ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
+[ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
+[ext_resource path="res://data/abilities/Regenerate.tscn" type="PackedScene" id=7]
+
+[node name="BarkGuise" type="Node2D"]
+script = ExtResource( 1 )
+alias = "Bark Guise"
+alignment = "lawful"
+race = "treefolk"
+level = 1
+cost = 20
+health = 52
+moves = 4
+experience = 44
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Defense" type="Node" parent="."]
+script = ExtResource( 3 )
+flat = 20
+forest = 40
+hills = 20
+water = 20
+mountains = 20
+town = 20
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource( 4 )
+forest = 1
+water = 2
+
+[node name="Resistance" type="Node" parent="."]
+script = ExtResource( 5 )
+impact = 40
+pierce = 60
+nature = 20
+burn = -50
+frost = 20
+holy = -20
+
+[node name="Traits" type="Node" parent="."]
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="Regenerate" parent="Abilities" instance=ExtResource( 7 )]
+
+[node name="Skills" type="Node" parent="."]
+
+[node name="Attacks" type="Node" parent="."]
+
+[node name="Fist" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Fist"
+damage_type = 2
+damage = 8
+strikes = 3

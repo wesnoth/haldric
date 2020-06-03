@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://source/scenario/Scenario.gd" type="Script" id=1]
+[ext_resource path="res://source/scenario/Side.gd" type="Script" id=2]
+[ext_resource path="res://source/scenario/Time.gd" type="Script" id=3]
+[ext_resource path="res://source/scenario/Schedule.gd" type="Script" id=4]
+
+[node name="TestScenario" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Schedule" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Dawn" type="Node" parent="Schedule"]
+script = ExtResource( 3 )
+alias = "Dawn"
+tint_red = -25
+tint_green = -15
+
+[node name="Morning" type="Node" parent="Schedule"]
+script = ExtResource( 3 )
+alias = "Morning"
+advantage = [ "lawful" ]
+disadvantage = [ "chaotic" ]
+bonus = 25
+malus = 25
+
+[node name="Afternoon" type="Node" parent="Schedule"]
+script = ExtResource( 3 )
+alias = "Afternoon"
+advantage = [ "lawful" ]
+disadvantage = [ "chaotic" ]
+bonus = 25
+malus = 25
+
+[node name="Dusk" type="Node" parent="Schedule"]
+script = ExtResource( 3 )
+alias = "Dusk"
+tint_red = 10
+tint_green = -25
+tint_blue = -35
+
+[node name="FirstWatch" type="Node" parent="Schedule"]
+script = ExtResource( 3 )
+alias = "First Watch"
+tint_red = -75
+tint_green = -45
+tint_blue = -13
+advantage = [ "chaotic" ]
+disadvantage = [ "lawful" ]
+bonus = 25
+malus = 25
+
+[node name="SecondWatch" type="Node" parent="Schedule"]
+script = ExtResource( 3 )
+alias = "Second Watch"
+tint_red = -75
+tint_green = -45
+tint_blue = -13
+advantage = [ "chaotic" ]
+disadvantage = [ "lawful" ]
+bonus = 25
+malus = 25
+
+[node name="Sides" type="Node" parent="."]
+
+[node name="Side1" type="Node" parent="Sides"]
+script = ExtResource( 2 )
+start_position = Vector2( 3, 2 )
+color = Color( 0.960938, 0.0638123, 0.243238, 1 )
+leader = "Lieutenant"
+recruit = [ "Soldier", "Archer", "Mage", "Thief", "Cavalryman", "Spearman" ]
+
+[node name="Side2" type="Node" parent="Sides"]
+script = ExtResource( 2 )
+start_position = Vector2( 11, 6 )
+color = Color( 0.044534, 0.0379333, 0.882813, 1 )
+leader = "ElvishCaptain"
+recruit = [ "ElvishArcher", "ElvishScout", "ElvishWrath", "ElvishDruid", "ElvishGuard", "BarkGuise" ]

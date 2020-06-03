@@ -1,0 +1,169 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://tools/MapMaker.gd" type="Script" id=1]
+[ext_resource path="res://source/map/Map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://graphics/images/terrain/grass.png" type="Texture" id=3]
+[ext_resource path="res://graphics/images/terrain/forest.png" type="Texture" id=4]
+[ext_resource path="res://graphics/images/terrain/town-center.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/terrain/town.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/terrain/hills.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/terrain/mountains.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/terrain/hospital.png" type="Texture" id=9]
+[ext_resource path="res://graphics/images/terrain/shallow-water.png" type="Texture" id=10]
+[ext_resource path="res://graphics/images/terrain/fog.png" type="Texture" id=11]
+
+[sub_resource type="TileSet" id=1]
+0/name = "_f"
+0/texture = ExtResource( 11 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 0, 0 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "^F"
+1/texture = ExtResource( 4 )
+1/tex_offset = Vector2( -48, -48 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 0, 0 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "G"
+2/texture = ExtResource( 3 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 0, 0 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "H"
+3/texture = ExtResource( 7 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 0, 0 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "^TH"
+4/texture = ExtResource( 9 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 0, 0 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "M"
+5/texture = ExtResource( 8 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 0, 0, 0 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "^T"
+6/texture = ExtResource( 6 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 0, 0 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "^TC"
+7/texture = ExtResource( 5 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 0, 0 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+8/name = "Ww"
+8/texture = ExtResource( 10 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 0, 0, 0 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+
+[node name="MapMaker" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Map" parent="." instance=ExtResource( 2 )]
+tile_set = SubResource( 1 )
+tile_data = PoolIntArray( 0, 8, 0, 1, 8, 0, 2, 8, 0, 3, 8, 0, 4, 8, 0, 5, 8, 0, 6, 8, 0, 7, 8, 0, 8, 8, 0, 9, 8, 0, 10, 8, 0, 11, 8, 0, 12, 8, 0, 13, 8, 0, 14, 8, 0, 15, 8, 0, 65536, 8, 0, 65537, 5, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 2, 0, 65542, 2, 0, 65543, 2, 0, 65544, 2, 0, 65545, 2, 0, 65546, 3, 0, 65547, 5, 0, 65548, 5, 0, 65549, 8, 0, 65550, 8, 0, 65551, 8, 0, 131072, 8, 0, 131073, 5, 0, 131074, 3, 0, 131075, 2, 0, 131076, 2, 0, 131077, 2, 0, 131078, 2, 0, 131079, 2, 0, 131080, 2, 0, 131081, 3, 0, 131082, 2, 0, 131083, 3, 0, 131084, 3, 0, 131085, 3, 0, 131086, 2, 0, 131087, 8, 0, 196608, 8, 0, 196609, 3, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 8, 0, 262144, 8, 0, 262145, 2, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0, 262150, 3, 0, 262151, 3, 0, 262152, 5, 0, 262153, 5, 0, 262154, 2, 0, 262155, 2, 0, 262156, 3, 0, 262157, 2, 0, 262158, 2, 0, 262159, 8, 0, 327680, 8, 0, 327681, 2, 0, 327682, 2, 0, 327683, 2, 0, 327684, 2, 0, 327685, 2, 0, 327686, 2, 0, 327687, 3, 0, 327688, 2, 0, 327689, 5, 0, 327690, 3, 0, 327691, 2, 0, 327692, 5, 0, 327693, 3, 0, 327694, 2, 0, 327695, 8, 0, 393216, 8, 0, 393217, 2, 0, 393218, 5, 0, 393219, 3, 0, 393220, 2, 0, 393221, 2, 0, 393222, 2, 0, 393223, 2, 0, 393224, 2, 0, 393225, 2, 0, 393226, 2, 0, 393227, 2, 0, 393228, 2, 0, 393229, 3, 0, 393230, 2, 0, 393231, 8, 0, 458752, 8, 0, 458753, 8, 0, 458754, 2, 0, 458755, 3, 0, 458756, 5, 0, 458757, 2, 0, 458758, 3, 0, 458759, 2, 0, 458760, 2, 0, 458761, 3, 0, 458762, 3, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 8, 0, 458767, 8, 0, 524288, 8, 0, 524289, 8, 0, 524290, 8, 0, 524291, 5, 0, 524292, 2, 0, 524293, 2, 0, 524294, 2, 0, 524295, 2, 0, 524296, 2, 0, 524297, 5, 0, 524298, 2, 0, 524299, 2, 0, 524300, 8, 0, 524301, 8, 0, 524302, 8, 0, 524303, 8, 0, 589824, 8, 0, 589825, 8, 0, 589826, 8, 0, 589827, 8, 0, 589828, 8, 0, 589829, 8, 0, 589830, 8, 0, 589831, 8, 0, 589832, 8, 0, 589833, 8, 0, 589834, 8, 0, 589835, 8, 0, 589836, 8, 0, 589837, 8, 0, 589838, 8, 0, 589839, 8, 0 )
+
+[node name="Overlay" parent="Map" index="0"]
+tile_set = SubResource( 1 )
+tile_data = PoolIntArray( 65540, 6, 0, 65542, 1, 0, 131075, 7, 0, 131076, 4, 0, 131082, 1, 0, 131083, 1, 0, 196610, 1, 0, 196611, 6, 0, 196615, 1, 0, 196620, 1, 0, 327682, 1, 0, 327687, 1, 0, 327690, 4, 0, 327691, 6, 0, 393219, 1, 0, 393226, 6, 0, 393227, 7, 0, 458757, 1, 0, 458760, 1, 0, 458763, 1, 0 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Save" type="Button" parent="UI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -191.0
+margin_top = -82.0
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="UI/Save" to="." method="_on_Save_pressed"]
+
+[editable path="Map"]

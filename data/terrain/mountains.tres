@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://source/data/TerrainData.gd" type="Script" id=1]
+[ext_resource path="res://data/terrain_graphics/mountains.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+layer = 0
+code = "M"
+name = "Mountains"
+recruit_onto = false
+recruit_from = false
+gives_income = false
+heals = false
+type = "mountains"
+graphic = ExtResource( 2 )

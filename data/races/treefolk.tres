@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/unit/race/Race.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "treefolk"
+male_singular = ""
+female_singular = ""
+singular = "Treefolk"
+plural = "Treefolk"
+description = "Treefolk"
+male_names = "Nes, Wes, Res, Bes"
+female_names = "Ra, Wa, Da, Na"
+trait_count = 0
+traits = [  ]

@@ -13,7 +13,7 @@ onready var progress_bar := $TextureProgress as TextureProgress
 func register_scene(scene_name: String, path_to_scene: String) -> void:
 	scenes[scene_name] = path_to_scene
 
-func change(scene_name: String, fade := false, show_bar: bool = false) -> void:
+func change(scene_name: String, fade := false, show_bar := false) -> void:
 
 	if not scenes.has(scene_name):
 		print("Scene \"%s\" does not exist" % scene_name)

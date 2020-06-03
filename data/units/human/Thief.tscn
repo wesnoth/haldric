@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/units/human/thief.png" type="Texture" id=2]
+[ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
+[ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
+[ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
+[ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
+
+[node name="Thief" type="Node2D"]
+script = ExtResource( 1 )
+alias = "Thief"
+alignment = "chaotic"
+race = "human"
+level = 1
+cost = 13
+health = 24
+moves = 6
+experience = 32
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Defense" type="Node" parent="."]
+script = ExtResource( 3 )
+flat = 60
+forest = 70
+hills = 70
+water = 40
+mountains = 70
+town = 70
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Resistance" type="Node" parent="."]
+script = ExtResource( 5 )
+blade = -30
+impact = -20
+pierce = -20
+nature = 10
+cold = 20
+holy = 20
+chaos = 10
+
+[node name="Traits" type="Node" parent="."]
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="Skills" type="Node" parent="."]
+
+[node name="Attacks" type="Node" parent="."]
+
+[node name="Dagger" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Dagger"
+damage = 4
+strikes = 3
+damage_type = 1
+
+[node name="ThrowingKnife" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Throwing Knife"
+category = "ranged"
+damage = 3
+strikes = 3
+damage_type = 1

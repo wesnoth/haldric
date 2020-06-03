@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://graphics/images/terrain/shallow-water.png" type="Texture" id=1]
+[ext_resource path="res://source/data/TerrainGraphicData.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+offset = Vector2( 0, 0 )
+texture = ExtResource( 1 )

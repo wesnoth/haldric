@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/units/human/lieutenant.png" type="Texture" id=2]
+[ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
+[ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
+[ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
+[ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
+[ext_resource path="res://data/skills/Teach3.tscn" type="PackedScene" id=7]
+
+[node name="Lieutenant" type="Node2D"]
+script = ExtResource( 1 )
+alias = "Lieutenant"
+alignment = "lawful"
+race = "human"
+level = 2
+cost = 30
+health = 58
+moves = 5
+experience = 100
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Defense" type="Node" parent="."]
+script = ExtResource( 3 )
+flat = 40
+forest = 50
+hills = 50
+water = 20
+mountains = 60
+town = 60
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Resistance" type="Node" parent="."]
+script = ExtResource( 5 )
+blade = 20
+impact = 10
+pierce = 20
+holy = 20
+
+[node name="Traits" type="Node" parent="."]
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="Skills" type="Node" parent="."]
+
+[node name="Teach3" parent="Skills" instance=ExtResource( 7 )]
+
+[node name="Attacks" type="Node" parent="."]
+
+[node name="Sword" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Sword"
+damage = 7
+strikes = 4
+damage_type = 1
+
+[node name="Bow" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Bow"
+category = "ranged"
+damage = 5
+strikes = 3
+damage_type = 3
