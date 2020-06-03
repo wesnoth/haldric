@@ -9,7 +9,7 @@ var position := Vector2()
 var unit : Unit = null setget _set_unit
 var terrain : Terrain = null
 
-var town := []
+var castle := []
 var side_number := -1
 
 
@@ -35,6 +35,6 @@ func duplicate(subresources := false) -> Resource:
 	res.terrain = terrain
 	res.unit = unit
 	res.terrain = terrain
-	res.town = town
+	res.castle = castle
 	res.side_number = side_number
 	return res

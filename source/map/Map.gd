@@ -20,7 +20,7 @@ func _ready() -> void:
 	set_tile_set(TileSetBuilder.build(Data.terrain))
 	_build_map()
 	_build_grid()
-	_build_towns()
+	_build_castles()
 
 func initialize(_map_data: MapData) -> void:
 	map_data = _map_data
@@ -198,17 +198,17 @@ func _build_grid() -> void:
 	grid = Grid.new(locations.keys(), get_used_rect())
 
 
-func _build_towns():
+func _build_castles():
 	for loc in locations.values():
 		if loc.terrain.recruit_from:
-			loc.town = _find_connected_town_locations(loc)
+			loc.castle = _find_connected_castle_locations(loc)
 
 
-func _find_connected_town_locations(townhall: Location) -> Array:
+func _find_connected_castle_locations(keep: Location) -> Array:
 
-	var town := [townhall]
-	var visited := [townhall]
-	var queue := [townhall]
+	var castle := [keep]
+	var visited := [keep]
+	var queue := [keep]
 
 	while queue:
 		var q_loc : Location = queue.pop_front()
@@ -224,9 +224,9 @@ func _find_connected_town_locations(townhall: Location) -> Array:
 				continue
 
 			queue.append(n_loc)
-			town.append(n_loc)
+			castle.append(n_loc)
 
-	return town
+	return castle
 
 
 func _set_cell_location(cell: Vector2, terrain_data: Array) -> void:
