@@ -119,10 +119,13 @@ margin_right = 242.0
 margin_bottom = 144.0
 
 [node name="EndTurn" type="Button" parent="HUD/SidePanel"]
-margin_left = 27.0
-margin_top = 1008.0
-margin_right = 214.0
-margin_bottom = 1063.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = -47.0
+margin_right = -8.0
+margin_bottom = -5.0
 text = "End Turn"
 __meta__ = {
 "_edit_use_anchors_": false
