@@ -5,7 +5,7 @@ class_name Scenario
 signal location_hovered(loc)
 signal unit_move_finished(loc)
 
-const FLAG_OFFSET = Vector2(25, 35)
+const FLAG_OFFSET = Vector2(15, 25)
 
 var map : Map = null
 

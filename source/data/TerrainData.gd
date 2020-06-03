@@ -13,6 +13,6 @@ export var gives_income := false
 
 export var heals := false
 
-export(String, "flat", "forest", "hills", "mountains", "water", "town", "special") var type := "flat"
+export(String, "flat", "forest", "hills", "mountains", "water", "village", "castle", "special") var type := "flat"
 
 export var graphic : Resource = null

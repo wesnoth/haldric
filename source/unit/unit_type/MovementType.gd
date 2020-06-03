@@ -6,4 +6,5 @@ export var forest := 2
 export var hills := 2
 export var water := 3
 export var mountains := 3
-export var town := 1
+export var village := 1
+export var castle := 1

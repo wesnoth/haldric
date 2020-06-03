@@ -6,4 +6,5 @@ export(int, -100, 100, 5) var forest := 0
 export(int, -100, 100, 5) var hills := 0
 export(int, -100, 100, 5) var water := 0
 export(int, -100, 100, 5) var mountains := 0
-export(int, -100, 100, 5) var town := 0
+export(int, -100, 100, 5) var village := 0
+export(int, -100, 100, 5) var castle := 0

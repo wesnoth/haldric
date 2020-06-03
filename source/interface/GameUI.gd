@@ -21,7 +21,7 @@ onready var unit_plate_container := $UnitPlateContainer
 onready var popup_label_container := $PopupLabelContainer
 
 onready var cover := $Cover as TileMap
-onready var COVER_TILE : int = cover.tile_set.find_tile_by_name("cover")
+onready var COVER_TILE : int = cover.tile_set.find_tile_by_name("darken")
 
 onready var path_ui := $PathUI as PathUI
 
