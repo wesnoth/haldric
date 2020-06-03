@@ -34,6 +34,7 @@ onready var tween := $Tween as Tween
 onready var ui_hook := $UIHook as RemoteTransform2D
 
 onready var traits := Node.new()
+onready var effects := Node.new()
 
 static func instance() -> Unit:
 	return load("res://source/unit/Unit.tscn").instance() as Unit
@@ -195,6 +196,9 @@ func get_skills() -> Array:
 
 func get_abilities() -> Array:
 	return type.abilities.get_children()
+
+func get_effects() -> Array:
+	return effects.get_children()
 
 
 func get_counter_attack(attack: Attack) -> Attack:
