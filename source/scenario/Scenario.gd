@@ -308,7 +308,7 @@ func _turn_refresh_abilities() -> void:
 			continue
 
 		for ability in loc.unit.get_abilities():
-			ability.execute(loc, map.get_neighbors(loc))
+			ability.execute(loc)
 
 		for effect in loc.unit.get_effects():
 			effect.execute(loc, map.get_neighbors(loc))

@@ -50,14 +50,14 @@ func start(attacker: CombatContext, defender: CombatContext) -> void:
 			yield(get_tree().create_timer(combat_speed), "timeout")
 
 		if other.unit.is_dead():
-			current.unit.grand_experience(max(min_death_xp, death_xp * other.unit.type.level))
+			current.unit.grant_experience(max(min_death_xp, death_xp * other.unit.type.level))
 			other.unit.kill()
 			emit_signal("combat_finished")
 			queue_free()
 			return
 
-	attacker.unit.grand_experience(defender.unit.type.level)
-	defender.unit.grand_experience(attacker.unit.type.level)
+	attacker.unit.grant_experience(defender.unit.type.level)
+	defender.unit.grant_experience(attacker.unit.type.level)
 
 	emit_signal("combat_finished")
 	queue_free()
