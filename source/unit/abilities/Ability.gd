@@ -9,11 +9,14 @@ export var affect_allies := false
 export var affect_enemies := false
 
 
-func execute(_self: Location, neighbors: Array) -> void:
+func execute(_self: Location) -> void:
 	if affect_self:
 		_execute(_self)
 
-	for neighbor in neighbors:
+	for neighbor in _self.get_neighbors():
+
+		if not neighbor:
+			continue
 
 		if affect_allies and _self.unit.side_number == neighbor.unit.side_number:
 			_execute(neighbor)

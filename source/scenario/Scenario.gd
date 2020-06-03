@@ -308,7 +308,7 @@ func _turn_refresh_abilities() -> void:
 			continue
 
 		for ability in loc.unit.get_abilities():
-			ability.execute(loc, map.get_neighbors(loc))
+			ability.execute(loc)
 
 
 func _check_victory_conditions() -> void:
