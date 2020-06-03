@@ -1,23 +1,26 @@
 extends Node
 class_name Effect
 
-export(String, "heal", "hurt", "modify") var type = "hurt"
+export var alias := ""
+export(String, MULTILINE) var description := ""
 
-export var args := []
-
-"""
-DAMAGE [
-	damage
-	damage_type
-]
+export var affect_self := true
+export var affect_allies := false
+export var affect_enemies := false
 
 
-HEAL [
-	amount
-]
+func execute(_self: Location, neighbors: Array) -> void:
+	if affect_self:
+		_execute(_self)
 
-MODIFY [
-	property
-	value
-]
-"""
+	for neighbor in neighbors:
+
+		if affect_allies and _self.unit.side_number == neighbor.unit.side_number:
+			_execute(neighbor)
+
+		if affect_enemies and _self.unit.side_number != neighbor.unit.side_number:
+			_execute(neighbor)
+
+
+func _execute(target: Location) -> void:
+	pass

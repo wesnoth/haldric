@@ -6,7 +6,8 @@
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
-[ext_resource path="res://data/skills/SkillDamage.gd" type="Script" id=9]
+[ext_resource path="res://source/unit/skills/SkillDamage.gd" type="Script" id=9]
+
 
 
 [node name="ElvishArcher" type="Node2D"]
