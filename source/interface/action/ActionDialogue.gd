@@ -22,14 +22,14 @@ var DIR = {
 func update_info(loc: Location) -> void:
 	clear()
 
-	if loc.town and loc.unit.is_leader:
+	if loc.castle and loc.unit.is_leader:
 		var recruit_button := ActionButton.instance()
 		recruit_button.connect("pressed", self, "_on_recruit_pressed")
 		get_tree().current_scene.add_child(recruit_button)
 		buttons.append(recruit_button)
 		recruit_button.rect_global_position = loc.position + DIR["S"]
 		recruit_button.text = "RE"
-		recruit_button.tooltip = "Recruit Units. Your leader has to be on a townhall"
+		recruit_button.tooltip = "Recruit Units. Your leader has to be on a keep"
 
 	var i := 0
 	for skill in loc.unit.get_skills():

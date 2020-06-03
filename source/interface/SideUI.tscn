@@ -46,7 +46,7 @@ size_flags_horizontal = 3
 align = 1
 valign = 1
 
-[node name="Towns" type="Label" parent="HBoxContainer"]
+[node name="Villages" type="Label" parent="HBoxContainer"]
 margin_left = 129.0
 margin_top = 5.0
 margin_right = 168.0
