@@ -193,6 +193,15 @@ func _build_map():
 		var loc : Location = locations[cell]
 		loc.id = cell.y * size.x + cell.x
 
+		var direction := 0
+		for n_cell in Hex.get_neighbors(cell):
+			var n_loc = get_location_from_cell(cell)
+
+			if n_loc:
+				loc.add_neighbor(n_loc, direction)
+
+			direction += 1
+
 
 func _build_grid() -> void:
 	grid = Grid.new(locations.keys(), get_used_rect())

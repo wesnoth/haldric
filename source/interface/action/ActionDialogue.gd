@@ -10,12 +10,12 @@ signal recruit_selected()
 
 
 var DIR = {
-	"S": Vector2(0, 96),
-	"SE": Vector2(72, 48),
-	"NE": Vector2(72, -48),
 	"N": Vector2(0, -96),
+	"NE": Vector2(72, -48),
 	"NW": Vector2(-72, -48),
+	"SE": Vector2(72, 48),
 	"SW": Vector2(-72, 48),
+	"S": Vector2(0, 96),
 }
 
 
@@ -37,7 +37,7 @@ func update_info(loc: Location) -> void:
 		button.connect("pressed", self, "_on_skill_pressed", [ skill ])
 		get_tree().current_scene.add_child(button)
 		buttons.append(button)
-		button.rect_global_position = loc.position + DIR[["N", "NE", "NW", "SE", "SW"][i]]
+		button.rect_global_position = loc.position + DIR[DIR.keys()[i]]
 		button.text = "SK"
 		button.tooltip = skill.alias + "\n" + skill.description
 

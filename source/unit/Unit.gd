@@ -114,7 +114,7 @@ func refresh() -> void:
 	moves.fill()
 
 
-func grand_experience(amount: int) -> void:
+func grant_experience(amount: int) -> void:
 	experience.value += amount
 
 	if not experience.is_full():
