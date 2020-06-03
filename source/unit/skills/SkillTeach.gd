@@ -5,4 +5,4 @@ export var amount := 2
 
 
 func _execute(target: Location) -> void:
-	target.unit.grand_experience(amount)
+	target.unit.grant_experience(amount)
