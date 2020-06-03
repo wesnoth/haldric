@@ -23,6 +23,7 @@ func _ready() -> void:
 func move_unit(loc: Location, _path: Array) -> void:
 	path = _path
 	unit = loc.unit
+
 	if not unit:
 		Console.warn("no unit at: " + str(loc.cell))
 		_end_move(null, loc)

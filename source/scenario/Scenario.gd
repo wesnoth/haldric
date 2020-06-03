@@ -140,7 +140,8 @@ func place_unit(unit: Unit, target_loc: Location) -> void:
 	unit.global_position = target_loc.position
 	target_loc.unit = unit
 
-	_grab_town(target_loc)
+	_grab_village(target_loc)
+	_grab_castle(target_loc)
 
 
 func move_unit(start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
@@ -156,6 +157,8 @@ func move_unit(start_loc: Location, end_loc : Location, pop_last := false) -> Mo
 	var mover := Mover.new()
 	mover.connect("unit_move_finished", self, "_on_Mover_unit_move_finished")
 	get_tree().current_scene.add_child(mover)
+
+	current_side.remove_castle(start_loc)
 
 	mover.move_unit(start_loc, result.path)
 	is_side_moving = true
@@ -289,10 +292,10 @@ func _turn_refresh_heals() -> void:
 		if loc.unit and loc.unit.side_number == current_side.number:
 
 			if loc.terrain.heals and loc.unit.moves.is_full() and loc.unit.actions.is_full():
-				loc.unit.heal(current_side.HEAL_ON_TOWN + current_side.HEAL_ON_REST, true)
+				loc.unit.heal(current_side.HEAL_ON_VILLAGE + current_side.HEAL_ON_REST, true)
 
 			elif loc.terrain.heals:
-				loc.unit.heal(current_side.HEAL_ON_TOWN, true)
+				loc.unit.heal(current_side.HEAL_ON_VILLAGE, true)
 
 			elif loc.unit.moves.is_full() and loc.unit.actions.is_full():
 				loc.unit.heal(current_side.HEAL_ON_REST, true)
@@ -321,17 +324,17 @@ func _check_victory_conditions() -> void:
 		get_tree().reload_current_scene()
 
 
-func _grab_town(loc: Location) -> void:
+func _grab_village(loc: Location) -> void:
 	var side : Side = get_side(loc.unit.side_number)
 
-	if not loc.terrain.recruit_from or side.has_town(loc):
+	if not loc.terrain.gives_income or side.has_village(loc):
 		return
 
 	if loc.side_number >= 0:
 		var last_side : Side = get_side(loc.side_number)
 		last_side.remove_town(loc)
 
-	side.add_town(loc)
+	side.add_village(loc)
 	loc.unit.moves.value = 0
 
 	add_flag(loc.position, side.color)
@@ -339,11 +342,25 @@ func _grab_town(loc: Location) -> void:
 	get_tree().call_group("SideUI", "update_info", current_side)
 
 
+func _grab_castle(loc: Location) -> void:
+	var side : Side = get_side(loc.unit.side_number)
+
+	if not loc.terrain.recruit_from or side.has_castle(loc):
+		return
+
+	if loc.side_number >= 0:
+		var last_side : Side = get_side(loc.side_number)
+		last_side.remove_town(loc)
+
+	side.add_castle(loc)
+
+
 func _on_Map_location_hovered(loc: Location) -> void:
 	emit_signal("location_hovered", loc)
 
 
 func _on_Mover_unit_move_finished(loc: Location) -> void:
-	_grab_town(loc)
+	_grab_village(loc)
+	_grab_castle(loc)
 	is_side_moving = false
 	emit_signal("unit_move_finished", loc)

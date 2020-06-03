@@ -4,6 +4,8 @@ class_name Side
 const HEAL_ON_VILLAGE = 8
 const HEAL_ON_REST = 2
 
+const VILLAGE_INCOME = 2
+
 var number := 0
 
 var income := 0
@@ -12,6 +14,7 @@ var upkeep := 0
 var leaders := []
 var units := []
 var villages := []
+var castles := []
 
 export var start_position := Vector2()
 
@@ -65,6 +68,19 @@ func add_village(loc: Location) -> void:
 	Console.write("added village to side %d" % number)
 
 
+func add_castle(loc: Location) -> void:
+	castles.append(loc)
+	Console.write("added castle to side %d" % number)
+
+
+func remove_castle(loc: Location) -> void:
+	if not castles.has(loc):
+		return
+
+	castles.erase(loc)
+	Console.write("castle village from side %d" % number)
+
+
 func remove_village(loc: Location) -> void:
 	if not villages.has(loc):
 		return
@@ -78,27 +94,30 @@ func has_village(loc: Location) -> bool:
 	return villages.has(loc)
 
 
+func has_castle(loc: Location) -> bool:
+	return castles.has(loc)
+
+
 func can_recruit() -> bool:
-	return has_leader_in_village() and find_recruit_location() != null
+	return is_leader_on_keep() and find_recruit_location() != null
 
 
-func has_leader_in_village() -> bool:
-	for village in villages:
-		if leaders.has(village.unit):
-			return true
-	Console.warn("side %d cannot recruit (no leader in village)" % (number + 1))
+func is_leader_on_keep() -> bool:
+	if castles:
+		return true
+	Console.warn("side %d cannot recruit (no leader in keep)" % (number + 1))
 	return false
 
 
 func find_recruit_location() -> Location:
-	for village in villages:
-		if not leaders.has(village.unit):
+	for castle in castles:
+		if not leaders.has(castle.unit):
 			continue
 
-		for loc in village.village:
+		for loc in castle.castle:
 			if not loc.unit:
 				return loc
-	Console.warn("side %d cannot recruit (no free space in village)" % (number + 1))
+	Console.warn("side %d cannot recruit (no free space in castle)" % (number + 1))
 	return null
 
 
@@ -114,13 +133,7 @@ func _calculate_upkeep() -> void:
 
 
 func _calculate_income() -> void:
-	var village_income := 0
-
-	for loc in villages:
-		village_income += loc.village.size()
-
-	income = base_income + village_income
-	print("village income: ", village_income)
+	income = villages.size() * VILLAGE_INCOME + base_income
 
 
 func _on_unit_died(unit : Unit) -> void:
