@@ -2,7 +2,7 @@ extends Skill
 class_name SkillDamage
 
 export var damage := 0
-export(Attack.DamageType) var damage_type := Attack.DamageType.NONE
+export var damage_type := ""
 
 
 func _execute(target: Location) -> void:

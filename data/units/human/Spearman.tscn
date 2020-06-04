@@ -56,7 +56,6 @@ arcane = 20
 script = ExtResource( 6 )
 alias = "Spear"
 icon = ExtResource( 8 )
-damage_type = 3
 damage = 7
 strikes = 3
 
@@ -67,6 +66,5 @@ script = ExtResource( 6 )
 alias = "Javelin"
 icon = ExtResource( 9 )
 category = "ranged"
-damage_type = 3
 damage = 6
 strikes = 1
