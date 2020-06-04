@@ -83,24 +83,24 @@ rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="SidePanel" type="Panel" parent="HUD/Panels"]
+[node name="SidePanel" type="PanelContainer" parent="HUD/Panels"]
 margin_left = 1620.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 rect_min_size = Vector2( 300, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/Panels/SidePanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 297.0
+margin_bottom = 1077.0
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TimeOfDay" type="Label" parent="HUD/Panels/SidePanel/VBoxContainer"]
-margin_right = 300.0
+margin_right = 294.0
 margin_bottom = 17.0
 text = "Dawn"
 valign = 1
@@ -110,7 +110,7 @@ __meta__ = {
 
 [node name="LocationUI" parent="HUD/Panels/SidePanel/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 21.0
-margin_right = 300.0
+margin_right = 294.0
 margin_bottom = 164.0
 mouse_filter = 2
 
@@ -119,17 +119,17 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 168.0
-margin_right = 300.0
-margin_bottom = 168.0
+margin_right = 294.0
+margin_bottom = 990.0
+size_flags_vertical = 3
 
-[node name="EndTurn" type="Button" parent="HUD/Panels/SidePanel"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = -50.0
-margin_right = -20.0
-margin_bottom = -10.0
+[node name="EndTurn" type="Button" parent="HUD/Panels/SidePanel/VBoxContainer"]
+margin_top = 994.0
+margin_right = 294.0
+margin_bottom = 1074.0
+rect_min_size = Vector2( 0, 80 )
+focus_mode = 0
+enabled_focus_mode = 0
 text = "End Turn"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -151,7 +151,7 @@ theme = ExtResource( 10 )
 [connection signal="recruit_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recruit_selected"]
 [connection signal="skill_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_skill_selected"]
 [connection signal="skill_selected" from="HUD/Panels/SidePanel/VBoxContainer/UnitUI" to="." method="_on_UnitUI_skill_selected"]
-[connection signal="pressed" from="HUD/Panels/SidePanel/EndTurn" to="." method="_on_EndTurn_pressed"]
+[connection signal="pressed" from="HUD/Panels/SidePanel/VBoxContainer/EndTurn" to="." method="_on_EndTurn_pressed"]
 [connection signal="cancelled" from="HUD/CombatDialogue" to="." method="_on_CombatDialogue_cancelled"]
 [connection signal="option_selected" from="HUD/CombatDialogue" to="." method="_on_CombatDialogue_option_selected"]
 [connection signal="cancelled" from="HUD/RecruitDialogue" to="." method="_on_RecruitDialogue_cancelled"]

@@ -25,5 +25,9 @@ func execute(_self: Location) -> void:
 			_execute(neighbor)
 
 
+func to_string() -> String:
+	return alias
+
+
 func _execute(target: Location) -> void:
 	pass

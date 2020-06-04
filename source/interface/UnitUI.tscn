@@ -75,26 +75,33 @@ size_flags_horizontal = 3
 text = "HP: 30/30"
 valign = 1
 
-[node name="AttacksLabel" type="Label" parent="VBoxContainer"]
+[node name="Abilities" type="Label" parent="VBoxContainer"]
 margin_top = 132.0
 margin_right = 300.0
 margin_bottom = 146.0
+text = "UnitType"
+valign = 1
+
+[node name="AttacksLabel" type="Label" parent="VBoxContainer"]
+margin_top = 156.0
+margin_right = 300.0
+margin_bottom = 170.0
 text = "Attacks"
 valign = 1
 
 [node name="Attacks" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 156.0
-margin_right = 300.0
-margin_bottom = 156.0
-
-[node name="SkillsLabel" type="Label" parent="VBoxContainer"]
-margin_top = 166.0
+margin_top = 180.0
 margin_right = 300.0
 margin_bottom = 180.0
+
+[node name="SkillsLabel" type="Label" parent="VBoxContainer"]
+margin_top = 190.0
+margin_right = 300.0
+margin_bottom = 204.0
 text = "Skills"
 valign = 1
 
 [node name="Skills" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 190.0
+margin_top = 214.0
 margin_right = 300.0
-margin_bottom = 190.0
+margin_bottom = 214.0

@@ -8,6 +8,7 @@ onready var name_label := $VBoxContainer/Name
 onready var unit_type_label := $VBoxContainer/UnitType
 
 onready var traits_label := $VBoxContainer/Traits
+onready var abilities_label := $VBoxContainer/Abilities
 
 onready var health_label := $VBoxContainer/HBoxContainer/Health
 onready var moves_label := $VBoxContainer/HBoxContainer/Moves
@@ -49,6 +50,9 @@ func update_info(loc: Location) -> void:
 	moves_label.text = "MP: %d / %d" % [unit.moves.value, unit.moves.maximum]
 	experience_label.text = "XP: %d / %d" % [unit.experience.value, unit.experience.maximum]
 
+	for ability in unit.get_abilities():
+		abilities_label.text += ability.to_string()
+
 	for attack in unit.get_attacks():
 		var label := Label.new()
 		label.text = attack.to_string()
@@ -66,13 +70,11 @@ func clear() -> void:
 	unit_type_label.text = ""
 
 	traits_label.text = ""
+	abilities_label.text = ""
 
 	health_label.text = ""
 	moves_label.text = ""
 	experience_label.text = ""
-
-	attacks_label.text = ""
-	skills_label.text = ""
 
 	for child in attacks.get_children():
 		attacks.remove_child(child)
