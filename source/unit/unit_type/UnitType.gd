@@ -2,7 +2,7 @@ tool
 extends Node2D
 class_name UnitType
 
-enum USAGE { SCOUT, FIGHTER, ARCHER, MIXED_FIGHTER, HEALER }
+enum Usage { SCOUT, FIGHTER, ARCHER, MIXED_FIGHTER, HEALER }
 
 export var alias = ""
 export var alignment := "neutral"
@@ -18,7 +18,7 @@ export var experience := 1
 export(Array, PackedScene) var traits := []
 export(Array, String) var advances_to := []
 
-export(USAGE) var usage : int = USAGE.FIGHTER
+export(Usage) var usage : int = Usage.FIGHTER
 
 onready var defense := $Defense as DefenseType
 onready var movement := $Movement as MovementType

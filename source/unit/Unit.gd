@@ -226,10 +226,10 @@ func get_defense(terrain_type: Array) -> int:
 
 
 func get_resistance(damage_type: int) -> int:
-	if damage_type == Attack.DAMAGE_TYPE.NONE:
+	if damage_type == Attack.DamageType.NONE:
 		return 0
 
-	return type.resistance.get(Attack.DAMAGE_TYPE.keys()[damage_type].to_lower())
+	return type.resistance.get(Attack.DamageType.keys()[damage_type].to_lower())
 
 
 func get_movement_costs(terrain_type: Array) -> int:

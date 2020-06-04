@@ -25,7 +25,7 @@ func calculate_damage(damage: int, type: String) -> int:
 
 func to_string() -> String:
 	var s = "Resistances:\n"
-	for type in Attack.DAMAGE_TYPE.keys():
+	for type in Attack.DamageType.keys():
 		if type == "NONE":
 			continue
 

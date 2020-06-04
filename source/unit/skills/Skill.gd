@@ -1,7 +1,7 @@
 extends Node
 class_name Skill
 
-enum TARGET { ENEMY, ALLY, LOCATION }
+enum Target { ENEMY, ALLY, LOCATION }
 
 var cooldown := 0
 var count := 0
@@ -9,7 +9,7 @@ var count := 0
 export var alias := ""
 export(String, MULTILINE) var description := ""
 
-export(TARGET) var target = TARGET.ENEMY
+export(Target) var target = Target.ENEMY
 
 export var reach := 1
 export var _count := 0

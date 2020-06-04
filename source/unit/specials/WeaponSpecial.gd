@@ -1,83 +1,83 @@
 extends Node
 class_name WeaponSpecial
 
-enum TARGET { SELF, OPPONENT, OFFENDER, DEFENDER, BOTH }
-enum ACTIVATION { OFFENSE, DEFENSE, BOTH }
+enum Target { SELF, OPPONENT, OFFENDER, DEFENDER, BOTH }
+enum Activation { OFFENSE, DEFENSE, BOTH }
 
 export var alias := ""
 export(String, MULTILINE) var description := ""
 
-export(TARGET) var apply_to = TARGET.SELF
-export(ACTIVATION) var active_on := ACTIVATION.BOTH
+export(Target) var apply_to = Target.SELF
+export(Activation) var active_on := Activation.BOTH
 
 
 func execute(_self: CombatContext, opponent: CombatContext, offender: CombatContext, defender: CombatContext) -> void:
 
 	match apply_to:
 
-		TARGET.SELF:
+		Target.SELF:
 
 			match active_on:
 
-				ACTIVATION.BOTH:
+				Activation.BOTH:
 					_execute(_self)
 
-				ACTIVATION.OFFENSE:
+				Activation.OFFENSE:
 					if _self == offender:
 						_execute(_self)
 
-				ACTIVATION.DEFENSE:
+				Activation.DEFENSE:
 					if _self == defender:
 						_execute(_self)
 
-		TARGET.OPPONENT:
+		Target.OPPONENT:
 
 			match active_on:
 
-				ACTIVATION.BOTH:
+				Activation.BOTH:
 					_execute(opponent)
 
-				ACTIVATION.OFFENSE:
+				Activation.OFFENSE:
 					if opponent == offender:
 						_execute(opponent)
 
-				ACTIVATION.DEFENSE:
+				Activation.DEFENSE:
 					if opponent == defender:
 						_execute(opponent)
 
-		TARGET.OFFENDER:
+		Target.OFFENDER:
 
 			match active_on:
 
-				ACTIVATION.BOTH:
+				Activation.BOTH:
 					_execute(offender)
-				ACTIVATION.OFFENSE:
+				Activation.OFFENSE:
 					_execute(offender)
 
-		TARGET.DEFENDER:
+		Target.DEFENDER:
 
 				match active_on:
 
-					ACTIVATION.BOTH:
+					Activation.BOTH:
 						_execute(defender)
 
-					ACTIVATION.DEFENSE:
+					Activation.DEFENSE:
 						_execute(defender)
 
-		TARGET.BOTH:
+		Target.BOTH:
 
 			match active_on:
 
-				ACTIVATION.BOTH:
+				Activation.BOTH:
 					_execute(_self)
 					_execute(opponent)
 
-				ACTIVATION.OFFENSE:
+				Activation.OFFENSE:
 					if _self == offender:
 						_execute(_self)
 						_execute(opponent)
 
-				ACTIVATION.DEFENSE:
+				Activation.DEFENSE:
 					if opponent == defender:
 						_execute(_self)
 						_execute(opponent)
