@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/units/elvish/elfvish-archer.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/units/elvish/archer.png" type="Texture" id=2]
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
-[ext_resource path="res://source/unit/skills/SkillDamage.gd" type="Script" id=9]
+[ext_resource path="res://graphics/images/attacks/bow-elven.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/attacks/sword-elven.png" type="Texture" id=8]
 
 
 
@@ -32,7 +33,8 @@ forest = 70
 hills = 50
 water = 20
 mountains = 60
-town = 60
+village = 60
+castle = 60
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -40,9 +42,7 @@ forest = 1
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
-nature = 10
-arcane = 10
-chaos = -20
+arcane = -10
 
 [node name="Traits" type="Node" parent="."]
 
@@ -50,20 +50,12 @@ chaos = -20
 
 [node name="Skills" type="Node" parent="."]
 
-[node name="Shot" type="Node" parent="Skills"]
-script = ExtResource( 9 )
-alias = "Precise Shot"
-description = "Deals 5 pierce damage to target"
-reach = 2
-_count = 2
-_cooldown = 2
-damage = 5
-
 [node name="Attacks" type="Node" parent="."]
 
 [node name="Sword" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
 alias = "Sword"
+icon = ExtResource( 8 )
 damage_type = 1
 damage = 4
 strikes = 2
@@ -71,6 +63,7 @@ strikes = 2
 [node name="Bow" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
 alias = "Bow"
+icon = ExtResource( 7 )
 category = "ranged"
 damage_type = 3
 damage = 5
