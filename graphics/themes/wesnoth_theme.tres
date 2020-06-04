@@ -4,7 +4,6 @@
 [ext_resource path="res://graphics/fonts/lato/Lato14.tres" type="DynamicFont" id=4]
 [ext_resource path="res://graphics/styles/panel.tres" type="StyleBox" id=5]
 
-
 [resource]
 default_font = ExtResource( 4 )
 Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
