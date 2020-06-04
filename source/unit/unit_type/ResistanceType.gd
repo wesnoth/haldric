@@ -10,6 +10,8 @@ export(int, -100, 100, 5) var pierce := 0
 export(int, -100, 100, 5) var nature := 0
 export(int, -100, 100, 5) var burn := 0
 export(int, -100, 100, 5) var frost := 0
+export(int, -100, 100, 5) var shock := 0
+export(int, -100, 100, 5) var sonic := 0
 
 # magical types
 export(int, -100, 100, 5) var arcane := 0
