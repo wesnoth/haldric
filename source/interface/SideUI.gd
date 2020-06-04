@@ -1,5 +1,5 @@
-extends Panel
-class_name Side_UI
+extends Control
+class_name SideUI
 
 
 onready var side_label := $HBoxContainer/Side
