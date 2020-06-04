@@ -69,3 +69,5 @@ category = "ranged"
 damage_type = "impact"
 damage = 3
 strikes = 2
+
+[node name="Advancements" type="Node" parent="."]

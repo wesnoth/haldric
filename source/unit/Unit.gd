@@ -123,18 +123,17 @@ func grant_experience(amount: int) -> void:
 	if not experience.is_full():
 		return
 
-	if type.advances_to.size() == 1:
-		var id = type.advances_to[0]
+	var advancements = get_advancements()
 
-		if not Data.units.has(id):
-			print("unit type %s does not exist!" % id)
-			return
-
-		var unit_type = Data.units[id].instance()
-		advance(unit_type)
-
-	elif type.advances_to.size() > 1:
+	if advancements.size() > 1:
 		get_tree().call_group("GameUI", "show_advancement_dialogue", self)
+
+	elif advancements.size() == 1:
+		var advancement : Advancement = advancements[0]
+		if advancement.force_display:
+			get_tree().call_group("GameUI", "show_advancement_dialogue", self)
+		else:
+			advancement.execute(self)
 	else:
 		amla()
 
@@ -163,6 +162,8 @@ func reset() -> void:
 func amla() -> void:
 	_tween_advancement_in()
 	yield(tween, "tween_all_completed")
+
+	Data.DefaultAmla.execute(self)
 
 	health.fill()
 	experience.empty()
@@ -198,6 +199,11 @@ func get_skills() -> Array:
 
 func get_abilities() -> Array:
 	return type.abilities.get_children()
+
+
+func get_advancements() -> Array:
+	return type.advancements.get_children()
+
 
 func get_effects() -> Array:
 	return effects.get_children()

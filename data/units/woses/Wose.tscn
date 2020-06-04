@@ -68,3 +68,5 @@ icon = ExtResource( 1 )
 damage_type = "impact"
 damage = 13
 strikes = 2
+
+[node name="Advancements" type="Node" parent="."]

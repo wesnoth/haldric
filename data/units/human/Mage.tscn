@@ -69,3 +69,5 @@ damage = 7
 strikes = 3
 
 [node name="Magical" parent="Attacks/Fireball" instance=ExtResource( 9 )]
+
+[node name="Advancements" type="Node" parent="."]

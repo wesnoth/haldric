@@ -64,3 +64,5 @@ damage = 9
 strikes = 2
 
 [node name="Charge" parent="Attacks/Spear" instance=ExtResource( 7 )]
+
+[node name="Advancements" type="Node" parent="."]

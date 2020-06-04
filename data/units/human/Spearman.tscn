@@ -70,3 +70,5 @@ category = "ranged"
 damage_type = "pierce"
 damage = 6
 strikes = 1
+
+[node name="Advancements" type="Node" parent="."]

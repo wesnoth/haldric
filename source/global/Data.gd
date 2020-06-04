@@ -1,5 +1,7 @@
 extends Node
 
+var DefaultAmla : Advancement = preload("res://data/advancements/Default.tscn").instance()
+
 var terrains := {}
 var races := {}
 var units := {}
