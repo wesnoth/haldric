@@ -310,6 +310,9 @@ func _turn_refresh_abilities() -> void:
 		for ability in loc.unit.get_abilities():
 			ability.execute(loc)
 
+		for effect in loc.unit.get_effects():
+			effect.execute(loc)
+
 
 func _check_victory_conditions() -> void:
 	var victory := true

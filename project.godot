@@ -92,7 +92,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Effect",
 "language": "GDScript",
-"path": "res://source/unit/Effect.gd"
+"path": "res://source/unit/effect/Effect.gd"
+}, {
+"base": "Effect",
+"class": "EffectDamage",
+"language": "GDScript",
+"path": "res://source/unit/effect/EffectDamage.gd"
 }, {
 "base": "CanvasLayer",
 "class": "GameUI",
@@ -367,6 +372,7 @@ _global_script_class_icons={
 "DebugDraw": "",
 "DefenseType": "",
 "Effect": "",
+"EffectDamage": "",
 "GameUI": "",
 "Grid": "",
 "Hex": "",
