@@ -26,11 +26,7 @@ func _load_terrain() -> void:
 	terrains.clear()
 
 	var terrain_script := load("res://data/terrain.gd").new() as TerrainLoader
-	terrain_script.load_terrain()
-
-#	for file_data in Loader.load_dir("res://data/terrain", ["tres", "res"]):
-#		var code = file_data.data.code
-#		terrains[code] = file_data.data
+	terrains = terrain_script.load_terrain()
 
 	print(terrains)
 

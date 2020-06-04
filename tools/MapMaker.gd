@@ -21,13 +21,12 @@ func _build_tileset(__) -> void:
 
 
 func _terrain() -> Dictionary:
-	var graphics := {}
+	var terrains := {}
 
-	for file_data in Loader.load_dir("res://data/terrain", ["tres", "res"]):
-		var code = file_data.data.code
-		graphics[code] = file_data.data
-		print("Loading: ", file_data)
-	return graphics
+	var terrain_script := load("res://data/terrain.gd").new() as TerrainLoader
+	terrains = terrain_script.load_terrain()
+
+	return terrains
 
 
 func _build_map_data() -> MapData:
