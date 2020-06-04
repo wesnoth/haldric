@@ -10,7 +10,7 @@ func load_terrain() -> Dictionary:
 	_load()
 	return terrains
 
-func add_basic_terrain(name: String, code: String, type: String, image_path: String) -> void:
+func add_basic_terrain(name: String, code: String, type: String, image_path: String, offset := Vector2()) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -19,22 +19,7 @@ func add_basic_terrain(name: String, code: String, type: String, image_path: Str
 		.with_graphic(graphic_builder\
 			.new_graphic()\
 			.with_texture(load("graphics/images/terrain/" + image_path))\
-			.build())\
-		.build()
-
-	terrains[terrain.code] = terrain
-
-
-func add_large_terrain(name: String, code: String, type: String, image_path: String) -> void:
-	var terrain := terrain_builder\
-		.new_terrain()\
-		.with_name(name)\
-		.with_code(code)\
-		.with_type(type)\
-		.with_graphic(graphic_builder\
-			.new_graphic()\
-			.with_offset(Vector2(-36, -36))\
-			.with_texture(load("graphics/images/terrain/" + image_path))\
+			.with_offset(offset)\
 			.build())\
 		.build()
 

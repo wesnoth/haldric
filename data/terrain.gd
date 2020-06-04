@@ -5,8 +5,7 @@ func _load() -> void:
 	add_basic_terrain("Hills", "Hh", "hills", "hills.png")
 	add_basic_terrain("Mountain", "Mm", "mountains", "mountain.png")
 	add_basic_terrain("Water", "Ww", "water", "water/water_animated.tres")
-
-	add_large_terrain("Forest", "^F", "forest", "forest.png")
+	add_basic_terrain("Forest", "^F", "forest", "forest.png", Vector2(-36, -36))
 
 	add_village_terrain("Village", "^Vh", "village", "village.png")
 
