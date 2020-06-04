@@ -248,7 +248,7 @@ func end_turn() -> void:
 	Console.write("Side %d's Turn" % current_side.number)
 
 	if current_side.controller == Side.CONTROLLER.AI:
-		AI.call_deferred("execute", self)
+		current_side.AI.call_deferred("execute", self)
 		yield(AI, "finished")
 		end_turn()
 		return

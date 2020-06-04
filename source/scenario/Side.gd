@@ -1,6 +1,9 @@
 extends Node
 class_name Side
 
+signal side_add_unit
+signal side_remove_unit
+
 enum CONTROLLER { HUMAN, AI }
 
 const HEAL_ON_VILLAGE = 8
@@ -31,6 +34,8 @@ export var leader := ""
 export(Array, String) var random_leader := []
 export(Array, String) var recruit := []
 
+onready var AI = AI.new(self)
+
 
 func _ready() -> void:
 	number = get_index()
@@ -60,6 +65,7 @@ func add_unit(unit: Unit, is_leader := false) -> void:
 		leaders.append(unit)
 
 	unit.connect("died", self, "_on_unit_died")
+	emit_signal("side_add_unit", unit)
 
 	update_income()
 
@@ -147,3 +153,5 @@ func _on_unit_died(unit : Unit) -> void:
 		leaders.remove(idx)
 
 	units.erase(unit)
+	
+	emit_signal("side_remove_unit", unit)

@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "AI",
+"language": "GDScript",
+"path": "res://source/global/AI.gd"
+}, {
+"base": "Node",
 "class": "Ability",
 "language": "GDScript",
 "path": "res://source/unit/abilities/Ability.gd"
@@ -355,6 +360,7 @@ _global_script_classes=[ {
 "path": "res://source/unit/specials/WeaponSpecial.gd"
 } ]
 _global_script_class_icons={
+"AI": "",
 "Ability": "",
 "AbilityHeal": "",
 "ActionButton": "",
@@ -440,7 +446,6 @@ Command="*res://source/global/Command.gd"
 Console="*res://source/global/Console.tscn"
 Scene="*res://addons/scene_manager/source/Scene.tscn"
 Global="*res://source/global/Global.gd"
-AI="*res://source/global/AI.gd"
 
 [display]
 
