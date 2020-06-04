@@ -1,22 +1,24 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/units/elvish/elfvish-captain.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/units/elvish/captain.png" type="Texture" id=2]
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
-[ext_resource path="res://data/effects/Poison.tscn" type="PackedScene" id=8]
+[ext_resource path="res://graphics/images/attacks/bow-elven.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/attacks/sword-elven.png" type="Texture" id=8]
+[ext_resource path="res://data/abilities/Leadership.tscn" type="PackedScene" id=9]
 
 [node name="ElvishCaptain" type="Node2D"]
 script = ExtResource( 1 )
 alias = "Elvish Captain"
 race = "elf"
 level = 2
-cost = 30
-health = 51
+cost = 32
+health = 47
 moves = 5
-experience = 95
+experience = 90
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -30,7 +32,8 @@ forest = 60
 hills = 50
 water = 20
 mountains = 60
-town = 60
+village = 60
+castle = 60
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -38,9 +41,7 @@ forest = 1
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
-nature = 10
-arcane = 10
-chaos = -20
+arcane = -10
 
 [node name="Skills" type="Node" parent="."]
 
@@ -48,19 +49,23 @@ chaos = -20
 
 [node name="Abilities" type="Node" parent="."]
 
+[node name="Leadership" parent="Abilities" instance=ExtResource( 9 )]
+
 [node name="Attacks" type="Node" parent="."]
 
-[node name="Spear" type="Node" parent="Attacks"]
+[node name="Sword" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
-alias = "Spear"
-damage_type = 3
+alias = "Sword"
+icon = ExtResource( 8 )
+damage_type = 1
 damage = 7
 strikes = 4
 
-[node name="Javelin" type="Node" parent="Attacks"]
+[node name="Bow" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
-alias = "Javelin"
+alias = "Bow"
+icon = ExtResource( 7 )
 category = "ranged"
-damage_type = 2
-damage = 8
-strikes = 2
+damage_type = 3
+damage = 5
+strikes = 3

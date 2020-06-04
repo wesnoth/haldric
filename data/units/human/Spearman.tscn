@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/units/human/spearman.png" type="Texture" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
-[ext_resource path="res://data/specials/Charge.tscn" type="PackedScene" id=7]
+[ext_resource path="res://data/specials/Firststrike.tscn" type="PackedScene" id=7]
+[ext_resource path="res://graphics/images/attacks/spear.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/attacks/javelin-human.png" type="Texture" id=9]
 
 [node name="Spearman" type="Node2D"]
 script = ExtResource( 1 )
@@ -31,7 +33,8 @@ forest = 50
 hills = 50
 water = 20
 mountains = 60
-town = 60
+village = 60
+castle = 60
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -40,8 +43,6 @@ script = ExtResource( 4 )
 script = ExtResource( 5 )
 pierce = 20
 arcane = 20
-holy = 10
-chaos = 10
 
 [node name="Traits" type="Node" parent="."]
 
@@ -54,8 +55,18 @@ chaos = 10
 [node name="Spear" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
 alias = "Spear"
-damage = 9
-strikes = 2
+icon = ExtResource( 8 )
 damage_type = 3
+damage = 7
+strikes = 3
 
-[node name="Charge" parent="Attacks/Spear" instance=ExtResource( 7 )]
+[node name="Firststrike" parent="Attacks/Spear" instance=ExtResource( 7 )]
+
+[node name="Javelin" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Javelin"
+icon = ExtResource( 9 )
+category = "ranged"
+damage_type = 3
+damage = 6
+strikes = 1

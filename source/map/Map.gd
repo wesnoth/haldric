@@ -17,7 +17,7 @@ static func instance() -> Map:
 
 
 func _ready() -> void:
-	set_tile_set(TileSetBuilder.build(Data.terrain))
+	set_tile_set(TileSetBuilder.build(Data.terrains))
 	_build_map()
 	_build_grid()
 	_build_castles()
@@ -182,7 +182,7 @@ func _build_map():
 
 		var data := []
 		for c in code:
-			data.append(Data.terrain[c])
+			data.append(Data.terrains[c])
 
 		_set_cell_terrain(cell, code)
 		_set_cell_location(cell, data)
