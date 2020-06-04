@@ -43,6 +43,8 @@ static func instance() -> Unit:
 func _ready() -> void:
 	traits.name = "Traits"
 	add_child(traits)
+	effects.name = "Effects"
+	add_child(effects)
 	_set_type(type)
 
 
