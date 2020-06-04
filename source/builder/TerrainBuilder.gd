@@ -17,6 +17,11 @@ func with_code(code: String) -> TerrainBuilder:
 	return self
 
 
+func with_type(type: String) -> TerrainBuilder:
+	terrain.type = type
+	return self
+
+
 func with_layer(layer: int) -> TerrainBuilder:
 	terrain.layer = layer
 	return self
