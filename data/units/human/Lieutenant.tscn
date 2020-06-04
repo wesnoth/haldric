@@ -48,8 +48,6 @@ holy = 20
 
 [node name="Skills" type="Node" parent="."]
 
-[node name="Teach3" parent="Skills" instance=ExtResource( 7 )]
-
 [node name="Attacks" type="Node" parent="."]
 
 [node name="Sword" type="Node" parent="Attacks"]
