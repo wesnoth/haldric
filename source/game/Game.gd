@@ -8,7 +8,7 @@ var selected_unit : Location = null
 var selected_skill : Skill = null
 
 onready var scenario_container := $ScenarioContainer
-onready var time_shader := $Node/TimeShader
+onready var time_shader := $CanvasLayer/TimeShader
 
 onready var UI = $GameUI as GameUI
 

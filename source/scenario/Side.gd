@@ -1,6 +1,8 @@
 extends Node
 class_name Side
 
+enum CONTROLLER { HUMAN, AI }
+
 const HEAL_ON_VILLAGE = 8
 const HEAL_ON_REST = 2
 
@@ -15,6 +17,8 @@ var leaders := []
 var units := []
 var villages := []
 var castles := []
+
+export(CONTROLLER) var controller : int = CONTROLLER.HUMAN
 
 export var start_position := Vector2()
 
