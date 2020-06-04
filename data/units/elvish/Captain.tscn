@@ -6,6 +6,7 @@
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
+[ext_resource path="res://data/effects/Poison.tscn" type="PackedScene" id=8]
 
 [node name="ElvishCaptain" type="Node2D"]
 script = ExtResource( 1 )

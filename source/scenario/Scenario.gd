@@ -311,7 +311,7 @@ func _turn_refresh_abilities() -> void:
 			ability.execute(loc)
 
 		for effect in loc.unit.get_effects():
-			effect.execute(loc, map.get_neighbors(loc))
+			effect.execute(loc)
 
 
 func _check_victory_conditions() -> void:

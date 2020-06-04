@@ -2,10 +2,9 @@
 
 [ext_resource path="res://source/unit/abilities/AbilityHeal.gd" type="Script" id=1]
 
-
 [node name="Regenerate" type="Node"]
 script = ExtResource( 1 )
 alias = "Regenerate"
 description = "Regenerates 8 HP in the beginning of your turn."
 amount = 8
-cure = "cured"
+cure = [ "Poison" ]
