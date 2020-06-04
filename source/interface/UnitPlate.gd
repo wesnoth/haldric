@@ -76,7 +76,7 @@ func _on_experience_changed(value: int) -> void:
 
 
 func _on_turn_end() -> void:
-	movement.color = Color.blue
+	movement.color = Color.red
 
 
 func _on_unit_died(unit: Unit) -> void:
