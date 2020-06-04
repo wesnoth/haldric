@@ -38,9 +38,9 @@ script = ExtResource( 1 )
 
 [node name="ScenarioContainer" type="Node2D" parent="."]
 
-[node name="Node" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TimeShader" type="TextureRect" parent="Node"]
+[node name="TimeShader" type="TextureRect" parent="CanvasLayer"]
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0

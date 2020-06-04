@@ -246,6 +246,13 @@ func end_turn() -> void:
 	current_side.turn_refresh()
 
 	Console.write("Side %d's Turn" % current_side.number)
+
+	if current_side.controller == Side.CONTROLLER.AI:
+		AI.call_deferred("execute", self)
+		yield(AI, "finished")
+		end_turn()
+		return
+
 	get_tree().call_group("SideUI", "update_info", current_side)
 	get_tree().call_group("GameCam", "set", "global_position", current_side.leaders[0].global_position)
 
