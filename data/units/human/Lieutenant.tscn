@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/units/human/lieutenant.png" type="Texture" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
-[ext_resource path="res://data/skills/Teach3.tscn" type="PackedScene" id=7]
+[ext_resource path="res://data/abilities/Leadership.tscn" type="PackedScene" id=7]
+[ext_resource path="res://graphics/images/attacks/sword-human.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/attacks/bow.png" type="Texture" id=9]
 
 [node name="Lieutenant" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,10 +16,10 @@ alias = "Lieutenant"
 alignment = "lawful"
 race = "human"
 level = 2
-cost = 30
-health = 58
+cost = 35
+health = 40
 moves = 5
-experience = 100
+experience = 80
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -31,39 +33,41 @@ forest = 50
 hills = 50
 water = 20
 mountains = 60
-town = 60
+village = 60
+castle = 60
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 4 )
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
-blade = 20
 impact = 10
 pierce = 20
-holy = 20
+arcane = 20
 
 [node name="Traits" type="Node" parent="."]
 
 [node name="Abilities" type="Node" parent="."]
 
-[node name="Skills" type="Node" parent="."]
+[node name="Leadership" parent="Abilities" instance=ExtResource( 7 )]
 
-[node name="Teach3" parent="Skills" instance=ExtResource( 7 )]
+[node name="Skills" type="Node" parent="."]
 
 [node name="Attacks" type="Node" parent="."]
 
 [node name="Sword" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
 alias = "Sword"
+icon = ExtResource( 8 )
+damage_type = 1
 damage = 7
 strikes = 4
-damage_type = 1
 
 [node name="Bow" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
 alias = "Bow"
+icon = ExtResource( 9 )
 category = "ranged"
+damage_type = 3
 damage = 5
 strikes = 3
-damage_type = 3

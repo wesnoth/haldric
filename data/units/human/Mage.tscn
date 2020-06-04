@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/units/human/mage.png" type="Texture" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
-[ext_resource path="res://data/skills/Explosion.tscn" type="PackedScene" id=7]
+[ext_resource path="res://graphics/images/attacks/magic-missile.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/attacks/staff-magic.png" type="Texture" id=8]
 [ext_resource path="res://data/specials/Magical.tscn" type="PackedScene" id=9]
 
 [node name="Mage" type="Node2D"]
@@ -32,7 +33,8 @@ forest = 50
 hills = 50
 water = 20
 mountains = 60
-town = 60
+village = 60
+castle = 60
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -40,8 +42,6 @@ script = ExtResource( 4 )
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
 arcane = 20
-holy = 10
-chaos = 10
 
 [node name="Traits" type="Node" parent="."]
 
@@ -49,24 +49,23 @@ chaos = 10
 
 [node name="Skills" type="Node" parent="."]
 
-[node name="Explosion" parent="Skills" instance=ExtResource( 7 )]
-damage_type = 0
-
 [node name="Attacks" type="Node" parent="."]
 
 [node name="Staff" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
 alias = "Staff"
+icon = ExtResource( 8 )
+damage_type = 2
 damage = 5
 strikes = 1
-damage_type = 2
 
 [node name="Fireball" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
 alias = "Fireball"
+icon = ExtResource( 7 )
 category = "ranged"
+damage_type = 5
 damage = 7
 strikes = 3
-damage_type = 5
 
 [node name="Magical" parent="Attacks/Fireball" instance=ExtResource( 9 )]
