@@ -57,8 +57,8 @@ script = ExtResource( 6 )
 alias = "Spear"
 icon = ExtResource( 8 )
 damage_type = 3
-damage = 9
-strikes = 2
+damage = 7
+strikes = 3
 
 [node name="Firststrike" parent="Attacks/Spear" instance=ExtResource( 7 )]
 
