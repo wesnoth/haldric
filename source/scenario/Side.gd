@@ -1,10 +1,14 @@
 extends Node
 class_name Side
 
+<<<<<<< HEAD
 signal side_add_unit
 signal side_remove_unit
 
 enum CONTROLLER { HUMAN, AI }
+=======
+enum Controller { HUMAN, AI }
+>>>>>>> 017c1f739806ee67fe910858b7c8d2e31c14b4b5
 
 const HEAL_ON_VILLAGE = 8
 const HEAL_ON_REST = 2
@@ -21,7 +25,7 @@ var units := []
 var villages := []
 var castles := []
 
-export(CONTROLLER) var controller : int = CONTROLLER.HUMAN
+export(Controller) var controller : int = Controller.HUMAN
 
 export var start_position := Vector2()
 

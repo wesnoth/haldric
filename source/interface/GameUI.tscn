@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://source/interface/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/misc/Selector.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://source/interface/SideUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/interface/recruit/RecruitDialogue.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/interface/PathUI.gd" type="Script" id=9]
+[ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=10]
 [ext_resource path="res://source/interface/action/ActionDialogue.tscn" type="PackedScene" id=11]
 [ext_resource path="res://source/interface/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
 
@@ -46,13 +47,16 @@ cell_tile_origin = 1
 format = 1
 
 [node name="UnitPlateContainer" type="Control" parent="."]
+theme = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ActionDialogue" parent="." instance=ExtResource( 11 )]
+theme = ExtResource( 10 )
 
 [node name="PopupLabelContainer" type="Control" parent="."]
+theme = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -66,6 +70,7 @@ layer = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+theme = ExtResource( 10 )
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -78,25 +83,25 @@ rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="SidePanel" type="Panel" parent="HUD/Panels"]
+[node name="SidePanel" type="PanelContainer" parent="HUD/Panels"]
 margin_left = 1620.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 rect_min_size = Vector2( 300, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/Panels/SidePanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 297.0
+margin_bottom = 1077.0
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TimeOfDay" type="Label" parent="HUD/Panels/SidePanel/VBoxContainer"]
-margin_right = 300.0
-margin_bottom = 14.0
+margin_right = 294.0
+margin_bottom = 17.0
 text = "Dawn"
 valign = 1
 __meta__ = {
@@ -104,46 +109,49 @@ __meta__ = {
 }
 
 [node name="LocationUI" parent="HUD/Panels/SidePanel/VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 18.0
-margin_right = 300.0
-margin_bottom = 140.0
+margin_top = 21.0
+margin_right = 294.0
+margin_bottom = 164.0
 mouse_filter = 2
 
 [node name="UnitUI" parent="HUD/Panels/SidePanel/VBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 144.0
-margin_right = 300.0
-margin_bottom = 144.0
+margin_top = 168.0
+margin_right = 294.0
+margin_bottom = 990.0
+size_flags_vertical = 3
 
-[node name="EndTurn" type="Button" parent="HUD/Panels/SidePanel"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = -50.0
-margin_right = -20.0
-margin_bottom = -10.0
+[node name="EndTurn" type="Button" parent="HUD/Panels/SidePanel/VBoxContainer"]
+margin_top = 994.0
+margin_right = 294.0
+margin_bottom = 1074.0
+rect_min_size = Vector2( 0, 80 )
+focus_mode = 0
+enabled_focus_mode = 0
 text = "End Turn"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CombatDialogue" parent="HUD" instance=ExtResource( 5 )]
+theme = ExtResource( 10 )
 
 [node name="RecruitDialogue" parent="HUD" instance=ExtResource( 8 )]
 margin_top = 0.0
 margin_bottom = 0.0
+theme = ExtResource( 10 )
 
 [node name="AdvancementDialogue" parent="HUD" instance=ExtResource( 12 )]
 margin_top = -2.0
 margin_bottom = -2.0
+theme = ExtResource( 10 )
 [connection signal="move_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_move_selected"]
 [connection signal="recruit_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recruit_selected"]
 [connection signal="skill_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_skill_selected"]
 [connection signal="skill_selected" from="HUD/Panels/SidePanel/VBoxContainer/UnitUI" to="." method="_on_UnitUI_skill_selected"]
-[connection signal="pressed" from="HUD/Panels/SidePanel/EndTurn" to="." method="_on_EndTurn_pressed"]
+[connection signal="pressed" from="HUD/Panels/SidePanel/VBoxContainer/EndTurn" to="." method="_on_EndTurn_pressed"]
 [connection signal="cancelled" from="HUD/CombatDialogue" to="." method="_on_CombatDialogue_cancelled"]
 [connection signal="option_selected" from="HUD/CombatDialogue" to="." method="_on_CombatDialogue_option_selected"]
 [connection signal="cancelled" from="HUD/RecruitDialogue" to="." method="_on_RecruitDialogue_cancelled"]
