@@ -14,7 +14,7 @@ func update_info(unit: CombatContext, opponent: CombatContext) -> void:
 		return
 
 	name_label.text = unit.alias
-	type_label.text = "(%s)" % Attack.DAMAGE_TYPE.keys()[unit.damage_type].to_lower()
+	type_label.text = "(%s)" % Attack.DamageType.keys()[unit.damage_type].to_lower()
 	accuracy_label.text = "%d %%" % unit.accuracy
 
 	var damage = opponent.unit.calculate_damage(unit.damage, unit.damage_type)

@@ -1,6 +1,6 @@
 class_name Hex
 
-enum DIRECTIONS { N, NE, SE, S, SW, NW }
+enum Direction { N, NE, SE, S, SW, NW }
 
 const NEIGHBOR_TABLE := [
 	Vector3(0, 1, -1), # N
@@ -104,10 +104,10 @@ static func _get_cube_ring(cube: Vector3, radius: int) -> Array:
 	var ring : Array = []
 	var start_cube = _get_cube_neighbor(cube, 4, radius)
 
-	for direction in DIRECTIONS:
+	for direction in Direction:
 		for __ in radius:
 			ring.append(start_cube)
-			start_cube = _get_cube_neighbor(start_cube, DIRECTIONS[direction])
+			start_cube = _get_cube_neighbor(start_cube, Direction[direction])
 
 	return ring
 
@@ -115,8 +115,8 @@ static func _get_cube_ring(cube: Vector3, radius: int) -> Array:
 static func _get_cube_neighbors(cube: Vector3) -> Array:
 	var neighbors : Array = []
 
-	for direction in DIRECTIONS:
-		neighbors.append(_get_cube_neighbor(cube, DIRECTIONS[direction]))
+	for direction in Direction:
+		neighbors.append(_get_cube_neighbor(cube, Direction[direction]))
 
 	return neighbors
 
