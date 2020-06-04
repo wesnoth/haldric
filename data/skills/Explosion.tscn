@@ -2,8 +2,6 @@
 
 [ext_resource path="res://source/unit/skills/SkillDamage.gd" type="Script" id=1]
 
-
-
 [node name="Explosion" type="Node"]
 script = ExtResource( 1 )
 alias = "Explosion"

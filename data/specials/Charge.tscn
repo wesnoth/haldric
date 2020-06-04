@@ -2,9 +2,6 @@
 
 [ext_resource path="res://source/unit/specials/SpecialDamage.gd" type="Script" id=1]
 
-
-
-
 [node name="Charge" type="Node"]
 script = ExtResource( 1 )
 alias = "charge"

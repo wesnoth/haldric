@@ -7,5 +7,5 @@ export(Array, String) var cure := []
 func _execute(target: Location) -> void:
 	target.unit.heal(amount, true)
 	for effect in target.unit.get_effects():
-		if cure.has(effect.alias):
+		if cure.has(effect.name):
 			target.unit.effects.remove_child(effect)
