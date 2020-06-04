@@ -76,9 +76,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SideUI" parent="HUD/Panels" instance=ExtResource( 7 )]
+[node name="TopPanel" type="PanelContainer" parent="HUD/Panels"]
 margin_right = 1620.0
-margin_bottom = 40.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="SideUI" parent="HUD/Panels/TopPanel" instance=ExtResource( 7 )]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 1617.0
+margin_bottom = 43.0
 rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 0

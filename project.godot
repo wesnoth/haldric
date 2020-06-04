@@ -224,8 +224,8 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/Side.gd"
 }, {
-"base": "Panel",
-"class": "Side_UI",
+"base": "Control",
+"class": "SideUI",
 "language": "GDScript",
 "path": "res://source/interface/SideUI.gd"
 }, {
@@ -403,7 +403,7 @@ _global_script_class_icons={
 "Schedule": "",
 "Selector": "",
 "Side": "",
-"Side_UI": "",
+"SideUI": "",
 "Skill": "",
 "SkillButton": "",
 "SkillDamage": "",

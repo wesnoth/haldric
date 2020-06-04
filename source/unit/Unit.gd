@@ -60,7 +60,7 @@ func advance(unit_type: UnitType) -> void:
 	emit_signal("advanced", self)
 
 
-func hurt(attack_damage: int, damage_type := 0) -> void:
+func hurt(attack_damage: int, damage_type := "") -> void:
 	var damage = calculate_damage(attack_damage, damage_type)
 
 	health.value -= damage
@@ -225,11 +225,9 @@ func get_defense(terrain_type: Array) -> int:
 	return defense
 
 
-func get_resistance(damage_type: int) -> int:
-	if damage_type == Attack.DamageType.NONE:
-		return 0
-
-	return type.resistance.get(Attack.DamageType.keys()[damage_type].to_lower())
+func get_resistance(damage_type: String) -> int:
+	var resistance = type.resistance.get(damage_type)
+	return resistance if resistance else 0
 
 
 func get_movement_costs(terrain_type: Array) -> int:
@@ -243,7 +241,7 @@ func get_movement_costs(terrain_type: Array) -> int:
 	return costs
 
 
-func calculate_damage(damage: int, damage_type: int) -> int:
+func calculate_damage(damage: int, damage_type: String) -> int:
 	return int(damage * (1 - float(get_resistance(damage_type)) / 100))
 
 

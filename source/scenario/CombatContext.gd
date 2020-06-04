@@ -14,7 +14,7 @@ var damage := 0
 var strikes := 0
 var accuracy := 0
 
-var damage_type : int = 0
+var damage_type := ""
 var category := ""
 
 
