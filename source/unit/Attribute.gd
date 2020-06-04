@@ -18,12 +18,21 @@ func get_difference() -> int:
 	return maximum - value
 
 
+func has_half() -> bool:
+	return value >= maximum / 2
+
+
+func has_third() -> bool:
+	return value >= maximum / 3
+
+
 func is_full() -> bool:
 	return value == maximum
 
 
 func is_empty() -> bool:
 	return value == 0
+
 
 
 func _set_value(new_value: int) -> void:
