@@ -1,6 +1,6 @@
 extends Node
 
-var terrain := {}
+var terrains := {}
 var races := {}
 var units := {}
 
@@ -18,14 +18,21 @@ func scan() -> void:
 	_load_scenarios()
 
 
+func add_terrain(terrain: TerrainData) -> void:
+	terrains[terrain.code] = terrain
+
+
 func _load_terrain() -> void:
-	terrain.clear()
+	terrains.clear()
 
-	for file_data in Loader.load_dir("res://data/terrain", ["tres", "res"]):
-		var code = file_data.data.code
-		terrain[code] = file_data.data
+	var terrain_script := load("res://data/terrain.gd").new() as TerrainLoader
+	terrain_script.load_terrain()
 
-	print(terrain)
+#	for file_data in Loader.load_dir("res://data/terrain", ["tres", "res"]):
+#		var code = file_data.data.code
+#		terrains[code] = file_data.data
+
+	print(terrains)
 
 
 func _load_races() -> void:

@@ -57,7 +57,7 @@ arcane = -10
 script = ExtResource( 6 )
 alias = "Staff"
 icon = ExtResource( 9 )
-damage_type = 2
+damage_type = 7
 damage = 3
 strikes = 2
 
