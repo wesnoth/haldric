@@ -2,6 +2,7 @@ class_name TerrainGraphicBuilder
 
 var graphic := TerrainGraphicData.new()
 
+
 func new_graphic() -> TerrainGraphicBuilder:
 	graphic = TerrainGraphicData.new()
 	return self

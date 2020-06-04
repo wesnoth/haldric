@@ -33,6 +33,7 @@ func add_village_terrain(name: String, code: String, image_path: String) -> void
 			.build())\
 		.build())
 
+
 func add_castle_terrain(name: String, code: String, image_path: String) -> void:
 	Data.add_terrain(terrain_builder\
 		.new_terrain()\
