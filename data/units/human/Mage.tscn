@@ -55,7 +55,7 @@ arcane = 20
 script = ExtResource( 6 )
 alias = "Staff"
 icon = ExtResource( 8 )
-damage_type = 2
+damage_type = "impact"
 damage = 5
 strikes = 1
 
@@ -64,7 +64,7 @@ script = ExtResource( 6 )
 alias = "Fireball"
 icon = ExtResource( 7 )
 category = "ranged"
-damage_type = 5
+damage_type = "heat"
 damage = 7
 strikes = 3
 

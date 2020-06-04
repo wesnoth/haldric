@@ -45,8 +45,8 @@ water = 2
 script = ExtResource( 5 )
 impact = 40
 pierce = 60
-burn = -50
-frost = 10
+heat = -50
+cold = 10
 arcane = -30
 
 [node name="Traits" type="Node" parent="."]
@@ -65,6 +65,6 @@ arcane = -30
 script = ExtResource( 6 )
 alias = "Crush"
 icon = ExtResource( 1 )
-damage_type = 2
+damage_type = "impact"
 damage = 13
 strikes = 2
