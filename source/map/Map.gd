@@ -23,6 +23,7 @@ func _ready() -> void:
 	_build_castles()
 	print(locations.size(), "?", map_data.data.size())
 
+
 func initialize(_map_data: MapData) -> void:
 	map_data = _map_data
 
@@ -74,16 +75,12 @@ func find_path(start_loc: Location, end_loc: Location) -> Dictionary:
 
 	cell_path.remove(0)
 
-	print(cell_path)
-
 	var loc_path := []
 	var costs := 0
 	for cell in cell_path:
 		var loc : Location = locations[Hex.cube2quad(cell)]
 		costs += start_loc.unit.get_movement_costs(loc.terrain.type)
 		loc_path.append(loc)
-
-	print(loc_path)
 
 	result.costs = costs if costs else 99
 	result.path = loc_path
@@ -195,10 +192,15 @@ func update_grid_weight(unit: Unit) -> void:
 func get_map_data() -> MapData:
 	var _map_data := MapData.new()
 
+	var size := get_used_rect().size
+
+	_map_data.width = size.x
+	_map_data.height = size.y
+
 	for cell in locations.keys():
 		var loc: Location = locations[cell]
 		var terrain := loc.terrain
-		var code := terrain.get_code()
+		var code := terrain.code
 
 		_map_data.data[cell] = code
 
@@ -214,6 +216,8 @@ func are_locations_neighbors(loc1: Location, loc2: Location) -> bool:
 
 
 func _build_map():
+	locations.clear()
+
 	for key in map_data.data.keys():
 		var cell : Vector2 = key
 		var code : Array = map_data.data[key]
@@ -224,13 +228,9 @@ func _build_map():
 
 		_set_cell_location(cell, data)
 
-	refresh()
-
-	var size := get_used_rect().size
-
 	for cell in locations.keys():
 		var loc : Location = locations[cell]
-		loc.id = cell.y * size.x + cell.x
+		loc.id = cell.y * map_data.width + cell.x
 
 		var direction := 0
 		for n_cell in Hex.get_neighbors(cell):
@@ -241,6 +241,7 @@ func _build_map():
 
 			direction += 1
 
+	refresh()
 
 func _build_grid() -> void:
 	grid = Grid.new(locations.keys(), get_used_rect())
@@ -284,7 +285,6 @@ func _set_cell_location(cell: Vector2, terrain_data: Array) -> void:
 	loc.cell = cell
 	loc.position = map_to_world_centered(cell)
 	loc.terrain = terrain
-	print(cell)
 
 	locations[cell] = loc;
 

@@ -16,7 +16,7 @@ func update_info(loc: Location) -> void:
 		return
 
 	location_cell_label.text = "Tile: " + str(loc.cell)
-	terrain_code_label.text = "Code: " + loc.terrain.get_code()
+	terrain_code_label.text = "Code: " + loc.terrain.get_code_string()
 	types_label.text = "Type: " + loc.terrain.get_type()
 
 	recruit_from_label.text = "Recruit From: %s" % loc.terrain.recruit_from

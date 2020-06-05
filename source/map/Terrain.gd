@@ -41,7 +41,7 @@ func get_overlay_code() -> String:
 	return ""
 
 
-func get_code() -> String:
+func get_code_string() -> String:
 	var s := ""
 	for c in code:
 		s += c
