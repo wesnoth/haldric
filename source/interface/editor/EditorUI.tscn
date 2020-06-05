@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/interface/editor/EditorUI.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=2]
+
+[node name="EditorUI" type="CanvasLayer"]
+follow_viewport_enable = true
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -300.0
+rect_min_size = Vector2( 300, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="HUD/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 293.0
+margin_bottom = 1073.0
+columns = 4
+
+[node name="Selector" type="NinePatchRect" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+draw_center = false
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

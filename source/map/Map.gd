@@ -21,6 +21,7 @@ func _ready() -> void:
 	_build_map()
 	_build_grid()
 	_build_castles()
+	print(locations.size(), "?", map_data.data.size())
 
 func initialize(_map_data: MapData) -> void:
 	map_data = _map_data
@@ -48,13 +49,13 @@ func set_tile_set(tile_set: TileSet) -> void:
 	overlay.tile_set = tile_set
 
 
-func get_neighbors(loc: Location) -> Array:
-	var neighbors := []
-	for n_cell in Hex.get_neighbors(loc.cell):
-		var n_loc := get_location_from_cell(n_cell)
-		if n_loc:
-			neighbors.append(n_loc)
-	return neighbors
+func refresh() -> void:
+	clear()
+	overlay.clear()
+
+	for cell in locations:
+		var loc : Location = locations[cell]
+		_set_cell_terrain(cell, loc.terrain.code)
 
 
 func find_path(start_loc: Location, end_loc: Location) -> Dictionary:
@@ -63,20 +64,26 @@ func find_path(start_loc: Location, end_loc: Location) -> Dictionary:
 		"costs": 0
 	}
 
+	print(start_loc.id, "->", end_loc.id)
+
 	var cell_path = grid.get_point_path(start_loc.id, end_loc.id)
+
 
 	if not cell_path:
 		return result
 
 	cell_path.remove(0)
 
+	print(cell_path)
+
 	var loc_path := []
 	var costs := 0
-
 	for cell in cell_path:
 		var loc : Location = locations[Hex.cube2quad(cell)]
 		costs += start_loc.unit.get_movement_costs(loc.terrain.type)
 		loc_path.append(loc)
+
+	print(loc_path)
 
 	result.costs = costs if costs else 99
 	result.path = loc_path
@@ -94,7 +101,7 @@ func find_reachable_cells(loc: Location, unit: Unit, reachable := {}, distance :
 	if not is_first_call:
 		distance += unit.get_movement_costs(loc.terrain.type)
 
-	for n_loc in get_neighbors(loc):
+	for n_loc in loc.get_neighbors():
 		if n_loc.unit and n_loc.unit.side_number != unit.side_number:
 			is_loc_zoc = true
 			break
@@ -109,7 +116,7 @@ func find_reachable_cells(loc: Location, unit: Unit, reachable := {}, distance :
 	if is_loc_zoc and is_loc_reachable:
 		reachable[loc.cell] = unit.moves.value
 
-		for n_loc in get_neighbors(loc):
+		for n_loc in loc.get_neighbors():
 			reachable = find_reachable_cells(n_loc, unit, reachable, distance)
 
 		return reachable
@@ -117,17 +124,16 @@ func find_reachable_cells(loc: Location, unit: Unit, reachable := {}, distance :
 	if not reachable.has(loc.cell) and is_loc_reachable:
 		reachable[loc.cell] = distance
 
-		for n_loc in get_neighbors(loc):
+		for n_loc in loc.get_neighbors():
 			reachable = find_reachable_cells(n_loc, unit, reachable, distance)
 
 	elif reachable.has(loc.cell) and reachable[loc.cell] > distance and is_loc_reachable:
 		reachable[loc.cell] = distance
 
-		for n_loc in get_neighbors(loc):
+		for n_loc in loc.get_neighbors():
 			reachable = find_reachable_cells(n_loc, unit, reachable, distance)
 
 	return reachable
-
 
 
 func update_grid_weight(unit: Unit) -> void:
@@ -141,7 +147,7 @@ func update_grid_weight(unit: Unit) -> void:
 		if loc.unit and loc.unit.side_number != unit.side_number:
 			costs = 99
 
-		for n_loc in get_neighbors(loc):
+		for n_loc in loc.get_neighbors():
 			if n_loc.unit and n_loc.unit.side_number != unit.side_number:
 				if loc.unit:
 					costs = 999
@@ -184,8 +190,9 @@ func _build_map():
 		for c in code:
 			data.append(Data.terrains[c])
 
-		_set_cell_terrain(cell, code)
 		_set_cell_location(cell, data)
+
+	refresh()
 
 	var size := get_used_rect().size
 
@@ -195,7 +202,7 @@ func _build_map():
 
 		var direction := 0
 		for n_cell in Hex.get_neighbors(cell):
-			var n_loc = get_location_from_cell(cell)
+			var n_loc = get_location_from_cell(n_cell)
 
 			if n_loc:
 				loc.add_neighbor(n_loc, direction)
@@ -222,7 +229,7 @@ func _find_connected_castle_locations(keep: Location) -> Array:
 	while queue:
 		var q_loc : Location = queue.pop_front()
 
-		for n_loc in get_neighbors(q_loc):
+		for n_loc in q_loc.get_neighbors():
 
 			if n_loc in visited:
 				continue
@@ -245,6 +252,7 @@ func _set_cell_location(cell: Vector2, terrain_data: Array) -> void:
 	loc.cell = cell
 	loc.position = map_to_world_centered(cell)
 	loc.terrain = terrain
+	print(cell)
 
 	locations[cell] = loc;
 

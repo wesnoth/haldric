@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://source/interface/EditorUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/interface/editor/EditorUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/editor/MapEditor.gd" type="Script" id=4]
 
 [node name="MapEditor" type="Node2D"]
 script = ExtResource( 4 )
 
 [node name="EditorUI" parent="." instance=ExtResource( 1 )]
+[connection signal="terrain_selected" from="EditorUI" to="." method="_on_EditorUI_terrain_selected"]
