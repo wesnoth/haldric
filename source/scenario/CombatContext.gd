@@ -39,6 +39,7 @@ func apply_specials(_self: CombatContext, opponent: CombatContext, offender: Com
 func reset() -> void:
 	if not _attack:
 		return
+
 	alias = _attack.alias
 	damage = _attack.damage * _time.get_modifier(_location.unit.type.alignment)
 	strikes = _attack.strikes
