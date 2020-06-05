@@ -1,6 +1,6 @@
 extends Node2D
 
-var scenario : Scenario = null
+var scenario = null
 
 var hovered_location : Location = null
 
@@ -10,7 +10,7 @@ var selected_skill : Skill = null
 onready var scenario_container := $ScenarioContainer
 onready var time_shader := $CanvasLayer/TimeShader
 
-onready var UI = $GameUI as GameUI
+onready var UI = $GameUI
 
 func _ready() -> void:
 	_load_scenario()

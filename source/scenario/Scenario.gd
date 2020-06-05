@@ -151,7 +151,7 @@ func place_unit(unit: Unit, target_loc: Location) -> void:
 
 
 func move_unit(start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
-	var result = map.find_path(start_loc, end_loc)
+	var result = map.find_path_with_max_costs(start_loc, end_loc, start_loc.unit.moves.value)
 
 	if result.costs > start_loc.unit.moves.value:
 		Console.warn(start_loc.unit.name + " has not enough moves! (%d)" % result.costs)
@@ -208,6 +208,9 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 		yield(mover, "unit_move_finished")
 		attacker_loc = new_attacker_loc
 
+	if not map.are_locations_neighbors(attacker_loc, defender_loc):
+		return
+
 	var combat := Combat.new()
 	get_tree().current_scene.add_child(combat)
 
@@ -253,9 +256,9 @@ func end_turn() -> void:
 
 	Console.write("Side %d's Turn" % current_side.number)
 
-	if current_side.controller == Side.CONTROLLER.AI:
-		current_side.AI.call_deferred("execute", self)
-		yield(AI, "finished")
+	if current_side.controller == Side.Controller.AI:
+		current_side.ai.call_deferred("execute", self)
+		yield(current_side.ai, "finished")
 		end_turn()
 		return
 

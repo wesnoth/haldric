@@ -7,20 +7,20 @@ enum State {NONE, RECRUIT, CAPTURE_VILLAGES, ATTACK, RETREAT}
 enum UnitState {NONE, HEAL, SCOUT, ATTACK, STANDBY}
 
 var side;
-var state = State.NONE;
+var state = State.RECRUIT;
 var unitstates = {};
-var units = {};
+var scenario = null;
 
 """
 AI:
-	
+
 	SWITCH UNIT_STATE:
 		*:
 			IF HP < 1/3:
 				DO HEAL
 			IF AI_STATE = RETREAT:
 				DO RETREAT
-		
+
 		HEAL:
 			IF HP < 1/3:
 				IF NOT ON VILLAGE:
@@ -31,12 +31,12 @@ AI:
 					NEXT HEAL
 			IF HP > 2/3:
 				DO ATTACK
-		
+
 		ATTACK:
 			GO TOWARDS NEAREST ENEMY UNIT
 			ATTACK
 			NEXT ATTACK
-		
+
 		STANDBY:
 			IF AI_STATE = ATTACK
 				DO ATTACK
@@ -48,11 +48,13 @@ AI:
 					RECRUIT
 				ELSE:
 					AI_STATE = CAPTURE_VILLAGES
-		
+			IF AI_STATE = RETREAT:
+				DO RETREAT
+
 		SCOUT:
 			MOVE TOWARDS NEAREST UNOCCUPIED VILLAGE
 			NEXT SCOUT
-		
+
 		RETREAT:
 			MOVE TOWARD LEADER
 			IF LEADER:
@@ -64,85 +66,139 @@ AI:
 func _init(side):
 	self.side = side
 	self.state = State.RECRUIT
-	
+
+	for unit in side.units:
+		_add_unit(unit)
+
 	side.connect("side_add_unit", self, "_add_unit")
 	side.connect("side_remove_unit", self, "_remove_unit")
 
 func execute(scenario) -> void:
 	Console.write("Executing AI")
-	
-	for unitname in unitstates.keys:
-		var state = self.unitstates[unitname]
-		var unit = self.units[unitname]
-		match state:
+
+	self.scenario = scenario
+
+	for unit in unitstates.keys():
+		var ustate = self.unitstates[unit]
+		match ustate:
 			_:
-				if do_all(unitname, state, unit):
+				if do_all(state, unit):
 					continue
 			UnitState.HEAL:
-				if do_heal(unitname, state, unit):
+				if do_heal(state, unit):
 					continue
 			UnitState.ATTACK:
-				if do_attack(unitname, state, unit):
+				if do_attack(state, unit):
 					continue
 			UnitState.STANDBY:
-				if do_standby(unitname, state, unit):
+				if do_standby(state, unit):
 					continue
 			UnitState.SCOUT:
-				if do_scout(unitname, state, unit):
+				if do_scout(state, unit):
 					continue
-			
+
 			UnitState.NONE:
 				pass
-	
+
 	Console.write("Finished Executing AI")
 	emit_signal("finished")
 
-func do_all(unitname, unit_state, unit):
+func do_all(unit_state, unit):
 	"""
 	*:
-	IF HP < 1/3:
-		DO HEAL
-	IF AI_STATE = RETREAT:
-		DO RETREAT
+		IF HP < 1/3:
+			DO HEAL
+		IF AI_STATE = RETREAT:
+			DO RETREAT
+		ALSO RECRUIT IF LEADER
 	"""
 	if not unit.health.has_third():
-		do_heal(unitname, unit_state, unit)
+		do_heal(unit_state, unit)
 	if state == State.RETREAT:
-		do_standby(unitname, unit_state, unit)
-	
+		do_standby(unit_state, unit)
+	if state == State.RECRUIT and unit in side.leaders:
+		scenario.recruit(side.recruit[0])
 
-func do_heal(unitname, unit_state, unit):
+	return true
+
+
+func do_heal(unit_state, unit):
 	"""
 	HEAL:
-	IF HP < 1/3:
-		IF NOT ON VILLAGE:
-			MOVE TOWARDS NEAREST VILLAGE
-			NEXT HEAL
-		ELSE:
-			DO NOTHING
-			NEXT HEAL
-	IF HP > 2/3:
-		DO ATTACK
+		IF HP < 1/3:
+			IF NOT ON VILLAGE:
+				MOVE TOWARDS NEAREST VILLAGE
+				NEXT HEAL
+			ELSE:
+				DO NOTHING
+				NEXT HEAL
+		IF HP > 2/3:
+			DO ATTACK
 	"""
 	if not unit.health.has_third():
-		pass # move towards village
+		var loc = self.scenario.map.get_location_from_world(unit.position)
+		var hloc = _get_nearest_healing(loc)
+		if hloc:
+			scenario.move_unit(loc, hloc[0], hloc[1])
 	else:
-		do_attack(unitname, unit_state, unit)
+		do_attack(unit_state, unit)
 
-func do_scout(unitname, unit_state, unit):
-	pass
+func do_scout(unit_state, unit):
+	"""
+	SCOUT:
+		MOVE TOWARDS NEAREST UNOCCUPIED VILLAGE
+		NEXT SCOUT
+	"""
+	var loc = self.scenario.map.get_location_from_world(unit.position)
+	if loc.heals:
+		self.state = UnitState.STANDBY
+	else:
+		var hloc = _get_nearest_village(loc)
+		if hloc:
+			scenario.move_unit(loc, hloc)
 
-func do_attack(unitname, unit_state, unit):
-	pass
+func do_attack(unit_state, unit):
+	"""
+	ATTACK:
+		GO TOWARDS NEAREST ENEMY UNIT
+		ATTACK
+		NEXT ATTACK
+	"""
+	var loc = self.scenario.map.get_location_from_world(unit.position)
+	var hloc = _get_nearest_enemy(loc)
+	if hloc:
+		scenario.start_combat(loc, loc.unit.type.attacks.get_children()[0], hloc, hloc.unit.type.attacks.get_children()[0])
 
-func do_standby(unitname, unit_state, unit):
-	pass
+func do_standby(unit_state, unit):
+	"""
+	STANDBY:
+		IF AI_STATE = ATTACK
+			DO ATTACK
+		IF AI_STATE = CAPTURE_VILLAGES:
+			MOVE TOWARDS NEAREST UNOCCUPIED VILLAGE
+			NEXT STANDBY
+		IF AI_STATE = RETREAT:
+			DO RETREAT
+	"""
+	if state == State.ATTACK or state == State.RECRUIT:
+		do_attack(unit_state, unit)
+	if state == State.CAPTURE_VILLAGES:
+		do_scout(unit_state, unit)
+	if state == State.RETREAT:
+		do_retreat(unit_state, unit)
+
+func do_retreat(unit_state, unit):
+	var loc = self.scenario.map.get_location_from_world(unit.position)
+	var hloc = side.leaders[0]
+	scenario.move_unit(loc, hloc)
 
 func _get_nearest_healing(loc: Location):
 	var visited := [loc]
+	var queue := [loc]
 
-	while true:
-		var q_loc : Location = visited.pop_front()
+	while len(queue) > 0:
+		
+		var q_loc : Location = queue.pop_front()
 
 		for n_loc in q_loc.get_neighbors():
 
@@ -150,16 +206,57 @@ func _get_nearest_healing(loc: Location):
 				continue
 
 			visited.append(n_loc)
+			queue.append(n_loc)
 
-			if n_loc.heals or n_loc.unit.type.usage == UnitType.Usage.HEALER:
-				return [n_loc, n_loc.unit.type.usage == UnitType.Usage.HEALER]
+			if (n_loc.heals and not n_loc.unit) or \
+			(n_loc.unit.type.usage == UnitType.Usage.HEALER and n_loc.unit.side_number != loc.unit.side_number):
+				return [n_loc, n_loc.unit != null]
+
+	return null
+
+func _get_nearest_village(loc: Location):
+	var visited := [loc]
+	var queue := [loc]
+
+	while len(queue) > 0:
+		
+		var q_loc : Location = queue.pop_front()
+
+		for n_loc in q_loc.get_neighbors():
+
+			if n_loc in visited:
+				continue
+
+			visited.append(n_loc)
+			queue.append(n_loc)
+
+			if n_loc.terrain.heals and not n_loc.unit:
+				return n_loc
+
+	return null
+
+func _get_nearest_enemy(loc: Location):
+	var visited := [loc]
+	var queue := [loc]
+
+	while len(queue) > 0:
+		var q_loc : Location = queue.pop_front()
+
+		for n_loc in q_loc.get_neighbors():
+
+			if n_loc in visited:
+				continue
+
+			visited.append(n_loc)
+			queue.append(n_loc)
+
+			if n_loc.unit and n_loc.unit.side_number != loc.unit.side_number:
+				return n_loc
 
 	return null
 
 func _add_unit(unit):
-	unitstates[unit.name] = UnitState.STANDBY
-	units[unit.name] = unit
+	unitstates[unit] = UnitState.STANDBY
 
 func _remove_unit(unit):
-	unitstates.erase(unit.name)
-	units.erase(unit.name)
+	unitstates.erase(unit)
