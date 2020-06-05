@@ -19,6 +19,25 @@ func _init() -> void:
 	_neighbors.resize(6)
 
 
+func set_code(code: Array) -> void:
+	terrain.code = code
+
+
+func set_base_code(base_code: String) -> void:
+	terrain.code[0] = base_code
+
+
+func set_overlay_code(overlay_code: String) -> void:
+	if terrain.code.size() > 1:
+		terrain.code[1] = overlay_code
+	elif terrain.code.size() == 1:
+		terrain.code.append(overlay_code)
+
+
+func remove_overlay_code() -> void:
+	terrain.code.resize(1)
+
+
 func add_neighbor(loc: Location, direction: int) -> void:
 	_neighbors[direction] = loc
 
@@ -28,6 +47,15 @@ func get_neighbor(direction: int) -> Location:
 
 
 func get_neighbors() -> Array:
+	var neighbors := []
+
+	for n in _neighbors:
+		if n:
+			neighbors.append(n)
+	return neighbors
+
+
+func get_all_neighbors() -> Array:
 	return _neighbors
 
 
