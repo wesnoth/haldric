@@ -101,6 +101,13 @@ func find_path_with_max_costs(start_loc: Location, end_loc: Location, max_costs:
 
 	for cell in cell_path:
 		var loc : Location = locations[Hex.cube2quad(cell)]
+		
+		var delta_cost = start_loc.unit.get_movement_costs(loc.terrain.type)
+		if delta_cost and delta_cost + costs > max_costs:
+			result.costs = costs if costs else 99
+			result.path = loc_path
+			return result
+		
 		costs += start_loc.unit.get_movement_costs(loc.terrain.type)
 		loc_path.append(loc)
 

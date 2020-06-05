@@ -6,7 +6,7 @@ signal finished()
 enum State {NONE, RECRUIT, CAPTURE_VILLAGES, ATTACK, RETREAT}
 enum UnitState {NONE, HEAL, SCOUT, ATTACK, STANDBY}
 
-var side : Side;
+var side;
 var state = State.NONE;
 var unitstates = {};
 var units = {};
@@ -61,14 +61,14 @@ AI:
 
 """
 
-func _init(side: Side):
+func _init(side):
 	self.side = side
 	self.state = State.RECRUIT
 	
 	side.connect("side_add_unit", self, "_add_unit")
 	side.connect("side_remove_unit", self, "_remove_unit")
 
-func execute(scenario: Scenario) -> void:
+func execute(scenario) -> void:
 	Console.write("Executing AI")
 	
 	for unitname in unitstates.keys:
@@ -137,6 +137,24 @@ func do_attack(unitname, unit_state, unit):
 
 func do_standby(unitname, unit_state, unit):
 	pass
+
+func _get_nearest_healing(loc: Location):
+	var visited := [loc]
+
+	while true:
+		var q_loc : Location = visited.pop_front()
+
+		for n_loc in q_loc.get_neighbors():
+
+			if n_loc in visited:
+				continue
+
+			visited.append(n_loc)
+
+			if n_loc.heals or n_loc.unit.type.usage == UnitType.Usage.HEALER:
+				return [n_loc, n_loc.unit.type.usage == UnitType.Usage.HEALER]
+
+	return null
 
 func _add_unit(unit):
 	unitstates[unit.name] = UnitState.STANDBY

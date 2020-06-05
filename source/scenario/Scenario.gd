@@ -247,13 +247,8 @@ func end_turn() -> void:
 
 	Console.write("Side %d's Turn" % current_side.number)
 
-<<<<<<< HEAD
 	if current_side.controller == Side.CONTROLLER.AI:
 		current_side.AI.call_deferred("execute", self)
-=======
-	if current_side.controller == Side.Controller.AI:
-		AI.call_deferred("execute", self)
->>>>>>> 017c1f739806ee67fe910858b7c8d2e31c14b4b5
 		yield(AI, "finished")
 		end_turn()
 		return
@@ -262,7 +257,7 @@ func end_turn() -> void:
 	get_tree().call_group("GameCam", "set", "global_position", current_side.leaders[0].global_position)
 
 
-func get_side(index: int) -> Side:
+func get_side(index: int):
 	return sides.get_child(index)
 
 
