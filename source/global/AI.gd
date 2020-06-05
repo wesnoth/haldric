@@ -70,8 +70,8 @@ func _init(side):
 	for unit in side.units:
 		_add_unit(unit)
 
-	side.connect("side_add_unit", self, "_add_unit")
-	side.connect("side_remove_unit", self, "_remove_unit")
+	side.connect("unit_added", self, "_add_unit")
+	side.connect("unit_removed", self, "_remove_unit")
 
 func execute(scenario) -> void:
 	Console.write("Executing AI")
