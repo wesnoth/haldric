@@ -202,7 +202,7 @@ func _get_nearest_healing(loc: Location):
 	var queue := [loc]
 
 	while len(queue) > 0:
-		
+
 		var q_loc : Location = queue.pop_front()
 
 		for n_loc in q_loc.get_neighbors():
@@ -224,7 +224,7 @@ func _get_nearest_village(loc: Location):
 	var queue := [loc]
 
 	while len(queue) > 0:
-		
+
 		var q_loc : Location = queue.pop_front()
 
 		for n_loc in q_loc.get_neighbors():

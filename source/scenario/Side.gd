@@ -153,5 +153,5 @@ func _on_unit_died(unit) -> void:
 		leaders.remove(idx)
 
 	units.erase(unit)
-	
+
 	emit_signal("unit_removed", unit)
