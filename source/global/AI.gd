@@ -141,6 +141,7 @@ func do_heal(unit_state, unit):
 		var hloc = _get_nearest_healing(loc)
 		if hloc:
 			scenario.move_unit(loc, hloc[0], hloc[1])
+			yield(scenario, "unit_move_finished")
 	else:
 		do_attack(unit_state, unit)
 
@@ -157,6 +158,7 @@ func do_scout(unit_state, unit):
 		var hloc = _get_nearest_village(loc)
 		if hloc:
 			scenario.move_unit(loc, hloc)
+			yield(scenario, "unit_move_finished")
 
 func do_attack(unit_state, unit):
 	"""
@@ -169,6 +171,7 @@ func do_attack(unit_state, unit):
 	var hloc = _get_nearest_enemy(loc)
 	if hloc:
 		scenario.start_combat(loc, loc.unit.type.attacks.get_children()[0], hloc, hloc.unit.type.attacks.get_children()[0])
+		yield(scenario, "combat_finished")
 
 func do_standby(unit_state, unit):
 	"""
@@ -192,6 +195,7 @@ func do_retreat(unit_state, unit):
 	var loc = self.scenario.map.get_location_from_world(unit.position)
 	var hloc = side.leaders[0]
 	scenario.move_unit(loc, hloc)
+	yield(scenario, "unit_move_finished")
 
 func _get_nearest_healing(loc: Location):
 	var visited := [loc]

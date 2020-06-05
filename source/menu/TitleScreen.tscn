@@ -30,21 +30,11 @@ margin_bottom = 35.0
 custom_fonts/font = ExtResource( 2 )
 text = "PLAY"
 
-[node name="Editor" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 64.0
-margin_right = 200.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 200, 60 )
-custom_fonts/font = ExtResource( 2 )
-text = "EDITOR"
-
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 128.0
-margin_right = 200.0
-margin_bottom = 188.0
-rect_min_size = Vector2( 200, 60 )
+margin_top = 39.0
+margin_right = 67.0
+margin_bottom = 74.0
 custom_fonts/font = ExtResource( 2 )
 text = "QUIT"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_Play_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Editor" to="." method="_on_Editor_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
