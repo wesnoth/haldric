@@ -25,15 +25,19 @@ The Default Era will be recreated and kept like in Wesnoth 1.x, so expect this t
 
 However we can not guarantee that we can recreate every map to the full extend, especially those who are more complex than a standard skirmish. 
 
+We might create additional maps, but we won't arbitarily remove or change existing maps.
+
 ### Singleplayer:
 
 Yes.
 
 Given the new technology, we have to recreate all content from scratch, including campaigns.
 
-This is a *lot* or work, and we will most likely only have *one* Campaign when Haldric first launches. We will see to (re)add more campaigns with future releases.
+This is a *lot* or work, and we will not be able to ship Haldric with all the existing mainline campaigns.
 
-In addition, there are a few people in high places who are not happy with the quality of Wesnoth's mainline campaigns. Authors mgiht address this by rewriting large portions of the story and/pr making use of new gameplay mechanics.
+For the initial release, we plan to include *Heir to the Throne* as only mainline campaign. More campaigns will be (re)added in later versions.
+
+In addition, there are a few people in high places who are not happy with the quality of Wesnoth's mainline campaigns. Authors might address this by rewriting large portions of the story and/or making use of new gameplay mechanics.
 
 Thus, changes in Singleplayer Content and Gameplay are expected.
 
@@ -45,8 +49,6 @@ Haldric uses a completely different technology under the hood, with very differe
 Thus, the content creation workflow will be build from scratch to play well with the strength of the new technology. 
 
 However, we hope to make the modding experience a lot better than it is in Wesnoth 1.x.
-
-
 
 ## Will there be new graphics?
 
