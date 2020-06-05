@@ -15,7 +15,7 @@ func execute(_self: Location) -> void:
 
 	for neighbor in _self.get_neighbors():
 
-		if not neighbor:
+		if not neighbor or not neighbor.unit:
 			continue
 
 		if affect_allies and _self.unit.side_number == neighbor.unit.side_number:
