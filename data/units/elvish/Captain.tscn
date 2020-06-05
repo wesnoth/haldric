@@ -57,7 +57,7 @@ arcane = -10
 script = ExtResource( 6 )
 alias = "Sword"
 icon = ExtResource( 8 )
-damage_type = 1
+damage_type = "slash"
 damage = 7
 strikes = 4
 
@@ -66,6 +66,8 @@ script = ExtResource( 6 )
 alias = "Bow"
 icon = ExtResource( 7 )
 category = "ranged"
-damage_type = 3
+damage_type = "pierce"
 damage = 5
 strikes = 3
+
+[node name="Advancements" type="Node" parent="."]

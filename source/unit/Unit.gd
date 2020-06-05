@@ -20,6 +20,7 @@ var moves := Attribute.new()
 var experience := Attribute.new()
 
 var type : UnitType = null
+var race : Race = null
 
 var brightness = 1.0 setget _set_brightness
 
@@ -45,14 +46,19 @@ func _ready() -> void:
 	add_child(traits)
 	effects.name = "Effects"
 	add_child(effects)
-	_set_type(type)
+	set_type(type, false)
 
 
-func advance(unit_type: UnitType) -> void:
+func advance(advancement: Advancement, silent := false) -> void:
+	if silent:
+		advancement.execute(self)
+		return
+
 	_tween_advancement_in()
 	yield(tween, "tween_all_completed")
 
-	_set_type(unit_type, true)
+	advancement.execute(self)
+	restore()
 
 	_tween_advancement_out()
 	yield(tween, "tween_all_completed")
@@ -123,20 +129,19 @@ func grant_experience(amount: int) -> void:
 	if not experience.is_full():
 		return
 
-	if type.advances_to.size() == 1:
-		var id = type.advances_to[0]
+	var advancements = get_advancements()
 
-		if not Data.units.has(id):
-			print("unit type %s does not exist!" % id)
-			return
-
-		var unit_type = Data.units[id].instance()
-		advance(unit_type)
-
-	elif type.advances_to.size() > 1:
+	if advancements.size() > 1:
 		get_tree().call_group("GameUI", "show_advancement_dialogue", self)
+
+	elif advancements.size() == 1:
+		var advancement : Advancement = advancements[0]
+		if advancement.force_display:
+			get_tree().call_group("GameUI", "show_advancement_dialogue", self)
+		else:
+			advance(advancement)
 	else:
-		amla()
+		advance(Data.DefaultAmla)
 
 
 func turn_end() -> void:
@@ -148,29 +153,33 @@ func reset() -> void:
 	health.maximum = type.health
 	moves.maximum = type.moves
 	experience.maximum = type.experience
+	restore()
 
-	_load_race()
 
-	for trait in traits.get_children():
-		trait.execute(self)
-
+func restore() -> void:
 	actions.fill()
 	health.fill()
 	moves.fill()
 	experience.empty()
 
 
-func amla() -> void:
-	_tween_advancement_in()
-	yield(tween, "tween_all_completed")
+func apply_traits() -> void:
+	for child in traits.get_children():
+		traits.remove_child(child)
+		child.queue_free()
 
-	health.fill()
-	experience.empty()
+	var rand_traits = race.get_random_traits()
 
-	_tween_advancement_out()
-	yield(tween, "tween_all_completed")
+	for trait in rand_traits:
+		if traits.get_child_count() == race.trait_count:
+			break
 
-	emit_signal("advanced", self)
+		traits.add_child(trait.instance())
+
+	for trait in traits.get_children():
+		trait.execute(self)
+
+	reset()
 
 
 func select() -> void:
@@ -198,6 +207,11 @@ func get_skills() -> Array:
 
 func get_abilities() -> Array:
 	return type.abilities.get_children()
+
+
+func get_advancements() -> Array:
+	return type.advancements.get_children()
+
 
 func get_effects() -> Array:
 	return effects.get_children()
@@ -253,7 +267,7 @@ func is_dead() -> bool:
 	return health.value == 0
 
 
-func _set_type(unit_type: UnitType, advancing := false) -> void:
+func set_type(unit_type: UnitType, advancing := true) -> void:
 	if advancing:
 		remove_child(type)
 		type.queue_free()
@@ -262,24 +276,16 @@ func _set_type(unit_type: UnitType, advancing := false) -> void:
 
 	add_child(type)
 	type.sprite.material = MAT.duplicate()
+	_load_race()
 	reset()
-
 
 func _load_race() -> void:
 	if not Data.races.has(type.race):
 		Console.warn("Race %s does not exist!" % type.race)
 
-	var race : Race = Data.races[type.race]
+	race = Data.races[type.race]
 
 	alias = race.get_random_name()
-
-	var rand_traits = race.get_random_traits()
-
-	for trait in rand_traits:
-		if traits.get_child_count() == race.trait_count:
-			break
-
-		traits.add_child(trait.instance())
 
 
 func _tween_hurt() -> void:
