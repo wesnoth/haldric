@@ -26,9 +26,9 @@ func _init(resources: Array) -> void:
 
 		recruit_onto = recruit_onto or res.recruit_onto
 		recruit_from = recruit_from or res.recruit_from
-		gives_income = res.gives_income
+		gives_income = gives_income or res.gives_income
 
-		heals = res.heals
+		heals = heals or res.heals
 
 
 func get_base_code() -> String:
@@ -36,8 +36,8 @@ func get_base_code() -> String:
 
 
 func get_overlay_code() -> String:
-	if code.size() == 2:
-		return code[1]
+	if code.size() >= 2:
+		return code[-1]
 	return ""
 
 

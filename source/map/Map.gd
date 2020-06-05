@@ -87,6 +87,38 @@ func find_path(start_loc: Location, end_loc: Location) -> Dictionary:
 	return result
 
 
+func find_path_with_max_costs(start_loc: Location, end_loc: Location, max_costs: int) -> Dictionary:
+	var result = {
+		"path": [],
+		"costs": 0
+	}
+
+	var cell_path = grid.get_point_path(start_loc.id, end_loc.id)
+
+	if not cell_path:
+		return result
+
+	cell_path.remove(0)
+
+	var loc_path := []
+	var costs := 0
+
+	for cell in cell_path:
+		var loc : Location = locations[Hex.cube2quad(cell)]
+		
+		var delta_cost = start_loc.unit.get_movement_costs(loc.terrain.type)
+		if delta_cost and delta_cost + costs > max_costs:
+			result.costs = costs if costs else 99
+			result.path = loc_path
+			return result
+		
+		costs += start_loc.unit.get_movement_costs(loc.terrain.type)
+		loc_path.append(loc)
+
+	result.costs = costs if costs else 99
+	result.path = loc_path
+	return result
+
 func find_reachable_cells(loc: Location, unit: Unit, reachable := {}, distance := 0) -> Dictionary:
 	var is_first_call := loc.unit and loc.unit == unit
 	var has_loc_enemy := loc.unit and loc.unit.side_number != unit.side_number
