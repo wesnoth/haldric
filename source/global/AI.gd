@@ -118,6 +118,7 @@ func do_all(unit_state, unit):
 		do_standby(unit_state, unit)
 	if state == State.RECRUIT and unit in side.leaders:
 		scenario.recruit(side.recruit[0])
+		return false
 
 	return true
 
