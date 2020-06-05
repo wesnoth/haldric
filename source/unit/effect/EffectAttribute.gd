@@ -9,15 +9,16 @@ export var multiply := 0.0
 
 
 func _execute(unit) -> void:
-	var _attribute = unit.get(attribute)
+	var _attribute = unit.type.get(attribute)
+	print(attribute, ", ", _attribute)
 
 	if value:
-		_attribute.maximum = value
+		unit.type.set(attribute, value)
 
 	elif add:
-		_attribute.maximum += add
+		unit.type.set(attribute, _attribute + add)
 
 	elif multiply:
-		_attribute.maximum *= multiply
+		unit.type.set(attribute, _attribute * multiply)
 
 

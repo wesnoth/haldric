@@ -1,8 +1,9 @@
 class_name Attribute
 
-signal value_changed()
+signal maximum_changed(maximum)
+signal value_changed(value)
 
-var maximum := 0
+var maximum := 0 setget _set_maximum
 var value := 0 setget _set_value
 
 
@@ -33,6 +34,10 @@ func is_full() -> bool:
 func is_empty() -> bool:
 	return value == 0
 
+
+func _set_maximum(new_maximum: int) -> void:
+	maximum = new_maximum
+	emit_signal("maximum_changed", maximum)
 
 
 func _set_value(new_value: int) -> void:

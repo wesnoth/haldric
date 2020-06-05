@@ -13,6 +13,7 @@ export var race := ""
 
 export var level := 0
 export var cost := 1
+export var actions := 1
 export var health := 1
 export var moves := 1
 export var experience := 1

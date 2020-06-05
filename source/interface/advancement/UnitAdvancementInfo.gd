@@ -14,6 +14,7 @@ func update_info(unit: Unit, advancement: Advancement) -> void:
 	clear()
 
 	advancement.execute(unit)
+	unit.restore()
 
 	unit_type_label.text = unit.type.alias
 	health_label.text = "HP: %d" % unit.type.health

@@ -20,6 +20,7 @@ var moves := Attribute.new()
 var experience := Attribute.new()
 
 var type : UnitType = null
+var race : Race = null
 
 var brightness = 1.0 setget _set_brightness
 
@@ -130,11 +131,10 @@ func grant_experience(amount: int) -> void:
 
 	var advancements = get_advancements()
 
-#	if advancements.size() > 1:
-#		get_tree().call_group("GameUI", "show_advancement_dialogue", self)
-#
-#	elif advancements.size() == 1:
-	if advancements.size() > 0:
+	if advancements.size() > 1:
+		get_tree().call_group("GameUI", "show_advancement_dialogue", self)
+
+	elif advancements.size() == 1:
 		var advancement : Advancement = advancements[0]
 		if advancement.force_display:
 			get_tree().call_group("GameUI", "show_advancement_dialogue", self)
@@ -153,12 +153,6 @@ func reset() -> void:
 	health.maximum = type.health
 	moves.maximum = type.moves
 	experience.maximum = type.experience
-
-	_load_race()
-
-	for trait in traits.get_children():
-		trait.execute(self)
-
 	restore()
 
 
@@ -167,6 +161,25 @@ func restore() -> void:
 	health.fill()
 	moves.fill()
 	experience.empty()
+
+
+func apply_traits() -> void:
+	for child in traits.get_children():
+		traits.remove_child(child)
+		child.queue_free()
+
+	var rand_traits = race.get_random_traits()
+
+	for trait in rand_traits:
+		if traits.get_child_count() == race.trait_count:
+			break
+
+		traits.add_child(trait.instance())
+
+	for trait in traits.get_children():
+		trait.execute(self)
+
+	reset()
 
 
 func select() -> void:
@@ -263,23 +276,16 @@ func set_type(unit_type: UnitType, advancing := true) -> void:
 
 	add_child(type)
 	type.sprite.material = MAT.duplicate()
+	_load_race()
 	reset()
 
 func _load_race() -> void:
 	if not Data.races.has(type.race):
 		Console.warn("Race %s does not exist!" % type.race)
 
-	var race : Race = Data.races[type.race]
+	race = Data.races[type.race]
 
 	alias = race.get_random_name()
-
-	var rand_traits = race.get_random_traits()
-
-	for trait in rand_traits:
-		if traits.get_child_count() == race.trait_count:
-			break
-
-		traits.add_child(trait.instance())
 
 
 func _tween_hurt() -> void:

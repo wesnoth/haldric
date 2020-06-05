@@ -105,6 +105,8 @@ func recruit(unit_type_id: String) -> void:
 	unit_container.add_child(unit)
 	get_tree().call_group("GameUI", "add_unit_plate", unit)
 
+	unit.apply_traits()
+
 	place_unit(unit, loc)
 	unit.suspend()
 
@@ -128,6 +130,8 @@ func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader 
 
 	side.add_unit(unit, is_leader)
 	unit_container.add_child(unit)
+
+	unit.apply_traits()
 
 	get_tree().call_group("GameUI", "add_unit_plate", unit)
 	place_unit(unit, map.get_location_from_cell(Vector2(x, y)))
