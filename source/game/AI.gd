@@ -3,13 +3,13 @@ class_name AI
 
 signal finished()
 
-enum State {NONE, RECRUIT, CAPTURE_VILLAGES, ATTACK, RETREAT}
-enum UnitState {NONE, HEAL, SCOUT, ATTACK, STANDBY}
+enum State { NONE, RECRUIT, CAPTURE_VILLAGES, ATTACK, RETREAT }
+enum UnitState { NONE, HEAL, SCOUT, ATTACK, STANDBY }
 
-var side;
-var state = State.RECRUIT;
-var unitstates = {};
-var scenario = null;
+var side
+var state = State.RECRUIT
+var unitstates = {}
+var scenario = null
 
 """
 AI:
@@ -73,6 +73,7 @@ func _init(side):
 	side.connect("unit_added", self, "_add_unit")
 	side.connect("unit_removed", self, "_remove_unit")
 
+
 func execute(scenario) -> void:
 	Console.write("Executing AI")
 
@@ -102,6 +103,7 @@ func execute(scenario) -> void:
 
 	Console.write("Finished Executing AI")
 	emit_signal("finished")
+
 
 func do_all(unit_state, unit):
 	"""
@@ -145,6 +147,7 @@ func do_heal(unit_state, unit):
 	else:
 		do_attack(unit_state, unit)
 
+
 func do_scout(unit_state, unit):
 	"""
 	SCOUT:
@@ -160,6 +163,7 @@ func do_scout(unit_state, unit):
 			scenario.move_unit(loc, hloc)
 			yield(scenario, "unit_move_finished")
 
+
 func do_attack(unit_state, unit):
 	"""
 	ATTACK:
@@ -172,6 +176,7 @@ func do_attack(unit_state, unit):
 	if hloc:
 		scenario.start_combat(loc, loc.unit.type.attacks.get_children()[0], hloc, hloc.unit.type.attacks.get_children()[0])
 		yield(scenario, "combat_finished")
+
 
 func do_standby(unit_state, unit):
 	"""
@@ -191,11 +196,13 @@ func do_standby(unit_state, unit):
 	if state == State.RETREAT:
 		do_retreat(unit_state, unit)
 
+
 func do_retreat(unit_state, unit):
 	var loc = self.scenario.map.get_location_from_world(unit.position)
 	var hloc = side.leaders[0]
 	scenario.move_unit(loc, hloc)
 	yield(scenario, "unit_move_finished")
+
 
 func _get_nearest_healing(loc: Location):
 	var visited := [loc]
@@ -219,6 +226,7 @@ func _get_nearest_healing(loc: Location):
 
 	return null
 
+
 func _get_nearest_village(loc: Location):
 	var visited := [loc]
 	var queue := [loc]
@@ -240,6 +248,7 @@ func _get_nearest_village(loc: Location):
 
 	return null
 
+
 func _get_nearest_enemy(loc: Location):
 	var visited := [loc]
 	var queue := [loc]
@@ -260,8 +269,10 @@ func _get_nearest_enemy(loc: Location):
 
 	return null
 
+
 func _add_unit(unit):
 	unitstates[unit] = UnitState.STANDBY
+
 
 func _remove_unit(unit):
 	unitstates.erase(unit)
