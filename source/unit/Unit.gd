@@ -45,14 +45,19 @@ func _ready() -> void:
 	add_child(traits)
 	effects.name = "Effects"
 	add_child(effects)
-	_set_type(type)
+	set_type(type, false)
 
 
-func advance(unit_type: UnitType) -> void:
+func advance(advancement: Advancement, silent := false) -> void:
+	if silent:
+		advancement.execute(self)
+		return
+
 	_tween_advancement_in()
 	yield(tween, "tween_all_completed")
 
-	_set_type(unit_type, true)
+	advancement.execute(self)
+	restore()
 
 	_tween_advancement_out()
 	yield(tween, "tween_all_completed")
@@ -125,17 +130,18 @@ func grant_experience(amount: int) -> void:
 
 	var advancements = get_advancements()
 
-	if advancements.size() > 1:
-		get_tree().call_group("GameUI", "show_advancement_dialogue", self)
-
-	elif advancements.size() == 1:
+#	if advancements.size() > 1:
+#		get_tree().call_group("GameUI", "show_advancement_dialogue", self)
+#
+#	elif advancements.size() == 1:
+	if advancements.size() > 0:
 		var advancement : Advancement = advancements[0]
 		if advancement.force_display:
 			get_tree().call_group("GameUI", "show_advancement_dialogue", self)
 		else:
-			advancement.execute(self)
+			advance(advancement)
 	else:
-		amla()
+		advance(Data.DefaultAmla)
 
 
 func turn_end() -> void:
@@ -153,25 +159,14 @@ func reset() -> void:
 	for trait in traits.get_children():
 		trait.execute(self)
 
+	restore()
+
+
+func restore() -> void:
 	actions.fill()
 	health.fill()
 	moves.fill()
 	experience.empty()
-
-
-func amla() -> void:
-	_tween_advancement_in()
-	yield(tween, "tween_all_completed")
-
-	Data.DefaultAmla.execute(self)
-
-	health.fill()
-	experience.empty()
-
-	_tween_advancement_out()
-	yield(tween, "tween_all_completed")
-
-	emit_signal("advanced", self)
 
 
 func select() -> void:
@@ -259,7 +254,7 @@ func is_dead() -> bool:
 	return health.value == 0
 
 
-func _set_type(unit_type: UnitType, advancing := false) -> void:
+func set_type(unit_type: UnitType, advancing := true) -> void:
 	if advancing:
 		remove_child(type)
 		type.queue_free()
@@ -269,7 +264,6 @@ func _set_type(unit_type: UnitType, advancing := false) -> void:
 	add_child(type)
 	type.sprite.material = MAT.duplicate()
 	reset()
-
 
 func _load_race() -> void:
 	if not Data.races.has(type.race):

@@ -43,6 +43,7 @@ func _ready() -> void:
 		var unit_type = Data.units[id]
 		advancements.add_child(advancement)
 		advancement.add_child(effect)
+		advancement.alias = id
 		effect.type = unit_type
 
 

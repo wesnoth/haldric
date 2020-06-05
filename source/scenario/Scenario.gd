@@ -7,9 +7,11 @@ signal unit_move_finished(loc)
 
 const FLAG_OFFSET = Vector2(15, 25)
 
+var map_data : MapData = null
+
 var map : Map = null
 
-var map_data : MapData = null
+var hovered_location : Location = null
 
 var current_side : Side = null
 
@@ -366,7 +368,8 @@ func _grab_castle(loc: Location) -> void:
 
 
 func _on_Map_location_hovered(loc: Location) -> void:
-	emit_signal("location_hovered", loc)
+	hovered_location = loc
+	emit_signal("location_hovered", hovered_location)
 
 
 func _on_Mover_unit_move_finished(loc: Location) -> void:

@@ -6,20 +6,14 @@ var GROUP := ButtonGroup.new()
 onready var advance_button := $Panel/VBoxContainer/Buttons/Advance as Button
 onready var options := $Panel/VBoxContainer/HBoxContainer/Options
 
-onready var unit_info := $Panel/VBoxContainer/HBoxContainer/UnitRecruitInfo
+onready var unit_info := $Panel/VBoxContainer/HBoxContainer/UnitInfo as UnitAdvancementInfo
 
 
 func update_info(unit: Unit) -> void:
 	clear()
 
-	for unit_type_id in unit.type.advances_to:
-		if not Data.units.has(unit_type_id):
-			print("unit type %s in units advancement options does not exist!" % [unit_type_id])
-			continue
-
-		var unit_type : UnitType = Data.units[unit_type_id].instance()
-
-		_add_option(unit, unit_type)
+	for advancement in unit.get_advancements():
+		_add_option(unit, advancement)
 
 	var has_option := false
 
@@ -36,14 +30,12 @@ func update_info(unit: Unit) -> void:
 		advance_button.disabled = true
 
 
-func _add_option(unit: Unit, unit_type: UnitType) -> void:
+func _add_option(unit: Unit, advancement: Advancement) -> void:
 	var option := AdvancemenOption.instance()
 	option.group = GROUP
 	options.add_child(option)
-	option.add_child(unit_type)
-	unit_type.sprite.hide()
-	option.connect("pressed", self, "_on_option_selected", [ unit, unit_type ])
-	option.update_info(unit_type)
+	option.connect("pressed", self, "_on_option_selected", [ unit, advancement ])
+	option.update_info(advancement)
 
 
 func clear() -> void:
@@ -55,16 +47,16 @@ func clear() -> void:
 		child.queue_free()
 
 
-func _on_option_selected(unit: Unit, unit_type: UnitType) -> void:
-	unit_info.update_info(unit_type)
+func _on_option_selected(unit: Unit, advancement: Advancement) -> void:
+	unit_info.update_info(unit.duplicate(), advancement)
 
 	if advance_button.is_connected("pressed", self, "_on_Advance_pressed"):
 		advance_button.disconnect("pressed", self, "_on_Advance_pressed")
-	advance_button.connect("pressed", self, "_on_Advance_pressed", [unit, unit_type.name ] )
+	advance_button.connect("pressed", self, "_on_Advance_pressed", [unit, advancement ] )
 
 
-func _on_Advance_pressed(unit: Unit, unit_type_id: String) -> void:
-	unit.advance(Data.units[unit_type_id].instance())
+func _on_Advance_pressed(unit: Unit, advancement: Advancement) -> void:
+	advancement.execute(unit)
 	hide()
 	clear()
 

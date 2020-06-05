@@ -17,7 +17,6 @@ level = 1
 cost = 14
 health = 33
 moves = 5
-experience = 40
 advances_to = [ "ElvishCaptain" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
