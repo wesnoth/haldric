@@ -7,9 +7,11 @@ signal unit_move_finished(loc)
 
 const FLAG_OFFSET = Vector2(15, 25)
 
+var map_data : MapData = null
+
 var map : Map = null
 
-var map_data : MapData = null
+var hovered_location : Location = null
 
 var current_side : Side = null
 
@@ -103,6 +105,8 @@ func recruit(unit_type_id: String) -> void:
 	unit_container.add_child(unit)
 	get_tree().call_group("GameUI", "add_unit_plate", unit)
 
+	unit.apply_traits()
+
 	place_unit(unit, loc)
 	unit.suspend()
 
@@ -126,6 +130,8 @@ func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader 
 
 	side.add_unit(unit, is_leader)
 	unit_container.add_child(unit)
+
+	unit.apply_traits()
 
 	get_tree().call_group("GameUI", "add_unit_plate", unit)
 	place_unit(unit, map.get_location_from_cell(Vector2(x, y)))
@@ -366,7 +372,8 @@ func _grab_castle(loc: Location) -> void:
 
 
 func _on_Map_location_hovered(loc: Location) -> void:
-	emit_signal("location_hovered", loc)
+	hovered_location = loc
+	emit_signal("location_hovered", hovered_location)
 
 
 func _on_Mover_unit_move_finished(loc: Location) -> void:

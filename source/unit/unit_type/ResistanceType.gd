@@ -1,14 +1,14 @@
 extends Node
 class_name ResistanceType
 
-var types = [ "slash", "impact", "pierce", "burn", "frost", "arcane" ]
+var types = [ "slash", "impact", "pierce", "heat", "cold", "arcane" ]
 
 # physical Types
 export(int, -100, 100, 5) var slash := 0
 export(int, -100, 100, 5) var impact := 0
 export(int, -100, 100, 5) var pierce := 0
-export(int, -100, 100, 5) var burn := 0
-export(int, -100, 100, 5) var frost := 0
+export(int, -100, 100, 5) var heat := 0
+export(int, -100, 100, 5) var cold := 0
 export(int, -100, 100, 5) var arcane := 0
 
 

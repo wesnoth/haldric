@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://source/unit/effect/EffectDamage.gd" type="Script" id=1]
-
-[node name="Poison" type="Node"]
-script = ExtResource( 1 )
-alias = "Poison"
-description = "Makes target lose 8 hp per turn unless cured"
-damage = 8

@@ -59,8 +59,10 @@ arcane = 20
 script = ExtResource( 6 )
 alias = "Spear"
 icon = ExtResource( 8 )
-damage_type = 3
+damage_type = "pierce"
 damage = 9
 strikes = 2
 
 [node name="Charge" parent="Attacks/Spear" instance=ExtResource( 7 )]
+
+[node name="Advancements" type="Node" parent="."]
