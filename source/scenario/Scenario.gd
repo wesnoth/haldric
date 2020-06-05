@@ -4,6 +4,7 @@ class_name Scenario
 
 signal location_hovered(loc)
 signal unit_move_finished(loc)
+signal combat_finished()
 
 const FLAG_OFFSET = Vector2(15, 25)
 
@@ -214,7 +215,7 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 	var combat := Combat.new()
 	get_tree().current_scene.add_child(combat)
 
-	combat.connect("combat_finished", self, "_check_victory_conditions")
+	combat.connect("combat_finished", self, "_on_combat_finished")
 	var attacker := CombatContext.new(attacker_loc, attacker_attack, schedule.current_time)
 	var defender := CombatContext.new(defender_loc, defender_attack, schedule.current_time)
 	combat.start(attacker, defender)
@@ -328,6 +329,11 @@ func _turn_refresh_abilities() -> void:
 
 		for effect in loc.unit.get_effects():
 			effect.execute(loc)
+
+
+func _on_combat_finished() -> void:
+	_check_victory_conditions()
+	emit_signal("combat_finished")
 
 
 func _check_victory_conditions() -> void:
