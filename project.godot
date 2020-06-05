@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "AI",
 "language": "GDScript",
-"path": "res://source/global/AI.gd"
+"path": "res://source/game/AI.gd"
 }, {
 "base": "Node",
 "class": "Ability",
