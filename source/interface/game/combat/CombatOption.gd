@@ -8,7 +8,7 @@ onready var attack_category_label := $MarginContainer/HBoxContainer/AttackCatego
 
 
 static func instance() -> CombatOption:
-	return load("source/interface/combat/CombatOption.tscn").instance() as CombatOption
+	return load("source/interface/game/combat/CombatOption.tscn").instance() as CombatOption
 
 
 func update_info(attacker: CombatContext, defender: CombatContext) -> void:

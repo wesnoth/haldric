@@ -3,7 +3,7 @@ class_name SkillButton
 
 
 static func instance() -> SkillButton:
-	return load("res://source/interface/SkillButton.tscn").instance() as SkillButton
+	return load("res://source/interface/gam/SkillButton.tscn").instance() as SkillButton
 
 
 func update_info(skill: Skill) -> void:

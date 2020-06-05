@@ -10,7 +10,7 @@ var tooltip := "" setget _set_tooltip
 onready var button := $Button as Button
 
 static func instance() -> ActionButton:
-	return load("res://source/interface/action/ActionButton.tscn").instance() as ActionButton
+	return load("res://source/interface/game/action/ActionButton.tscn").instance() as ActionButton
 
 
 func _set_disabled(value: bool) -> void:

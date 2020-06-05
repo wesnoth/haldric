@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://source/interface/UnitUI.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/game/UnitUI.gd" type="Script" id=1]
+
 
 [node name="UnitUI" type="Control" groups=[
 "UnitUI",

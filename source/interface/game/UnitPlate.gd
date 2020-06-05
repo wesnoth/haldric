@@ -17,7 +17,7 @@ onready var tween := $Tween
 
 
 static func instance() -> UnitPlate:
-	return load("source/interface/UnitPlate.tscn").instance() as UnitPlate
+	return load("source/interface/game/UnitPlate.tscn").instance() as UnitPlate
 
 
 func initialize(unit: Unit) -> void:

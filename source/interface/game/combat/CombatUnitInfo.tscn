@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://source/interface/combat/CombatUnitInfo.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/game/combat/CombatUnitInfo.gd" type="Script" id=1]
+
 
 [node name="CombatUnitInfo" type="MarginContainer"]
 margin_right = 290.0

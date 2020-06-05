@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://source/interface/advancement/AdvancementDialogue.gd" type="Script" id=1]
-[ext_resource path="res://source/interface/advancement/UnitAdvancementInfo.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/interface/game/advancement/AdvancementDialogue.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/game/advancement/UnitAdvancementInfo.tscn" type="PackedScene" id=2]
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=3]
+
 
 [node name="AdvancementDialogue" type="Control"]
 anchor_right = 1.0

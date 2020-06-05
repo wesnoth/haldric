@@ -1,17 +1,20 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://source/interface/GameUI.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/game/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/misc/Selector.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/interface/LocationUI.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/interface/UnitUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/interface/combat/CombatDialogue.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/interface/game/LocationUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/game/UnitUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/interface/game/combat/CombatDialogue.tscn" type="PackedScene" id=5]
 [ext_resource path="res://graphics/images/interface/darken.png" type="Texture" id=6]
-[ext_resource path="res://source/interface/SideUI.tscn" type="PackedScene" id=7]
-[ext_resource path="res://source/interface/recruit/RecruitDialogue.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/interface/PathUI.gd" type="Script" id=9]
+[ext_resource path="res://source/interface/game/SideUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/interface/game/recruit/RecruitDialogue.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/interface/game/PathUI.gd" type="Script" id=9]
 [ext_resource path="res://graphics/themes/wesnoth_theme.tres" type="Theme" id=10]
-[ext_resource path="res://source/interface/action/ActionDialogue.tscn" type="PackedScene" id=11]
-[ext_resource path="res://source/interface/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
+[ext_resource path="res://source/interface/game/action/ActionDialogue.tscn" type="PackedScene" id=11]
+[ext_resource path="res://source/interface/game/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
+
+
+
 
 [sub_resource type="TileSet" id=1]
 0/name = "darken"

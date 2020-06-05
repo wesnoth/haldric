@@ -1,6 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://source/interface/action/ActionButton.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/game/action/ActionButton.gd" type="Script" id=1]
+
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.32549, 0.364706, 0.4, 1 )

@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://source/interface/recruit/UnitRecruitInfo.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/game/recruit/UnitRecruitInfo.gd" type="Script" id=1]
+
 
 [node name="UnitRecruitInfo" type="Control"]
 margin_right = 185.0
