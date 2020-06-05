@@ -35,7 +35,7 @@ Given the new technology, we have to recreate all content from scratch, includin
 
 This is a *lot* or work, and we will not be able to ship Haldric with all the existing mainline campaigns.
 
-For the initial release, we plan to include *Heir to the Throne* as the only mainline campaign. More campaigns will be (re)added in later versions.
+For the initial release, we plan to include *one* mainline campaign. More campaigns will be (re)added in later versions.
 
 In addition, there are a few people in high places who are not happy with the quality of Wesnoth's mainline campaigns. Authors might address this by rewriting large portions of the story and/or making use of new gameplay mechanics.
 
