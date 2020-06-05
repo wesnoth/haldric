@@ -202,7 +202,7 @@ func find_units(property_path: String, value) -> Array:
 
 func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc: Location, defender_attack: Attack) -> void:
 	if not map.are_locations_neighbors(attacker_loc, defender_loc):
-		var result := map.find_path(attacker_loc, defender_loc)
+		var result := map.find_path_with_max_costs(attacker_loc, defender_loc, attacker_loc.unit.moves.value)
 		var new_attacker_loc = result.path[result.path.size()-2]
 		var mover = move_unit(attacker_loc, defender_loc, true)
 
