@@ -9,230 +9,130 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "AI",
+"base": "Popup",
+"class": "AdvancementPopup",
 "language": "GDScript",
-"path": "res://source/global/AI.gd"
-}, {
-"base": "Node",
-"class": "Ability",
-"language": "GDScript",
-"path": "res://source/unit/ability/Ability.gd"
-}, {
-"base": "Ability",
-"class": "AbilityHeal",
-"language": "GDScript",
-"path": "res://source/unit/ability/AbilityHeal.gd"
-}, {
-"base": "Control",
-"class": "ActionButton",
-"language": "GDScript",
-"path": "res://source/interface/game/action/ActionButton.gd"
-}, {
-"base": "Control",
-"class": "ActionDialogue",
-"language": "GDScript",
-"path": "res://source/interface/game/action/ActionDialogue.gd"
-}, {
-"base": "Button",
-"class": "AdvancemenOption",
-"language": "GDScript",
-"path": "res://source/interface/game/advancement/AdvancementOption.gd"
-}, {
-"base": "Node",
-"class": "Advancement",
-"language": "GDScript",
-"path": "res://source/unit/advancement/Advancement.gd"
-}, {
-"base": "Control",
-"class": "AdvancementDialogue",
-"language": "GDScript",
-"path": "res://source/interface/game/advancement/AdvancementDialogue.gd"
+"path": "res://source/interface/hud/AdvancementPopup.gd"
 }, {
 "base": "Node",
 "class": "Attack",
 "language": "GDScript",
-"path": "res://source/unit/unit_type/Attack.gd"
-}, {
-"base": "Reference",
-"class": "Attribute",
-"language": "GDScript",
-"path": "res://source/unit/Attribute.gd"
-}, {
-"base": "Node",
-"class": "Combat",
-"language": "GDScript",
-"path": "res://source/scenario/Combat.gd"
-}, {
-"base": "MarginContainer",
-"class": "CombatAttackInfo",
-"language": "GDScript",
-"path": "res://source/interface/game/combat/CombatAttackInfo.gd"
-}, {
-"base": "Reference",
-"class": "CombatContext",
-"language": "GDScript",
-"path": "res://source/scenario/CombatContext.gd"
+"path": "res://source/unit/Attack.gd"
 }, {
 "base": "Control",
-"class": "CombatDialogue",
+"class": "AttackPlate",
 "language": "GDScript",
-"path": "res://source/interface/game/combat/CombatDialogue.gd"
+"path": "res://source/interface/hud/components/AttackPlate.gd"
+}, {
+"base": "Popup",
+"class": "AttackPopup",
+"language": "GDScript",
+"path": "res://source/interface/hud/AttackPopup.gd"
+}, {
+"base": "Control",
+"class": "Circle",
+"language": "GDScript",
+"path": "res://source/interface/hud/components/circles/Circle.gd"
 }, {
 "base": "Button",
-"class": "CombatOption",
+"class": "CircleButton",
 "language": "GDScript",
-"path": "res://source/interface/game/combat/CombatOption.gd"
+"path": "res://source/interface/hud/components/buttons/CircleButton.gd"
 }, {
-"base": "MarginContainer",
-"class": "CombatUnitInfo",
+"base": "PanelContainer",
+"class": "CombatPlate",
 "language": "GDScript",
-"path": "res://source/interface/game/combat/CombatUnitInfo.gd"
-}, {
-"base": "Node2D",
-"class": "DebugDraw",
-"language": "GDScript",
-"path": "res://source/global/DebugDraw.gd"
+"path": "res://source/interface/hud/components/CombatPlate.gd"
 }, {
 "base": "Node",
-"class": "DefenseType",
+"class": "Controller",
 "language": "GDScript",
-"path": "res://source/unit/unit_type/DefenseType.gd"
-}, {
-"base": "Button",
-"class": "EditorTerrainButton",
-"language": "GDScript",
-"path": "res://source/interface/editor/EditorTerrainButton.gd"
-}, {
-"base": "CanvasLayer",
-"class": "EditorUI",
-"language": "GDScript",
-"path": "res://source/interface/editor/EditorUI.gd"
+"path": "res://source/controller/Controller.gd"
 }, {
 "base": "Node",
-"class": "Effect",
+"class": "Defense",
 "language": "GDScript",
-"path": "res://source/unit/effect/Effect.gd"
-}, {
-"base": "Effect",
-"class": "EffectAttribute",
-"language": "GDScript",
-"path": "res://source/unit/effect/EffectAttribute.gd"
-}, {
-"base": "Effect",
-"class": "EffectDamage",
-"language": "GDScript",
-"path": "res://source/unit/effect/EffectDamage.gd"
-}, {
-"base": "Effect",
-"class": "EffectUnitType",
-"language": "GDScript",
-"path": "res://source/unit/effect/EffectUnitType.gd"
+"path": "res://source/unit/Defense.gd"
 }, {
 "base": "CanvasLayer",
-"class": "GameUI",
+"class": "EditorHUD",
 "language": "GDScript",
-"path": "res://source/interface/game/GameUI.gd"
+"path": "res://source/editor/EditorHUD.gd"
 }, {
 "base": "AStar",
 "class": "Grid",
 "language": "GDScript",
-"path": "res://source/map/Grid.gd"
+"path": "res://source/scenario/map/Grid.gd"
 }, {
 "base": "Reference",
 "class": "Hex",
 "language": "GDScript",
-"path": "res://source/map/Hex.gd"
-}, {
-"base": "TileMap",
-"class": "HexMap",
-"language": "GDScript",
-"path": "res://source/map/HexMap.gd"
+"path": "res://source/scenario/map/Hex.gd"
 }, {
 "base": "Reference",
-"class": "Loader",
-"language": "GDScript",
-"path": "res://source/global/Loader.gd"
-}, {
-"base": "Resource",
 "class": "Location",
 "language": "GDScript",
-"path": "res://source/map/Location.gd"
+"path": "res://source/scenario/map/Location.gd"
 }, {
-"base": "HBoxContainer",
-"class": "LocationUI",
-"language": "GDScript",
-"path": "res://source/interface/game/LocationUI.gd"
-}, {
-"base": "HexMap",
+"base": "TileMap",
 "class": "Map",
 "language": "GDScript",
-"path": "res://source/map/Map.gd"
+"path": "res://source/scenario/map/Map.gd"
 }, {
-"base": "Reference",
-"class": "MapBuilder",
+"base": "Node",
+"class": "Movement",
 "language": "GDScript",
-"path": "res://source/builder/MapBuilder.gd"
+"path": "res://source/unit/Movement.gd"
+}, {
+"base": "RCard",
+"class": "RCampaign",
+"language": "GDScript",
+"path": "res://source/templates/RCampaign.gd"
 }, {
 "base": "Resource",
-"class": "MapData",
+"class": "RCard",
 "language": "GDScript",
-"path": "res://source/data/MapData.gd"
-}, {
-"base": "Node2D",
-"class": "MapEditor",
-"language": "GDScript",
-"path": "res://source/editor/MapEditor.gd"
-}, {
-"base": "Node",
-"class": "MovementType",
-"language": "GDScript",
-"path": "res://source/unit/unit_type/MovementType.gd"
-}, {
-"base": "Node",
-"class": "Mover",
-"language": "GDScript",
-"path": "res://source/scenario/Mover.gd"
-}, {
-"base": "Node2D",
-"class": "PathUI",
-"language": "GDScript",
-"path": "res://source/interface/game/PathUI.gd"
-}, {
-"base": "Control",
-"class": "PopupLabel",
-"language": "GDScript",
-"path": "res://source/interface/misc/PopupLabel.gd"
+"path": "res://source/templates/RCard.gd"
 }, {
 "base": "Resource",
-"class": "Race",
+"class": "REra",
 "language": "GDScript",
-"path": "res://source/unit/race/Race.gd"
+"path": "res://source/templates/REra.gd"
 }, {
-"base": "Control",
-"class": "RecruitDialogue",
+"base": "Resource",
+"class": "RFaction",
 "language": "GDScript",
-"path": "res://source/interface/game/recruit/RecruitDialogue.gd"
+"path": "res://source/templates/RFaction.gd"
 }, {
-"base": "Button",
-"class": "RecruitOption",
+"base": "RCard",
+"class": "RScenario",
 "language": "GDScript",
-"path": "res://source/interface/game/recruit/RecruitOption.gd"
+"path": "res://source/templates/RScenario.gd"
+}, {
+"base": "Resource",
+"class": "RSchedule",
+"language": "GDScript",
+"path": "res://source/templates/RSchedule.gd"
+}, {
+"base": "Resource",
+"class": "RTerrain",
+"language": "GDScript",
+"path": "res://source/templates/RTerrain.gd"
+}, {
+"base": "Resource",
+"class": "RTime",
+"language": "GDScript",
+"path": "res://source/templates/RTime.gd"
 }, {
 "base": "Node",
-"class": "ResistanceType",
+"class": "Resistance",
 "language": "GDScript",
-"path": "res://source/unit/unit_type/ResistanceType.gd"
+"path": "res://source/unit/Resistance.gd"
 }, {
-"base": "Node2D",
+"base": "Control",
 "class": "Scenario",
 "language": "GDScript",
 "path": "res://source/scenario/Scenario.gd"
-}, {
-"base": "Resource",
-"class": "ScenarioData",
-"language": "GDScript",
-"path": "res://source/data/ScenarioData.gd"
 }, {
 "base": "Node",
 "class": "SceneLoader",
@@ -244,239 +144,99 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/Schedule.gd"
 }, {
-"base": "Control",
-"class": "Selector",
-"language": "GDScript",
-"path": "res://source/interface/misc/Selector.gd"
-}, {
 "base": "Node",
 "class": "Side",
 "language": "GDScript",
 "path": "res://source/scenario/Side.gd"
 }, {
 "base": "Control",
-"class": "SideUI",
+"class": "SidePanelItem",
 "language": "GDScript",
-"path": "res://source/interface/game/SideUI.gd"
+"path": "res://source/interface/hud/components/SidePanelItem.gd"
 }, {
 "base": "Node",
-"class": "Skill",
+"class": "State",
 "language": "GDScript",
-"path": "res://source/unit/skill/Skill.gd"
-}, {
-"base": "Button",
-"class": "SkillButton",
-"language": "GDScript",
-"path": "res://source/interface/game/SkillButton.gd"
-}, {
-"base": "Skill",
-"class": "SkillDamage",
-"language": "GDScript",
-"path": "res://source/unit/skill/SkillDamage.gd"
-}, {
-"base": "Skill",
-"class": "SkillHeal",
-"language": "GDScript",
-"path": "res://source/unit/skill/SkillHeal.gd"
-}, {
-"base": "Skill",
-"class": "SkillTeach",
-"language": "GDScript",
-"path": "res://source/unit/skill/SkillTeach.gd"
-}, {
-"base": "WeaponSpecial",
-"class": "SpecialAccuracy",
-"language": "GDScript",
-"path": "res://source/unit/special/SpecialAccuracy.gd"
-}, {
-"base": "WeaponSpecial",
-"class": "SpecialDamage",
-"language": "GDScript",
-"path": "res://source/unit/special/SpecialDamage.gd"
-}, {
-"base": "Node",
-"class": "Status",
-"language": "GDScript",
-"path": "res://source/unit/status/Status.gd"
+"path": "res://source/unit/State.gd"
 }, {
 "base": "Reference",
 "class": "Terrain",
 "language": "GDScript",
-"path": "res://source/map/Terrain.gd"
-}, {
-"base": "Reference",
-"class": "TerrainBuilder",
-"language": "GDScript",
-"path": "res://source/builder/TerrainBuilder.gd"
-}, {
-"base": "Resource",
-"class": "TerrainData",
-"language": "GDScript",
-"path": "res://source/data/TerrainData.gd"
-}, {
-"base": "Reference",
-"class": "TerrainGraphicBuilder",
-"language": "GDScript",
-"path": "res://source/builder/TerrainGraphicBuilder.gd"
-}, {
-"base": "Resource",
-"class": "TerrainGraphicData",
-"language": "GDScript",
-"path": "res://source/data/TerrainGraphicData.gd"
-}, {
-"base": "Resource",
-"class": "TerrainLoader",
-"language": "GDScript",
-"path": "res://source/TerrainLoader.gd"
-}, {
-"base": "Reference",
-"class": "TileSetBuilder",
-"language": "GDScript",
-"path": "res://source/builder/TileSetBuilder.gd"
+"path": "res://source/scenario/map/Terrain.gd"
 }, {
 "base": "Node",
 "class": "Time",
 "language": "GDScript",
-"path": "res://source/scenario/Time.gd"
+"path": "res://source/game/Time.gd"
 }, {
-"base": "Node",
-"class": "Trait",
+"base": "Control",
+"class": "ToDWheel",
 "language": "GDScript",
-"path": "res://source/unit/trait/Trait.gd"
+"path": "res://source/interface/hud/ToDWheel.gd"
 }, {
-"base": "Trait",
-"class": "TraitDamage",
+"base": "Node2D",
+"class": "Transitions",
 "language": "GDScript",
-"path": "res://source/unit/trait/TraitDamage.gd"
-}, {
-"base": "Trait",
-"class": "TraitIntelligent",
-"language": "GDScript",
-"path": "res://source/unit/trait/TraitIntelligent.gd"
-}, {
-"base": "Trait",
-"class": "TraitQuick",
-"language": "GDScript",
-"path": "res://source/unit/trait/TraitQuick.gd"
-}, {
-"base": "Trait",
-"class": "TraitResilient",
-"language": "GDScript",
-"path": "res://source/unit/trait/TraitResilient.gd"
+"path": "res://source/scenario/map/Transitions.gd"
 }, {
 "base": "Node2D",
 "class": "Unit",
 "language": "GDScript",
 "path": "res://source/unit/Unit.gd"
 }, {
-"base": "Control",
-"class": "UnitAdvancementInfo",
-"language": "GDScript",
-"path": "res://source/interface/game/advancement/UnitAdvancementInfo.gd"
-}, {
 "base": "Node2D",
 "class": "UnitPlate",
 "language": "GDScript",
-"path": "res://source/interface/game/UnitPlate.gd"
-}, {
-"base": "Control",
-"class": "UnitRecruitInfo",
-"language": "GDScript",
-"path": "res://source/interface/game/recruit/UnitRecruitInfo.gd"
+"path": "res://source/interface/hud/UnitPlate.gd"
 }, {
 "base": "Node2D",
 "class": "UnitType",
 "language": "GDScript",
-"path": "res://source/unit/unit_type/UnitType.gd"
-}, {
-"base": "Control",
-"class": "UnitUI",
-"language": "GDScript",
-"path": "res://source/interface/game/UnitUI.gd"
+"path": "res://source/unit/UnitType.gd"
 }, {
 "base": "Node",
 "class": "WeaponSpecial",
 "language": "GDScript",
-"path": "res://source/unit/special/WeaponSpecial.gd"
+"path": "res://source/unit/WeaponSpecial.gd"
 } ]
 _global_script_class_icons={
-"AI": "",
-"Ability": "",
-"AbilityHeal": "",
-"ActionButton": "",
-"ActionDialogue": "",
-"AdvancemenOption": "",
-"Advancement": "",
-"AdvancementDialogue": "",
+"AdvancementPopup": "",
 "Attack": "",
-"Attribute": "",
-"Combat": "",
-"CombatAttackInfo": "",
-"CombatContext": "",
-"CombatDialogue": "",
-"CombatOption": "",
-"CombatUnitInfo": "",
-"DebugDraw": "",
-"DefenseType": "",
-"EditorTerrainButton": "",
-"EditorUI": "",
-"Effect": "",
-"EffectAttribute": "",
-"EffectDamage": "",
-"EffectUnitType": "",
-"GameUI": "",
+"AttackPlate": "",
+"AttackPopup": "",
+"Circle": "",
+"CircleButton": "",
+"CombatPlate": "",
+"Controller": "",
+"Defense": "",
+"EditorHUD": "",
 "Grid": "",
 "Hex": "",
-"HexMap": "",
-"Loader": "",
 "Location": "",
-"LocationUI": "",
 "Map": "",
-"MapBuilder": "",
-"MapData": "",
-"MapEditor": "",
-"MovementType": "",
-"Mover": "",
-"PathUI": "",
-"PopupLabel": "",
-"Race": "",
-"RecruitDialogue": "",
-"RecruitOption": "",
-"ResistanceType": "",
+"Movement": "",
+"RCampaign": "",
+"RCard": "",
+"REra": "",
+"RFaction": "",
+"RScenario": "",
+"RSchedule": "",
+"RTerrain": "",
+"RTime": "",
+"Resistance": "",
 "Scenario": "",
-"ScenarioData": "",
 "SceneLoader": "",
 "Schedule": "",
-"Selector": "",
 "Side": "",
-"SideUI": "",
-"Skill": "",
-"SkillButton": "",
-"SkillDamage": "",
-"SkillHeal": "",
-"SkillTeach": "",
-"SpecialAccuracy": "",
-"SpecialDamage": "",
-"Status": "",
+"SidePanelItem": "",
+"State": "",
 "Terrain": "",
-"TerrainBuilder": "",
-"TerrainData": "",
-"TerrainGraphicBuilder": "",
-"TerrainGraphicData": "",
-"TerrainLoader": "",
-"TileSetBuilder": "",
 "Time": "",
-"Trait": "",
-"TraitDamage": "",
-"TraitIntelligent": "",
-"TraitQuick": "",
-"TraitResilient": "",
+"ToDWheel": "",
+"Transitions": "",
 "Unit": "",
-"UnitAdvancementInfo": "",
 "UnitPlate": "",
-"UnitRecruitInfo": "",
 "UnitType": "",
-"UnitUI": "",
 "WeaponSpecial": ""
 }
 
@@ -484,26 +244,51 @@ _global_script_class_icons={
 
 config/name="Haldric"
 run/main_scene="res://source/menu/TitleScreen.tscn"
+boot_splash/image="res://graphics/images/interface/logo/logo-bg.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
+version/major=0
+version/minor=1
+version/patch=0
+version/status="dev"
 
 [autoload]
 
-Debug="*res://source/global/Debug.tscn"
-Data="*res://source/global/Data.gd"
-Command="*res://source/global/Command.gd"
-Console="*res://source/global/Console.tscn"
-Scene="*res://addons/scene_manager/source/Scene.tscn"
+Wesnoth="*res://source/global/Wesnoth.gd"
+Network="*res://source/global/Network.gd"
 Global="*res://source/global/Global.gd"
+Loader="*res://source/global/Loader.gd"
+Registry="*res://source/global/Registry.gd"
+Audio="*res://source/global/Audio.tscn"
+TeamColor="*res://source/global/TeamColor.gd"
+Event="*res://source/global/Event.gd"
+Settings="*res://source/global/Settings.gd"
+Scene="*res://addons/scene_manager/source/Scene.tscn"
+
+[debug]
+
+gdscript/warnings/unassigned_variable=false
+gdscript/warnings/unassigned_variable_op_assign=false
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
+window/dpi/allow_hidpi=true
+mouse_cursor/custom_image="res://graphics/images/interface/cursor/normal.png"
+window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "scene_manager" )
+enabled=PoolStringArray( "gut", "scene_manager" )
+
+[gui]
+
+theme/use_hidpi=true
 
 [importer_defaults]
 
@@ -530,44 +315,47 @@ texture={
 
 [input]
 
-LMB={
+ui_accept={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777222,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+toggle_fullscreen={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":true,"command":true,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777254,"unicode":0,"echo":false,"script":null)
+ ]
+}
+mouse_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
-RMB={
+mouse_right={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
-MMB={
+scroll_up={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":3,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
-recruit={
+scroll_down={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
-move={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
- ]
-}
-end_turn={
-"deadzone": 0.5,
-"events": [  ]
-}
-message={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":47,"unicode":0,"echo":false,"script":null)
- ]
-}
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=20000
 
 [rendering]
 
-quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
+quality/driver/fallback_to_gles2=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
