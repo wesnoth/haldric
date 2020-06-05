@@ -47,13 +47,9 @@ static func get_cell_ring(cell: Vector2, radius: int, rect: Rect2) -> PoolVector
 	var cells := PoolVector2Array()
 	var cubes := _get_cube_ring(quad2cube(cell), radius)
 
-	print(cubes)
-
 	for cube in cubes:
 		if rect.has_point(cube2quad(cube)):
 			cells.append(cube2quad(cube))
-
-	print(cells)
 
 	return cells
 
