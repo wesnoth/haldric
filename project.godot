@@ -494,6 +494,7 @@ Command="*res://source/global/Command.gd"
 Console="*res://source/global/Console.tscn"
 Scene="*res://addons/scene_manager/source/Scene.tscn"
 Global="*res://source/global/Global.gd"
+AI="*res://source/global/AI.gd"
 
 [display]
 
