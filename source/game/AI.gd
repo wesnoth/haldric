@@ -7,8 +7,8 @@ enum State { NONE, RECRUIT, CAPTURE_VILLAGES, ATTACK, RETREAT }
 enum UnitState { NONE, HEAL, SCOUT, ATTACK, STANDBY }
 
 var side : Side
-var state = State.RECRUIT
-var unitstates = {}
+var state : int = State.RECRUIT
+var unitstates := {}
 var scenario : Scenario = null
 
 """
@@ -63,7 +63,7 @@ AI:
 
 """
 
-func _init(side: Side):
+func _init(side: Side) -> void:
 	self.side = side
 	self.state = State.RECRUIT
 
@@ -74,7 +74,7 @@ func _init(side: Side):
 	side.connect("unit_removed", self, "_remove_unit")
 
 
-func execute(scenario) -> void:
+func execute(scenario: Scenario) -> void:
 	Console.write("Executing AI")
 
 	self.scenario = scenario
@@ -105,7 +105,7 @@ func execute(scenario) -> void:
 	emit_signal("finished")
 
 
-func do_all(unit_state, unit):
+func do_all(unit_state: int, unit: Unit) -> bool:
 	"""
 	*:
 		IF HP < 1/3:
@@ -125,7 +125,7 @@ func do_all(unit_state, unit):
 	return true
 
 
-func do_heal(unit_state, unit):
+func do_heal(unit_state: int, unit: Unit) -> void:
 	"""
 	HEAL:
 		IF HP < 1/3:
@@ -148,7 +148,7 @@ func do_heal(unit_state, unit):
 		do_attack(unit_state, unit)
 
 
-func do_scout(unit_state, unit):
+func do_scout(unit_state: int, unit: Unit) -> void:
 	"""
 	SCOUT:
 		MOVE TOWARDS NEAREST UNOCCUPIED VILLAGE
@@ -164,7 +164,7 @@ func do_scout(unit_state, unit):
 			yield(scenario, "unit_move_finished")
 
 
-func do_attack(unit_state, unit):
+func do_attack(unit_state: int, unit: Unit) -> void:
 	"""
 	ATTACK:
 		GO TOWARDS NEAREST ENEMY UNIT
@@ -179,7 +179,7 @@ func do_attack(unit_state, unit):
 		yield(scenario, "combat_finished")
 
 
-func do_standby(unit_state, unit):
+func do_standby(unit_state: int, unit: Unit) -> void:
 	"""
 	STANDBY:
 		IF AI_STATE = ATTACK
@@ -198,14 +198,14 @@ func do_standby(unit_state, unit):
 		do_retreat(unit_state, unit)
 
 
-func do_retreat(unit_state, unit):
+func do_retreat(unit_state: int, unit: Unit) -> void:
 	var loc = self.scenario.map.get_location_from_world(unit.position)
 	var hloc = side.leaders[0]
 	scenario.move_unit(loc, hloc)
 	yield(scenario, "unit_move_finished")
 
 
-func _get_nearest_healing(loc: Location):
+func _get_nearest_healing(loc: Location) -> Array:
 	var visited := [loc]
 	var queue := [loc]
 
@@ -225,10 +225,10 @@ func _get_nearest_healing(loc: Location):
 			(n_loc.unit.type.usage == UnitType.Usage.HEALER and n_loc.unit.side_number != loc.unit.side_number):
 				return [n_loc, n_loc.unit != null]
 
-	return null
+	return []
 
 
-func _get_nearest_village(loc: Location):
+func _get_nearest_village(loc: Location) -> Location:
 	var visited := [loc]
 	var queue := [loc]
 
@@ -250,7 +250,7 @@ func _get_nearest_village(loc: Location):
 	return null
 
 
-func _get_nearest_enemy(loc: Location):
+func _get_nearest_enemy(loc: Location) -> Location:
 	var visited := [loc]
 	var queue := [loc]
 
@@ -271,9 +271,9 @@ func _get_nearest_enemy(loc: Location):
 	return null
 
 
-func _add_unit(unit):
+func _add_unit(unit: Unit) -> void:
 	unitstates[unit] = UnitState.STANDBY
 
 
-func _remove_unit(unit):
+func _remove_unit(unit: Unit) -> void:
 	unitstates.erase(unit)
