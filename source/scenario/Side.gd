@@ -34,8 +34,6 @@ export var leader := ""
 export(Array, String) var random_leader := []
 export(Array, String) var recruit := []
 
-onready var ai = AI.new(self)
-
 
 func _ready() -> void:
 	number = get_index()
@@ -58,7 +56,7 @@ func update_income() -> void:
 	_calculate_income()
 
 
-func add_unit(unit, is_leader := false) -> void:
+func add_unit(unit: Unit, is_leader := false) -> void:
 	units.append(unit)
 
 	if is_leader:
@@ -131,7 +129,7 @@ func find_recruit_location() -> Location:
 	return null
 
 
-func is_unit_leader(unit) -> bool:
+func is_unit_leader(unit: Unit) -> bool:
 	return leaders.has(unit)
 
 
@@ -146,7 +144,7 @@ func _calculate_income() -> void:
 	income = villages.size() * VILLAGE_INCOME + base_income
 
 
-func _on_unit_died(unit) -> void:
+func _on_unit_died(unit: Unit) -> void:
 	var idx = leaders.find(unit)
 
 	if idx >= 0:

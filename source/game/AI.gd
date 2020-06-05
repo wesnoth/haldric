@@ -6,10 +6,10 @@ signal finished()
 enum State { NONE, RECRUIT, CAPTURE_VILLAGES, ATTACK, RETREAT }
 enum UnitState { NONE, HEAL, SCOUT, ATTACK, STANDBY }
 
-var side
+var side : Side
 var state = State.RECRUIT
 var unitstates = {}
-var scenario = null
+var scenario : Scenario = null
 
 """
 AI:
@@ -63,7 +63,7 @@ AI:
 
 """
 
-func _init(side):
+func _init(side: Side):
 	self.side = side
 	self.state = State.RECRUIT
 
@@ -174,6 +174,7 @@ func do_attack(unit_state, unit):
 	var loc = self.scenario.map.get_location_from_world(unit.position)
 	var hloc = _get_nearest_enemy(loc)
 	if hloc:
+		print(loc.unit, hloc.unit)
 		scenario.start_combat(loc, loc.unit.type.attacks.get_children()[0], hloc, hloc.unit.type.attacks.get_children()[0])
 		yield(scenario, "combat_finished")
 

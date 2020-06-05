@@ -2,6 +2,8 @@ tool
 extends Node2D
 class_name Scenario
 
+const AI = "res://source/game/AI.gd"
+
 signal location_hovered(loc)
 signal unit_move_finished(loc)
 signal combat_finished()
@@ -17,6 +19,7 @@ var hovered_location : Location = null
 var current_side : Side = null
 
 var flags := {}
+var AIs := {}
 
 var is_side_moving := false
 
@@ -258,8 +261,10 @@ func end_turn() -> void:
 	Console.write("Side %d's Turn" % current_side.number)
 
 	if current_side.controller == Side.Controller.AI:
-		current_side.ai.call_deferred("execute", self)
-		yield(current_side.ai, "finished")
+		var ai = AIs[current_side]
+
+		ai.call_deferred("execute", self)
+		yield(ai, "finished")
 		end_turn()
 		return
 
@@ -296,6 +301,7 @@ func _load_map() -> void:
 func _load_sides() -> void:
 	for side in get_sides():
 		add_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
+		AIs[side] = load(AI).new(side)
 
 	current_side = get_side(0)
 	current_side.turn_refresh()
