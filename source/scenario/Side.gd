@@ -30,6 +30,8 @@ export var base_income := 2
 
 export var color := Color.pink
 
+export var ai := "SimpleAI"
+
 export var leader := ""
 export(Array, String) var random_leader := []
 export(Array, String) var recruit := []

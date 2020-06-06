@@ -8,6 +8,8 @@ var units := {}
 
 var scenarios := {}
 
+var AIs := {}
+
 
 func _ready() -> void:
 	scan()
@@ -18,6 +20,7 @@ func scan() -> void:
 	_load_races()
 	_load_units()
 	_load_scenarios()
+	_load_ais()
 
 
 func add_terrain(terrain: TerrainData) -> void:
@@ -58,3 +61,12 @@ func _load_scenarios() -> void:
 		scenarios[file_data.data.id] = file_data.data
 
 	print(scenarios)
+
+
+func _load_ais() -> void:
+	AIs.clear()
+
+	for file_data in Loader.load_dir("res://ai", [ "gd" ]):
+		AIs[file_data.id] = file_data.data
+
+	print(AIs)

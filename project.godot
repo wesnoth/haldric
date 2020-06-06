@@ -259,6 +259,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/game/SideUI.gd"
 }, {
+"base": "AI",
+"class": "SimpleAI",
+"language": "GDScript",
+"path": "res://ai/SimpleAI.gd"
+}, {
 "base": "Node",
 "class": "Skill",
 "language": "GDScript",
@@ -450,6 +455,7 @@ _global_script_class_icons={
 "Selector": "",
 "Side": "",
 "SideUI": "",
+"SimpleAI": "",
 "Skill": "",
 "SkillButton": "",
 "SkillDamage": "",

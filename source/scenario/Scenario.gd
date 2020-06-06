@@ -2,8 +2,6 @@ tool
 extends Node2D
 class_name Scenario
 
-const AI = "res://source/game/AI.gd"
-
 signal location_hovered(loc)
 signal unit_move_finished(loc)
 signal combat_finished()
@@ -301,7 +299,10 @@ func _load_map() -> void:
 func _load_sides() -> void:
 	for side in get_sides():
 		add_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
-		AIs[side] = load(AI).new(side)
+		var ai = Data.AIs[side.ai].new()
+		ai.initialize(side)
+		AIs[side] = ai
+
 
 	current_side = get_side(0)
 	current_side.turn_refresh()
