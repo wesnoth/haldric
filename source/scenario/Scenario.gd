@@ -193,16 +193,29 @@ func find_units(property_path: String, value) -> Array:
 func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc: Location, defender_attack: Attack) -> void:
 	if not map.are_locations_neighbors(attacker_loc, defender_loc):
 		var result := map.find_path_with_max_costs(attacker_loc, defender_loc, attacker_loc.unit.moves.value)
+
+		if result.size() < 2:
+			emit_signal("combat_finished")
+			return
+
 		var new_attacker_loc = result.path[result.path.size()-2]
+
+		if new_attacker_loc.unit:
+			Console.warn("unit at destination %s" % str(new_attacker_loc.cell))
+			emit_signal("combat_finished")
+			return
+
 		var mover = move_unit_towards(attacker_loc, defender_loc, true)
 
 		if not mover:
+			emit_signal("combat_finished")
 			return
 
 		yield(mover, "unit_move_finished")
 		attacker_loc = new_attacker_loc
 
 	if not map.are_locations_neighbors(attacker_loc, defender_loc):
+		emit_signal("combat_finished")
 		return
 
 	var combat := Combat.new()
@@ -306,6 +319,7 @@ func _load_sides() -> void:
 
 func _move_unit(path_result: Dictionary, start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
 	if path_result.costs > start_loc.unit.moves.value:
+		emit_signal("unit_move_finished", start_loc)
 		Console.warn(start_loc.unit.name + " has not enough moves! (%d)" % path_result.costs)
 		return null
 
