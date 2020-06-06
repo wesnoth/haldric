@@ -149,7 +149,7 @@ func do_scout(scenario: Scenario, unit_state: int, unit: Unit) -> void:
 		NEXT SCOUT
 	"""
 	var loc = scenario.map.get_location_from_world(unit.position)
-	if loc.heals:
+	if loc.terrain.heals:
 		self.state = UnitState.STANDBY
 	else:
 		var hloc = _get_nearest_village(loc)
@@ -215,7 +215,7 @@ func _get_nearest_healing(loc: Location) -> Array:
 			visited.append(n_loc)
 			queue.append(n_loc)
 
-			if (n_loc.heals and not n_loc.unit) or \
+			if (n_loc.terrain.heals and not n_loc.unit) or \
 			(n_loc.unit.type.usage == UnitType.Usage.HEALER and n_loc.unit.side_number != loc.unit.side_number):
 				return [n_loc, n_loc.unit != null]
 
