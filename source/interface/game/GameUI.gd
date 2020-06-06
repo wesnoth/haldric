@@ -32,11 +32,21 @@ onready var advancement_dialogue := $HUD/AdvancementDialogue as AdvancementDialo
 
 onready var time_label := $HUD/Panels/SidePanel/VBoxContainer/TimeOfDay
 
+onready var end_turn_button = $HUD/Panels/SidePanel/VBoxContainer/EndTurn
+
 func _ready() -> void:
 	combat_dialogue.hide()
 	recruit_dialogue.hide()
 	advancement_dialogue.hide()
 	cover.hide()
+
+
+func disable() -> void:
+	end_turn_button.disabled = true
+
+
+func enable() -> void:
+	end_turn_button.disabled = false
 
 
 func spawn_popup_label(position: Vector2, text: String, font_size := 16, color := Color("FFFFFFFF"), distance := 160, time := 0.6) -> void:

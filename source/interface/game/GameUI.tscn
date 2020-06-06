@@ -13,9 +13,6 @@
 [ext_resource path="res://source/interface/game/action/ActionDialogue.tscn" type="PackedScene" id=11]
 [ext_resource path="res://source/interface/game/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
 
-
-
-
 [sub_resource type="TileSet" id=1]
 0/name = "darken"
 0/texture = ExtResource( 6 )
@@ -157,7 +154,6 @@ theme = ExtResource( 10 )
 [node name="AdvancementDialogue" parent="HUD" instance=ExtResource( 12 )]
 margin_top = -2.0
 margin_bottom = -2.0
-theme = ExtResource( 10 )
 [connection signal="move_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_move_selected"]
 [connection signal="recruit_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recruit_selected"]
 [connection signal="skill_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_skill_selected"]

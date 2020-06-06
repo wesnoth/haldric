@@ -82,6 +82,7 @@ func recruit(unit_type_id: String) -> void:
 	var loc := current_side.find_recruit_location()
 
 	if not loc:
+		Console.warn("No recruit location found for side %d" % current_side.number)
 		return
 
 	var unit_type: UnitType = Data.units[unit_type_id].instance()
@@ -250,11 +251,12 @@ func end_turn() -> void:
 	Console.write("Side %d's Turn" % current_side.number)
 
 	if current_side.controller == Side.Controller.AI:
+		get_tree().call_group("GameUI", "disable")
 		var ai = AIs[current_side]
-
 		ai.call_deferred("execute", self)
 		yield(ai, "finished")
 		end_turn()
+		get_tree().call_group("GameUI", "enable")
 		return
 
 	get_tree().call_group("SideUI", "update_info", current_side)
@@ -291,6 +293,7 @@ func _load_sides() -> void:
 	for side in get_sides():
 		add_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
 		var ai = Data.AIs[side.ai].new()
+		add_child(ai)
 		ai.initialize(side)
 		AIs[side] = ai
 
