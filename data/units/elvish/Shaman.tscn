@@ -19,6 +19,7 @@ cost = 18
 health = 27
 moves = 5
 experience = 50
+usage = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
