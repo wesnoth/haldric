@@ -119,6 +119,7 @@ func find_path_with_max_costs(start_loc: Location, end_loc: Location, max_costs:
 	result.path = loc_path
 	return result
 
+
 func find_reachable_cells(loc: Location, unit: Unit, reachable := {}, distance := 0) -> Dictionary:
 	var is_first_call := loc.unit and loc.unit == unit
 	var has_loc_enemy := loc.unit and loc.unit.side_number != unit.side_number

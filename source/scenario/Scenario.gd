@@ -156,23 +156,12 @@ func place_unit(unit: Unit, target_loc: Location) -> void:
 
 func move_unit(start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
 	var result = map.find_path_with_max_costs(start_loc, end_loc, start_loc.unit.moves.value)
+	return _move_unit(result, start_loc, end_loc, pop_last)
 
-	if result.costs > start_loc.unit.moves.value:
-		Console.warn(start_loc.unit.name + " has not enough moves! (%d)" % result.costs)
-		return null
 
-	if pop_last:
-		result.path.pop_back()
-
-	var mover := Mover.new()
-	mover.connect("unit_move_finished", self, "_on_Mover_unit_move_finished")
-	get_tree().current_scene.add_child(mover)
-
-	current_side.remove_castle(start_loc)
-
-	mover.move_unit(start_loc, result.path)
-	is_side_moving = true
-	return mover
+func move_unit_towards(start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
+	var result = map.find_path_with_max_costs(start_loc, end_loc, start_loc.unit.moves.value)
+	return _move_unit(result, start_loc, end_loc, pop_last)
 
 
 func find_units(property_path: String, value) -> Array:
@@ -204,7 +193,7 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 	if not map.are_locations_neighbors(attacker_loc, defender_loc):
 		var result := map.find_path_with_max_costs(attacker_loc, defender_loc, attacker_loc.unit.moves.value)
 		var new_attacker_loc = result.path[result.path.size()-2]
-		var mover = move_unit(attacker_loc, defender_loc, true)
+		var mover = move_unit_towards(attacker_loc, defender_loc, true)
 
 		if not mover:
 			return
@@ -312,6 +301,25 @@ func _load_sides() -> void:
 	get_tree().call_group("SideUI", "update_info", current_side)
 
 
+func _move_unit(path_result: Dictionary, start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
+	if path_result.costs > start_loc.unit.moves.value:
+		Console.warn(start_loc.unit.name + " has not enough moves! (%d)" % path_result.costs)
+		return null
+
+	if pop_last:
+		path_result.path.pop_back()
+
+	var mover := Mover.new()
+	mover.connect("unit_move_finished", self, "_on_Mover_unit_move_finished")
+	get_tree().current_scene.add_child(mover)
+
+	current_side.remove_castle(start_loc)
+
+	mover.move_unit(start_loc, path_result.path)
+	is_side_moving = true
+	return mover
+
+
 func _turn_refresh_heals() -> void:
 	for loc in map.locations.values():
 
@@ -338,24 +346,6 @@ func _turn_refresh_abilities() -> void:
 
 		for effect in loc.unit.get_effects():
 			effect.execute(loc)
-
-
-func _on_combat_finished() -> void:
-	_check_victory_conditions()
-	emit_signal("combat_finished")
-
-
-func _check_victory_conditions() -> void:
-	var victory := true
-
-	for side in get_sides():
-		if not side == current_side:
-			if side.leaders:
-				victory = false
-
-	if victory:
-		Console.write("Side %d won!" % current_side.number)
-		get_tree().reload_current_scene()
 
 
 func _grab_village(loc: Location) -> void:
@@ -387,6 +377,24 @@ func _grab_castle(loc: Location) -> void:
 		last_side.remove_town(loc)
 
 	side.add_castle(loc)
+
+
+func _check_victory_conditions() -> void:
+	var victory := true
+
+	for side in get_sides():
+		if not side == current_side:
+			if side.leaders:
+				victory = false
+
+	if victory:
+		Console.write("Side %d won!" % current_side.number)
+		get_tree().reload_current_scene()
+
+
+func _on_combat_finished() -> void:
+	_check_victory_conditions()
+	emit_signal("combat_finished")
 
 
 func _on_Map_location_hovered(loc: Location) -> void:
