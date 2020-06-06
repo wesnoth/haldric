@@ -2,6 +2,7 @@ extends	AI
 class_name ActionAI
 
 signal attacks_finished()
+signal scouting_finished()
 signal recruit_finished()
 
 """
@@ -73,6 +74,14 @@ func _execute(scenario: Scenario) -> void:
 
 	yield(self, "attacks_finished")
 
+	_reset()
+	_analyze(scenario)
+	call_deferred("_execute_scouting", scenario)
+
+	yield(self, "scouting_finished")
+
+	_reset()
+	_analyze(scenario)
 	call_deferred("_execute_recruit", scenario)
 
 	yield(self, "recruit_finished")
@@ -96,16 +105,16 @@ func _execute_attacks(scenario: Scenario) -> void:
 		if loc.unit.actions.is_empty():
 			continue
 
-#		if not loc.unit.type.usage in [UnitType.Usage.FIGHTER, UnitType.Usage.ARCHER, UnitType.Usage.MIXED_FIGHTER]:
-#			continue
+		if not loc.unit.type.usage in [UnitType.Usage.FIGHTER, UnitType.Usage.ARCHER, UnitType.Usage.MIXED_FIGHTER, UnitType.Usage.HEALER]:
+			continue
 
 		var reachable_enemies := _get_reachable_enemies(scenario.map.find_reachable_cells(loc, loc.unit).keys())
 
-		var target : Location = null
+		var target := {}
 
 		if reachable_enemies:
 			target = _get_best_attack_target(loc.unit, reachable_enemies)
-			scenario.call_deferred("start_combat", loc, loc.unit.get_attacks()[0], target, target.unit.get_attacks()[0])
+			scenario.call_deferred("start_combat", loc, loc.unit.get_attacks()[0], target.loc, target.loc.unit.get_attacks()[0])
 			yield(scenario, "combat_finished")
 
 		else:
@@ -114,6 +123,37 @@ func _execute_attacks(scenario: Scenario) -> void:
 			yield(scenario, "unit_move_finished")
 
 	emit_signal("attacks_finished")
+
+
+func _execute_scouting(scenario: Scenario) -> void:
+
+	for entry in my_units:
+		var loc : Location = entry.loc
+		var distance : int = entry.distance
+
+		if loc.unit.is_leader:
+			continue
+
+		if loc.unit.actions.is_empty():
+			continue
+
+		if not loc.unit.type.usage in [UnitType.Usage.SCOUT]:
+			continue
+
+		var target_villages = free_villages + enemy_villages
+
+		print(free_villages)
+		print(enemy_villages)
+		print(target_villages)
+
+		if target_villages:
+			target_villages.shuffle()
+
+			var target : Dictionary = target_villages[0]
+			scenario.move_unit_towards(loc, target.loc)
+			yield(scenario, "unit_move_finished")
+
+	emit_signal("scouting_finished")
 
 
 func _execute_recruit(scenario: Scenario) -> void:
@@ -144,12 +184,12 @@ func _get_reachable_enemies(reachable_cells: Array) -> Array:
 		var loc : Location = entry.loc
 
 		if reachable_cells.has(loc.cell):
-			reachable_enemies.append(loc)
+			reachable_enemies.append(entry)
 
 	return reachable_enemies
 
 
-func _get_best_attack_target(attacker: Unit, targets: Array) -> Location:
+func _get_best_attack_target(attacker: Unit, targets: Array) -> Dictionary:
 	targets.shuffle()
 	return targets[0]
 
@@ -176,10 +216,10 @@ func _analyze_location_castles(scenario: Scenario, loc: Location) -> void:
 
 func _analyze_location_villages(scenario: Scenario, loc: Location) -> void:
 
-	if loc.terrain.heals:
+	if loc.terrain.gives_income:
 		_add_location_entry(villages, loc)
 
-		if loc.side_umber == -1:
+		if loc.side_number == -1:
 			_add_location_entry(free_villages, loc)
 
 		elif loc.side_number == scenario.current_side.number:
