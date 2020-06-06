@@ -13,6 +13,8 @@ signal end_turn_pressed()
 var cover_cells := []
 var hover_path := []
 
+var disabled := false
+
 var shows_actions := false
 
 onready var selector := $Selector
@@ -42,10 +44,12 @@ func _ready() -> void:
 
 
 func disable() -> void:
+	disabled = true
 	end_turn_button.disabled = true
 
 
 func enable() -> void:
+	disabled = false
 	end_turn_button.disabled = false
 
 
@@ -63,6 +67,10 @@ func spawn_popup_label(position: Vector2, text: String, font_size := 16, color :
 func show_hover_path(path: Array) -> void:
 	if hover_path:
 		path_ui.erase(hover_path)
+
+	if disabled:
+		return
+
 	path_ui.show_path(path)
 	hover_path = path
 
@@ -74,6 +82,10 @@ func hide_hover_path() -> void:
 
 
 func add_path(path: Array) -> void:
+
+	if disabled:
+		return
+
 	path_ui.show_path(path)
 
 
