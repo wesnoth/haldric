@@ -100,6 +100,7 @@ func recruit(unit_type_id: String) -> void:
 	var unit = Unit.instance()
 	unit.side_number = current_side.number
 	unit.side_color = current_side.color
+	unit.team_name = current_side.team_name
 	unit.type = unit_type
 
 	current_side.add_unit(unit)
@@ -128,6 +129,7 @@ func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader 
 	unit.is_leader = is_leader
 	unit.side_number = side.number
 	unit.side_color = side.color
+	unit.team_name = side.team_name
 	unit.type = unit_type
 
 	side.add_unit(unit, is_leader)
@@ -313,7 +315,7 @@ func _load_sides() -> void:
 func _turn_refresh_heals() -> void:
 	for loc in map.locations.values():
 
-		if loc.unit and loc.unit.side_number == current_side.number:
+		if loc.unit and loc.unit.team_name == current_side.team_name:
 
 			if loc.terrain.heals and loc.unit.moves.is_full() and loc.unit.actions.is_full():
 				loc.unit.heal(current_side.HEAL_ON_VILLAGE + current_side.HEAL_ON_REST, true)

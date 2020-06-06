@@ -18,10 +18,10 @@ func execute(_self: Location) -> void:
 		if not neighbor or not neighbor.unit:
 			continue
 
-		if affect_allies and _self.unit.side_number == neighbor.unit.side_number:
+		if affect_allies and _self.unit.team_name == neighbor.unit.team_name:
 			_execute(neighbor)
 
-		if affect_enemies and _self.unit.side_number != neighbor.unit.side_number:
+		if affect_enemies and _self.unit.team_name != neighbor.unit.team_name:
 			_execute(neighbor)
 
 

@@ -13,6 +13,7 @@ var alias = ""
 
 var side_number := 0
 var side_color := Color.pink
+var team_name := ""
 
 var actions := Attribute.new()
 var health := Attribute.new()

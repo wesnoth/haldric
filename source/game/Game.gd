@@ -87,7 +87,7 @@ func _is_valid_attack_location(loc: Location) -> bool:
 
 	return loc.unit != null \
 		and selected_unit.unit != loc.unit \
-		and selected_unit.unit.side_number != loc.unit.side_number \
+		and selected_unit.unit.team_name != loc.unit.team_name \
 		and selected_unit.unit.side_number == scenario.current_side.number\
 		and selected_unit.unit.can_attack()
 
@@ -101,7 +101,7 @@ func _set_hovered_location(loc: Location) -> void:
 	if UI.shows_actions:
 		return
 
-	if selected_unit and selected_unit.unit.side_number == scenario.current_side.number:
+	if selected_unit and selected_unit.unit.team_name == scenario.current_side.team_name:
 		UI.show_hover_path(scenario.map.find_path(selected_unit, loc).path)
 	else:
 		get_tree().call_group("UnitUI", "update_info", loc)

@@ -33,12 +33,18 @@ export var color := Color.pink
 export var ai := "SimpleAI"
 
 export var leader := ""
+
 export(Array, String) var random_leader := []
 export(Array, String) var recruit := []
 
+export var team_name := ""
 
 func _ready() -> void:
 	number = get_index()
+
+	if not team_name:
+		team_name = str(number)
+
 	update_income()
 
 
@@ -72,6 +78,7 @@ func add_unit(unit: Unit, is_leader := false) -> void:
 
 func add_village(loc: Location) -> void:
 	loc.side_number = number
+	loc.team_name = team_name
 	villages.append(loc)
 
 	update_income()
