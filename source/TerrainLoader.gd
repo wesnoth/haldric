@@ -33,6 +33,7 @@ func add_village_terrain(name: String, code: String, type: String, image_path: S
 		.with_code(code)\
 		.with_type(type)\
 		.with_gives_income(true)\
+		.with_heals(true)\
 		.with_graphic(graphic_builder\
 			.new_graphic()\
 			.with_texture(load("graphics/images/terrain/" + image_path))\
