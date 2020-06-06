@@ -10,7 +10,7 @@ The Godot executable does not require installation so you will simply need to ex
 Once you have placed the executable in the desired location simply run it to Start Godot
 ![image2](https://user-images.githubusercontent.com/18131389/83956388-578da600-a812-11ea-95dc-847ee5d235a5.jpg)
 
-Step 2: Download Wesnoth repository
+## Step 2: Download Wesnoth repository
 Obtain the current Haldric zip file from the Wesnoth Haldric Github page (https://github.com/wesnoth/haldric)
 ![image3](https://user-images.githubusercontent.com/18131389/83956389-578da600-a812-11ea-95f5-f5feb29fb5ed.jpg)
 
