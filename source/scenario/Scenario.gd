@@ -251,7 +251,7 @@ func remove_flag(position: Vector2) -> void:
 
 func end_turn() -> void:
 	current_side.turn_end()
-	current_side = get_side((current_side.number + 1) % sides.get_child_count())
+	current_side = get_side((current_side.number) % sides.get_child_count() + 1)
 
 	if current_side.get_index() == 0:
 		schedule.next()
@@ -276,8 +276,8 @@ func end_turn() -> void:
 	get_tree().call_group("GameCam", "set", "global_position", current_side.leaders[0].global_position)
 
 
-func get_side(index: int):
-	return sides.get_child(index)
+func get_side(side_number: int):
+	return sides.get_child(side_number - 1)
 
 
 func get_sides() -> Array:
@@ -311,7 +311,7 @@ func _load_sides() -> void:
 		AIs[side] = ai
 
 
-	current_side = get_side(0)
+	current_side = get_side(1)
 	current_side.turn_refresh()
 
 	get_tree().call_group("SideUI", "update_info", current_side)

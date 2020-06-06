@@ -11,7 +11,6 @@ const HEAL_ON_REST = 2
 
 const VILLAGE_INCOME = 2
 
-var number := 0
 
 var income := 0
 var upkeep := 0
@@ -23,6 +22,7 @@ var castles := []
 
 export(Controller) var controller : int = Controller.HUMAN
 
+export var number := 0
 export var start_position := Vector2()
 
 export var gold := 100
@@ -40,7 +40,8 @@ export(Array, String) var recruit := []
 export var team_name := ""
 
 func _ready() -> void:
-	number = get_index()
+	if not number:
+		number = get_index() + 1
 
 	if not team_name:
 		team_name = str(number)

@@ -14,7 +14,7 @@ func add_gold(side_number: String, amount: String) -> void:
 	if not scenario:
 		return
 
-	var side = scenario.sides[int(side_number)]
+	var side = scenario.sides.get_child(int(side_number) - 1)
 
 	side.gold += int(amount)
 
