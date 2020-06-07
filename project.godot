@@ -349,6 +349,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scenario/Time.gd"
 }, {
+"base": "TextureRect",
+"class": "ToDWheel",
+"language": "GDScript",
+"path": "res://source/interface/game/hud/ToDWheel.gd"
+}, {
+"base": "TextureRect",
+"class": "ToDWidget",
+"language": "GDScript",
+"path": "res://source/interface/game/hud/ToDWidget.gd"
+}, {
 "base": "Node",
 "class": "Trait",
 "language": "GDScript",
@@ -478,6 +488,8 @@ _global_script_class_icons={
 "TerrainLoader": "",
 "TileSetBuilder": "",
 "Time": "",
+"ToDWheel": "",
+"ToDWidget": "",
 "Trait": "",
 "TraitDamage": "",
 "TraitIntelligent": "",

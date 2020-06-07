@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-1,-1)">
+        <g id="ToD_icon_dawn">
+            <g transform="matrix(1,0,0,1,0,26)">
+                <path d="M22.679,30C26.139,24.024 32.603,20 40,20C47.397,20 53.861,24.024 57.321,30L22.679,30Z" style="fill:white;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,0,27.4796)">
+                <path d="M64.076,14.53L57.005,21.601L58.42,23.015L65.491,15.944L64.076,14.53ZM23.035,21.601L15.964,14.53L14.55,15.944L21.621,23.015L23.035,21.601ZM41.02,14.98L41.02,4.98L39.02,4.98L39.02,14.98L41.02,14.98Z" style="fill:white;"/>
+            </g>
+            <g transform="matrix(1.501,0,0,1,-20.06,26)">
+                <rect x="20" y="32" width="40" height="2" style="fill:white;"/>
+            </g>
+            <g transform="matrix(0.975,0,0,0.975,1,1)">
+                <circle cx="40" cy="40" r="40" style="fill:none;"/>
+            </g>
+        </g>
+    </g>
+</svg>
