@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://graphics/images/terrain/grass.png" type="Texture" id=1]
+[ext_resource path="res://graphics/images/terrain/grass/grass.png" type="Texture" id=1]
 [ext_resource path="res://source/interface/editor/EditorTerrainButton.gd" type="Script" id=2]
+
 
 [node name="EditorTerrainButton" type="Button"]
 margin_right = 60.0

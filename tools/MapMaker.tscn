@@ -2,7 +2,7 @@
 
 [ext_resource path="res://tools/MapMaker.gd" type="Script" id=1]
 [ext_resource path="res://source/map/Map.tscn" type="PackedScene" id=2]
-[ext_resource path="res://graphics/images/terrain/grass.png" type="Texture" id=3]
+[ext_resource path="res://graphics/images/terrain/grass/grass.png" type="Texture" id=3]
 [ext_resource path="res://graphics/images/terrain/forest.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/terrain/mountain.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/terrain/water/water_animated.tres" type="Texture" id=6]
@@ -10,6 +10,7 @@
 [ext_resource path="res://graphics/images/terrain/village.png" type="Texture" id=8]
 [ext_resource path="res://graphics/images/terrain/keep-tile.png" type="Texture" id=10]
 [ext_resource path="res://graphics/images/terrain/castle-tile.png" type="Texture" id=12]
+
 
 [sub_resource type="TileSet" id=1]
 0/name = "Gg"
