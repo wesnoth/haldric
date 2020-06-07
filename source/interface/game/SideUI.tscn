@@ -2,7 +2,6 @@
 
 [ext_resource path="res://source/interface/game/SideUI.gd" type="Script" id=1]
 
-
 [node name="SideUI" type="Control" groups=[
 "SideUI",
 ]]
