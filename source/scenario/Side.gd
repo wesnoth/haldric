@@ -147,7 +147,9 @@ func _calculate_upkeep() -> void:
 	upkeep = 0
 
 	for unit in units:
-		upkeep += unit.type.level
+		upkeep += unit.get_upkeep()
+
+	upkeep = clamp(upkeep - villages.size(), 0, upkeep)
 
 
 func _calculate_income() -> void:

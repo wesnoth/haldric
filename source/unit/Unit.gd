@@ -198,6 +198,13 @@ func deselect() -> void:
 	__ = tween.start()
 
 
+func get_upkeep() -> int:
+	if is_leader:
+		return 0
+
+	return type.level
+
+
 func get_attacks() -> Array:
 	return type.attacks.get_children()
 
