@@ -529,6 +529,7 @@ Global="*res://source/global/Global.gd"
 
 window/size/width=1920
 window/size/height=1080
+window/dpi/allow_hidpi=true
 window/stretch/aspect="expand"
 
 [editor_plugins]
