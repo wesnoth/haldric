@@ -13,6 +13,11 @@ func with_texture(texture: Texture) -> TerrainGraphicBuilder:
 	return self
 
 
+func with_variations(variations: Array) -> TerrainGraphicBuilder:
+	graphic.variations = variations
+	return self
+
+
 func with_offset(offset := Vector2()) -> TerrainGraphicBuilder:
 	graphic.offset = offset
 	return self

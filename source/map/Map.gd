@@ -291,8 +291,16 @@ func _set_cell_location(cell: Vector2, terrain_data: Array) -> void:
 
 
 func _set_cell_terrain(cell: Vector2, code: Array) -> void:
+	var base_data : TerrainData = Data.terrains[code[0]]
 
-	set_cellv(cell, tile_set.find_tile_by_name(code[0]))
+	var base_options := [""]
+
+	for i in base_data.graphic.variations.size():
+		base_options.append(str(i + 2))
+
+	var base_variation = base_options[randi() % base_options.size()]
+
+	set_cellv(cell, tile_set.find_tile_by_name(code[0] + base_variation))
 
 	if code.size() == 2:
 		overlay.set_cellv(cell, tile_set.find_tile_by_name(code[1]))

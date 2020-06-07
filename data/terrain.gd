@@ -5,7 +5,8 @@ func _load() -> void:
 	new_base("Hills", "Hh", "hills", "hills")
 	new_base("Mountain", "Mm", "mountains", "mountain")
 	new_base("Water", "Ww", "water", "water/water_animated", "tres")
-	new_base("Forest", "^F", "forest", "forest", "png", Vector2(-36, -36))
+
+	new_overlay("Forest", "^F", "forest", "forest", Vector2(-36, -36))
 
 	new_village("Village", "^Vh", "village", "village")
 

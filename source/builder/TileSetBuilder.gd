@@ -9,6 +9,9 @@ static func build(terrain_dict: Dictionary) -> TileSet:
 		var graphic : TerrainGraphicData = terrain.graphic
 		var __ = _add_tile(tile_set, key, graphic.texture, graphic.offset)
 
+		for i in graphic.variations.size():
+			__ = _add_tile(tile_set, key + str(i + 2), graphic.variations[i], graphic.offset)
+
 	return tile_set
 
 
