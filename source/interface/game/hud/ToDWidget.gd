@@ -1,16 +1,8 @@
 extends TextureRect
 class_name ToDWidget
 
-var icons = [
-	preload("res://graphics/images/icons/ToD_icon_morning.svg"),
-	preload("res://graphics/images/icons/ToD_icon_afternoon.svg"),
-	preload("res://graphics/images/icons/ToD_icon_dusk.svg"),
-	preload("res://graphics/images/icons/ToD_icon_firstwatch.svg"),
-	preload("res://graphics/images/icons/ToD_icon_secondwatch.svg"),
-	preload("res://graphics/images/icons/ToD_icon_dawn.svg"),
-]
+var times : Array
 
-var count := 0
 var rotation_step := 360.0
 
 var current = 0
@@ -22,6 +14,9 @@ onready var pointer := $Pointer
 
 onready var wheel := $ToDWheel as ToDWheel
 
+onready var bell := $Bell
+onready var ambient := $Ambient
+
 onready var tween := $Tween
 
 var rotation := 0.0
@@ -30,9 +25,9 @@ func initialize(times: Array) -> void:
 	if not times:
 		return
 
-	count = times.size()
+	self.times = times
 
-	rotation_step = 360.0 / count
+	rotation_step = 360.0 / times.size()
 	pointer.rect_rotation = rotation_step / 2
 
 	rotation = pointer.rect_rotation
@@ -63,3 +58,12 @@ func _animate(time: Time) -> void:
 	tween.interpolate_property(current_icon, "modulate:a", 0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.interpolate_property(last_icon, "modulate:a", 1, 0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
+
+
+func _on_Tween_tween_all_completed() -> void:
+	bell.play()
+	var time : Time = times[current]
+
+	if time.sound:
+		ambient.stream = time.sound
+		ambient.play()

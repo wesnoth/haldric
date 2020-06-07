@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://source/scenario/Scenario.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/Side.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://graphics/images/icons/ToD_icon_afternoon.svg" type="Texture" id=8]
 [ext_resource path="res://graphics/images/icons/ToD_icon_dawn.svg" type="Texture" id=9]
 [ext_resource path="res://graphics/images/icons/ToD_icon_morning.svg" type="Texture" id=10]
+[ext_resource path="res://audio/sounds/ambient/morning.ogg" type="AudioStream" id=11]
+[ext_resource path="res://audio/sounds/ambient/night.ogg" type="AudioStream" id=12]
 
 [node name="TestScenario" type="Node2D"]
 script = ExtResource( 1 )
@@ -26,6 +28,7 @@ advantage = [ "lawful" ]
 disadvantage = [ "chaotic" ]
 bonus = 25
 malus = 25
+sound = ExtResource( 11 )
 
 [node name="Afternoon" type="Node" parent="Schedule"]
 script = ExtResource( 3 )
@@ -58,6 +61,7 @@ advantage = [ "chaotic" ]
 disadvantage = [ "lawful" ]
 bonus = 25
 malus = 25
+sound = ExtResource( 12 )
 
 [node name="SecondWatch" type="Node" parent="Schedule"]
 script = ExtResource( 3 )

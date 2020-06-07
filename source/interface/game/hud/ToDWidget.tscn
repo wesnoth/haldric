@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/interface/game/hud/ToDWheel.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/hud/ToD_base.svg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://graphics/images/interface/hud/ToD_icon_display.svg" type="Texture" id=5]
 [ext_resource path="res://graphics/images/interface/hud/ToD_ring_mask.svg" type="Texture" id=6]
 [ext_resource path="res://source/interface/game/hud/ToDWidget.gd" type="Script" id=7]
+[ext_resource path="res://audio/sounds/ambient/bell.wav" type="AudioStream" id=8]
 
 [node name="ToDWidget" type="TextureRect" groups=[
 "ToDWidget",
@@ -18,6 +19,14 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Bell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -8.0
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -8.0
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -106,3 +115,4 @@ texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
