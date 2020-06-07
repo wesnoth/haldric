@@ -1,37 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://source/game/Game.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=2]
 [ext_resource path="res://source/interface/game/GameUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/camera/GameCam.tscn" type="PackedScene" id=4]
-
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform vec3 delta;
-
-/*
-TODO: decide if we want individual uniforms for the hint range
-uniform int delta_r : hint_range(-510, 510);
-uniform int delta_g : hint_range(-510, 510);
-uniform int delta_b : hint_range(-510, 510);
-*/
-
-void fragment() {
-	vec4 final = texture(SCREEN_TEXTURE, SCREEN_UV);
-	vec3 normalized = delta / 255.0;
-
-	final.r = clamp(final.r + normalized.x, 0, 1);
-	final.g = clamp(final.g + normalized.y, 0, 1);
-	final.b = clamp(final.b + normalized.z, 0, 1);
-
-	COLOR = final;
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/delta = null
+[ext_resource path="res://graphics/materials/ToD.tres" type="Material" id=5]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -41,7 +14,7 @@ script = ExtResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TimeShader" type="TextureRect" parent="CanvasLayer"]
-material = SubResource( 2 )
+material = ExtResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
