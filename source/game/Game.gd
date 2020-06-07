@@ -143,8 +143,8 @@ func _on_Scenario_location_hovered(loc: Location) -> void:
 
 func _on_Schedule_time_changed(time: Time) -> void:
 	time_shader.material.set_shader_param("delta", Vector3(time.tint_red, time.tint_green, time.tint_blue))
-	UI.time_label.text = time.alias
-
+	get_tree().call_group("ToDWidget", "update_info", time)
+	print("time changd", time.name)
 
 func _on_GameUI_combat_option_selected(attacker_attack: Attack, defender_attack: Attack, target: Location) -> void:
 	scenario.start_combat(selected_unit, attacker_attack, target, defender_attack)

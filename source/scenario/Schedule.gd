@@ -24,5 +24,5 @@ func next() -> void:
 	emit_signal("time_changed", current_time)
 
 
-func get_schedule() -> Array:
+func get_times() -> Array:
 	return get_children()

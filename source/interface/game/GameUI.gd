@@ -32,9 +32,7 @@ onready var combat_dialogue := $HUD/CombatDialogue as CombatDialogue
 onready var recruit_dialogue := $HUD/RecruitDialogue as RecruitDialogue
 onready var advancement_dialogue := $HUD/AdvancementDialogue as AdvancementDialogue
 
-onready var time_label := $HUD/Panels/SidePanel/VBoxContainer/TimeOfDay
-
-onready var end_turn_button = $HUD/Panels/SidePanel/VBoxContainer/EndTurn
+onready var end_turn_button = $HUD/EndTurn
 
 func _ready() -> void:
 	combat_dialogue.hide()

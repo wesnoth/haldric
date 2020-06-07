@@ -8,7 +8,9 @@
 [ext_resource path="res://graphics/images/interface/hud/ToD_ring_mask.svg" type="Texture" id=6]
 [ext_resource path="res://source/interface/game/hud/ToDWidget.gd" type="Script" id=7]
 
-[node name="ToDWidget" type="TextureRect"]
+[node name="ToDWidget" type="TextureRect" groups=[
+"ToDWidget",
+]]
 margin_right = 130.0
 margin_bottom = 130.0
 texture = ExtResource( 2 )
@@ -16,9 +18,6 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -31,6 +30,7 @@ margin_left = -60.0
 margin_top = -60.0
 margin_right = 60.0
 margin_bottom = 60.0
+rect_pivot_offset = Vector2( 60, 60 )
 texture = ExtResource( 6 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -105,4 +105,3 @@ texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

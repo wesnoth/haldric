@@ -4,6 +4,7 @@ class_name Time
 export var alias := ""
 
 export var color := Color("FFFFFF")
+export var icon : Texture = null
 
 export var tint_red := 0
 export var tint_green := 0

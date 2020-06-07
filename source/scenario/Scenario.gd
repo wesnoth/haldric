@@ -294,6 +294,8 @@ func _setup() -> void:
 	unit_container.name = "UnitContainer"
 	add_child(unit_container)
 
+	get_tree().call_group("ToDWidget", "initialize", schedule.get_times())
+
 
 func _load_map() -> void:
 	map = Map.instance()
