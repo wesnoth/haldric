@@ -324,7 +324,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/builder/TerrainBuilder.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "TerrainData",
 "language": "GDScript",
 "path": "res://source/data/TerrainData.gd"
@@ -349,7 +349,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/builder/TerrainTransitionGraphicBuilder.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "TerrainTransitionGraphicData",
 "language": "GDScript",
 "path": "res://source/data/TerrainTransitionGraphicData.gd"
