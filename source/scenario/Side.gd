@@ -1,8 +1,8 @@
 extends Node
 class_name Side
 
-signal unit_added
-signal unit_removed
+signal unit_added()
+signal unit_removed()
 
 enum Controller { HUMAN, AI }
 
