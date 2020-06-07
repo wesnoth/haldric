@@ -5,7 +5,7 @@
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
-[ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
+[ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=6]
 [ext_resource path="res://graphics/images/attacks/sword-human.png" type="Texture" id=7]
 
 [node name="Cavalryman" type="Node2D"]

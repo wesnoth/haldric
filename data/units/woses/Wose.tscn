@@ -5,10 +5,11 @@
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
-[ext_resource path="res://source/unit/unit_type/Attack.gd" type="Script" id=6]
+[ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=6]
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=7]
 [ext_resource path="res://data/abilities/Ambush.tscn" type="PackedScene" id=8]
 [ext_resource path="res://data/abilities/Regenerate.tscn" type="PackedScene" id=9]
+
 
 [node name="Wose" type="Node2D"]
 script = ExtResource( 7 )

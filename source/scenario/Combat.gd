@@ -43,6 +43,8 @@ func start(attacker: CombatContext, defender: CombatContext) -> void:
 			yield(tween, "tween_completed")
 
 		else:
+			current.fire(other.location)
+
 			yield(get_tree().create_timer(combat_speed), "timeout")
 
 			_strike(current, other, attacker, defender)

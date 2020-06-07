@@ -57,7 +57,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Attack",
 "language": "GDScript",
-"path": "res://source/unit/unit_type/Attack.gd"
+"path": "res://source/unit/attack/Attack.gd"
 }, {
 "base": "Reference",
 "class": "Attribute",
@@ -208,6 +208,11 @@ _global_script_classes=[ {
 "class": "PopupLabel",
 "language": "GDScript",
 "path": "res://source/interface/misc/PopupLabel.gd"
+}, {
+"base": "Node2D",
+"class": "Projectile",
+"language": "GDScript",
+"path": "res://source/unit/attack/Projectile.gd"
 }, {
 "base": "Resource",
 "class": "Race",
@@ -465,6 +470,7 @@ _global_script_class_icons={
 "Mover": "",
 "PathUI": "",
 "PopupLabel": "",
+"Projectile": "",
 "Race": "",
 "RecruitDialogue": "",
 "RecruitOption": "",

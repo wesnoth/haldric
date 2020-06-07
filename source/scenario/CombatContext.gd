@@ -1,13 +1,13 @@
 class_name CombatContext
 
 
-var _location = null # : Location
 
 var _time : Time = null
 var _attack = null # : Attack
 
-var terrain : Terrain = null
+var location = null # : Location
 var unit = null # : Unit
+var terrain : Terrain = null
 
 var alias := ""
 var damage := 0
@@ -18,8 +18,8 @@ var damage_type := ""
 var category := ""
 
 
-func _init(location, attack, time: Time) -> void:
-	_location = location
+func _init(_location, attack, time: Time) -> void:
+	location = _location
 	_attack = attack
 	_time = time
 
@@ -27,6 +27,13 @@ func _init(location, attack, time: Time) -> void:
 	unit = location.unit
 
 	reset()
+
+
+func fire(target) -> void:
+	if not _attack:
+		return
+
+	_attack.fire(location, target)
 
 
 func apply_specials(_self: CombatContext, opponent: CombatContext, offender: CombatContext, defender: CombatContext) -> void:
@@ -41,7 +48,7 @@ func reset() -> void:
 		return
 
 	alias = _attack.alias
-	damage = _attack.damage * _time.get_modifier(_location.unit.type.alignment)
+	damage = _attack.damage * _time.get_modifier(location.unit.type.alignment)
 	strikes = _attack.strikes
 	accuracy = _attack.accuracy
 
@@ -73,5 +80,5 @@ func has_attack() -> bool:
 
 func to_string() -> String:
 	if _attack:
-		return "Damage: %d (%d), Strikes: %d, Accuracy: %d, ToD: %f" % [damage, _attack.damage, strikes, accuracy, _time.get_modifier(_location.unit.type.alignment)]
-	return "Damage: %d, Strikes: %d, Accuracy: %d, ToD: %f" % [damage, strikes, accuracy, _time.get_modifier(_location.unit.type.alignment)]
+		return "Damage: %d (%d), Strikes: %d, Accuracy: %d, ToD: %f" % [damage, _attack.damage, strikes, accuracy, _time.get_modifier(location.unit.type.alignment)]
+	return "Damage: %d, Strikes: %d, Accuracy: %d, ToD: %f" % [damage, strikes, accuracy, _time.get_modifier(location.unit.type.alignment)]
