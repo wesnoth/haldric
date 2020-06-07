@@ -16,10 +16,11 @@ func initialize(times: Array) -> void:
 
 	if times:
 		angle_step = 360.0 / times.size()
-		rect_rotation = angle_step / 2
+
+	update()
 
 
 func _draw() -> void:
 	for i in times.size():
 		print("%s, %f, %f" % [times[i].name, angle_step * i, angle_step * (i + 1)])
-		draw_arc(center, center.x / 2, deg2rad(angle_step * i - 120), deg2rad(angle_step * (i + 1) - 120), 360, times[i].color, center.x, true)
+		draw_arc(center, center.x / 2, deg2rad(angle_step * i), deg2rad(angle_step * (i + 1)), 360, times[i].color, center.x, true)

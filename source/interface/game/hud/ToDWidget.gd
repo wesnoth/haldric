@@ -34,6 +34,7 @@ func initialize(times: Array) -> void:
 
 	rotation_step = 360.0 / count
 	pointer.rect_rotation = rotation_step / 2
+
 	rotation = pointer.rect_rotation
 
 	current_icon.texture = times[0].icon

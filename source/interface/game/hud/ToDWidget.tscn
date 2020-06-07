@@ -30,6 +30,7 @@ margin_left = -60.0
 margin_top = -60.0
 margin_right = 60.0
 margin_bottom = 60.0
+rect_rotation = -90.0
 rect_pivot_offset = Vector2( 60, 60 )
 texture = ExtResource( 6 )
 script = ExtResource( 1 )
