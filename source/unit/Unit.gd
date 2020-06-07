@@ -1,6 +1,8 @@
 extends Node2D
 class_name Unit
 
+enum UpkeepType { FREE, LOYAL, FULL }
+
 const MAT = preload("res://graphics/materials/unit.tres")
 
 const REFRESH_HEAL_MAXIMUM = 10
@@ -23,14 +25,16 @@ var experience := Attribute.new()
 var type : UnitType = null
 var race : Race = null
 
-var brightness = 1.0 setget _set_brightness
+var upkeep : int = UpkeepType.FULL
 
 var attacks := []
 
 var heal_on_refresh := 0
 
 var can_attack := true
-var is_leader := false
+var is_leader := false setget _set_is_leader
+
+var brightness = 1.0 setget _set_brightness
 
 onready var tween := $Tween as Tween
 onready var ui_hook := $UIHook as RemoteTransform2D
@@ -199,7 +203,8 @@ func deselect() -> void:
 
 
 func get_upkeep() -> int:
-	if is_leader:
+
+	if upkeep in [ UpkeepType.FREE, UpkeepType.LOYAL]:
 		return 0
 
 	return type.level
@@ -324,6 +329,13 @@ func _tween_advancement_out() -> void:
 	__ = tween.reset_all()
 	__ = tween.interpolate_property(self, "brightness", 2.2, 1.0, 0.25, Tween.TRANS_SINE, Tween.EASE_OUT)
 	__ = tween.start()
+
+
+func _set_is_leader(value: bool) -> void:
+	is_leader = value
+
+	if is_leader:
+		upkeep = UpkeepType.FREE
 
 
 func _set_brightness(value: float) -> void:

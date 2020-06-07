@@ -2,7 +2,6 @@
 
 [ext_resource path="res://source/unit/trait/TraitDamage.gd" type="Script" id=1]
 
-
 [node name="Dextrous" type="Node"]
 script = ExtResource( 1 )
 alias = "Dextrous"
