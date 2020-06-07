@@ -8,7 +8,6 @@ func _ready() -> void:
 	Scene.register_scene("Game", "res://source/game/Game.tscn")
 	Scene.register_scene("MapEditor", "res://source/editor/MapEditor.tscn")
 
-
 func _input(event: InputEvent) -> void:
 	# Toggle Fullscreen
 	if event.is_action_pressed("toggle_fullscreen"):
