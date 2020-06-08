@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hills.png-54d0cf3a8250b63aa9111caba64e90c8.stex"
+path="res://.import/regular-nw.png-473d316344b32faa9c6ae9e2b783275e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/images/terrain/hills.png"
-dest_files=[ "res://.import/hills.png-54d0cf3a8250b63aa9111caba64e90c8.stex" ]
+source_file="res://graphics/images/terrain/hills/regular-nw.png"
+dest_files=[ "res://.import/regular-nw.png-473d316344b32faa9c6ae9e2b783275e.stex" ]
 
 [params]
 

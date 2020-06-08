@@ -11,6 +11,16 @@ var locations := {}
 
 onready var overlay := $Overlay
 
+onready var transition_painter := $TransitionPainter
+
+onready var transition_layers := [
+	$"TransitionPainter/0",
+	$"TransitionPainter/1",
+	$"TransitionPainter/2",
+	$"TransitionPainter/3",
+	$"TransitionPainter/4",
+	$"TransitionPainter/5",
+]
 
 static func instance() -> Map:
 	return load("res://source/map/Map.tscn").instance() as Map
@@ -18,6 +28,8 @@ static func instance() -> Map:
 
 func _ready() -> void:
 	set_tile_set(TileSetBuilder.build_terrain(Data.terrains))
+	set_transition_tile_set(TileSetBuilder.build_transitions(Data.transitions))
+
 	_build_map()
 	_build_grid()
 	_build_castles()
@@ -50,13 +62,18 @@ func set_tile_set(tile_set: TileSet) -> void:
 	overlay.tile_set = tile_set
 
 
+func set_transition_tile_set(tile_set: TileSet) -> void:
+	for layer in transition_layers:
+		layer.tile_set = tile_set
+
+
 func refresh() -> void:
 	clear()
 	overlay.clear()
 
 	for cell in locations:
 		var loc : Location = locations[cell]
-		_set_cell_terrain(cell, loc.terrain.code)
+		_set_cell_terrain(loc)
 
 
 func find_path(start_loc: Location, end_loc: Location) -> Dictionary:
@@ -239,7 +256,7 @@ func _build_map():
 
 			if n_loc:
 				loc.add_neighbor(n_loc, direction)
-
+				# Debug.draw_line(loc.position, (loc.position + n_loc.position) / 2, Color(1.0 - (float(direction) / 6.0), 0, 0))
 			direction += 1
 
 	refresh()
@@ -290,8 +307,8 @@ func _set_cell_location(cell: Vector2, terrain_data: Array) -> void:
 	locations[cell] = loc;
 
 
-func _set_cell_terrain(cell: Vector2, code: Array) -> void:
-	var base_data : TerrainData = Data.terrains[code[0]]
+func _set_cell_terrain(loc: Location) -> void:
+	var base_data : TerrainData = Data.terrains[loc.terrain.code[0]]
 
 	var base_options := [""]
 
@@ -300,10 +317,11 @@ func _set_cell_terrain(cell: Vector2, code: Array) -> void:
 
 	var base_variation = base_options[randi() % base_options.size()]
 
-	set_cellv(cell, tile_set.find_tile_by_name(code[0] + base_variation))
+	set_cellv(loc.cell, tile_set.find_tile_by_name(loc.terrain.code[0] + base_variation))
+	transition_painter.set_location_transition(loc)
 
-	if code.size() == 2:
-		overlay.set_cellv(cell, tile_set.find_tile_by_name(code[1]))
+	if loc.terrain.code.size() == 2:
+		overlay.set_cellv(loc.cell, tile_set.find_tile_by_name(loc.terrain.code[1]))
 
 
 func _on_Map_cell_hovered(cell) -> void:

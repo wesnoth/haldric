@@ -405,6 +405,11 @@ _global_script_classes=[ {
 "path": "res://source/unit/trait/TraitUpkeep.gd"
 }, {
 "base": "Node2D",
+"class": "TransitionPainter",
+"language": "GDScript",
+"path": "res://source/map/TransitionPainter.gd"
+}, {
+"base": "Node2D",
 "class": "Unit",
 "language": "GDScript",
 "path": "res://source/unit/Unit.gd"
@@ -519,6 +524,7 @@ _global_script_class_icons={
 "TraitQuick": "",
 "TraitResilient": "",
 "TraitUpkeep": "",
+"TransitionPainter": "",
 "Unit": "",
 "UnitAdvancementInfo": "",
 "UnitPlate": "",

@@ -28,14 +28,14 @@ static func build_transitions(transitions: Dictionary) -> TileSet:
 
 			for dir_flag in graphic.textures:
 				var texture = graphic.textures[dir_flag]
-				print(code, type_flag, dir_flag, ": ", texture)
+#				print(code, type_flag, dir_flag, ": ", texture)
 
-#			var __ = _add_tile(tile_set, code + flag, graphic.texture, graphic.offset)
+				var __ = _add_tile(tile_set, code + type_flag + dir_flag, texture)
 
 	return tile_set
 
 
-static func _add_tile(tile_set: TileSet, code: String, tex: Texture, offset: Vector2) -> int:
+static func _add_tile(tile_set: TileSet, code: String, tex: Texture, offset := Vector2.ZERO) -> int:
 	var tile_id := tile_set.get_tiles_ids().size()
 	tile_set.create_tile(tile_id)
 	tile_set.tile_set_name(tile_id, code)

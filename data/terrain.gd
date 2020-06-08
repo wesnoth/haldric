@@ -4,7 +4,7 @@ func _load() -> void:
 	open_path("res://graphics/images/terrain/")
 
 	new_base("Grass", "Gg", "flat", "green")
-	new_base("Hills", "Hh", "hills", "hills")
+	new_base("Hills", "Hh", "hills", "regular")
 	new_base("Mountain", "Mm", "mountains", "mountain")
 	new_base("Water", "Ww", "water", "water_animated")
 
@@ -21,3 +21,5 @@ func _load() -> void:
 	new_transition("Gg", ["Gs", "Gd", "Gll"], [], "green", "medium")
 	new_transition("Gg", ["Gs", "Gd", "Gll"], [], "green", "abrupt")
 	new_transition("Gg", ["Gs", "Gd", "Gll"], [], "green", "long")
+
+	new_transition("Hh", [], [], "regular")

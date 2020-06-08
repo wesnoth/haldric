@@ -42,8 +42,6 @@ func _load_terrain() -> void:
 	print(terrains)
 	print(transitions)
 
-	var __ = TileSetBuilder.build_transitions(transitions)
-
 
 func _load_races() -> void:
 	races.clear()
