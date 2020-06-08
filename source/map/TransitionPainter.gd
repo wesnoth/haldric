@@ -5,19 +5,20 @@ const directions = [  "n", "ne", "se", "s", "sw", "nw"]
 
 onready var layers := get_children()
 
+
 func set_location_transition(loc: Location) -> void:
 	var direction := 0
 	var code = loc.terrain.get_base_code()
 
 	for n_loc in loc.get_all_neighbors():
 
-		if not n_loc or n_loc.terrain.get_base_code() == code:
+		if not n_loc or n_loc.terrain.get_base_code() == code or loc.terrain.layer >= n_loc.terrain.layer:
 			direction += 1
 			continue
 
 		var n_code = n_loc.terrain.get_base_code()
 
-		print("Searching Tile ", loc.cell, ": ", n_code + "-" + directions[direction])
+		# print("Searching Tile ", loc.cell, ": ", n_code + "-" + directions[direction])
 
 		var tile_map = layers[direction]
 

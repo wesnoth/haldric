@@ -11,13 +11,6 @@ cell_tile_origin = 1
 format = 1
 script = ExtResource( 3 )
 
-[node name="Overlay" type="TileMap" parent="."]
-cell_size = Vector2( 54, 72 )
-cell_half_offset = 4
-cell_tile_origin = 1
-cell_y_sort = true
-format = 1
-
 [node name="TransitionPainter" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
@@ -57,6 +50,13 @@ cell_y_sort = true
 format = 1
 
 [node name="5" type="TileMap" parent="TransitionPainter"]
+cell_size = Vector2( 54, 72 )
+cell_half_offset = 4
+cell_tile_origin = 1
+cell_y_sort = true
+format = 1
+
+[node name="Overlay" type="TileMap" parent="."]
 cell_size = Vector2( 54, 72 )
 cell_half_offset = 4
 cell_tile_origin = 1

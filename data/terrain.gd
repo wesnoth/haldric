@@ -3,10 +3,10 @@ extends TerrainLoader
 func _load() -> void:
 	open_path("res://graphics/images/terrain/")
 
-	new_base("Grass", "Gg", "flat", "green")
-	new_base("Hills", "Hh", "hills", "regular")
-	new_base("Mountain", "Mm", "mountains", "mountain")
-	new_base("Water", "Ww", "water", "water_animated")
+	new_base("Grass", "Gg", -20, "flat", "green")
+	new_base("Hills", "Hh", 100, "hills", "regular")
+	new_base("Mountain", "Mm", 200, "mountains", "mountain")
+	new_base("Water", "Ww", -100, "water", "water_animated")
 
 	new_overlay("Forest", "^F", "forest", "forest", Vector2(-36, -36))
 

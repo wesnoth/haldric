@@ -28,11 +28,12 @@ func open_path(path: String) -> void:
 	print(images)
 
 
-func new_base(name: String, code: String, type: String, image_stem: String) -> void:
+func new_base(name: String, code: String, layer: int, type: String, image_stem: String) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
 		.with_code(code)\
+		.with_layer(layer)\
 		.with_type(type)\
 		.with_graphic(terrain_graphic_builder\
 			.new_graphic()\
