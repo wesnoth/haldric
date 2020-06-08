@@ -1,6 +1,10 @@
 class_name TerrainLoader
 
-const MAX_VARIATION_COUNT := 15
+var MAX_VARIATION_COUNT := 15
+
+var root := "res://"
+
+var images := {}
 
 var terrains := {}
 var transitions := {}
@@ -9,11 +13,22 @@ var terrain_builder := TerrainBuilder.new()
 var transition_graphic_builder := TerrainTransitionGraphicBuilder.new()
 var terrain_graphic_builder := TerrainGraphicBuilder.new()
 
-func load_terrain() -> Dictionary:
-	_load()
-	return terrains
 
-func new_base(name: String, code: String, type: String, image_path: String, extention := "png") -> void:
+func load_terrain() -> void:
+	_load()
+
+
+func open_path(path: String) -> void:
+	images = {}
+	root = path
+
+	for file_data in Loader.load_dir(root, ["png", "tres"]):
+		images[file_data.id] = file_data.data
+
+	print(images)
+
+
+func new_base(name: String, code: String, type: String, image_stem: String) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -21,15 +36,15 @@ func new_base(name: String, code: String, type: String, image_path: String, exte
 		.with_type(type)\
 		.with_graphic(terrain_graphic_builder\
 			.new_graphic()\
-			.with_texture(load("graphics/images/terrain/%s.%s" % [image_path, extention]))\
-			.with_variations(_load_base_variations(image_path, extention))\
+			.with_texture(images[image_stem])\
+			.with_variations(_load_base_variations(image_stem))\
 			.build())\
 		.build()
 
 	terrains[terrain.code] = terrain
 
 
-func new_overlay(name: String, code: String, type: String, image_path: String, offset := Vector2(), extention := "png") -> void:
+func new_overlay(name: String, code: String, type: String, image_stem: String, offset := Vector2()) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -37,7 +52,7 @@ func new_overlay(name: String, code: String, type: String, image_path: String, o
 		.with_type(type)\
 		.with_graphic(terrain_graphic_builder\
 			.new_graphic()\
-			.with_texture(load("graphics/images/terrain/%s.%s" % [image_path, extention]))\
+			.with_texture(images[image_stem])\
 			.with_offset(offset)\
 			.build())\
 		.build()
@@ -45,7 +60,7 @@ func new_overlay(name: String, code: String, type: String, image_path: String, o
 	terrains[terrain.code] = terrain
 
 
-func new_village(name: String, code: String, type: String, image_path: String, extention := "png") -> void:
+func new_village(name: String, code: String, type: String, image_stem: String) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -55,14 +70,14 @@ func new_village(name: String, code: String, type: String, image_path: String, e
 		.with_heals(true)\
 		.with_graphic(terrain_graphic_builder\
 			.new_graphic()\
-			.with_texture(load("graphics/images/terrain/%s.%s" % [image_path, extention]))\
+			.with_texture(images[image_stem])\
 			.build())\
 		.build()
 
 	terrains[terrain.code] = terrain
 
 
-func new_castle(name: String, code: String, type: String, image_path: String, extention := "png", offset := Vector2()) -> void:
+func new_castle(name: String, code: String, type: String, image_stem: String, offset := Vector2()) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -71,7 +86,7 @@ func new_castle(name: String, code: String, type: String, image_path: String, ex
 		.with_rectuit_onto(true)\
 		.with_graphic(terrain_graphic_builder\
 			.new_graphic()\
-			.with_texture(load("graphics/images/terrain/%s.%s" % [image_path, extention]))\
+			.with_texture(images[image_stem])\
 			.with_offset(offset)\
 			.build())\
 		.build()
@@ -79,7 +94,7 @@ func new_castle(name: String, code: String, type: String, image_path: String, ex
 	terrains[terrain.code] = terrain
 
 
-func new_keep(name: String, code: String, type: String, image_path: String, extention := "png", offset := Vector2()) -> void:
+func new_keep(name: String, code: String, type: String, image_stem: String, offset := Vector2()) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -89,7 +104,7 @@ func new_keep(name: String, code: String, type: String, image_path: String, exte
 		.with_recruit_from(true)\
 		.with_graphic(terrain_graphic_builder\
 			.new_graphic()\
-			.with_texture(load("graphics/images/terrain/%s.%s" % [image_path, extention]))\
+			.with_texture(images[image_stem])\
 			.with_offset(offset)\
 			.build())\
 		.build()
@@ -97,10 +112,10 @@ func new_keep(name: String, code: String, type: String, image_path: String, exte
 	terrains[code] = terrain
 
 
-func new_transition(code, include: Array, exclude: Array, image_path: String, extention := "png") -> void:
+func new_transition(code, include: Array, exclude: Array, image_stem: String, flag := "") -> void:
 	var transition := transition_graphic_builder\
 		.new_graphic()\
-		.with_textures(image_path)\
+		.with_textures(_load_transitions(code, image_stem, flag))\
 		.include(include)\
 		.exclude(exclude)\
 		.build()
@@ -108,28 +123,45 @@ func new_transition(code, include: Array, exclude: Array, image_path: String, ex
 	if code is String:
 
 		if not transitions.has(code):
-			transitions[code] = []
+			transitions[code] = {}
 
-		transitions[code].append(transition)
+		transitions[code][flag] = transition
 
 	elif code is Array:
 
 		for c in code:
 			if not transitions.has(c):
-				transitions[c] = []
+				transitions[c] = {}
 
-			transitions[c].append(transition)
+			transitions[c][flag] = transition
 
 
-func _load_base_variations(image_path: String, extention: String) -> Array:
-	var dir := Directory.new()
+func _load_base_variations(image_stem: String) -> Array:
 	var textures := []
 
 	for i in range(2, MAX_VARIATION_COUNT + 1):
-		var path := "graphics/images/terrain/%s%d.%s" % [image_path, i, extention]
+		var variation = image_stem + str(i)
 
-		if dir.file_exists(path):
-			textures.append(load(path))
+		if images.has(variation):
+			textures.append(images[variation])
+
+	return textures
+
+
+func _load_transitions(code: String, image_stem: String, flag: String) -> Dictionary:
+	var directions := [ "-n", "-ne", "-se", "-s", "-sw", "-nw"]
+	var textures := {}
+
+	if flag:
+		flag = "-" + flag
+
+	for key in images:
+		for dir in directions:
+
+			if key.begins_with(image_stem + flag + dir):
+				var texture = images[key]
+				var key_flags = key.replace(image_stem + flag, "")
+				textures[key_flags] = images[key]
 
 	return textures
 

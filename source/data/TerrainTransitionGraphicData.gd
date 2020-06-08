@@ -5,4 +5,4 @@ var code := ""
 var exclude := []
 var include := []
 
-var transitions := {}
+var textures := {}

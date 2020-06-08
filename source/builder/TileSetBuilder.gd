@@ -1,16 +1,36 @@
 class_name TileSetBuilder
 
 
-static func build(terrain_dict: Dictionary) -> TileSet:
+static func build_terrain(terrains: Dictionary) -> TileSet:
 	var tile_set := TileSet.new()
 
-	for key in terrain_dict:
-		var terrain : TerrainData = terrain_dict[key]
+	for key in terrains:
+		var terrain : TerrainData = terrains[key]
 		var graphic : TerrainGraphicData = terrain.graphic
 		var __ = _add_tile(tile_set, key, graphic.texture, graphic.offset)
 
 		for i in graphic.variations.size():
 			__ = _add_tile(tile_set, key + str(i + 2), graphic.variations[i], graphic.offset)
+
+	return tile_set
+
+
+static func build_transitions(transitions: Dictionary) -> TileSet:
+	var tile_set := TileSet.new()
+
+	for code in transitions:
+		var graphics = transitions[code]
+		for type_flag in graphics:
+			var graphic : TerrainTransitionGraphicData = graphics[type_flag]
+
+			if type_flag:
+				type_flag = "-" + type_flag
+
+			for dir_flag in graphic.textures:
+				var texture = graphic.textures[dir_flag]
+				print(code, type_flag, dir_flag, ": ", texture)
+
+#			var __ = _add_tile(tile_set, code + flag, graphic.texture, graphic.offset)
 
 	return tile_set
 

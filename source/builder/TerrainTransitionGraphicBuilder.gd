@@ -8,7 +8,8 @@ func new_graphic() -> TerrainTransitionGraphicBuilder:
 	return self
 
 
-func with_textures(image_path: String) -> TerrainTransitionGraphicBuilder:
+func with_textures(textures: Dictionary) -> TerrainTransitionGraphicBuilder:
+	graphic.textures = textures
 	return self
 
 

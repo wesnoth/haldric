@@ -15,7 +15,7 @@ func _enter_tree() -> void:
 
 func _build_tileset(__) -> void:
 	if Engine.editor_hint:
-		var tile_set = TileSetBuilder.build(_terrain())
+		var tile_set = TileSetBuilder.build_terrain(_terrain())
 		map.tile_set = tile_set
 		overlay.tile_set = tile_set
 

@@ -3,6 +3,7 @@ class_name Loader
 static func load_dir(path: String, extentions: Array, load_resource := true) -> Array:
 	return _get_directory_data(path, [], extentions, load_resource)
 
+
 static func _get_directory_data(path: String, directory_data: Array, extentions: Array, load_resource: bool) -> Array:
 	var directory := Directory.new()
 
@@ -37,6 +38,7 @@ static func _get_directory_data(path: String, directory_data: Array, extentions:
 	directory.list_dir_end()
 
 	return directory_data
+
 
 static func _get_file_data(path: String, load_resource: bool) -> Dictionary:
 	var file_data := {

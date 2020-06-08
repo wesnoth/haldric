@@ -17,7 +17,7 @@ static func instance() -> Map:
 
 
 func _ready() -> void:
-	set_tile_set(TileSetBuilder.build(Data.terrains))
+	set_tile_set(TileSetBuilder.build_terrain(Data.terrains))
 	_build_map()
 	_build_grid()
 	_build_castles()

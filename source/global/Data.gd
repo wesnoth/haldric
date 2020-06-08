@@ -3,6 +3,8 @@ extends Node
 var DefaultAmla : Advancement = preload("res://data/advancements/Default.tscn").instance()
 
 var terrains := {}
+var transitions := {}
+
 var races := {}
 var units := {}
 
@@ -31,9 +33,16 @@ func _load_terrain() -> void:
 	terrains.clear()
 
 	var terrain_script := load("res://data/terrain.gd").new() as TerrainLoader
-	terrains = terrain_script.load_terrain()
+	terrain_script.load_terrain()
 
+	terrains = terrain_script.terrains
+	transitions = terrain_script.transitions
+
+	print("Data:")
 	print(terrains)
+	print(transitions)
+
+	var __ = TileSetBuilder.build_transitions(transitions)
 
 
 func _load_races() -> void:
