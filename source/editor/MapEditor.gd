@@ -29,7 +29,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				edit_location(hovered_location)
 			elif paint_mode == PaintMode.PLAYER:
 				set_player(hovered_location)
-
+			last_location = hovered_location
 
 func new_map(width: int, height: int) -> void:
 	if map:
@@ -52,12 +52,15 @@ func edit_location(loc: Location) -> void:
 
 	if Input.is_action_pressed("edit_base_only"):
 		loc.set_base_code(active_terrain)
+
 	else:
 		if active_terrain:
-			loc.set_base_code(active_terrain)
-			loc.remove_overlay_code()
+			var code = [active_terrain]
+			loc.set_terrain(code)
+
 		if active_overlay:
-			loc.set_overlay_code(active_overlay)
+			var code = [ loc.terrain.get_base_code(), active_overlay ]
+			loc.set_terrain(code)
 
 	map.refresh()
 
@@ -68,7 +71,6 @@ func set_player(loc: Location):
 
 
 func _on_location_hovered(loc: Location) -> void:
-	last_location = hovered_location
 	hovered_location = loc
 	get_tree().call_group("Selector", "update_info", hovered_location)
 

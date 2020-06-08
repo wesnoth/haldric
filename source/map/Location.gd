@@ -20,6 +20,15 @@ func _init() -> void:
 	_neighbors.resize(6)
 
 
+func set_terrain(code: Array) -> void:
+	var data := []
+
+	for c in code:
+		data.append(Data.terrains[c])
+
+	terrain = Terrain.new(data)
+
+
 func set_code(code: Array) -> void:
 	terrain.code = code
 

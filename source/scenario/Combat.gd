@@ -31,8 +31,6 @@ func start(attacker: CombatContext, defender: CombatContext) -> void:
 		var other = opponent[current]
 		var origin = current.unit.global_position
 
-		randomize()
-
 		if current.category == "melee":
 			_tween_attack(current.unit, other.unit)
 			yield(tween, "tween_completed")
