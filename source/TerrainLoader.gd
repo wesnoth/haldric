@@ -23,7 +23,9 @@ func open_path(path: String) -> void:
 	root = path
 
 	for file_data in Loader.load_dir(root, ["png", "tres"]):
-		images[file_data.id] = file_data.data
+		var semi_path = file_data.path.replace(root, "")
+		semi_path = semi_path.replace("." + semi_path.get_extension(), "")
+		images[semi_path] = file_data.data
 
 	print(images)
 
@@ -114,10 +116,11 @@ func new_keep(name: String, code: String, type: String, image_stem: String, offs
 	terrains[code] = terrain
 
 
-func new_transition(code, include: Array, exclude: Array, image_stem: String, flag := "") -> void:
+func new_transition(code, include: Array, exclude: Array, image_stem: String) -> void:
 	var transition := transition_graphic_builder\
 		.new_graphic()\
-		.with_textures(_load_transitions(code, image_stem, flag))\
+		.with_image_stem(image_stem)\
+		.with_textures(_load_transitions(code, image_stem))\
 		.include(include)\
 		.exclude(exclude)\
 		.build()
@@ -125,17 +128,16 @@ func new_transition(code, include: Array, exclude: Array, image_stem: String, fl
 	if code is String:
 
 		if not transitions.has(code):
-			transitions[code] = {}
+			transitions[code] = []
 
-		transitions[code][flag] = transition
+		transitions[code].append(transition)
 
 	elif code is Array:
 
 		for c in code:
 			if not transitions.has(c):
-				transitions[c] = {}
-
-			transitions[c][flag] = transition
+				transitions[c] = []
+			transitions[c].append(transition)
 
 
 func _load_base_variations(image_stem: String) -> Array:
@@ -150,19 +152,16 @@ func _load_base_variations(image_stem: String) -> Array:
 	return textures
 
 
-func _load_transitions(code: String, image_stem: String, flag: String) -> Dictionary:
+func _load_transitions(code: String, image_stem: String) -> Dictionary:
 	var directions := [ "-n", "-ne", "-se", "-s", "-sw", "-nw"]
 	var textures := {}
-
-	if flag:
-		flag = "-" + flag
 
 	for key in images:
 		for dir in directions:
 
-			if key.begins_with(image_stem + flag + dir):
+			if key.begins_with(image_stem + dir):
 				var texture = images[key]
-				var key_flags = key.replace(image_stem + flag, "")
+				var key_flags = key.replace(image_stem, "")
 				textures[key_flags] = images[key]
 
 	return textures

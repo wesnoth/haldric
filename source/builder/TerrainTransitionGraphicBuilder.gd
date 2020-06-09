@@ -13,6 +13,11 @@ func with_textures(textures: Dictionary) -> TerrainTransitionGraphicBuilder:
 	return self
 
 
+func with_image_stem(image_stem: String) -> TerrainTransitionGraphicBuilder:
+	graphic.image_stem = image_stem
+	return self
+
+
 func include(include: Array) -> TerrainTransitionGraphicBuilder:
 	graphic.include = include
 	return self

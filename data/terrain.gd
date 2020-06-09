@@ -3,11 +3,11 @@ extends TerrainLoader
 func _load() -> void:
 	open_path("res://graphics/images/terrain/")
 
-	new_base("GreenGrass", "Gg", -20, "flat", "green")
-	new_base("Hills", "Hh", 100, "hills", "regular")
-	new_base("Water", "Ww", -100, "water", "water_animated")
+	new_base("GreenGrass", "Gg", -20, "flat", "grass/green")
+	new_base("Hills", "Hh", 100, "hills", "hills/regular")
+	new_base("Water", "Ww", -100, "water", "water/animated")
 
-	new_base("Mountains", "Mm", 200, "mountains", "basic", Vector2(-56, -68))
+	new_base("Mountains", "Mm", 200, "mountains", "mountains/basic", Vector2(-56, -68))
 
 	new_overlay("Forest", "^F", "forest", "forest", Vector2(-36, -36))
 
@@ -17,10 +17,10 @@ func _load() -> void:
 
 	new_castle("Castle", "Ch", "castle", "castle-tile")
 
-	new_transition("Gg", ["Gs", "Gd", "Gll"], [], "green")
-	new_transition("Gg", ["Ww"], [], "bank-to-ice")
+	new_transition("Gg", [], ["Ww"], "grass/green")
+	new_transition("Gg", ["Ww"], [], "cave/bank")
 
-	new_transition("Mm", [], [], "basic")
+	new_transition("Mm", [], [], "mountains/basic")
 
-	new_transition("Hh", [], [], "regular")
-	new_transition("Hh", ["Ww"], ["Gg"], "regular", "to-water")
+	new_transition("Hh", [], ["Ww"], "hills/regular")
+	new_transition("Hh", ["Ww"], [], "hills/regular-to-water")

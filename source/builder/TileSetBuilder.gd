@@ -20,17 +20,14 @@ static func build_transitions(transitions: Dictionary) -> TileSet:
 
 	for code in transitions:
 		var graphics = transitions[code]
-		for type_flag in graphics:
-			var graphic : TerrainTransitionGraphicData = graphics[type_flag]
-
-			if type_flag:
-				type_flag = "-" + type_flag
+		for g in graphics:
+			var graphic : TerrainTransitionGraphicData = g
 
 			for dir_flag in graphic.textures:
 				var texture = graphic.textures[dir_flag]
 #				print(code, type_flag, dir_flag, ": ", texture)
 
-				var __ = _add_tile(tile_set, code + type_flag + dir_flag, texture)
+				var __ = _add_tile(tile_set, code + "-" + graphic.image_stem + dir_flag, texture)
 
 	return tile_set
 
@@ -41,7 +38,5 @@ static func _add_tile(tile_set: TileSet, code: String, tex: Texture, offset := V
 	tile_set.tile_set_name(tile_id, code)
 	tile_set.tile_set_texture(tile_id, tex)
 	tile_set.tile_set_texture_offset(tile_id, offset)
-
-	print("Created Tile " + str(tile_id), ": { Name: " + code + ", Texture: " + str(tex) + "}")
-
+	# print("Created Tile " + str(tile_id), ": { Name: " + code + ", Texture: " + str(tex) + "}")
 	return tile_id
