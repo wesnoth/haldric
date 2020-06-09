@@ -12,21 +12,18 @@ func clear() -> void:
 
 
 func set_location_transition(loc: Location) -> void:
-	var direction := 0
 	var code = loc.terrain.get_base_code()
 
+	var direction := 0
 	for n_loc in loc.get_all_neighbors():
 
 		if not n_loc:
 			direction += 1
 			return
 
-		# print(code, " == ", loc.terrain.get_base_code(), " or ", loc.terrain.layer, " >= ", n_loc.terrain.layer)
-
 		if n_loc.terrain.get_base_code() == code or loc.terrain.layer >= n_loc.terrain.layer:
 			direction += 1
 			continue
-
 
 		var n_code = n_loc.terrain.get_base_code()
 
@@ -34,27 +31,29 @@ func set_location_transition(loc: Location) -> void:
 			direction += 1
 			continue
 
-		var transition_data : Dictionary = Data.transitions[n_code]
+		var tile_name = _get_tile_name(code, n_code, direction)
 
-		var flag := ""
-		for key in transition_data.keys():
-
-			var transition_graphic : TerrainTransitionGraphicData = transition_data[key]
-
-			if transition_graphic.include.has(code):
-				flag = key
-			elif not transition_graphic.exclude.has(code):
-				flag = key
-
-		if flag:
-			flag = "-" + flag
-
-		var tile_name = n_code + flag + "-" + directions[direction]
-
-		# print("Searching Tile ", loc.cell, ": ", tile_name)
+		print("Searching Tile ", loc.cell, ": ", tile_name)
 
 		var tile_map = layers[direction]
 
 		tile_map.set_cellv(loc.cell, tile_map.tile_set.find_tile_by_name(tile_name))
 
 		direction += 1
+
+
+func _get_tile_name(code: String, n_code: String, direction: int) -> String:
+	var n_data : Dictionary = Data.transitions[n_code]
+
+	var flag := ""
+	for key in n_data.keys():
+
+		var n_graphic : TerrainTransitionGraphicData = n_data[key]
+
+		if n_graphic.exclude.has(code):
+			continue
+		elif not n_graphic.include or n_graphic.include.has(code):
+			flag = "-" + key if key else ""
+
+	var tile_name = n_code + flag + "-" + directions[direction]
+	return tile_name
