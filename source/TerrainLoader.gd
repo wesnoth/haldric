@@ -117,15 +117,16 @@ func new_keep(name: String, code: String, type: String, image_stem: String, offs
 
 
 func new_transition(code, include: Array, exclude: Array, image_stem: String) -> void:
-	var transition := transition_graphic_builder\
-		.new_graphic()\
-		.with_image_stem(image_stem)\
-		.with_textures(_load_transitions(code, image_stem))\
-		.include(include)\
-		.exclude(exclude)\
-		.build()
 
 	if code is String:
+
+		var transition := transition_graphic_builder\
+			.new_graphic()\
+			.with_image_stem(image_stem)\
+			.with_textures(_load_transitions(code, image_stem))\
+			.include(include)\
+			.exclude(exclude)\
+			.build()
 
 		if not transitions.has(code):
 			transitions[code] = []
@@ -135,6 +136,15 @@ func new_transition(code, include: Array, exclude: Array, image_stem: String) ->
 	elif code is Array:
 
 		for c in code:
+
+			var transition := transition_graphic_builder\
+				.new_graphic()\
+				.with_image_stem(image_stem)\
+				.with_textures(_load_transitions(c, image_stem))\
+				.include(include)\
+				.exclude(exclude)\
+				.build()
+
 			if not transitions.has(c):
 				transitions[c] = []
 			transitions[c].append(transition)

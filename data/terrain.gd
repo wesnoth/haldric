@@ -20,6 +20,7 @@ func _load() -> void:
 
 	new_transition("Gg", [], ["Ww", "Ds"], "grass/green")
 	new_transition("Gg", ["Ds"], [], "grass/green-medium")
+	new_transition(["Gg", "Hh"], ["Ww"], [], "flat/bank")
 	new_transition("Gg", ["Ww"], [], "cave/bank")
 	new_transition("Gg", ["Ww"], [], "grass/green-abrupt")
 
