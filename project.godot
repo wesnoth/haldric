@@ -359,11 +359,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/data/TerrainTransitionGraphicData.gd"
 }, {
-"base": "Reference",
-"class": "TileSetBuilder",
-"language": "GDScript",
-"path": "res://source/builder/TileSetBuilder.gd"
-}, {
 "base": "Node",
 "class": "Time",
 "language": "GDScript",
@@ -515,7 +510,6 @@ _global_script_class_icons={
 "TerrainPainter": "",
 "TerrainTransitionGraphicBuilder": "",
 "TerrainTransitionGraphicData": "",
-"TileSetBuilder": "",
 "Time": "",
 "ToDWheel": "",
 "ToDWidget": "",
