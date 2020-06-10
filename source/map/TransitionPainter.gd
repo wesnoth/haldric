@@ -3,12 +3,12 @@ class_name TransitionPainter
 
 const directions = [  "n", "ne", "se", "s", "sw", "nw"]
 
-onready var layers := get_children()
+var locations := {}
 
-
-func clear() -> void:
-	for layer in layers:
-		layer.clear()
+func _draw() -> void:
+	for cell in locations:
+		var loc : Location = locations[cell]
+		set_location_transition(loc)
 
 
 func set_location_transition(loc: Location) -> void:
@@ -27,28 +27,22 @@ func set_location_transition(loc: Location) -> void:
 			direction += 1
 			continue
 
-		var tile_name = _get_tile_name(code, n_code, direction)
+		var n_data = Data.transitions[n_code]
 
-		# print("Searching Tile ", loc.cell, ": ", tile_name)
+		for g in n_data:
 
-		var tile_map = layers[direction]
+			var n_graphic : TerrainTransitionGraphicData = g
 
-		tile_map.set_cellv(loc.cell, tile_map.tile_set.find_tile_by_name(tile_name))
+			if n_graphic.exclude.has(code):
+				continue
+
+			elif not n_graphic.include or n_graphic.include.has(code):
+				var transition_name = "-" + directions[direction]
+
+				if not n_graphic.textures.has(transition_name):
+					continue
+
+				draw_texture(n_graphic.textures[transition_name], loc.position - Vector2(36, 36))
 
 		direction += 1
 
-
-func _get_tile_name(code: String, n_code: String, direction: int) -> String:
-	var n_data : Array = Data.transitions[n_code]
-
-	for g in n_data:
-
-		var n_graphic : TerrainTransitionGraphicData = g
-
-		if n_graphic.exclude.has(code):
-			continue
-
-		elif not n_graphic.include or n_graphic.include.has(code):
-			return n_code + "-" + n_graphic.image_stem + "-" + directions[direction]
-
-	return n_code + "-" + directions[direction]

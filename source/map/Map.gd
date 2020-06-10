@@ -15,22 +15,12 @@ onready var overlay := $Overlay
 
 onready var transition_painter := $TransitionPainter
 
-onready var transition_layers := [
-	$"TransitionPainter/0",
-	$"TransitionPainter/1",
-	$"TransitionPainter/2",
-	$"TransitionPainter/3",
-	$"TransitionPainter/4",
-	$"TransitionPainter/5",
-]
-
 static func instance() -> Map:
 	return load("res://source/map/Map.tscn").instance() as Map
 
 
 func _ready() -> void:
 	set_tile_set(TileSetBuilder.build_terrain(Data.terrains))
-	set_transition_tile_set(TileSetBuilder.build_transitions(Data.transitions))
 
 	_build_map()
 	_build_grid()
@@ -63,22 +53,19 @@ func set_tile_set(tile_set: TileSet) -> void:
 	overlay.tile_set = tile_set
 
 
-func set_transition_tile_set(tile_set: TileSet) -> void:
-	for layer in transition_layers:
-		layer.tile_set = tile_set
-
-
 func refresh() -> void:
 	rng = RandomNumberGenerator.new()
 	rng.seed = 10
 
 	clear()
 	overlay.clear()
-	transition_painter.clear()
 
 	for cell in locations:
 		var loc : Location = locations[cell]
 		_set_cell_terrain(loc)
+
+	transition_painter.locations = locations
+	transition_painter.update()
 
 
 func find_path(start_loc: Location, end_loc: Location) -> Dictionary:
@@ -324,7 +311,6 @@ func _set_cell_terrain(loc: Location) -> void:
 	var base_variation = base_options[rng.randi() % base_options.size()]
 
 	set_cellv(loc.cell, tile_set.find_tile_by_name(loc.terrain.get_base_code() + base_variation))
-	transition_painter.set_location_transition(loc)
 
 	if loc.terrain.code.size() == 2:
 		overlay.set_cellv(loc.cell, tile_set.find_tile_by_name(loc.terrain.get_overlay_code()))
