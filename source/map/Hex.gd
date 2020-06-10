@@ -2,6 +2,9 @@ class_name Hex
 
 enum Direction { N, NE, SE, S, SW, NW }
 
+const CELL_SIZE := Vector2(54, 72)
+const OFFSET := Vector2(36, 36)
+
 const NEIGHBOR_TABLE := [
 	Vector3(0, 1, -1), # N
 	Vector3(1, 0, -1), # NE
@@ -10,6 +13,31 @@ const NEIGHBOR_TABLE := [
 	Vector3(-1, 0, 1), # SW
 	Vector3(-1, 1, 0), # NW
 ]
+
+
+static func map_to_world(cell: Vector2) -> Vector2:
+	var x : int = cell.x * CELL_SIZE.x
+	var y : int = cell.y * CELL_SIZE.y
+
+	if int(cell.x) & 1:
+		y -= OFFSET.y
+
+	return Vector2(x, y)
+
+
+static func map_to_world_centered(cell: Vector2) -> Vector2:
+	return map_to_world(cell) + OFFSET
+
+
+static func world_to_map(position: Vector2) -> Vector2:
+	var x : int = position.x / CELL_SIZE.x
+
+	if x & 1:
+		position.y += OFFSET.y
+
+	var y : int = position.y / CELL_SIZE.y
+
+	return Vector2(x, y)
 
 
 static func get_neighbor(cell: Vector2, direction: int) -> Vector2:

@@ -40,7 +40,7 @@ func get_location_from_cell(cell: Vector2) -> Location:
 
 
 func get_location_from_world(world_position: Vector2) -> Location:
-	var cell = world_to_map(world_position)
+	var cell = Hex.world_to_map(world_position)
 
 	if not locations.has(cell):
 		return null
@@ -294,7 +294,7 @@ func _set_cell_location(cell: Vector2, code: Array) -> void:
 	loc.set_terrain(code)
 
 	loc.cell = cell
-	loc.position = map_to_world_centered(cell)
+	loc.position = Hex.map_to_world_centered(cell)
 
 	locations[cell] = loc;
 
