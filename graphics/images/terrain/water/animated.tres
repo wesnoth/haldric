@@ -1,20 +1,23 @@
 [gd_resource type="AnimatedTexture" load_steps=16 format=2]
 
-[ext_resource path="res://graphics/images/terrain/water/ocean-A08.png" type="Texture" id=1]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A01.png" type="Texture" id=2]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A15.png" type="Texture" id=3]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A07.png" type="Texture" id=4]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A04.png" type="Texture" id=5]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A11.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A14.png" type="Texture" id=7]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A03.png" type="Texture" id=8]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A10.png" type="Texture" id=9]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A12.png" type="Texture" id=10]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A05.png" type="Texture" id=11]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A06.png" type="Texture" id=12]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A13.png" type="Texture" id=13]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A02.png" type="Texture" id=14]
-[ext_resource path="res://graphics/images/terrain/water/ocean-A09.png" type="Texture" id=15]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A08.png" type="Texture" id=1]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A01.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A15.png" type="Texture" id=3]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A07.png" type="Texture" id=4]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A04.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A11.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A14.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A03.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A10.png" type="Texture" id=9]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A12.png" type="Texture" id=10]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A05.png" type="Texture" id=11]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A06.png" type="Texture" id=12]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A13.png" type="Texture" id=13]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A02.png" type="Texture" id=14]
+[ext_resource path="res://graphics/images/terrain/water/frames/ocean-A09.png" type="Texture" id=15]
+
+
+
 
 [resource]
 frames = 15
