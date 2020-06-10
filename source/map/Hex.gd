@@ -32,6 +32,23 @@ static func map_to_world_centered(cell: Vector2) -> Vector2:
 static func world_to_map(position: Vector2) -> Vector2:
 	var x : int = position.x / CELL_SIZE.x
 
+	var temp_position = position
+
+	if not x & 1:
+		temp_position.y += OFFSET.y
+
+	var diff_x : int = int(temp_position.x) % int(CELL_SIZE.x)
+	var diff_y : int = int(temp_position.y) % int(CELL_SIZE.y)
+
+	var diff_y_centered : int = OFFSET.y - abs(diff_y - OFFSET.y)
+
+	print(diff_x, " < ", diff_y_centered / 2)
+
+	if diff_x <= diff_y_centered / 2:
+		position.x -= OFFSET.x
+
+	x = position.x / CELL_SIZE.x
+
 	if x & 1:
 		position.y += OFFSET.y
 
