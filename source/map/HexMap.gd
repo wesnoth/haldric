@@ -1,4 +1,4 @@
-extends TileMap
+extends Node2D
 class_name HexMap
 
 signal cell_hovered(cell)

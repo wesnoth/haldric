@@ -6,3 +6,6 @@ var offset := Vector2()
 var texture : Texture = null
 
 var variations := []
+
+func get_textures() -> Array:
+	return [ texture ] + variations

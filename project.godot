@@ -149,7 +149,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/map/Hex.gd"
 }, {
-"base": "TileMap",
+"base": "Node2D",
 "class": "HexMap",
 "language": "GDScript",
 "path": "res://source/map/HexMap.gd"
@@ -344,6 +344,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/TerrainLoader.gd"
 }, {
+"base": "Node2D",
+"class": "TerrainPainter",
+"language": "GDScript",
+"path": "res://source/map/TerrainPainter.gd"
+}, {
 "base": "Reference",
 "class": "TerrainTransitionGraphicBuilder",
 "language": "GDScript",
@@ -403,11 +408,6 @@ _global_script_classes=[ {
 "class": "TraitUpkeep",
 "language": "GDScript",
 "path": "res://source/unit/trait/TraitUpkeep.gd"
-}, {
-"base": "Node2D",
-"class": "TransitionPainter",
-"language": "GDScript",
-"path": "res://source/map/TransitionPainter.gd"
 }, {
 "base": "Node2D",
 "class": "Unit",
@@ -512,6 +512,7 @@ _global_script_class_icons={
 "TerrainGraphicBuilder": "",
 "TerrainGraphicData": "",
 "TerrainLoader": "",
+"TerrainPainter": "",
 "TerrainTransitionGraphicBuilder": "",
 "TerrainTransitionGraphicData": "",
 "TileSetBuilder": "",
@@ -524,7 +525,6 @@ _global_script_class_icons={
 "TraitQuick": "",
 "TraitResilient": "",
 "TraitUpkeep": "",
-"TransitionPainter": "",
 "Unit": "",
 "UnitAdvancementInfo": "",
 "UnitPlate": "",

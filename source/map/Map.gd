@@ -3,25 +3,23 @@ class_name Map
 
 signal location_hovered(loc)
 
-var rng = RandomNumberGenerator.new()
-
 var map_data: MapData = MapData.new()
 
 var grid : Grid = null
 
 var locations := {}
 
-onready var overlay := $Overlay
+var width := 0
+var height := 0
 
-onready var transition_painter := $TransitionPainter
+onready var terrain_painter := $TerrainPainter
+
 
 static func instance() -> Map:
 	return load("res://source/map/Map.tscn").instance() as Map
 
 
 func _ready() -> void:
-	set_tile_set(TileSetBuilder.build_terrain(Data.terrains))
-
 	_build_map()
 	_build_grid()
 	_build_castles()
@@ -29,6 +27,8 @@ func _ready() -> void:
 
 func initialize(_map_data: MapData) -> void:
 	map_data = _map_data
+	width = map_data.width
+	height = map_data.height
 
 
 func get_location_from_cell(cell: Vector2) -> Location:
@@ -48,24 +48,9 @@ func get_location_from_world(world_position: Vector2) -> Location:
 	return locations[cell]
 
 
-func set_tile_set(tile_set: TileSet) -> void:
-	self.tile_set = tile_set
-	overlay.tile_set = tile_set
-
-
 func refresh() -> void:
-	rng = RandomNumberGenerator.new()
-	rng.seed = 10
-
-	clear()
-	overlay.clear()
-
-	for cell in locations:
-		var loc : Location = locations[cell]
-		_set_cell_terrain(loc)
-
-	transition_painter.locations = locations
-	transition_painter.update()
+	terrain_painter.locations = locations
+	terrain_painter.update()
 
 
 func find_path(start_loc: Location, end_loc: Location) -> Dictionary:
@@ -199,13 +184,15 @@ func update_grid_weight(unit: Unit) -> void:
 	print("updated grid weight")
 
 
+func get_used_rect() -> Rect2:
+	return Rect2(Vector2(0, 0), Vector2(width, height))
+
+
 func get_map_data() -> MapData:
 	var _map_data := MapData.new()
 
-	var size := get_used_rect().size
-
-	_map_data.width = size.x
-	_map_data.height = size.y
+	_map_data.width = width
+	_map_data.height = height
 
 	for cell in locations.keys():
 		var loc: Location = locations[cell]
@@ -297,23 +284,6 @@ func _set_cell_location(cell: Vector2, code: Array) -> void:
 	loc.position = Hex.map_to_world_centered(cell)
 
 	locations[cell] = loc;
-
-
-func _set_cell_terrain(loc: Location) -> void:
-
-	var base_data : TerrainData = Data.terrains[loc.terrain.get_base_code()]
-
-	var base_options := [""]
-
-	for i in base_data.graphic.variations.size():
-		base_options.append(str(i + 2))
-
-	var base_variation = base_options[rng.randi() % base_options.size()]
-
-	set_cellv(loc.cell, tile_set.find_tile_by_name(loc.terrain.get_base_code() + base_variation))
-
-	if loc.terrain.code.size() == 2:
-		overlay.set_cellv(loc.cell, tile_set.find_tile_by_name(loc.terrain.get_overlay_code()))
 
 
 func _on_Map_cell_hovered(cell) -> void:
