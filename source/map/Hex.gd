@@ -74,7 +74,14 @@ static func get_cell_distance(a: Vector2, b: Vector2) -> int:
 
 
 static func get_cells_in_range(cell: Vector2, radius: int, rect: Rect2) -> PoolVector2Array:
+
 	var cells := PoolVector2Array()
+
+	cells.append(cell)
+
+	if radius == 1:
+		return cells
+
 	var cubes = _get_cubes_in_range(quad2cube(cell), radius)
 
 	for cube in cubes:
@@ -123,7 +130,7 @@ static func _get_cubes_in_range(cube: Vector3, radius: int) -> Array:
 	var cubes : Array = []
 
 	for x in range(-radius, radius + 1):
-		for y in range(max(-radius, -x - radius), min(radius, -x + radius)):
+		for y in range(max(-radius, -x - radius), min(radius + 1, -x + radius + 1)):
 			var z = -x - y
 			cubes.append(cube + Vector3(x, y, z))
 
