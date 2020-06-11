@@ -6,8 +6,8 @@ func initialize(width: int, height: int) -> void:
 	rand.clear()
 	rand_seed(0)
 
-	for y in width:
-		for x in height:
+	for y in height:
+		for x in width:
 			rand[Vector2(x, y)] = {
 				"ai": randi(),
 				"bi": randi(),
