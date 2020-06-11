@@ -41,6 +41,15 @@ func get_location_from_cell(cell: Vector2) -> Location:
 	return locations[cell]
 
 
+func get_locations_in_range(cell: Vector2, _range: int) -> Array:
+	var locs := []
+
+	for n_cell in Hex.get_cells_in_range(cell, _range, get_used_rect()):
+		locs.append(locations[n_cell])
+
+	return locs
+
+
 func get_location_from_world(world_position: Vector2) -> Location:
 	var cell = Hex.world_to_map(world_position)
 

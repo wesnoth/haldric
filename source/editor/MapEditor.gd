@@ -13,6 +13,8 @@ var paint_mode : int = PaintMode.TERRAIN
 var active_terrain := ""
 var active_overlay := ""
 
+var active_brush_size := 0
+
 var active_player := 0
 
 var players := {}
@@ -26,7 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		if hovered_location != last_location:
 			if paint_mode == PaintMode.TERRAIN:
-				edit_location(hovered_location)
+				edit_locations(map.get_locations_in_range(hovered_location.cell, active_brush_size))
 			elif paint_mode == PaintMode.PLAYER:
 				set_player(hovered_location)
 			last_location = hovered_location
@@ -48,6 +50,14 @@ func new_map(width: int, height: int) -> void:
 	map.connect("location_hovered", self, "_on_location_hovered")
 
 
+func edit_locations(locs: Array) -> void:
+
+	for loc in locs:
+		edit_location(loc)
+
+	map.refresh()
+
+
 func edit_location(loc: Location) -> void:
 
 	if Input.is_action_pressed("edit_base_only"):
@@ -62,8 +72,6 @@ func edit_location(loc: Location) -> void:
 			var code = [ loc.terrain.get_base_code(), active_overlay ]
 			loc.set_terrain(code)
 
-	map.refresh()
-
 
 func set_player(loc: Location):
 	players[active_player] = loc.cell
@@ -71,6 +79,8 @@ func set_player(loc: Location):
 
 
 func _on_location_hovered(loc: Location) -> void:
+	print(loc.cell)
+
 	hovered_location = loc
 	get_tree().call_group("Selector", "update_info", hovered_location)
 
@@ -98,6 +108,10 @@ func _on_EditorUI_mode_changed(mode: int) -> void:
 
 func _on_EditorUI_player_selected(player: int) -> void:
 	active_player = player
+
+
+func _on_EditorUI_brush_size_selected(size: int) -> void:
+	active_brush_size = size - 1
 
 
 func _on_EditorUI_new_map_pressed(width: int, height: int) -> void:

@@ -31,7 +31,7 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 293.0
-margin_bottom = 327.0
+margin_bottom = 384.0
 
 [node name="ModeButtons" type="HBoxContainer" parent="HUD/PanelContainer/VBoxContainer"]
 margin_right = 286.0
@@ -52,7 +52,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSlider" type="HSlider" parent="HUD/PanelContainer/VBoxContainer"]
+[node name="PlayerSlider" type="HSlider" parent="HUD/PanelContainer/VBoxContainer"]
 margin_top = 41.0
 margin_right = 286.0
 margin_bottom = 57.0
@@ -61,7 +61,7 @@ min_value = 1.0
 max_value = 9.0
 value = 1.0
 
-[node name="HSeparator2" type="HSeparator" parent="HUD/PanelContainer/VBoxContainer"]
+[node name="HSeparator6" type="HSeparator" parent="HUD/PanelContainer/VBoxContainer"]
 margin_top = 61.0
 margin_right = 286.0
 margin_bottom = 76.0
@@ -73,16 +73,35 @@ margin_right = 286.0
 margin_bottom = 80.0
 columns = 4
 
-[node name="HSeparator3" type="HSeparator" parent="HUD/PanelContainer/VBoxContainer"]
+[node name="BrushSizeLabel" type="Label" parent="HUD/PanelContainer/VBoxContainer"]
 margin_top = 84.0
 margin_right = 286.0
-margin_bottom = 99.0
+margin_bottom = 98.0
+text = "Brush Size: 1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BrushSizeSlider" type="HSlider" parent="HUD/PanelContainer/VBoxContainer"]
+margin_top = 102.0
+margin_right = 286.0
+margin_bottom = 118.0
+focus_mode = 0
+min_value = 1.0
+max_value = 4.0
+value = 1.0
+
+[node name="HSeparator3" type="HSeparator" parent="HUD/PanelContainer/VBoxContainer"]
+margin_top = 122.0
+margin_right = 286.0
+margin_bottom = 137.0
 rect_min_size = Vector2( 0, 15 )
 
 [node name="NewMap" type="VBoxContainer" parent="HUD/PanelContainer/VBoxContainer"]
-margin_top = 103.0
+margin_top = 141.0
 margin_right = 286.0
-margin_bottom = 199.0
+margin_bottom = 237.0
 
 [node name="Width" type="HBoxContainer" parent="HUD/PanelContainer/VBoxContainer/NewMap"]
 margin_right = 286.0
@@ -134,15 +153,15 @@ enabled_focus_mode = 0
 text = "New Map"
 
 [node name="HSeparator" type="HSeparator" parent="HUD/PanelContainer/VBoxContainer"]
-margin_top = 203.0
+margin_top = 241.0
 margin_right = 286.0
-margin_bottom = 218.0
+margin_bottom = 256.0
 rect_min_size = Vector2( 0, 15 )
 
 [node name="Save" type="HBoxContainer" parent="HUD/PanelContainer/VBoxContainer"]
-margin_top = 222.0
+margin_top = 260.0
 margin_right = 286.0
-margin_bottom = 262.0
+margin_bottom = 300.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -170,15 +189,15 @@ __meta__ = {
 }
 
 [node name="HSeparator5" type="HSeparator" parent="HUD/PanelContainer/VBoxContainer"]
-margin_top = 266.0
+margin_top = 304.0
 margin_right = 286.0
-margin_bottom = 276.0
+margin_bottom = 314.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="Quit" type="Button" parent="HUD/PanelContainer/VBoxContainer"]
-margin_top = 280.0
+margin_top = 318.0
 margin_right = 286.0
-margin_bottom = 320.0
+margin_bottom = 358.0
 rect_min_size = Vector2( 0, 40 )
 focus_mode = 0
 enabled_focus_mode = 0
@@ -196,7 +215,8 @@ patch_margin_bottom = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="value_changed" from="HUD/PanelContainer/VBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="HUD/PanelContainer/VBoxContainer/PlayerSlider" to="." method="_on_PlayerSlider_value_changed"]
+[connection signal="value_changed" from="HUD/PanelContainer/VBoxContainer/BrushSizeSlider" to="." method="_on_BrushSizeSlider_value_changed"]
 [connection signal="pressed" from="HUD/PanelContainer/VBoxContainer/NewMap/Button" to="." method="_on_NewMap_pressed"]
 [connection signal="pressed" from="HUD/PanelContainer/VBoxContainer/Save/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="HUD/PanelContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

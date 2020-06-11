@@ -5,6 +5,7 @@ signal mode_changed(mode)
 
 signal terrain_selected(code)
 signal player_selected(player)
+signal brush_size_selected(size)
 
 signal new_map_pressed(width, height)
 signal save_pressed(file_name)
@@ -18,6 +19,7 @@ onready var terrain_selector := $HUD/TerrainSelector
 onready var tween := $Tween
 
 onready var player_label := $HUD/PanelContainer/VBoxContainer/PlayerLabel
+onready var brush_label := $HUD/PanelContainer/VBoxContainer/BrushSizeLabel
 
 onready var save_edit := $HUD/PanelContainer/VBoxContainer/Save/LineEdit
 onready var width_edit := $HUD/PanelContainer/VBoxContainer/NewMap/Width/LineEdit
@@ -83,9 +85,14 @@ func _on_Save_pressed() -> void:
 	emit_signal("save_pressed", save_edit.text)
 
 
-func _on_HSlider_value_changed(value: float) -> void:
+func _on_PlayerSlider_value_changed(value: float) -> void:
 	player_label.text = "Player: %d" % value
 	emit_signal("player_selected", value - 1)
+
+
+func _on_BrushSizeSlider_value_changed(value: float) -> void:
+	brush_label.text = "Brush Size: %d" % value
+	emit_signal("brush_size_selected", value)
 
 
 func _on_NewMap_pressed() -> void:

@@ -10,6 +10,7 @@ script = ExtResource( 4 )
 [node name="EditorUI" parent="." instance=ExtResource( 1 )]
 
 [node name="Camera2D" parent="." instance=ExtResource( 2 )]
+[connection signal="brush_size_selected" from="EditorUI" to="." method="_on_EditorUI_brush_size_selected"]
 [connection signal="mode_changed" from="EditorUI" to="." method="_on_EditorUI_mode_changed"]
 [connection signal="new_map_pressed" from="EditorUI" to="." method="_on_EditorUI_new_map_pressed"]
 [connection signal="player_selected" from="EditorUI" to="." method="_on_EditorUI_player_selected"]
