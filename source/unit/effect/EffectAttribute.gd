@@ -10,7 +10,6 @@ export var multiply := 0.0
 
 func _execute(unit) -> void:
 	var _attribute = unit.type.get(attribute)
-	print(attribute, ", ", _attribute)
 
 	if value:
 		unit.type.set(attribute, value)

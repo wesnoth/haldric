@@ -237,7 +237,6 @@ func add_flag(_position: Vector2, color: Color) -> void:
 	flags[_position] = flag
 	flag_container.add_child(flag)
 	flag.global_position = _position
-	print("added flag")
 
 
 func remove_flag(position: Vector2) -> void:

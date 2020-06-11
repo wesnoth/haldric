@@ -16,6 +16,5 @@ func _ready() -> void:
 
 func _set_texture(tex: Texture) -> void:
 	texture = tex
-	print("Set editor button texture: ", tex)
 	if rect:
 		rect.texture = tex

@@ -22,5 +22,4 @@ func initialize(times: Array) -> void:
 
 func _draw() -> void:
 	for i in times.size():
-		print("%s, %f, %f" % [times[i].name, angle_step * i, angle_step * (i + 1)])
 		draw_arc(center, center.x / 2, deg2rad(angle_step * i), deg2rad(angle_step * (i + 1)), 360, times[i].color, center.x, true)

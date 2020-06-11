@@ -42,8 +42,6 @@ static func world_to_map(position: Vector2) -> Vector2:
 
 	var diff_y_centered : int = OFFSET.y - abs(diff_y - OFFSET.y)
 
-	print(diff_x, " < ", diff_y_centered / 2)
-
 	if diff_x <= diff_y_centered / 2:
 		position.x -= OFFSET.x
 
