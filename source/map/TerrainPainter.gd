@@ -34,6 +34,15 @@ class FlagsArray:
 const DIRECTIONS = [  "n", "ne", "se", "s", "sw", "nw"]
 const DIRECTIONS_TOP_BOTTOM = ["n", "nw", "ne", "sw", "se", "s"]
 
+const TOWER_OFFSETS = [
+	[ Vector2(-18, -36), Vector2(18, -36) ],
+	[ Vector2(-18, -36), Vector2(-36, 0) ],
+	[ Vector2(18, -36), Vector2(36, 0) ],
+	[ Vector2(-36, 0), Vector2(-18, 36) ],
+	[ Vector2(36, 0), Vector2(18, 36) ],
+	[ Vector2(-18, 36), Vector2(18, 36) ],
+]
+
 var RNG = RandomNumberGenerator.new()
 
 var locations := {}
@@ -50,7 +59,7 @@ func _draw() -> void:
 
 	for cell in locations:
 		var loc : Location = locations[cell]
-		_set_location_castle_segments(loc)
+		_set_location_castle(loc)
 
 
 func _set_location_base(loc: Location) -> void:
@@ -123,12 +132,14 @@ func _set_location_transition(loc: Location) -> void:
 		direction += 1
 
 
-func _set_location_castle_segments(loc: Location) -> void:
+func _set_location_castle(loc: Location) -> void:
 
-	if not Data.wall_segments.has(loc.terrain.get_base_code()):
+	if not Data.wall_towers.has(loc.terrain.get_base_code()):
 		return
 
-	var data : Dictionary = Data.wall_segments[loc.terrain.get_base_code()]
+	var segment_data : Dictionary = Data.wall_segments[loc.terrain.get_base_code()]
+
+	var tower_graphic : CastleWallTowerGraphicData = Data.wall_towers[loc.terrain.get_base_code()]
 
 	var direction := 0
 
@@ -138,8 +149,14 @@ func _set_location_castle_segments(loc: Location) -> void:
 			direction += 1
 			continue
 
-		var graphic : CastleWallSegmentGraphicData = data[DIRECTIONS_TOP_BOTTOM[direction]]
-		draw_texture(graphic.texture, n_loc.position - Hex.OFFSET + graphic.offset)
+		var segment_graphic : CastleWallSegmentGraphicData = segment_data[DIRECTIONS_TOP_BOTTOM[direction]]
+
+		draw_texture(tower_graphic.texture, loc.position + TOWER_OFFSETS[direction][0] + tower_graphic.offset)
+
+		draw_texture(segment_graphic.texture, n_loc.position - Hex.OFFSET + segment_graphic.offset)
+
+		draw_texture(tower_graphic.texture, loc.position + TOWER_OFFSETS[direction][1] + tower_graphic.offset)
+
 		direction += 1
 
 

@@ -31,9 +31,11 @@ func _load() -> void:
 
 	new_transition("Ww", ["Ds"], [], "water/animated")
 
+	new_castle_wall_tower("Ch", [], [], "castle/castle-tower", Vector2(-10, -34))
+
 	new_castle_wall_segment("Ch", [], [], "castle/castle", "n", Vector2(26, 59))
-	new_castle_wall_segment("Ch", [], [], "castle/castle", "ne", Vector2(-7, 20))
+	new_castle_wall_segment("Ch", [], [], "castle/castle", "ne", Vector2(-2, 25))
 	new_castle_wall_segment("Ch", [], [], "castle/castle", "se", Vector2(-12, -3))
-	new_castle_wall_segment("Ch", [], [], "castle/castle", "s", Vector2(27, -4))
-	new_castle_wall_segment("Ch", [], [], "castle/castle", "sw", Vector2(54, -7))
-	new_castle_wall_segment("Ch", [], [], "castle/castle", "nw", Vector2(46, 20))
+	new_castle_wall_segment("Ch", [], [], "castle/castle", "s", Vector2(29, -16))
+	new_castle_wall_segment("Ch", [], [], "castle/castle", "sw", Vector2(54, -16))
+	new_castle_wall_segment("Ch", [], [], "castle/castle", "nw", Vector2(40, 25))

@@ -9,12 +9,14 @@ var images := {}
 var terrains := {}
 var transitions := {}
 var wall_segments := {}
+var wall_towers := {}
 
 var terrain_builder := TerrainBuilder.new()
 var transition_graphic_builder := TerrainTransitionGraphicBuilder.new()
 var terrain_graphic_builder := TerrainGraphicBuilder.new()
-var wall_segment_builder := CastleWallSegmentGraphicBuilder.new()
 
+var wall_segment_builder := CastleWallSegmentGraphicBuilder.new()
+var wall_tower_builder := CastleWallTowerGraphicBuilder.new()
 
 func load_terrain() -> void:
 	_load()
@@ -157,6 +159,7 @@ func new_castle_wall_segment(code, include: Array, exclude: Array, image_stem: S
 
 	var segment := wall_segment_builder\
 		.new_graphic()\
+		.with_code(code)\
 		.with_texture(images[image_stem + "-" + flag])\
 		.with_offset(offset)\
 		.build()
@@ -165,6 +168,18 @@ func new_castle_wall_segment(code, include: Array, exclude: Array, image_stem: S
 		wall_segments[code] = {}
 
 	wall_segments[code][flag] = segment
+
+
+func new_castle_wall_tower(code, include: Array, exclude: Array, image_stem: String, offset := Vector2()) -> void:
+
+	var tower := wall_tower_builder\
+		.new_graphic()\
+		.with_code(code)\
+		.with_texture(images[image_stem])\
+		.with_offset(offset)\
+		.build()
+
+	wall_towers[code] = tower
 
 
 func _load_base_variations(image_stem: String) -> Array:

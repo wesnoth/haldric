@@ -5,6 +5,7 @@ var DefaultAmla : Advancement = preload("res://data/advancements/Default.tscn").
 var terrains := {}
 var transitions := {}
 var wall_segments := {}
+var wall_towers := {}
 
 var races := {}
 var units := {}
@@ -39,11 +40,13 @@ func _load_terrain() -> void:
 	terrains = terrain_script.terrains
 	transitions = terrain_script.transitions
 	wall_segments = terrain_script.wall_segments
+	wall_towers = terrain_script.wall_towers
 
 	print("Data:")
 	print(terrains)
 	print(transitions)
 	print(wall_segments)
+	print(wall_towers)
 
 
 func _load_races() -> void:

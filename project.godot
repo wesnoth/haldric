@@ -74,6 +74,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/data/CastleWallSegmentGraphicData.gd"
 }, {
+"base": "Reference",
+"class": "CastleWallTowerGraphicBuilder",
+"language": "GDScript",
+"path": "res://source/builder/CastleWallTowerGraphicBuilder.gd"
+}, {
+"base": "Reference",
+"class": "CastleWallTowerGraphicData",
+"language": "GDScript",
+"path": "res://source/data/CastleWallTowerGraphicData.gd"
+}, {
 "base": "Node",
 "class": "Combat",
 "language": "GDScript",
@@ -463,6 +473,8 @@ _global_script_class_icons={
 "Attribute": "",
 "CastleWallSegmentGraphicBuilder": "",
 "CastleWallSegmentGraphicData": "",
+"CastleWallTowerGraphicBuilder": "",
+"CastleWallTowerGraphicData": "",
 "Combat": "",
 "CombatAttackInfo": "",
 "CombatContext": "",

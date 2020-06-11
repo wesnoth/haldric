@@ -12,7 +12,7 @@ func with_code(code: String) -> CastleWallSegmentGraphicBuilder:
 	graphic.code = code
 	return self
 
-	
+
 func with_texture(texture: Texture) -> CastleWallSegmentGraphicBuilder:
 	graphic.texture = texture
 	return self
