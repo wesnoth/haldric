@@ -12,7 +12,7 @@ var locations := {}
 var width := 0
 var height := 0
 
-onready var terrain_painter := $TerrainPainter
+onready var terrain_painter := $TerrainPainter as TerrainPainter
 
 
 static func instance() -> Map:
@@ -20,6 +20,9 @@ static func instance() -> Map:
 
 
 func _ready() -> void:
+	terrain_painter.initialize(width, height)
+	Hash.initialize(width, height)
+
 	_build_map()
 	_build_grid()
 	_build_castles()
@@ -31,7 +34,7 @@ func initialize(_map_data: MapData) -> void:
 	width = map_data.width
 	height = map_data.height
 
-	Hash.initialize(width, height)
+
 
 func get_location_from_cell(cell: Vector2) -> Location:
 
@@ -171,6 +174,14 @@ func find_reachable_cells(loc: Location, unit: Unit, reachable := {}, distance :
 	return reachable
 
 
+func set_location_terrain(loc: Location, code: Array) -> void:
+	loc.set_terrain(code)
+	terrain_painter.change_location_graphics(loc)
+
+	for n_loc in get_locations_in_range(loc.cell, 1):
+		terrain_painter.change_location_graphics(n_loc)
+
+
 func update_grid_weight(unit: Unit) -> void:
 	Debug.clear_strings()
 
@@ -235,7 +246,6 @@ func _build_map():
 			data.append(Data.terrains[c])
 
 		_set_cell_location(cell, code)
-
 	for cell in locations.keys():
 		var loc : Location = locations[cell]
 		loc.id = cell.y * map_data.width + cell.x
@@ -248,6 +258,8 @@ func _build_map():
 				loc.add_neighbor(n_loc, direction)
 				# Debug.draw_line(loc.position, (loc.position + n_loc.position) / 2, Color(1.0 - (float(direction) / 6.0), 0, 0))
 			direction += 1
+
+		terrain_painter.change_location_graphics(loc)
 
 	refresh()
 

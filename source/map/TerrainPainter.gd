@@ -5,6 +5,23 @@ class_name TerrainPainter
 class FlagsArray:
 	var content := []
 
+	func _init(loc: Location) -> void:
+		var last_code := ""
+		var direction := 0
+		for n_loc in loc.get_all_neighbors():
+			if not n_loc:
+				create("")
+				last_code = ""
+				direction += 1
+				continue
+			var n_code = n_loc.terrain.get_base_code()
+			if n_code != last_code:
+				create(DIRECTIONS[direction])
+			else:
+				add(DIRECTIONS[direction])
+			last_code = n_code
+			direction += 1
+
 	func add(flag: String) -> void:
 		content[-1].append(flag)
 
@@ -43,35 +60,83 @@ const TOWER_OFFSETS = [
 	[ Vector2(-18, 36), Vector2(18, 36) ],
 ]
 
+var _width := 0
+var _height := 0
+
 var locations := {}
+var texture_data := {}
+
+
+func initialize(width: int, height: int) -> void:
+	_width = width
+	_height = height
+	clear()
+
+
+func clear() -> void:
+	for y in _height:
+		for x in _width:
+
+			texture_data[Vector2(x, y)] = {
+				"terrains": [],
+				"transitions": [],
+				"overlays": [],
+				"castles": [],
+			}
+
+
+func change_location_graphics(loc: Location) -> void:
+	_set_location_base(loc)
+	_set_location_transition(loc)
+	_set_location_overlay(loc)
+	_set_location_castle(loc)
+
 
 func _draw() -> void:
 
-	for cell in locations:
-		var loc : Location = locations[cell]
-		_set_location_base(loc)
-		_set_location_transition(loc)
-		_set_location_overlay(loc)
+	for y in _height:
+		for x in _width:
+			var cell = Vector2(x, y)
 
-	for cell in locations:
-		var loc : Location = locations[cell]
-		_set_location_castle(loc)
+			for entry in texture_data[cell].terrains:
+				draw_texture(entry.texture, entry.position)
+
+			for entry in texture_data[cell].transitions:
+				draw_texture(entry.texture, entry.position)
+
+			for entry in texture_data[cell].overlays:
+				draw_texture(entry.texture, entry.position)
+
+	for y in _height:
+		for x in _width:
+			var cell = Vector2(x, y)
+
+			for entry in texture_data[cell].castles:
+				draw_texture(entry.texture, entry.position)
 
 
 func _set_location_base(loc: Location) -> void:
+	texture_data[loc.cell].terrains.clear()
 
 	var data : TerrainData = Data.terrains[loc.terrain.get_base_code()]
 
 	if not data.graphic.variations:
-		draw_texture(data.graphic.texture, loc.position - Hex.OFFSET + data.graphic.offset)
+		texture_data[loc.cell].terrains.append({
+			"texture": data.graphic.texture,
+			"position": loc.position - Hex.OFFSET + data.graphic.offset
+		})
 		return
 
 	var variations = data.graphic.get_textures()
 
-	draw_texture(variations[Hash.rand[loc.cell].ai % variations.size()], loc.position - Hex.OFFSET + data.graphic.offset)
+	texture_data[loc.cell].terrains.append({
+		"texture": variations[Hash.rand[loc.cell].ai % variations.size()],
+		"position": loc.position - Hex.OFFSET + data.graphic.offset
+	})
 
 
 func _set_location_overlay(loc: Location) -> void:
+	texture_data[loc.cell].overlays.clear()
 
 	if not Data.terrains.has(loc.terrain.get_overlay_code()):
 		return
@@ -79,22 +144,28 @@ func _set_location_overlay(loc: Location) -> void:
 	var data : TerrainData = Data.terrains[loc.terrain.get_overlay_code()]
 
 	if not data.graphic.variations:
-		draw_texture(data.graphic.texture, loc.position - Hex.OFFSET + data.graphic.offset)
+		texture_data[loc.cell].overlays.append({
+			"texture": data.graphic.texture,
+			"position": loc.position - Hex.OFFSET + data.graphic.offset
+		})
 		return
 
 	var variations = data.graphic.get_textures()
 
-	draw_texture(variations[Hash.rand[loc.cell].ai % variations.size()], loc.position - Hex.OFFSET + data.graphic.offset)
+	texture_data[loc.cell].overlays.append({
+		"texture": variations[Hash.rand[loc.cell].ai % variations.size()],
+		"position": loc.position - Hex.OFFSET + data.graphic.offset
+	})
 
 
 func _set_location_transition(loc: Location) -> void:
+	texture_data[loc.cell].transitions.clear()
+
 	var code = loc.terrain.get_base_code()
 
 	var direction := 0
 
-	var flags_array = _get_flags_array(loc)
-
-	# print(flags_array.to_string())
+	var flags_array = FlagsArray.new(loc)
 
 	for n_loc in loc.get_all_neighbors():
 
@@ -121,12 +192,16 @@ func _set_location_transition(loc: Location) -> void:
 				if not n_graphic.textures.has(transition_name):
 					continue
 
-				draw_texture(n_graphic.textures[transition_name], loc.position - Hex.OFFSET)
+				texture_data[loc.cell].transitions.append({
+					"texture": n_graphic.textures[transition_name],
+					"position": loc.position - Hex.OFFSET
+				})
 
 		direction += 1
 
 
 func _set_location_castle(loc: Location) -> void:
+	texture_data[loc.cell].castles.clear()
 
 	var code = loc.terrain.get_base_code()
 
@@ -154,40 +229,21 @@ func _set_location_castle(loc: Location) -> void:
 		var segment_graphic : CastleWallSegmentGraphicData = segment_data[DIRECTIONS_TOP_BOTTOM[direction]]
 
 		if segment_graphic.allow_drawing(n_code) and direction < 5:
-			draw_texture(tower_graphic.texture, loc.position + TOWER_OFFSETS[direction][0] + tower_graphic.offset)
+			texture_data[loc.cell].castles.append({
+				"texture": tower_graphic.texture,
+				"position": loc.position + TOWER_OFFSETS[direction][0] + tower_graphic.offset
+			})
 
 		if tower_graphic.allow_drawing(n_code):
-			draw_texture(segment_graphic.texture, n_loc.position - Hex.OFFSET + segment_graphic.offset)
+			texture_data[loc.cell].castles.append({
+				"texture": segment_graphic.texture,
+				"position": n_loc.position - Hex.OFFSET + segment_graphic.offset
+			})
 
 		if segment_graphic.allow_drawing(n_code) and direction > 0:
-			draw_texture(tower_graphic.texture, loc.position + TOWER_OFFSETS[direction][1] + tower_graphic.offset)
+			texture_data[loc.cell].castles.append({
+				"texture": tower_graphic.texture,
+				"position": loc.position + TOWER_OFFSETS[direction][1] + tower_graphic.offset
+			})
 
 		direction += 1
-
-
-func _get_flags_array(loc: Location) -> FlagsArray:
-	var flags := FlagsArray.new()
-
-	var last_code := ""
-	var direction := 0
-
-	for n_loc in loc.get_all_neighbors():
-
-		if not n_loc:
-			flags.create("")
-			last_code = ""
-			direction += 1
-			continue
-
-		var n_code = n_loc.terrain.get_base_code()
-
-		if n_code != last_code:
-			flags.create(DIRECTIONS[direction])
-		else:
-			flags.add(DIRECTIONS[direction])
-
-		last_code = n_code
-
-		direction += 1
-
-	return flags

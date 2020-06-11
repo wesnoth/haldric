@@ -66,12 +66,11 @@ func edit_location(loc: Location) -> void:
 	else:
 		if active_terrain:
 			var code = [active_terrain]
-			loc.set_terrain(code)
+			map.set_location_terrain(loc, code)
 
 		if active_overlay:
 			var code = [ loc.terrain.get_base_code(), active_overlay ]
-			loc.set_terrain(code)
-
+			map.set_location_terrain(loc, code)
 
 func set_player(loc: Location):
 	players[active_player] = loc.cell
@@ -79,8 +78,6 @@ func set_player(loc: Location):
 
 
 func _on_location_hovered(loc: Location) -> void:
-	print(loc.cell)
-
 	hovered_location = loc
 	get_tree().call_group("Selector", "update_info", hovered_location)
 
