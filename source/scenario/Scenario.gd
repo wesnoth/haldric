@@ -374,7 +374,7 @@ func _grab_village(loc: Location) -> void:
 
 	if loc.side_number >= 0:
 		var last_side : Side = get_side(loc.side_number)
-		last_side.remove_town(loc)
+		last_side.remove_village(loc)
 
 	side.add_village(loc)
 	loc.unit.moves.value = 0
@@ -392,7 +392,7 @@ func _grab_castle(loc: Location) -> void:
 
 	if loc.side_number >= 0:
 		var last_side : Side = get_side(loc.side_number)
-		last_side.remove_town(loc)
+		last_side.remove_village(loc)
 
 	side.add_castle(loc)
 
