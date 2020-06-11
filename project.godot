@@ -566,6 +566,7 @@ Command="*res://source/global/Command.gd"
 Console="*res://source/global/Console.tscn"
 Scene="*res://addons/scene_manager/source/Scene.tscn"
 Global="*res://source/global/Global.gd"
+Hash="*res://source/global/Hash.gd"
 
 [display]
 

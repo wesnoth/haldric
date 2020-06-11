@@ -43,13 +43,9 @@ const TOWER_OFFSETS = [
 	[ Vector2(-18, 36), Vector2(18, 36) ],
 ]
 
-var RNG = RandomNumberGenerator.new()
-
 var locations := {}
 
 func _draw() -> void:
-	RNG = RandomNumberGenerator.new()
-	RNG.seed = 10
 
 	for cell in locations:
 		var loc : Location = locations[cell]
@@ -72,7 +68,7 @@ func _set_location_base(loc: Location) -> void:
 
 	var variations = data.graphic.get_textures()
 
-	draw_texture(variations[RNG.randi() % variations.size()], loc.position - Hex.OFFSET + data.graphic.offset)
+	draw_texture(variations[Hash.rand[loc.cell].ai % variations.size()], loc.position - Hex.OFFSET + data.graphic.offset)
 
 
 func _set_location_overlay(loc: Location) -> void:
@@ -88,7 +84,7 @@ func _set_location_overlay(loc: Location) -> void:
 
 	var variations = data.graphic.get_textures()
 
-	draw_texture(variations[RNG.randi() % variations.size()], loc.position - Hex.OFFSET + data.graphic.offset)
+	draw_texture(variations[Hash.rand[loc.cell].ai % variations.size()], loc.position - Hex.OFFSET + data.graphic.offset)
 
 
 func _set_location_transition(loc: Location) -> void:

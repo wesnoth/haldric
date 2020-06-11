@@ -27,9 +27,11 @@ func _ready() -> void:
 
 func initialize(_map_data: MapData) -> void:
 	map_data = _map_data
+
 	width = map_data.width
 	height = map_data.height
 
+	Hash.initialize(width, height)
 
 func get_location_from_cell(cell: Vector2) -> Location:
 
