@@ -118,10 +118,8 @@ func _set_location_transition(loc: Location) -> void:
 
 			var n_graphic : TerrainTransitionGraphicData = g
 
-			if n_graphic.exclude.has(code):
-				continue
+			if n_graphic.allow_drawing(code):
 
-			elif not n_graphic.include or n_graphic.include.has(code):
 				var transition_name = "-" + DIRECTIONS[direction]
 
 				if not n_graphic.textures.has(transition_name):
@@ -134,28 +132,39 @@ func _set_location_transition(loc: Location) -> void:
 
 func _set_location_castle(loc: Location) -> void:
 
-	if not Data.wall_towers.has(loc.terrain.get_base_code()):
+	var code = loc.terrain.get_base_code()
+
+	if not Data.wall_towers.has(code):
 		return
 
-	var segment_data : Dictionary = Data.wall_segments[loc.terrain.get_base_code()]
-
-	var tower_graphic : CastleWallTowerGraphicData = Data.wall_towers[loc.terrain.get_base_code()]
+	var segment_data : Dictionary = Data.wall_segments[code]
+	var tower_graphic : CastleWallTowerGraphicData = Data.wall_towers[code]
 
 	var direction := 0
+	var last_code := ""
 
 	for n_loc in loc.get_all_neighbors_top_bottom():
 
-		if loc.terrain.get_base_code() == n_loc.terrain.get_base_code():
+		if not n_loc:
+			direction += 1
+			continue
+
+		var n_code = n_loc.terrain.get_base_code()
+
+		if code == n_code:
 			direction += 1
 			continue
 
 		var segment_graphic : CastleWallSegmentGraphicData = segment_data[DIRECTIONS_TOP_BOTTOM[direction]]
 
-		draw_texture(tower_graphic.texture, loc.position + TOWER_OFFSETS[direction][0] + tower_graphic.offset)
+		if segment_graphic.allow_drawing(n_code) and direction < 5:
+			draw_texture(tower_graphic.texture, loc.position + TOWER_OFFSETS[direction][0] + tower_graphic.offset)
 
-		draw_texture(segment_graphic.texture, n_loc.position - Hex.OFFSET + segment_graphic.offset)
+		if tower_graphic.allow_drawing(n_code):
+			draw_texture(segment_graphic.texture, n_loc.position - Hex.OFFSET + segment_graphic.offset)
 
-		draw_texture(tower_graphic.texture, loc.position + TOWER_OFFSETS[direction][1] + tower_graphic.offset)
+		if segment_graphic.allow_drawing(n_code) and direction > 0:
+			draw_texture(tower_graphic.texture, loc.position + TOWER_OFFSETS[direction][1] + tower_graphic.offset)
 
 		direction += 1
 

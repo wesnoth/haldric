@@ -162,6 +162,8 @@ func new_castle_wall_segment(code, include: Array, exclude: Array, image_stem: S
 		.with_code(code)\
 		.with_texture(images[image_stem + "-" + flag])\
 		.with_offset(offset)\
+		.include(include)\
+		.exclude(exclude)\
 		.build()
 
 	if not wall_segments.has(code):
@@ -177,6 +179,8 @@ func new_castle_wall_tower(code, include: Array, exclude: Array, image_stem: Str
 		.with_code(code)\
 		.with_texture(images[image_stem])\
 		.with_offset(offset)\
+		.include(include)\
+		.exclude(exclude)\
 		.build()
 
 	wall_towers[code] = tower

@@ -23,5 +23,15 @@ func with_offset(offset: Vector2) -> CastleWallSegmentGraphicBuilder:
 	return self
 
 
+func include(include: Array) -> CastleWallSegmentGraphicBuilder:
+	graphic.include = include
+	return self
+
+
+func exclude(exclude: Array) -> CastleWallSegmentGraphicBuilder:
+	graphic.exclude = exclude
+	return self
+
+
 func build() -> CastleWallSegmentGraphicData:
 	return graphic
