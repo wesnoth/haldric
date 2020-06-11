@@ -64,6 +64,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/Attribute.gd"
 }, {
+"base": "Reference",
+"class": "CastleWallSegmentGraphicBuilder",
+"language": "GDScript",
+"path": "res://source/builder/CastleWallSegmentGraphicBuilder.gd"
+}, {
+"base": "Reference",
+"class": "CastleWallSegmentGraphicData",
+"language": "GDScript",
+"path": "res://source/data/CastleWallSegmentGraphicData.gd"
+}, {
 "base": "Node",
 "class": "Combat",
 "language": "GDScript",
@@ -451,6 +461,8 @@ _global_script_class_icons={
 "AdvancementDialogue": "",
 "Attack": "",
 "Attribute": "",
+"CastleWallSegmentGraphicBuilder": "",
+"CastleWallSegmentGraphicData": "",
 "Combat": "",
 "CombatAttackInfo": "",
 "CombatContext": "",

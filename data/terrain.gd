@@ -16,17 +16,24 @@ func _load() -> void:
 
 	new_keep("Keep", "Kh", "castle", "keep-tile")
 
-	new_castle("Castle", "Ch", "castle", "castle-tile")
+	new_castle("Castle", "Ch", "castle", "flat/road-clean")
 
-	new_transition("Gg", [], ["Ww", "Ds"], "grass/green")
+	new_transition("Gg", [], ["Ww", "Ds", "Ch"], "grass/green")
 	new_transition("Gg", ["Ds"], [], "grass/green-medium")
 	new_transition(["Gg", "Hh"], ["Ww"], [], "flat/bank")
 	new_transition("Gg", ["Ww"], [], "cave/bank")
 	new_transition("Gg", ["Ww"], [], "grass/green-abrupt")
 
-	new_transition("Mm", [], [], "mountains/basic")
+	new_transition("Mm", [], ["Ch"], "mountains/basic")
 
-	new_transition("Hh", [], ["Ww"], "hills/regular")
+	new_transition("Hh", [], ["Ww","Ch"], "hills/regular")
 	new_transition("Hh", ["Ww"], [], "hills/regular-to-water")
 
 	new_transition("Ww", ["Ds"], [], "water/animated")
+
+	new_castle_wall_segment("Ch", [], [], "castle/castle", "n", Vector2(26, 59))
+	new_castle_wall_segment("Ch", [], [], "castle/castle", "ne", Vector2(-7, 20))
+	new_castle_wall_segment("Ch", [], [], "castle/castle", "se", Vector2(-12, -3))
+	new_castle_wall_segment("Ch", [], [], "castle/castle", "s", Vector2(27, -4))
+	new_castle_wall_segment("Ch", [], [], "castle/castle", "sw", Vector2(54, -7))
+	new_castle_wall_segment("Ch", [], [], "castle/castle", "nw", Vector2(46, 20))

@@ -69,6 +69,10 @@ func get_all_neighbors() -> Array:
 	return _neighbors
 
 
+func get_all_neighbors_top_bottom() -> Array:
+	return [_neighbors[0], _neighbors[-1], _neighbors[1], _neighbors[-2], _neighbors[2], _neighbors[3]]
+
+
 func duplicate(subresources := false) -> Resource:
 	var res = .duplicate(subresources)
 	res.id = id

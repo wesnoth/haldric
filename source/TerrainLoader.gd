@@ -8,10 +8,12 @@ var images := {}
 
 var terrains := {}
 var transitions := {}
+var wall_segments := {}
 
 var terrain_builder := TerrainBuilder.new()
 var transition_graphic_builder := TerrainTransitionGraphicBuilder.new()
 var terrain_graphic_builder := TerrainGraphicBuilder.new()
+var wall_segment_builder := CastleWallSegmentGraphicBuilder.new()
 
 
 func load_terrain() -> void:
@@ -148,6 +150,21 @@ func new_transition(code, include: Array, exclude: Array, image_stem: String) ->
 			if not transitions.has(c):
 				transitions[c] = []
 			transitions[c].append(transition)
+
+
+
+func new_castle_wall_segment(code, include: Array, exclude: Array, image_stem: String, flag: String, offset := Vector2()) -> void:
+
+	var segment := wall_segment_builder\
+		.new_graphic()\
+		.with_texture(images[image_stem + "-" + flag])\
+		.with_offset(offset)\
+		.build()
+
+	if not wall_segments.has(code):
+		wall_segments[code] = {}
+
+	wall_segments[code][flag] = segment
 
 
 func _load_base_variations(image_stem: String) -> Array:
