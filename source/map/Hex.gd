@@ -79,7 +79,7 @@ static func get_cells_in_range(cell: Vector2, radius: int, rect: Rect2) -> PoolV
 
 	cells.append(cell)
 
-	if radius == 1:
+	if radius == 0:
 		return cells
 
 	var cubes = _get_cubes_in_range(quad2cube(cell), radius)
