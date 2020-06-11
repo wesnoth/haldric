@@ -9,7 +9,10 @@ var grid : Grid = null
 
 var locations := {}
 
-onready var overlay := $Overlay
+var width := 0
+var height := 0
+
+onready var terrain_painter := $TerrainPainter
 
 
 static func instance() -> Map:
@@ -17,15 +20,15 @@ static func instance() -> Map:
 
 
 func _ready() -> void:
-	set_tile_set(TileSetBuilder.build(Data.terrains))
 	_build_map()
 	_build_grid()
 	_build_castles()
-	print(locations.size(), "?", map_data.data.size())
 
 
 func initialize(_map_data: MapData) -> void:
 	map_data = _map_data
+	width = map_data.width
+	height = map_data.height
 
 
 func get_location_from_cell(cell: Vector2) -> Location:
@@ -37,7 +40,7 @@ func get_location_from_cell(cell: Vector2) -> Location:
 
 
 func get_location_from_world(world_position: Vector2) -> Location:
-	var cell = world_to_map(world_position)
+	var cell = Hex.world_to_map(world_position)
 
 	if not locations.has(cell):
 		return null
@@ -45,18 +48,9 @@ func get_location_from_world(world_position: Vector2) -> Location:
 	return locations[cell]
 
 
-func set_tile_set(tile_set: TileSet) -> void:
-	self.tile_set = tile_set
-	overlay.tile_set = tile_set
-
-
 func refresh() -> void:
-	clear()
-	overlay.clear()
-
-	for cell in locations:
-		var loc : Location = locations[cell]
-		_set_cell_terrain(cell, loc.terrain.code)
+	terrain_painter.locations = locations
+	terrain_painter.update()
 
 
 func find_path(start_loc: Location, end_loc: Location) -> Dictionary:
@@ -190,13 +184,15 @@ func update_grid_weight(unit: Unit) -> void:
 	print("updated grid weight")
 
 
+func get_used_rect() -> Rect2:
+	return Rect2(Vector2(0, 0), Vector2(width, height))
+
+
 func get_map_data() -> MapData:
 	var _map_data := MapData.new()
 
-	var size := get_used_rect().size
-
-	_map_data.width = size.x
-	_map_data.height = size.y
+	_map_data.width = width
+	_map_data.height = height
 
 	for cell in locations.keys():
 		var loc: Location = locations[cell]
@@ -227,7 +223,7 @@ func _build_map():
 		for c in code:
 			data.append(Data.terrains[c])
 
-		_set_cell_location(cell, data)
+		_set_cell_location(cell, code)
 
 	for cell in locations.keys():
 		var loc : Location = locations[cell]
@@ -239,10 +235,11 @@ func _build_map():
 
 			if n_loc:
 				loc.add_neighbor(n_loc, direction)
-
+				# Debug.draw_line(loc.position, (loc.position + n_loc.position) / 2, Color(1.0 - (float(direction) / 6.0), 0, 0))
 			direction += 1
 
 	refresh()
+
 
 func _build_grid() -> void:
 	grid = Grid.new(locations.keys(), get_used_rect())
@@ -279,23 +276,14 @@ func _find_connected_castle_locations(keep: Location) -> Array:
 	return castle
 
 
-func _set_cell_location(cell: Vector2, terrain_data: Array) -> void:
+func _set_cell_location(cell: Vector2, code: Array) -> void:
 	var loc = Location.new()
-	var terrain = Terrain.new(terrain_data)
+	loc.set_terrain(code)
 
 	loc.cell = cell
-	loc.position = map_to_world_centered(cell)
-	loc.terrain = terrain
+	loc.position = Hex.map_to_world_centered(cell)
 
 	locations[cell] = loc;
-
-
-func _set_cell_terrain(cell: Vector2, code: Array) -> void:
-
-	set_cellv(cell, tile_set.find_tile_by_name(code[0]))
-
-	if code.size() == 2:
-		overlay.set_cellv(cell, tile_set.find_tile_by_name(code[1]))
 
 
 func _on_Map_cell_hovered(cell) -> void:

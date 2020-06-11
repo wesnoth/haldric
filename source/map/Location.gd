@@ -20,6 +20,15 @@ func _init() -> void:
 	_neighbors.resize(6)
 
 
+func set_terrain(code: Array) -> void:
+	var data := []
+
+	for c in code:
+		data.append(Data.terrains[c])
+
+	terrain = Terrain.new(data)
+
+
 func set_code(code: Array) -> void:
 	terrain.code = code
 
@@ -58,6 +67,10 @@ func get_neighbors() -> Array:
 
 func get_all_neighbors() -> Array:
 	return _neighbors
+
+
+func get_all_neighbors_top_bottom() -> Array:
+	return [_neighbors[0], _neighbors[-1], _neighbors[1], _neighbors[-2], _neighbors[2], _neighbors[3]]
 
 
 func duplicate(subresources := false) -> Resource:
