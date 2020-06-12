@@ -33,9 +33,9 @@ func _load() -> void:
 
 	new_castle_wall_tower("Ch", [], ["Kh"], "castle/castle-tower", Vector2(-10, -34))
 
-	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "n", Vector2(26, 59))
-	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "ne", Vector2(-2, 25))
-	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "se", Vector2(-12, -3))
-	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "s", Vector2(29, -16))
-	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "sw", Vector2(54, -16))
-	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "nw", Vector2(40, 25))
+	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "n", Vector2(26, 57))
+	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "ne", Vector2(-3, 26))
+	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "se", Vector2(-14, -8))
+	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "s", Vector2(26, -15))
+	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "sw", Vector2(52, -10))
+	new_castle_wall_segment("Ch", [], ["Kh"], "castle/castle", "nw", Vector2(39, 27))
