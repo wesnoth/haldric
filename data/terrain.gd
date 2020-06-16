@@ -26,7 +26,7 @@ func _load() -> void:
 	new_transition("Gg", ["Ww", "Ai"], [], "cave/bank")
 	new_transition("Gg", ["Ww", "Ai"], [], "grass/green-abrupt")
 	
-	new_transition(["Ai"], ["Ww"], [], "frozen/ice")
+	new_transition(["Ai"], ["Ww", "Ds"], [], "frozen/ice")
 	
 	new_transition("Aa", [], ["Ww"], "frozen/snow")
 	new_transition("Aa", ["Ww"], [], "frozen/snow-to-water")
