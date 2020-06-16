@@ -7,7 +7,9 @@ func _load() -> void:
 	new_base("Water", "Ww", -100, "water", "water/animated")
 	new_base("Grass", "Gg", -20, "flat", "grass/green")
 	new_base("Hills", "Hh", 100, "hills", "hills/regular")
-
+	new_base("Ice", "Ai", -50, "frozen", "frozen/ice")
+	new_base("Snow", "Aa", -40, "frozen", "frozen/snow")
+	
 	new_base("Mountains", "Mm", 200, "mountains", "mountains/basic", Vector2(-56, -68))
 
 	new_overlay("Forest", "^F", "forest", "forest", Vector2(-36, -36))
@@ -23,11 +25,18 @@ func _load() -> void:
 	new_transition(["Gg", "Hh"], ["Ww"], [], "flat/bank")
 	new_transition("Gg", ["Ww"], [], "cave/bank")
 	new_transition("Gg", ["Ww"], [], "grass/green-abrupt")
-
+	
+	new_transition(["Ai"], ["Ww"], [], "frozen/ice")
+	
+	new_transition("Aa", [], ["Ww"], "frozen/snow")
+	new_transition("Aa", ["Ww"], [], "frozen/snow-to-water")
+	
+	new_transition(["Ai", "Aa"], ["Ww"], [], "frozen/ice-to-water")
+	
 	new_transition("Mm", [], ["Ch"], "mountains/basic")
 
 	new_transition("Hh", [], ["Ww","Ch"], "hills/regular")
-	new_transition("Hh", ["Ww"], [], "hills/regular-to-water")
+	new_transition(["Hh", "Mm"], ["Ww"], [], "hills/regular-to-water")
 
 	new_transition("Ww", ["Ds"], [], "water/animated")
 
