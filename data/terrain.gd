@@ -22,7 +22,7 @@ func _load() -> void:
 
 	new_transition("Gg", [], ["Ww", "Ds", "Ch"], "grass/green")
 	new_transition("Gg", ["Ds"], [], "grass/green-medium")
-	new_transition(["Gg", "Hh"], ["Ww"], [], "flat/bank")
+	new_transition(["Gg", "Hh", "Mm"], ["Ww"], [], "flat/bank")
 	new_transition("Gg", ["Ww", "Ai"], [], "cave/bank")
 	new_transition("Gg", ["Ww", "Ai"], [], "grass/green-abrupt")
 	
@@ -33,7 +33,7 @@ func _load() -> void:
 	
 	new_transition(["Ai", "Aa"], ["Ww"], [], "frozen/ice-to-water")
 	
-	new_transition("Mm", [], ["Ch"], "mountains/basic")
+	new_transition("Mm", [], ["Ch", "Ww"], "mountains/basic")
 
 	new_transition("Hh", [], ["Ww","Ch"], "hills/regular")
 	new_transition(["Hh", "Mm"], ["Ww", "Ai"], [], "hills/regular-to-water")
