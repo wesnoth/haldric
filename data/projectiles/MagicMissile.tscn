@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://source/unit/attack/Projectile.gd" type="Script" id=2]
 [ext_resource path="res://graphics/images/projectiles/magic-missile/mage-halo1.png" type="Texture" id=3]
@@ -22,7 +22,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0, 0.263636 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.654545 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.618182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.272727 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=3]
 curve = SubResource( 2 )
@@ -42,10 +42,13 @@ colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 [sub_resource type="GradientTexture" id=6]
 gradient = SubResource( 5 )
 
-[sub_resource type="CurveTexture" id=7]
-curve = SubResource( 2 )
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0.345455 ), 0.0, 0.0, 0, 0, Vector2( 0.995169, 0.645455 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -55,7 +58,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 80.0
 damping = 100.0
-scale_curve = SubResource( 7 )
+scale_curve = SubResource( 8 )
 color_ramp = SubResource( 6 )
 
 [node name="MagicMissile" type="Node2D"]
@@ -85,5 +88,5 @@ amount = 20
 lifetime = 0.52
 explosiveness = 0.7
 local_coords = false
-process_material = SubResource( 8 )
+process_material = SubResource( 9 )
 texture = ExtResource( 3 )
