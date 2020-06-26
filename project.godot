@@ -379,6 +379,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/data/TerrainTransitionGraphicData.gd"
 }, {
+"base": "Resource",
+"class": "TerrainTypeIconData",
+"language": "GDScript",
+"path": "res://source/data/TerrainTypeIconData.gd"
+}, {
 "base": "Node",
 "class": "Time",
 "language": "GDScript",
@@ -534,6 +539,7 @@ _global_script_class_icons={
 "TerrainPainter": "",
 "TerrainTransitionGraphicBuilder": "",
 "TerrainTransitionGraphicData": "",
+"TerrainTypeIconData": "",
 "Time": "",
 "ToDWheel": "",
 "ToDWidget": "",
@@ -652,8 +658,8 @@ toggle_fullscreen={
 
 [rendering]
 
-quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
+quality/2d/gles2_use_nvidia_rect_flicker_workaround=true

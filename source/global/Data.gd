@@ -2,6 +2,8 @@ extends Node
 
 var DefaultAmla : Advancement = preload("res://data/advancements/Default.tscn").instance()
 
+var terrain_icons = preload("res://data/terrain_icons.tres")
+
 var terrains := {}
 var transitions := {}
 var wall_segments := {}

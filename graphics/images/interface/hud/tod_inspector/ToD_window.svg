@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 240 190" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-1600,-20)">
+        <g id="ToD_window">
+            <path id="BG" d="M1600,140C1600,73.726 1653.73,20 1720,20C1786.27,20 1840,73.726 1840,140L1840,210L1600,210L1600,140Z"/>
+            <path id="Border-outer" serif:id="Border outer" d="M1600,140C1600,73.726 1653.73,20 1720,20C1786.27,20 1840,73.726 1840,140L1840,210L1600,210L1600,140ZM1836,206L1836,140C1836,75.935 1784.07,24 1720,24C1655.93,24 1604,75.935 1604,140L1604,206L1836,206Z" style="fill:rgb(108,108,108);"/>
+            <path d="M1630,140L1628,140C1628,89.19 1669.19,48 1720,48C1770.81,48 1812,89.19 1812,140L1810,140C1810,90.328 1769.67,50 1720,50C1670.33,50 1630,90.328 1630,140L1630,140Z" style="fill:rgb(108,108,108);"/>
+            <rect x="1600" y="140" width="30" height="10" style="fill:rgb(108,108,108);"/>
+            <rect x="1810" y="140" width="30" height="10" style="fill:rgb(108,108,108);"/>
+            <g transform="matrix(1.5,0,0,1.53846,-680,-65.3847)">
+                <path d="M1680,140L1660,140L1642.67,149.75L1642.67,179L1680,179L1680,140Z" style="fill:rgb(108,108,108);"/>
+            </g>
+            <g transform="matrix(-1.5,0,0,1.53846,4120,-65.3847)">
+                <path d="M1680,140L1660,140L1642.67,149.75L1642.67,179L1680,179L1680,140Z" style="fill:rgb(108,108,108);"/>
+            </g>
+            <g transform="matrix(1,0,0,1,-245,5)">
+                <path d="M1875,150L1896.65,162.5L1896.65,187.5L1875,200L1853.35,187.5L1853.35,162.5L1875,150Z"/>
+            </g>
+            <g transform="matrix(1,0,0,1,-65,5)">
+                <path d="M1875,150L1896.65,162.5L1896.65,187.5L1875,200L1853.35,187.5L1853.35,162.5L1875,150Z"/>
+            </g>
+        </g>
+    </g>
+</svg>

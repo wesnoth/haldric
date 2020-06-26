@@ -23,7 +23,7 @@
 
 ### Note: 
 
-Haldric uses the latest stable build of the Godot Engine, currently that is 3.2.1
+Haldric uses the latest stable build of the Godot Engine, currently that is 3.2.2
 
 The Tutorials are for different 3.X versions. While there are a few differences in the API, the general concept has not changed.
 
