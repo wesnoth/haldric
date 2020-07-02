@@ -30,11 +30,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_released("LMB"):
 		_handle_location_selection(hovered_location)
 
-	elif event.is_action_released("recruit"):
+	elif event.is_action_pressed("recruit"):
 		if scenario.current_side.can_recruit():
 			UI.show_recruit_dialogue(scenario.current_side)
 
-	elif event.is_action_released("end_turn") and not selected_unit and not scenario.is_side_moving:
+	elif event.is_action_pressed("end_turn") and not selected_unit and not scenario.is_side_moving:
 		scenario.end_turn()
 
 
@@ -145,6 +145,7 @@ func _on_Schedule_time_changed(time: Time) -> void:
 	time_shader.material.set_shader_param("delta", Vector3(time.tint_red, time.tint_green, time.tint_blue))
 	get_tree().call_group("ToDWidget", "update_info", time)
 	print("time changd", time.name)
+
 
 func _on_GameUI_combat_option_selected(attacker_attack: Attack, defender_attack: Attack, target: Location) -> void:
 	scenario.start_combat(selected_unit, attacker_attack, target, defender_attack)
