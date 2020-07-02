@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/interface/misc/PopupLabel.gd" type="Script" id=1]
+[ext_resource path="res://graphics/fonts/kirifont/KiriFont.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 2 )
+
+[node name="PopupLabel" type="Control"]
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -269.0
+margin_top = -98.0
+margin_right = 269.0
+margin_bottom = 99.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Text"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

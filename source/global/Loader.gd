@@ -1,22 +1,10 @@
-extends Node
+class_name Loader
 
-func load_dir(path: String, extentions: Array, load_resource := true) -> Array:
+static func load_dir(path: String, extentions: Array, load_resource := true) -> Array:
 	return _get_directory_data(path, [], extentions, load_resource)
 
-func load_scenario(name: String) -> Scenario:
-	if not Registry.scenarios.has(name):
-		return null
 
-	# Look for an accompanying .tscn file
-	var scenario = load(Registry.scenarios[name].path.get_basename() + ".tscn")
-
-	if not scenario:
-		print("No .tscn file found for scenario %s (or it's corrupted)" % name)
-		return null
-
-	return scenario.instance() as Scenario
-
-func _get_directory_data(path: String, directory_data: Array, extentions: Array, load_resource: bool) -> Array:
+static func _get_directory_data(path: String, directory_data: Array, extentions: Array, load_resource: bool) -> Array:
 	var directory := Directory.new()
 
 	if not directory.open(path) == OK:
@@ -51,7 +39,8 @@ func _get_directory_data(path: String, directory_data: Array, extentions: Array,
 
 	return directory_data
 
-func _get_file_data(path: String, load_resource: bool) -> Dictionary:
+
+static func _get_file_data(path: String, load_resource: bool) -> Dictionary:
 	var file_data := {
 		id = path.get_file().get_basename(), # Filename, no extension
 		path = path, # Full path to file (includes extension)

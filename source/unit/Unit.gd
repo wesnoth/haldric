@@ -1,184 +1,343 @@
 extends Node2D
 class_name Unit
 
-var thread = Thread.new()
+enum UpkeepType { FREE, LOYAL, FULL }
 
-signal experienced(unit)
+const MAT = preload("res://graphics/materials/unit.tres")
 
-signal moved(unit, location)
-signal move_finished(unit, location, halt)
-signal state_changed(new_state)
+const REFRESH_HEAL_MAXIMUM = 10
+
+signal advanced(unit)
 signal died(unit)
-signal health_changed(current_health, max_health)
-signal unhide
+signal turn_end()
 
-var side : Side = null
+var alias = ""
 
-var health_current := 0
-var moves_current := 0
-var has_attacked := false
-var experience_current := 0 setget _set_experience_current
+var side_number := 0
+var side_color := Color.pink
+var team_name := ""
 
-var location: Location = null
-
-var path := []
-var reachable := {}
+var actions := Attribute.new()
+var health := Attribute.new()
+var moves := Attribute.new()
+var experience := Attribute.new()
 
 var type : UnitType = null
+var race : Race = null
 
-var current_state : State = null
+var upkeep : int = UpkeepType.FULL
 
+var attacks := []
 
-onready var states := {
-	idle = $States/Idle,
-	move = $States/Move,
-	attack = $States/Attack,
-}
+var heal_on_refresh := 0
 
-onready var unit_hud_transform = $UnitHUDTransform as RemoteTransform2D
+var can_attack := true
+var is_leader := false setget _set_is_leader
+
+var brightness = 1.0 setget _set_brightness
+
 onready var tween := $Tween as Tween
+onready var ui_hook := $UIHook as RemoteTransform2D
 
+onready var traits := Node.new()
+onready var effects := Node.new()
 
-func _unhandled_input(event: InputEvent) -> void:
-	current_state.input(self, event)
+static func instance() -> Unit:
+	return load("res://source/unit/Unit.tscn").instance() as Unit
 
-func _process(delta: float) -> void:
-	current_state.update(self, delta)
 
 func _ready() -> void:
-	add_child(type)
-	change_state("idle")
-	reset()
-	self.connect("visibility_changed", self, "_on_visibility_changed")
-	
-func _on_visibility_changed():
-	if(visible):
-		emit_signal("unhide")
+	traits.name = "Traits"
+	add_child(traits)
+	effects.name = "Effects"
+	add_child(effects)
+	set_type(type, false)
 
-func advance(unit_type: UnitType) -> void:
-	remove_child(type)
-	type = unit_type
-	add_child(type)
-	reset()
+
+func advance(advancement: Advancement, silent := false) -> void:
+	if silent:
+		advancement.execute(self)
+		return
+
+	_tween_advancement_in()
+	yield(tween, "tween_all_completed")
+
+	advancement.execute(self)
+	restore()
+
+	_tween_advancement_out()
+	yield(tween, "tween_all_completed")
+
+	emit_signal("advanced", self)
+
+
+func hurt(attack_damage: int, damage_type := "") -> void:
+	var damage = calculate_damage(attack_damage, damage_type)
+
+	health.value -= damage
+
+	get_tree().call_group("GameUI", "spawn_popup_label", global_position + Vector2(0, -48), str(damage), 24, Color.red)
+
+	_tween_hurt()
+
+	var resistance := get_resistance(damage_type)
+
+	print("%d Damage dealt to %s (D: %d, R: %d)" % [damage, name, attack_damage, resistance])
+
+
+func heal(amount: int, on_refresh := false) -> void:
+	amount = min(amount, health.get_difference())
+
+	if not amount:
+		return
+
+	if on_refresh:
+		heal_on_refresh = min(REFRESH_HEAL_MAXIMUM, heal_on_refresh + amount)
+		return
+
+	health.value += amount
+
+	get_tree().call_group("GameUI", "spawn_popup_label", global_position + Vector2(0, -48), str(amount), 24, Color.green)
+
+	_tween_heal()
+
+
+func kill() -> void:
+	emit_signal("died", self)
+	queue_free()
+
+
+func suspend() -> void:
+	moves.empty()
+	actions.empty()
+
+
+func refresh() -> void:
+
+	for skill in get_skills():
+		skill.tick()
+
+	for trait in traits.get_children():
+		trait.execute_refresh(self)
+
+	if heal_on_refresh:
+		heal(heal_on_refresh)
+		heal_on_refresh = 0
+
+	actions.fill()
+	moves.fill()
+
+
+func grant_experience(amount: int) -> void:
+	experience.value += amount
+
+	if not experience.is_full():
+		return
+
+	var advancements = get_advancements()
+
+	if advancements.size() > 1:
+		get_tree().call_group("GameUI", "show_advancement_dialogue", self)
+
+	elif advancements.size() == 1:
+		var advancement : Advancement = advancements[0]
+		if advancement.force_display:
+			get_tree().call_group("GameUI", "show_advancement_dialogue", self)
+		else:
+			advance(advancement)
+	else:
+		advance(Data.DefaultAmla)
+
+
+func turn_end() -> void:
+	emit_signal("turn_end")
+
 
 func reset() -> void:
-	health_current = type.health
-	moves_current = type.moves
-	has_attacked = false
-	experience_current = 0
+	actions.maximum = 1
+	health.maximum = type.health
+	moves.maximum = type.moves
+	experience.maximum = type.experience
+	restore()
 
-func change_state(new_state):
-	if current_state:
-		current_state._exit(self)
-	current_state = states[new_state]
-	current_state._enter(self)
-	emit_signal("state_changed", current_state.name)
 
-func place_at(loc: Location) -> void:
-	if location:
-		location.unit = null
+func restore() -> void:
+	actions.fill()
+	health.fill()
+	moves.fill()
+	experience.empty()
 
-	location = loc
-	position = location.position
-	location.unit = self
-	set_reachable() # TODO: do we want this?
 
-func path_cost(unit_path : Array) -> int:
-	var cost = 0
-	for loc in unit_path:
-		if loc.unit:
-			if not loc.unit.side.number == side.number:
-				break #going to assume this is the end and nothing else needs to be added to cost
-		cost += get_movement_cost(loc)
-	return cost
+func apply_traits() -> void:
+	for child in traits.get_children():
+		traits.remove_child(child)
+		child.queue_free()
 
-func move_to(new_path: Array) -> void:
-	path = new_path
-	change_state("move")
+	var rand_traits = race.get_random_traits()
 
-func get_attack_damage(attack: Attack) -> int:
-	var resistance = type.resistance[attack.type]
-	print("DAMAGE: ", attack.damage, " TIME:", get_time_percentage(), " RESIST: ", resistance)
-	return attack.damage * (1 + get_time_percentage()/100) * (1 - resistance/100)
+	for trait in rand_traits:
+		if traits.get_child_count() == race.trait_count:
+			break
 
-func receive_attack(attack: Attack) -> bool:
-	_change_health(-get_attack_damage(attack))
-	print("{name} received {dmg} damage".format({'name':type.id,'dmg':get_attack_damage(attack)}))
-	return health_current <= 0
+		traits.add_child(trait.instance())
 
-func kill(active_side: bool, attacker: Unit) -> void:
-	location.unit = null
-	location.map.update_weight(attacker)
-	if attacker.side.viewable_units.has(attacker):
-		attacker.side.viewable_units.erase(attacker)
-	attacker.set_reachable()
-	attacker.experience_current += type.level * 7 # It's multiplied by 7 as there is already xp for surviving
-	emit_signal("died", self)
-	get_tree().call_group("UI", "remove_unit_plate", self)
+	for trait in traits.get_children():
+		trait.execute(self)
 
-func get_movement_cost(loc: Location) -> int:
-	var cost = type.movement.get(loc.terrain.type[0])
-	if loc.terrain.type.size() > 1:
-		var cost_overlay = type.movement.get(loc.terrain.type[1])
-		cost = max(cost_overlay, cost)
-	return cost
+	reset()
 
-func get_defense() -> int:
-	var defense = type.defense.get(location.terrain.type[0])
-	if location.terrain.type.size() > 1:
-		var defense_overlay = type.defense.get(location.terrain.type[1])
+
+func select() -> void:
+	var __ = tween.stop_all()
+	__ = tween.reset_all()
+	__ = tween.interpolate_property(self, "brightness", 1.0, 2.2, 0.15, Tween.TRANS_BACK, Tween.EASE_OUT)
+	__ = tween.interpolate_property(self, "brightness", 2.0, 1.3, 0.1, Tween.TRANS_EXPO, Tween.EASE_OUT, 0.15)
+	__ = tween.start()
+
+
+func deselect() -> void:
+	var __ = tween.stop_all()
+	__ = tween.reset_all()
+	__ = tween.interpolate_property(self, "brightness", 2.0, 1.0, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
+	__ = tween.start()
+
+
+func get_upkeep() -> int:
+
+	if upkeep in [ UpkeepType.FREE, UpkeepType.LOYAL]:
+		return 0
+
+	return type.level
+
+
+func get_attacks() -> Array:
+	return type.attacks.get_children()
+
+
+func get_skills() -> Array:
+	return type.skills.get_children()
+
+
+func get_abilities() -> Array:
+	return type.abilities.get_children()
+
+
+func get_advancements() -> Array:
+	return type.advancements.get_children()
+
+
+func get_effects() -> Array:
+	return effects.get_children()
+
+
+func get_counter_attack(attack: Attack) -> Attack:
+	for counter in get_attacks():
+		if counter.category == attack.category:
+			return counter
+	return null
+
+
+func attach_unit_plate(plate: Node2D) -> void:
+	ui_hook.remote_path = plate.get_path()
+
+
+func get_defense(terrain_type: Array) -> int:
+	if not terrain_type:
+		return 0
+
+	var defense : int = type.defense.get(terrain_type[0])
+	if terrain_type.size() > 1:
+		var defense_overlay : int = type.defense.get(terrain_type[1])
 		defense = max(defense_overlay, defense)
 	return defense
 
-func get_time_percentage() -> int:
-	return location.terrain.time.get_percentage(type.alignment)
 
-func set_reachable(viewable: bool = true) -> void:
-	thread.start(location.map, "threadable_find_all_reachable_cells", [self])
-	reachable = thread.wait_to_finish()
+func get_resistance(damage_type: String) -> int:
+	var resistance = type.resistance.get(damage_type)
+	return resistance if resistance else 0
 
-func update_viewable() -> bool:
-	if side.fog:
-		return location.map.extend_viewable(self) #do not thread, causes a lot of issues when threaded for some reason
-	return false
 
-func attach_ui(plate: UnitPlate):
-	unit_hud_transform.remote_path = plate.get_path()
+func get_movement_costs(terrain_type: Array) -> int:
+	if not terrain_type:
+		return 1
 
-func _set_experience_current(value: int) -> void:
-	experience_current = value
-	if experience_current >= type.experience:
-		if type.advances_to:
-			emit_signal("experienced", self)
-		else:
-			_amla()
+	var costs : int = type.movement.get(terrain_type[0])
+	if terrain_type.size() > 1:
+		var costs_overlay : int = type.movement.get(terrain_type[1])
+		costs = max(costs, costs_overlay)
+	return costs
 
-func _amla() -> void:
-	type.health += 3
-	type.experience *= 1.2
+
+func calculate_damage(damage: int, damage_type: String) -> int:
+	return int(damage * (1 - float(get_resistance(damage_type)) / 100))
+
+
+func can_attack() -> bool:
+	return actions.value > 0
+
+
+func is_dead() -> bool:
+	return health.value == 0
+
+
+func set_type(unit_type: UnitType, advancing := true) -> void:
+	if advancing:
+		remove_child(type)
+		type.queue_free()
+		type = null
+		type = unit_type
+
+	add_child(type)
+	type.sprite.material = MAT.duplicate()
+	_load_race()
 	reset()
 
-func refresh_unit() -> void:
-	"""
-	Refreshes unit state at turn start
-	* Resets unit movement
-	* Heals unit as per leftover movement
-	* Does damage if poisoned
-	* etc
-	"""
-	if health_current < type.health:
-		var heal = 0
-		if moves_current == type.moves and not has_attacked:
-			heal += side.HEAL_ON_REST # If the unit did not move last turn, it recovers 2 HP
-		if location in side.villages:
-			heal += side.HEAL_ON_VILLAGE # If the unit is in a village, it recovers 8 HP
-		if heal + health_current > type.health:
-			heal = type.health - health_current
-		_change_health(heal)
-		print("{name} healed {heal} HP for resting".format({'name':type.id, 'heal':heal}))
-	has_attacked = false
-	moves_current = type.moves # If the unit moved last turn, it recovers to its max move
+func _load_race() -> void:
+	if not Data.races.has(type.race):
+		Console.warn("Race %s does not exist!" % type.race)
 
-func _change_health(value):
-	health_current += value
-	emit_signal("health_changed", self)
+	race = Data.races[type.race]
+
+	alias = race.get_random_name()
+
+
+func _tween_hurt() -> void:
+	var __ = tween.stop_all()
+	__ = tween.reset_all()
+	__ = tween.interpolate_property(type.sprite, "modulate", type.sprite.modulate, Color.red, 0.15, Tween.TRANS_SINE, Tween.EASE_IN)
+	__ = tween.interpolate_property(type.sprite, "modulate", type.sprite.modulate, Color.white, 0.15, Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
+	__ = tween.start()
+
+
+func _tween_heal() -> void:
+	var __ = tween.stop_all()
+	__ = tween.reset_all()
+	__ = tween.interpolate_property(type.sprite, "modulate", type.sprite.modulate, Color.green, 0.15, Tween.TRANS_SINE, Tween.EASE_IN)
+	__ = tween.interpolate_property(type.sprite, "modulate", type.sprite.modulate, Color.white, 0.15, Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
+	__ = tween.start()
+
+
+func _tween_advancement_in() -> void:
+	var __ = tween.stop_all()
+	__ = tween.reset_all()
+	__ = tween.interpolate_property(self, "brightness", 1.0, 2.2, 0.25, Tween.TRANS_SINE, Tween.EASE_IN)
+	__ = tween.start()
+
+
+func _tween_advancement_out() -> void:
+	var __ = tween.stop_all()
+	__ = tween.reset_all()
+	__ = tween.interpolate_property(self, "brightness", 2.2, 1.0, 0.25, Tween.TRANS_SINE, Tween.EASE_OUT)
+	__ = tween.start()
+
+
+func _set_is_leader(value: bool) -> void:
+	is_leader = value
+
+	if is_leader:
+		upkeep = UpkeepType.FREE
+
+
+func _set_brightness(value: float) -> void:
+	brightness = value
+	type.sprite.material.set_shader_param("brightness", value)

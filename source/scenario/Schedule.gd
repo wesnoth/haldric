@@ -1,11 +1,15 @@
 extends Node
 class_name Schedule
 
+signal time_changed(time)
+
 var current_time : Time = null
+
 
 func _ready() -> void:
 	if get_child_count() > 0:
 		current_time = get_child(0)
+
 
 func next() -> void:
 	if get_child_count() == 0:
@@ -17,8 +21,8 @@ func next() -> void:
 	var new_index = (current_time.get_index() + 1) % get_child_count()
 	current_time = get_child(new_index)
 
-	if current_time.sound:
-		Audio.play_effect(current_time.sound)
+	emit_signal("time_changed", current_time)
 
-func get_schedule() -> Array:
+
+func get_times() -> Array:
 	return get_children()

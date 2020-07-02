@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/unit/trait/TraitDamage.gd" type="Script" id=1]
+
+
+[node name="Strong" type="Node"]
+script = ExtResource( 1 )
+alias = "Strong"
+description = "+1 Melee Damage"
+category = "melee"
