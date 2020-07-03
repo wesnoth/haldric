@@ -78,8 +78,9 @@ func _get_configuration_warning() -> String:
 	return warning
 
 
-func recruit(unit_type_id: String) -> void:
-	var loc := current_side.find_recruit_location()
+func recruit(unit_type_id: String, loc: Location = null) -> void:
+	if loc == null:
+		loc = current_side.find_recruit_location()
 
 	if not loc:
 		Console.warn("No recruit location found for side %d" % current_side.number)
@@ -118,8 +119,9 @@ func recruit(unit_type_id: String) -> void:
 
 	get_tree().call_group("SideUI", "update_info", current_side)
 
-func recall(unit_type_id: String, data: Dictionary) -> void:
-	var loc := current_side.find_recruit_location()
+func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> void:
+	if loc == null:
+		loc = current_side.find_recruit_location()
 
 	if not loc:
 		Console.warn("No recruit location found for side %d" % current_side.number)

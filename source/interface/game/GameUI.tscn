@@ -161,6 +161,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="move_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_move_selected"]
+[connection signal="recall_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recall_selected"]
 [connection signal="recruit_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recruit_selected"]
 [connection signal="skill_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_skill_selected"]
 [connection signal="cancelled" from="HUD/CombatDialogue" to="." method="_on_CombatDialogue_cancelled"]

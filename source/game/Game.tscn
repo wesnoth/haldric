@@ -35,6 +35,7 @@ anchor_mode = 1
 [connection signal="end_turn_pressed" from="GameUI" to="." method="_on_GameUI_end_turn_pressed"]
 [connection signal="move_selected" from="GameUI" to="." method="_on_GameUI_move_selected"]
 [connection signal="recall_option_selected" from="GameUI" to="." method="_on_GameUI_recall_option_selected"]
+[connection signal="recall_selected" from="GameUI" to="." method="_on_GameUI_recall_selected"]
 [connection signal="recruit_option_selected" from="GameUI" to="." method="_on_GameUI_recruit_option_selected"]
 [connection signal="recruit_selected" from="GameUI" to="." method="_on_GameUI_recruit_selected"]
 [connection signal="skill_selected" from="GameUI" to="." method="_on_GameUI_skill_selected"]
