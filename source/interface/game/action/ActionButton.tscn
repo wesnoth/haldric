@@ -2,8 +2,7 @@
 
 [ext_resource path="res://source/interface/game/action/ActionButton.gd" type="Script" id=1]
 
-
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.32549, 0.364706, 0.4, 1 )
 border_width_left = 4
 border_width_top = 4
@@ -19,7 +18,7 @@ expand_margin_right = 2.0
 expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.219608, 0.254902, 0.290196, 1 )
 border_width_left = 4
 border_width_top = 4
@@ -60,11 +59,11 @@ margin_top = -36.0
 margin_right = 36.0
 margin_bottom = 36.0
 focus_mode = 0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 1 )
-custom_styles/focus = SubResource( 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
 enabled_focus_mode = 0
 __meta__ = {
 "_edit_use_anchors_": false

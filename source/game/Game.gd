@@ -171,6 +171,9 @@ func _on_GameUI_recruit_selected() -> void:
 	if scenario.current_side.can_recruit():
 		UI.show_recruit_dialogue(scenario.current_side)
 
+func _on_GameUI_recall_selected() -> void:
+	if scenario.current_side.can_recruit():
+		UI.show_recall_dialogue(scenario.current_side)
 
 func _on_GameUI_move_selected(loc: Location) -> void:
 	_set_selected_unit(loc)

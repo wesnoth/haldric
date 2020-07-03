@@ -7,7 +7,7 @@ var buttons := []
 signal move_selected(loc)
 signal skill_selected(skill)
 signal recruit_selected()
-
+signal recall_selected()
 
 var DIR = {
 	"N": Vector2(0, -96),
@@ -21,7 +21,6 @@ var DIR = {
 
 func update_info(loc: Location) -> void:
 	clear()
-
 	if loc.castle and loc.unit.is_leader:
 		var recruit_button := ActionButton.instance()
 		recruit_button.connect("pressed", self, "_on_recruit_pressed")
@@ -30,6 +29,14 @@ func update_info(loc: Location) -> void:
 		recruit_button.rect_global_position = loc.position + DIR["S"]
 		recruit_button.text = "RE"
 		recruit_button.tooltip = "Recruit Units. Your leader has to be on a keep"
+
+		var recall_button := ActionButton.instance()
+		recall_button.connect("pressed", self, "_on_recall_pressed")
+		get_tree().current_scene.add_child(recall_button)
+		buttons.append(recall_button)
+		recall_button.rect_global_position = loc.position + DIR["SW"]
+		recall_button.text = "RA"
+		recall_button.tooltip = "Recall Units. Your leader has to be on a keep"
 
 	var i := 0
 	for skill in loc.unit.get_skills():
@@ -74,3 +81,7 @@ func _on_move_pressed(loc: Location) -> void:
 func _on_recruit_pressed() -> void:
 	clear()
 	emit_signal("recruit_selected")
+
+func _on_recall_pressed() -> void:
+	clear()
+	emit_signal("recall_selected")

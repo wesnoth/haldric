@@ -2,6 +2,7 @@ extends CanvasLayer
 class_name GameUI
 
 signal recruit_selected()
+signal recall_selected()
 signal move_selected(loc)
 signal skill_selected(skill)
 
@@ -214,6 +215,8 @@ func _on_ActionDialogue_move_selected(loc) -> void:
 func _on_ActionDialogue_recruit_selected() -> void:
 	emit_signal("recruit_selected")
 
+func _on_ActionDialogue_recall_selected() -> void:
+	emit_signal("recall_selected")
 
 func _on_ActionDialogue_skill_selected(skill) -> void:
 	emit_signal("skill_selected", skill)
