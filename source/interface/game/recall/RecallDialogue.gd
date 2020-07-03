@@ -1,7 +1,7 @@
 extends Control
 class_name RecallDialogue
 
-signal option_selected(unit_type_id)
+signal option_selected(unit_type_id, loc)
 signal cancelled()
 
 var GROUP := ButtonGroup.new()
@@ -12,7 +12,7 @@ onready var options := $Panel/VBoxContainer/HBoxContainer/Options
 onready var recall_info := $Panel/VBoxContainer/HBoxContainer/UnitRecallInfo
 
 
-func update_info(side: Side) -> void:
+func update_info(side: Side, loc: Location) -> void:
 	clear()
 	for data in side.recall:
 		var unit_type_id = data["id"]
@@ -21,7 +21,7 @@ func update_info(side: Side) -> void:
 			continue
 
 		var unit_type : UnitType = Data.units[unit_type_id].instance()
-		_add_option(side, unit_type, data)
+		_add_option(side, unit_type, data, loc)
 
 	var has_option := false
 
@@ -38,13 +38,13 @@ func update_info(side: Side) -> void:
 		recall_button.disabled = true
 
 
-func _add_option(side: Side, unit_type: UnitType, data: Dictionary) -> void:
+func _add_option(side: Side, unit_type: UnitType, data: Dictionary, loc: Location) -> void:
 	var option := RecallOption.instance()
 	option.group = GROUP
 	options.add_child(option)
 	option.add_child(unit_type)
 	unit_type.sprite.hide()
-	option.connect("pressed", self, "_on_option_selected", [ unit_type, data ])
+	option.connect("pressed", self, "_on_option_selected", [ unit_type, data, loc ])
 	option.update_info(side, unit_type, data)
 
 
@@ -57,16 +57,16 @@ func clear() -> void:
 		child.queue_free()
 
 
-func _on_option_selected(unit_type: UnitType, data: Dictionary) -> void:
+func _on_option_selected(unit_type: UnitType, data: Dictionary, loc: Location) -> void:
 	recall_info.update_info(unit_type, data)
 
 	if recall_button.is_connected("pressed", self, "_on_Recall_pressed"):
 		recall_button.disconnect("pressed", self, "_on_Recall_pressed")
-	recall_button.connect("pressed", self, "_on_Recall_pressed", [unit_type.name, data] )
+	recall_button.connect("pressed", self, "_on_Recall_pressed", [unit_type.name, data, loc] )
 
 
-func _on_Recall_pressed(unit_type_id: String, data: Dictionary) -> void:
-	emit_signal("option_selected", unit_type_id, data)
+func _on_Recall_pressed(unit_type_id: String, data: Dictionary, loc: Location) -> void:
+	emit_signal("option_selected", unit_type_id, data, loc)
 
 
 func _on_Cancel_pressed() -> void:

@@ -116,6 +116,12 @@ func has_village(loc: Location) -> bool:
 func has_castle(loc: Location) -> bool:
 	return castles.has(loc)
 
+func has_castle_loc(loc: Location) -> bool:
+	for keep in castles:
+		for castle in keep.castle:
+			if castle == loc:
+				return true
+	return false
 
 func can_recruit() -> bool:
 	return is_leader_on_keep() and find_recruit_location() != null

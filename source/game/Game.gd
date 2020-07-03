@@ -23,20 +23,23 @@ func _unhandled_input(event: InputEvent) -> void:
 			_set_selected_skill(null)
 		elif selected_unit and not hovered_location == selected_unit:
 			_set_selected_unit(null)
-		elif hovered_location and hovered_location.unit and hovered_location.unit.side_number == scenario.current_side.number:
-			selected_unit = hovered_location
-			UI.show_action_dialogue(hovered_location)
+		elif hovered_location:
+			if hovered_location.unit and hovered_location.unit.side_number == scenario.current_side.number:
+				selected_unit = hovered_location
+			else:
+				selected_unit = null
+			UI.show_action_dialogue(hovered_location, scenario.current_side)
 
 	elif event.is_action_released("LMB"):
 		_handle_location_selection(hovered_location)
 
 	elif event.is_action_pressed("recruit"):
 		if scenario.current_side.can_recruit():
-			UI.show_recruit_dialogue(scenario.current_side)
+			UI.show_recruit_dialogue(scenario.current_side, null)
 
 	elif event.is_action_pressed("recall"):
 		if scenario.current_side.can_recruit():
-			UI.show_recall_dialogue(scenario.current_side)
+			UI.show_recall_dialogue(scenario.current_side, null)
 
 	elif event.is_action_pressed("end_turn") and not selected_unit and not scenario.is_side_moving:
 		scenario.end_turn()
@@ -156,24 +159,24 @@ func _on_GameUI_combat_option_selected(attacker_attack: Attack, defender_attack:
 	_set_selected_unit(null)
 
 
-func _on_GameUI_recruit_option_selected(unit_type_id) -> void:
-	scenario.recruit(unit_type_id)
+func _on_GameUI_recruit_option_selected(unit_type_id, loc) -> void:
+	scenario.recruit(unit_type_id, loc)
 
 
-func _on_GameUI_recall_option_selected(unit_type_id, data) -> void:
-	scenario.recall(unit_type_id, data)
+func _on_GameUI_recall_option_selected(unit_type_id, data, loc) -> void:
+	scenario.recall(unit_type_id, data, loc)
 
 func _on_GameUI_skill_selected(skill: Skill) -> void:
 	_set_selected_skill(skill)
 
 
-func _on_GameUI_recruit_selected() -> void:
+func _on_GameUI_recruit_selected(loc: Location) -> void:
 	if scenario.current_side.can_recruit():
-		UI.show_recruit_dialogue(scenario.current_side)
+		UI.show_recruit_dialogue(scenario.current_side, loc)
 
-func _on_GameUI_recall_selected() -> void:
+func _on_GameUI_recall_selected(loc: Location) -> void:
 	if scenario.current_side.can_recruit():
-		UI.show_recall_dialogue(scenario.current_side)
+		UI.show_recall_dialogue(scenario.current_side, loc)
 
 func _on_GameUI_move_selected(loc: Location) -> void:
 	_set_selected_unit(loc)

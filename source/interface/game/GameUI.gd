@@ -1,14 +1,14 @@
 extends CanvasLayer
 class_name GameUI
 
-signal recruit_selected()
-signal recall_selected()
+signal recruit_selected(loc)
+signal recall_selected(loc)
 signal move_selected(loc)
 signal skill_selected(skill)
 
 signal combat_option_selected(attacker_attack, defender_attack, target)
-signal recruit_option_selected(unit_type_id)
-signal recall_option_selected(unit_type_id, data)
+signal recruit_option_selected(unit_type_id, loc)
+signal recall_option_selected(unit_type_id, data, loc)
 
 signal end_turn_pressed()
 
@@ -95,13 +95,14 @@ func remove_path(path: Array) -> void:
 	path_ui.erase(path)
 
 
-func show_action_dialogue(loc: Location) -> void:
-	if not loc.unit:
-		return
+func show_action_dialogue(loc: Location, side: Side) -> void:
+	#if not loc.unit:
+	#	return
 
 	shows_actions = true
 	selector.hide()
-	action_dialogue.update_info(loc)
+	if !action_dialogue.update_info(loc, side):
+		hide_action_dialogue()
 
 
 func hide_action_dialogue() -> void:
@@ -122,9 +123,9 @@ func close_combat_dialogue() -> void:
 	combat_dialogue.clear()
 
 
-func show_recruit_dialogue(side: Side) -> void:
+func show_recruit_dialogue(side: Side, loc: Location) -> void:
 	selector.hide()
-	recruit_dialogue.update_info(side)
+	recruit_dialogue.update_info(side, loc)
 	recruit_dialogue.show()
 
 
@@ -133,9 +134,9 @@ func close_recruit_dialogue() -> void:
 	recruit_dialogue.hide()
 	recruit_dialogue.clear()
 
-func show_recall_dialogue(side: Side) -> void:
+func show_recall_dialogue(side: Side, loc: Location) -> void:
 	selector.hide()
-	recall_dialogue.update_info(side)
+	recall_dialogue.update_info(side, loc)
 	recall_dialogue.show()
 
 func close_recall_dialogue() -> void:
@@ -196,27 +197,27 @@ func _on_RecruitDialogue_cancelled() -> void:
 	close_recruit_dialogue()
 
 
-func _on_RecruitDialogue_option_selected(unit_type_id: String) -> void:
+func _on_RecruitDialogue_option_selected(unit_type_id: String, loc: Location) -> void:
 	close_recruit_dialogue()
-	emit_signal("recruit_option_selected", unit_type_id)
+	emit_signal("recruit_option_selected", unit_type_id, loc)
 
 func _on_RecallDialogue_cancelled() -> void:
 	close_recall_dialogue()
 
 
-func _on_RecallDialogue_option_selected(unit_type_id: String, data: Dictionary) -> void:
+func _on_RecallDialogue_option_selected(unit_type_id: String, data: Dictionary, loc: Location) -> void:
 	close_recall_dialogue()
-	emit_signal("recall_option_selected", unit_type_id, data)
+	emit_signal("recall_option_selected", unit_type_id, data, loc)
 
 func _on_ActionDialogue_move_selected(loc) -> void:
 	emit_signal("move_selected", loc)
 
 
-func _on_ActionDialogue_recruit_selected() -> void:
-	emit_signal("recruit_selected")
+func _on_ActionDialogue_recruit_selected(loc: Location) -> void:
+	emit_signal("recruit_selected", loc)
 
-func _on_ActionDialogue_recall_selected() -> void:
-	emit_signal("recall_selected")
+func _on_ActionDialogue_recall_selected(loc: Location) -> void:
+	emit_signal("recall_selected", loc)
 
 func _on_ActionDialogue_skill_selected(skill) -> void:
 	emit_signal("skill_selected", skill)

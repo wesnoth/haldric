@@ -19,7 +19,6 @@ func update_info(unit_type: UnitType, data: Dictionary) -> void:
 		var trait_obj = load("res://data/traits/%s.tscn" % trait).instance()
 		unit.traits.add_child(trait_obj)
 	unit.apply_traits()
-	print("info-", unit.moves.maximum)
 	unit_type_label.text = unit_type.alias
 	
 	health_label.text = "HP: %d" % unit.health.maximum
