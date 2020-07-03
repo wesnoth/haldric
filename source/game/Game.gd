@@ -34,6 +34,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if scenario.current_side.can_recruit():
 			UI.show_recruit_dialogue(scenario.current_side)
 
+	elif event.is_action_pressed("recall"):
+		if scenario.current_side.can_recruit():
+			UI.show_recall_dialogue(scenario.current_side)
+
 	elif event.is_action_pressed("end_turn") and not selected_unit and not scenario.is_side_moving:
 		scenario.end_turn()
 
@@ -155,6 +159,9 @@ func _on_GameUI_combat_option_selected(attacker_attack: Attack, defender_attack:
 func _on_GameUI_recruit_option_selected(unit_type_id) -> void:
 	scenario.recruit(unit_type_id)
 
+
+func _on_GameUI_recall_option_selected(unit_type_id, data) -> void:
+	scenario.recall(unit_type_id, data)
 
 func _on_GameUI_skill_selected(skill: Skill) -> void:
 	_set_selected_skill(skill)

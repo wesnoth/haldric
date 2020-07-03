@@ -108,14 +108,59 @@ func recruit(unit_type_id: String) -> void:
 
 	unit_container.add_child(unit)
 	get_tree().call_group("GameUI", "add_unit_plate", unit)
-
+	
+	unit.new_traits()
 	unit.apply_traits()
+	unit.restore()
 
 	place_unit(unit, loc)
 	unit.suspend()
 
 	get_tree().call_group("SideUI", "update_info", current_side)
 
+func recall(unit_type_id: String, data: Dictionary) -> void:
+	var loc := current_side.find_recruit_location()
+
+	if not loc:
+		Console.warn("No recruit location found for side %d" % current_side.number)
+		return
+
+	var unit_type: UnitType = Data.units[unit_type_id].instance()
+
+	if unit_type == null:
+		Console.warn("Invalid unit type '%s'" % unit_type_id)
+		return
+
+	if current_side.gold < 20:
+		Console.warn("Side %d has not enough Gold!" % current_side.number)
+		return
+
+	current_side.gold -= 20
+	current_side.update_income()
+
+	var unit = Unit.instance()
+	unit.side_number = current_side.number
+	unit.side_color = current_side.color
+	unit.team_name = current_side.team_name
+	unit.type = unit_type
+
+	current_side.add_unit(unit)
+
+	unit_container.add_child(unit)
+	get_tree().call_group("GameUI", "add_unit_plate", unit)
+	
+	for trait in data["traits"]:
+		var trait_obj = load("res://data/traits/%s.tscn" % trait).instance()
+		unit.traits.add_child(trait_obj)
+	unit.apply_traits()
+	unit.experience.value = data["xp"]
+	unit.health.fill()
+
+	place_unit(unit, loc)
+	unit.suspend()
+
+	get_tree().call_group("SideUI", "update_info", current_side)
+	current_side.recall.erase(data)
 
 func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader := false) -> void:
 
@@ -136,7 +181,9 @@ func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader 
 	side.add_unit(unit, is_leader)
 	unit_container.add_child(unit)
 
+	unit.new_traits()
 	unit.apply_traits()
+	unit.restore()
 
 	get_tree().call_group("GameUI", "add_unit_plate", unit)
 	place_unit(unit, map.get_location_from_cell(Vector2(x, y)))

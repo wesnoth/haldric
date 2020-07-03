@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://source/interface/game/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/misc/Selector.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://source/interface/game/hud/ToDWidget.tscn" type="PackedScene" id=10]
 [ext_resource path="res://source/interface/game/action/ActionDialogue.tscn" type="PackedScene" id=11]
 [ext_resource path="res://source/interface/game/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
+[ext_resource path="res://source/interface/game/recall/RecallDialogue.tscn" type="PackedScene" id=13]
 
 [sub_resource type="TileSet" id=1]
 0/name = "darken"
@@ -85,6 +86,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="CombatDialogue" parent="HUD" instance=ExtResource( 5 )]
+
+[node name="RecallDialogue" parent="HUD" instance=ExtResource( 13 )]
+margin_top = 0.0
+margin_bottom = 0.0
 
 [node name="RecruitDialogue" parent="HUD" instance=ExtResource( 8 )]
 margin_top = 0.0
@@ -160,6 +165,8 @@ __meta__ = {
 [connection signal="skill_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_skill_selected"]
 [connection signal="cancelled" from="HUD/CombatDialogue" to="." method="_on_CombatDialogue_cancelled"]
 [connection signal="option_selected" from="HUD/CombatDialogue" to="." method="_on_CombatDialogue_option_selected"]
+[connection signal="cancelled" from="HUD/RecallDialogue" to="." method="_on_RecallDialogue_cancelled"]
+[connection signal="option_selected" from="HUD/RecallDialogue" to="." method="_on_RecallDialogue_option_selected"]
 [connection signal="cancelled" from="HUD/RecruitDialogue" to="." method="_on_RecruitDialogue_cancelled"]
 [connection signal="option_selected" from="HUD/RecruitDialogue" to="." method="_on_RecruitDialogue_option_selected"]
 [connection signal="skill_selected" from="HUD/SidePanel/VBoxContainer/UnitUI" to="." method="_on_UnitUI_skill_selected"]

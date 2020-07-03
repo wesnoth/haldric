@@ -240,6 +240,16 @@ _global_script_classes=[ {
 "path": "res://source/unit/race/Race.gd"
 }, {
 "base": "Control",
+"class": "RecallDialogue",
+"language": "GDScript",
+"path": "res://source/interface/game/recall/RecallDialogue.gd"
+}, {
+"base": "Button",
+"class": "RecallOption",
+"language": "GDScript",
+"path": "res://source/interface/game/recall/RecallOption.gd"
+}, {
+"base": "Control",
 "class": "RecruitDialogue",
 "language": "GDScript",
 "path": "res://source/interface/game/recruit/RecruitDialogue.gd"
@@ -359,11 +369,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/data/TerrainGraphicData.gd"
 }, {
-"base": "TextureRect",
-"class": "TerrainInspector",
-"language": "GDScript",
-"path": "res://source/interface/game/hud/TerrainInspector.gd"
-}, {
 "base": "Reference",
 "class": "TerrainLoader",
 "language": "GDScript",
@@ -388,11 +393,6 @@ _global_script_classes=[ {
 "class": "TerrainTypeIconData",
 "language": "GDScript",
 "path": "res://source/data/TerrainTypeIconData.gd"
-}, {
-"base": "TextureRect",
-"class": "TerrainTypeIconPlate",
-"language": "GDScript",
-"path": "res://source/interface/game/hud/TerrainTypeIconPlate.gd"
 }, {
 "base": "Node",
 "class": "Time",
@@ -453,6 +453,11 @@ _global_script_classes=[ {
 "class": "UnitPlate",
 "language": "GDScript",
 "path": "res://source/interface/game/UnitPlate.gd"
+}, {
+"base": "Control",
+"class": "UnitRecallInfo",
+"language": "GDScript",
+"path": "res://source/interface/game/recall/UnitRecallInfo.gd"
 }, {
 "base": "Control",
 "class": "UnitRecruitInfo",
@@ -521,6 +526,8 @@ _global_script_class_icons={
 "PopupLabel": "",
 "Projectile": "",
 "Race": "",
+"RecallDialogue": "",
+"RecallOption": "",
 "RecruitDialogue": "",
 "RecruitOption": "",
 "ResistanceType": "",
@@ -545,13 +552,11 @@ _global_script_class_icons={
 "TerrainData": "",
 "TerrainGraphicBuilder": "",
 "TerrainGraphicData": "",
-"TerrainInspector": "",
 "TerrainLoader": "",
 "TerrainPainter": "",
 "TerrainTransitionGraphicBuilder": "",
 "TerrainTransitionGraphicData": "",
 "TerrainTypeIconData": "",
-"TerrainTypeIconPlate": "",
 "Time": "",
 "ToDWheel": "",
 "ToDWidget": "",
@@ -564,6 +569,7 @@ _global_script_class_icons={
 "Unit": "",
 "UnitAdvancementInfo": "",
 "UnitPlate": "",
+"UnitRecallInfo": "",
 "UnitRecruitInfo": "",
 "UnitType": "",
 "UnitUI": "",
@@ -641,6 +647,11 @@ MMB={
 recruit={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
+}
+recall={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
 move={
