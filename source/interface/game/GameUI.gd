@@ -7,6 +7,7 @@ signal skill_selected(skill)
 
 signal combat_option_selected(attacker_attack, defender_attack, target)
 signal recruit_option_selected(unit_type_id)
+signal recall_option_selected(unit_type_id, data)
 
 signal end_turn_pressed()
 
@@ -30,6 +31,7 @@ onready var path_ui := $PathUI as PathUI
 onready var action_dialogue := $ActionDialogue as ActionDialogue
 onready var combat_dialogue := $HUD/CombatDialogue as CombatDialogue
 onready var recruit_dialogue := $HUD/RecruitDialogue as RecruitDialogue
+onready var recall_dialogue := $HUD/RecallDialogue as RecallDialogue
 onready var advancement_dialogue := $HUD/AdvancementDialogue as AdvancementDialogue
 
 onready var end_turn_button = $HUD/EndTurn
@@ -37,6 +39,7 @@ onready var end_turn_button = $HUD/EndTurn
 func _ready() -> void:
 	combat_dialogue.hide()
 	recruit_dialogue.hide()
+	recall_dialogue.hide()
 	advancement_dialogue.hide()
 	cover.hide()
 
@@ -129,6 +132,15 @@ func close_recruit_dialogue() -> void:
 	recruit_dialogue.hide()
 	recruit_dialogue.clear()
 
+func show_recall_dialogue(side: Side) -> void:
+	selector.hide()
+	recall_dialogue.update_info(side)
+	recall_dialogue.show()
+
+func close_recall_dialogue() -> void:
+	selector.show()
+	recall_dialogue.hide()
+	recall_dialogue.clear()
 
 func show_advancement_dialogue(unit: Unit) -> void:
 	advancement_dialogue.update_info(unit)
@@ -187,6 +199,13 @@ func _on_RecruitDialogue_option_selected(unit_type_id: String) -> void:
 	close_recruit_dialogue()
 	emit_signal("recruit_option_selected", unit_type_id)
 
+func _on_RecallDialogue_cancelled() -> void:
+	close_recall_dialogue()
+
+
+func _on_RecallDialogue_option_selected(unit_type_id: String, data: Dictionary) -> void:
+	close_recall_dialogue()
+	emit_signal("recall_option_selected", unit_type_id, data)
 
 func _on_ActionDialogue_move_selected(loc) -> void:
 	emit_signal("move_selected", loc)

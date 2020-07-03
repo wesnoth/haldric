@@ -158,7 +158,6 @@ func reset() -> void:
 	health.maximum = type.health
 	moves.maximum = type.moves
 	experience.maximum = type.experience
-	restore()
 
 
 func restore() -> void:
@@ -167,24 +166,21 @@ func restore() -> void:
 	moves.fill()
 	experience.empty()
 
-
-func apply_traits() -> void:
+func new_traits() -> void:
 	for child in traits.get_children():
 		traits.remove_child(child)
 		child.queue_free()
-
+	reset()
 	var rand_traits = race.get_random_traits()
 
 	for trait in rand_traits:
 		if traits.get_child_count() == race.trait_count:
 			break
-
 		traits.add_child(trait.instance())
 
+func apply_traits() -> void:
 	for trait in traits.get_children():
 		trait.execute(self)
-
-	reset()
 
 
 func select() -> void:

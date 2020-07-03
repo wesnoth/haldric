@@ -36,6 +36,7 @@ export var leader := ""
 
 export(Array, String) var random_leader := []
 export(Array, String) var recruit := []
+export(Array, Dictionary) var recall := []
 
 export var team_name := ""
 
@@ -45,7 +46,7 @@ func _ready() -> void:
 
 	if not team_name:
 		team_name = str(number)
-
+	recall = get_recall_list()
 	update_income()
 
 
@@ -142,6 +143,11 @@ func find_recruit_location() -> Location:
 func is_unit_leader(unit: Unit) -> bool:
 	return leaders.has(unit)
 
+func get_recall_list() -> Array:
+	var ret := []
+	ret.append({"id":"Bowman","level":1,"xp":7,"traits":["Quick","Dextrous"]})
+	ret.append({"id":"Spearman","level":1,"xp":22,"traits":["Loyal","Strong"]})
+	return ret
 
 func _calculate_upkeep() -> void:
 	upkeep = 0
