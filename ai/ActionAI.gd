@@ -147,9 +147,7 @@ func _execute_scouting(scenario: Scenario) -> void:
 		print(target_villages)
 
 		if target_villages:
-			target_villages.shuffle()
-
-			var target : Dictionary = target_villages[0]
+			var target : Dictionary = target_villages[randi() % target_villages.size()]
 			scenario.move_unit_towards(loc, target.loc)
 			yield(scenario, "unit_move_finished")
 
@@ -190,8 +188,7 @@ func _get_reachable_enemies(reachable_cells: Array) -> Array:
 
 
 func _get_best_attack_target(attacker: Unit, targets: Array) -> Dictionary:
-	targets.shuffle()
-	return targets[0]
+	return targets[randi() % targets.size()]
 
 
 func _sort_distance_ascending(array: Array, loc: Location) -> void:
