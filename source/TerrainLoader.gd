@@ -29,10 +29,10 @@ func open_path(path: String) -> void:
 	for file_data in Loader.load_dir(root, ["png", "tres"]):
 		var semi_path : String = file_data.path.replace(root, "")
 		semi_path = semi_path.replace("." + semi_path.get_extension(), "")
-		
+
 		if semi_path.begins_with("/"):
 			semi_path.erase(0, 1)
-		
+
 		images[semi_path] = file_data.data
 
 	print(images)

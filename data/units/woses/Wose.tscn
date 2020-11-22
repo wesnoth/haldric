@@ -10,7 +10,6 @@
 [ext_resource path="res://data/abilities/Ambush.tscn" type="PackedScene" id=8]
 [ext_resource path="res://data/abilities/Regenerate.tscn" type="PackedScene" id=9]
 
-
 [node name="Wose" type="Node2D"]
 script = ExtResource( 7 )
 alias = "Wose"

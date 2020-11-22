@@ -9,7 +9,6 @@
 [ext_resource path="res://data/specials/Charge.tscn" type="PackedScene" id=7]
 [ext_resource path="res://graphics/images/attacks/spear.png" type="Texture" id=8]
 
-
 [node name="Horseman" type="Node2D"]
 script = ExtResource( 1 )
 alias = "Horseman"

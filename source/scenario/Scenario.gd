@@ -109,7 +109,7 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 
 	unit_container.add_child(unit)
 	get_tree().call_group("GameUI", "add_unit_plate", unit)
-	
+
 	unit.new_traits()
 	unit.apply_traits()
 	unit.restore()
@@ -150,7 +150,7 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 
 	unit_container.add_child(unit)
 	get_tree().call_group("GameUI", "add_unit_plate", unit)
-	
+
 	for trait in data["traits"]:
 		var trait_obj = load("res://data/traits/%s.tscn" % trait).instance()
 		unit.traits.add_child(trait_obj)

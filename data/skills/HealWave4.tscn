@@ -2,7 +2,6 @@
 
 [ext_resource path="res://source/unit/skill/SkillHeal.gd" type="Script" id=1]
 
-
 [node name="HealWave" type="Node"]
 script = ExtResource( 1 )
 alias = "Heal Wave"

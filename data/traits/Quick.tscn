@@ -2,7 +2,6 @@
 
 [ext_resource path="res://source/unit/trait/TraitQuick.gd" type="Script" id=1]
 
-
 [node name="Quick" type="Node"]
 script = ExtResource( 1 )
 alias = "Quick"
