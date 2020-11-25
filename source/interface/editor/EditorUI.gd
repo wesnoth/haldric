@@ -25,6 +25,10 @@ onready var save_edit := $HUD/PanelContainer/VBoxContainer/Save/LineEdit
 onready var width_edit := $HUD/PanelContainer/VBoxContainer/NewMap/Width/LineEdit
 onready var height_edit := $HUD/PanelContainer/VBoxContainer/NewMap/Height/LineEdit
 
+onready var create_button := $HUD/PanelContainer/VBoxContainer/NewMap/Button
+
+var width_value: int
+var height_value: int
 
 func _ready() -> void:
 	_add_mode_button("Terrain", "_on_terrain_mode_selected")
@@ -67,6 +71,11 @@ func highlight(button: Button) -> void:
 	tween.interpolate_property(terrain_selector, "rect_size", terrain_selector.rect_size, button.rect_size, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
 
+func validate_create_button() -> void:
+	if width_value > 0 and height_value > 0 and create_button.disabled:
+		create_button.disabled = false
+	elif not create_button.disabled:
+		create_button.disabled = true
 
 func _on_player_mode_selected() -> void:
 	emit_signal("mode_changed", MapEditor.PaintMode.PLAYER)
@@ -103,3 +112,11 @@ func _on_NewMap_pressed() -> void:
 
 func _on_Quit_pressed() -> void:
 	Scene.change("TitleScreen")
+
+func _on_MapWidthInput_text_changed(new_text):
+	width_value = int(new_text)
+	validate_create_button()
+
+func _on_MapHeightInput_text_changed(new_text):
+	height_value = int(new_text)
+	validate_create_button()

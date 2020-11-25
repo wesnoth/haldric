@@ -31,7 +31,7 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 293.0
-margin_bottom = 384.0
+margin_bottom = 365.0
 
 [node name="ModeButtons" type="HBoxContainer" parent="HUD/PanelContainer/VBoxContainer"]
 margin_right = 286.0
@@ -149,6 +149,7 @@ margin_right = 286.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 0, 40 )
 focus_mode = 0
+disabled = true
 enabled_focus_mode = 0
 text = "New Map"
 
@@ -217,6 +218,8 @@ __meta__ = {
 }
 [connection signal="value_changed" from="HUD/PanelContainer/VBoxContainer/PlayerSlider" to="." method="_on_PlayerSlider_value_changed"]
 [connection signal="value_changed" from="HUD/PanelContainer/VBoxContainer/BrushSizeSlider" to="." method="_on_BrushSizeSlider_value_changed"]
+[connection signal="text_changed" from="HUD/PanelContainer/VBoxContainer/NewMap/Width/LineEdit" to="." method="_on_MapWidthInput_text_changed"]
+[connection signal="text_changed" from="HUD/PanelContainer/VBoxContainer/NewMap/Height/LineEdit" to="." method="_on_MapHeightInput_text_changed"]
 [connection signal="pressed" from="HUD/PanelContainer/VBoxContainer/NewMap/Button" to="." method="_on_NewMap_pressed"]
 [connection signal="pressed" from="HUD/PanelContainer/VBoxContainer/Save/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="HUD/PanelContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
