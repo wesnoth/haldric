@@ -1,5 +1,6 @@
 extends TerrainLoader
 
+
 func _load() -> void:
 	open_path("res://graphics/images/terrain/")
 
@@ -9,7 +10,7 @@ func _load() -> void:
 	new_base("Hills", "Hh", 100, "hills", "hills/regular")
 	new_base("Ice", "Ai", -50, "frozen", "frozen/ice")
 	new_base("Snow", "Aa", -40, "frozen", "frozen/snow")
-	
+
 	new_base("Mountains", "Mm", 200, "mountains", "mountains/basic", Vector2(-56, -68))
 
 	new_overlay("Forest", "^F", "forest", "forest", Vector2(-36, -36))
@@ -25,14 +26,14 @@ func _load() -> void:
 	new_transition(["Gg", "Hh", "Mm"], ["Ww"], [], "flat/bank")
 	new_transition("Gg", ["Ww", "Ai"], [], "cave/bank")
 	new_transition("Gg", ["Ww", "Ai"], [], "grass/green-abrupt")
-	
+
 	new_transition(["Ai"], ["Ww", "Ds"], [], "frozen/ice")
-	
+
 	new_transition("Aa", [], ["Ww"], "frozen/snow")
 	new_transition("Aa", ["Ww"], [], "frozen/snow-to-water")
-	
+
 	new_transition(["Ai", "Aa"], ["Ww"], [], "frozen/ice-to-water")
-	
+
 	new_transition("Mm", [], ["Ch", "Ww"], "mountains/basic")
 
 	new_transition("Hh", [], ["Ww","Ch"], "hills/regular")

@@ -33,6 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				set_player(hovered_location)
 			last_location = hovered_location
 
+
 func new_map(width: int, height: int) -> void:
 	if map:
 		remove_child(map)
@@ -71,6 +72,7 @@ func edit_location(loc: Location) -> void:
 		if active_overlay:
 			var code = [ loc.terrain.get_base_code(), active_overlay ]
 			map.set_location_terrain(loc, code)
+
 
 func set_player(loc: Location):
 	players[active_player] = loc.cell

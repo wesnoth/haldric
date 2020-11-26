@@ -8,6 +8,7 @@ var scenes := {
 	"ScenarioSelectionMenu": "res://source/menu/ScenarioSelectionMenu.tscn",
 }
 
+
 func change(scene_name: String) -> void:
 	if not scenes.has(scene_name):
 		print("cannot change to scene %s" % scene_name)
