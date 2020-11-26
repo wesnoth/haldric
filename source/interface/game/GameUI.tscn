@@ -160,6 +160,18 @@ text = "End Turn"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ExitButton" type="Button" parent="HUD"]
+margin_right = 226.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="move_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_move_selected"]
 [connection signal="recall_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recall_selected"]
 [connection signal="recruit_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recruit_selected"]
@@ -172,3 +184,4 @@ __meta__ = {
 [connection signal="option_selected" from="HUD/RecruitDialogue" to="." method="_on_RecruitDialogue_option_selected"]
 [connection signal="skill_selected" from="HUD/SidePanel/VBoxContainer/UnitUI" to="." method="_on_UnitUI_skill_selected"]
 [connection signal="pressed" from="HUD/EndTurn" to="." method="_on_EndTurn_pressed"]
+[connection signal="pressed" from="HUD/ExitButton" to="." method="_on_ExitButton_pressed"]

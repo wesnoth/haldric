@@ -11,6 +11,7 @@ signal recruit_option_selected(unit_type_id, loc)
 signal recall_option_selected(unit_type_id, data, loc)
 
 signal end_turn_pressed()
+signal exit_button_pressed()
 
 var cover_cells := []
 var hover_path := []
@@ -36,6 +37,7 @@ onready var recall_dialogue := $HUD/RecallDialogue as RecallDialogue
 onready var advancement_dialogue := $HUD/AdvancementDialogue as AdvancementDialogue
 
 onready var end_turn_button = $HUD/EndTurn
+
 
 func _ready() -> void:
 	combat_dialogue.hide()
@@ -96,9 +98,6 @@ func remove_path(path: Array) -> void:
 
 
 func show_action_dialogue(loc: Location, side: Side) -> void:
-	#if not loc.unit:
-	#	return
-
 	shows_actions = true
 	selector.hide()
 	if !action_dialogue.update_info(loc, side):
@@ -134,15 +133,18 @@ func close_recruit_dialogue() -> void:
 	recruit_dialogue.hide()
 	recruit_dialogue.clear()
 
+
 func show_recall_dialogue(side: Side, loc: Location) -> void:
 	selector.hide()
 	recall_dialogue.update_info(side, loc)
 	recall_dialogue.show()
 
+
 func close_recall_dialogue() -> void:
 	selector.show()
 	recall_dialogue.hide()
 	recall_dialogue.clear()
+
 
 func show_advancement_dialogue(unit: Unit) -> void:
 	advancement_dialogue.update_info(unit)
@@ -201,6 +203,7 @@ func _on_RecruitDialogue_option_selected(unit_type_id: String, loc: Location) ->
 	close_recruit_dialogue()
 	emit_signal("recruit_option_selected", unit_type_id, loc)
 
+
 func _on_RecallDialogue_cancelled() -> void:
 	close_recall_dialogue()
 
@@ -209,6 +212,7 @@ func _on_RecallDialogue_option_selected(unit_type_id: String, data: Dictionary, 
 	close_recall_dialogue()
 	emit_signal("recall_option_selected", unit_type_id, data, loc)
 
+
 func _on_ActionDialogue_move_selected(loc) -> void:
 	emit_signal("move_selected", loc)
 
@@ -216,8 +220,14 @@ func _on_ActionDialogue_move_selected(loc) -> void:
 func _on_ActionDialogue_recruit_selected(loc: Location) -> void:
 	emit_signal("recruit_selected", loc)
 
+
 func _on_ActionDialogue_recall_selected(loc: Location) -> void:
 	emit_signal("recall_selected", loc)
 
+
 func _on_ActionDialogue_skill_selected(skill) -> void:
 	emit_signal("skill_selected", skill)
+
+
+func _on_ExitButton_pressed() -> void:
+	emit_signal("exit_button_pressed")

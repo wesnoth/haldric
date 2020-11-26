@@ -194,3 +194,7 @@ func _on_GameUI_end_turn_pressed() -> void:
 
 	_set_selected_unit(null)
 	scenario.end_turn()
+
+
+func _on_GameUI_exit_button_pressed() -> void:
+	Scene.change("TitleScreen")
