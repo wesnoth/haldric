@@ -72,9 +72,11 @@ func highlight(button: Button) -> void:
 	tween.start()
 
 func validate_create_button() -> void:
+	print(width_value)
+	print(height_value)
 	if width_value > 0 and height_value > 0 and create_button.disabled:
 		create_button.disabled = false
-	elif not create_button.disabled:
+	elif not create_button.disabled and width_value <= 0 or height_value <= 0:
 		create_button.disabled = true
 
 func _on_player_mode_selected() -> void:
@@ -120,3 +122,4 @@ func _on_MapWidthInput_text_changed(new_text):
 func _on_MapHeightInput_text_changed(new_text):
 	height_value = int(new_text)
 	validate_create_button()
+
