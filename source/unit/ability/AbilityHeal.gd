@@ -4,6 +4,7 @@ class_name AbilityHeal
 export var amount := 4
 export(Array, String) var cure := []
 
+
 func _execute(target: Location) -> void:
 	target.unit.heal(amount, true)
 	for effect in target.unit.get_effects():

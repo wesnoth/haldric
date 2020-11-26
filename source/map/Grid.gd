@@ -28,6 +28,7 @@ func block_cell(cell: Vector2, rect: Rect2) -> void:
 	_disconnect_with_neighbors(cell, rect)
 	blocked_cells.append(cell)
 
+
 func unblock_cell(cell: Vector2, rect: Rect2) -> void:
 	_disconnect_with_neighbors(cell, rect)
 	_connect_with_neighbors(cell, rect)

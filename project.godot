@@ -194,11 +194,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/map/Map.gd"
 }, {
-"base": "Reference",
-"class": "MapBuilder",
-"language": "GDScript",
-"path": "res://source/builder/MapBuilder.gd"
-}, {
 "base": "Resource",
 "class": "MapData",
 "language": "GDScript",
@@ -512,7 +507,6 @@ _global_script_class_icons={
 "Location": "",
 "LocationUI": "",
 "Map": "",
-"MapBuilder": "",
 "MapData": "",
 "MapEditor": "",
 "MovementType": "",

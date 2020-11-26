@@ -13,6 +13,7 @@ func _ready() -> void:
 		button.text = scenario.alias
 		buttons.add_child(button)
 
+
 func _on_Scenario_selected(scenario: ScenarioData) -> void:
 	Global.selected_scenario = scenario
 	Scene.change("Game")

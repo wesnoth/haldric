@@ -103,6 +103,7 @@ static func get_cell_ring(cell: Vector2, radius: int, rect: Rect2) -> PoolVector
 
 	return cells
 
+
 static func is_cell_neighbor(origin: Vector2, cell: Vector2) -> bool:
 	return _get_cube_neighbors(quad2cube(origin)).has(quad2cube(cell))
 

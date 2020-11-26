@@ -119,6 +119,7 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 
 	get_tree().call_group("SideUI", "update_info", current_side)
 
+
 func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> void:
 	if loc == null:
 		loc = current_side.find_recruit_location()
@@ -163,6 +164,7 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 
 	get_tree().call_group("SideUI", "update_info", current_side)
 	current_side.recall.erase(data)
+
 
 func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader := false) -> void:
 

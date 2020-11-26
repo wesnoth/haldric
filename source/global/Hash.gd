@@ -2,6 +2,7 @@ extends Node
 
 var rand := {}
 
+
 func initialize(width: int, height: int) -> void:
 	rand.clear()
 	rand_seed(0)

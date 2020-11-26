@@ -16,6 +16,7 @@ var _neighbors := []
 
 var castle := []
 
+
 func _init() -> void:
 	_neighbors.resize(6)
 
