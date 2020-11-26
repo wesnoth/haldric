@@ -79,6 +79,7 @@ func clear() -> void:
 
 			texture_data[Vector2(x, y)] = {
 				"terrains": [],
+				'decorations': [],
 				"transitions": [],
 				"overlays": [],
 				"castles": [],
@@ -88,6 +89,7 @@ func clear() -> void:
 func change_location_graphics(loc: Location) -> void:
 	_set_location_base(loc)
 	_set_location_transition(loc)
+	_set_location_decoration(loc)
 	_set_location_overlay(loc)
 	_set_location_castle(loc)
 
@@ -103,6 +105,17 @@ func _draw() -> void:
 
 			for entry in texture_data[cell].transitions:
 				draw_texture(entry.texture, entry.position)
+
+	for y in _height:
+		for x in _width:
+			var cell = Vector2(x, y)
+
+			for entry in texture_data[cell].decorations:
+				draw_texture(entry.texture, entry.position)
+
+	for y in _height:
+		for x in _width:
+			var cell = Vector2(x, y)
 
 			for entry in texture_data[cell].overlays:
 				draw_texture(entry.texture, entry.position)
@@ -158,6 +171,20 @@ func _set_location_overlay(loc: Location) -> void:
 	})
 
 
+func _set_location_decoration(loc: Location) -> void:
+	texture_data[loc.cell].decorations.clear()
+
+	var code = loc.terrain.get_base_code()
+
+	if Data.decorations.has(code):
+		var graphic : TerrainDecorationGraphicData = Data.decorations[code]
+
+		texture_data[loc.cell].decorations.append({
+			"texture": graphic.textures[Hash.rand[loc.cell].ai % graphic.textures.size()],
+			"position": loc.position - Hex.OFFSET + graphic.offset
+		})
+
+
 func _set_location_transition(loc: Location) -> void:
 	texture_data[loc.cell].transitions.clear()
 
@@ -169,7 +196,7 @@ func _set_location_transition(loc: Location) -> void:
 
 	for n_loc in loc.get_all_neighbors():
 
-		if not n_loc or n_loc.terrain.get_base_code() == code or loc.terrain.layer >= n_loc.terrain.layer:
+		if not n_loc or n_loc.terrain.get_base_code() == code or loc.terrain.layer > n_loc.terrain.layer:
 			direction += 1
 			continue
 

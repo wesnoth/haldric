@@ -12,6 +12,6 @@ var gives_income := false
 
 var heals := false
 
-var type := "flat"
+var type := []
 
 var graphic : TerrainGraphicData = null

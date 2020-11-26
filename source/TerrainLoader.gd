@@ -7,11 +7,13 @@ var root := "res://"
 var images := {}
 
 var terrains := {}
+var decorations := {}
 var transitions := {}
 var wall_segments := {}
 var wall_towers := {}
 
 var terrain_builder := TerrainBuilder.new()
+var decoration_graphic_builder := TerrainDecorationGraphicBuilder.new()
 var transition_graphic_builder := TerrainTransitionGraphicBuilder.new()
 var terrain_graphic_builder := TerrainGraphicBuilder.new()
 
@@ -38,7 +40,7 @@ func open_path(path: String) -> void:
 	print(images)
 
 
-func new_base(name: String, code: String, layer: int, type: String, image_stem: String, offset := Vector2()) -> void:
+func new_base(name: String, code: String, layer: int, type: Array, image_stem: String, offset := Vector2()) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -56,7 +58,7 @@ func new_base(name: String, code: String, layer: int, type: String, image_stem: 
 	terrains[terrain.code] = terrain
 
 
-func new_overlay(name: String, code: String, type: String, image_stem: String, offset := Vector2()) -> void:
+func new_overlay(name: String, code: String, type: Array, image_stem: String, offset := Vector2()) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -72,7 +74,7 @@ func new_overlay(name: String, code: String, type: String, image_stem: String, o
 	terrains[terrain.code] = terrain
 
 
-func new_village(name: String, code: String, type: String, image_stem: String) -> void:
+func new_village(name: String, code: String, type: Array, image_stem: String) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -89,7 +91,7 @@ func new_village(name: String, code: String, type: String, image_stem: String) -
 	terrains[terrain.code] = terrain
 
 
-func new_castle(name: String, code: String, type: String, image_stem: String, offset := Vector2()) -> void:
+func new_castle(name: String, code: String, type: Array, image_stem: String, offset := Vector2()) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -106,7 +108,7 @@ func new_castle(name: String, code: String, type: String, image_stem: String, of
 	terrains[terrain.code] = terrain
 
 
-func new_keep(name: String, code: String, type: String, image_stem: String, offset := Vector2()) -> void:
+func new_keep(name: String, code: String, type: Array, image_stem: String, offset := Vector2()) -> void:
 	var terrain := terrain_builder\
 		.new_terrain()\
 		.with_name(name)\
@@ -157,6 +159,17 @@ func new_transition(code, include: Array, exclude: Array, image_stem: String) ->
 				transitions[c] = []
 			transitions[c].append(transition)
 
+
+func new_decoration(code: String, image_stem: String, offset := Vector2()) -> void:
+	var decoration := decoration_graphic_builder\
+		.new_graphic()\
+		.with_code(code)\
+		.with_offset(offset)\
+		.with_image_stem(image_stem)\
+		.with_textures(_load_base_variations(image_stem))\
+		.build()
+
+	decorations[code] = decoration
 
 
 func new_castle_wall_segment(code, include: Array, exclude: Array, image_stem: String, flag: String, offset := Vector2()) -> void:

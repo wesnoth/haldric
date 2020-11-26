@@ -6,6 +6,7 @@ var terrain_icons = preload("res://data/terrain_icons.tres")
 
 var terrains := {}
 var transitions := {}
+var decorations := {}
 var wall_segments := {}
 var wall_towers := {}
 
@@ -42,14 +43,21 @@ func _load_terrain() -> void:
 	terrain_script.load_terrain()
 
 	terrains = terrain_script.terrains
+	decorations = terrain_script.decorations
 	transitions = terrain_script.transitions
 	wall_segments = terrain_script.wall_segments
 	wall_towers = terrain_script.wall_towers
 
 	print("Data:")
+	print("Terrains")
 	print(terrains)
+	print("Decorations")
+	print(decorations)
+	print("Transitions")
 	print(transitions)
+	print("Wall Segments")
 	print(wall_segments)
+	print("Wall Towers")
 	print(wall_towers)
 
 

@@ -166,6 +166,7 @@ func restore() -> void:
 	moves.fill()
 	experience.empty()
 
+
 func new_traits() -> void:
 	for child in traits.get_children():
 		traits.remove_child(child)
@@ -177,6 +178,7 @@ func new_traits() -> void:
 		if traits.get_child_count() == race.trait_count:
 			break
 		traits.add_child(trait.instance())
+
 
 func apply_traits() -> void:
 	for trait in traits.get_children():
@@ -287,6 +289,7 @@ func set_type(unit_type: UnitType, advancing := true) -> void:
 	type.sprite.material = MAT.duplicate()
 	_load_race()
 	reset()
+
 
 func _load_race() -> void:
 	if not Data.races.has(type.race):

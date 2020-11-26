@@ -360,6 +360,16 @@ _global_script_classes=[ {
 "path": "res://source/data/TerrainData.gd"
 }, {
 "base": "Reference",
+"class": "TerrainDecorationGraphicBuilder",
+"language": "GDScript",
+"path": "res://source/builder/TerrainDecorationGraphicBuilder.gd"
+}, {
+"base": "Reference",
+"class": "TerrainDecorationGraphicData",
+"language": "GDScript",
+"path": "res://source/data/TerrainDecorationGraphicData.gd"
+}, {
+"base": "Reference",
 "class": "TerrainGraphicBuilder",
 "language": "GDScript",
 "path": "res://source/builder/TerrainGraphicBuilder.gd"
@@ -550,6 +560,8 @@ _global_script_class_icons={
 "Terrain": "",
 "TerrainBuilder": "",
 "TerrainData": "",
+"TerrainDecorationGraphicBuilder": "",
+"TerrainDecorationGraphicData": "",
 "TerrainGraphicBuilder": "",
 "TerrainGraphicData": "",
 "TerrainLoader": "",

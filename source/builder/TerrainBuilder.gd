@@ -2,6 +2,7 @@ class_name TerrainBuilder
 
 var terrain := TerrainData.new()
 
+
 func new_terrain() -> TerrainBuilder:
 	terrain = TerrainData.new()
 	return self
@@ -17,7 +18,7 @@ func with_code(code: String) -> TerrainBuilder:
 	return self
 
 
-func with_type(type: String) -> TerrainBuilder:
+func with_type(type: Array) -> TerrainBuilder:
 	terrain.type = type
 	return self
 

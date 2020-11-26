@@ -22,7 +22,9 @@ func _init(resources: Array) -> void:
 		layer = res.layer
 
 		code.append(res.code)
-		type.append(res.type)
+
+		for t in res.type:
+			type.append(t)
 
 		recruit_onto = recruit_onto or res.recruit_onto
 		recruit_from = recruit_from or res.recruit_from
