@@ -28,6 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				selected_unit = hovered_location
 			else:
 				selected_unit = null
+
 			UI.show_action_dialogue(hovered_location, scenario.current_side)
 
 	elif event.is_action_released("LMB"):
@@ -91,6 +92,8 @@ func _load_scenario() -> void:
 
 
 func _is_valid_attack_location(loc: Location) -> bool:
+	if loc.unit and not scenario.map.is_location_reachable(selected_unit, loc):
+		return false
 
 	return loc.unit != null \
 		and selected_unit.unit != loc.unit \

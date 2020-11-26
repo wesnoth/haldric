@@ -174,6 +174,10 @@ func find_reachable_cells(loc: Location, unit: Unit, reachable := {}, distance :
 	return reachable
 
 
+func is_location_reachable(start_loc: Location, end_loc: Location) -> bool:
+	return find_reachable_cells(start_loc, start_loc.unit).keys().has(end_loc.cell)
+
+
 func set_location_terrain(loc: Location, code: Array) -> void:
 	loc.set_terrain(code)
 	terrain_painter.change_location_graphics(loc)
