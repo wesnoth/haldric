@@ -15,4 +15,4 @@ func _ready() -> void:
 
 func _on_Scenario_selected(scenario: ScenarioData) -> void:
 	Global.selected_scenario = scenario
-	Scene.change("Game", true, true)
+	Scene.change("Game")

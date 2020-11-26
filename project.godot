@@ -275,11 +275,6 @@ _global_script_classes=[ {
 "path": "res://source/data/ScenarioData.gd"
 }, {
 "base": "Node",
-"class": "SceneLoader",
-"language": "GDScript",
-"path": "res://addons/scene_manager/source/SceneLoader.gd"
-}, {
-"base": "Node",
 "class": "Schedule",
 "language": "GDScript",
 "path": "res://source/scenario/Schedule.gd"
@@ -533,7 +528,6 @@ _global_script_class_icons={
 "ResistanceType": "",
 "Scenario": "",
 "ScenarioData": "",
-"SceneLoader": "",
 "Schedule": "",
 "Selector": "",
 "Side": "",
@@ -588,9 +582,9 @@ Debug="*res://source/global/Debug.tscn"
 Data="*res://source/global/Data.gd"
 Command="*res://source/global/Command.gd"
 Console="*res://source/global/Console.tscn"
-Scene="*res://addons/scene_manager/source/Scene.tscn"
 Global="*res://source/global/Global.gd"
 Hash="*res://source/global/Hash.gd"
+Scene="*res://source/global/Scene.gd"
 
 [display]
 
@@ -599,10 +593,6 @@ window/size/height=1080
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "scene_manager" )
 
 [importer_defaults]
 
