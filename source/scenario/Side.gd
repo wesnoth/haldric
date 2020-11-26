@@ -36,9 +36,11 @@ export var leader := ""
 
 export(Array, String) var random_leader := []
 export(Array, String) var recruit := []
+
 export(Array, Dictionary) var recall := []
 
 export var team_name := ""
+
 
 func _ready() -> void:
 	if not number:
@@ -48,6 +50,16 @@ func _ready() -> void:
 		team_name = str(number)
 	recall = get_recall_list()
 	update_income()
+
+
+func set_faction(data: FactionData) -> void:
+	var random_leaders := data.random_leader.duplicate()
+
+	if random_leaders:
+		random_leaders.shuffle()
+		leader = random_leaders[0]
+
+	recruit = data.recruit
 
 
 func turn_refresh() -> void:

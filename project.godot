@@ -154,6 +154,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/effect/EffectUnitType.gd"
 }, {
+"base": "Resource",
+"class": "FactionData",
+"language": "GDScript",
+"path": "res://source/data/FactionData.gd"
+}, {
+"base": "HBoxContainer",
+"class": "FactionSelectionPlayerEntry",
+"language": "GDScript",
+"path": "res://source/menu/FactionSelectionPlayerEntry.gd"
+}, {
 "base": "CanvasLayer",
 "class": "GameUI",
 "language": "GDScript",
@@ -499,6 +509,8 @@ _global_script_class_icons={
 "EffectAttribute": "",
 "EffectDamage": "",
 "EffectUnitType": "",
+"FactionData": "",
+"FactionSelectionPlayerEntry": "",
 "GameUI": "",
 "Grid": "",
 "Hex": "",

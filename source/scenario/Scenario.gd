@@ -356,6 +356,7 @@ func _load_map() -> void:
 
 func _load_sides() -> void:
 	for side in get_sides():
+		side.set_faction(Global.selected_sides[side.number - 1])
 		add_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
 		var ai = Data.AIs[side.ai].new()
 		add_child(ai)

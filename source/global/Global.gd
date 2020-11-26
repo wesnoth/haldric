@@ -1,6 +1,7 @@
 extends Node
 
 var selected_scenario : ScenarioData = null
+var selected_sides := []
 
 
 func _input(event: InputEvent) -> void:

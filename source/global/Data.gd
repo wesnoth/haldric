@@ -11,6 +11,7 @@ var wall_towers := {}
 
 var races := {}
 var units := {}
+var factions := {}
 
 var scenarios := {}
 
@@ -25,6 +26,7 @@ func scan() -> void:
 	_load_terrain()
 	_load_races()
 	_load_units()
+	_load_factions()
 	_load_scenarios()
 	_load_ais()
 
@@ -67,6 +69,15 @@ func _load_units() -> void:
 		units[file_data.data.instance().name] = file_data.data
 
 	print(units)
+
+
+func _load_factions() -> void:
+	factions.clear()
+
+	for file_data in Loader.load_dir("res://data/factions", ["tres", "res"]):
+		factions[file_data.data.alias] = file_data.data
+
+	print(factions)
 
 
 func _load_scenarios() -> void:
