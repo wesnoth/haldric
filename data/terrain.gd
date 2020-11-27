@@ -12,7 +12,7 @@ func _load() -> void:
 	new_base("Ice", "Ai", -50, ["frozen"], "frozen/ice")
 	new_base("Snow", "Aa", -40, ["frozen"], "frozen/snow")
 	new_base("Swamp", "Ss", -90, ["swamp"], "swamp/water")
-	new_base("Water", "Ww", -100, ["water"], "water/animated")
+	new_base("Water", "Ww", -100, ["deep_water"], "water/animated")
 	new_base("Coastal Reef", "Wwrg", -100, ["water"], "water/animated")
 	new_base("Mud", "Sm", -110, ["swamp"], "swamp/mud")
 
