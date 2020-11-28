@@ -7,6 +7,7 @@ var root := "res://"
 var images := {}
 
 var terrains := {}
+var base_overlays := {}
 var decorations := {}
 var transitions := {}
 var wall_segments := {}
@@ -56,6 +57,19 @@ func new_base(name: String, code: String, layer: int, type: Array, image_stem: S
 		.build()
 
 	terrains[terrain.code] = terrain
+
+
+func new_base_overlay(code: String, image_stem: String, offset := Vector2()) -> void:
+	var base_overlay := decoration_graphic_builder\
+		.new_graphic()\
+		.with_code(code)\
+		.with_offset(offset)\
+		.with_image_stem(image_stem)\
+		.with_texture(images[image_stem])\
+		.with_variations(_load_base_variations(image_stem))\
+		.build()
+
+	base_overlays[code] = base_overlay
 
 
 func new_overlay(name: String, code: String, type: Array, image_stem: String, offset := Vector2()) -> void:
@@ -166,7 +180,8 @@ func new_decoration(code: String, image_stem: String, offset := Vector2()) -> vo
 		.with_code(code)\
 		.with_offset(offset)\
 		.with_image_stem(image_stem)\
-		.with_textures(_load_base_variations(image_stem))\
+		.with_texture(images[image_stem])\
+		.with_variations(_load_base_variations(image_stem))\
 		.build()
 
 	decorations[code] = decoration

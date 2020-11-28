@@ -18,8 +18,13 @@ func with_offset(offset: Vector2) -> TerrainDecorationGraphicBuilder:
 	return self
 
 
-func with_textures(textures: Array) -> TerrainDecorationGraphicBuilder:
-	graphic.textures = textures
+func with_texture(texture: Texture) -> TerrainDecorationGraphicBuilder:
+	graphic.texture = texture
+	return self
+
+
+func with_variations(variations: Array) -> TerrainDecorationGraphicBuilder:
+	graphic.variations = variations
 	return self
 
 

@@ -27,6 +27,7 @@ func with_layer(layer: int) -> TerrainBuilder:
 	terrain.layer = layer
 	return self
 
+
 func with_heals(heals := false) -> TerrainBuilder:
 	terrain.heals = heals
 	return self

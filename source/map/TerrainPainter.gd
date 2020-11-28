@@ -79,7 +79,8 @@ func clear() -> void:
 
 			texture_data[Vector2(x, y)] = {
 				"terrains": [],
-				'decorations': [],
+				"base_overlays": [],
+				"decorations": [],
 				"transitions": [],
 				"overlays": [],
 				"castles": [],
@@ -101,6 +102,9 @@ func _draw() -> void:
 			var cell = Vector2(x, y)
 
 			for entry in texture_data[cell].terrains:
+				draw_texture(entry.texture, entry.position)
+
+			for entry in texture_data[cell].base_overlays:
 				draw_texture(entry.texture, entry.position)
 
 			for entry in texture_data[cell].transitions:
@@ -130,22 +134,23 @@ func _draw() -> void:
 
 func _set_location_base(loc: Location) -> void:
 	texture_data[loc.cell].terrains.clear()
+	texture_data[loc.cell].base_overlays.clear()
 
-	var data : TerrainData = Data.terrains[loc.terrain.get_base_code()]
-
-	if not data.graphic.variations:
-		texture_data[loc.cell].terrains.append({
-			"texture": data.graphic.texture,
-			"position": loc.position - Hex.OFFSET + data.graphic.offset
-		})
-		return
-
-	var variations = data.graphic.get_textures()
+	var code := loc.terrain.get_base_code()
+	var data : TerrainData = Data.terrains[code]
 
 	texture_data[loc.cell].terrains.append({
-		"texture": variations[Hash.rand[loc.cell].ai % variations.size()],
+		"texture": data.graphic.get_textures()[Hash.rand[loc.cell].ai % data.graphic.get_textures().size()],
 		"position": loc.position - Hex.OFFSET + data.graphic.offset
 	})
+
+	if Data.base_overlays.has(code):
+		var overlay_graphic : TerrainDecorationGraphicData = Data.base_overlays[code]
+
+		texture_data[loc.cell].terrains.append({
+			"texture": overlay_graphic.get_textures()[Hash.rand[loc.cell].ai % overlay_graphic.get_textures().size()],
+			"position": loc.position - Hex.OFFSET + overlay_graphic.offset
+		})
 
 
 func _set_location_overlay(loc: Location) -> void:
@@ -180,7 +185,7 @@ func _set_location_decoration(loc: Location) -> void:
 		var graphic : TerrainDecorationGraphicData = Data.decorations[code]
 
 		texture_data[loc.cell].decorations.append({
-			"texture": graphic.textures[Hash.rand[loc.cell].ai % graphic.textures.size()],
+			"texture": graphic.get_textures()[Hash.rand[loc.cell].ai % graphic.get_textures().size()],
 			"position": loc.position - Hex.OFFSET + graphic.offset
 		})
 
