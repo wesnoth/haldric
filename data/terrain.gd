@@ -5,7 +5,10 @@ func _load() -> void:
 	open_path("res://graphics/images/terrain/")
 
 	new_base("Beach", "Ds", -200, ["sand"], "sand/beach")
-	new_base("Grass", "Gg", -20, ["flat"], "grass/green")
+	new_base("Green Grass", "Gg", -20, ["flat"], "grass/green")
+	new_base("Semyi-Dry Grass", "Gs", -20, ["flat"], "grass/semi-dry")
+	new_base("Dry Grass", "Gd", -20, ["flat"], "grass/dry")
+	new_base("Leaf Litter", "Gll", -20, ["flat"], "grass/leaf-litter")
 	new_base("Hills", "Hh", 100, ["hills"], "hills/regular")
 	new_base("Cave Floor", "Uu", 100, ["cave"], "cave/floor")
 	new_base("Rockbound Cave", "Uh", 100, ["cave", "hills"], "cave/hills")
@@ -29,11 +32,28 @@ func _load() -> void:
 	new_decoration("Ss", "swamp/reed", Vector2(-22, -25))
 	new_decoration("Wwrg", "water/reef")
 
-	new_transition("Gg", [], ["Ww", "Wwrg", "Ds", "Ch"], "grass/green")
-	new_transition("Gg", ["Ds"], [], "grass/green-medium")
-	new_transition(["Gg", "Hh", "Mm"], ["Ww"], [], "flat/bank")
-	new_transition("Gg", ["Ww", "Wwrg", "Ai"], [], "cave/bank")
-	new_transition("Gg", ["Ww", "Wwrg", "Ai"], [], "grass/green-abrupt")
+	new_transition(["Gg", "Gs", "Gd", "Gll", "Hh", "Mm"], ["Ww"], [], "flat/bank")
+	new_transition(["Gg", "Gs", "Gd", "Gll"], ["Ww", "Wwrg", "Ai"], [], "cave/bank")
+
+	new_transition(["Gg"], ["Ww", "Wwrg", "Ai"], [], "grass/green-abrupt")
+	new_transition(["Gs"], ["Ww", "Wwrg", "Ai"], [], "grass/semi-dry-abrupt")
+	new_transition(["Gd"], ["Ww", "Wwrg", "Ai"], [], "grass/dry-abrupt")
+	new_transition(["Gll"], ["Ww", "Wwrg", "Ai"], [], "grass/leaf-litter-abrupt")
+
+	new_transition(["Gg"], ["Ds"], [], "grass/green-medium")
+	new_transition(["Gs"], ["Ds"], [], "grass/semi-dry-medium")
+	new_transition(["Gd"], ["Ds"], [], "grass/dry-medium")
+	new_transition(["Gll"], ["Ds"], [], "grass/leaf-litter-medium")
+
+	new_transition("Gg", [], ["Ww", "Wwrg", "Ds", "Ch", "Gs", "Gd", "Gll"], "grass/green")
+	new_transition("Gs", [], ["Ww", "Wwrg", "Ds", "Ch", "Gg", "Gd", "Gll"], "grass/semi-dry")
+	new_transition("Gd", [], ["Ww", "Wwrg", "Ds", "Ch", "Gs", "Gg", "Gll"], "grass/dry")
+	new_transition("Gll", [], ["Ww", "Wwrg", "Ds", "Ch", "Gs", "Gd", "Gg"], "grass/leaf-litter")
+
+	new_transition("Gg", ["Gd", "Gs", "Gll"], [], "grass/green-long")
+	new_transition("Gs", ["Gd", "Gg", "Gll"], [], "grass/semi-dry-long")
+	new_transition("Gd", ["Gg", "Gs", "Gll"], [], "grass/dry-long")
+	new_transition("Gll", ["Gd", "Gs", "Gg"], [], "grass/leaf-litter-long")
 
 	new_transition(["Ai"], ["Ww", "Wwrg", "Ds"], [], "frozen/ice")
 
