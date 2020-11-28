@@ -29,8 +29,9 @@ func _load() -> void:
 
 	new_castle("Castle", "Ch", ["castle"], "flat/road-clean")
 
+	new_base_overlay("Wwrg", "water/reef")
+
 	new_decoration("Ss", "swamp/reed", Vector2(-22, -25))
-	new_decoration("Wwrg", "water/reef")
 
 	new_transition(["Gg", "Gs", "Gd", "Gll", "Hh", "Mm"], ["Ww"], [], "flat/bank")
 	new_transition(["Gg", "Gs", "Gd", "Gll"], ["Ww", "Wwrg", "Ai"], [], "cave/bank")
