@@ -162,9 +162,7 @@ func is_unit_leader(unit: Unit) -> bool:
 	return leaders.has(unit)
 
 func get_recall_list() -> Array:
-#	var ret := []
-#	ret.append({"id":"Bowman","level":1,"xp":7,"traits":["Quick","Dextrous"]})
-#	ret.append({"id":"Spearman","level":1,"xp":22,"traits":["Loyal","Strong"]})
+
 	if controller == Controller.HUMAN:
 		return Global.recall_list
 	else:
@@ -175,6 +173,9 @@ func write_recall_list() -> void:
 		return
 
 	for unit in units:
+		if unit.is_leader:
+			continue
+
 		var data = {"id": unit.type.alias, "level": unit.type.level, 
 			"xp": unit.experience.value, "traits": []}
 		for trait in unit.traits.get_children():
