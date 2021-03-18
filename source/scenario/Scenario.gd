@@ -452,19 +452,18 @@ func _grab_castle(loc: Location) -> void:
 
 
 func _check_victory_conditions() -> void:
-	var victory := false
-
 	for side in get_sides():
 		if not side.leaders:
-			victory = true
+			victory()
+			return
 
-	if victory:
-		Console.write("Side %d won!" % current_side.number)
+func victory() -> void:
+	Console.write("Side %d won!" % current_side.number)
 
-		if (next_scenario):
-			Global.selected_scenario = Data.scenarios[next_scenario]
+	if (next_scenario):
+		Global.selected_scenario = Data.scenarios[next_scenario]
 
-		Scene.change("Game")
+	Scene.change("Game")
 
 
 func _on_combat_finished() -> void:
