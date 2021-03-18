@@ -1,4 +1,4 @@
-tool
+source/unit/Unit.gdtool
 extends Node2D
 class_name Scenario
 
@@ -453,9 +453,8 @@ func _check_victory_conditions() -> void:
 	var victory := true
 
 	for side in get_sides():
-		if not side == current_side:
-			if side.leaders:
-				victory = false
+		if side.leaders:
+			victory = false
 
 	if victory:
 		Console.write("Side %d won!" % current_side.number)
