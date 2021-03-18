@@ -2,7 +2,6 @@
 
 [ext_resource path="res://source/interface/game/UnitUI.gd" type="Script" id=1]
 
-
 [node name="UnitUI" type="Control" groups=[
 "UnitUI",
 ]]

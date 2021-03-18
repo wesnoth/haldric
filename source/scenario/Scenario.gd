@@ -28,6 +28,8 @@ onready var map_container := Node2D.new()
 onready var flag_container := YSort.new()
 onready var unit_container := YSort.new()
 
+export (String) var next_scenario := "";
+
 
 func _ready() -> void:
 	if Engine.editor_hint:
@@ -450,16 +452,19 @@ func _grab_castle(loc: Location) -> void:
 
 
 func _check_victory_conditions() -> void:
-	var victory := true
+	var victory := false
 
 	for side in get_sides():
-		if not side == current_side:
-			if side.leaders:
-				victory = false
+		if not side.leaders:
+			victory = true
 
 	if victory:
 		Console.write("Side %d won!" % current_side.number)
-		get_tree().reload_current_scene()
+
+		if (next_scenario):
+			Global.selected_scenario = Data.scenarios[next_scenario]
+
+		Scene.change("Game")
 
 
 func _on_combat_finished() -> void:

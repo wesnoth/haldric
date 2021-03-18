@@ -18,6 +18,9 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 
+	if scenario.current_side.controller == Side.Controller.AI:
+		return
+
 	if event.is_action_released("RMB"):
 		if selected_skill:
 			_set_selected_skill(null)

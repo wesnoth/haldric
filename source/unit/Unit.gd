@@ -124,9 +124,6 @@ func refresh() -> void:
 		heal(heal_on_refresh)
 		heal_on_refresh = 0
 
-	actions.fill()
-	moves.fill()
-
 
 func grant_experience(amount: int) -> void:
 	experience.value += amount
@@ -151,6 +148,9 @@ func grant_experience(amount: int) -> void:
 
 func turn_end() -> void:
 	emit_signal("turn_end")
+
+	actions.fill()
+	moves.fill()
 
 
 func reset() -> void:
