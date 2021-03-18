@@ -458,6 +458,9 @@ func _check_victory_conditions() -> void:
 			return
 
 func victory() -> void:
+	for side in get_sides():
+		side.write_recall_list()
+
 	Console.write("Side %d won!" % current_side.number)
 
 	if (next_scenario):
