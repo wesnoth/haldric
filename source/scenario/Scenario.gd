@@ -465,8 +465,9 @@ func victory() -> void:
 
 	if (next_scenario):
 		Global.selected_scenario = Data.scenarios[next_scenario]
-
-	Scene.change("Game")
+		Scene.change("Game")
+	else:
+		Scene.change("TitleScreen")
 
 
 func _on_combat_finished() -> void:
