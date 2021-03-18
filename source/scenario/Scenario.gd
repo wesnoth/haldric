@@ -358,7 +358,8 @@ func _load_map() -> void:
 
 func _load_sides() -> void:
 	for side in get_sides():
-		side.set_faction(Global.selected_sides[side.number - 1])
+		if (Global.selected_scenario.type == ScenarioData.ScenarioType.SCENARIO):
+			side.set_faction(Global.selected_sides[side.number - 1])
 		add_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
 		var ai = Data.AIs[side.ai].new()
 		add_child(ai)
@@ -464,8 +465,12 @@ func victory() -> void:
 	Console.write("Side %d won!" % current_side.number)
 
 	if (next_scenario):
-		Global.selected_scenario = Data.scenarios[next_scenario]
-		Scene.change("Game")
+		var next = Data.scenarios[next_scenario]
+		Global.selected_scenario = next
+		if (next.type == ScenarioData.ScenarioType.CAMPAIGN):
+			Scene.change("Game")
+		else:
+			Scene.change("FactionSelectionMenu")
 	else:
 		Scene.change("TitleScreen")
 
