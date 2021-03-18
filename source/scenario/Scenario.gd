@@ -1,4 +1,4 @@
-source/unit/Unit.gdtool
+tool
 extends Node2D
 class_name Scenario
 
