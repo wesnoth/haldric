@@ -38,7 +38,7 @@ export(Array, String) var random_leader := []
 export(Array, String) var recruit := []
 
 export(Array, Dictionary) var recall := []
-export(int) var recall_side := 0
+export(String) var recall_side := "null"
 
 export var team_name := ""
 
