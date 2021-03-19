@@ -460,11 +460,10 @@ func _check_victory_conditions() -> void:
 
 	if victory:
 		Console.write("Side %d won!" % current_side.number)
-		
+
 		if (next_scenario):
 			Global.selected_scenario = Data.scenarios[next_scenario]
-			Console.write("CHANGING SCENARIO")
-		Console.write("VICOTRY!")
+
 		Scene.change("Game")
 
 
