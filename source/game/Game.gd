@@ -85,8 +85,8 @@ func _handle_location_selection(loc: Location) -> void:
 
 
 func _load_scenario() -> void:
-	scenario = Global.selected_scenario.scene.instance()
-	scenario.map_data = Global.selected_scenario.map
+	scenario = Campaign.selected_scenario.scene.instance()
+	scenario.map_data = Campaign.selected_scenario.map
 	scenario_container.add_child(scenario)
 	scenario.connect("location_hovered", self, "_on_Scenario_location_hovered")
 	scenario.schedule.connect("time_changed", self, "_on_Schedule_time_changed")

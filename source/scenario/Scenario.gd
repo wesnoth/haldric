@@ -358,7 +358,8 @@ func _load_map() -> void:
 
 func _load_sides() -> void:
 	for side in get_sides():
-		side.set_faction(Global.selected_sides[side.number - 1])
+		if (Campaign.selected_scenario.type == ScenarioData.ScenarioType.SCENARIO):
+			side.set_faction(Campaign.selected_sides[side.number - 1])
 		add_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
 		var ai = Data.AIs[side.ai].new()
 		add_child(ai)
@@ -452,19 +453,27 @@ func _grab_castle(loc: Location) -> void:
 
 
 func _check_victory_conditions() -> void:
-	var victory := false
-
 	for side in get_sides():
 		if not side.leaders:
-			victory = true
+			victory()
+			return
 
-	if victory:
-		Console.write("Side %d won!" % current_side.number)
+func victory() -> void:
+	for side in get_sides():
+		side.write_recall_list()
 
-		if (next_scenario):
-			Global.selected_scenario = Data.scenarios[next_scenario]
+	Console.write("Side %d won!" % current_side.number)
 
-		Scene.change("Game")
+	if (next_scenario):
+		var next = Data.scenarios[next_scenario]
+		Campaign.selected_scenario = next
+		if (next.type == ScenarioData.ScenarioType.CAMPAIGN):
+			Scene.change("Game")
+		else:
+			Scene.change("FactionSelectionMenu")
+	else:
+		Scene.change("TitleScreen")
+		Campaign.recall_list = {}
 
 
 func _on_combat_finished() -> void:

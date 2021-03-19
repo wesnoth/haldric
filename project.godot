@@ -603,6 +603,7 @@ Console="*res://source/global/Console.tscn"
 Global="*res://source/global/Global.gd"
 Hash="*res://source/global/Hash.gd"
 Scene="*res://source/global/Scene.gd"
+Campaign="*res://source/global/Campaign.gd"
 
 [display]
 
@@ -687,6 +688,11 @@ toggle_fullscreen={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":true,"command":true,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=4096
+limits/debugger_stdout/max_messages_per_frame=30
 
 [rendering]
 

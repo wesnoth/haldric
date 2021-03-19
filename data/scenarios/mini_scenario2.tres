@@ -10,3 +10,4 @@ id = "MiniScenario2"
 alias = "Mini Scenario2"
 scene = ExtResource( 3 )
 map = ExtResource( 2 )
+type = 1

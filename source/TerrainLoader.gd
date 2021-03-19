@@ -38,7 +38,7 @@ func open_path(path: String) -> void:
 
 		images[semi_path] = file_data.data
 
-	print(images)
+#	print(images)
 
 
 func new_base(name: String, code: String, layer: int, type: Array, image_stem: String, offset := Vector2()) -> void:
