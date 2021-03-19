@@ -69,10 +69,14 @@ func turn_refresh() -> void:
 	for unit in units:
 		unit.refresh()
 
+	recall = get_recall_list()
+
 
 func turn_end() -> void:
 	for unit in units:
 		unit.turn_end()
+
+	sync_recall_list()
 
 
 func update_income() -> void:
@@ -167,6 +171,9 @@ func get_recall_list() -> Array:
 	if (!Global.recall_list.has(recall_side)):
 		return []
 	return Global.recall_list[recall_side]
+
+func sync_recall_list() -> void:
+	Global.recall_list[recall_side] = recall
 
 func write_recall_list() -> void:
 	if (!Global.recall_list.has(recall_side)):
