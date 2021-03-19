@@ -168,26 +168,26 @@ func is_unit_leader(unit: Unit) -> bool:
 	return leaders.has(unit)
 
 func get_recall_list() -> Array:
-	if (!Global.recall_list.has(recall_side)):
+	if (!Campaign.recall_list.has(recall_side)):
 		return []
-	return Global.recall_list[recall_side]
+	return Campaign.recall_list[recall_side]
 
 func sync_recall_list() -> void:
-	Global.recall_list[recall_side] = recall
+	Campaign.recall_list[recall_side] = recall
 
 func write_recall_list() -> void:
-	if (!Global.recall_list.has(recall_side)):
-		Global.recall_list[recall_side] = []
+	if (!Campaign.recall_list.has(recall_side)):
+		Campaign.recall_list[recall_side] = []
 
 	for unit in units:
 		if unit.is_leader:
 			continue
 
-		var data = {"id": unit.type.alias, "level": unit.type.level, 
+		var data = {"id": unit.type.name, "level": unit.type.level, 
 			"xp": unit.experience.value, "traits": []}
 		for trait in unit.traits.get_children():
-			data.traits.append(trait.alias)
-		Global.recall_list[recall_side].append(data)
+			data.traits.append(trait.name)
+		Campaign.recall_list[recall_side].append(data)
 
 func _calculate_upkeep() -> void:
 	upkeep = 0

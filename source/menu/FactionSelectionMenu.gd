@@ -7,7 +7,7 @@ onready var entry_container := $CenterContainer/VBoxContainer/Sides
 
 
 func _ready() -> void:
-	for i in Global.selected_scenario.map.players.size():
+	for i in Campaign.selected_scenario.map.players.size():
 		var entry := FactionSelectionPlayerEntry.instance()
 		entry_container.add_child(entry)
 		entry.initialize(i, Data.factions.keys())
@@ -23,5 +23,5 @@ func get_selected_sides() -> Array:
 
 
 func _on_PlayButton_pressed() -> void:
-	Global.selected_sides = get_selected_sides()
+	Campaign.selected_sides = get_selected_sides()
 	Scene.change("Game")

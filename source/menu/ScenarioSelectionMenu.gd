@@ -15,8 +15,8 @@ func _ready() -> void:
 
 
 func _on_Scenario_selected(scenario: ScenarioData) -> void:
-	Global.selected_scenario = scenario
-	Global.recall_list = {}
+	Campaign.selected_scenario = scenario
+	Campaign.recall_list = {}
 	if (scenario.type == ScenarioData.ScenarioType.CAMPAIGN):
 		Scene.change("Game")
 	else:
