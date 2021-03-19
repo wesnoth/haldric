@@ -38,8 +38,10 @@ export(Array, String) var random_leader := []
 export(Array, String) var recruit := []
 
 export(Array, Dictionary) var recall := []
+export(int) var recall_side := 0
 
 export var team_name := ""
+
 
 
 func _ready() -> void:
@@ -162,15 +164,13 @@ func is_unit_leader(unit: Unit) -> bool:
 	return leaders.has(unit)
 
 func get_recall_list() -> Array:
-
-	if controller == Controller.HUMAN:
-		return Global.recall_list
-	else:
+	if (!Global.recall_list.has(recall_side)):
 		return []
+	return Global.recall_list[recall_side]
 
 func write_recall_list() -> void:
-	if controller == Controller.AI:
-		return
+	if (!Global.recall_list.has(recall_side)):
+		Global.recall_list[recall_side] = []
 
 	for unit in units:
 		if unit.is_leader:
@@ -180,7 +180,7 @@ func write_recall_list() -> void:
 			"xp": unit.experience.value, "traits": []}
 		for trait in unit.traits.get_children():
 			data.traits.append(trait.alias)
-		Global.recall_list.append(data)
+		Global.recall_list[recall_side].append(data)
 
 func _calculate_upkeep() -> void:
 	upkeep = 0

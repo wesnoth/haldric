@@ -93,13 +93,14 @@ start_position = Vector2( 3, 2 )
 color = Color( 0.960938, 0.0638123, 0.243238, 1 )
 leader = "Lieutenant"
 recruit = [ "Bowman", "Mage", "Horseman", "Cavalryman", "Spearman" ]
+recall_side = 1
 
 [node name="Side2" type="Node" parent="Sides"]
 script = ExtResource( 2 )
 number = 2
-controller = 1
 start_position = Vector2( 15, 12 )
 color = Color( 0.044534, 0.0379333, 0.882813, 1 )
 ai = "ActionAI"
 leader = "ElvishCaptain"
 recruit = [ "ElvishArcher", "ElvishScout", "ElvishShaman", "ElvishFighter", "Wose" ]
+recall_side = 2

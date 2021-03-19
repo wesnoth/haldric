@@ -473,6 +473,7 @@ func victory() -> void:
 			Scene.change("FactionSelectionMenu")
 	else:
 		Scene.change("TitleScreen")
+		Global.recall_list = {}
 
 
 func _on_combat_finished() -> void:
