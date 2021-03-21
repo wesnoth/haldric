@@ -25,6 +25,8 @@ func _ready() -> void:
 
 
 func scan() -> void:
+	_load_addons()
+
 	_load_terrain()
 	_load_races()
 	_load_units()
@@ -32,6 +34,30 @@ func scan() -> void:
 	_load_scenarios()
 	_load_ais()
 
+func _load_addons():
+	var path = "user://addons/"
+	var directory := Directory.new()
+	directory.make_dir(path)
+
+	if not directory.open(path) == OK:
+		print("Loader: failed to load ", path, ", return [] (open)")
+		return []
+
+	if not directory.list_dir_begin(true, true) == OK:
+		print("Loader: failed to load ", path, ", return [] (list_dir_begin)")
+		return []
+
+	while true:
+		var sub_path = directory.get_next()
+		print(sub_path)
+
+		if sub_path == "." or sub_path == ".." or sub_path.begins_with("_"):
+			continue
+
+		elif sub_path == "":
+			break
+
+		ProjectSettings.load_resource_pack(sub_path)
 
 func add_terrain(terrain: TerrainData) -> void:
 	terrains[terrain.code] = terrain
