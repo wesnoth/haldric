@@ -27,7 +27,7 @@ func warn(text: String) -> void:
 func _add_line(text: String) -> void:
 	lines.append(text)
 
-	if lines.size() > 12:
+	if lines.size() > 24:
 		lines.pop_front()
 
 
