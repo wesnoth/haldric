@@ -28,7 +28,9 @@ onready var map_container := Node2D.new()
 onready var flag_container := YSort.new()
 onready var unit_container := YSort.new()
 
-export (String) var next_scenario := "";
+export (String) var next_scenario := ""
+
+var turn_num := 0
 
 
 func _ready() -> void:
@@ -38,6 +40,8 @@ func _ready() -> void:
 	_setup()
 	_load_map()
 	_load_sides()
+
+	EventBus.raise_event("start", {"scenario": self})
 
 
 func _enter_tree() -> void:
@@ -102,6 +106,9 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 	current_side.update_income()
 
 	var unit = Unit.instance()
+
+	EventBus.raise_event("prerecruit", {"scenario": self, "unit": unit, "loc": loc})
+
 	unit.side_number = current_side.number
 	unit.side_color = current_side.color
 	unit.team_name = current_side.team_name
@@ -120,6 +127,8 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 	unit.suspend()
 
 	get_tree().call_group("SideUI", "update_info", current_side)
+
+	EventBus.raise_event("recruit", {"scenario": self, "unit": unit, "loc": loc})
 
 
 func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> void:
@@ -144,6 +153,9 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 	current_side.update_income()
 
 	var unit = Unit.instance()
+
+	EventBus.raise_event("prerecall", {"scenario": self, "unit": unit, "loc": loc})
+
 	unit.side_number = current_side.number
 	unit.side_color = current_side.color
 	unit.team_name = current_side.team_name
@@ -166,6 +178,8 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 
 	get_tree().call_group("SideUI", "update_info", current_side)
 	current_side.recall.erase(data)
+
+	EventBus.raise_event("recall", {"scenario": self, "unit": unit, loc: "loc"})
 
 
 func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader := false) -> void:
@@ -192,7 +206,12 @@ func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader 
 	unit.restore()
 
 	get_tree().call_group("GameUI", "add_unit_plate", unit)
-	place_unit(unit, map.get_location_from_cell(Vector2(x, y)))
+
+	var loc = map.get_location_from_cell(Vector2(x, y))
+	place_unit(unit, loc)
+
+	EventBus.raise_event("add_unit", {"scenario": self, "unit": unit, "loc": loc, "side": side_number, "is_leader": is_leader})
+	# NOTE: Currently only called in _load_sides
 
 
 func place_unit(unit: Unit, target_loc: Location) -> void:
@@ -207,13 +226,11 @@ func place_unit(unit: Unit, target_loc: Location) -> void:
 	_grab_village(target_loc)
 	_grab_castle(target_loc)
 
+	EventBus.raise_event("place_unit", {"scenario": self, "unit": unit, "loc": target_loc})
+	# NOTE: Currently only called in recruit and recall and add_unit
+
 
 func move_unit(start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
-	var result = map.find_path_with_max_costs(start_loc, end_loc, start_loc.unit.moves.value)
-	return _move_unit(result, start_loc, end_loc, pop_last)
-
-
-func move_unit_towards(start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
 	var result = map.find_path_with_max_costs(start_loc, end_loc, start_loc.unit.moves.value)
 	return _move_unit(result, start_loc, end_loc, pop_last)
 
@@ -258,18 +275,20 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 			emit_signal("combat_finished")
 			return
 
-		var mover = move_unit_towards(attacker_loc, defender_loc, true)
+		var mover = move_unit(attacker_loc, defender_loc, true)
 
 		if not mover:
 			emit_signal("combat_finished")
 			return
 
-		yield(mover, "unit_move_finished")
+		yield(self, "unit_move_finished")
 		attacker_loc = new_attacker_loc
 
 	if not map.are_locations_neighbors(attacker_loc, defender_loc):
 		emit_signal("combat_finished")
 		return
+
+	EventBus.raise_event("combat_start", {"scenario": self, "attacker_loc": attacker_loc, "attacker_attack": attacker_attack, "defender_loc": defender_loc, "defender_attack": defender_attack})
 
 	var combat := Combat.new()
 	get_tree().current_scene.add_child(combat)
@@ -280,6 +299,13 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 	combat.start(attacker, defender)
 
 	attacker_loc.unit.suspend()
+
+	yield(combat, "combat_finished")
+
+	EventBus.raise_event("combat_finished", {"scenario": self, "attacker_loc": attacker_loc, "attacker_attack": attacker_attack, "defender_loc": defender_loc, "defender_attack": defender_attack})
+
+	_check_victory_conditions()
+	emit_signal("combat_finished")
 
 
 func add_flag(_position: Vector2, color: Color) -> void:
@@ -307,6 +333,9 @@ func end_turn() -> void:
 
 	if current_side.get_index() == 0:
 		schedule.next()
+		EventBus.raise_event("next_turn", {"scenario": self, "turn": turn_num})
+
+	EventBus.raise_event("next_side", {"scenario": self, "turn": turn_num, "new_side": current_side})
 
 	_turn_refresh_heals()
 	_turn_refresh_abilities()
@@ -379,8 +408,12 @@ func _move_unit(path_result: Dictionary, start_loc: Location, end_loc : Location
 		Console.warn(start_loc.unit.name + " has not enough moves! (%d)" % path_result.costs)
 		return null
 
+	EventBus.raise_event("move_start", {"scenario": self, "start_loc": start_loc, "end_loc": end_loc})
+
 	if pop_last:
 		path_result.path.pop_back()
+
+	var loc = path_result.path[path_result.path.size()-1]
 
 	var mover := Mover.new()
 	mover.connect("unit_move_finished", self, "_on_Mover_unit_move_finished")
@@ -390,6 +423,17 @@ func _move_unit(path_result: Dictionary, start_loc: Location, end_loc : Location
 
 	mover.move_unit(start_loc, path_result.path)
 	is_side_moving = true
+
+	yield(mover, "unit_move_finished")
+
+	_grab_village(loc)
+	_grab_castle(loc)
+	is_side_moving = false
+
+	EventBus.raise_event("move_finished", {"scenario": self, "start_loc": start_loc, "end_loc": end_loc})
+
+	emit_signal("unit_move_finished", loc)
+
 	return mover
 
 
@@ -464,6 +508,8 @@ func victory() -> void:
 
 	Console.write("Side %d won!" % current_side.number)
 
+	EventBus.raise_event("victory", {"scenario": self, "current_side": current_side})
+
 	if (next_scenario):
 		var next = Data.scenarios[next_scenario]
 		Campaign.selected_scenario = next
@@ -476,18 +522,6 @@ func victory() -> void:
 		Campaign.recall_list = {}
 
 
-func _on_combat_finished() -> void:
-	_check_victory_conditions()
-	emit_signal("combat_finished")
-
-
 func _on_Map_location_hovered(loc: Location) -> void:
 	hovered_location = loc
 	emit_signal("location_hovered", hovered_location)
-
-
-func _on_Mover_unit_move_finished(loc: Location) -> void:
-	_grab_village(loc)
-	_grab_castle(loc)
-	is_side_moving = false
-	emit_signal("unit_move_finished", loc)
