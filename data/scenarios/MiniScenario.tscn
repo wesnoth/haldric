@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://source/scenario/Scenario.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/Side.gd" type="Script" id=2]
@@ -12,10 +12,14 @@
 [ext_resource path="res://graphics/images/icons/ToD_icon_morning.svg" type="Texture" id=10]
 [ext_resource path="res://audio/sounds/ambient/morning.ogg" type="AudioStream" id=11]
 [ext_resource path="res://audio/sounds/ambient/night.ogg" type="AudioStream" id=12]
+[ext_resource path="res://data/scenarios/MiniScenario/MiniScenarioHandler.gd" type="Script" id=13]
 
 [node name="TestScenario" type="Node2D"]
 script = ExtResource( 1 )
 next_scenario = "MiniScenario2"
+
+[node name="EventHandler" type="Node" parent="."]
+script = ExtResource( 13 )
 
 [node name="Schedule" type="Node" parent="."]
 script = ExtResource( 4 )
