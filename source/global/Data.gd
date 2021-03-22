@@ -105,12 +105,12 @@ func _load_terrain(path) -> void:
 	var terrain_script := load(path).new() as TerrainLoader
 	terrain_script.load_terrain()
 
-	terrains = terrain_script.terrains
-	base_overlays = terrain_script.base_overlays
-	decorations = terrain_script.decorations
-	transitions = terrain_script.transitions
-	wall_segments = terrain_script.wall_segments
-	wall_towers = terrain_script.wall_towers
+	merge_dict(terrains, terrain_script.terrains)
+	merge_dict(base_overlays, terrain_script.base_overlays)
+	merge_dict(decorations, terrain_script.decorations)
+	merge_dict(transitions, terrain_script.transitions)
+	merge_dict(wall_segments, terrain_script.wall_segments)
+	merge_dict(wall_towers, terrain_script.wall_towers)
 
 	print("Data:")
 	print("Terrains")
@@ -125,6 +125,11 @@ func _load_terrain(path) -> void:
 	print(wall_segments)
 	print("Wall Towers")
 	print(wall_towers)
+
+
+static func merge_dict(target, patch):
+	for key in patch:
+		target[key] = patch[key]
 
 
 func _load_races(path) -> void:
