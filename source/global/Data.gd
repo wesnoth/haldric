@@ -25,30 +25,92 @@ func _ready() -> void:
 
 
 func scan() -> void:
-	_load_terrain()
-	_load_races()
-	_load_units()
-	_load_factions()
-	_load_scenarios()
-	_load_ais()
+	terrains.clear()
+	units.clear()
+	races.clear()
+	factions.clear()
+	scenarios.clear()
+	AIs.clear()
 
+	_load_addons("user://addons/")
+
+	_load_terrain("res://data/terrain.gd")
+	_load_races("res://data/races")
+	_load_units("res://data/units")
+	_load_factions("res://data/factions")
+	_load_scenarios("res://data/scenarios")
+	_load_ais("res://ai")
+
+
+	var path = "res://addons/"
+
+	var directory := Directory.new()
+	directory.make_dir(path)
+
+	if not directory.open(path) == OK:
+		print("Loader: failed to load ", path, ", return [] (open)")
+		return
+
+	if not directory.list_dir_begin(true, true) == OK:
+		print("Loader: failed to load ", path, ", return [] (list_dir_begin)")
+		return
+
+	while true:
+		var sub_path = directory.get_next()
+		print(sub_path)
+
+		if sub_path == "." or sub_path == ".." or sub_path.begins_with("_"):
+			continue
+
+		elif sub_path == "":
+			break
+
+		_load_terrain(path + sub_path + "/" + "data/terrain.gd")
+		_load_races(path + sub_path + "/" + "data/races")
+		_load_units(path + sub_path + "/" + "data/units")
+		_load_factions(path + sub_path + "/" + "data/factions")
+		_load_scenarios(path + sub_path + "/" + "data/scenarios")
+		_load_ais(path + sub_path + "/" + "ai")
+
+func _load_addons(path):
+	var directory := Directory.new()
+	directory.make_dir(path)
+
+	if not directory.open(path) == OK:
+		print("Loader: failed to load ", path, ", return [] (open)")
+		return []
+
+	if not directory.list_dir_begin(true, true) == OK:
+		print("Loader: failed to load ", path, ", return [] (list_dir_begin)")
+		return []
+
+	while true:
+		var sub_path = directory.get_next()
+		print(sub_path)
+
+		if sub_path == "." or sub_path == ".." or sub_path.begins_with("_"):
+			continue
+
+		elif sub_path == "":
+			break
+
+		ProjectSettings.load_resource_pack(sub_path)
 
 func add_terrain(terrain: TerrainData) -> void:
 	terrains[terrain.code] = terrain
 
 
-func _load_terrain() -> void:
-	terrains.clear()
+func _load_terrain(path) -> void:
 
-	var terrain_script := load("res://data/terrain.gd").new() as TerrainLoader
+	var terrain_script := load(path).new() as TerrainLoader
 	terrain_script.load_terrain()
 
-	terrains = terrain_script.terrains
-	base_overlays = terrain_script.base_overlays
-	decorations = terrain_script.decorations
-	transitions = terrain_script.transitions
-	wall_segments = terrain_script.wall_segments
-	wall_towers = terrain_script.wall_towers
+	merge_dict(terrains, terrain_script.terrains)
+	merge_dict(base_overlays, terrain_script.base_overlays)
+	merge_dict(decorations, terrain_script.decorations)
+	merge_dict(transitions, terrain_script.transitions)
+	merge_dict(wall_segments, terrain_script.wall_segments)
+	merge_dict(wall_towers, terrain_script.wall_towers)
 
 	print("Data:")
 	print("Terrains")
@@ -65,46 +127,41 @@ func _load_terrain() -> void:
 	print(wall_towers)
 
 
-func _load_races() -> void:
-	races.clear()
+static func merge_dict(target, patch):
+	for key in patch:
+		target[key] = patch[key]
 
-	for file_data in Loader.load_dir("res://data/races", ["tres", "res"]):
+
+func _load_races(path) -> void:
+	for file_data in Loader.load_dir(path, ["tres", "res"]):
 		races[file_data.data.id] = file_data.data
 
 	print(races)
 
 
-func _load_units() -> void:
-	units.clear()
-
-	for file_data in Loader.load_dir("res://data/units", ["tscn", "scn"]):
+func _load_units(path) -> void:
+	for file_data in Loader.load_dir(path, ["tscn", "scn"]):
 		units[file_data.data.instance().name] = file_data.data
 
 	print(units)
 
 
-func _load_factions() -> void:
-	factions.clear()
-
-	for file_data in Loader.load_dir("res://data/factions", ["tres", "res"]):
+func _load_factions(path) -> void:
+	for file_data in Loader.load_dir(path, ["tres", "res"]):
 		factions[file_data.data.alias] = file_data.data
 
 	print(factions)
 
 
-func _load_scenarios() -> void:
-	scenarios.clear()
-
-	for file_data in Loader.load_dir("res://data/scenarios", ["tres", "res"]):
+func _load_scenarios(path) -> void:
+	for file_data in Loader.load_dir(path, ["tres", "res"]):
 		scenarios[file_data.data.id] = file_data.data
 
 	print(scenarios)
 
 
-func _load_ais() -> void:
-	AIs.clear()
-
-	for file_data in Loader.load_dir("res://ai", [ "gd" ]):
+func _load_ais(path) -> void:
+	for file_data in Loader.load_dir(path, [ "gd" ]):
 		AIs[file_data.id] = file_data.data
 
 	print(AIs)
