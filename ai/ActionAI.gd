@@ -119,7 +119,7 @@ func _execute_attacks(scenario: Scenario) -> void:
 
 		else:
 			target = _get_best_attack_target(loc.unit, enemies)
-			scenario.call_deferred("move_unit_towards", loc, target.loc)
+			scenario.call_deferred("move_unit", loc, target.loc)
 			yield(scenario, "unit_move_finished")
 
 	emit_signal("attacks_finished")
@@ -148,7 +148,7 @@ func _execute_scouting(scenario: Scenario) -> void:
 
 		if target_villages:
 			var target : Dictionary = target_villages[randi() % target_villages.size()]
-			scenario.move_unit_towards(loc, target.loc)
+			scenario.move_unit(loc, target.loc)
 			yield(scenario, "unit_move_finished")
 
 	emit_signal("scouting_finished")

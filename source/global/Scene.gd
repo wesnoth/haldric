@@ -16,3 +16,5 @@ func change(scene_name: String) -> void:
 		return
 
 	get_tree().change_scene(scenes[scene_name])
+
+	EventBus.clear()
