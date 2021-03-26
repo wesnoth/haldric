@@ -5,6 +5,7 @@ class_name Scenario
 signal location_hovered(loc)
 signal unit_move_finished(loc)
 signal combat_finished()
+signal show_replica(replica)
 
 const FLAG_OFFSET = Vector2(15, 25)
 
@@ -38,6 +39,10 @@ func _ready() -> void:
 	_setup()
 	_load_map()
 	_load_sides()
+	
+	var replica_on_start = Campaign.selected_scenario.replica_on_start
+	if replica_on_start:
+		emit_signal("show_replica", replica_on_start)
 
 
 func _enter_tree() -> void:

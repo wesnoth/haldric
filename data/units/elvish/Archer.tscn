@@ -27,13 +27,12 @@ texture = ExtResource( 2 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 3 )
+castle = 60
 flat = 40
 forest = 70
 hills = 50
-water = 20
 mountains = 60
 village = 60
-castle = 60
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 4 )

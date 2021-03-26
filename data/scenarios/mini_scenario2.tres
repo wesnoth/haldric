@@ -1,8 +1,9 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://source/data/ScenarioData.gd" type="Script" id=1]
 [ext_resource path="res://data/maps/map.tres" type="Resource" id=2]
 [ext_resource path="res://data/scenarios/MiniScenario2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://data/test_replica.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
@@ -11,3 +12,4 @@ alias = "Mini Scenario2"
 scene = ExtResource( 3 )
 map = ExtResource( 2 )
 type = 1
+replica_on_start = ExtResource( 4 )

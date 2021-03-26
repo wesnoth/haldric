@@ -87,6 +87,7 @@ func _handle_location_selection(loc: Location) -> void:
 func _load_scenario() -> void:
 	scenario = Campaign.selected_scenario.scene.instance()
 	scenario.map_data = Campaign.selected_scenario.map
+	scenario.connect("show_replica", self, "_on_Scenario_show_replica")
 	scenario_container.add_child(scenario)
 	scenario.connect("location_hovered", self, "_on_Scenario_location_hovered")
 	scenario.schedule.connect("time_changed", self, "_on_Schedule_time_changed")
@@ -152,6 +153,10 @@ func _set_selected_unit(loc: Location) -> void:
 
 func _on_Scenario_location_hovered(loc: Location) -> void:
 	_set_hovered_location(loc)
+
+
+func _on_Scenario_show_replica(replica: Replica) -> void:
+	UI.show_replica(replica)
 
 
 func _on_Schedule_time_changed(time: Time) -> void:

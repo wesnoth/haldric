@@ -35,6 +35,7 @@ onready var combat_dialogue := $HUD/CombatDialogue as CombatDialogue
 onready var recruit_dialogue := $HUD/RecruitDialogue as RecruitDialogue
 onready var recall_dialogue := $HUD/RecallDialogue as RecallDialogue
 onready var advancement_dialogue := $HUD/AdvancementDialogue as AdvancementDialogue
+onready var replica_dialogue := $HUD/ReplicaDialogue as ReplicaDialog
 
 onready var end_turn_button = $HUD/EndTurn
 
@@ -44,6 +45,8 @@ func _ready() -> void:
 	recruit_dialogue.hide()
 	recall_dialogue.hide()
 	advancement_dialogue.hide()
+	replica_dialogue.hide()
+	
 	cover.hide()
 
 
@@ -182,6 +185,18 @@ func add_unit_plate(unit: Unit) -> void:
 	unit.attach_unit_plate(plate)
 
 
+func show_replica(replica: Replica) -> void:
+	selector.hide()
+	replica_dialogue.update_info(replica)
+	replica_dialogue.show()
+
+
+func close_replica_dialogue() -> void:
+	selector.show()
+	replica_dialogue.hide()
+	replica_dialogue.clear()
+
+
 func _on_CombatDialogue_option_selected(attacker_attack: Attack, defender_attack: Attack, target: Location) -> void:
 	close_combat_dialogue()
 	emit_signal("combat_option_selected", attacker_attack, defender_attack, target)
@@ -231,3 +246,7 @@ func _on_ActionDialogue_skill_selected(skill) -> void:
 
 func _on_ExitButton_pressed() -> void:
 	emit_signal("exit_button_pressed")
+
+
+func _on_ReplicaDialogue_close_replica():
+	close_replica_dialogue()

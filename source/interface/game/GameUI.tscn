@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://source/interface/game/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/misc/Selector.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://source/interface/game/action/ActionDialogue.tscn" type="PackedScene" id=11]
 [ext_resource path="res://source/interface/game/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
 [ext_resource path="res://source/interface/game/recall/RecallDialogue.tscn" type="PackedScene" id=13]
+[ext_resource path="res://source/interface/game/ReplicaDialog.tscn" type="PackedScene" id=14]
 
 [sub_resource type="TileSet" id=1]
 0/name = "darken"
@@ -172,6 +173,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ReplicaDialogue" parent="HUD" instance=ExtResource( 14 )]
 [connection signal="move_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_move_selected"]
 [connection signal="recall_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recall_selected"]
 [connection signal="recruit_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recruit_selected"]
@@ -185,3 +187,4 @@ __meta__ = {
 [connection signal="skill_selected" from="HUD/SidePanel/VBoxContainer/UnitUI" to="." method="_on_UnitUI_skill_selected"]
 [connection signal="pressed" from="HUD/EndTurn" to="." method="_on_EndTurn_pressed"]
 [connection signal="pressed" from="HUD/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="close_replica" from="HUD/ReplicaDialogue" to="." method="_on_ReplicaDialogue_close_replica"]
