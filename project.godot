@@ -184,6 +184,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/map/HexMap.gd"
 }, {
+"base": "Control",
+"class": "InfoDialogue",
+"language": "GDScript",
+"path": "res://source/interface/game/InfoDialogue.gd"
+}, {
 "base": "Reference",
 "class": "Loader",
 "language": "GDScript",
@@ -525,6 +530,7 @@ _global_script_class_icons={
 "Grid": "",
 "Hex": "",
 "HexMap": "",
+"InfoDialogue": "",
 "Loader": "",
 "Location": "",
 "LocationUI": "",

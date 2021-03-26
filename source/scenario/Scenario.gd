@@ -6,6 +6,8 @@ signal location_hovered(loc)
 signal unit_move_finished(loc)
 signal combat_finished()
 
+signal show_info_dialogue(char_name, text)
+
 const FLAG_OFFSET = Vector2(15, 25)
 
 var map_data : MapData = null
@@ -82,6 +84,9 @@ func _get_configuration_warning() -> String:
 		warning += "No Side Node defined!\n"
 
 	return warning
+
+func show_info_dialogue(char_name, text):
+	emit_signal("show_info_dialogue", char_name, text)
 
 
 func recruit(unit_type_id: String, loc: Location = null) -> void:
