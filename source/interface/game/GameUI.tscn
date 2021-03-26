@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://source/interface/game/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://source/interface/misc/Selector.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://source/interface/game/action/ActionDialogue.tscn" type="PackedScene" id=11]
 [ext_resource path="res://source/interface/game/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
 [ext_resource path="res://source/interface/game/recall/RecallDialogue.tscn" type="PackedScene" id=13]
+[ext_resource path="res://source/interface/game/InfoDialogue.tscn" type="PackedScene" id=14]
 
 [sub_resource type="TileSet" id=1]
 0/name = "darken"
@@ -100,6 +101,8 @@ margin_top = -2.0
 margin_bottom = -2.0
 theme = null
 
+[node name="InfoDialogue" parent="HUD" instance=ExtResource( 14 )]
+
 [node name="SidePanel" type="PanelContainer" parent="HUD"]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -171,7 +174,6 @@ text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="move_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_move_selected"]
 [connection signal="recall_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recall_selected"]
 [connection signal="recruit_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recruit_selected"]

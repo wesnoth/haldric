@@ -89,6 +89,7 @@ func _load_scenario() -> void:
 	scenario.map_data = Campaign.selected_scenario.map
 	scenario_container.add_child(scenario)
 	scenario.connect("location_hovered", self, "_on_Scenario_location_hovered")
+	scenario.connect("show_info_dialogue", self, "_on_Scenario_show_info_dialogue")
 	scenario.schedule.connect("time_changed", self, "_on_Schedule_time_changed")
 	UI.set_cover_size(scenario.map.get_used_rect().size)
 	Command.scenario = scenario
@@ -152,6 +153,10 @@ func _set_selected_unit(loc: Location) -> void:
 
 func _on_Scenario_location_hovered(loc: Location) -> void:
 	_set_hovered_location(loc)
+
+
+func _on_Scenario_show_info_dialogue(char_name, text):
+	UI.show_info_dialogue(char_name, text)
 
 
 func _on_Schedule_time_changed(time: Time) -> void:

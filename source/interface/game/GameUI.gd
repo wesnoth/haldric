@@ -35,6 +35,7 @@ onready var combat_dialogue := $HUD/CombatDialogue as CombatDialogue
 onready var recruit_dialogue := $HUD/RecruitDialogue as RecruitDialogue
 onready var recall_dialogue := $HUD/RecallDialogue as RecallDialogue
 onready var advancement_dialogue := $HUD/AdvancementDialogue as AdvancementDialogue
+onready var info_dialogue := $HUD/InfoDialogue as InfoDialogue
 
 onready var end_turn_button = $HUD/EndTurn
 
@@ -45,6 +46,7 @@ func _ready() -> void:
 	recall_dialogue.hide()
 	advancement_dialogue.hide()
 	cover.hide()
+	info_dialogue.hide()
 
 
 func disable() -> void:
@@ -95,6 +97,10 @@ func add_path(path: Array) -> void:
 
 func remove_path(path: Array) -> void:
 	path_ui.erase(path)
+
+
+func show_info_dialogue(char_name, text):
+	info_dialogue.show_text(char_name, text)
 
 
 func show_action_dialogue(loc: Location, side: Side) -> void:
