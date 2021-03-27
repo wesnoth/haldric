@@ -129,7 +129,6 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 	unit.restore()
 
 	place_unit(unit, loc)
-	unit.suspend()
 
 	get_tree().call_group("SideUI", "update_info", current_side)
 
@@ -293,9 +292,11 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 		emit_signal("combat_finished")
 		return
 
+	var defender_side = get_side(defender_loc.unit.side_number)
+
 	EventBus.raise_event("combat_start", {"scenario": self, \
 	"attacker_side": current_side, "attacker_loc": attacker_loc, "attacker_attack": attacker_attack, \
-	"defender_side": get_side(defender_loc.unit.side_number), "defender_loc": defender_loc, "defender_attack": defender_attack})
+	"defender_side": defender_side, "defender_loc": defender_loc, "defender_attack": defender_attack})
 
 	var combat := Combat.new()
 	get_tree().current_scene.add_child(combat)
@@ -311,7 +312,7 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 
 	EventBus.raise_event("combat_finished", {"scenario": self, \
 	"attacker_side": current_side, "attacker_loc": attacker_loc, "attacker_attack": attacker_attack, \
-	"defender_side": get_side(defender_loc.unit.side_number), "defender_loc": defender_loc, "defender_attack": defender_attack})
+	"defender_side": defender_side, "defender_loc": defender_loc, "defender_attack": defender_attack})
 
 	_check_victory_conditions()
 	emit_signal("combat_finished")
@@ -472,7 +473,7 @@ func _turn_refresh_abilities() -> void:
 			ability.execute(loc)
 
 		for effect in loc.unit.get_effects():
-			effect.execute(loc)
+			effect.execute(loc.unit)
 
 
 func _grab_village(loc: Location) -> void:
