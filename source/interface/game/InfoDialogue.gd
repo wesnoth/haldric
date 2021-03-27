@@ -1,7 +1,6 @@
 extends Control
 class_name InfoDialogue
 
-onready var panel := $Panel
 onready var character_name := $Panel/VBoxContainer/CharacterName
 onready var info_text := $Panel/VBoxContainer/InfoText
 

@@ -13,14 +13,13 @@ func _ready():
 func _on_start(data):
 	var scenario = data.scenario
 	scenario.show_info_dialogue("Wesnoth", "Hello Haldric player! This is a tutorial.")
-	scenario.show_info_dialogue("Wesnoth", """
-	To select, click on the unit
+	scenario.show_info_dialogue("Wesnoth", 
+	"""To select, click on the unit
 	To move, select your unit then click on your destination
 	To attack, select your unit then click on the other unit.
 	To open a skills menu, left click on your unit.
 	To recruit, open a skills menu and click 'RE'
-	To recall, open a skills menu and click 'RA'
-	""")
+	To recall, open a skills menu and click 'RA'""")
 
 func _on_combat(data):
 	var scenario = data.scenario
