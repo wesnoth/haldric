@@ -685,6 +685,10 @@ window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
+[gui]
+
+theme/use_hidpi=true
+
 [importer_defaults]
 
 texture={
