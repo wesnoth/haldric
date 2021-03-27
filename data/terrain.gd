@@ -16,7 +16,7 @@ func _load() -> void:
 	new_base("Snow", "Aa", -40, ["frozen"], "frozen/snow")
 	new_base("Swamp", "Ss", -90, ["swamp"], "swamp/water")
 	new_base("Water", "Ww", -100, ["deep_water"], "water/animated")
-	new_base("Coastal Reef", "Wwrg", -100, ["water"], "water/animated")
+	new_base("Coastal Reef", "Wwrg", -100, ["coastal_reef"], "water/animated")
 	new_base("Mud", "Sm", -110, ["swamp"], "swamp/mud")
 
 	new_base("Mountains", "Mm", 200, ["mountains"], "mountains/basic", Vector2(-56, -68))
