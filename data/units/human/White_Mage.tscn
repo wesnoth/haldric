@@ -1,32 +1,33 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/units/human/spearman.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/attacks/lightbeam.png" type="Texture" id=2]
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=6]
-[ext_resource path="res://data/specials/Firststrike.tscn" type="PackedScene" id=7]
-[ext_resource path="res://graphics/images/attacks/spear.png" type="Texture" id=8]
-[ext_resource path="res://graphics/images/attacks/javelin-human.png" type="Texture" id=9]
-[ext_resource path="res://data/projectiles/Spear.tscn" type="PackedScene" id=10]
+[ext_resource path="res://graphics/images/units/human/white-mage.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/attacks/staff-magic.png" type="Texture" id=8]
+[ext_resource path="res://data/specials/Magical.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/unit/ability/AbilityHeal.gd" type="Script" id=10]
 
-[node name="Spearman" type="Node2D"]
+[node name="White Mage" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Spearman"
+alias = "White Mage"
 alignment = "lawful"
 race = "human"
-level = 1
-cost = 14
-health = 36
+level = 2
+cost = 38
+health = 35
 moves = 5
-experience = 40
-advances_to = [ "Swordsman", "Pikeman", "Javelineer" ]
+experience = 136
+advances_to = [ "Mage of Light" ]
+usage = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 7 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -42,34 +43,40 @@ script = ExtResource( 4 )
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
-arcane = 20
+arcane = 40
 
 [node name="Traits" type="Node" parent="."]
 
 [node name="Abilities" type="Node" parent="."]
 
+[node name="Heals8" type="Node" parent="Abilities"]
+script = ExtResource( 10 )
+affect_self = false
+affect_allies = true
+amount = 8
+cure = [ "Poison" ]
+
 [node name="Skills" type="Node" parent="."]
 
 [node name="Attacks" type="Node" parent="."]
 
-[node name="Spear" type="Node" parent="Attacks"]
+[node name="Staff" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
-alias = "Spear"
+alias = "Staff"
 icon = ExtResource( 8 )
-damage_type = "pierce"
-damage = 7
+damage_type = "impact"
+damage = 6
+strikes = 2
+
+[node name="Lightbeam" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Lightbeam"
+icon = ExtResource( 2 )
+category = "ranged"
+damage_type = "arcane"
+damage = 9
 strikes = 3
 
-[node name="Firststrike" parent="Attacks/Spear" instance=ExtResource( 7 )]
-
-[node name="Javelin" type="Node" parent="Attacks"]
-script = ExtResource( 6 )
-alias = "Javelin"
-icon = ExtResource( 9 )
-category = "ranged"
-damage_type = "pierce"
-damage = 6
-strikes = 1
-projectile = ExtResource( 10 )
+[node name="Magical" parent="Attacks/Lightbeam" instance=ExtResource( 9 )]
 
 [node name="Advancements" type="Node" parent="."]
