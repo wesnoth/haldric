@@ -90,7 +90,7 @@ func show_info_dialogue(char_name, text):
 
 
 func recruit(unit_type_id: String, loc: Location = null) -> void:
-	if loc == null:
+	if loc == null or loc.unit:
 		loc = current_side.find_recruit_location()
 
 	if not loc:
@@ -136,7 +136,7 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 
 
 func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> void:
-	if loc == null:
+	if loc == null or loc.unit:
 		loc = current_side.find_recruit_location()
 
 	if not loc:
