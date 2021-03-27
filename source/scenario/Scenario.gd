@@ -399,10 +399,11 @@ func _load_sides() -> void:
 		if (Campaign.selected_scenario.type == ScenarioData.ScenarioType.SCENARIO):
 			side.set_faction(Campaign.selected_sides[side.number - 1])
 		add_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
-		var ai = Data.AIs[side.ai].new()
-		add_child(ai)
-		ai.initialize(side)
-		AIs[side] = ai
+		if (side.controller == Side.Controller.AI):
+			var ai = Data.AIs[side.ai].new()
+			add_child(ai)
+			ai.initialize(side)
+			AIs[side] = ai
 
 
 	current_side = get_side(1)
@@ -425,7 +426,7 @@ func _move_unit(path_result: Dictionary, start_loc: Location, end_loc : Location
 	var loc = path_result.path[path_result.path.size()-1]
 
 	var mover := Mover.new()
-	mover.connect("unit_move_finished", self, "_on_Mover_unit_move_finished")
+
 	get_tree().current_scene.add_child(mover)
 
 	current_side.remove_castle(start_loc)

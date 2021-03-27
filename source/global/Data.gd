@@ -65,12 +65,12 @@ func scan() -> void:
 		elif sub_path == "":
 			break
 
-		_load_terrain(path + sub_path + "/" + "data/terrain.gd")
-		_load_races(path + sub_path + "/" + "data/races")
-		_load_units(path + sub_path + "/" + "data/units")
-		_load_factions(path + sub_path + "/" + "data/factions")
-		_load_scenarios(path + sub_path + "/" + "data/scenarios")
-		_load_ais(path + sub_path + "/" + "ai")
+		_load_terrain(path + sub_path + "/data/terrain.gd")
+		_load_races(path + sub_path + "/data/races")
+		_load_units(path + sub_path + "/data/units")
+		_load_factions(path + sub_path + "/data/factions")
+		_load_scenarios(path + sub_path + "/data/scenarios")
+		_load_ais(path + sub_path + "/ai")
 
 func _load_addons(path):
 	var directory := Directory.new()
@@ -161,7 +161,7 @@ func _load_scenarios(path) -> void:
 
 
 func _load_ais(path) -> void:
-	for file_data in Loader.load_dir(path, [ "gd" ]):
+	for file_data in Loader.load_dir(path, [ "gd", "gdc" ]):
 		AIs[file_data.id] = file_data.data
 
 	print(AIs)

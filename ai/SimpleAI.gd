@@ -1,5 +1,4 @@
 extends AI
-class_name SimpleAI
 
 enum State { NONE, RECRUIT, CAPTURE_VILLAGES, ATTACK, RETREAT }
 enum UnitState { NONE, HEAL, SCOUT, ATTACK, STANDBY }
