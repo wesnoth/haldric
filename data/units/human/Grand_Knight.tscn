@@ -1,27 +1,27 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/units/human/spearman.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/units/human/grand-knight.png" type="Texture" id=2]
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=6]
-[ext_resource path="res://data/specials/Firststrike.tscn" type="PackedScene" id=7]
-[ext_resource path="res://graphics/images/attacks/spear.png" type="Texture" id=8]
-[ext_resource path="res://graphics/images/attacks/javelin-human.png" type="Texture" id=9]
-[ext_resource path="res://data/projectiles/Spear.tscn" type="PackedScene" id=10]
+[ext_resource path="res://data/specials/Charge.tscn" type="PackedScene" id=7]
+[ext_resource path="res://graphics/images/attacks/lance.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/attacks/sword-human.png" type="Texture" id=9]
 
-[node name="Spearman" type="Node2D"]
+
+[node name="Grand Knight" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Spearman"
+alias = "Grand Knight"
 alignment = "lawful"
 race = "human"
-level = 1
-cost = 14
-health = 36
-moves = 5
-experience = 40
-advances_to = [ "Swordsman", "Pikeman", "Javelineer" ]
+level = 3
+cost = 58
+health = 78
+moves = 7
+experience = 150
+usage = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -30,18 +30,24 @@ texture = ExtResource( 2 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 3 )
-castle = 60
 flat = 40
-forest = 50
-hills = 50
-mountains = 60
-village = 60
+forest = 30
+hills = 40
+water = 20
+village = 40
+castle = 40
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 4 )
+forest = 3
+water = 4
+mountains = 99
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
+slash = 20
+impact = 30
+pierce = -20
 arcane = 20
 
 [node name="Traits" type="Node" parent="."]
@@ -52,24 +58,22 @@ arcane = 20
 
 [node name="Attacks" type="Node" parent="."]
 
-[node name="Spear" type="Node" parent="Attacks"]
+[node name="Sword" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
-alias = "Spear"
+alias = "Sword"
+icon = ExtResource( 9 )
+damage_type = "slash"
+damage = 12
+strikes = 4
+
+[node name="Lance" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Lance"
 icon = ExtResource( 8 )
 damage_type = "pierce"
-damage = 7
-strikes = 3
+damage = 17
+strikes = 2
 
-[node name="Firststrike" parent="Attacks/Spear" instance=ExtResource( 7 )]
-
-[node name="Javelin" type="Node" parent="Attacks"]
-script = ExtResource( 6 )
-alias = "Javelin"
-icon = ExtResource( 9 )
-category = "ranged"
-damage_type = "pierce"
-damage = 6
-strikes = 1
-projectile = ExtResource( 10 )
+[node name="Charge" parent="Attacks/Lance" instance=ExtResource( 7 )]
 
 [node name="Advancements" type="Node" parent="."]

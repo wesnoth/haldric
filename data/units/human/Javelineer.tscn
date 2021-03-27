@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/units/human/spearman.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/units/human/javelineer.png" type="Texture" id=2]
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
@@ -11,17 +11,16 @@
 [ext_resource path="res://graphics/images/attacks/javelin-human.png" type="Texture" id=9]
 [ext_resource path="res://data/projectiles/Spear.tscn" type="PackedScene" id=10]
 
-[node name="Spearman" type="Node2D"]
+[node name="Javelineer" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Spearman"
+alias = "Javelineer"
 alignment = "lawful"
 race = "human"
-level = 1
-cost = 14
-health = 36
+level = 2
+cost = 25
+health = 48
 moves = 5
-experience = 40
-advances_to = [ "Swordsman", "Pikeman", "Javelineer" ]
+experience = 100
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -42,6 +41,7 @@ script = ExtResource( 4 )
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
+pierce = 40
 arcane = 20
 
 [node name="Traits" type="Node" parent="."]
@@ -57,7 +57,7 @@ script = ExtResource( 6 )
 alias = "Spear"
 icon = ExtResource( 8 )
 damage_type = "pierce"
-damage = 7
+damage = 8
 strikes = 3
 
 [node name="Firststrike" parent="Attacks/Spear" instance=ExtResource( 7 )]
@@ -68,8 +68,8 @@ alias = "Javelin"
 icon = ExtResource( 9 )
 category = "ranged"
 damage_type = "pierce"
-damage = 6
-strikes = 1
+damage = 11
+strikes = 2
 projectile = ExtResource( 10 )
 
 [node name="Advancements" type="Node" parent="."]

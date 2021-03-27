@@ -5,38 +5,49 @@
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=5]
-[ext_resource path="res://graphics/images/units/human/bowman.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/attacks/sword-human-short.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/attacks/dagger-human.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/units/human/poacher.png" type="Texture" id=7]
 [ext_resource path="res://graphics/images/attacks/bow.png" type="Texture" id=8]
 [ext_resource path="res://data/projectiles/Arrow.tscn" type="PackedScene" id=9]
 
-[node name="Bowman" type="Node2D"]
+[node name="Poacher" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Bowman"
-alignment = "lawful"
+alias = "Poacher"
+alignment = "chaotic"
 race = "human"
 level = 1
 cost = 14
-health = 34
+health = 33
 moves = 5
-experience = 40
+experience = 29
 usage = 2
-advances_to = [ "Longbowman" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 2 )
+castle = 60
+cave = 40
+coastal_reef = 30
 flat = 40
-forest = 50
+forest = 60
+frozen = 20
+fungus = 50
 hills = 50
 mountains = 60
+sand = 30
+shallow_water = 20
+swamp = 50
+village = 60
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 3 )
+coastal_reef = 2
+sand = 2
+swamp = 2
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -50,12 +61,12 @@ arcane = 20
 
 [node name="Attacks" type="Node" parent="."]
 
-[node name="ShortSword" type="Node" parent="Attacks"]
+[node name="Dagger" type="Node" parent="Attacks"]
 script = ExtResource( 5 )
 alias = "Short Sword"
-icon = ExtResource( 7 )
+icon = ExtResource( 6 )
 damage_type = "slash"
-damage = 4
+damage = 3
 strikes = 2
 
 [node name="Bow" type="Node" parent="Attacks"]
@@ -64,8 +75,8 @@ alias = "Bow"
 icon = ExtResource( 8 )
 category = "ranged"
 damage_type = "pierce"
-damage = 6
-strikes = 3
+damage = 4
+strikes = 4
 projectile = ExtResource( 9 )
 
 [node name="Advancements" type="Node" parent="."]

@@ -1,27 +1,24 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/units/human/spearman.png" type="Texture" id=2]
+[ext_resource path="res://graphics/images/units/human/halberdier.png" type="Texture" id=2]
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=6]
-[ext_resource path="res://data/specials/Firststrike.tscn" type="PackedScene" id=7]
-[ext_resource path="res://graphics/images/attacks/spear.png" type="Texture" id=8]
-[ext_resource path="res://graphics/images/attacks/javelin-human.png" type="Texture" id=9]
-[ext_resource path="res://data/projectiles/Spear.tscn" type="PackedScene" id=10]
+[ext_resource path="res://source/unit/special/WeaponSpecial.gd" type="Script" id=7]
+[ext_resource path="res://graphics/images/attacks/halberd.png" type="Texture" id=8]
 
-[node name="Spearman" type="Node2D"]
+[node name="Halberdier" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Spearman"
+alias = "Halberdier"
 alignment = "lawful"
 race = "human"
-level = 1
-cost = 14
-health = 36
+level = 3
+cost = 44
+health = 72
 moves = 5
-experience = 40
-advances_to = [ "Swordsman", "Pikeman", "Javelineer" ]
+experience = 150
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -42,6 +39,7 @@ script = ExtResource( 4 )
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
+pierce = 40
 arcane = 20
 
 [node name="Traits" type="Node" parent="."]
@@ -52,24 +50,25 @@ arcane = 20
 
 [node name="Attacks" type="Node" parent="."]
 
-[node name="Spear" type="Node" parent="Attacks"]
+[node name="Halberd" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
-alias = "Spear"
+alias = "Halberd"
 icon = ExtResource( 8 )
 damage_type = "pierce"
-damage = 7
+damage = 15
 strikes = 3
 
-[node name="Firststrike" parent="Attacks/Spear" instance=ExtResource( 7 )]
+[node name="Firststrike" type="Node" parent="Attacks/Halberd"]
+script = ExtResource( 7 )
+alias = "Firststrike"
+description = "TO BE IMPLEMENTED"
 
-[node name="Javelin" type="Node" parent="Attacks"]
+[node name="Halberd2" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
-alias = "Javelin"
-icon = ExtResource( 9 )
-category = "ranged"
-damage_type = "pierce"
-damage = 6
-strikes = 1
-projectile = ExtResource( 10 )
+alias = "Halberd"
+icon = ExtResource( 8 )
+damage_type = "blade"
+damage = 19
+strikes = 2
 
 [node name="Advancements" type="Node" parent="."]
