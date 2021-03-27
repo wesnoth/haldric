@@ -65,6 +65,11 @@ func has_path_free_location(path: Array) -> bool:
 
 func _end_move(unit: Unit, loc: Location) -> void:
 	loc.unit = unit
+
+	for neighbor in loc.get_neighbors():
+		if neighbor.unit != null and neighbor.unit.side_number != unit.side_number:
+			unit.moves.empty()
+
 	emit_signal("unit_move_finished", loc)
 	queue_free()
 

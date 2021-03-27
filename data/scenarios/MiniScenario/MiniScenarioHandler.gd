@@ -23,7 +23,7 @@ func _on_start(data):
 
 func _on_combat(data):
 	var scenario = data.scenario
-	if (data.side.controller == Side.Controller.HUMAN):
+	if (data.attacker_side.controller == Side.Controller.HUMAN):
 		scenario.show_info_dialogue("Wesnoth", "Good Job! This is combat in Haldric.")
 		EventBus.remove_listener("combat_start", combat_start_event_ind)
 
