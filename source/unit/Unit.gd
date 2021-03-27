@@ -111,6 +111,11 @@ func suspend() -> void:
 	actions.empty()
 
 
+func unsuspend() -> void:
+	moves.fill()
+	actions.fill()
+
+
 func refresh() -> void:
 
 	for skill in get_skills():
