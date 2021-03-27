@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(1,0,0,1,-1785,-15)">
-        <g id="ToD_ring_mask">
-            <path d="M1845,15C1878.12,15 1905,41.885 1905,75C1905,108.115 1878.12,135 1845,135C1811.88,135 1785,108.115 1785,75C1785,41.885 1811.88,15 1845,15ZM1845,25C1872.6,25 1895,47.404 1895,75C1895,102.596 1872.6,125 1845,125C1817.4,125 1795,102.596 1795,75C1795,47.404 1817.4,25 1845,25Z" style="fill:white;"/>
-        </g>
-    </g>
-</svg>

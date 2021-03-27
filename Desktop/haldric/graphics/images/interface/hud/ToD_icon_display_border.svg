@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(1,0,0,1,-1806,-36)">
-        <g id="ToD_icon_display_border">
-            <path d="M1845,36C1866.53,36 1884,53.475 1884,75C1884,96.525 1866.53,114 1845,114C1823.48,114 1806,96.525 1806,75C1806,53.475 1823.48,36 1845,36ZM1845,40C1864.32,40 1880,55.683 1880,75C1880,94.317 1864.32,110 1845,110C1825.68,110 1810,94.317 1810,75C1810,55.683 1825.68,40 1845,40Z" style="fill:rgb(255,212,0);"/>
-        </g>
-    </g>
-</svg>
