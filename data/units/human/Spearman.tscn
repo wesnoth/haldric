@@ -21,7 +21,6 @@ cost = 14
 health = 36
 moves = 5
 experience = 40
-advances_to = [ "Swordsman", "Pikeman", "Javelineer" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -30,18 +29,20 @@ texture = ExtResource( 2 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 3 )
-castle = 60
 flat = 40
 forest = 50
 hills = 50
+water = 20
 mountains = 60
 village = 60
+castle = 60
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 4 )
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
+pierce = 20
 arcane = 20
 
 [node name="Traits" type="Node" parent="."]

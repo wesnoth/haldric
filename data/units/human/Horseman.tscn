@@ -20,7 +20,6 @@ health = 38
 moves = 8
 experience = 44
 usage = 0
-advances_to = [ "Knight", "Lancer" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

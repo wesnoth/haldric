@@ -21,7 +21,6 @@ health = 34
 moves = 5
 experience = 40
 usage = 2
-advances_to = [ "Longbowman" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -33,6 +32,7 @@ script = ExtResource( 2 )
 flat = 40
 forest = 50
 hills = 50
+water = 20
 mountains = 60
 
 [node name="Movement" type="Node" parent="."]
