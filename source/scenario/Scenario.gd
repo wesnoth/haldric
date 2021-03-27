@@ -112,7 +112,7 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 
 	var unit = Unit.instance()
 
-	EventBus.raise_event("prerecruit", {"scenario": self, "unit": unit, "loc": loc})
+	EventBus.raise_event("prerecruit", {"scenario": self, "side": current_side, "unit": unit, "loc": loc})
 
 	unit.side_number = current_side.number
 	unit.side_color = current_side.color
@@ -133,7 +133,7 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 
 	get_tree().call_group("SideUI", "update_info", current_side)
 
-	EventBus.raise_event("recruit", {"scenario": self, "unit": unit, "loc": loc})
+	EventBus.raise_event("recruit", {"scenario": self, "side": current_side, "unit": unit, "loc": loc})
 
 
 func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> void:
@@ -159,7 +159,7 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 
 	var unit = Unit.instance()
 
-	EventBus.raise_event("prerecall", {"scenario": self, "unit": unit, "loc": loc})
+	EventBus.raise_event("prerecall", {"scenario": self, "side": current_side, "unit": unit, "loc": loc})
 
 	unit.side_number = current_side.number
 	unit.side_color = current_side.color
@@ -184,7 +184,7 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 	get_tree().call_group("SideUI", "update_info", current_side)
 	current_side.recall.erase(data)
 
-	EventBus.raise_event("recall", {"scenario": self, "unit": unit, loc: "loc"})
+	EventBus.raise_event("recall", {"scenario": self, "side": current_side, "unit": unit, loc: "loc"})
 
 
 func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader := false) -> void:
@@ -215,7 +215,7 @@ func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader 
 	var loc = map.get_location_from_cell(Vector2(x, y))
 	place_unit(unit, loc)
 
-	EventBus.raise_event("add_unit", {"scenario": self, "unit": unit, "loc": loc, "side": side_number, "is_leader": is_leader})
+	EventBus.raise_event("add_unit", {"scenario": self, "side": get_side(side_number), "unit": unit, "loc": loc, "is_leader": is_leader})
 	# NOTE: Currently only called in _load_sides
 
 
@@ -231,7 +231,7 @@ func place_unit(unit: Unit, target_loc: Location) -> void:
 	_grab_village(target_loc)
 	_grab_castle(target_loc)
 
-	EventBus.raise_event("place_unit", {"scenario": self, "unit": unit, "loc": target_loc})
+	EventBus.raise_event("place_unit", {"scenario": self, "side": get_side(unit.side_number), "unit": unit, "loc": target_loc})
 	# NOTE: Currently only called in recruit and recall and add_unit
 
 
@@ -293,7 +293,9 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 		emit_signal("combat_finished")
 		return
 
-	EventBus.raise_event("combat_start", {"scenario": self, "attacker_loc": attacker_loc, "attacker_attack": attacker_attack, "defender_loc": defender_loc, "defender_attack": defender_attack})
+	EventBus.raise_event("combat_start", {"scenario": self, \
+	"attacker_side": current_side, "attacker_loc": attacker_loc, "attacker_attack": attacker_attack, \
+	"defender_side": get_side(defender_loc.unit.side_number), "defender_loc": defender_loc, "defender_attack": defender_attack})
 
 	var combat := Combat.new()
 	get_tree().current_scene.add_child(combat)
@@ -307,7 +309,9 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 
 	yield(combat, "combat_finished")
 
-	EventBus.raise_event("combat_finished", {"scenario": self, "attacker_loc": attacker_loc, "attacker_attack": attacker_attack, "defender_loc": defender_loc, "defender_attack": defender_attack})
+	EventBus.raise_event("combat_finished", {"scenario": self, \
+	"attacker_side": current_side, "attacker_loc": attacker_loc, "attacker_attack": attacker_attack, \
+	"defender_side": get_side(defender_loc.unit.side_number), "defender_loc": defender_loc, "defender_attack": defender_attack})
 
 	_check_victory_conditions()
 	emit_signal("combat_finished")
@@ -413,7 +417,7 @@ func _move_unit(path_result: Dictionary, start_loc: Location, end_loc : Location
 		Console.warn(start_loc.unit.name + " has not enough moves! (%d)" % path_result.costs)
 		return null
 
-	EventBus.raise_event("move_start", {"scenario": self, "start_loc": start_loc, "end_loc": end_loc})
+	EventBus.raise_event("move_start", {"scenario": self, "side": current_side, "start_loc": start_loc, "end_loc": end_loc})
 
 	if pop_last:
 		path_result.path.pop_back()
@@ -435,7 +439,7 @@ func _move_unit(path_result: Dictionary, start_loc: Location, end_loc : Location
 	_grab_castle(loc)
 	is_side_moving = false
 
-	EventBus.raise_event("move_finished", {"scenario": self, "start_loc": start_loc, "end_loc": end_loc})
+	EventBus.raise_event("move_finished", {"scenario": self, "side": current_side, "start_loc": start_loc, "end_loc": end_loc})
 
 	emit_signal("unit_move_finished", loc)
 
@@ -513,7 +517,7 @@ func victory() -> void:
 
 	Console.write("Side %d won!" % current_side.number)
 
-	EventBus.raise_event("victory", {"scenario": self, "current_side": current_side})
+	EventBus.raise_event("victory", {"scenario": self, "side": current_side})
 
 	if (next_scenario):
 		var next = Data.scenarios[next_scenario]
