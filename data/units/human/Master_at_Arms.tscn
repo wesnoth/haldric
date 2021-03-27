@@ -5,67 +5,90 @@
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=5]
-[ext_resource path="res://graphics/images/units/human/bowman.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/attacks/sword-human-short.png" type="Texture" id=7]
-[ext_resource path="res://graphics/images/attacks/bow.png" type="Texture" id=8]
-[ext_resource path="res://data/projectiles/Arrow.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/unit/ability/Ability.gd" type="Script" id=6]
+[ext_resource path="res://graphics/images/attacks/saber-human.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/units/human/master-at-arms.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/attacks/crossbow-human.png" type="Texture" id=9]
 
-[node name="Bowman" type="Node2D"]
+[node name="Master at Arms" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Bowman"
+alias = "Master at Arms"
 alignment = "lawful"
 race = "human"
-level = 1
-cost = 14
-health = 34
-moves = 5
-experience = 40
-usage = 2
-advances_to = [ "Longbowman" ]
+level = 3
+cost = 44
+health = 57
+moves = 7
+experience = 150
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 2 )
-flat = 40
-forest = 50
-hills = 50
-mountains = 60
+castle = 70
+cave = 50
+coastal_reef = 50
+flat = 60
+forest = 70
+frozen = 40
+fungus = 70
+hills = 70
+mountains = 70
+sand = 40
+shallow_water = 40
+swamp = 40
+village = 70
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 3 )
+coastal_reef = 2
+deep_water = 99
+frozen = 2
+sand = 2
+shallow_water = 2
+swamp = 2
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 4 )
+slash = -30
+impact = -20
+pierce = -20
 arcane = 20
 
 [node name="Traits" type="Node" parent="."]
 
 [node name="Abilities" type="Node" parent="."]
 
+[node name="Skirmisher" type="Node" parent="Abilities"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_description_": ""
+}
+alias = "Skirmisher"
+description = "TO BE IMPLEMENTED"
+
 [node name="Skills" type="Node" parent="."]
 
 [node name="Attacks" type="Node" parent="."]
 
-[node name="ShortSword" type="Node" parent="Attacks"]
+[node name="Saber" type="Node" parent="Attacks"]
 script = ExtResource( 5 )
-alias = "Short Sword"
+alias = "Saber"
 icon = ExtResource( 7 )
 damage_type = "slash"
-damage = 4
-strikes = 2
+damage = 7
+strikes = 5
 
-[node name="Bow" type="Node" parent="Attacks"]
+[node name="Crossbow" type="Node" parent="Attacks"]
 script = ExtResource( 5 )
-alias = "Bow"
-icon = ExtResource( 8 )
+alias = "Crossbow"
+icon = ExtResource( 9 )
 category = "ranged"
 damage_type = "pierce"
-damage = 6
-strikes = 3
-projectile = ExtResource( 9 )
+damage = 20
+strikes = 1
 
 [node name="Advancements" type="Node" parent="."]

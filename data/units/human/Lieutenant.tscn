@@ -19,8 +19,9 @@ race = "human"
 level = 2
 cost = 35
 health = 40
-moves = 5
+moves = 6
 experience = 80
+advances_to = [ "General" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -42,8 +43,6 @@ script = ExtResource( 4 )
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
-impact = 10
-pierce = 20
 arcane = 20
 
 [node name="Traits" type="Node" parent="."]
@@ -61,8 +60,8 @@ script = ExtResource( 6 )
 alias = "Sword"
 icon = ExtResource( 8 )
 damage_type = "slash"
-damage = 7
-strikes = 4
+damage = 8
+strikes = 3
 
 [node name="Bow" type="Node" parent="Attacks"]
 script = ExtResource( 6 )

@@ -1,45 +1,61 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=2]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=5]
-[ext_resource path="res://graphics/images/units/human/bowman.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/attacks/sword-human-short.png" type="Texture" id=7]
-[ext_resource path="res://graphics/images/attacks/bow.png" type="Texture" id=8]
-[ext_resource path="res://data/projectiles/Arrow.tscn" type="PackedScene" id=9]
+[ext_resource path="res://graphics/images/attacks/morning-star.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/units/human/siegetrooper.png" type="Texture" id=7]
 
-[node name="Bowman" type="Node2D"]
+[node name="Iron Mauler" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Bowman"
+alias = "Iron Mauler"
 alignment = "lawful"
 race = "human"
-level = 1
-cost = 14
-health = 34
-moves = 5
-experience = 40
-usage = 2
-advances_to = [ "Longbowman" ]
+level = 3
+cost = 50
+health = 64
+moves = 4
+experience = 150
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 2 )
-flat = 40
-forest = 50
-hills = 50
-mountains = 60
+castle = 50
+cave = 40
+coastal_reef = 20
+flat = 30
+forest = 40
+frozen = 20
+fungus = 40
+hills = 40
+sand = 20
+shallow_water = 10
+swamp = 10
+village = 40
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 3 )
+deep_water = 99
+frozen = 4
+hills = 3
+mountains = 99
+sand = 2
+shallow_water = 4
+swamp = 4
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 4 )
+slash = 50
+impact = 10
+pierce = 40
+heat = -10
+cold = -10
 arcane = 20
 
 [node name="Traits" type="Node" parent="."]
@@ -50,22 +66,12 @@ arcane = 20
 
 [node name="Attacks" type="Node" parent="."]
 
-[node name="ShortSword" type="Node" parent="Attacks"]
+[node name="Flail" type="Node" parent="Attacks"]
 script = ExtResource( 5 )
-alias = "Short Sword"
-icon = ExtResource( 7 )
-damage_type = "slash"
-damage = 4
+alias = "Flail"
+icon = ExtResource( 6 )
+damage_type = "impact"
+damage = 25
 strikes = 2
-
-[node name="Bow" type="Node" parent="Attacks"]
-script = ExtResource( 5 )
-alias = "Bow"
-icon = ExtResource( 8 )
-category = "ranged"
-damage_type = "pierce"
-damage = 6
-strikes = 3
-projectile = ExtResource( 9 )
 
 [node name="Advancements" type="Node" parent="."]
