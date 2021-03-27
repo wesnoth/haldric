@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Global_ToD_ring_mask.svg-4d2e6c979bfa9e9244dcb4d6fd0d6100.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://graphics/images/interface/hud/tod_inspector/Global_ToD_ring_mask.svg"
+dest_files=[ "res://.import/Global_ToD_ring_mask.svg-4d2e6c979bfa9e9244dcb4d6fd0d6100.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=true
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

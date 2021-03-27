@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://source/interface/game/hud/ToDWheel.gd" type="Script" id=1]
+[ext_resource path="res://graphics/images/interface/hud/ToD_base.svg" type="Texture" id=2]
+[ext_resource path="res://graphics/images/interface/hud/ToD_icon_display_border.svg" type="Texture" id=3]
+[ext_resource path="res://graphics/images/interface/hud/ToD_ring_hand.svg" type="Texture" id=4]
+[ext_resource path="res://graphics/images/interface/hud/ToD_icon_display.svg" type="Texture" id=5]
+[ext_resource path="res://graphics/images/interface/hud/ToD_ring_mask.svg" type="Texture" id=6]
+[ext_resource path="res://source/interface/game/hud/ToDWidget.gd" type="Script" id=7]
+[ext_resource path="res://audio/sounds/ambient/bell.wav" type="AudioStream" id=8]
+
+[node name="ToDWidget" type="TextureRect" groups=[
+"ToDWidget",
+]]
+margin_right = 130.0
+margin_bottom = 130.0
+texture = ExtResource( 2 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -8.0
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -8.0
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="ToDWheel" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -60.0
+margin_right = 60.0
+margin_bottom = 60.0
+rect_rotation = -90.0
+rect_pivot_offset = Vector2( 60, 60 )
+texture = ExtResource( 6 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pointer" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.0
+margin_top = -61.0
+margin_right = 61.0
+margin_bottom = 61.0
+rect_pivot_offset = Vector2( 61, 61 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -44.0
+margin_top = -44.0
+margin_right = 44.0
+margin_bottom = 44.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LastIcon" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -39.0
+margin_top = -39.0
+margin_right = 39.0
+margin_bottom = 39.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentIcon" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -39.0
+margin_top = -39.0
+margin_right = 39.0
+margin_bottom = 39.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -39.0
+margin_top = -39.0
+margin_right = 39.0
+margin_bottom = 39.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

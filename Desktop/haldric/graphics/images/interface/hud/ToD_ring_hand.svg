@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 122 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-1784,-14)">
+        <g id="ToD_ring_hand">
+            <g transform="matrix(0.753846,0,0,0.753846,454.154,18.4615)">
+                <circle cx="1845" cy="75" r="65" style="fill:rgb(160,46,46);"/>
+            </g>
+            <g transform="matrix(0.692308,0,0,0.692308,567.692,23.0769)">
+                <circle cx="1845" cy="75" r="65"/>
+            </g>
+            <g transform="matrix(1,0,0,1,0,-40)">
+                <path d="M1840,67L1850,67L1845,55L1840,67Z" style="fill:rgb(160,46,46);"/>
+            </g>
+            <g transform="matrix(0.938462,0,0,0.938462,113.538,4.61538)">
+                <circle cx="1845" cy="75" r="65" style="fill:none;"/>
+            </g>
+        </g>
+    </g>
+</svg>

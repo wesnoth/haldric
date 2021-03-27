@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 240 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-1600,-20)">
+        <g id="Global_ToD_ring_mask">
+            <path id="Global_ToD_ring_mask1" serif:id="Global_ToD_ring_mask" d="M1619,140L1607,140C1607,77.592 1657.59,27 1720,27C1782.41,27 1833,77.592 1833,140L1821,140C1821,84.257 1775.74,39 1720,39C1664.26,39 1619,84.257 1619,140L1619,140Z" style="fill:white;"/>
+            <rect x="1600" y="20" width="240" height="120" style="fill:none;"/>
+        </g>
+    </g>
+</svg>

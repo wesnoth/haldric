@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="Flag" type="Polygon2D"]
+position = Vector2( -1.36356, -0.0817299 )
+scale = Vector2( 0.456482, 0.57981 )
+polygon = PoolVector2Array( -2.0685, -0.194504, -2.0685, -72.2966, 66.5164, -51.1935, 2.53088, -41.4537, 2.26034, -0.194504 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -2.0
+margin_top = -72.0
+margin_right = 5.0
+color = Color( 0.478431, 0.298039, 0.105882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = -2.0
+margin_top = -72.0
+margin_right = 2.0
+color = Color( 0.309804, 0.211765, 0.109804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

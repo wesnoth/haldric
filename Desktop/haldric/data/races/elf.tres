@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://source/unit/race/Race.gd" type="Script" id=1]
+[ext_resource path="res://data/traits/Intelligent.tscn" type="PackedScene" id=2]
+[ext_resource path="res://data/traits/Dextrous.tscn" type="PackedScene" id=3]
+[ext_resource path="res://data/traits/Resilient.tscn" type="PackedScene" id=4]
+[ext_resource path="res://data/traits/Quick.tscn" type="PackedScene" id=5]
+
+[resource]
+script = ExtResource( 1 )
+id = "elf"
+male_singular = ""
+female_singular = ""
+singular = "Human"
+plural = "Elves"
+description = "Elves"
+male_names = "Legolas, Heindal, Alonda"
+female_names = "Melria, Elera, Allaina"
+trait_count = 2
+traits = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ]

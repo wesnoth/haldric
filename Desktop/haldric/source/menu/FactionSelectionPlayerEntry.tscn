@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/menu/FactionSelectionPlayerEntry.gd" type="Script" id=1]
+
+[node name="FactionSelectionPlayerEntry" type="HBoxContainer"]
+margin_right = 800.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 800, 50 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_top = 18.0
+margin_right = 80.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 80, 0 )
+text = "Player 1"
+align = 2
+
+[node name="AIOptions" type="OptionButton" parent="."]
+visible = false
+margin_left = 84.0
+margin_right = 320.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+text = "AI"
+
+[node name="FactionOptions" type="OptionButton" parent="."]
+margin_left = 84.0
+margin_right = 800.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+text = "Faction"
+
+[node name="LeaderOptions" type="OptionButton" parent="."]
+visible = false
+margin_left = 444.0
+margin_right = 800.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+text = "Leader"

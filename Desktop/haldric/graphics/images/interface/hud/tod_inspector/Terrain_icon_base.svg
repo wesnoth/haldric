@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-1740,-164)">
+        <g id="Terrain_icon_base" transform="matrix(1,0,0,1,90,14)">
+            <g transform="matrix(0.981495,0,0,1,30.9026,0)">
+                <path d="M1667.42,151.491C1669.01,150.571 1670.99,150.571 1672.58,151.491C1675.88,153.395 1681.55,156.667 1684.81,158.55C1686.37,159.448 1687.32,161.088 1687.32,162.86C1687.32,166.661 1687.32,173.339 1687.32,177.14C1687.32,178.912 1686.37,180.552 1684.81,181.45C1681.55,183.333 1675.88,186.605 1672.58,188.509C1670.99,189.429 1669.01,189.429 1667.42,188.509C1664.12,186.605 1658.45,183.333 1655.19,181.45C1653.63,180.552 1652.68,178.912 1652.68,177.14C1652.68,173.339 1652.68,166.661 1652.68,162.86C1652.68,161.088 1653.63,159.448 1655.19,158.55C1658.45,156.667 1664.12,153.395 1667.42,151.491Z" style="fill:rgb(108,108,108);"/>
+            </g>
+            <g transform="matrix(1,0,0,1,0,50)">
+                <rect x="1650" y="100" width="40" height="40" style="fill:none;"/>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/unit/ability/AbilityHeal.gd" type="Script" id=1]
+
+[node name="Heal4" type="Node"]
+script = ExtResource( 1 )
+alias = "Heal +4"
+description = "Heals adjacent allies by 4 HP in the beginning of your turn"
+affect_self = false
+affect_allies = true
