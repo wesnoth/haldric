@@ -3,6 +3,11 @@ class_name Combat
 
 signal finished()
 
+signal attacker_hit(attacker, defender)
+signal attacker_missed(attacker, defender)
+signal defender_hit(attacker, defender)
+signal defender_missed(attacker, defender)
+
 export var min_death_xp := 4
 export var death_xp := 8
 
@@ -75,8 +80,16 @@ func _strike(current: CombatContext, other: CombatContext, attacker: CombatConte
 
 	if randf() < accuracy:
 		other.unit.hurt(current.damage, current.damage_type)
+		if current == attacker:
+			emit_signal("attacker_hit", attacker, defender)
+		else:
+			emit_signal("defender_hit", attacker, defender)
 	else:
 		get_tree().call_group("GameUI", "spawn_popup_label", other.unit.global_position + Vector2(0, -48), "Miss!", 16, Color.gray, 100, 0.2)
+		if current == attacker:
+			emit_signal("attacker_missed", attacker, defender)
+		else:
+			emit_signal("defender_defender", attacker, defender)
 
 	current.reset()
 
