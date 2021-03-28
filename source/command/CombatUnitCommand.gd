@@ -7,6 +7,7 @@ var _attacker_attack: Attack = null
 var _defender_attack: Attack = null
 var _current_time: Time = null
 
+
 func _init(current_time: Time, attacker_loc: Location, attacker_attack: Attack, defender_loc: Location, defender_attack: Attack) -> void:
 	_current_time = current_time
 	_attacker_loc = attacker_loc
