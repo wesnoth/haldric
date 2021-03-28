@@ -56,8 +56,11 @@ func start(attacker: CombatContext, defender: CombatContext) -> void:
 			queue_free()
 			return
 
-	attacker.unit.grant_experience(defender.unit.type.level)
-	defender.unit.grant_experience(attacker.unit.type.level)
+	var defender_level = defender.unit.type.level
+	var attacker_level = attacker.unit.type.level
+
+	attacker.unit.grant_experience(defender_level)
+	defender.unit.grant_experience(attacker_level)
 
 	emit_signal("combat_finished")
 	queue_free()
