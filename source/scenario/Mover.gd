@@ -20,37 +20,37 @@ func _ready() -> void:
 	add_child(tween)
 
 
-func move_unit(loc: Location, _path: Array) -> void:
+func move_unit(start_loc: Location, _path: Array) -> void:
 	path = _path
-	unit = loc.unit
+	unit = start_loc.unit
 
 	if not unit:
-		Console.warn("no unit at: " + str(loc.cell))
-		_end_move(null, loc)
+		Console.warn("no unit at: " + str(start_loc.cell))
+		_end_move(null, start_loc)
 		return
 
 	if not path:
-		Console.warn("no path for: " + loc.unit.name)
-		_end_move(unit, loc)
+		Console.warn("no path for: " + start_loc.unit.name)
+		_end_move(unit, start_loc)
 		return
 
 	end_loc = path[path.size()-1]
 
 	if end_loc.unit:
 		Console.warn("unit at destination: " + str(end_loc.cell))
-		_end_move(unit, loc)
+		_end_move(unit, start_loc)
 		return
 
-	loc.unit = null
+	start_loc.unit = null
 	end_loc.unit = unit
 
 	var delay := 0.0
 
 	for next_loc in path:
 		unit.moves.value -= unit.get_movement_costs(next_loc.terrain.type)
-		tween.interpolate_property(unit, "global_position", loc.position, next_loc.position, movement_speed, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, delay)
+		tween.interpolate_property(unit, "global_position", start_loc.position, next_loc.position, movement_speed, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, delay)
 		delay += movement_speed
-		loc = next_loc
+		start_loc = next_loc
 
 	tween.start()
 	get_tree().call_group("GameUI", "add_path", path)
