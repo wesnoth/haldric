@@ -1,7 +1,9 @@
 extends Scenario
 
+
 func _setup() -> void:
 	events.connect("start", self, "start")
+
 
 func start(scenario):
 	var text = [
