@@ -136,7 +136,7 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 	EventBus.emit_signal("recruit", self, current_side, unit, loc)
 
 
-func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> void:
+func recall(unit_type_id: String, data: Dictionary, loc: Location = null, leader = false) -> void:
 	if loc == null or loc.unit:
 		loc = current_side.find_recruit_location()
 
@@ -150,23 +150,25 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 		Console.warn("Invalid unit type '%s'" % unit_type_id)
 		return
 
-	if current_side.gold < 20:
+	if current_side.gold < 20 and not leader:
 		Console.warn("Side %d has not enough Gold!" % current_side.number)
 		return
 
-	current_side.gold -= 20
-	current_side.update_income()
+	if not leader:
+		current_side.gold -= 20
+		current_side.update_income()
 
 	var unit = Unit.instance()
 
 	EventBus.emit_signal("prerecall", self, current_side, unit, loc)
 
+	unit.is_leader = leader
 	unit.side_number = current_side.number
 	unit.side_color = current_side.color
 	unit.team_name = current_side.team_name
 	unit.type = unit_type
 
-	current_side.add_unit(unit)
+	current_side.add_unit(unit, leader)
 
 	unit_container.add_child(unit)
 	get_tree().call_group("GameUI", "add_unit_plate", unit)
@@ -180,6 +182,8 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 
 	place_unit(unit, loc)
 	unit.suspend()
+	if leader:
+		unit.unsuspend()
 
 	get_tree().call_group("SideUI", "update_info", current_side)
 	current_side.recall.erase(data)
@@ -188,6 +192,8 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 
 
 func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader := false) -> void:
+	if not unit_type_id:
+		return
 
 	if not Data.units.has(unit_type_id):
 		Console.warn("Invalid unit type '%s'" % unit_type_id)

@@ -180,11 +180,8 @@ func write_recall_list() -> void:
 		Campaign.recall_list[recall_side] = []
 
 	for unit in units:
-		if unit.is_leader:
-			continue
-
 		var data = {"id": unit.type.name, "level": unit.type.level, 
-			"xp": unit.experience.value, "traits": []}
+			"xp": unit.experience.value, "traits": [], "is_leader": unit.is_leader}
 		for trait in unit.traits.get_children():
 			data.traits.append(trait.name)
 		Campaign.recall_list[recall_side].append(data)
