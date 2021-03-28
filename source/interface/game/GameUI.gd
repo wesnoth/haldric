@@ -151,6 +151,20 @@ func show_advancement_dialogue(unit: Unit) -> void:
 	advancement_dialogue.show()
 
 
+func show_message(unit: Unit, messages: Array) -> void:
+	var dialogue := Dialogue.new()
+	get_tree().current_scene.add_child(dialogue)
+
+	var speech := Speech.instance()
+	speech.speaker = unit.alias
+	speech.portrait = unit.type.sprite.texture
+
+	speech.lines = messages
+
+	dialogue.add_child(speech)
+	dialogue.start()
+
+
 func set_cover_size(size: Vector2) -> void:
 	for y in size.y:
 		for x in size.x:

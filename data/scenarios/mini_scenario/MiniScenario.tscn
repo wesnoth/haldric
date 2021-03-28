@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://source/scenario/Scenario.gd" type="Script" id=1]
+[ext_resource path="res://data/scenarios/mini_scenario/MiniScenario.gd" type="Script" id=1]
 [ext_resource path="res://source/scenario/Side.gd" type="Script" id=2]
 [ext_resource path="res://source/scenario/Time.gd" type="Script" id=3]
 [ext_resource path="res://source/scenario/Schedule.gd" type="Script" id=4]
@@ -13,9 +13,9 @@
 [ext_resource path="res://assets/audio/sounds/ambient/morning.ogg" type="AudioStream" id=11]
 [ext_resource path="res://assets/audio/sounds/ambient/night.ogg" type="AudioStream" id=12]
 
-[node name="TestScenario" type="Node2D"]
+
+[node name="MiniScenario" type="Node2D"]
 script = ExtResource( 1 )
-next_scenario = "MiniScenario2"
 
 [node name="Schedule" type="Node" parent="."]
 script = ExtResource( 4 )

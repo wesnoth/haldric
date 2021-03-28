@@ -26,7 +26,7 @@ var is_side_moving := false
 onready var schedule = $Schedule
 onready var sides = $Sides
 
-onready var commander: Commander = Commander.new()
+onready var commander := Commander.new()
 
 onready var map_container := Node2D.new()
 onready var flag_container := YSort.new()
@@ -39,9 +39,15 @@ func _ready() -> void:
 	if Engine.editor_hint:
 		return
 
-	_setup()
+	_initialize()
 	_load_map()
 	_load_sides()
+
+	_setup()
+
+	yield(get_tree().create_timer(0.1), "timeout")
+
+	events.trigger_event("start", [self])
 
 
 func _enter_tree() -> void:
@@ -165,6 +171,7 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 	for trait in data["traits"]:
 		var trait_obj = load("res://data/traits/%s.tscn" % trait).instance()
 		unit.traits.add_child(trait_obj)
+
 	unit.apply_traits()
 	unit.experience.value = data["xp"]
 	unit.health.fill()
@@ -321,7 +328,7 @@ func get_sides() -> Array:
 	return sides.get_children()
 
 
-func _setup() -> void:
+func _initialize() -> void:
 	events.connect("unit_moved", self, "_on_unit_moved")
 	events.connect("combat_finished", self, "_on_combat_finished")
 
@@ -461,6 +468,10 @@ func victory() -> void:
 	else:
 		Scene.change("TitleScreen")
 		Campaign.recall_list = {}
+
+
+func _setup() -> void:
+	pass
 
 
 func _on_combat_finished() -> void:

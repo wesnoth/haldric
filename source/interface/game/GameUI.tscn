@@ -14,7 +14,6 @@
 [ext_resource path="res://source/interface/game/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
 [ext_resource path="res://source/interface/game/recall/RecallDialogue.tscn" type="PackedScene" id=13]
 
-
 [sub_resource type="TileSet" id=1]
 0/name = "darken"
 0/texture = ExtResource( 6 )
@@ -99,7 +98,6 @@ margin_bottom = 0.0
 [node name="AdvancementDialogue" parent="HUD" instance=ExtResource( 12 )]
 margin_top = -2.0
 margin_bottom = -2.0
-theme = null
 
 [node name="SidePanel" type="PanelContainer" parent="HUD"]
 anchor_left = 1.0
@@ -172,7 +170,6 @@ text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="move_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_move_selected"]
 [connection signal="recall_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recall_selected"]
 [connection signal="recruit_selected" from="ActionDialogue" to="." method="_on_ActionDialogue_recruit_selected"]

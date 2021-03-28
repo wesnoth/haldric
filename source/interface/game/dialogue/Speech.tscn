@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/interface/game/dialogue/TextBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/interface/game/dialogue/Speech.gd" type="Script" id=2]
+[ext_resource path="res://assets/graphics/fonts/kirifont/Kirifont.tres" type="DynamicFont" id=3]
+
+[node name="Speech" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+speaker = "Becky"
+lines = [ "Is this working?", "It is working!" ]
+
+[node name="Portrait" type="TextureRect" parent="."]
+anchor_bottom = 1.0
+margin_right = 500.0
+margin_bottom = 6.10352e-05
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextBox" parent="." instance=ExtResource( 1 )]
+rect_pivot_offset = Vector2( 2091.89, -765.251 )
+
+[node name="Panel" type="Panel" parent="TextBox"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -300.0
+margin_top = -100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="TextBox/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="TextBox/Panel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 290.0
+margin_bottom = 90.0
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 3 )
+text = "Aaron"
+align = 2
+valign = 1
+autowrap = true

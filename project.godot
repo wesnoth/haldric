@@ -144,6 +144,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/unit_type/DefenseType.gd"
 }, {
+"base": "CanvasLayer",
+"class": "Dialogue",
+"language": "GDScript",
+"path": "res://source/interface/game/dialogue/Dialogue.gd"
+}, {
+"base": "Node",
+"class": "Dialogues",
+"language": "GDScript",
+"path": "res://source/scenario/Dialogues.gd"
+}, {
 "base": "Button",
 "class": "EditorTerrainButton",
 "language": "GDScript",
@@ -374,6 +384,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/special/SpecialDamage.gd"
 }, {
+"base": "Control",
+"class": "Speech",
+"language": "GDScript",
+"path": "res://source/interface/game/dialogue/Speech.gd"
+}, {
 "base": "Node",
 "class": "Status",
 "language": "GDScript",
@@ -443,6 +458,11 @@ _global_script_classes=[ {
 "class": "TerrainTypeIconData",
 "language": "GDScript",
 "path": "res://source/data/TerrainTypeIconData.gd"
+}, {
+"base": "Panel",
+"class": "TextBox",
+"language": "GDScript",
+"path": "res://source/interface/game/dialogue/TextBox.gd"
 }, {
 "base": "Node",
 "class": "Time",
@@ -557,6 +577,8 @@ _global_script_class_icons={
 "CreateUnitCommand": "",
 "DebugDraw": "",
 "DefenseType": "",
+"Dialogue": "",
+"Dialogues": "",
 "EditorTerrainButton": "",
 "EditorUI": "",
 "Effect": "",
@@ -603,6 +625,7 @@ _global_script_class_icons={
 "SkillTeach": "",
 "SpecialAccuracy": "",
 "SpecialDamage": "",
+"Speech": "",
 "Status": "",
 "TeleportUnitCommand": "",
 "Terrain": "",
@@ -617,6 +640,7 @@ _global_script_class_icons={
 "TerrainTransitionGraphicBuilder": "",
 "TerrainTransitionGraphicData": "",
 "TerrainTypeIconData": "",
+"TextBox": "",
 "Time": "",
 "ToDWheel": "",
 "ToDWidget": "",

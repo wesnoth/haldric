@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/interface/game/dialogue/TextBox.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/fonts/kirifont/Kirifont.tres" type="DynamicFont" id=2]
+
+
+[node name="TextBox" type="Panel"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -160.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1913.0
+margin_bottom = 153.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1886.0
+margin_bottom = 126.0
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
