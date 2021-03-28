@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/wardrums.ogg-fa2007f1127900a8e89e9189b19ad034.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sounds/ambient/wardrums.ogg"
+dest_files=[ "res://.import/wardrums.ogg-fa2007f1127900a8e89e9189b19ad034.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

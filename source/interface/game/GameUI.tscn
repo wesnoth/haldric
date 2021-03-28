@@ -5,7 +5,7 @@
 [ext_resource path="res://source/interface/game/LocationUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/interface/game/UnitUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/interface/game/combat/CombatDialogue.tscn" type="PackedScene" id=5]
-[ext_resource path="res://graphics/images/interface/darken.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/images/interface/darken.png" type="Texture" id=6]
 [ext_resource path="res://source/interface/game/SideUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://source/interface/game/recruit/RecruitDialogue.tscn" type="PackedScene" id=8]
 [ext_resource path="res://source/interface/game/PathUI.gd" type="Script" id=9]
@@ -13,6 +13,7 @@
 [ext_resource path="res://source/interface/game/action/ActionDialogue.tscn" type="PackedScene" id=11]
 [ext_resource path="res://source/interface/game/advancement/AdvancementDialogue.tscn" type="PackedScene" id=12]
 [ext_resource path="res://source/interface/game/recall/RecallDialogue.tscn" type="PackedScene" id=13]
+
 
 [sub_resource type="TileSet" id=1]
 0/name = "darken"

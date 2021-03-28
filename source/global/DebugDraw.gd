@@ -1,7 +1,7 @@
 extends Node2D
 class_name DebugDraw
 
-const FONT = preload("res://graphics/fonts/droid-sans/DroidSans16.tres")
+export var font: Font = null
 
 var circles := []
 var strings := []
@@ -19,7 +19,7 @@ func _draw() -> void:
 
 	if strings:
 		for s in strings:
-			draw_string(FONT, s.position, s.text, s.color)
+			draw_string(font, s.position, s.text, s.color)
 
 	if lines:
 		for line in lines:

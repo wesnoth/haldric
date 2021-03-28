@@ -1,13 +1,14 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/interface/game/hud/ToDWheel.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/interface/hud/ToD_base.svg" type="Texture" id=2]
-[ext_resource path="res://graphics/images/interface/hud/ToD_icon_display_border.svg" type="Texture" id=3]
-[ext_resource path="res://graphics/images/interface/hud/ToD_ring_hand.svg" type="Texture" id=4]
-[ext_resource path="res://graphics/images/interface/hud/ToD_icon_display.svg" type="Texture" id=5]
-[ext_resource path="res://graphics/images/interface/hud/ToD_ring_mask.svg" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/images/interface/hud/ToD_base.svg" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/images/interface/hud/ToD_icon_display_border.svg" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/images/interface/hud/ToD_ring_hand.svg" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/images/interface/hud/ToD_icon_display.svg" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/images/interface/hud/ToD_ring_mask.svg" type="Texture" id=6]
 [ext_resource path="res://source/interface/game/hud/ToDWidget.gd" type="Script" id=7]
-[ext_resource path="res://audio/sounds/ambient/bell.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/sounds/ambient/bell.wav" type="AudioStream" id=8]
+
 
 [node name="ToDWidget" type="TextureRect" groups=[
 "ToDWidget",

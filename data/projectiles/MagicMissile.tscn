@@ -1,8 +1,9 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://source/unit/attack/Projectile.gd" type="Script" id=2]
-[ext_resource path="res://graphics/images/projectiles/magic-missile/mage-halo1.png" type="Texture" id=3]
-[ext_resource path="res://graphics/images/projectiles/magic-missile/mage-halo5.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/images/projectiles/magic-missile/mage-halo1.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/images/projectiles/magic-missile/mage-halo5.png" type="Texture" id=4]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "anim"

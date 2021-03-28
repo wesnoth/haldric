@@ -2,7 +2,6 @@
 
 [ext_resource path="res://source/interface/game/advancement/UnitAdvancementInfo.gd" type="Script" id=1]
 
-
 [node name="UnitAdvancementInfo" type="Control"]
 margin_right = 185.0
 margin_bottom = 322.0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/morning.ogg-419dfd64b2a06e71c2566ea2908f08bb.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sounds/ambient/morning.ogg"
+dest_files=[ "res://.import/morning.ogg-419dfd64b2a06e71c2566ea2908f08bb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

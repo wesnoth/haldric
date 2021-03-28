@@ -2,7 +2,7 @@ extends TerrainLoader
 
 
 func _load() -> void:
-	open_path("res://graphics/images/terrain/")
+	open_path("res://assets/graphics/images/terrain/")
 
 	new_base("Beach", "Ds", -200, ["sand"], "sand/beach")
 	new_base("Green Grass", "Gg", -20, ["flat"], "grass/green")

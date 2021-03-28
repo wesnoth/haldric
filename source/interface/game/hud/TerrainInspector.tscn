@@ -1,16 +1,17 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://graphics/images/interface/hud/tod_inspector/Local_ToD_ring_mask.svg" type="Texture" id=1]
-[ext_resource path="res://graphics/images/interface/hud/tod_inspector/Local_ToD_ring.svg" type="Texture" id=2]
-[ext_resource path="res://graphics/images/interface/hud/tod_inspector/ToD_icon_slot.svg" type="Texture" id=3]
-[ext_resource path="res://graphics/images/interface/hud/tod_inspector/ToD_window.svg" type="Texture" id=4]
-[ext_resource path="res://graphics/images/interface/hud/tod_inspector/Terrain_inspector_mask.svg" type="Texture" id=5]
-[ext_resource path="res://graphics/images/interface/hud/tod_inspector/Global_ToD_ring_mask.svg" type="Texture" id=6]
-[ext_resource path="res://graphics/images/interface/hud/tod_inspector/Global_ToD_pointer.svg" type="Texture" id=7]
-[ext_resource path="res://graphics/images/interface/hud/tod_inspector/Defence_icon_slot.svg" type="Texture" id=8]
-[ext_resource path="res://graphics/images/interface/hud/tod_inspector/Terrain_icon_base.svg" type="Texture" id=9]
-[ext_resource path="res://graphics/images/icons/Terrain_icon_shallow_water.svg" type="Texture" id=10]
-[ext_resource path="res://graphics/images/icons/Terrain_icon_flat.svg" type="Texture" id=11]
+[ext_resource path="res://assets/graphics/images/interface/hud/tod_inspector/Local_ToD_ring_mask.svg" type="Texture" id=1]
+[ext_resource path="res://assets/graphics/images/interface/hud/tod_inspector/Local_ToD_ring.svg" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/images/interface/hud/tod_inspector/ToD_icon_slot.svg" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/images/interface/hud/tod_inspector/ToD_window.svg" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/images/interface/hud/tod_inspector/Terrain_inspector_mask.svg" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/images/interface/hud/tod_inspector/Global_ToD_ring_mask.svg" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/images/interface/hud/tod_inspector/Global_ToD_pointer.svg" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/images/interface/hud/tod_inspector/Defence_icon_slot.svg" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/images/interface/hud/tod_inspector/Terrain_icon_base.svg" type="Texture" id=9]
+[ext_resource path="res://assets/graphics/images/icons/Terrain_icon_shallow_water.svg" type="Texture" id=10]
+[ext_resource path="res://assets/graphics/images/icons/Terrain_icon_flat.svg" type="Texture" id=11]
+
 
 [node name="TerainInspector" type="TextureRect"]
 margin_right = 240.0

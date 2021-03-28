@@ -3,8 +3,6 @@ class_name Unit
 
 enum UpkeepType { FREE, LOYAL, FULL }
 
-const MAT = preload("res://graphics/materials/unit.tres")
-
 const REFRESH_HEAL_MAXIMUM = 10
 
 signal advanced(unit)
@@ -35,6 +33,8 @@ var can_attack := true
 var is_leader := false setget _set_is_leader
 
 var brightness = 1.0 setget _set_brightness
+
+export var mat: Material = null
 
 onready var tween := $Tween as Tween
 onready var ui_hook := $UIHook as RemoteTransform2D
@@ -286,7 +286,7 @@ func set_type(unit_type: UnitType, advancing := true) -> void:
 		type = unit_type
 
 	add_child(type)
-	type.sprite.material = MAT.duplicate()
+	type.sprite.material = mat.duplicate()
 	_load_race()
 	reset()
 

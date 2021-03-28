@@ -5,8 +5,9 @@
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=5]
-[ext_resource path="res://graphics/images/attacks/morning-star.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/units/human/shocktrooper.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/images/attacks/morning-star.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/images/units/human/shocktrooper.png" type="Texture" id=7]
+
 
 [node name="Shock Trooper" type="Node2D"]
 script = ExtResource( 1 )

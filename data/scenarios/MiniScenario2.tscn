@@ -4,14 +4,15 @@
 [ext_resource path="res://source/scenario/Side.gd" type="Script" id=2]
 [ext_resource path="res://source/scenario/Time.gd" type="Script" id=3]
 [ext_resource path="res://source/scenario/Schedule.gd" type="Script" id=4]
-[ext_resource path="res://graphics/images/icons/ToD_icon_firstwatch.svg" type="Texture" id=5]
-[ext_resource path="res://graphics/images/icons/ToD_icon_secondwatch.svg" type="Texture" id=6]
-[ext_resource path="res://graphics/images/icons/ToD_icon_dusk.svg" type="Texture" id=7]
-[ext_resource path="res://graphics/images/icons/ToD_icon_afternoon.svg" type="Texture" id=8]
-[ext_resource path="res://graphics/images/icons/ToD_icon_dawn.svg" type="Texture" id=9]
-[ext_resource path="res://graphics/images/icons/ToD_icon_morning.svg" type="Texture" id=10]
-[ext_resource path="res://audio/sounds/ambient/morning.ogg" type="AudioStream" id=11]
-[ext_resource path="res://audio/sounds/ambient/night.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/graphics/images/icons/ToD_icon_firstwatch.svg" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/images/icons/ToD_icon_secondwatch.svg" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/images/icons/ToD_icon_dusk.svg" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/images/icons/ToD_icon_afternoon.svg" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/images/icons/ToD_icon_dawn.svg" type="Texture" id=9]
+[ext_resource path="res://assets/graphics/images/icons/ToD_icon_morning.svg" type="Texture" id=10]
+[ext_resource path="res://assets/audio/sounds/ambient/morning.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/audio/sounds/ambient/night.ogg" type="AudioStream" id=12]
+
 
 [node name="TestScenario" type="Node2D"]
 script = ExtResource( 1 )

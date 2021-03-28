@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://graphics/images/interface/hover-hex.png" type="Texture" id=1]
-[ext_resource path="res://graphics/fonts/droid-sans/DroidSans24.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/graphics/images/interface/hover-hex.png" type="Texture" id=1]
+[ext_resource path="res://assets/graphics/fonts/droid-sans/DroidSans24.tres" type="DynamicFont" id=2]
 [ext_resource path="res://source/interface/misc/Selector.gd" type="Script" id=3]
+
 
 [node name="Selector" type="Control" groups=[
 "Selector",
