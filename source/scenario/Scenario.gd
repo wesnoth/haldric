@@ -33,6 +33,7 @@ onready var unit_container := YSort.new()
 export (String) var next_scenario := ""
 
 var turn_num := 0
+var done := false
 
 
 func _ready() -> void:
@@ -311,7 +312,7 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 
 	yield(combat, "combat_finished")
 
-	EventBus.emit_signal("combat_start", self,
+	EventBus.emit_signal("combat_finished", self,
 		current_side, attacker_loc, attacker_attack,
 		defender_side, defender_loc, defender_attack)
 
@@ -346,7 +347,7 @@ func end_turn() -> void:
 		schedule.next()
 		EventBus.emit_signal("next_turn", self, turn_num)
 
-	EventBus.emit_signal("next_turn", self, turn_num, current_side)
+	EventBus.emit_signal("next_side", self, turn_num, current_side)
 
 	_turn_refresh_heals()
 	_turn_refresh_abilities()
@@ -442,7 +443,7 @@ func _move_unit(path_result: Dictionary, start_loc: Location, end_loc : Location
 	_grab_castle(loc)
 	is_side_moving = false
 
-	EventBus.emit_signal("move_start", self, current_side, start_loc, end_loc)
+	EventBus.emit_signal("move_finished", self, current_side, start_loc, end_loc)
 
 	emit_signal("unit_move_finished", loc)
 
@@ -521,7 +522,10 @@ func victory() -> void:
 	Console.write("Side %d won!" % current_side.number)
 
 	EventBus.emit_signal("victory", self, current_side)
+	done = true
 
+
+func end_scenario():
 	if (next_scenario):
 		var next = Data.scenarios[next_scenario]
 		Campaign.selected_scenario = next

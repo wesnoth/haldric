@@ -45,6 +45,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if scenario.current_side.can_recruit():
 			UI.show_recall_dialogue(scenario.current_side, null)
 
+	elif event.is_action_pressed("end_turn") and scenario.done:
+		scenario.end_scenario()
+
 	elif event.is_action_pressed("end_turn") and not selected_unit and not scenario.is_side_moving:
 		scenario.end_turn()
 
@@ -198,6 +201,10 @@ func _on_GameUI_move_selected(loc: Location) -> void:
 
 func _on_GameUI_end_turn_pressed() -> void:
 	if scenario.is_side_moving:
+		return
+
+	if scenario.done:
+		scenario.end_scenario()
 		return
 
 	_set_selected_unit(null)
