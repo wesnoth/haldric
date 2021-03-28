@@ -91,7 +91,7 @@ func _load_scenario() -> void:
 	scenario.connect("location_hovered", self, "_on_Scenario_location_hovered")
 	scenario.schedule.connect("time_changed", self, "_on_Schedule_time_changed")
 	UI.set_cover_size(scenario.map.get_used_rect().size)
-	Command.scenario = scenario
+	ConsoleCommands.scenario = scenario
 
 
 func _is_valid_attack_location(loc: Location) -> bool:

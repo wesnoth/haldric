@@ -598,7 +598,7 @@ config/icon="res://icon.png"
 
 Debug="*res://source/global/Debug.tscn"
 Data="*res://source/global/Data.gd"
-Command="*res://source/global/Command.gd"
+ConsoleCommands="*res://source/global/ConsoleCommands.gd"
 Console="*res://source/global/Console.tscn"
 Global="*res://source/global/Global.gd"
 Hash="*res://source/global/Hash.gd"

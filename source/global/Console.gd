@@ -45,7 +45,7 @@ func _execute_command(command_line: String) -> void:
 	var command = array[0]
 	array.remove(0)
 
-	Command.callv(command, array)
+	ConsoleCommands.callv(command, array)
 
 
 func _on_LineEdit_text_entered(new_text: String) -> void:
