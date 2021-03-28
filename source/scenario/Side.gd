@@ -183,7 +183,7 @@ func write_recall_list() -> void:
 		if unit.is_leader:
 			continue
 
-		var data = {"id": unit.type.name, "level": unit.type.level, 
+		var data = {"id": unit.type.name, "level": unit.type.level,
 			"xp": unit.experience.value, "traits": []}
 		for trait in unit.traits.get_children():
 			data.traits.append(trait.name)

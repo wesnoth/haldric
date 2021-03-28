@@ -1,7 +1,7 @@
 extends Node
 class_name Mover
 
-signal unit_move_finished(loc)
+signal finished(loc)
 
 var movement_speed := 0.2
 
@@ -20,7 +20,7 @@ func _ready() -> void:
 	add_child(tween)
 
 
-func move_unit(start_loc: Location, _path: Array) -> void:
+func start(start_loc: Location, _path: Array) -> void:
 	path = _path
 	unit = start_loc.unit
 
@@ -65,7 +65,7 @@ func has_path_free_location(path: Array) -> bool:
 
 func _end_move(unit: Unit, loc: Location) -> void:
 	loc.unit = unit
-	emit_signal("unit_move_finished", loc)
+	emit_signal("finished", loc)
 	queue_free()
 
 

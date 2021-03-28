@@ -109,10 +109,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/game/combat/CombatOption.gd"
 }, {
+"base": "Command",
+"class": "CombatUnitCommand",
+"language": "GDScript",
+"path": "res://source/command/CombatUnitCommand.gd"
+}, {
 "base": "MarginContainer",
 "class": "CombatUnitInfo",
 "language": "GDScript",
 "path": "res://source/interface/game/combat/CombatUnitInfo.gd"
+}, {
+"base": "Reference",
+"class": "Command",
+"language": "GDScript",
+"path": "res://source/command/Command.gd"
+}, {
+"base": "Node",
+"class": "Commander",
+"language": "GDScript",
+"path": "res://source/command/Commander.gd"
+}, {
+"base": "Command",
+"class": "CreateUnitCommand",
+"language": "GDScript",
+"path": "res://source/command/CreateUnitCommand.gd"
 }, {
 "base": "Node2D",
 "class": "DebugDraw",
@@ -153,6 +173,11 @@ _global_script_classes=[ {
 "class": "EffectUnitType",
 "language": "GDScript",
 "path": "res://source/unit/effect/EffectUnitType.gd"
+}, {
+"base": "Reference",
+"class": "Events",
+"language": "GDScript",
+"path": "res://source/scenario/Events.gd"
 }, {
 "base": "Resource",
 "class": "FactionData",
@@ -214,6 +239,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/editor/MapEditor.gd"
 }, {
+"base": "Command",
+"class": "MoveUnitCommand",
+"language": "GDScript",
+"path": "res://source/command/MoveUnitCommand.gd"
+}, {
 "base": "Node",
 "class": "MovementType",
 "language": "GDScript",
@@ -228,6 +258,11 @@ _global_script_classes=[ {
 "class": "PathUI",
 "language": "GDScript",
 "path": "res://source/interface/game/PathUI.gd"
+}, {
+"base": "Command",
+"class": "PlaceUnitCommand",
+"language": "GDScript",
+"path": "res://source/command/PlaceUnitCommand.gd"
 }, {
 "base": "Control",
 "class": "PopupLabel",
@@ -343,6 +378,11 @@ _global_script_classes=[ {
 "class": "Status",
 "language": "GDScript",
 "path": "res://source/unit/status/Status.gd"
+}, {
+"base": "Command",
+"class": "TeleportUnitCommand",
+"language": "GDScript",
+"path": "res://source/command/TeleportUnitCommand.gd"
 }, {
 "base": "Reference",
 "class": "Terrain",
@@ -510,7 +550,11 @@ _global_script_class_icons={
 "CombatContext": "",
 "CombatDialogue": "",
 "CombatOption": "",
+"CombatUnitCommand": "",
 "CombatUnitInfo": "",
+"Command": "",
+"Commander": "",
+"CreateUnitCommand": "",
 "DebugDraw": "",
 "DefenseType": "",
 "EditorTerrainButton": "",
@@ -519,6 +563,7 @@ _global_script_class_icons={
 "EffectAttribute": "",
 "EffectDamage": "",
 "EffectUnitType": "",
+"Events": "",
 "FactionData": "",
 "FactionSelectionPlayerEntry": "",
 "GameUI": "",
@@ -531,9 +576,11 @@ _global_script_class_icons={
 "Map": "",
 "MapData": "",
 "MapEditor": "",
+"MoveUnitCommand": "",
 "MovementType": "",
 "Mover": "",
 "PathUI": "",
+"PlaceUnitCommand": "",
 "PopupLabel": "",
 "Projectile": "",
 "Race": "",
@@ -557,6 +604,7 @@ _global_script_class_icons={
 "SpecialAccuracy": "",
 "SpecialDamage": "",
 "Status": "",
+"TeleportUnitCommand": "",
 "Terrain": "",
 "TerrainBuilder": "",
 "TerrainData": "",
@@ -686,6 +734,11 @@ edit_base_only={
 toggle_fullscreen={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":true,"command":true,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
+ ]
+}
+undo={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":85,"unicode":0,"echo":false,"script":null)
  ]
 }
 

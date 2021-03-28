@@ -1,7 +1,7 @@
 extends Node
 class_name Combat
 
-signal combat_finished()
+signal finished()
 
 export var min_death_xp := 4
 export var death_xp := 8
@@ -52,14 +52,14 @@ func start(attacker: CombatContext, defender: CombatContext) -> void:
 		if other.unit.is_dead():
 			current.unit.grant_experience(max(min_death_xp, death_xp * other.unit.type.level))
 			other.unit.kill()
-			emit_signal("combat_finished")
+			emit_signal("finished")
 			queue_free()
 			return
 
 	attacker.unit.grant_experience(defender.unit.type.level)
 	defender.unit.grant_experience(attacker.unit.type.level)
 
-	emit_signal("combat_finished")
+	emit_signal("finished")
 	queue_free()
 
 

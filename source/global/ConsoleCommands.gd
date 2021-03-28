@@ -7,7 +7,7 @@ func add_unit(side_number: String, unit_type: String, is_leader := "false") -> v
 	if not scenario or not scenario.hovered_location:
 		return
 
-	scenario.add_unit(int(side_number), unit_type, scenario.hovered_location.cell.x, scenario.hovered_location.cell.y, bool(is_leader))
+	scenario.create_unit(int(side_number), unit_type, scenario.hovered_location.cell.x, scenario.hovered_location.cell.y, bool(is_leader))
 
 
 func add_gold(side_number: String, amount: String) -> void:

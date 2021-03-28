@@ -21,6 +21,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if scenario.current_side.controller == Side.Controller.AI:
 		return
 
+	if event.is_action_pressed("undo"):
+		scenario.undo()
+
 	if event.is_action_released("RMB"):
 		if selected_skill:
 			_set_selected_skill(null)

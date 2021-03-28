@@ -35,6 +35,9 @@ func initialize(_map_data: MapData) -> void:
 	height = map_data.height
 
 
+func has_location(cell: Vector2) -> bool:
+	return locations.has(cell)
+
 
 func get_location_from_cell(cell: Vector2) -> Location:
 

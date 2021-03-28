@@ -8,6 +8,8 @@ signal combat_finished()
 
 const FLAG_OFFSET = Vector2(15, 25)
 
+var events: Events = Events.new()
+
 var map_data : MapData = null
 
 var map : Map = null
@@ -23,6 +25,8 @@ var is_side_moving := false
 
 onready var schedule = $Schedule
 onready var sides = $Sides
+
+onready var commander: Commander = Commander.new()
 
 onready var map_container := Node2D.new()
 onready var flag_container := YSort.new()
@@ -78,6 +82,10 @@ func _get_configuration_warning() -> String:
 		warning += "No Side Node defined!\n"
 
 	return warning
+
+
+func undo() -> void:
+	commander.undo()
 
 
 func recruit(unit_type_id: String, loc: Location = null) -> void:
@@ -168,31 +176,22 @@ func recall(unit_type_id: String, data: Dictionary, loc: Location = null) -> voi
 	current_side.recall.erase(data)
 
 
-func add_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader := false) -> void:
+func create_unit(side_number: int, unit_type_id: String, x: int, y: int, is_leader := false) -> void:
 
 	if not Data.units.has(unit_type_id):
 		Console.warn("Invalid unit type '%s'" % unit_type_id)
 		return
 
-	var unit_type: UnitType = Data.units[unit_type_id].instance()
+	var cell = Vector2(x, y)
+
+	if not map.has_location(cell):
+		Console.warn("Invalid Position '%s'" % str(cell))
+		return
+
+	var location: Location = map.get_location_from_cell(cell)
 	var side : Side = get_side(side_number)
-	var unit = Unit.instance()
 
-	unit.is_leader = is_leader
-	unit.side_number = side.number
-	unit.side_color = side.color
-	unit.team_name = side.team_name
-	unit.type = unit_type
-
-	side.add_unit(unit, is_leader)
-	unit_container.add_child(unit)
-
-	unit.new_traits()
-	unit.apply_traits()
-	unit.restore()
-
-	get_tree().call_group("GameUI", "add_unit_plate", unit)
-	place_unit(unit, map.get_location_from_cell(Vector2(x, y)))
+	commander.queue(CreateUnitCommand.new(unit_container, unit_type_id, side, location, is_leader))
 
 
 func place_unit(unit: Unit, target_loc: Location) -> void:
@@ -201,21 +200,19 @@ func place_unit(unit: Unit, target_loc: Location) -> void:
 		Console.warn("invalid coordinates, cannot place unit")
 		return
 
-	unit.global_position = target_loc.position
-	target_loc.unit = unit
+	commander.queue(PlaceUnitCommand.new(unit, target_loc))
 
-	_grab_village(target_loc)
-	_grab_castle(target_loc)
+func teleport_unit(start_loc: Location, end_loc: Location) -> void:
+	if not end_loc:
+		Console.warn("invalid coordinates, cannot place unit")
+		return
+
+	commander.queue(TeleportUnitCommand.new(current_side, start_loc, end_loc))
 
 
-func move_unit(start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
+func move_unit(start_loc: Location, end_loc : Location, pop_last := false) -> void:
 	var result = map.find_path_with_max_costs(start_loc, end_loc, start_loc.unit.moves.value)
-	return _move_unit(result, start_loc, end_loc, pop_last)
-
-
-func move_unit_towards(start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
-	var result = map.find_path_with_max_costs(start_loc, end_loc, start_loc.unit.moves.value)
-	return _move_unit(result, start_loc, end_loc, pop_last)
+	_move_unit(result, start_loc, end_loc, pop_last)
 
 
 func find_units(property_path: String, value) -> Array:
@@ -251,35 +248,23 @@ func start_combat(attacker_loc: Location, attacker_attack: Attack, defender_loc:
 			emit_signal("combat_finished")
 			return
 
-		var new_attacker_loc = result.path[result.path.size()-2]
+		result.path.remove(result.path.size()-1)
+		var new_attacker_loc = result.path[-1]
 
 		if new_attacker_loc.unit:
 			Console.warn("unit at destination %s" % str(new_attacker_loc.cell))
 			emit_signal("combat_finished")
 			return
 
-		var mover = move_unit_towards(attacker_loc, defender_loc, true)
+		commander.queue(MoveUnitCommand.new(current_side, attacker_loc, result.path))
 
-		if not mover:
-			emit_signal("combat_finished")
-			return
-
-		yield(mover, "unit_move_finished")
 		attacker_loc = new_attacker_loc
 
 	if not map.are_locations_neighbors(attacker_loc, defender_loc):
 		emit_signal("combat_finished")
 		return
 
-	var combat := Combat.new()
-	get_tree().current_scene.add_child(combat)
-
-	combat.connect("combat_finished", self, "_on_combat_finished")
-	var attacker := CombatContext.new(attacker_loc, attacker_attack, schedule.current_time)
-	var defender := CombatContext.new(defender_loc, defender_attack, schedule.current_time)
-	combat.start(attacker, defender)
-
-	attacker_loc.unit.suspend()
+	commander.queue(CombatUnitCommand.new(schedule.current_time, attacker_loc, attacker_attack, defender_loc, defender_attack))
 
 
 func add_flag(_position: Vector2, color: Color) -> void:
@@ -337,6 +322,13 @@ func get_sides() -> Array:
 
 
 func _setup() -> void:
+	events.connect("unit_moved", self, "_on_unit_moved")
+	events.connect("combat_finished", self, "_on_combat_finished")
+
+	commander.name = "Commander"
+	commander.connect("command_trigger_event_called", self, "_on_command_trigger_event_called")
+	add_child(commander)
+
 	map_container.name = "MapContainer"
 	add_child(map_container)
 
@@ -360,7 +352,7 @@ func _load_sides() -> void:
 	for side in get_sides():
 		if (Campaign.selected_scenario.type == ScenarioData.ScenarioType.SCENARIO):
 			side.set_faction(Campaign.selected_sides[side.number - 1])
-		add_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
+		create_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
 		var ai = Data.AIs[side.ai].new()
 		add_child(ai)
 		ai.initialize(side)
@@ -373,24 +365,18 @@ func _load_sides() -> void:
 	get_tree().call_group("SideUI", "update_info", current_side)
 
 
-func _move_unit(path_result: Dictionary, start_loc: Location, end_loc : Location, pop_last := false) -> Mover:
+func _move_unit(path_result: Dictionary, start_loc: Location, end_loc : Location, pop_last := false) -> void:
 	if path_result.costs > start_loc.unit.moves.value:
 		emit_signal("unit_move_finished", start_loc)
 		Console.warn(start_loc.unit.name + " has not enough moves! (%d)" % path_result.costs)
-		return null
+		return
 
 	if pop_last:
 		path_result.path.pop_back()
 
-	var mover := Mover.new()
-	mover.connect("unit_move_finished", self, "_on_Mover_unit_move_finished")
-	get_tree().current_scene.add_child(mover)
+	commander.queue(MoveUnitCommand.new(current_side, start_loc, path_result.path))
 
-	current_side.remove_castle(start_loc)
-
-	mover.move_unit(start_loc, path_result.path)
 	is_side_moving = true
-	return mover
 
 
 func _turn_refresh_heals() -> void:
@@ -458,6 +444,7 @@ func _check_victory_conditions() -> void:
 			victory()
 			return
 
+
 func victory() -> void:
 	for side in get_sides():
 		side.write_recall_list()
@@ -486,8 +473,13 @@ func _on_Map_location_hovered(loc: Location) -> void:
 	emit_signal("location_hovered", hovered_location)
 
 
-func _on_Mover_unit_move_finished(loc: Location) -> void:
+func _on_unit_moved(loc: Location) -> void:
+	print("_on_unit_moved called")
 	_grab_village(loc)
 	_grab_castle(loc)
 	is_side_moving = false
 	emit_signal("unit_move_finished", loc)
+
+
+func _on_command_trigger_event_called(event: String, args: Array) -> void:
+	events.trigger_event(event, args)

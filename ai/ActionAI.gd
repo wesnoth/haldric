@@ -119,7 +119,7 @@ func _execute_attacks(scenario: Scenario) -> void:
 
 		else:
 			target = _get_best_attack_target(loc.unit, enemies)
-			scenario.call_deferred("move_unit_towards", loc, target.loc)
+			scenario.call_deferred("move_unit", loc, target.loc)
 			yield(scenario, "unit_move_finished")
 
 	emit_signal("attacks_finished")
