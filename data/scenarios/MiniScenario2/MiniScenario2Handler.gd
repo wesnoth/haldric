@@ -20,6 +20,6 @@ func _on_start(scenario):
 	scenario.show_info_dialogue("Wesnoth", "Move to the eastern border of the map")
 
 func _on_move(scenario, side, start_loc, end_loc):
-	if end_loc.cell.x > 27:
+	if side.recall_side == "Humans" and end_loc.cell.x > 27:
 		scenario.victory()
 		scenario.show_info_dialogue("Heinz", "We escaped!")
