@@ -131,7 +131,6 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 	unit.restore()
 
 	place_unit(unit, loc)
-	unit.suspend()
 
 	get_tree().call_group("SideUI", "update_info", current_side)
 
@@ -412,7 +411,7 @@ func _turn_refresh_abilities() -> void:
 			ability.execute(loc)
 
 		for effect in loc.unit.get_effects():
-			effect.execute(loc)
+			effect.execute(loc.unit)
 
 
 func _grab_village(loc: Location) -> void:

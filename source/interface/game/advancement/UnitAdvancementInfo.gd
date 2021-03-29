@@ -13,9 +13,6 @@ onready var skills := $MarginContainer/VBoxContainer/Skills
 func update_info(unit: Unit, advancement: Advancement) -> void:
 	clear()
 
-	advancement.execute(unit)
-	unit.restore()
-
 	unit_type_label.text = unit.type.alias
 	health_label.text = "HP: %d" % unit.type.health
 	moves_label.text = "MP: %d" % unit.type.moves

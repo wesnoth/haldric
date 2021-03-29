@@ -20,7 +20,5 @@ export(Array, NodePath) var exclude := []
 
 
 func execute(unit) -> void:
-	for effect in get_children():
-		effect.execute(unit)
 	if restore_unit:
-		unit.reset()
+		unit.restore()
