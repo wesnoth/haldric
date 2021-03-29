@@ -34,6 +34,8 @@ onready var unit_container := YSort.new()
 
 export (String) var next_scenario := "";
 
+var turn_num := 0
+var done := false
 
 func _ready() -> void:
 	if Engine.editor_hint:
@@ -458,6 +460,8 @@ func victory() -> void:
 
 	Console.write("Side %d won!" % current_side.number)
 
+
+func end_scenario():
 	if (next_scenario):
 		var next = Data.scenarios[next_scenario]
 		Campaign.selected_scenario = next
