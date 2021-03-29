@@ -5,13 +5,12 @@ var move_start_event_ind
 var recruit_event_ind
 
 func _ready():
-	EventBus.add_listener("start", self, "_on_start")
-	combat_start_event_ind = EventBus.add_listener("combat_start", self, "_on_combat")
-	move_start_event_ind = EventBus.add_listener("move_start", self, "_on_move")
-	recruit_event_ind = EventBus.add_listener("recruit", self, "_on_recruit")
+	EventBus.connect("start", self, "_on_start")
+	EventBus.connect("combat_start", self, "_on_combat")
+	EventBus.connect("move_start", self, "_on_move")
+	EventBus.connect("recruit", self, "_on_recruit")
 
-func _on_start(data):
-	var scenario = data.scenario
+func _on_start(scenario):
 	scenario.show_info_dialogue("Wesnoth", "Hello Haldric player! This is a tutorial.")
 	scenario.show_info_dialogue("Wesnoth", 
 	"""To select, click on the unit
@@ -21,20 +20,23 @@ func _on_start(data):
 	To recruit, open a skills menu and click 'RE'
 	To recall, open a skills menu and click 'RA'""")
 
-func _on_combat(data):
-	var scenario = data.scenario
-	if (data.attacker_side.controller == Side.Controller.HUMAN):
-		scenario.show_info_dialogue("Wesnoth", "Good Job! This is combat in Haldric.")
-		EventBus.remove_listener("combat_start", combat_start_event_ind)
+var combat_first = true
+func _on_combat(scenario, attacker_side, attacker_loc, attacker_attack, defender_side, defender_loc, defender_attack):
+	if combat_first:
+		if (attacker_side.controller == Side.Controller.HUMAN):
+			scenario.show_info_dialogue("Wesnoth", "Good Job! This is combat in Haldric.")
+		combat_first = false
 
-func _on_move(data):
-	var scenario = data.scenario
-	if (data.side.controller == Side.Controller.HUMAN):
-		scenario.show_info_dialogue("Wesnoth", "That is how you move in Haldric.")
-		EventBus.remove_listener("move_start", move_start_event_ind)
+var move_first = true
+func _on_move(scenario, side, start_loc, end_loc):
+	if move_first:
+		if (side.controller == Side.Controller.HUMAN):
+			scenario.show_info_dialogue("Wesnoth", "That is how you move in Haldric.")
+		move_first = false
 
-func _on_recruit(data):
-	var scenario = data.scenario
-	if (data.side.controller == Side.Controller.HUMAN):
-		scenario.show_info_dialogue("Wesnoth", "You just recruited some troops!")
-		EventBus.remove_listener("recruit", recruit_event_ind)
+var recruit_first = true
+func _on_recruit(scenario, side, unit, loc):
+	if recruit_first:
+		if (side.controller == Side.Controller.HUMAN):
+			scenario.show_info_dialogue("Wesnoth", "You just recruited some troops!")
+		recruit_first = false

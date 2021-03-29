@@ -1,34 +1,27 @@
 extends Node
 
-# https://godotengine.org/qa/10650/best-way-to-create-events-between-two-nodes
+signal start(scenario)
 
-var listeners = {}
+signal prerecruit(scenario, side, unit, loc)
+signal recruit(scenario, side, unit, loc)
 
-func _ready():
-	pass
+signal prerecall(scenario, side, unit, loc)
+signal recall(scenario, side, unit, loc)
 
-func clear():
-	listeners = {}
+signal add_unit(scenario, side, unit, loc, is_leader)
+signal place_unit(scenario, side, unit, loc)
 
-# void add_listener(object event, object, funcname)
-# adds a function reference to the list of listeners for the given named event
-func add_listener(event, object, funcname):
-	var callback = funcref(object, funcname)
-	if not listeners.has(event):
-		listeners[event] = []
-	listeners[event].append(callback)
-	return listeners[event].size()-1
+signal combat_start(scenario,
+	attacker_side, attacker_loc, attacker_attack,
+	defender_side, defender_loc, defender_attack)
+signal combat_finished(scenario,
+	attacker_side, attacker_loc, attacker_attack,
+	defender_side, defender_loc, defender_attack)
 
-# void remove_listener(object event, object, funcname)
-# removes a function reference from the list of listeners for the given named event
-func remove_listener(event, ind):
-	if listeners.has(event):
-		listeners[event].remove(ind)
+signal next_turn(scenario, turn)
+signal next_side(scenario, turn, new_side)
 
-# void raise_event(object event, object args)
-# calls each callback in the list of callbacks in listeners for the given named event, passing args to each
-func raise_event(event, args):
-	Console.write("Event %s!" % event)
-	if listeners.has(event):
-		for callback in listeners[event]:
-			callback.call_func(args)
+signal move_start(scenario, side, start_loc, end_loc)
+signal move_finished(scenario, side, start_loc, end_loc)
+
+signal victory(scenario, side)
