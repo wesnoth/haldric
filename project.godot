@@ -182,8 +182,8 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Events",
 "language": "GDScript",
-}, {
 "path": "res://source/scenario/Events.gd"
+}, {
 "base": "Resource",
 "class": "FactionData",
 "language": "GDScript",
