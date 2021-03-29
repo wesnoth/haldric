@@ -33,6 +33,68 @@ func scan() -> void:
 	_load_ais()
 
 
+	_load_terrain("res://data/terrain.gd")
+	_load_races("res://data/races")
+	_load_units("res://data/units")
+	_load_factions("res://data/factions")
+	_load_scenarios("res://data/scenarios")
+	_load_ais("res://ai")
+
+
+	var path = "res://addons/"
+
+	var directory := Directory.new()
+	directory.make_dir(path)
+
+	if not directory.open(path) == OK:
+		print("Loader: failed to load ", path, ", return [] (open)")
+		return
+
+	if not directory.list_dir_begin(true, true) == OK:
+		print("Loader: failed to load ", path, ", return [] (list_dir_begin)")
+		return
+
+	while true:
+		var sub_path = directory.get_next()
+		print(sub_path)
+
+		if sub_path == "." or sub_path == ".." or sub_path.begins_with("_"):
+			continue
+
+		elif sub_path == "":
+			break
+
+		_load_terrain(path + sub_path + "/data/terrain.gd")
+		_load_races(path + sub_path + "/data/races")
+		_load_units(path + sub_path + "/data/units")
+		_load_factions(path + sub_path + "/data/factions")
+		_load_scenarios(path + sub_path + "/data/scenarios")
+		_load_ais(path + sub_path + "/ai")
+
+func _load_addons(path):
+	var directory := Directory.new()
+	directory.make_dir(path)
+
+	if not directory.open(path) == OK:
+		print("Loader: failed to load ", path, ", return [] (open)")
+		return []
+
+	if not directory.list_dir_begin(true, true) == OK:
+		print("Loader: failed to load ", path, ", return [] (list_dir_begin)")
+		return []
+
+	while true:
+		var sub_path = directory.get_next()
+		print(sub_path)
+
+		if sub_path == "." or sub_path == ".." or sub_path.begins_with("_"):
+			continue
+
+		elif sub_path == "":
+			break
+
+		ProjectSettings.load_resource_pack(sub_path)
+
 func add_terrain(terrain: TerrainData) -> void:
 	terrains[terrain.code] = terrain
 
@@ -101,10 +163,8 @@ func _load_scenarios() -> void:
 	print(scenarios)
 
 
-func _load_ais() -> void:
-	AIs.clear()
-
-	for file_data in Loader.load_dir("res://ai", [ "gd" ]):
+func _load_ais(path) -> void:
+	for file_data in Loader.load_dir(path, [ "gd", "gdc" ]):
 		AIs[file_data.id] = file_data.data
 
 	print(AIs)
