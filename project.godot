@@ -134,6 +134,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/global/DebugDraw.gd"
 }, {
+"base": "Advancement",
+"class": "DefaultAdvancement",
+"language": "GDScript",
+"path": "res://source/unit/advancement/DefaultAdvancement.gd"
+}, {
 "base": "Node",
 "class": "DefenseType",
 "language": "GDScript",
@@ -174,16 +179,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/effect/EffectDamage.gd"
 }, {
-"base": "Effect",
-"class": "EffectUnitType",
-"language": "GDScript",
-"path": "res://source/unit/effect/EffectUnitType.gd"
-}, {
 "base": "Reference",
 "class": "Events",
 "language": "GDScript",
-"path": "res://source/scenario/Events.gd"
 }, {
+"path": "res://source/scenario/Events.gd"
 "base": "Resource",
 "class": "FactionData",
 "language": "GDScript",
@@ -529,6 +529,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/unit_type/UnitType.gd"
 }, {
+"base": "Advancement",
+"class": "UnitTypeAdvancement",
+"language": "GDScript",
+"path": "res://source/unit/advancement/UnitTypeAdvancement.gd"
+}, {
 "base": "Control",
 "class": "UnitUI",
 "language": "GDScript",
@@ -565,6 +570,7 @@ _global_script_class_icons={
 "Commander": "",
 "CreateUnitCommand": "",
 "DebugDraw": "",
+"DefaultAdvancement": "",
 "DefenseType": "",
 "Dialogue": "",
 "Dialogues": "",
@@ -573,7 +579,6 @@ _global_script_class_icons={
 "Effect": "",
 "EffectAttribute": "",
 "EffectDamage": "",
-"EffectUnitType": "",
 "Events": "",
 "FactionData": "",
 "FactionSelectionPlayerEntry": "",
@@ -644,6 +649,7 @@ _global_script_class_icons={
 "UnitRecallInfo": "",
 "UnitRecruitInfo": "",
 "UnitType": "",
+"UnitTypeAdvancement": "",
 "UnitUI": "",
 "WeaponSpecial": ""
 }
