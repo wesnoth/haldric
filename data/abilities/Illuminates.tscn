@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/unit/ability/Ability.gd" type="Script" id=1]
+
+[node name="Illuminates" type="Node"]
+script = ExtResource( 1 )
+alias = "Illuminates"
+description = "TO BE IMPLEMENTED"
+affect_allies = true
+affect_enemies = true

@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource( 1 )
 alias = "Loyalists"
-random_leader = [ "Lieutenant" ]
-recruit = [ "Bowman", "Mage", "Horseman", "Cavalryman", "Spearman" ]
+random_leader = [ "Lieutenant", "Swordsman", "Pikeman", "Javelineer", "Longbowman", "White Mage", "Red Mage" ]
+recruit = [ "Bowman", "Mage", "Horseman", "Cavalryman", "Spearman", "Heavy Infantryman", "Fencer" ]
