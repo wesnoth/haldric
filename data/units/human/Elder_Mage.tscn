@@ -1,32 +1,30 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
-[ext_resource path="res://data/abilities/Teleport.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/graphics/images/attacks/fireball.png" type="Texture" id=2]
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=6]
-[ext_resource path="res://data/projectiles/MagicMissile.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/graphics/images/units/human/elder-mage.png" type="Texture" id=7]
 [ext_resource path="res://assets/graphics/images/attacks/staff-magic.png" type="Texture" id=8]
 [ext_resource path="res://data/specials/Magical.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/graphics/images/attacks/magic-missile.png" type="Texture" id=10]
-[ext_resource path="res://assets/graphics/images/units/human/silver-mage.png" type="Texture" id=11]
 
-[node name="Silver Mage" type="Node2D"]
+[node name="Elder Mage" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Silver Mage"
+alias = "Elder Mage"
 race = "human"
-level = 3
-cost = 59
-health = 48
+level = 5
+cost = 65
+health = 60
 moves = 6
-experience = 150
+experience = 250
 usage = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 11 )
+texture = ExtResource( 7 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -42,15 +40,12 @@ script = ExtResource( 4 )
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 5 )
-heat = 50
-cold = 50
+heat = 30
 arcane = 20
 
 [node name="Traits" type="Node" parent="."]
 
 [node name="Abilities" type="Node" parent="."]
-
-[node name="Teleport" parent="Abilities" instance=ExtResource( 2 )]
 
 [node name="Skills" type="Node" parent="."]
 
@@ -61,19 +56,18 @@ script = ExtResource( 6 )
 alias = "Staff"
 icon = ExtResource( 8 )
 damage_type = "impact"
-damage = 7
+damage = 9
 strikes = 2
 
-[node name="Missile" type="Node" parent="Attacks"]
+[node name="Fireball" type="Node" parent="Attacks"]
 script = ExtResource( 6 )
-alias = "Missile"
-icon = ExtResource( 10 )
+alias = "Fireball"
+icon = ExtResource( 2 )
 category = "ranged"
 damage_type = "heat"
-damage = 9
+damage = 16
 strikes = 4
-projectile = ExtResource( 7 )
 
-[node name="Magical" parent="Attacks/Missile" instance=ExtResource( 9 )]
+[node name="Magical" parent="Attacks/Fireball" instance=ExtResource( 9 )]
 
 [node name="Advancements" type="Node" parent="."]

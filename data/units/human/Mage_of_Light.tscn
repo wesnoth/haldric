@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/images/attacks/lightbeam.png" type="Texture" id=2]
@@ -9,9 +9,9 @@
 [ext_resource path="res://assets/graphics/images/attacks/morning-star.png" type="Texture" id=7]
 [ext_resource path="res://assets/graphics/images/units/human/white-cleric.png" type="Texture" id=8]
 [ext_resource path="res://data/specials/Magical.tscn" type="PackedScene" id=9]
-[ext_resource path="res://source/unit/ability/AbilityHeal.gd" type="Script" id=10]
-[ext_resource path="res://source/unit/ability/Ability.gd" type="Script" id=11]
-
+[ext_resource path="res://data/abilities/Illuminates.tscn" type="PackedScene" id=10]
+[ext_resource path="res://data/abilities/Heal8.tscn" type="PackedScene" id=11]
+[ext_resource path="res://data/abilities/Cure.tscn" type="PackedScene" id=12]
 
 [node name="Mage of Light" type="Node2D"]
 script = ExtResource( 1 )
@@ -50,18 +50,11 @@ arcane = 60
 
 [node name="Abilities" type="Node" parent="."]
 
-[node name="Heals8" type="Node" parent="Abilities"]
-script = ExtResource( 10 )
-affect_self = false
-affect_allies = true
-amount = 8
-cure = [ "Poison" ]
+[node name="Cure" parent="Abilities" instance=ExtResource( 12 )]
 
-[node name="Illuminates" type="Node" parent="Abilities"]
-script = ExtResource( 11 )
-description = "TO BE IMPLEMENTED"
-affect_allies = true
-affect_enemies = true
+[node name="Heal8" parent="Abilities" instance=ExtResource( 11 )]
+
+[node name="Illuminates" parent="Abilities" instance=ExtResource( 10 )]
 
 [node name="Skills" type="Node" parent="."]
 

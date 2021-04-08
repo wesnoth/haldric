@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/unit/special/SpecialAccuracy.gd" type="Script" id=1]
+
+[node name="Marksman" type="Node"]
+script = ExtResource( 1 )
+alias = "Marksman"
+description = "This unit has at least 60 % chance to hit on offence"
+active_on = 0
+accuracy = 60

@@ -9,8 +9,7 @@
 [ext_resource path="res://data/specials/Charge.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/graphics/images/attacks/lance.png" type="Texture" id=8]
 [ext_resource path="res://assets/graphics/images/attacks/sword-holy.png" type="Texture" id=9]
-[ext_resource path="res://source/unit/ability/AbilityHeal.gd" type="Script" id=10]
-
+[ext_resource path="res://data/abilities/Heal4.tscn" type="PackedScene" id=10]
 
 [node name="Paladin" type="Node2D"]
 script = ExtResource( 1 )
@@ -52,12 +51,7 @@ arcane = 20
 
 [node name="Abilities" type="Node" parent="."]
 
-[node name="Heal4" type="Node" parent="Abilities"]
-script = ExtResource( 10 )
-alias = "Heal +4"
-description = "Heals adjacent allies by 4 HP in the beginning of your turn"
-affect_self = false
-affect_allies = true
+[node name="Heal4" parent="Abilities" instance=ExtResource( 10 )]
 
 [node name="Skills" type="Node" parent="."]
 

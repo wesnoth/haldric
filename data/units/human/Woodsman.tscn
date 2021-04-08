@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/images/attacks/dagger-human.png" type="Texture" id=2]
+[ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=3]
+[ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=4]
+[ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=5]
+[ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=6]
+[ext_resource path="res://assets/graphics/images/units/human/woodsman.png" type="Texture" id=7]
+[ext_resource path="res://data/projectiles/Arrow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/graphics/images/attacks/bow.png" type="Texture" id=9]
+
+[node name="Woodsman" type="Node2D"]
+script = ExtResource( 1 )
+alias = "Woodsman"
+race = "human"
+cost = 10
+health = 18
+moves = 5
+experience = 23
+advances_to = [ "Bowman", "Poacher" ]
+usage = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 7 )
+
+[node name="Defense" type="Node" parent="."]
+script = ExtResource( 3 )
+castle = 60
+flat = 40
+forest = 60
+hills = 50
+mountains = 60
+village = 60
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource( 4 )
+coastal_reef = 2
+deep_water = 99
+sand = 2
+
+[node name="Resistance" type="Node" parent="."]
+script = ExtResource( 5 )
+arcane = 20
+
+[node name="Traits" type="Node" parent="."]
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="Skills" type="Node" parent="."]
+
+[node name="Attacks" type="Node" parent="."]
+
+[node name="Dagger" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Dagger"
+icon = ExtResource( 2 )
+damage_type = "blade"
+damage = 3
+strikes = 1
+
+[node name="Bow" type="Node" parent="Attacks"]
+script = ExtResource( 6 )
+alias = "Bow"
+icon = ExtResource( 9 )
+category = "ranged"
+damage_type = "pierce"
+damage = 4
+strikes = 3
+projectile = ExtResource( 8 )
+
+[node name="Advancements" type="Node" parent="."]
