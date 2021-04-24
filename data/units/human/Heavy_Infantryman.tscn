@@ -8,7 +8,6 @@
 [ext_resource path="res://assets/graphics/images/attacks/mace-spiked.png" type="Texture" id=6]
 [ext_resource path="res://assets/graphics/images/units/human/heavyinfantry.png" type="Texture" id=7]
 
-
 [node name="Heavy Infantryman" type="Node2D"]
 script = ExtResource( 1 )
 alias = "Heavy Infantryman"

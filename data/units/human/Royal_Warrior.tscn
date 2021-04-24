@@ -1,79 +1,77 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=2]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=5]
-[ext_resource path="res://data/abilities/Skirmisher.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/graphics/images/attacks/saber-human.png" type="Texture" id=7]
-[ext_resource path="res://assets/graphics/images/units/human/fencer.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/images/attacks/mace-spiked.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/images/units/human/royal-warrior.png" type="Texture" id=7]
 
-[node name="Fencer" type="Node2D"]
+[node name="Royal Warrior" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Fencer"
+alias = "Royal Warrior"
 alignment = "lawful"
 race = "human"
-level = 1
-cost = 16
-health = 28
+level = 3
+cost = 40
+health = 64
 moves = 6
-experience = 42
-advances_to = [ "Duelist" ]
+experience = 150
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 2 )
-castle = 70
-cave = 50
-coastal_reef = 50
-flat = 60
-forest = 70
-frozen = 40
-fungus = 70
-hills = 70
-mountains = 70
-sand = 40
-shallow_water = 40
-swamp = 40
-village = 70
+castle = 50
+cave = 40
+coastal_reef = 20
+flat = 30
+forest = 40
+frozen = 20
+fungus = 40
+hills = 40
+sand = 20
+shallow_water = 10
+swamp = 10
+village = 40
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 3 )
-coastal_reef = 2
 deep_water = 99
-frozen = 2
+frozen = 4
+hills = 3
+mountains = 99
 sand = 2
-shallow_water = 2
-swamp = 2
+shallow_water = 4
+swamp = 4
 
 [node name="Resistance" type="Node" parent="."]
 script = ExtResource( 4 )
-slash = -30
-impact = -20
-pierce = -20
+slash = 50
+impact = 10
+pierce = 40
+heat = -10
+cold = -10
 arcane = 20
 
 [node name="Traits" type="Node" parent="."]
 
 [node name="Abilities" type="Node" parent="."]
 
-[node name="Skirmisher" parent="Abilities" instance=ExtResource( 6 )]
-
 [node name="Skills" type="Node" parent="."]
 
 [node name="Attacks" type="Node" parent="."]
 
-[node name="Saber" type="Node" parent="Attacks"]
+[node name="Morning Star" type="Node" parent="Attacks"]
 script = ExtResource( 5 )
-alias = "Saber"
-icon = ExtResource( 7 )
-damage_type = "slash"
-damage = 4
-strikes = 4
+alias = "Morning Star"
+icon = ExtResource( 6 )
+damage_type = "impact"
+damage = 25
+strikes = 2
 
 [node name="Advancements" type="Node" parent="."]

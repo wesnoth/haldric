@@ -1,30 +1,32 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/unit/unit_type/UnitType.gd" type="Script" id=1]
 [ext_resource path="res://source/unit/unit_type/DefenseType.gd" type="Script" id=2]
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=5]
-[ext_resource path="res://data/abilities/Skirmisher.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/graphics/images/attacks/saber-human.png" type="Texture" id=7]
-[ext_resource path="res://assets/graphics/images/units/human/fencer.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/images/attacks/dagger-human.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/images/units/human/rogue.png" type="Texture" id=7]
+[ext_resource path="res://data/specials/Backstab.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/graphics/images/attacks/dagger-thrown-human.png" type="Texture" id=9]
+[ext_resource path="res://data/abilities/Skirmisher.tscn" type="PackedScene" id=10]
 
-[node name="Fencer" type="Node2D"]
+[node name="Rogue" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Fencer"
-alignment = "lawful"
+alias = "Rogue"
+alignment = "chaotic"
 race = "human"
-level = 1
-cost = 16
-health = 28
+level = 2
+cost = 24
+health = 40
 moves = 6
-experience = 42
-advances_to = [ "Duelist" ]
+experience = 70
+advances_to = [ "Assassin" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -62,18 +64,29 @@ arcane = 20
 
 [node name="Abilities" type="Node" parent="."]
 
-[node name="Skirmisher" parent="Abilities" instance=ExtResource( 6 )]
+[node name="Skirmisher" parent="Abilities" instance=ExtResource( 10 )]
 
 [node name="Skills" type="Node" parent="."]
 
 [node name="Attacks" type="Node" parent="."]
 
-[node name="Saber" type="Node" parent="Attacks"]
+[node name="Dagger" type="Node" parent="Attacks"]
 script = ExtResource( 5 )
-alias = "Saber"
-icon = ExtResource( 7 )
+alias = "Dagger"
+icon = ExtResource( 6 )
+damage_type = "slash"
+damage = 6
+strikes = 3
+
+[node name="Backstab" parent="Attacks/Dagger" instance=ExtResource( 8 )]
+
+[node name="Throwing Knives" type="Node" parent="Attacks"]
+script = ExtResource( 5 )
+alias = "Throwing Knives"
+icon = ExtResource( 9 )
+category = "ranged"
 damage_type = "slash"
 damage = 4
-strikes = 4
+strikes = 3
 
 [node name="Advancements" type="Node" parent="."]

@@ -5,26 +5,27 @@
 [ext_resource path="res://source/unit/unit_type/MovementType.gd" type="Script" id=3]
 [ext_resource path="res://source/unit/unit_type/ResistanceType.gd" type="Script" id=4]
 [ext_resource path="res://source/unit/attack/Attack.gd" type="Script" id=5]
-[ext_resource path="res://data/abilities/Skirmisher.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/graphics/images/attacks/saber-human.png" type="Texture" id=7]
-[ext_resource path="res://assets/graphics/images/units/human/fencer.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/images/attacks/mace-spiked.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/images/units/human/outlaw.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/images/attacks/sling.png" type="Texture" id=8]
 
-[node name="Fencer" type="Node2D"]
+[node name="Outlaw" type="Node2D"]
 script = ExtResource( 1 )
-alias = "Fencer"
-alignment = "lawful"
+alias = "Outlaw"
+alignment = "chaotic"
 race = "human"
-level = 1
-cost = 16
-health = 28
-moves = 6
-experience = 42
-advances_to = [ "Duelist" ]
+level = 2
+cost = 26
+health = 42
+moves = 7
+experience = 77
+advances_to = [ "Fugitive" ]
+usage = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 
 [node name="Defense" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -62,18 +63,25 @@ arcane = 20
 
 [node name="Abilities" type="Node" parent="."]
 
-[node name="Skirmisher" parent="Abilities" instance=ExtResource( 6 )]
-
 [node name="Skills" type="Node" parent="."]
 
 [node name="Attacks" type="Node" parent="."]
 
-[node name="Saber" type="Node" parent="Attacks"]
+[node name="Morning Star" type="Node" parent="Attacks"]
 script = ExtResource( 5 )
-alias = "Saber"
-icon = ExtResource( 7 )
-damage_type = "slash"
-damage = 4
-strikes = 4
+alias = "Morning Star"
+icon = ExtResource( 6 )
+damage_type = "impact"
+damage = 8
+strikes = 2
+
+[node name="Sling" type="Node" parent="Attacks"]
+script = ExtResource( 5 )
+alias = "Sling"
+icon = ExtResource( 8 )
+category = "ranged"
+damage_type = "impact"
+damage = 6
+strikes = 3
 
 [node name="Advancements" type="Node" parent="."]

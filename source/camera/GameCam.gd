@@ -63,10 +63,11 @@ func _handle_pan_gesture(event: InputEvent):
 
 
 func _handle_mouse_scroll(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("scroll_up"):
-		_zoom(zoom_step * -1)
-	elif Input.is_action_just_pressed("scroll_down"):
-		_zoom(zoom_step)
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_WHEEL_DOWN and event.pressed:
+			_zoom(zoom_step)
+		if event.button_index == BUTTON_WHEEL_UP and event.pressed:
+			_zoom(zoom_step * -1)
 
 
 func _zoom(step: float) -> void:
