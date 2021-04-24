@@ -775,6 +775,7 @@ limits/debugger_stdout/max_messages_per_frame=30
 
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
-quality/2d/use_pixel_snap=true
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_environment="res://default_env.tres"
+quality/2d/use_pixel_snap=true
 quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
