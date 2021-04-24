@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/captain.png-87352462876838f5eba5a12b59000a0d.stex"
+path="res://.import/thief.png-e12e7213cd7fc82962bce9e4471f88e9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/images/units/elvish/captain.png"
-dest_files=[ "res://.import/captain.png-87352462876838f5eba5a12b59000a0d.stex" ]
+source_file="res://assets/graphics/images/units/human/thief.png"
+dest_files=[ "res://.import/thief.png-e12e7213cd7fc82962bce9e4471f88e9.stex" ]
 
 [params]
 
