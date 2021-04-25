@@ -24,11 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/ability/AbilityHeal.gd"
 }, {
-"base": "AI",
-"class": "ActionAI",
-"language": "GDScript",
-"path": "res://ai/ActionAI.gd"
-}, {
 "base": "Control",
 "class": "ActionButton",
 "language": "GDScript",
@@ -344,11 +339,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/game/SideUI.gd"
 }, {
-"base": "AI",
-"class": "SimpleAI",
-"language": "GDScript",
-"path": "res://ai/SimpleAI.gd"
-}, {
 "base": "Node",
 "class": "Skill",
 "language": "GDScript",
@@ -553,7 +543,6 @@ _global_script_class_icons={
 "AI": "",
 "Ability": "",
 "AbilityHeal": "",
-"ActionAI": "",
 "ActionButton": "",
 "ActionDialogue": "",
 "AdvancemenOption": "",
@@ -617,7 +606,6 @@ _global_script_class_icons={
 "Selector": "",
 "Side": "",
 "SideUI": "",
-"SimpleAI": "",
 "Skill": "",
 "SkillButton": "",
 "SkillDamage": "",

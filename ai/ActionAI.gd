@@ -1,5 +1,4 @@
-extends	AI
-class_name ActionAI
+extends AI
 
 signal attacks_finished()
 signal scouting_finished()
