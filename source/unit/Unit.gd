@@ -63,7 +63,6 @@ func advance(advancement: Advancement, silent := false) -> void:
 	yield(tween, "tween_all_completed")
 
 	advancement.execute(self)
-	restore()
 
 	_tween_advancement_out()
 	yield(tween, "tween_all_completed")
@@ -161,9 +160,7 @@ func reset() -> void:
 
 
 func restore() -> void:
-	actions.fill()
 	health.fill()
-	moves.fill()
 	experience.empty()
 
 

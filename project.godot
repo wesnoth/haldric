@@ -24,11 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/ability/AbilityHeal.gd"
 }, {
-"base": "AI",
-"class": "ActionAI",
-"language": "GDScript",
-"path": "res://ai/ActionAI.gd"
-}, {
 "base": "Control",
 "class": "ActionButton",
 "language": "GDScript",
@@ -139,6 +134,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/global/DebugDraw.gd"
 }, {
+"base": "Advancement",
+"class": "DefaultAdvancement",
+"language": "GDScript",
+"path": "res://source/unit/advancement/DefaultAdvancement.gd"
+}, {
 "base": "Node",
 "class": "DefenseType",
 "language": "GDScript",
@@ -178,11 +178,6 @@ _global_script_classes=[ {
 "class": "EffectDamage",
 "language": "GDScript",
 "path": "res://source/unit/effect/EffectDamage.gd"
-}, {
-"base": "Effect",
-"class": "EffectUnitType",
-"language": "GDScript",
-"path": "res://source/unit/effect/EffectUnitType.gd"
 }, {
 "base": "Reference",
 "class": "Events",
@@ -343,11 +338,6 @@ _global_script_classes=[ {
 "class": "SideUI",
 "language": "GDScript",
 "path": "res://source/interface/game/SideUI.gd"
-}, {
-"base": "AI",
-"class": "SimpleAI",
-"language": "GDScript",
-"path": "res://ai/SimpleAI.gd"
 }, {
 "base": "Node",
 "class": "Skill",
@@ -539,6 +529,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/unit/unit_type/UnitType.gd"
 }, {
+"base": "Advancement",
+"class": "UnitTypeAdvancement",
+"language": "GDScript",
+"path": "res://source/unit/advancement/UnitTypeAdvancement.gd"
+}, {
 "base": "Control",
 "class": "UnitUI",
 "language": "GDScript",
@@ -553,7 +548,6 @@ _global_script_class_icons={
 "AI": "",
 "Ability": "",
 "AbilityHeal": "",
-"ActionAI": "",
 "ActionButton": "",
 "ActionDialogue": "",
 "AdvancemenOption": "",
@@ -576,6 +570,7 @@ _global_script_class_icons={
 "Commander": "",
 "CreateUnitCommand": "",
 "DebugDraw": "",
+"DefaultAdvancement": "",
 "DefenseType": "",
 "Dialogue": "",
 "Dialogues": "",
@@ -584,7 +579,6 @@ _global_script_class_icons={
 "Effect": "",
 "EffectAttribute": "",
 "EffectDamage": "",
-"EffectUnitType": "",
 "Events": "",
 "FactionData": "",
 "FactionSelectionPlayerEntry": "",
@@ -617,7 +611,6 @@ _global_script_class_icons={
 "Selector": "",
 "Side": "",
 "SideUI": "",
-"SimpleAI": "",
 "Skill": "",
 "SkillButton": "",
 "SkillDamage": "",
@@ -656,6 +649,7 @@ _global_script_class_icons={
 "UnitRecallInfo": "",
 "UnitRecruitInfo": "",
 "UnitType": "",
+"UnitTypeAdvancement": "",
 "UnitUI": "",
 "WeaponSpecial": ""
 }
@@ -684,6 +678,10 @@ window/size/height=1080
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
+
+[gui]
+
+theme/use_hidpi=true
 
 [importer_defaults]
 

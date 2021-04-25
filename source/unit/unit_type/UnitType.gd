@@ -39,13 +39,11 @@ onready var sprite := $Sprite
 
 func _ready() -> void:
 	for id in advances_to:
-		var advancement = Advancement.new()
-		var effect = load(UNIT_TYPE_EFFECT).new() # cyclic dependency hack
 		var unit_type = Data.units[id]
+		var advancement = load("res://source/unit/advancement/UnitTypeAdvancement.gd").new()
+		advancement.type = unit_type
 		advancements.add_child(advancement)
-		advancement.add_child(effect)
 		advancement.alias = id
-		effect.type = unit_type
 
 
 func _enter_tree() -> void:

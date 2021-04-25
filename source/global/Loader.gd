@@ -29,6 +29,7 @@ static func _get_directory_data(path: String, directory_data: Array, extentions:
 		elif directory.current_is_dir():
 			directory_data = _get_directory_data(directory.get_current_dir() + "/" + sub_path, directory_data, extentions, load_resource)
 		else:
+			sub_path = sub_path.replace(".import", "")
 			if not extentions.has(sub_path.get_extension()):
 				continue
 

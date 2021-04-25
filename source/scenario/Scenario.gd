@@ -34,6 +34,8 @@ onready var unit_container := YSort.new()
 
 export (String) var next_scenario := "";
 
+var turn_num := 0
+var done := false
 
 func _ready() -> void:
 	if Engine.editor_hint:
@@ -131,7 +133,6 @@ func recruit(unit_type_id: String, loc: Location = null) -> void:
 	unit.restore()
 
 	place_unit(unit, loc)
-	unit.suspend()
 
 	get_tree().call_group("SideUI", "update_info", current_side)
 
@@ -360,10 +361,11 @@ func _load_sides() -> void:
 		if (Campaign.selected_scenario.type == ScenarioData.ScenarioType.SCENARIO):
 			side.set_faction(Campaign.selected_sides[side.number - 1])
 		create_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
-		var ai = Data.AIs[side.ai].new()
-		add_child(ai)
-		ai.initialize(side)
-		AIs[side] = ai
+		if (side.controller == Side.Controller.AI):
+			var ai = Data.AIs[side.ai].new()
+			add_child(ai)
+			ai.initialize(side)
+			AIs[side] = ai
 
 
 	current_side = get_side(1)
@@ -411,7 +413,7 @@ func _turn_refresh_abilities() -> void:
 			ability.execute(loc)
 
 		for effect in loc.unit.get_effects():
-			effect.execute(loc)
+			effect.execute(loc.unit)
 
 
 func _grab_village(loc: Location) -> void:
@@ -458,6 +460,8 @@ func victory() -> void:
 
 	Console.write("Side %d won!" % current_side.number)
 
+
+func end_scenario():
 	if (next_scenario):
 		var next = Data.scenarios[next_scenario]
 		Campaign.selected_scenario = next

@@ -32,7 +32,6 @@ func scan() -> void:
 	_load_scenarios()
 	_load_ais()
 
-
 func add_terrain(terrain: TerrainData) -> void:
 	terrains[terrain.code] = terrain
 
@@ -102,9 +101,7 @@ func _load_scenarios() -> void:
 
 
 func _load_ais() -> void:
-	AIs.clear()
-
-	for file_data in Loader.load_dir("res://ai", [ "gd" ]):
+	for file_data in Loader.load_dir("res://ai", [ "gd", "gdc" ]):
 		AIs[file_data.id] = file_data.data
 
 	print(AIs)
