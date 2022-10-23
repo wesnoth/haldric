@@ -3,7 +3,7 @@ class_name Schedule
 
 signal time_changed(time)
 
-var current_time : Time = null
+var current_time : CustomTime = null
 
 
 func _ready() -> void:

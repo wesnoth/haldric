@@ -2,7 +2,7 @@ class_name CombatContext
 
 
 
-var _time : Time = null
+var _time : CustomTime = null
 var _attack = null # : Attack
 
 var location = null # : Location
@@ -18,7 +18,7 @@ var damage_type := ""
 var category := ""
 
 
-func _init(_location, attack, time: Time) -> void:
+func _init(_location, attack, time: CustomTime) -> void:
 	location = _location
 	_attack = attack
 	_time = time

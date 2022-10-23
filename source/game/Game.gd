@@ -157,7 +157,7 @@ func _on_Scenario_location_hovered(loc: Location) -> void:
 	_set_hovered_location(loc)
 
 
-func _on_Schedule_time_changed(time: Time) -> void:
+func _on_Schedule_time_changed(time: CustomTime) -> void:
 	time_shader.material.set_shader_param("delta", Vector3(time.tint_red, time.tint_green, time.tint_blue))
 	get_tree().call_group("ToDWidget", "update_info", time)
 	print("time changd", time.name)
