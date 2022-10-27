@@ -17,7 +17,7 @@ onready var defender_info := $Panel/VBoxContainer/HBoxContainer/Defender as Comb
 onready var options := $Panel/VBoxContainer/Options
 
 
-func update_info(time: Time, attacker: Location, _defender: Location) -> void:
+func update_info(time: CustomTime, attacker: Location, _defender: Location) -> void:
 	clear()
 
 	defender = _defender
@@ -47,7 +47,7 @@ func clear() -> void:
 		child.queue_free()
 
 
-func _add_option(time: Time, attacker: Location, _attacker_attack: Attack, defender: Location, _defender_attack: Attack) -> void:
+func _add_option(time: CustomTime, attacker: Location, _attacker_attack: Attack, defender: Location, _defender_attack: Attack) -> void:
 	var option = CombatOption.instance()
 	option.group = GROUP
 	option.connect("pressed", self, "_on_option_selected", [ attacker, _attacker_attack, defender, _defender_attack ])

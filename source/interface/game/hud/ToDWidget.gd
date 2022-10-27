@@ -37,11 +37,11 @@ func initialize(times: Array) -> void:
 	wheel.initialize(times)
 
 
-func update_info(time: Time) -> void:
+func update_info(time: CustomTime) -> void:
 	_animate(time)
 
 
-func _animate(time: Time) -> void:
+func _animate(time: CustomTime) -> void:
 	tween.stop_all()
 
 	current = time.get_index()
@@ -62,7 +62,7 @@ func _animate(time: Time) -> void:
 
 func _on_Tween_tween_all_completed() -> void:
 	bell.play()
-	var time : Time = times[current]
+	var time : CustomTime = times[current]
 
 	if time.sound:
 		ambient.stream = time.sound

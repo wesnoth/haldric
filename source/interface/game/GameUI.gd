@@ -110,7 +110,7 @@ func hide_action_dialogue() -> void:
 	shows_actions = false
 
 
-func show_combat_dialogue(time: Time, attacker: Location, defender: Location) -> void:
+func show_combat_dialogue(time: CustomTime, attacker: Location, defender: Location) -> void:
 	selector.hide()
 	combat_dialogue.update_info(time, attacker, defender)
 	combat_dialogue.show()

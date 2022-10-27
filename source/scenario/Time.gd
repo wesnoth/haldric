@@ -1,5 +1,5 @@
 extends Node
-class_name Time
+class_name CustomTime
 
 export var alias := ""
 

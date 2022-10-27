@@ -5,10 +5,10 @@ var _attacker_loc: Location = null
 var _defender_loc: Location = null
 var _attacker_attack: Attack = null
 var _defender_attack: Attack = null
-var _current_time: Time = null
+var _current_time: CustomTime = null
 
 
-func _init(current_time: Time, attacker_loc: Location, attacker_attack: Attack, defender_loc: Location, defender_attack: Attack) -> void:
+func _init(current_time: CustomTime, attacker_loc: Location, attacker_attack: Attack, defender_loc: Location, defender_attack: Attack) -> void:
 	_current_time = current_time
 	_attacker_loc = attacker_loc
 	_defender_loc = defender_loc
