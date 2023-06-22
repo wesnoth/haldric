@@ -360,10 +360,11 @@ func _load_sides() -> void:
 		if (Campaign.selected_scenario.type == ScenarioData.ScenarioType.SCENARIO):
 			side.set_faction(Campaign.selected_sides[side.number - 1])
 		create_unit(side.number, side.leader, side.start_position.x, side.start_position.y, true)
-		var ai = Data.AIs[side.ai].new()
-		add_child(ai)
-		ai.initialize(side)
-		AIs[side] = ai
+		if (side.controller == Side.Controller.AI):
+			var ai = Data.AIs[side.ai].new()
+			add_child(ai)
+			ai.initialize(side)
+			AIs[side] = ai
 
 
 	current_side = get_side(1)
